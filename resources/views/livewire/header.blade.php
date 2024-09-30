@@ -21,8 +21,8 @@
                             class="object-contain"
                             style="position:absolute;height:100%;width:100%;left:0;top:0;right:0;bottom:0;color:transparent"
                             sizes="(max-width: 768px) 100vw"
-                            srcset="{{ asset('assets/frontend/img/logo.webp &amp;w=640&amp;q=75 640w') }}, {{ asset('assets/frontend/img/logo.webp &amp;w=750&amp;q=75 750w') }}, {{ asset('assets/frontend/img/logo.webp &amp;w=828&amp;q=75 828w') }}"
-                            src="{{ asset('assets/frontend/img/logo.webp') }}">
+                            srcset="{{ asset('assets/frontend/img/logo.png &amp;w=640&amp;q=75 640w') }}, {{ asset('assets/frontend/img/logo.png &amp;w=750&amp;q=75 750w') }}, {{ asset('assets/frontend/img/logo.png &amp;w=828&amp;q=75 828w') }}"
+                            src="{{ asset('assets/frontend/img/logo.png') }}">
                         </span></a>
             </div>
             <div class="flex shrink-0 items-center space-x-7 rtl:space-x-reverse 2xl:space-x-10">

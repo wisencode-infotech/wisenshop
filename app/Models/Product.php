@@ -7,6 +7,7 @@ use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Database\Eloquent\Relations\BelongsToMany;
+use Illuminate\Database\Eloquent\Relations\HasOne;
 
 class Product extends Model
 {
@@ -43,5 +44,23 @@ class Product extends Model
     public function cartItems(): HasMany
     {
         return $this->hasMany(Cart::class);
+    }
+
+    public function images(): HasMany
+    {
+        return $this->hasMany(ProductImage::class);
+    }
+
+    public function displayImage(): HasOne
+    {
+        return $this->hasOne(ProductImage::class);
+    }
+
+    // Accessors
+    public function getDisplayImageURLAttribute()
+    {
+        $display_image = $this->display_image;
+        
+        return (!empty($display_image)) ? $display_image->image_url : ProductImage::$placeholder_url;
     }
 }

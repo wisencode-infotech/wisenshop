@@ -7,6 +7,7 @@ use App\Models\Order;
 use App\Models\OrderItem;
 use App\Models\Payment;
 use App\Models\Product;
+use App\Models\SiteBanner;
 use App\Models\User;
 use Illuminate\Database\Seeder;
 use Illuminate\Support\Facades\Hash;
@@ -93,6 +94,17 @@ class FakeAppSeeder extends Seeder
                 'payment_method' => 'credit_card',
                 'amount' => $order->total_price,
                 'status' => 'completed',
+            ]);
+        }
+
+        // Site banner seeder
+
+        $site_banners = ['Cash on Delivery', 'Gift Voucher', 'Free Delivery', 'Coupon Saving'];
+
+        foreach ($site_banners as $site_banner) {
+            SiteBanner::create([
+                'title' => $site_banner,
+                'description' => fake()->paragraph()
             ]);
         }
     }

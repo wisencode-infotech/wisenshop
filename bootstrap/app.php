@@ -13,12 +13,12 @@ return Application::configure(basePath: dirname(__DIR__))
         commands: __DIR__.'/../routes/console.php',
         health: '/up',
         then: function () {
-            Route::middleware('guest')
+            Route::middleware(['web'])
                 ->prefix('/')
                 ->name('frontend.')
                 ->group(base_path('routes/frontend.php'));
 
-            Route::middleware('guest')
+            Route::middleware(['web'])
                 ->prefix('backend')
                 ->name('backend.')
                 ->group(base_path('routes/backend.php'));

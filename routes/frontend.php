@@ -3,6 +3,7 @@
 use Illuminate\Support\Facades\Route;
 use App\Livewire\ContactPage;
 use App\Livewire\HomePage;
+use Livewire\Livewire;
 
 // Homepage
 Route::get('/', HomePage::class)->name('home');

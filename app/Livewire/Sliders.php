@@ -11,12 +11,11 @@ class Sliders extends Component
 
     public function mount()
     {
-        // Fetch the banners data from the SiteBanner model
-        $this->banners = SiteBanner::all(); // You can also use paginate() if needed
+        $this->banners = SiteBanner::all();
     }
 
     public function render()
-    {
+    {  
         return view('livewire.sliders', [
             'banners' => $this->banners,
         ]);

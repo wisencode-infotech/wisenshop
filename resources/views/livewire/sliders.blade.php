@@ -3,19 +3,24 @@
     <div class="relative">
         <div class="swiper swiper-initialized swiper-horizontal swiper-backface-hidden" id="offer">
             <div class="swiper-wrapper" style="transition-duration: 0ms; transform: translate3d(-469.75px, 0px, 0px); transition-delay: 0ms;">
-                <!-- <div class="swiper-slide swiper-slide-prev" style="width: 445.75px; margin-right: 24px;"><img alt="902" loading="lazy" width="580" height="270" decoding="async" data-nimg="1" class="h-auto w-full" style="color:transparent" srcset="{{ asset('assets/frontend/img/offer-4.webp') }}" src="{{ asset('assets/frontend/img/offer-4.webp') }}"></div>
-                <div class="swiper-slide swiper-slide-active" style="width: 445.75px; margin-right: 24px;"><img alt="903" loading="lazy" width="580" height="270" decoding="async" data-nimg="1" class="h-auto w-full" style="color:transparent" srcset="{{ asset('assets/frontend/img/offer-4.webp') }}" src="{{ asset('assets/frontend/img/offer-4.webp') }}"></div>
-                <div class="swiper-slide swiper-slide-next" style="width: 445.75px; margin-right: 24px;"><img alt="904" loading="lazy" width="580" height="270" decoding="async" data-nimg="1" class="h-auto w-full" style="color:transparent" srcset="{{ asset('assets/frontend/img/offer-3.webp') }}" src="{{ asset('assets/frontend/img/offer-3.webp') }}"></div>
-                <div class="swiper-slide" style="width: 445.75px; margin-right: 24px;"><img alt="905" loading="lazy" width="580" height="270" decoding="async" data-nimg="1" class="h-auto w-full" style="color:transparent" srcset="{{ asset('assets/frontend/img/offer-2.webp') }}" src="{{ asset('assets/frontend/img/offer-2.webp') }}"></div>
-                <div class="swiper-slide" style="width: 445.75px; margin-right: 24px;"><img alt="906" loading="lazy" width="580" height="270" decoding="async" data-nimg="1" class="h-auto w-full" style="color:transparent" srcset="{{ asset('assets/frontend/img/offer-1.webp') }}" src="{{ asset('assets/frontend/img/offer-1.webp') }}"></div> -->
-
-                @foreach($banners as $banner)
+                @foreach($banners as $banner_key => $banner)
                 <div class="swiper-slide swiper-slide-prev" style="width: 445.75px; margin-right: 24px;">
                     <div class="banner-slide-content" style="background-image: url({{ $banner->image_url  }});">
                         <h2 class="banner-title">{{ $banner->title }}</h2>
                         <p class="banner-description">{{ $banner->description }}</p>
                     </div>
                 </div>
+
+                @if($banner_key == 2)
+                 <!-- <div class="swiper-slide" style="width: 445.75px; margin-right: 24px;">
+                    <div class="banner-slide-content" style="background-image: url({{ $banner->image_url  }});">
+                    <video controls style="width: 100%; height: auto;">
+                        <source src="https://www.w3schools.com/html/mov_bbb.mp4" type="video/mp4">
+                        Your browser does not support the video tag.
+                    </video>
+                     </div>
+                </div> -->
+                @endif
                 @endforeach
             </div>
         </div>

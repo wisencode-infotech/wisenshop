@@ -1,26 +1,25 @@
-<!-- resources/views/layouts/layout.blade.php -->
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>{{ $title ?? 'Laravel Livewire App' }}</title>
-    @vite('resources/css/app.css') <!-- Include your stylesheets -->
+    <title>@yield('title')</title>
     @livewireStyles
 </head>
 <body>
+    <div>
+        
+        @livewire('header')
+        
+        <!-- Page Content -->
+        <main>
+            {{ $slot }}
+        </main>
 
-    <!-- Include the Livewire Header Component -->
-    @livewire('header')
+        @livewire('footer')
 
-    <main>
-        {{ $slot }} <!-- This is where the page-specific content will be rendered -->
-    </main>
-
-    <!-- Include the Livewire Footer Component -->
-    @livewire('footer')
+    </div>
 
     @livewireScripts
-    @vite('resources/js/app.js') <!-- Include your scripts -->
 </body>
 </html>

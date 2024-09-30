@@ -1,0 +1,3 @@
+<div>
+    Footer {{ $message }}
+</div>

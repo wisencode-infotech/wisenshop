@@ -1,6 +1,9 @@
 @section('title', 'Home')
 
 <div>
-    <h1>Home Page</h1>
-    <p>Welcome to the home page.</p>
+    @livewire('sliders')
+    <div class="flex border-t border-solid border-border-200 border-opacity-70">
+        @livewire('product-category-sidebar')
+        @livewire('products')
+    </div>
 </div>

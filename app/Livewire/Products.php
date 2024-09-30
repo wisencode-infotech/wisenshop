@@ -11,14 +11,14 @@ class Products extends Component
     use WithPagination;
 
     public $category_id = null;
-    public $perPage = 15;
+    public $perPage = 10;
 
     protected $paginationTheme = 'bootstrap'; // or 'tailwind', adjust as per your CSS framework
 
     public function loadMore()
     {
         // Increase perPage to load more products
-        $this->perPage += 15;
+        $this->perPage += 10;
     }
 
     public function updatedCategoryId()

@@ -33,11 +33,12 @@
     </div>
 </div>
 
+@section('scripts')
 <script>
-    // Optional: You can also automatically trigger loading more products when the user scrolls to the bottom.
     window.onscroll = function() {
         if ((window.innerHeight + window.scrollY) >= document.body.offsetHeight) {
             Livewire.emit('loadMore');
         }
     };
 </script>
+@endsection

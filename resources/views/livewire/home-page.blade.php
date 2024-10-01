@@ -56,35 +56,31 @@
 
  <!-- mobile category filter js  -->
 <script>
-    document.addEventListener('DOMContentLoaded', function () {
-        // Get the category dropdown button and dropdown
-        const categoryDropdownBtn = document.querySelector('.mobile-category-dropdown-btn');
-        const categoryDropdown = document.querySelector('.mobile-category-dropdown');
-        const categoryImageSelected = document.querySelector('.category-image-selected');
-        const selectedCategoryName = document.querySelector('.selected-category-name');
-
+     function initializeCategoryDropdown() {
         // Toggle dropdown visibility on button click
-        categoryDropdownBtn.addEventListener('click', function () {
-            categoryDropdown.classList.toggle('hidden');
+        $('.mobile-category-dropdown-btn').on('click', function () {
+            console.log(1);
+            $('.mobile-category-dropdown').toggleClass('hidden');
         });
 
         // Add click event listener to each category item
-        const categoryItems = document.querySelectorAll('[role="custom-menuitem"] a');
+        $('[role="custom-menuitem"] a').on('click', function () {
+            // Get the image URL and name of the selected category
+            const categoryImage = $(this).find('img').attr('src');
+            const categoryName = $(this).find('.category-name').text();
 
-        categoryItems.forEach(item => {
-            item.addEventListener('click', function () {
-                // Get the image URL and name of the selected category
-                const categoryImage = item.querySelector('img').src;
-                const categoryName = item.querySelector('.category-name').textContent;
+            // Update the selected category image and name
+            $('.category-image-selected').attr('src', categoryImage);
+            $('.selected-category-name').text(categoryName);
 
-                // Update the selected category image and name
-                categoryImageSelected.src = categoryImage;
-                selectedCategoryName.textContent = categoryName;
-
-                // Hide the dropdown
-                categoryDropdown.classList.add('hidden');
-            });
+            // Hide the dropdown
+            $('.mobile-category-dropdown').addClass('hidden');
         });
+    }
+
+    // Initialize dropdown when DOM is ready
+    $(document).ready(function () {
+        initializeCategoryDropdown();
     });
 </script>
 @endsection

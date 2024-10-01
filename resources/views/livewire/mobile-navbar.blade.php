@@ -1,5 +1,5 @@
 <nav class="visible fixed bottom-0 z-10 flex h-12 w-full justify-between bg-light py-1.5 px-2 shadow-400 ltr:left-0 rtl:right-0 md:h-14 lg:hidden">
-   <button class="flex h-full items-center justify-center p-2 focus:text-accent focus:outline-0" tabindex="0">
+   <button class="mobile-pages-drawer-btn flex h-full items-center justify-center p-2 focus:text-accent focus:outline-0" tabindex="0">
       <span class="sr-only">Burger Menu</span>
       <svg width="25.567" height="18" viewBox="0 0 25.567 18" class="false">
          <g transform="translate(-776 -462)">
@@ -9,13 +9,13 @@
          </g>
       </svg>
    </button>
-   <button class="flex h-full items-center justify-center p-2 focus:text-accent focus:outline-0" tabindex="0">
+   <button class="top-product-search-btn flex h-full items-center justify-center p-2 focus:text-accent focus:outline-0" tabindex="0">
       <span class="sr-only">Search</span>
       <svg viewBox="0 0 17.048 18" width="17.05" height="18">
          <path d="M380.321,383.992l3.225,3.218c.167.167.341.329.5.506a.894.894,0,1,1-1.286,1.238c-1.087-1.067-2.179-2.131-3.227-3.236a.924.924,0,0,0-1.325-.222,7.509,7.509,0,1,1-3.3-14.207,7.532,7.532,0,0,1,6,11.936C380.736,383.462,380.552,383.685,380.321,383.992Zm-5.537.521a5.707,5.707,0,1,0-5.675-5.72A5.675,5.675,0,0,0,374.784,384.513Z" transform="translate(-367.297 -371.285)" fill="currentColor"></path>
       </svg>
    </button>
-   <button class="flex h-full items-center justify-center p-2 focus:text-accent focus:outline-0" tabindex="0">
+   <button wire:navigate href="{{ route('frontend.home') }}" class="flex h-full items-center justify-center p-2 focus:text-accent focus:outline-0" tabindex="0">
       <span class="sr-only">Home</span>
       <svg width="17.996" height="20.442" viewBox="0 0 17.996 20.442">
          <g transform="translate(-30.619 0.236)">

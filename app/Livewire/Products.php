@@ -41,9 +41,9 @@ class Products extends Component
     {
         // Update the component's properties with the filters
         $this->search = $filters['search'];
-        $this->sort = $filters['sort'];
-        $this->minPrice = $filters['minPrice'];
-        $this->maxPrice = $filters['maxPrice'];
+        $this->sort = $filters['sort'] ?? 'asc';
+        $this->minPrice = $filters['minPrice'] ?? '';
+        $this->maxPrice = $filters['maxPrice'] ?? '';
 
         // Reset pagination when applying filters
         $this->resetPage();

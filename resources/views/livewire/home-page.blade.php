@@ -52,16 +52,39 @@
         },
     });
 
-   // mobile filter js 
-   $(document).on('click', '.mobile-category-dropdown-btn', function() {
-        const dropdown = $('.mobile-category-dropdown');
+</script>
 
-        // Toggle display
-        if (dropdown.css('display') === 'none' || dropdown.css('display') === '') {
-            dropdown.css('display', 'block'); // Show the dropdown
-        } else {
-            dropdown.css('display', 'none'); // Hide the dropdown
-        }
+ <!-- mobile category filter js  -->
+<script>
+    document.addEventListener('DOMContentLoaded', function () {
+        // Get the category dropdown button and dropdown
+        const categoryDropdownBtn = document.querySelector('.mobile-category-dropdown-btn');
+        const categoryDropdown = document.querySelector('.mobile-category-dropdown');
+        const categoryImageSelected = document.querySelector('.category-image-selected');
+        const selectedCategoryName = document.querySelector('.selected-category-name');
+
+        // Toggle dropdown visibility on button click
+        categoryDropdownBtn.addEventListener('click', function () {
+            categoryDropdown.classList.toggle('hidden');
+        });
+
+        // Add click event listener to each category item
+        const categoryItems = document.querySelectorAll('[role="custom-menuitem"] a');
+
+        categoryItems.forEach(item => {
+            item.addEventListener('click', function () {
+                // Get the image URL and name of the selected category
+                const categoryImage = item.querySelector('img').src;
+                const categoryName = item.querySelector('.category-name').textContent;
+
+                // Update the selected category image and name
+                categoryImageSelected.src = categoryImage;
+                selectedCategoryName.textContent = categoryName;
+
+                // Hide the dropdown
+                categoryDropdown.classList.add('hidden');
+            });
+        });
     });
 </script>
 @endsection

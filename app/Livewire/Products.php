@@ -14,6 +14,10 @@ class Products extends Component
     public $category_id = null;
     public $paginate_count = 10;
     public $per_page = 10;
+    public $search = '';
+    public $sort = 'asc'; // default sorting
+    public $minPrice = null;
+    public $maxPrice = null;
 
     // Pagination theme - adjust as per your CSS framework
     protected $paginationTheme = 'bootstrap'; // or 'tailwind'
@@ -31,6 +35,11 @@ class Products extends Component
         $this->category_id = $category_id ?? null;
         $this->per_page = $per_page;
         $this->paginate_count = $per_page;
+    }
+
+    public function applyProductsFilters()
+    {
+        $this->resetPage(); // Reset pagination when applying filters
     }
 
     /**
@@ -74,6 +83,22 @@ class Products extends Component
         if ($this->category_id) {
             $query->where('category_id', $this->category_id);
         }
+
+        // Search filter
+        if ($this->search) {
+            $query->where('name', 'like', '%' . $this->search . '%');
+        }
+
+        // Price range filter
+        if ($this->minPrice) {
+            $query->where('price', '>=', $this->minPrice);
+        }
+        if ($this->maxPrice) {
+            $query->where('price', '<=', $this->maxPrice);
+        }
+
+        // Sort products by name
+        $query->orderBy('name', $this->sort);
 
         // Paginate results
         $products = $query->paginate($this->paginate_count);

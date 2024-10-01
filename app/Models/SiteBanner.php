@@ -19,7 +19,7 @@ class SiteBanner extends Model
     // Define a placeholder URL
     public static $placeholder_url = 'https://placehold.co/445x205';
 
-
+    // Accessors
     public function getImageUrlAttribute()
     {
         // Check if image_path is set and the file exists

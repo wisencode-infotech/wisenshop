@@ -33,6 +33,8 @@
     </div>
 
     @livewireScripts
+
+    <script src="https://kit.fontawesome.com/76125ef05e.js" crossorigin="anonymous"></script>
     
     @yield('scripts')
 </body>

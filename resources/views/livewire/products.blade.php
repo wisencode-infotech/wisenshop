@@ -22,14 +22,9 @@
                                 class="text-sm font-semibold text-accent md:text-base">${{ $product->price }}</span>
                         </div>
                         <div><button
-                                class="order-5 flex items-center justify-center rounded-full border-2 border-border-100 bg-light px-3 py-2 text-sm font-semibold text-accent transition-colors duration-300 hover:border-accent hover:bg-accent hover:text-light focus:border-accent focus:bg-accent focus:text-light focus:outline-0 sm:order-4 sm:justify-start sm:px-5"><svg
-                                    class="h-4 w-4 ltr:mr-2.5 rtl:ml-2.5" viewBox="0 0 14.4 12">
-                                    <g transform="translate(-288 -413.89)">
-                                        <path fill="currentColor"
-                                            d="M298.7,418.289l-2.906-4.148a.835.835,0,0,0-.528-.251.607.607,0,0,0-.529.251l-2.905,4.148h-3.17a.609.609,0,0,0-.661.625v.191l1.651,5.84a1.336,1.336,0,0,0,1.255.945h8.588a1.261,1.261,0,0,0,1.254-.945l1.651-5.84v-.191a.609.609,0,0,0-.661-.625Zm-5.419,0,1.984-2.767,1.98,2.767Zm1.984,5.024a1.258,1.258,0,1,1,1.319-1.258,1.3,1.3,0,0,1-1.319,1.258Zm0,0">
-                                        </path>
-                                    </g>
-                                </svg><span>Cart</span></button></div>
+                                class="order-5 flex items-center justify-center rounded-full border-2 border-border-100 bg-light px-3 py-2 text-sm font-semibold text-accent transition-colors duration-300 hover:border-accent hover:bg-accent hover:text-light focus:border-accent focus:bg-accent focus:text-light focus:outline-0 sm:order-4 sm:justify-start sm:px-5" title="View Product">
+                                <span>
+                                    <i class="fa-solid fa-eye"></i></span></button></div>
                     </div>
                 </header>
             </article>
@@ -57,7 +52,7 @@
     <script>
         window.onscroll = function() {
             if ((window.innerHeight + window.scrollY) >= document.body.offsetHeight) {
-                
+
             }
         };
     </script>

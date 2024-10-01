@@ -9,6 +9,8 @@
     <link rel="stylesheet" href="{{asset('assets/frontend/css/main.css')}}" data-n-g="" />
     <link rel="stylesheet" href="{{asset('assets/frontend/css/style.css')}}">
 
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css" />
+
     @livewireStyles
 </head>
 <body>
@@ -34,8 +36,11 @@
 
     @livewireScripts
 
+    <!-- Swiper JS -->
+    <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
+
     <script src="https://kit.fontawesome.com/76125ef05e.js" crossorigin="anonymous"></script>
-    
+
     @yield('scripts')
 </body>
 </html>

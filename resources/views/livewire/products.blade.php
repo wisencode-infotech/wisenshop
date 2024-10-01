@@ -36,7 +36,7 @@
                                     class="text-sm font-semibold text-accent md:text-base">${{ $product->price }}</span>
                             </div>
                             <div>
-                                <button
+                                <button  wire:navigate href="{{ route('frontend.product-detail', ['product_slug' => $product->slug]) }}"
                                     class="order-5 flex items-center justify-center rounded-full border-2 border-border-100 bg-light px-3 py-2 text-sm font-semibold text-accent transition-colors duration-300 hover:border-accent hover:bg-accent hover:text-light focus:border-accent focus:bg-accent focus:text-light focus:outline-0 sm:order-4 sm:justify-start sm:px-5" title="View Product">
                                     <span>
                                         <i class="fa-solid fa-eye"></i></span>

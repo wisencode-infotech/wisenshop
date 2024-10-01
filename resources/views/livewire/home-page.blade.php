@@ -7,6 +7,7 @@
         <livewire:product-category-sidebar />
         <livewire:products />
     </div>
+    <livewire:product-cart-button />
 </div>
 
 @section('scripts')

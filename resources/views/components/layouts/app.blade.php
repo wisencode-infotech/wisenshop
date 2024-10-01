@@ -26,6 +26,8 @@
                         {{ $slot }}
                     </div>
 
+                    @livewire('mobile-navbar')
+
                     @if (!request()->routeIs('frontend.home'))
                         @livewire('footer')
                     @endif
@@ -34,7 +36,13 @@
         </div>
     </div>
 
+    @if (request()->routeIs('frontend.home'))
+        @livewire('mobile-header-filter')
+    @endif
+
     @livewireScripts
+
+    <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
 
     <!-- Swiper JS -->
     <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
@@ -42,5 +50,19 @@
     <script src="https://kit.fontawesome.com/76125ef05e.js" crossorigin="anonymous"></script>
 
     @yield('scripts')
+
+    <script>
+
+        $(document).on('click', '.mobile-filter-btn', function() {
+            const filter_section = $('.mobile-header-filter-section');
+            filter_section.toggleClass('hidden');
+        });
+
+        $(document).on('click', '.mobile-header-filter-close-btn', function() {
+            const filter_section = $('.mobile-header-filter-section');
+            filter_section.toggleClass('hidden');
+        });
+         
+    </script>
 </body>
 </html>

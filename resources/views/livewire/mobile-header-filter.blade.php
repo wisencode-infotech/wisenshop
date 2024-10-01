@@ -46,7 +46,7 @@
 
                                                       <div>
                                                        <h2 class="text-lg font-bold mb-4">Filter Products</h2>
-                                                             <form  wire:submit.prevent="applyProductsFilters"> <!-- Prevent default form submission -->
+                                                             <form  wire:submit.prevent="applyFilters"> <!-- Prevent default form submission -->
                                                                  <!-- Search Bar -->
                                                                  <div class="mb-4">
                                                                      <label for="search" class="block text-sm font-medium text-gray-700">Search Products</label>

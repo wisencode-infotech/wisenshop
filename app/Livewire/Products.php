@@ -23,7 +23,7 @@ class Products extends Component
     protected $paginationTheme = 'bootstrap'; // or 'tailwind'
 
     // Listen for event to update category
-    protected $listeners = ['category-selected' => 'setCategory'];
+    protected $listeners = ['category-selected' => 'setCategory', 'filterProducts' => 'applyFilters'];
 
     /**
      * Mount method is called when the component is first rendered.
@@ -37,9 +37,16 @@ class Products extends Component
         $this->paginate_count = $per_page;
     }
 
-    public function applyProductsFilters()
+    public function applyFilters($filters)
     {
-        $this->resetPage(); // Reset pagination when applying filters
+        // Update the component's properties with the filters
+        $this->search = $filters['search'];
+        $this->sort = $filters['sort'];
+        $this->minPrice = $filters['minPrice'];
+        $this->maxPrice = $filters['maxPrice'];
+
+        // Reset pagination when applying filters
+        $this->resetPage();
     }
 
     /**

@@ -8,9 +8,11 @@
                         class="block object-contain product-image"
                         style="position:absolute;height:100%;width:100%;left:0;top:0;right:0;bottom:0;color:transparent"
                         sizes="(max-width: 768px) 100vw" src="{{ $product->display_image_url }}">
-                    <div
-                        class="absolute top-3 rounded-full bg-yellow-500 px-1.5 text-xs font-semibold leading-6 text-light ltr:right-3 rtl:left-3 sm:px-2 md:top-4 md:px-2.5 ltr:md:right-4 rtl:md:left-4">
-                        20%</div>
+                        @if ($product->discount_value > 0)
+                        <div class="absolute top-3 rounded-full bg-yellow-500 px-1.5 text-xs font-semibold leading-6 text-light ltr:right-3 rtl:left-3 sm:px-2 md:top-4 md:px-2.5 ltr:md:right-4 rtl:md:left-4">
+                            {{ $product->discount_value }}%
+                        </div>
+                        @endif
                 </div>
                 <header class="relative p-3 md:p-5 md:py-6">
                     <h3 role="button" class="mb-2 text-sm font-semibold truncate text-heading">{{ $product->name }}

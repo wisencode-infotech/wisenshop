@@ -13,7 +13,7 @@
                             <img src="{{ $category->image_url }}" class="absolute inset-0 w-full h-full object-cover" />
                         
                             <!-- Overlay for Title -->
-                            <div class="absolute inset-0 bg-black bg-opacity-10 flex items-end justify-center">
+                            <div class="absolute inset-0 flex items-end justify-center">
                                 <!-- Background for the text (now covers full width) -->
                                 <span class="text-sm md:text-md font-semibold text-white text-center px-2.5 block bg-black bg-opacity-20 w-full">
                                     {{ $category->name }}

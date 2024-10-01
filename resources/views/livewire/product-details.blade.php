@@ -46,19 +46,11 @@
                                  <div class="swiper swiper-initialized swiper-horizontal swiper-free-mode swiper-watch-progress swiper-backface-hidden swiper-thumbs" id="productGalleryThumbs">
                                     <div class="swiper-wrapper" style="transform: translate3d(0px, 0px, 0px);">
 
-                                        @if($product_info->images->isEmpty())
-                                            <!-- If no product images are available, show the default image -->
-                                            <div class="swiper-slide !flex cursor-pointer items-center justify-center overflow-hidden rounded border border-border-200 border-opacity-75 hover:opacity-75 swiper-slide-visible swiper-slide-fully-visible swiper-slide-active swiper-slide-thumb-active" style="width: 97px; margin-right: 20px;">
-                                              <div class="relative w-20 h-20"><img alt="Product thumb" loading="lazy" decoding="async" data-nimg="fill" class="object-contain" sizes="100vw" srcset="https://placehold.co/150x100" src="https://placehold.co/150x100" style="position: absolute; height: 100%; width: 100%; inset: 0px; color: transparent;"></div>
-                                           </div>
-                                        @else
-                                            <!-- If product images are available, loop through them -->
-                                            @foreach($product_info->images as $image)
-                                                <div class="swiper-slide !flex cursor-pointer items-center justify-center overflow-hidden rounded border border-border-200 border-opacity-75 hover:opacity-75 swiper-slide-visible swiper-slide-fully-visible swiper-slide-active swiper-slide-thumb-active" style="width: 97px; margin-right: 20px;">
-                                                  <div class="relative w-20 h-20"><img alt="Product thumb " loading="lazy" decoding="async" data-nimg="fill" class="object-contain" sizes="100vw" srcset="{{ $image->image_url }}" src="{{ $image->image_url }}" style="position: absolute; height: 100%; width: 100%; inset: 0px; color: transparent;"></div>
-                                               </div>
-                                            @endforeach
-                                        @endif
+                                       @foreach($product_info->images as $image)
+                                             <div class="swiper-slide !flex cursor-pointer items-center justify-center overflow-hidden rounded border border-border-200 border-opacity-75 hover:opacity-75 swiper-slide-visible swiper-slide-fully-visible swiper-slide-active swiper-slide-thumb-active" style="width: 97px; margin-right: 20px;">
+                                             <div class="relative w-20 h-20"><img alt="Product thumb " loading="lazy" decoding="async" data-nimg="fill" class="object-contain" sizes="100vw" srcset="{{ $image->image_url }}" src="{{ $image->image_url }}" style="position: absolute; height: 100%; width: 100%; inset: 0px; color: transparent;"></div>
+                                          </div>
+                                       @endforeach
 
                                     </div>
                                  </div>

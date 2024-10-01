@@ -14,7 +14,7 @@ class Category extends Model
     protected $fillable = ['name', 'slug', 'description'];
 
     // Define a placeholder URL
-    public static $placeholder_url = 'https://placehold.co/158X100';
+    public static $placeholder_url = 'https://placehold.co/158X100/FFF/000';
 
     // Relationships
     public function products(): HasMany

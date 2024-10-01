@@ -17,7 +17,7 @@ class ProductImage extends Model
     ];
 
     // Define a placeholder URL
-    public static $placeholder_url = 'https://placehold.co/900x800';
+    public static $placeholder_url = 'https://placehold.co/900x800/FFF/000';
 
     // Relationships
     public function product(): BelongsTo

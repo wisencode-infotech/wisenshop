@@ -11,33 +11,40 @@ class Products extends Component
     use WithPagination;
 
     public $category_id = null;
-    public $perPage = 10;
+    public $paginate_count = 10;
+    public $per_page = 10;
 
     protected $paginationTheme = 'bootstrap'; // or 'tailwind', adjust as per your CSS framework
 
+    public function mount($category_id = null, $per_page = 10)
+    {
+        $this->category_id = $category_id;
+        $this->per_page = $per_page;
+        $this->paginate_count = $per_page;
+    }
+
     public function loadMore()
     {
-        // Increase perPage to load more products
-        $this->perPage += 10;
+        $this->paginate_count += $this->per_page;
     }
 
     public function updatedCategoryId()
     {
-        // Reset pagination when the category is changed
         $this->resetPage();
     }
 
     public function render()
     {
-        // Build the query for fetching products
         $query = Product::query();
 
         if ($this->category_id) {
-            $query->where('category_id', $this->category_id);
+            if (is_array($this->category_id))
+                $query->whereIn('category_id', $this->category_id);
+            else
+                $query->where('category_id', $this->category_id);
         }
 
-        // Paginate the products
-        $products = $query->paginate($this->perPage);
+        $products = $query->paginate($this->paginate_count);
 
         return view('livewire.products', [
             'products' => $products,

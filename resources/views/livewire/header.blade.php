@@ -60,8 +60,8 @@
                     <li><a wire:navigate href="{{ route('frontend.contact-us') }}" class="flex items-center font-normal text-heading no-underline transition duration-200 hover:text-accent focus:text-accent">Contact</a></li>
                 </ul>
                 <div class="flex items-center space-x-4 rtl:space-x-reverse">
-                    <div class="hidden lg:inline-flex"></div><a wire:navigate href="{{ route('frontend.contact-us') }}"
-                        class="hidden h-9 shrink-0 items-center justify-center rounded border border-transparent bg-accent px-3 py-0 text-sm font-semibold leading-none text-light outline-none transition duration-300 ease-in-out hover:bg-accent-hover focus:shadow focus:outline-none focus:ring-1 focus:ring-accent-700 sm:inline-flex">Become a Seller</a>
+                    <div class="hidden lg:inline-flex"></div><a wire:navigate href="{{ route('frontend.login') }}"
+                        class="hidden h-9 shrink-0 items-center justify-center rounded border border-transparent bg-accent px-3 py-0 text-sm font-semibold leading-none text-light outline-none transition duration-300 ease-in-out hover:bg-accent-hover focus:shadow focus:outline-none focus:ring-1 focus:ring-accent-700 sm:inline-flex">Login</a>
                 </div>
             </div>
         </div>

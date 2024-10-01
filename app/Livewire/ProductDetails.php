@@ -9,12 +9,17 @@ class ProductDetails extends Component
 {
     public $product_slug;
 
+    public function goBack()
+    {
+        $this->dispatch('goBackInBrowser');
+    }
+
     public function render()
     {
         $product = Product::where('slug', $this->product_slug)->first();
 
         return view('livewire.product-details', [
-            'product_info' => $product,
+            'product' => $product,
         ]);
     }
 }

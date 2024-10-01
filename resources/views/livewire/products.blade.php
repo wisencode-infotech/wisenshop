@@ -15,7 +15,7 @@
             @foreach ($products as $product)
                 <article
                     class="product-card cart-type-helium h-full overflow-hidden rounded border border-border-200 bg-light transition-shadow duration-200 hover:shadow-sm">
-                    <div class="relative flex h-48 w-auto items-center justify-center sm:h-64"><span class="sr-only">Product
+                    <div class="cursor-pointer relative flex h-48 w-auto items-center justify-center sm:h-64" wire:navigate href="{{ route('frontend.product-detail', ['product_slug' => $product->slug]) }}"><span class="sr-only">Product
                             Image</span><img alt="Apples" loading="lazy" decoding="async" data-nimg="fill"
                             class="block object-contain product-image"
                             style="position:absolute;height:100%;width:100%;left:0;top:0;right:0;bottom:0;color:transparent"
@@ -27,16 +27,16 @@
                             @endif
                     </div>
                     <header class="relative p-3 md:p-5 md:py-6">
-                        <h3 role="button" class="mb-2 text-sm font-semibold truncate text-heading">{{ $product->name }}
+                        <h3 role="button" wire:navigate href="{{ route('frontend.product-detail', ['product_slug' => $product->slug]) }}" class="mb-2 text-sm font-semibold truncate text-heading">{{ $product->name }}
                         </h3>
-                        <p class="text-xs text-muted">1lb</p>
+                        <p class="text-xs text-muted">{{ \Str::limit($product->description, 70) }}</p>
                         <div class="relative flex items-center justify-between mt-7 min-h-6 md:mt-8">
                             <div class="relative"><del
                                     class="absolute text-xs italic text-opacity-75 -top-4 text-muted md:-top-5">${{ $product->price }}</del><span
                                     class="text-sm font-semibold text-accent md:text-base">${{ $product->price }}</span>
                             </div>
                             <div>
-                                <button  wire:navigate href="{{ route('frontend.product-detail', ['product_slug' => $product->slug]) }}"
+                                <button wire:navigate href="{{ route('frontend.product-detail', ['product_slug' => $product->slug]) }}"
                                     class="order-5 flex items-center justify-center rounded-full border-2 border-border-100 bg-light px-3 py-2 text-sm font-semibold text-accent transition-colors duration-300 hover:border-accent hover:bg-accent hover:text-light focus:border-accent focus:bg-accent focus:text-light focus:outline-0 sm:order-4 sm:justify-start sm:px-5" title="View Product">
                                     <span>
                                         <i class="fa-solid fa-eye"></i></span>

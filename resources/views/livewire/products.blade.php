@@ -31,11 +31,12 @@
                         </h3>
                         <p class="text-xs text-muted">{{ \Str::limit($product->description, 70) }}</p>
                         <div class="relative flex items-center justify-between mt-7 min-h-6 md:mt-8">
+                            <div class="flex overflow-hidden order-5 sm:order-4 w-9 sm:w-24 h-24 sm:h-10 bg-accent text-light rounded-full flex-col-reverse sm:flex-row absolute sm:relative bottom-0 sm:bottom-auto ltr:right-0 rtl:left-0 ltr:sm:right-auto ltr:sm:left-auto"><button class="cursor-pointer p-2 transition-colors duration-200 hover:bg-accent-hover focus:outline-0 px-3 py-3 sm:px-2"><span class="sr-only">minus</span><svg fill="none" viewBox="0 0 24 24" stroke="currentColor" class="h-3 w-3 stroke-2.5"><path stroke-linecap="round" stroke-linejoin="round" d="M20 12H4"></path></svg></button><div class="flex flex-1 items-center justify-center px-3 text-sm font-semibold">4</div><button class="cursor-pointer p-2 transition-colors duration-200 hover:bg-accent-hover focus:outline-0 px-3 py-3 sm:px-2" title=""><span class="sr-only">plus</span><svg fill="none" viewBox="0 0 24 24" stroke="currentColor" class="md:w-4.5 h-3.5 w-3.5 stroke-2.5 md:h-4.5"><path stroke-linecap="round" stroke-linejoin="round" d="M12 6v6m0 0v6m0-6h6m-6 0H6"></path></svg></button></div>
                             <div class="relative"><del
                                     class="absolute text-xs italic text-opacity-75 -top-4 text-muted md:-top-5">${{ $product->price }}</del><span
                                     class="text-sm font-semibold text-accent md:text-base">${{ $product->price }}</span>
                             </div>
-                            <div>
+                            <div class="hidden">
                                 <button wire:navigate href="{{ route('frontend.product-detail', ['product_slug' => $product->slug]) }}"
                                     class="order-5 flex items-center justify-center rounded-full border-2 border-border-100 bg-light px-3 py-2 text-sm font-semibold text-accent transition-colors duration-300 hover:border-accent hover:bg-accent hover:text-light focus:border-accent focus:bg-accent focus:text-light focus:outline-0 sm:order-4 sm:justify-start sm:px-5" title="View Product">
                                     <span>

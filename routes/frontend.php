@@ -5,6 +5,7 @@ use App\Livewire\ContactPage;
 use App\Livewire\HomePage;
 use App\Livewire\Login;
 use App\Livewire\ProductDetail;
+use App\Livewire\CartPage;
 use Livewire\Livewire;
 
 // Homepage
@@ -14,6 +15,8 @@ Route::get('/', HomePage::class)->name('home');
 Route::get('/contact-us', ContactPage::class)->name('contact-us');
 
 Route::get('/product-detail/{product_slug}', ProductDetail::class)->name('product-detail');
+
+Route::get('/cart', CartPage::class)->name('cart');
 
 Route::get('login', Login::class)->name('login');
 Route::post('login', [Login::class, 'authenticate'])->name('authenticate');

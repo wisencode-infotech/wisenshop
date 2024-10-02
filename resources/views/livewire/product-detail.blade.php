@@ -91,7 +91,7 @@
                            <span class="my-5 flex items-center md:my-10"><ins class="text-2xl font-semibold text-accent no-underline md:text-3xl">${{ $product->price }}</ins><del class="text-sm font-normal text-muted ltr:ml-2 rtl:mr-2 md:text-base">${{ $product->price }}</del></span>
                            <div class="mt-6 flex flex-col items-center md:mt-6 lg:flex-row">
                               <div class="mb-3 w-full lg:mb-0 lg:max-w-[400px]">
-                                <div class="overflow-hidden w-full h-14 rounded text-light bg-accent inline-flex justify-between">
+                                 <!-- <div class="overflow-hidden w-full h-14 rounded text-light bg-accent inline-flex justify-between">
                                     <button class="cursor-pointer p-2 transition-colors duration-200 hover:bg-accent-hover focus:outline-0 px-5" id="minusButton">
                                         <span class="sr-only">minus</span>
                                         <svg fill="none" viewBox="0 0 24 24" stroke="currentColor" class="h-3 w-3 stroke-2.5">
@@ -105,7 +105,8 @@
                                             <path stroke-linecap="round" stroke-linejoin="round" d="M12 6v6m0 0v6m0-6h6m-6 0H6"></path>
                                         </svg>
                                     </button>
-                                </div>
+                                </div> -->
+                                @livewire('quantity-selector', ['productId' => $product->id, 'itemPrice' => $product->price])
                             </div>
 
                               <span class="whitespace-nowrap text-base text-body ltr:lg:ml-7 rtl:lg:mr-7">{{ $product->stock }} pieces available</span>
@@ -158,25 +159,5 @@
         prevEl: '.product-gallery-prev',
       },
     });
-
-
-    // cart js
-    $(document).ready(function () {
-        let currentValue = 0; // Initial value
-        $('#valueDisplay').text(currentValue); // Set initial display
-
-        $('#minusButton').on('click', function () {
-            if (currentValue > 0) { // Prevent going below 0
-                currentValue--;
-                $('#valueDisplay').text(currentValue);
-            }
-        });
-
-        $('#plusButton').on('click', function () {
-            currentValue++;
-            $('#valueDisplay').text(currentValue);
-        });
-    });
-
 </script>
 @endsection

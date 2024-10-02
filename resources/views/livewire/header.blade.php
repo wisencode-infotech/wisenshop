@@ -58,6 +58,8 @@
                     class="hidden shrink-0 items-center space-x-7 rtl:space-x-reverse xl:flex 2xl:space-x-10">
                     <li><a wire:navigate href="{{ route('frontend.home') }}" class="flex items-center font-normal text-heading no-underline transition duration-200 hover:text-accent focus:text-accent">{{ __trans('Shop') }}</a></li>
                     <li><a wire:navigate href="{{ route('frontend.contact-us') }}" class="flex items-center font-normal text-heading no-underline transition duration-200 hover:text-accent focus:text-accent">{{ __trans('Contact') }}</a></li>
+
+                   @livewire('cart-icon')
                 </ul>
                 <div class="flex items-center space-x-4 rtl:space-x-reverse">
                     <div class="hidden lg:inline-flex"></div><a wire:navigate href="{{ route('frontend.login') }}"

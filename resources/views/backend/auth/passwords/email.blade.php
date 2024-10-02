@@ -1,4 +1,4 @@
-@extends('layouts.master-without-nav')
+@extends('backend.layouts.master-without-nav')
 
 @section('title')
     @lang('translation.Recover_Password') 2
@@ -6,7 +6,7 @@
 
 @section('css')
     <!-- owl.carousel css -->
-    <link rel="stylesheet" href="{{ URL::asset('/assets/libs/owl.carousel/owl.carousel.min.css') }}">
+    <link rel="stylesheet" href="{{ URL::asset('/assets/backend/libs/owl.carousel/owl.carousel.min.css') }}">
 @endsection
 
 @section('body')
@@ -89,9 +89,9 @@
                                 <div class="d-flex flex-column h-100">
                                     <div class="mb-4 mb-md-5">
                                         <a href="index" class="d-block auth-logo">
-                                            <img src="{{ URL::asset('/assets/images/logo-dark.png') }}" alt="" height="18"
+                                            <img src="{{ URL::asset('/assets/backend/images/logo-dark.png') }}" alt="" height="18"
                                                 class="auth-logo-dark">
-                                            <img src="{{ URL::asset('/assets/images/logo-light.png') }}" alt="" height="18"
+                                            <img src="{{ URL::asset('/assets/backend/images/logo-light.png') }}" alt="" height="18"
                                                 class="auth-logo-light">
                                         </a>
                                     </div>
@@ -131,7 +131,7 @@
 
                                             </form>
                                             <div class="mt-5 text-center">
-                                                <p>Remember It ? <a href="{{ url('login') }}"
+                                                <p>Remember It ? <a href="{{ url('backend/login') }}"
                                                         class="font-weight-medium text-primary"> Sign In here</a> </p>
                                             </div>
                                         </div>
@@ -161,7 +161,7 @@
 
     @section('script')
         <!-- owl.carousel js -->
-        <script src="{{ URL::asset('/assets/libs/owl.carousel/owl.carousel.min.js') }}"></script>
+        <script src="{{ URL::asset('/assets/backend/libs/owl.carousel/owl.carousel.min.js') }}"></script>
         <!-- auth-2-carousel init -->
-        <script src="{{ URL::asset('/assets/js/pages/auth-2-carousel.init.js') }}"></script>
+        <script src="{{ URL::asset('/assets/backend/js/pages/auth-2-carousel.init.js') }}"></script>
     @endsection

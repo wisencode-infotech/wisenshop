@@ -10,14 +10,14 @@
         <meta content="Premium Multipurpose Admin & Dashboard Template" name="description" />
         <meta content="Themesbrand" name="author" />
         <!-- App favicon -->
-        <link rel="shortcut icon" href="{{ URL::asset('assets/images/favicon.ico')}}">
-        @include('layouts.head-css')
+        <link rel="shortcut icon" href="{{ URL::asset('assets/backend/images/favicon.ico')}}">
+        @include('backend.layouts.head-css')
   </head>
 
     @yield('body')
     
     @yield('content')
 
-    @include('layouts.vendor-scripts')
+    @include('backend.layouts.vendor-scripts')
     </body>
 </html>

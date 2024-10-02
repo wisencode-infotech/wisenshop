@@ -1,10 +1,9 @@
 <?php
 
-use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\Backend\HomeController;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Route;
 
 Auth::routes();
 
-Route::get('/', function() {
-    dd(2);
-})->name('root');
+Route::get('/', [HomeController::class, 'root'])->name('home');

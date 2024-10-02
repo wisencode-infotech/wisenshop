@@ -8,8 +8,8 @@
     <meta content="Premium Multipurpose Admin & Dashboard Template" name="description" />
     <meta content="Themesbrand" name="author" />
     <!-- App favicon -->
-    <link rel="shortcut icon" href="{{ URL::asset('assets/images/favicon.ico') }}">
-    @include('layouts.head-css')
+    <link rel="shortcut icon" href="{{ URL::asset('assets/backend/images/favicon.ico') }}">
+    @include('backend.layouts.head-css')
 </head>
 
 @section('body')
@@ -29,7 +29,7 @@
                     @yield('content')
                 </div> <!-- content -->
             </div>
-            @include('layouts.footer')
+            @include('backend.layouts.footer')
         </div>
         <!-- ============================================================== -->
         <!-- End Right content here -->
@@ -38,10 +38,10 @@
     <!-- END wrapper -->
 
     <!-- Right Sidebar -->
-    @include('layouts.right-sidebar')
+    @include('backend.layouts.right-sidebar')
     <!-- END Right Sidebar -->
 
-    @include('layouts.vendor-scripts')
+    @include('backend.layouts.vendor-scripts')
 </body>
 
 </html>

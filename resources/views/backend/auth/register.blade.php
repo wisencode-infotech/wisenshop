@@ -1,4 +1,4 @@
-@extends('layouts.master-without-nav')
+@extends('backend.layouts.master-without-nav')
 
 @section('title')
     @lang('translation.Register') 2
@@ -6,8 +6,8 @@
 
 @section('css')
     <!-- owl.carousel css -->
-    <link rel="stylesheet" href="{{ URL::asset('/assets/libs/owl.carousel/owl.carousel.min.css') }}">
-    <link href="{{ URL::asset('/assets/libs/bootstrap-datepicker/bootstrap-datepicker.min.css') }}" rel="stylesheet" type="text/css">
+    <link rel="stylesheet" href="{{ URL::asset('/assets/backend/libs/owl.carousel/owl.carousel.min.css') }}">
+    <link href="{{ URL::asset('/assets/backend/libs/bootstrap-datepicker/bootstrap-datepicker.min.css') }}" rel="stylesheet" type="text/css">
 @endsection
 
 @section('body')
@@ -89,9 +89,9 @@
                                 <div class="d-flex flex-column h-100">
                                     <div class="mb-4 mb-md-5">
                                         <a href="index" class="d-block auth-logo">
-                                            <img src="{{ URL::asset('/assets/images/logo-dark.png') }}" alt="" height="18"
+                                            <img src="{{ URL::asset('/assets/backend/images/logo-dark.png') }}" alt="" height="18"
                                                 class="auth-logo-dark">
-                                            <img src="{{ URL::asset('/assets/images/logo-light.png') }}" alt="" height="18"
+                                            <img src="{{ URL::asset('/assets/backend/images/logo-light.png') }}" alt="" height="18"
                                                 class="auth-logo-light">
                                         </a>
                                     </div>
@@ -215,7 +215,7 @@
                                             </form>
 
                                             <div class="mt-3 text-center">
-                                                <p>Already have an account ? <a href="{{ url('login') }}"
+                                                <p>Already have an account ? <a href="{{ url('backend/login') }}"
                                                         class="fw-medium text-primary"> Login</a> </p>
                                             </div>
 
@@ -244,9 +244,9 @@
 
     @endsection
     @section('script')
-        <script src="{{ URL::asset('/assets/libs/bootstrap-datepicker/bootstrap-datepicker.min.js') }}"></script>
+        <script src="{{ URL::asset('/assets/backend/libs/bootstrap-datepicker/bootstrap-datepicker.min.js') }}"></script>
         <!-- owl.carousel js -->
-        <script src="{{ URL::asset('/assets/libs/owl.carousel/owl.carousel.min.js') }}"></script>
+        <script src="{{ URL::asset('/assets/backend/libs/owl.carousel/owl.carousel.min.js') }}"></script>
         <!-- auth-2-carousel init -->
-        <script src="{{ URL::asset('/assets/js/pages/auth-2-carousel.init.js') }}"></script>
+        <script src="{{ URL::asset('/assets/backend/js/pages/auth-2-carousel.init.js') }}"></script>
     @endsection

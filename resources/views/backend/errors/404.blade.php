@@ -1,4 +1,4 @@
-@extends('layouts.master-without-nav')
+@extends('backend.layouts.master-without-nav')
 
 @section('title')
     @lang('translation.Error_404')
@@ -27,7 +27,7 @@
                 <div class="row justify-content-center">
                     <div class="col-md-8 col-xl-6">
                         <div>
-                            <img src="{{ URL::asset('/assets/images/error-img.png') }}" alt="" class="img-fluid">
+                            <img src="{{ URL::asset('/assets/backend/images/error-img.png') }}" alt="" class="img-fluid">
                         </div>
                     </div>
                 </div>

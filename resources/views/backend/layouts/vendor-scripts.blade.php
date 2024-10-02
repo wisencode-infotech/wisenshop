@@ -1,9 +1,9 @@
 <!-- JAVASCRIPT -->
-<script src="{{ URL::asset('assets/libs/jquery/jquery.min.js')}}"></script>
-<script src="{{ URL::asset('assets/libs/bootstrap/bootstrap.min.js')}}"></script>
-<script src="{{ URL::asset('assets/libs/metismenu/metismenu.min.js')}}"></script>
-<script src="{{ URL::asset('assets/libs/simplebar/simplebar.min.js')}}"></script>
-<script src="{{ URL::asset('assets/libs/node-waves/node-waves.min.js')}}"></script>
+<script src="{{ URL::asset('assets/backend/libs/jquery/jquery.min.js')}}"></script>
+<script src="{{ URL::asset('assets/backend/libs/bootstrap/bootstrap.min.js')}}"></script>
+<script src="{{ URL::asset('assets/backend/libs/metismenu/metismenu.min.js')}}"></script>
+<script src="{{ URL::asset('assets/backend/libs/simplebar/simplebar.min.js')}}"></script>
+<script src="{{ URL::asset('assets/backend/libs/node-waves/node-waves.min.js')}}"></script>
 <script>
     $('#change-password').on('submit',function(event){
         event.preventDefault();
@@ -31,7 +31,7 @@
                     $('#current_passwordError').text(response.Message);
                 }else if(response.isSuccess == true){
                     setTimeout(function () {   
-                        window.location.href = "{{ route('root') }}"; 
+                        window.location.href = "{{ route('backend.home') }}"; 
                     }, 1000);
                 }
             },
@@ -47,6 +47,6 @@
 @yield('script')
 
 <!-- App js -->
-<script src="{{ URL::asset('assets/js/app.min.js')}}"></script>
+<script src="{{ URL::asset('assets/backend/js/app.min.js')}}"></script>
 
 @yield('script-bottom')

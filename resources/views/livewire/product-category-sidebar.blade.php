@@ -8,7 +8,11 @@
                 <div class="p-5">
                     <div class="grid grid-cols-2 gap-4">
                         @foreach($product_categories as $category)
-                        <div class="relative text-center rounded bg-light flex items-end overflow-hidden cursor-pointer border-2 border-border-100 xl:border-transparent h-40" role="button"  x-on:click="$dispatch('category-selected', { category_id: {{ $category->id }} })">
+                        <div class="relative text-center rounded bg-light flex items-end overflow-hidden cursor-pointer border-2 
+                            {{ request()->get('catid') == $category->id ? 'active' : '' }} xl:border-transparent h-40" 
+                            role="button" 
+                            x-on:click="$dispatch('category-selected', { category_id: {{ $category->id }} })">
+                            
                             <!-- Full Width and Height Image -->
                             <img src="{{ $category->image_url }}" class="absolute inset-0 w-full h-full object-cover" />
                         

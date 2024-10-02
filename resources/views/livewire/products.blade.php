@@ -6,7 +6,7 @@
             <div class="w-full h-full flex items-center justify-center">
                 <img alt="Sorry, No Product Found :(" loading="lazy" width="600" height="453" decoding="async" data-nimg="1" class="w-full h-full object-contain" src="{{ asset('assets/frontend/img/no-result.png') }}" style="color: transparent;">
             </div>
-            <h3 class="w-full text-center text-xl font-semibold text-body my-7">Sorry, No Product Found :(</h3>
+            <h3 class="w-full text-center text-xl font-semibold text-body my-7">{{ __trans('Sorry, No Product Found') }} :(</h3>
         </div>
 
     @else
@@ -15,8 +15,8 @@
             @foreach ($products as $product)
                 <article
                     class="product-card cart-type-helium h-full overflow-hidden rounded border border-border-200 bg-light transition-shadow duration-200 hover:shadow-sm">
-                    <div class="cursor-pointer relative flex h-48 w-auto items-center justify-center sm:h-64" wire:navigate href="{{ route('frontend.product-detail', ['product_slug' => $product->slug]) }}"><span class="sr-only">Product
-                            Image</span><img alt="Apples" loading="lazy" decoding="async" data-nimg="fill"
+                    <div class="cursor-pointer relative flex h-48 w-auto items-center justify-center sm:h-64" wire:navigate href="{{ route('frontend.product-detail', ['product_slug' => $product->slug]) }}"><span class="sr-only">{{ __trans('Product') }}
+                            {{ __trans('Image') }}</span><img alt="Apples" loading="lazy" decoding="async" data-nimg="fill"
                             class="block object-contain product-image"
                             style="position:absolute;height:100%;width:100%;left:0;top:0;right:0;bottom:0;color:transparent"
                             sizes="(max-width: 768px) 100vw" src="{{ $product->display_image_url }}">
@@ -55,10 +55,10 @@
                     class="inline-flex items-center justify-center shrink-0 font-semibold leading-none rounded outline-none transition duration-300 ease-in-out focus:outline-0 focus:shadow focus:ring-1 focus:ring-accent-700 bg-accent text-light border border-transparent hover:bg-accent-hover px-5 py-0 h-12 text-sm font-semibold h-11 md:text-base">
 
                     <!-- Show "Load More" when not loading -->
-                    <span wire:loading.remove>Load More</span>
+                    <span wire:loading.remove>{{ __trans('Load More') }}</span>
 
                     <!-- Show "Load More..." while loading -->
-                    <span wire:loading wire:target="loadMore">Please wait...</span>
+                    <span wire:loading wire:target="loadMore">{{ __trans('Loading...') }}</span>
                 </button>
             </div>
         @endif

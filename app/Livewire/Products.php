@@ -58,7 +58,7 @@ class Products extends Component
     public function setCategory($category_id = null)
     {
         $this->category_id = $category_id;
-        $this->resetPage(); 
+        $this->resetPage();
     }
 
     /**

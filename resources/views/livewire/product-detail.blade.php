@@ -7,7 +7,7 @@
                   <div class="flex flex-col border-b border-border-200 border-opacity-70 md:flex-row">
                      <div class="p-6 pt-10 md:w-1/2 lg:p-14 xl:p-16">
                         <div class="mb-8 flex items-center justify-between lg:mb-10">
-                           <div role="button" class="transition-colors duration-200 bg-accent hover:bg-accent-hover focus:outline-0 rounded-full bg-green px-3 text-xs font-semibold leading-6 text-light" wire:click="goBack" title="Back">
+                           <div role="button" class="transition-colors duration-200 bg-accent hover:bg-accent-hover focus:outline-0 rounded-full bg-green px-3 text-xs font-semibold leading-6 text-light" wire:navigate href="{{ route('frontend.home') }}" title="Back">
                               <i class="fa fa-arrow-left mx-2"></i>
                            </div>
                            <div class="rounded-full bg-yellow-500 px-3 text-xs font-semibold leading-6 text-light">
@@ -114,11 +114,13 @@
                         <div class="mt-4 flex w-full flex-row items-start border-t border-border-200 border-opacity-60 pt-4 md:mt-6 md:pt-6">
                            <span class="py-1 text-sm font-semibold capitalize text-heading ltr:mr-6 rtl:ml-6">Categories</span>
                            <div class="flex flex-row flex-wrap">
-                            <button class="mb-2 whitespace-nowrap rounded border border-border-200 bg-transparent py-1 px-2.5 text-sm lowercase tracking-wider text-heading transition-colors hover:border-accent hover:text-accent focus:bg-opacity-100 focus:outline-0 ltr:mr-2 rtl:ml-2">{{ $product->category->name }}</button>
+                              <button class="mb-2 whitespace-nowrap rounded border border-border-200 bg-transparent py-1 px-2.5 text-sm lowercase tracking-wider text-heading transition-colors hover:border-accent hover:text-accent focus:bg-opacity-100 focus:outline-0 ltr:mr-2 rtl:ml-2" 
+                              x-navigate href="{{ route('frontend.home', ['catid' => $product->category_id]) }}">
+                                 {{ $product->category->name }}
+                              </button>
                             
                             </div>
                         </div>
-                        <div class="mt-2 flex items-center"><span class="py-1 text-sm font-semibold capitalize text-heading ltr:mr-6 rtl:ml-6">Sellers</span><button class="text-sm tracking-wider text-accent underline transition hover:text-accent-hover hover:no-underline">Grocery Shop</button></div>
                      </div>
                   </div>
                   <div class="border-b border-border-200 border-opacity-70 px-5 py-4 lg:px-16 lg:py-14">
@@ -127,7 +129,7 @@
                   </div>
                </article>
                <div class="p-5 md:pb-10 lg:p-14 xl:p-16">
-                  <h2 class="mb-6 text-lg font-semibold tracking-tight text-heading">Related Products</h2>
+                  <h2 class="mb-6 text-lg font-semibold tracking-tight text-heading">{{ __trans('Related Products') }}</h2>
                  <livewire:products :category_id="$product->category_id" />
                </div>
             </article>
@@ -174,10 +176,6 @@
             currentValue++;
             $('#valueDisplay').text(currentValue);
         });
-    });
-
-    Livewire.on('goBackInBrowser', function () {
-      window.history.back();
     });
 
 </script>

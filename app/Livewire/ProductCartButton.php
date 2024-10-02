@@ -9,32 +9,36 @@ class ProductCartButton extends Component
 {
     public $itemCount = 0; // Track item count
     public $totalPrice = 0; // Track total price
-    public $itemPrice;
 
-    // Optionally make itemPrice required in the constructor
-    public function mount($itemPrice = 0)
+    public function mount()
     {
-        $this->itemPrice = $itemPrice; // Set the item price during mounting
+        $cart = shoppingCart();
 
-        $cart = Session::get('cart', []);
+        $this->totalPrice = shoppingCartTotal();
 
         $this->itemCount = count($cart);
     }
 
-    protected $listeners = ['itemAdded', 'itemRemoved'];
+    protected $listeners = ['itemAdded', 'itemRemoved', 'quantityUpdated' => 'updateCartQuantity'];
 
-    public function itemAdded($itemPrice)
+    public function itemAdded()
     {
-        $this->itemCount++; // Increment item count
-        // $this->totalPrice += $itemPrice; 
+        $this->itemCount++;
+
+        $this->totalPrice = shoppingCartTotal();
     }
 
-    public function itemRemoved($itemPrice)
+    public function itemRemoved()
     {
-        if ($this->itemCount > 0) {
-            $this->itemCount--; // Decrement item count
-            // $this->totalPrice -= $itemPrice;
-        }
+        if ($this->itemCount > 0)
+            $this->itemCount--;
+
+        $this->totalPrice = shoppingCartTotal();
+    }
+
+    public function updateCartQuantity()
+    {
+        $this->totalPrice = shoppingCartTotal();
     }
 
     public function render()

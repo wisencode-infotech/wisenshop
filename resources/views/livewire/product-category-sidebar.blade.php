@@ -9,7 +9,9 @@
             <div data-overlayscrollbars-contents="" data-overlayscrollbars-viewport="scrollbarHidden" style="margin-right: 0px; margin-bottom: 0px; margin-left: 0px; top: 0px; right: auto; left: 0px; width: calc(100% + 0px); padding: 0px; overflow-y: scroll;">
                 <div class="p-5">
 
-                    <a  wire:navigate href="{{ route('frontend.home') }}" class="text-green-600 hover:text-green-800 font-semibold underline transition duration-200 ease-in-out">Clear Filter</a>
+                    <a  wire:navigate href="{{ route('frontend.home') }}" class="text-sm text-green-600 hover:text-green-800 font-semibold transition duration-200 ease-in-out">
+                        <i class="fa fa-filter"></i>
+                        {{ __trans('Clear Filter') }}</a>
                     
                     <div x-data="{ selectedCategoryId: @entangle('selectedCategoryId') }" class="grid grid-cols-2 gap-4">
                         @foreach($product_categories as $category)

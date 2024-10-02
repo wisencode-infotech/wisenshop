@@ -9,17 +9,15 @@ class QuantitySelector extends Component
 {
     public $quantity = 0; // Default quantity
     public $productId; // To hold the product ID
-    public $itemPrice; // Price of the item
-    public $is_cart_page = false; 
+    public $layout = 'slim'; 
 
-    public function mount($productId, $itemPrice, $is_cart_page = false)
+    public function mount($productId, $layout = 'slim')
     {
         $this->productId = $productId;
-        $this->itemPrice = $itemPrice;
-        $this->is_cart_page = $is_cart_page; // Make sure this gets set
+        $this->layout = $layout;
 
         // Check if the product already exists in the session (cart)
-        $cart = Session::get('cart', []);
+        $cart = shoppingCart();
 
         // If the item exists in the cart, set the quantity
         if (isset($cart[$this->productId])) {
@@ -32,7 +30,7 @@ class QuantitySelector extends Component
         $this->quantity++;
 
         // Update session cart
-        $cart = Session::get('cart', []);
+        $cart = shoppingCart();
 
         // Add/update item in cart (store productId and quantity only)
         $cart[$this->productId] = [
@@ -44,7 +42,7 @@ class QuantitySelector extends Component
 
         // Only dispatch the event if the quantity is 1 or more
         if ($this->quantity == 1) {
-            $this->dispatch('itemAdded', $this->itemPrice); // dispatch event with item price
+            $this->dispatch('itemAdded'); // dispatch event with item price
         }
 
         // Dispatch an event for quantity change
@@ -58,7 +56,7 @@ class QuantitySelector extends Component
 
 
              // Update session cart
-            $cart = Session::get('cart', []);
+            $cart = shoppingCart();
 
             // dispatch the event when quantity decreases to 0
             if ($this->quantity == 0) {
@@ -67,7 +65,7 @@ class QuantitySelector extends Component
                 unset($cart[$this->productId]);
 
 
-                $this->dispatch('itemRemoved', $this->itemPrice); // dispatch event for removing item
+                $this->dispatch('itemRemoved'); // dispatch event for removing item
             } else {
                 // Update item in cart
                 $cart[$this->productId] = [

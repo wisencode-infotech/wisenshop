@@ -2,6 +2,7 @@
 
 namespace App\Livewire;
 
+use Illuminate\Support\Facades\Session;
 use Livewire\Component;
 
 class CartIcon extends Component
@@ -9,6 +10,13 @@ class CartIcon extends Component
     public $itemCount = 0; // Track the number of items in the cart
 
     protected $listeners = ['itemAdded', 'itemRemoved'];
+
+    public function mount()
+    {
+        $cart = shoppingCart();
+
+        $this->itemCount = count($cart);
+    }
 
     public function itemAdded()
     {

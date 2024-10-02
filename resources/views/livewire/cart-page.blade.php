@@ -1,4 +1,4 @@
-@section('title', 'Cart')
+@section('title', __trans('Cart'))
 
 <div class="min-h-full text-center md:p-5">
          <div data-overlayscrollbars-initialize="" class="min-w-content relative inline-block max-w-full align-middle transition-all ltr:text-left rtl:text-right opacity-100 scale-100 relative z-[51] w-full max-w-6xl bg-light md:rounded-xl xl:min-w-[1152px]" data-overlayscrollbars="host">
@@ -23,11 +23,8 @@
                         </svg>
                         <span class="flex ltr:ml-2 rtl:mr-2">{{ count($cart) }} {{ __trans('Items') }}</span>
                      </div>
-                     <button class="flex h-7 w-7 items-center justify-center rounded-full bg-gray-100 text-muted transition-all duration-200 hover:bg-accent hover:text-light focus:bg-accent focus:text-light focus:outline-0 ltr:ml-3 ltr:-mr-2 rtl:mr-3 rtl:-ml-2">
-                        <span class="sr-only">close</span>
-                        <svg class="h-3 w-3" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor">
-                           <path fill-rule="evenodd" d="M4.293 4.293a1 1 0 011.414 0L10 8.586l4.293-4.293a1 1 0 111.414 1.414L11.414 10l4.293 4.293a1 1 0 01-1.414 1.414L10 11.414l-4.293 4.293a1 1 0 01-1.414-1.414L8.586 10 4.293 5.707a1 1 0 010-1.414z" clip-rule="evenodd"></path>
-                        </svg>
+                     <button class="flex">
+                        <span class="flex h-full shrink-0 items-center rounded-full bg-light px-5 text-accent font-bold">{{ number_format($total_price, 2) }}</span>
                      </button>
                   </header>
                   <div class="grow pt-16 pb-20">
@@ -35,8 +32,7 @@
                     @foreach($cart as $productId => $item)
                      <div class="flex items-center border-b border-solid border-border-200 border-opacity-75 px-4 py-4 text-sm sm:px-6" style="opacity: 1;">
 
-                        @livewire('quantity-selector', ['productId' => $productId, 'itemPrice' => 100, 'is_cart_page' => true])
-
+                        @livewire('quantity-selector', ['productId' => $productId, 'layout' => 'cart', key(uniqid())])
                         
                         <div class="relative mx-4 flex h-10 w-10 shrink-0 items-center justify-center overflow-hidden bg-gray-100 sm:h-16 sm:w-16"><img alt="Apples" loading="lazy" decoding="async" data-nimg="fill" class="object-contain" sizes="(max-width: 768px) 100vw" srcset="{{ $item['product']->display_image_url }}" src="{{ $item['product']->display_image_url }}" style="position: absolute; height: 100%; width: 100%; inset: 0px; color: transparent;"></div>
                         <div>
@@ -54,7 +50,7 @@
                      </div>
                     @endforeach
                   </div>
-                  <footer class="fixed bottom-0 z-10 w-full max-w-md bg-light px-6 py-5"><button class="flex h-12 w-full justify-between rounded-full bg-accent p-1 text-sm font-bold shadow-700 transition-colors hover:bg-accent-hover focus:bg-accent-hover focus:outline-0 md:h-14"><span class="flex h-full flex-1 items-center px-5 text-light">Checkout</span><span class="flex h-full shrink-0 items-center rounded-full bg-light px-5 text-accent">$6,515.40</span></button></footer>
+                  <footer class="fixed bottom-0 z-10 w-full max-w-md bg-light px-6 py-5"><button class="flex h-12 w-full justify-between rounded-full bg-accent p-1 text-sm font-bold shadow-700 transition-colors hover:bg-accent-hover focus:bg-accent-hover focus:outline-0 md:h-14"><span class="flex h-full flex-1 items-center px-5 text-light">Checkout</span><span class="flex h-full shrink-0 items-center rounded-full bg-light px-5 text-accent">{{ number_format($total_price, 2) }}</span></button></footer>
                </section>
             </div>
             <div class="os-scrollbar os-scrollbar-horizontal os-theme-dark os-scrollbar-auto-hide os-scrollbar-auto-hide-hidden os-scrollbar-handle-interactive os-scrollbar-cornerless os-scrollbar-unusable">

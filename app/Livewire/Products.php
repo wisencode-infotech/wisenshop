@@ -49,16 +49,6 @@ class Products extends Component
         $this->resetPage();
     }
 
-    public function increment()
-    {
-        $this->quantity++;
-
-        // Only dispatch the event if the quantity is 1 or more
-        if ($this->quantity == 1) {
-            $this->dispatch('itemAdded', $this->itemPrice); // dispatch event with item price
-        }
-    }
-
     /**
      * Set the category and reset pagination.
      * This method is triggered by the event listener.

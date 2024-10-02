@@ -38,4 +38,15 @@
     text-align: left; /* Center the description text */
 }
 
+.product_category:hover{
+	border-color: #009f7f !important;
+}
+
+/*.product_category:active{
+	border-color: rgba(var(--color-gray-800), var(--tw-border-opacity)) !important;
+}*/
+
+.product_category.active{
+	border-color: #009f7f !important;
+}
 /*End custom css*/

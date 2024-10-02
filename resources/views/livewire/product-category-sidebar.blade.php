@@ -6,24 +6,27 @@
             </div>
             <div data-overlayscrollbars-contents="" data-overlayscrollbars-viewport="scrollbarHidden" style="margin-right: 0px; margin-bottom: 0px; margin-left: 0px; top: 0px; right: auto; left: 0px; width: calc(100% + 0px); padding: 0px; overflow-y: scroll;">
                 <div class="p-5">
-                    <div class="grid grid-cols-2 gap-4">
+                    <div x-data="{ selectedCategoryId: @entangle('selectedCategoryId') }" class="grid grid-cols-2 gap-4">
                         @foreach($product_categories as $category)
-                        <div class="relative text-center rounded bg-light flex items-end overflow-hidden cursor-pointer border-2 
-                            {{ request()->get('catid') == $category->id ? 'active' : '' }} xl:border-transparent h-40" 
-                            role="button" 
-                            x-on:click="$dispatch('category-selected', { category_id: {{ $category->id }} })">
-                            
-                            <!-- Full Width and Height Image -->
-                            <img src="{{ $category->image_url }}" class="absolute inset-0 w-full h-full object-cover" />
-                        
-                            <!-- Overlay for Title -->
-                            <div class="absolute inset-0 flex items-end justify-center">
-                                <!-- Background for the text (now covers full width) -->
-                                <span class="text-sm md:text-md font-semibold text-white text-center px-2.5 block bg-black bg-opacity-20 w-full">
-                                    {{ $category->name }}
-                                </span>
+                            <div class="relative text-center rounded flex items-end overflow-hidden cursor-pointer border-2 h-40 product_category" 
+                                role="button" 
+                                 :class="{ 'active': selectedCategoryId == {{ $category->id }} }" 
+            
+                                x-on:click="
+                                    selectedCategoryId = {{ $category->id }};
+                                    $dispatch('category-selected', { category_id: {{ $category->id }} })
+                                "
+                            >
+                                <!-- Full Width and Height Image -->
+                                <img src="{{ $category->image_url }}" class="absolute inset-0 w-full h-full object-cover" />
+                                
+                                <!-- Overlay for Title -->
+                                <div class="absolute inset-0 flex items-end justify-center">
+                                    <span class="text-sm md:text-md font-semibold text-white text-center px-2.5 block bg-black bg-opacity-20 w-full">
+                                        {{ $category->name }}
+                                    </span>
+                                </div>
                             </div>
-                        </div>
                         @endforeach
                     </div>
                 </div>

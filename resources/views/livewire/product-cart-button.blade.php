@@ -14,7 +14,7 @@
             </g>
          </g>
       </svg>
-      <span class="flex ltr:ml-2 rtl:mr-2">0 Item</span>
+      <span class="flex ltr:ml-2 rtl:mr-2">0 {{ __trans('Item') }}</span>
    </span>
    <span class="w-full px-2 py-2 mt-3 rounded bg-light text-accent">$0.00</span>
 </button>

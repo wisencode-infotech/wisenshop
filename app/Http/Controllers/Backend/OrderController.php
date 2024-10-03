@@ -30,7 +30,17 @@ class OrderController extends Controller
                     return $row->user->name;
                 })
                 ->addColumn('status', function($row) {
-                    return $row->status;
+                    if($row->status == 'pending')
+                    {
+                        return '<span class="badge bg-warning">'.$row->status.'</span>';
+                    }
+                    elseif ($row->status == 'completed') {
+                        return '<span class="badge bg-success">'.$row->status.'</span>';   
+                    }
+                    else
+                    {
+                        return '<span class="badge bg-info">'.$row->status.'</span>';
+                    }
                 })
                 ->addColumn('amount', function($row) {
                     return $row->total_price;

@@ -18,7 +18,7 @@ class CartPage extends Component
         $this->total_price = shoppingCartTotal();
     }
 
-    protected $listeners = ['quantityUpdated' => 'updateCartQuantity'];
+    protected $listeners = ['quantityUpdated' => 'updateCartQuantity', 'remove-cart-product' => 'removeCartProduct'];
 
     public function updateCartQuantity($data)
     {
@@ -28,6 +28,23 @@ class CartPage extends Component
         }
 
         $this->total_price = shoppingCartTotal();
+    }
+
+    public function removeCartProduct($product_id)
+    {
+
+        if (!empty($this->cart[$product_id])) {
+            
+            unset($this->cart[$product_id]);
+
+            Session::put('cart', $this->cart);
+
+            $this->dispatch('itemRemoved');
+
+            $this->total_price = shoppingCartTotal();
+
+            $this->dispatch('shoppingCartUpdated');
+        }
     }
 
     public function render()

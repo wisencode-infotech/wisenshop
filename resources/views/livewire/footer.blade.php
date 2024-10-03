@@ -70,7 +70,7 @@
       </div>
    </div>
    <div class="flex flex-col items-center w-full gap-2 pt-8 pb-20 mt-8 border-t border-gray-200 lg:mt-0 lg:flex-row lg:justify-between lg:border-t-0 lg:pb-12">
-      <span class="order-2 text-sm shrink-0 text-heading lg:order-1">©2024 <a class="font-medium text-heading" href="{{ env('APP_URL') }}">Pickbazar</a>. Copyright © REDQ. All rights reserved worldwide. <a class="font-medium text-heading" href="https://redq.io">REDQ</a></span>
+      <span class="order-2 text-sm shrink-0 text-heading lg:order-1">©{{ date('Y') }} <a class="font-medium text-heading" href="{{ env('APP_URL') }}">Pickbazar</a>. {{ __setting('copyright_link') }}</span>
       <div class="flex flex-wrap items-center justify-center order-1 gap-4 mb-5 lg:order-2 lg:mb-0 lg:justify-end lg:gap-x-5 lg:gap-y-3"></div>
    </div>
 </div>

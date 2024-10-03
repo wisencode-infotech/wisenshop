@@ -3,6 +3,7 @@
 use App\Models\Product;
 use App\Models\Translation;
 use App\Models\Cart;
+use App\Models\Setting;
 use Illuminate\Support\Facades\Cache;
 use Illuminate\Support\Facades\Session;
 
@@ -41,6 +42,36 @@ if (!function_exists('__trans'))
         });
     }
 }
+
+if (!function_exists('__setting')) 
+{
+    function __setting($key, $default = null)
+    {
+        // Define cache key based on the setting key
+        $cacheKey = "settings.{$key}";
+
+        // Try to retrieve the setting value from cache
+        return Cache::rememberForever($cacheKey, function () use ($key, $default) {
+            // Query the setting from the database
+            $setting = Setting::where('key', $key)->first();
+
+            // If the setting exists, return the value
+            if ($setting) {
+                return $setting->value;
+            }
+
+            // If the setting does not exist, insert a new record with the default value
+            Setting::create([
+                'key'   => $key,
+                'value' => $default ?? '',
+            ]);
+
+            // Return the default value
+            return $default;
+        });
+    }
+}
+
 
 if (!function_exists('updateCart')) 
 {

@@ -49,6 +49,13 @@
                     </ul>
                 </li>
 
+                <li>
+                    <a href="{{ route('backend.settings.index') }}" class="waves-effect">
+                        <i class="bx bx-cog"></i>
+                        <span key="t-calendar">Settings</span>
+                    </a>
+                </li>
+
             </ul>
         </div>
         <!-- Sidebar -->

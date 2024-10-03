@@ -6,6 +6,7 @@ use App\Http\Controllers\Backend\ProductController;
 use App\Http\Controllers\Backend\HomeController;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\Backend\SettingController;
 
 Auth::routes();
 
@@ -15,4 +16,8 @@ Route::middleware(['auth'])->group(function () {
     Route::resource('category', CategoryController::class);
     Route::resource('site-banner', SiteBannerController::class);
     Route::resource('product', ProductController::class);
+
+    Route::get('settings', [SettingController::class, 'index'])->name('settings.index');
+    Route::post('update-settings', [SettingController::class, 'update'])->name('settings.update');
+
 });

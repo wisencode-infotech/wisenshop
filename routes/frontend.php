@@ -10,6 +10,7 @@ use App\Livewire\CartPage;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Session;
 use Livewire\Livewire;
+use Illuminate\Support\Facades\App;
 
 // Homepage
 Route::get('/', HomePage::class)->name('home');
@@ -34,7 +35,7 @@ Route::get('logout', [Logout::class, 'logout'])->name('logout');
 // Route::post('password/reset', [ResetPasswordController::class, 'reset']);
 
 Route::get('/locale/{locale}', function ($locale) {
-    session(['locale' => $locale]);
+    App::setLocale($locale);
     return redirect()->back();
 });
 

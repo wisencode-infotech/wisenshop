@@ -13,11 +13,11 @@
       <span class="sr-only">{{ __trans('Search') }}</span>
       <i class="fa fa-search"></i>
    </button>
-   <button wire:navigate href="{{ route('frontend.home') }}" class="flex h-full items-center justify-center p-2 focus:text-accent focus:outline-0" tabindex="0">
+   <button wire:navigate href="{{ route('frontend.home') }}" class="flex h-full items-center justify-center p-2 {{ Request::routeIs('frontend.home') ? 'text-accent' : '' }} focus:text-accent focus:outline-0" tabindex="0">
       <span class="sr-only">{{ __trans('Home') }}</span>
       <i class="fa fa-home"></i>
    </button>
-   <button wire:navigate href="{{ route('frontend.cart') }}" class="product-cart relative flex h-full items-center justify-center p-2 focus:text-accent focus:outline-0" tabindex="0">
+   <button wire:navigate href="{{ route('frontend.cart') }}" class="product-cart relative flex h-full items-center justify-center p-2 {{ Request::routeIs('frontend.cart') ? 'text-accent' : '' }} focus:text-accent focus:outline-0" tabindex="0">
       <span class="sr-only">{{ __trans('Cart') }}</span>
       <i class="fa fa-shopping-cart"></i>
       <span class="absolute top-0 mt-0.5 rounded-full bg-accent py-1 px-1.5 text-10px font-semibold leading-none text-light ltr:right-0 ltr:-mr-0.5 rtl:left-0 rtl:-ml-0.5">{{ $cart_items_count }}</span>
@@ -28,7 +28,7 @@
          <i class="fa fa-sign-out"></i>
       </button>
    @else
-      <button wire:navigate href="{{ route('frontend.login') }}" class="flex h-full items-center justify-center p-2 focus:text-accent focus:outline-0" tabindex="0">
+      <button wire:navigate href="{{ route('frontend.login') }}" class="flex h-full items-center justify-center p-2 {{ Request::routeIs('frontend.login') ? 'text-accent' : '' }} focus:text-accent focus:outline-0" tabindex="0">
          <span class="sr-only">{{ __trans('User') }}</span>
          <i class="fa fa-user"></i>
       </button>

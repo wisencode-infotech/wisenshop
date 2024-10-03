@@ -11,7 +11,9 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Session;
 use Livewire\Livewire;
 use Illuminate\Support\Facades\App;
+use App\Http\Middleware\SetLocale;
 
+Route::middleware([SetLocale::class])->group(function () {
 // Homepage
 Route::get('/', HomePage::class)->name('home');
 
@@ -79,4 +81,6 @@ Route::post('/sync-session-cart', function(Request $request) {
 
 Livewire::setScriptRoute(function ($handle) {
     return Route::get(url('/') . '/livewire/livewire.js', $handle);
+});
+
 });

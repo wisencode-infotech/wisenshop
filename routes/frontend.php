@@ -34,10 +34,25 @@ Route::get('logout', [Logout::class, 'logout'])->name('logout');
 // Route::get('password/reset/{token}', [ResetPasswordController::class, 'showResetForm'])->name('password.reset');
 // Route::post('password/reset', [ResetPasswordController::class, 'reset']);
 
-Route::get('/locale/{locale}', function ($locale) {
-    app()->setLocale($locale);
-    return redirect()->back();
-});
+// Route::get('/locale/{locale}', function ($locale) {
+//     app()->setLocale($locale);
+//     return redirect()->back();
+// });
+
+// Route::get('/locale/{locale}', function ($locale) {
+//     app()->setLocale($locale);
+//     Session::put('locale', $locale);
+//     return redirect()->back();
+// })->name('change.locale');
+
+Route::get('/locale/{locale}', function (string $locale) {
+    App::setLocale($locale);
+    Session::put('locale', $locale);
+
+    // dd(app()->getLocale());
+    // return redirect()->back();
+})->name('change.locale');
+
 
 Route::get('/fetch-session-cart', function() {
     return response()->json([

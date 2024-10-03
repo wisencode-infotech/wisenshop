@@ -4,6 +4,8 @@ use App\Models\Product;
 use App\Models\Translation;
 use App\Models\Cart;
 use App\Models\Setting;
+use App\Models\Language;
+
 use Illuminate\Support\Facades\Cache;
 use Illuminate\Support\Facades\Session;
 
@@ -13,6 +15,7 @@ if (!function_exists('__trans'))
     {
         $locale = $locale ?? app()->getLocale(); // Get the current locale if not passed
         
+        // dd($locale);
         $cacheKey = "translation.{$locale}.{$group}.{$key}";
 
         // Try to retrieve the translation from cache
@@ -196,5 +199,12 @@ if (!function_exists('__updateTrans'))
         Cache::rememberForever($cache_key, function() use($value) { 
             return $value;
         });
+    }
+}
+
+if (!function_exists('getAllLanguages')) {
+    function getAllLanguages()
+    {
+        return Language::all();
     }
 }

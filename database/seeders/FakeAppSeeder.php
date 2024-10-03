@@ -10,6 +10,7 @@ use App\Models\Product;
 use App\Models\SiteBanner;
 use App\Models\User;
 use App\Models\Setting;
+use App\Models\Language;
 use Illuminate\Database\Seeder;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Str;
@@ -128,6 +129,17 @@ class FakeAppSeeder extends Seeder
                 'title' => $site_banner,
                 'description' => fake()->paragraph()
             ]);
+        }
+
+
+        // Language seeder
+        $languages = [
+            ['code' => 'en', 'name' => 'English'],
+            ['code' => 'es', 'name' => 'Spanish']
+        ];
+
+        foreach ($languages as $language) {
+            Language::create($language);
         }
     }
 }

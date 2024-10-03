@@ -30,7 +30,7 @@
                         <select class="form-control @error('locale') is-invalid @enderror" id="locale" name="locale" style="padding-left: 15px;">
                                    <option value="">Select Locale</option>
                                    @foreach($locales as $locale)
-                                   <option value="{{ old('locale') }}">{{ strtoupper($locale->code) }}</option>
+                                   <option value="{{ $locale->code }}">{{ strtoupper($locale->code) }}</option>
                                    @endforeach
                                </select>
                         @error('locale')

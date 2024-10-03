@@ -50,7 +50,7 @@ Route::get('/locale/{locale}', function (string $locale) {
     Session::put('locale', $locale);
 
     // dd(app()->getLocale());
-    // return redirect()->back();
+    return redirect()->back();
 })->name('change.locale');
 
 

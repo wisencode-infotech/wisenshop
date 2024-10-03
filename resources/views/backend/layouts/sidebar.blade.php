@@ -65,11 +65,19 @@
                         <i class="bx bx-store"></i>
                         <span key="t-ecommerce">Orders</span>
                     </a>
+
                     <ul class="sub-menu" aria-expanded="false">
                         <li><a href="{{ route('backend.order.index') }}" key="t-translation-detail">All</a></li>
                     </ul>
+
                 </li>
 
+                <li>
+                    <a href="{{ route('backend.settings.index') }}" class="waves-effect">
+                        <i class="bx bx-cog"></i>
+                        <span key="t-calendar">Settings</span>
+                    </a>
+                </li>
             </ul>
         </div>
         <!-- Sidebar -->

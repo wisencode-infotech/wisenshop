@@ -35,7 +35,7 @@ Route::get('logout', [Logout::class, 'logout'])->name('logout');
 // Route::post('password/reset', [ResetPasswordController::class, 'reset']);
 
 Route::get('/locale/{locale}', function ($locale) {
-    App::setLocale($locale);
+    app()->setLocale($locale);
     return redirect()->back();
 });
 

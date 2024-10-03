@@ -9,6 +9,7 @@ use App\Models\Payment;
 use App\Models\Product;
 use App\Models\SiteBanner;
 use App\Models\User;
+use App\Models\Setting;
 use Illuminate\Database\Seeder;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Str;
@@ -29,6 +30,27 @@ class FakeAppSeeder extends Seeder
         ]);
 
         User::factory(10)->create();
+
+        // Setting seeder
+        $settings = [
+                'phone_number' => '9696669999',
+                'email' => 'example@domain.com',
+                'address' => '123 Example Street, Sample City, ST 12345',
+                'website' => 'https://www.example.com',
+                'receiver_emails' => 'receiverA@user.com, receiverB@user.com',
+                'twitter_link' => 'https://twitter.com/example',
+                'facebook_link' => 'https://facebook.com/example',
+                'instagram_link' => 'https://instagram.com/example',
+                'copyright_link' => 'Copyright © Albertoshop. All rights reserved worldwide.',
+                'site_title' => 'Albertoshop'
+            ];
+
+        foreach ($settings as $meta_key => $meta_value) {
+            Setting::create([
+                'key' => $meta_key,
+                'value' => $meta_value
+            ]);
+        }
 
         // Categories seeder
 

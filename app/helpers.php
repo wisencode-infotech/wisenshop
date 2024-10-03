@@ -3,6 +3,7 @@
 use App\Models\Product;
 use App\Models\Translation;
 use App\Models\Cart;
+use App\Models\Setting;
 use Illuminate\Support\Facades\Cache;
 use Illuminate\Support\Facades\Session;
 
@@ -11,6 +12,7 @@ if (!function_exists('__trans'))
     function __trans($key, $locale = null, $group = null)
     {
         $locale = $locale ?? app()->getLocale(); // Get the current locale if not passed
+        
         $cacheKey = "translation.{$locale}.{$group}.{$key}";
 
         // Try to retrieve the translation from cache
@@ -41,6 +43,50 @@ if (!function_exists('__trans'))
         });
     }
 }
+
+if (!function_exists('__setting')) 
+{
+    function __setting($key, $default = null)
+    {
+        // Define cache key based on the setting key
+        $cacheKey = "settings.{$key}";
+
+        // Try to retrieve the setting value from cache
+        return Cache::rememberForever($cacheKey, function () use ($key, $default) {
+            // Query the setting from the database
+            $setting = Setting::where('key', $key)->first();
+
+            // If the setting exists, return the value
+            if ($setting) {
+                return $setting->value;
+            }
+
+            // If the setting does not exist, insert a new record with the default value
+            Setting::create([
+                'key'   => $key,
+                'value' => $default ?? '',
+            ]);
+
+            // Return the default value
+            return $default;
+        });
+    }
+}
+
+if (!function_exists('__updateSetting')) 
+{
+    function __updateSetting($key, $value)
+    {
+        $cache_key = "settings.{$key}";
+        
+        Cache::forget($cache_key);
+
+        Cache::rememberForever($cache_key, function() use($value) { 
+            return $value;
+        });
+    }
+}
+
 
 if (!function_exists('updateCart')) 
 {

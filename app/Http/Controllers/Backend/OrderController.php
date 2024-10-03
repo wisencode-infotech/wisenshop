@@ -32,24 +32,36 @@ class OrderController extends Controller
                 ->addColumn('status', function($row) {
                     if($row->status == 'pending')
                     {
-                        return '<span class="badge bg-warning">'.$row->status.'</span>';
+                        return '<span class="badge rounded-pill badge-soft-warning font-size-12">'.$row->status.'</span>';
                     }
                     elseif ($row->status == 'completed') {
-                        return '<span class="badge bg-success">'.$row->status.'</span>';   
+                        return '<span class="badge rounded-pill badge-soft-success font-size-12">'.$row->status.'</span>';   
                     }
                     else
                     {
-                        return '<span class="badge bg-info">'.$row->status.'</span>';
+                        return '<span class="badge rounded-pill badge-soft-info font-size-12">'.$row->status.'</span>';
                     }
                 })
                 ->addColumn('amount', function($row) {
                     return $row->total_price;
                 })
-                ->rawColumns(['user_name', 'status'])
+                ->addColumn('action', function($row) {
+                    $btn = '<a href="'.route('backend.order.show', $row).'" class="edit btn btn-primary btn-sm">View Details</a>';
+                    return $btn;
+                })
+                ->rawColumns(['action','user_name', 'status'])
                 ->make(true);
         }
 
         $categories = Order::all(); // Fetch all categories
         return view('backend.orders.index', compact('categories'));
+    }
+
+    /**
+     * Display the specified category.
+     */
+    public function show(Order $order)
+    {
+        return view('backend.orders.show', compact('order')); // Return the show view
     }
 }

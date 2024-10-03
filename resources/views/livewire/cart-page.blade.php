@@ -1,35 +1,37 @@
 @section('title', __trans('Cart'))
 
 <div>
-   <div class="min-h-full text-center md:p-5"> 
+   <div class="min-h-full text-center md:p-5 mt-4"> 
          <div class="min-w-content relative inline-block max-w-full align-middle transition-all ltr:text-left rtl:text-right opacity-100 scale-100" id="headlessui-dialog-panel-:r1:" data-headlessui-state="open">
            <article class="relative z-[51] w-full max-w-6xl bg-light md:rounded-xl xl:min-w-[1152px]">
                <article class="rounded-lg bg-light">
                   <div class="flex flex-col border-b border-border-200 border-opacity-70 md:flex-row">
                      <div class="p-6 pt-10 w-full lg:p-14 xl:p-16">
 
-                        <header class="top-0 z-10 flex items-center justify-between border-b border-border-200 border-opacity-75 bg-light px-6 py-4">
-                           <div class="flex font-semibold text-accent">
-                              <svg width="24" height="22" class="shrink-0" viewBox="0 0 12.686 16">
-                                 <g transform="translate(-27.023 -2)">
-                                    <g transform="translate(27.023 5.156)">
-                                       <g>
-                                          <path d="M65.7,111.043l-.714-9A1.125,1.125,0,0,0,63.871,101H62.459V103.1a.469.469,0,1,1-.937,0V101H57.211V103.1a.469.469,0,1,1-.937,0V101H54.862a1.125,1.125,0,0,0-1.117,1.033l-.715,9.006a2.605,2.605,0,0,0,2.6,2.8H63.1a2.605,2.605,0,0,0,2.6-2.806Zm-4.224-4.585-2.424,2.424a.468.468,0,0,1-.663,0l-1.136-1.136a.469.469,0,0,1,.663-.663l.8.8,2.092-2.092a.469.469,0,1,1,.663.663Z" transform="translate(-53.023 -101.005)" fill="currentColor"></path>
+                        @if (count($cart) > 0)
+                           <header class="top-0 z-10 flex items-center justify-between border-b border-border-200 border-opacity-75 bg-light px-6 py-4">
+                              <div class="flex font-semibold text-accent">
+                                 <svg width="24" height="22" class="shrink-0" viewBox="0 0 12.686 16">
+                                    <g transform="translate(-27.023 -2)">
+                                       <g transform="translate(27.023 5.156)">
+                                          <g>
+                                             <path d="M65.7,111.043l-.714-9A1.125,1.125,0,0,0,63.871,101H62.459V103.1a.469.469,0,1,1-.937,0V101H57.211V103.1a.469.469,0,1,1-.937,0V101H54.862a1.125,1.125,0,0,0-1.117,1.033l-.715,9.006a2.605,2.605,0,0,0,2.6,2.8H63.1a2.605,2.605,0,0,0,2.6-2.806Zm-4.224-4.585-2.424,2.424a.468.468,0,0,1-.663,0l-1.136-1.136a.469.469,0,0,1,.663-.663l.8.8,2.092-2.092a.469.469,0,1,1,.663.663Z" transform="translate(-53.023 -101.005)" fill="currentColor"></path>
+                                          </g>
+                                       </g>
+                                       <g transform="translate(30.274 2)">
+                                          <g>
+                                             <path d="M160.132,0a3.1,3.1,0,0,0-3.093,3.093v.063h.937V3.093a2.155,2.155,0,1,1,4.311,0v.063h.937V3.093A3.1,3.1,0,0,0,160.132,0Z" transform="translate(-157.039)" fill="currentColor"></path>
+                                          </g>
                                        </g>
                                     </g>
-                                    <g transform="translate(30.274 2)">
-                                       <g>
-                                          <path d="M160.132,0a3.1,3.1,0,0,0-3.093,3.093v.063h.937V3.093a2.155,2.155,0,1,1,4.311,0v.063h.937V3.093A3.1,3.1,0,0,0,160.132,0Z" transform="translate(-157.039)" fill="currentColor"></path>
-                                       </g>
-                                    </g>
-                                 </g>
-                              </svg>
-                              <span class="flex ltr:ml-2 rtl:mr-2">{{ count($cart) }} {{ __trans('Items') }}</span>
-                           </div>
-                           <button class="flex">
-                              <span class="flex h-full shrink-0 items-center rounded-full bg-light px-5 text-accent font-bold">{{ number_format($total_price, 2) }}</span>
-                           </button>
-                        </header>
+                                 </svg>
+                                 <span class="flex ltr:ml-2 rtl:mr-2">{{ count($cart) }} {{ __trans('Items') }}</span>
+                              </div>
+                              <button class="flex">
+                                 <span class="flex h-full shrink-0 items-center rounded-full bg-light px-5 text-accent font-bold">{{ number_format($total_price, 2) }}</span>
+                              </button>
+                           </header>
+                        @endif
 
                         <div>
                            @foreach($cart as $productId => $item)
@@ -54,7 +56,23 @@
                              @endforeach
                         </div>
 
-                        <div class="mt-4 w-full max-w-md bg-light px-6 py-5"><button class="flex h-12 w-full justify-between rounded-full bg-accent p-1 text-sm font-bold shadow-700 transition-colors hover:bg-accent-hover focus:bg-accent-hover focus:outline-0 md:h-14"><span class="flex h-full flex-1 items-center px-5 text-light">Checkout</span><span class="flex h-full shrink-0 items-center rounded-full bg-light px-5 text-accent">{{ number_format($total_price, 2) }}</span></button></div>
+                        @if (count($cart) > 0)
+                           <div class="mt-4 w-full max-w-md bg-light px-6 py-5"><button class="flex h-12 w-full justify-between rounded-full bg-accent p-1 text-sm font-bold shadow-700 transition-colors hover:bg-accent-hover focus:bg-accent-hover focus:outline-0 md:h-14"><span class="flex h-full flex-1 items-center px-5 text-light">Checkout</span><span class="flex h-full shrink-0 items-center rounded-full bg-light px-5 text-accent">{{ number_format($total_price, 2) }}</span></button></div>
+                        @else
+                        <div class="flex flex-col items-center justify-center h-64 bg-white mt-4">
+                           <!-- Icon (Shopping Cart) -->
+                          <i class="fa fa-shopping-cart text-muted text-xl"></i>
+                         
+                           <!-- Text -->
+                           <p class="mt-4 text-lg font-semibold text-gray-700">{{ __trans('Your cart is empty') }}</p>
+                           <p class="mt-1 text-sm text-gray-500">{{ __trans('Browse our products and add them to your cart') }}</p>
+                           
+                           <!-- Button (Optional) -->
+                           <a wire:navigate href="{{ route('frontend.home') }}" class="mt-6 inline-block px-6 py-2 text-white bg-accent-500 rounded-lg hover:bg-accent-hover">
+                              {{ __trans('Shop Now') }}
+                           </a>
+                         </div>                         
+                        @endif
                         
                      </div>
                   </div>

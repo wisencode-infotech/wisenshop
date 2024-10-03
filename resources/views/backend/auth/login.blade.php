@@ -61,7 +61,7 @@
 
                                         <div>
                                             <h5 class="text-primary">Welcome Back !</h5>
-                                            <p class="text-muted">Sign in to continue to Skote.</p>
+                                            <p class="text-muted">Sign in to continue to {{ __setting('site_title') }}.</p>
                                         </div>
 
                                         <div class="mt-4">
@@ -127,7 +127,7 @@
                                         <p class="mb-0">© <script>
                                                 document.write(new Date().getFullYear())
 
-                                            </script> {{ env('APP_NAME') }}. Built <i class="mdi mdi-code text-danger"></i> by
+                                            </script> {{ __setting('site_title') }}. Built <i class="mdi mdi-code text-danger"></i> by
                                             <a href="https://wisencode.com">Wisencode</a></p>
                                     </div>
                                 </div>

@@ -27,7 +27,12 @@
                     <!-- Name Field -->
                     <div class="form-group mb-3">
                         <label for="locale" class="form-label">Translation Locale</label>
-                        <input type="text" name="locale" class="form-control @error('locale') is-invalid @enderror" value="{{ old('locale') }}" required>
+                        <select class="form-control @error('locale') is-invalid @enderror" id="locale" name="locale" style="padding-left: 15px;">
+                                   <option value="">Select Locale</option>
+                                   @foreach($locales as $locale)
+                                   <option value="{{ $locale->code }}">{{ strtoupper($locale->code) }}</option>
+                                   @endforeach
+                               </select>
                         @error('locale')
                         <span class="invalid-feedback" role="alert">
                             <strong>{{ $message }}</strong>

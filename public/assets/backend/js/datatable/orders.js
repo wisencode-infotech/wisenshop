@@ -8,6 +8,13 @@ $(document).ready(function () {
             { data: 'user_name', name: 'user_name' },
             { data: 'status', name: 'status' },
             { data: 'amount', name: 'amount' },
+            { 
+                data: 'action', 
+                name: 'action', 
+                orderable: false, 
+                searchable: false 
+            }
+
         ],
         // Add dom option to customize layout
         dom: '<"row"<"col-sm-12"tr>>' +

@@ -43,7 +43,7 @@
         </div>
         <div
             class="order-1 mb-8 w-full rounded-lg bg-light p-5 md:order-2 md:mb-0 md:p-8 ltr:md:ml-7 rtl:md:mr-7 ltr:lg:ml-9 rtl:lg:mr-9">
-            <h1 class="mb-7 font-body text-xl font-bold text-heading md:text-2xl">How can we improve your experience?
+            <h1 class="mb-7 font-body text-xl font-bold text-heading md:text-2xl">{{ __trans('How can we improve your experience?') }}
             </h1>
             <form>
                 <div class="grid grid-cols-1 gap-5 sm:grid-cols-2">

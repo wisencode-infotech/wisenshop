@@ -67,11 +67,7 @@
                         <div class="w-full">
                            <div class="flex w-full items-start justify-between space-x-8 rtl:space-x-reverse">
                               <h1 class="text-lg font-semibold tracking-tight text-heading md:text-xl xl:text-2xl cursor-pointer transition-colors hover:text-accent">{{ $product->name }}</h1>
-                              <div>
-                                 <button type="button" class="mt-0.5 flex h-10 w-10 shrink-0 items-center justify-center rounded-full border text-xl text-accent transition-colors border-gray-300 mr-1">
-                                    <i class="fa-regular fa-heart"></i>
-                                 </button>
-                              </div>
+                              <livewire:wishlist-button :item-id="$product->id" />
                            </div>
                            <div class="mt-2 flex items-center justify-between">
                               <span class="block text-sm font-normal text-body">1lb</span>

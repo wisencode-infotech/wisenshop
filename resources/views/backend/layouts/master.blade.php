@@ -3,13 +3,18 @@
 
 <head>
     <meta charset="utf-8" />
-    <title> @yield('title') | Skote - Admin & Dashboard Template</title>
+    <title> @yield('title') | {{ config('app.name', 'Laravel') }}</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta content="Premium Multipurpose Admin & Dashboard Template" name="description" />
     <meta content="Themesbrand" name="author" />
+    <meta name="csrf-token" content="{{ csrf_token() }}">
     <!-- App favicon -->
     <link rel="shortcut icon" href="{{ URL::asset('assets/backend/images/favicon.ico') }}">
     @include('backend.layouts.head-css')
+    @include('backend.layouts.vendor-styles')
+    <script>
+        const APP_BACKEND_URL = '{{ route("backend.home") }}';
+    </script>
 </head>
 
 @section('body')

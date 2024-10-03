@@ -5,8 +5,8 @@
 @section('content')
 
 @component('backend.components.breadcrumb')
-@slot('li_1') Orders @endslot
-@slot('title') Order #{{ $order->id }} @endslot
+@slot('li_1') <a href="{{ route('backend.order.index') }}">Orders</a> @endslot
+@slot('title') Details #{{ $order->id }} @endslot
 @endcomponent
 
 <div class="row">

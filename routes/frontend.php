@@ -6,6 +6,8 @@ use App\Livewire\HomePage;
 use App\Livewire\Login;
 use App\Livewire\ProductDetail;
 use App\Livewire\CartPage;
+use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Session;
 use Livewire\Livewire;
 
 // Homepage
@@ -34,6 +36,29 @@ Route::get('/locale/{locale}', function ($locale) {
     session(['locale' => $locale]);
     return redirect()->back();
 });
+
+Route::get('/fetch-session-cart', function() {
+    return response()->json([
+        'cart' => shoppingCart()
+    ]);
+})->name('fetch-session-cart');
+
+Route::post('/sync-session-cart', function(Request $request) {
+
+    $cart = $request->cart ?? [];
+    $updated = false;
+
+    if (!empty($cart) && empty(shoppingCart())) {
+        Session::put('cart', $request->cart ?? []);
+        $updated = true;
+    }
+
+    return response()->json([
+        'cart' => shoppingCart(),
+        'updated' => $updated
+    ]);
+
+})->name('sync-session-cart');
 
 Livewire::setScriptRoute(function ($handle) {
     return Route::get(url('/') . '/livewire/livewire.js', $handle);

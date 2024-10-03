@@ -38,6 +38,10 @@ class ProductCartButton extends Component
 
     public function updateCartQuantity()
     {
+        $cart = shoppingCart();
+
+        $this->itemCount = count($cart);
+
         $this->totalPrice = shoppingCartTotal();
     }
 

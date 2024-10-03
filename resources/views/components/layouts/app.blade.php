@@ -49,44 +49,19 @@
 
     <script src="https://kit.fontawesome.com/76125ef05e.js" crossorigin="anonymous"></script>
 
+    <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+
     @yield('scripts')
 
     <script>
-
-        $(document).on('click', '.mobile-filter-btn', function() {
-            const filter_section = $('.mobile-header-filter-section');
-            const mobile_filter_products_drawer_section = $('.mobile-filter-products-drawer-section');
-            filter_section.removeClass('hidden');
-            mobile_filter_products_drawer_section.removeClass('hidden');
-        });
-
-        $(document).on('click', '.mobile-header-filter-close-btn', function() {
-            const filter_section = $('.mobile-header-filter-section');
-            const mobile_filter_products_drawer_section = $('.mobile-filter-products-drawer-section');
-            filter_section.addClass('hidden');
-            mobile_filter_products_drawer_section.addClass('hidden');
-        });
-
-        $(document).on('click', '.mobile-pages-drawer-btn', function() {
-            const filter_section = $('.mobile-header-filter-section');
-            const mobile_filter_products_drawer_section = $('.mobile-pages-drawer-section');
-            filter_section.removeClass('hidden');
-            mobile_filter_products_drawer_section.removeClass('hidden');
-        });
-
-        $(document).on('click', '.mobile-header-filter-close-btn', function() {
-            const filter_section = $('.mobile-header-filter-section');
-            const mobile_filter_products_drawer_section = $('.mobile-pages-drawer-section');
-            filter_section.addClass('hidden');
-            mobile_filter_products_drawer_section.addClass('hidden');
-        });
-
-        $(document).on('click', '.top-product-search-btn', function() {
-            const filter_section = $('.top-product-search-bar');
-            filter_section.removeClass('hidden');
-        });
         
-         
+        var _app_base_url = '{{ url("/") }}';
+
     </script>
+
+    <script src="{{ asset('assets/frontend/js/app.js') }}"></script>
+
+    <script src="{{ asset('assets/frontend/js/cart.js') }}"></script>
+
 </body>
 </html>

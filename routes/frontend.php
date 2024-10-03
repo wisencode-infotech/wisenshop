@@ -48,10 +48,8 @@ Route::get('logout', [Logout::class, 'logout'])->name('logout');
 // })->name('change.locale');
 
 Route::get('/locale/{locale}', function (string $locale) {
-    App::setLocale($locale);
-    Session::put('locale', $locale);
+    Session::put('app_locale', $locale);
 
-    // dd(app()->getLocale());
     return redirect()->back();
 })->name('change.locale');
 

@@ -145,7 +145,7 @@ if (!function_exists('shoppingCart'))
             foreach ($db_cart_items as $db_item) {
                 $cart_items[$db_item->product_id] = [
                     'quantity' => $db_item->quantity,
-                    'product_price' => $db_item->product->price ?? 0,
+                    'product_price' => $db_item->product->discounted_price ?? 0,
                     'product' => $db_item->product,
                 ];
             }
@@ -161,7 +161,7 @@ if (!function_exists('shoppingCart'))
 
                 if ($product) {
                     $item['product'] = $product;
-                    $item['product_price'] = ($product->price ?? 0);
+                    $item['product_price'] = ($product->discounted_price ?? 0);
                 }
             }
 

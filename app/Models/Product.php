@@ -63,4 +63,17 @@ class Product extends Model
         
         return (!empty($display_image)) ? $display_image->image_url : ProductImage::$placeholder_url;
     }
+
+    public function getDiscountedPriceAttribute() {
+        if (!empty($this->discount_type) && !empty($this->discount_value)) {
+            if($this->discount_type == 'percentage') {
+                $discounted_amount = ($this->price * $this->discount_value) / 100;
+                $product_origin_price = $this->price - $discounted_amount;
+            } else {
+                $product_origin_price = $this->price - $this->discount_value;
+            }
+            return number_format($product_origin_price, 2);
+        }
+        return $this->price;
+    }
 }

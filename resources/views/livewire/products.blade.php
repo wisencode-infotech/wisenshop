@@ -40,7 +40,7 @@
 
                             <div class="relative"><del
                                     class="absolute text-xs italic text-opacity-75 -top-4 text-muted md:-top-5">${{ $product->price }}</del><span
-                                    class="text-sm font-semibold text-accent md:text-base">${{ $product->price }}</span>
+                                    class="text-sm font-semibold text-accent md:text-base">${{ $product->discounted_price }}</span>
                             </div>
                             <div class="hidden">
                                 <button wire:navigate href="{{ route('frontend.product-detail', ['product_slug' => $product->slug]) }}"

@@ -27,8 +27,6 @@ function syncSessionCartFromLocalCart() {
 // Call sync function when the page loads
 window.onload = syncSessionCartFromLocalCart();
 
-Livewire.on('quantityUpdated', function() {
+Livewire.on('syncLocalCartFromSession', function() {
     syncLocalCartFromSessionCart();
-
-    console.log('coming');
 });

@@ -67,14 +67,10 @@
                         <div class="w-full">
                            <div class="flex w-full items-start justify-between space-x-8 rtl:space-x-reverse">
                               <h1 class="text-lg font-semibold tracking-tight text-heading md:text-xl xl:text-2xl cursor-pointer transition-colors hover:text-accent">{{ $product->name }}</h1>
-                              <div>
-                                 <button type="button" class="mt-0.5 flex h-10 w-10 shrink-0 items-center justify-center rounded-full border text-xl text-accent transition-colors border-gray-300 mr-1">
-                                    <i class="fa-regular fa-heart"></i>
-                                 </button>
-                              </div>
+                              <livewire:wishlist-button :item-id="$product->id" />
                            </div>
                            <div class="mt-2 flex items-center justify-between">
-                              <span class="block text-sm font-normal text-body">1lb</span>
+                              {{-- <span class="block text-sm font-normal text-body">1lb</span> --}}
                               <div class="inline-flex shrink-0 items-center rounded border border-accent bg-accent px-3 py-1 text-sm text-white">
                                  4.67
                                  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 25.056 24" class="h-2.5 w-2.5 ltr:ml-1 rtl:mr-1">
@@ -94,11 +90,11 @@
                                 @livewire('quantity-selector', ['productId' => $product->id, 'layout' => 'large'])
                             </div>
 
-                              <span class="whitespace-nowrap text-base text-body ltr:lg:ml-7 rtl:lg:mr-7">{{ $product->stock }} pieces available</span>
+                              {{-- <span class="whitespace-nowrap text-base text-body ltr:lg:ml-7 rtl:lg:mr-7">{{ $product->stock }} pieces available</span> --}}
                            </div>
                         </div>
                         <div class="mt-4 flex w-full flex-row items-start border-t border-border-200 border-opacity-60 pt-4 md:mt-6 md:pt-6">
-                           <span class="py-1 text-sm font-semibold capitalize text-heading ltr:mr-6 rtl:ml-6">Categories</span>
+                           <span class="py-1 text-sm font-semibold capitalize text-heading ltr:mr-6 rtl:ml-6">{{ __trans('Categories') }}</span>
                            <div class="flex flex-row flex-wrap">
                               <button class="mb-2 whitespace-nowrap rounded border border-border-200 bg-transparent py-1 px-2.5 text-sm lowercase tracking-wider text-heading transition-colors hover:border-accent hover:text-accent focus:bg-opacity-100 focus:outline-0 ltr:mr-2 rtl:ml-2" 
                               x-navigate href="{{ route('frontend.home', ['catid' => $product->category_id]) }}">

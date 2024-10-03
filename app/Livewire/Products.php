@@ -4,6 +4,7 @@ namespace App\Livewire;
 
 use Livewire\Component;
 use App\Models\Product;
+use Illuminate\Support\Facades\Session;
 use Livewire\WithPagination;
 
 class Products extends Component
@@ -32,6 +33,7 @@ class Products extends Component
      */
     public function mount($category_id = null, $per_page = 10)
     {
+        // Session::forget('cart');
         $this->category_id = $category_id ?? null;
         $this->per_page = $per_page;
         $this->paginate_count = $per_page;

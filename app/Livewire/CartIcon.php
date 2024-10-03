@@ -9,7 +9,7 @@ class CartIcon extends Component
 {
     public $itemCount = 0; // Track the number of items in the cart
 
-    protected $listeners = ['itemAdded', 'itemRemoved'];
+    protected $listeners = ['itemAdded', 'itemRemoved', 'quantityUpdated' => 'updateCartQuantity'];
 
     public function mount()
     {
@@ -28,6 +28,13 @@ class CartIcon extends Component
         if ($this->itemCount > 0) {
             $this->itemCount--; // Decrement the item count when an item is removed
         }
+    }
+
+    public function updateCartQuantity()
+    {
+        $cart = shoppingCart();
+        
+        $this->itemCount = count($cart);
     }
 
     public function render()

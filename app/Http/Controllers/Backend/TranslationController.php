@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Backend;
 
 use App\Http\Controllers\Controller;
 use App\Models\Translation;
+use App\Models\Language;
 use Illuminate\Http\Request;
 use Yajra\DataTables\Facades\DataTables;
 use Illuminate\Support\Str;
@@ -50,7 +51,7 @@ class TranslationController extends Controller
         }
 
         $translations = Translation::all(); // Fetch all site banners
-        $locales = Translation::select('locale')->groupBy('locale')->get();
+        $locales = Language::select('code')->get();
         return view('backend.translations.index', compact('translations', 'locales'));
     }
 
@@ -59,7 +60,8 @@ class TranslationController extends Controller
      */
     public function create()
     {
-        return view('backend.translations.create'); // Return the create view
+        $locales = Language::select('code')->get();
+        return view('backend.translations.create', compact('locales')); // Return the create view
     }
 
     /**

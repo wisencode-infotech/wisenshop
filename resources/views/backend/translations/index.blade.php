@@ -26,7 +26,7 @@
                                <select class="form-control" id="locale-select" style="padding-left: 15px;">
                                    <option value="">Select Locale</option>
                                    @foreach($locales as $locale)
-                                   <option value="{{ $locale->locale }}">{{ strtoupper($locale->locale) }}</option>
+                                   <option value="{{ $locale->code }}">{{ strtoupper($locale->code) }}</option>
                                    @endforeach
                                </select>
                             </div>

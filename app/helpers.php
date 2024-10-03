@@ -12,6 +12,7 @@ if (!function_exists('__trans'))
     function __trans($key, $locale = null, $group = null)
     {
         $locale = $locale ?? app()->getLocale(); // Get the current locale if not passed
+        
         $cacheKey = "translation.{$locale}.{$group}.{$key}";
 
         // Try to retrieve the translation from cache
@@ -68,6 +69,20 @@ if (!function_exists('__setting'))
 
             // Return the default value
             return $default;
+        });
+    }
+}
+
+if (!function_exists('__updateSetting')) 
+{
+    function __updateSetting($key, $value)
+    {
+        $cache_key = "settings.{$key}";
+        
+        Cache::forget($cache_key);
+
+        Cache::rememberForever($cache_key, function() use($value) { 
+            return $value;
         });
     }
 }
@@ -165,5 +180,21 @@ if (!function_exists('shoppingCartTotal'))
         }
 
         return $total;
+    }
+}
+
+if (!function_exists('__updateTrans')) 
+{
+    function __updateTrans($key, $value, $locale = '', $group = null)
+    {
+        $locale = $locale ?? app()->getLocale(); // Get the current locale if not passed
+
+        $cache_key = "translation.{$locale}.{$group}.{$key}";
+        
+        Cache::forget($cache_key);
+
+        Cache::rememberForever($cache_key, function() use($value) { 
+            return $value;
+        });
     }
 }

@@ -29,6 +29,8 @@ class SettingController extends Controller
                 ['key' => $setting['key']],
                 ['value' => $setting['value']]
             );
+
+            __updateSetting($setting['key'], $setting['value']);
         }
 
         return redirect()->route('backend.settings.index')->with('success', 'Settings updated successfully.');

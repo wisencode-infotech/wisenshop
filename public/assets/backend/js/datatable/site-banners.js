@@ -1,12 +1,11 @@
 $(document).ready(function () {
-    var table = $('#categories-table').DataTable({
+    var table = $('#site-banners-table').DataTable({
         processing: true,
         serverSide: true,
-        ajax: APP_BACKEND_URL + '/category',
+        ajax: APP_BACKEND_URL + '/site-banner',
         columns: [
             { data: 'DT_RowIndex', name: 'DT_RowIndex', orderable: false, searchable: false },
-            { data: 'name', name: 'name' },
-            { data: 'slug', name: 'slug' },
+            { data: 'title', name: 'title' },
             { 
                 data: 'image', 
                 name: 'image',
@@ -38,15 +37,15 @@ $(document).ready(function () {
 
 $(document).on('click', '.delete', function () {
     var id = $(this).data('id');
-    if (confirm("Are you sure you want to delete this category?")) {
+    if (confirm("Are you sure you want to delete this site banner?")) {
         $.ajax({
             type: "DELETE",
-            url: APP_BACKEND_URL + "/category/" + id,
+            url: APP_BACKEND_URL + "/site-banner/" + id,
             headers: {
                 'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content') // Passing the CSRF token in headers
             },
             success: function (response) {
-                $('#categories-table').DataTable().ajax.reload(); // Reload table after deletion
+                $('#site-banners-table').DataTable().ajax.reload(); // Reload table after deletion
                 alert(response.success);
             },
             error: function (response) {

@@ -9,7 +9,7 @@
          </g>
       </svg>
    </button>
-   <button class="top-product-search-btn flex h-full items-center justify-center p-2 focus:text-accent focus:outline-0" tabindex="0">
+   <button  wire:navigate href="{{ route('frontend.home') }}"  class="top-product-search-btn flex h-full items-center justify-center p-2 focus:text-accent focus:outline-0" tabindex="0">
       <span class="sr-only">{{ __trans('Search') }}</span>
       <i class="fa fa-search"></i>
    </button>

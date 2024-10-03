@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Backend;
 
 use App\Models\User;
+use App\Models\Order;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
@@ -36,7 +37,9 @@ class HomeController extends Controller
 
     public function root()
     {
-        return view('backend.index');
+        $total_completed_orders = Order::where('status','completed')->count();
+        $total_completed_orders_amount = Order::where('status','completed')->sum('total_price');
+        return view('backend.index', compact('total_completed_orders', 'total_completed_orders_amount'));
     }
 
     /*Language Translation*/

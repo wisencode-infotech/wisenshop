@@ -1,8 +1,8 @@
 @section('title', __trans('Cart'))
 
 <div>
-   <div class="min-h-full text-center md:p-5 mt-4"> 
-         <div class="min-w-content relative inline-block max-w-full align-middle transition-all ltr:text-left rtl:text-right opacity-100 scale-100" id="headlessui-dialog-panel-:r1:" data-headlessui-state="open">
+   <div class="min-h-full text-center md:p-5"> 
+         <div class="min-w-content relative sm:inline-block max-w-full align-middle transition-all ltr:text-left rtl:text-right opacity-100 scale-100" id="headlessui-dialog-panel-:r1:" data-headlessui-state="open">
            <article class="relative z-[51] w-full max-w-6xl bg-light md:rounded-xl xl:min-w-[1152px]">
                <article class="rounded-lg bg-light">
                   <div class="flex flex-col border-b border-border-200 border-opacity-70 md:flex-row">

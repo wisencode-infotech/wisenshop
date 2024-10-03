@@ -33,6 +33,11 @@ if (!function_exists('__trans'))
                 return $translation->value;
             }
 
+            if ( empty(app()->getLocale()) ) {
+                session()->put('app_locale', config('locale', 'es'));
+                $locale = session('app_locale');
+            }
+
             // If not found, insert it with the key as the value
             Translation::create([
                 'locale' => $locale,

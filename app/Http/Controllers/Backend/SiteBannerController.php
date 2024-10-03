@@ -53,7 +53,7 @@ class SiteBannerController extends Controller
         // Validate the request data
         $request->validate([
             'title' => 'required|string|max:255',
-            'image' => 'nullable|image|mimes:jpeg,png,jpg,gif,svg|max:2048', // Max 2MB
+            'image' => 'nullable|image|mimes:jpeg,png,jpg,gif,svg,webp|max:2048', // Max 2MB
         ]);
 
         // Handle the file upload if an image was provided
@@ -108,7 +108,7 @@ class SiteBannerController extends Controller
         $request->validate([
             'title' => 'required|string|max:255' . $site_banner->id,
             'description' => 'nullable|string',
-            'image' => 'nullable|image|mimes:jpeg,png,jpg,gif,svg|max:2048', // Max 2MB
+            'image' => 'nullable|image|mimes:jpeg,png,jpg,gif,svg,webp|max:2048', // Max 2MB
         ]);
 
         $data = [

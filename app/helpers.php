@@ -2,6 +2,7 @@
 
 use App\Models\Product;
 use App\Models\Translation;
+use App\Models\Cart;
 use Illuminate\Support\Facades\Cache;
 use Illuminate\Support\Facades\Session;
 
@@ -41,22 +42,82 @@ if (!function_exists('__trans'))
     }
 }
 
+if (!function_exists('updateCart')) 
+{
+    function updateCart($productId, $quantity)
+    {
+        if (auth()->check()) {
+
+            if ($quantity > 0) {
+                Cart::updateOrCreate(
+                    [
+                        'user_id' => auth()->user()->id,
+                        'product_id' => $productId,
+                    ],
+                    ['quantity' => $quantity]
+                );
+            } else {
+                Cart::where('user_id', auth()->user()->id)
+                    ->where('product_id', $productId)
+                    ->delete();
+            }
+        } else {
+            
+            $cart = shoppingCart();
+
+            if ($quantity > 0) {
+                $cart[$productId] = [
+                    'quantity' => $quantity,
+                ];
+            } else {
+                unset($cart[$productId]);
+            }
+
+            Session::put('cart', $cart);
+        }
+    }
+}
+
+
+
 if (!function_exists('shoppingCart')) 
 {
     function shoppingCart($options = [])
     {
-        $cart_items = Session::get('cart', []);
 
-        foreach ($cart_items as $product_id => &$item) {
-            $product = Product::find($product_id);
+        $cart_items = [];
 
-            if ($product) {
-                $item['product'] = $product;
-                $item['product_price'] = ($product->price ?? 0);
+        if (auth()->check()) {
+
+            $db_cart_items  = Cart::where('user_id', auth()->user()->id)->get();
+
+            $cart_items = [];
+
+            foreach ($db_cart_items as $db_item) {
+                $cart_items[$db_item->product_id] = [
+                    'quantity' => $db_item->quantity,
+                    'product_price' => $db_item->product->price ?? 0,
+                    'product' => $db_item->product,
+                ];
             }
-        }
 
-        return $cart_items;
+            return $cart_items;
+
+        } else {
+
+            $cart_items = Session::get('cart', []);
+
+            foreach ($cart_items as $product_id => &$item) {
+                $product = Product::find($product_id);
+
+                if ($product) {
+                    $item['product'] = $product;
+                    $item['product_price'] = ($product->price ?? 0);
+                }
+            }
+
+            return $cart_items;
+        }
     }
 }
 

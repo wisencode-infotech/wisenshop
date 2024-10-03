@@ -24,7 +24,8 @@ class CartPage extends Component
     {
         if (isset($this->cart[$data['productId']])) {
             $this->cart[$data['productId']]['quantity'] = $data['quantity'];
-            Session::put('cart', $this->cart);
+
+            updateCart($data['productId'], $data['quantity']);
         }
 
         $this->total_price = shoppingCartTotal();
@@ -32,12 +33,11 @@ class CartPage extends Component
 
     public function removeCartProduct($product_id)
     {
-
         if (!empty($this->cart[$product_id])) {
-            
-            unset($this->cart[$product_id]);
 
-            Session::put('cart', $this->cart);
+            unset($this->cart[$product_id]);
+            
+            updateCart($product_id, 0); 
 
             $this->dispatch('itemRemoved');
 

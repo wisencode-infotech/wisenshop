@@ -29,18 +29,8 @@ class QuantitySelector extends Component
     {
         $this->quantity++;
 
-        // Update session cart
-        $cart = shoppingCart();
+        updateCart($this->productId, $this->quantity);
 
-        // Add/update item in cart (store productId and quantity only)
-        $cart[$this->productId] = [
-            'quantity' => $this->quantity,
-        ];
-
-        // Save updated cart back to session
-        Session::put('cart', $cart);
-
-        // Only dispatch the event if the quantity is 1 or more
         if ($this->quantity == 1) {
             $this->dispatch('itemAdded'); // dispatch event with item price
         }
@@ -56,27 +46,11 @@ class QuantitySelector extends Component
         if ($this->quantity > 0) {
             $this->quantity--;
 
+            updateCart($this->productId, $this->quantity);
 
-             // Update session cart
-            $cart = shoppingCart();
-
-            // dispatch the event when quantity decreases to 0
             if ($this->quantity == 0) {
-
-                 // Remove item from cart if quantity is 0
-                unset($cart[$this->productId]);
-
-
-                $this->dispatch('itemRemoved'); // dispatch event for removing item
-            } else {
-                // Update item in cart
-                $cart[$this->productId] = [
-                    'quantity' => $this->quantity,
-                ];
+                $this->dispatch('itemRemoved');
             }
-
-            // Save updated cart back to session
-            Session::put('cart', $cart);
 
             // Dispatch an event for quantity change
             $this->dispatch('quantityUpdated', ['productId' => $this->productId, 'quantity' => $this->quantity]);

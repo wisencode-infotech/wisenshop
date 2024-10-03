@@ -57,7 +57,7 @@
                         </div>
 
                         @if (count($cart) > 0)
-                           <div class="mt-4 w-full max-w-md bg-light px-6 py-5"><button class="flex h-12 w-full justify-between rounded-full bg-accent p-1 text-sm font-bold shadow-700 transition-colors hover:bg-accent-hover focus:bg-accent-hover focus:outline-0 md:h-14"><span class="flex h-full flex-1 items-center px-5 text-light">Checkout</span><span class="flex h-full shrink-0 items-center rounded-full bg-light px-5 text-accent">{{ number_format($total_price, 2) }}</span></button></div>
+                        <div class="mt-4 w-full max-w-md bg-light px-6 py-5 md:ml-auto"><button class="flex h-12 w-full justify-between rounded-full bg-accent p-1 text-sm font-bold shadow-700 transition-colors hover:bg-accent-hover focus:bg-accent-hover focus:outline-0 md:h-14"><span class="flex h-full flex-1 items-center px-5 text-light">Checkout</span><span class="flex h-full shrink-0 items-center rounded-full bg-light px-5 text-accent">{{ number_format($total_price, 2) }}</span></button></div>
                         @else
                         <div class="flex flex-col items-center justify-center h-64 bg-white mt-4">
                            <!-- Icon (Shopping Cart) -->

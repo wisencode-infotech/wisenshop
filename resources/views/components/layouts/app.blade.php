@@ -56,6 +56,7 @@
     <script>
         
         var _app_base_url = '{{ url("/") }}';
+        var _user_is_loggedin = {{ auth()->check() ? 'true' : 'false' }};
 
     </script>
 

@@ -4,6 +4,7 @@ use Illuminate\Support\Facades\Route;
 use App\Livewire\ContactPage;
 use App\Livewire\HomePage;
 use App\Livewire\Login;
+use App\Livewire\Logout;
 use App\Livewire\ProductDetail;
 use App\Livewire\CartPage;
 use Illuminate\Http\Request;
@@ -22,7 +23,7 @@ Route::get('/cart', CartPage::class)->name('cart');
 
 Route::get('login', Login::class)->name('login');
 Route::post('login', [Login::class, 'authenticate'])->name('authenticate');
-// Route::post('logout', [LoginController::class, 'logout'])->name('logout');
+Route::get('logout', [Logout::class, 'logout'])->name('logout');
 
 // Route::get('register', [RegisterController::class, 'showRegistrationForm'])->name('register');
 // Route::post('register', [RegisterController::class, 'register']);

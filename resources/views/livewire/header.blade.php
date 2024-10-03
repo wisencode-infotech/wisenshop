@@ -62,8 +62,17 @@
                    @livewire('cart-icon')
                 </ul>
                 <div class="flex items-center space-x-4 rtl:space-x-reverse">
-                    <div class="hidden lg:inline-flex"></div><a wire:navigate href="{{ route('frontend.login') }}"
+                    <div class="hidden lg:inline-flex"></div>
+
+                    @if (auth()->check())
+                       <a wire:navigate href="{{ route('frontend.logout') }}" class="hidden h-9 shrink-0 items-center justify-center rounded border border-transparent bg-accent px-3 py-0 text-sm font-semibold leading-none text-light outline-none transition duration-300 ease-in-out hover:bg-accent-hover focus:shadow focus:outline-none focus:ring-1 focus:ring-accent-700 sm:inline-flex">{{ __trans('Logout') }}</a>
+                    @else
+                        <a wire:navigate href="{{ route('frontend.login') }}"
                         class="hidden h-9 shrink-0 items-center justify-center rounded border border-transparent bg-accent px-3 py-0 text-sm font-semibold leading-none text-light outline-none transition duration-300 ease-in-out hover:bg-accent-hover focus:shadow focus:outline-none focus:ring-1 focus:ring-accent-700 sm:inline-flex">{{ __trans('Login') }}</a>
+
+
+                    @endif
+
                 </div>
             </div>
         </div>

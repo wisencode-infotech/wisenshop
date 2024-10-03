@@ -10,6 +10,7 @@ use App\Models\Product;
 use App\Models\SiteBanner;
 use App\Models\User;
 use App\Models\Setting;
+use App\Models\Language;
 use App\Models\Currency;
 use Illuminate\Database\Seeder;
 use Illuminate\Support\Facades\Hash;
@@ -131,7 +132,19 @@ class FakeAppSeeder extends Seeder
             ]);
         }
 
-         // Currency seeder
+
+        // Language seeder
+        $languages = [
+            ['code' => 'en', 'name' => 'English'],
+            ['code' => 'es', 'name' => 'Spanish']
+        ];
+
+        foreach ($languages as $language) {
+            Language::create($language);
+        }
+
+
+        // Currency seeder
 
         $currencies = [
             ['name' => 'US Dollar', 'code' => 'USD', 'symbol' => '$', 'exchange_rate' => 1.00, 'active' => true],

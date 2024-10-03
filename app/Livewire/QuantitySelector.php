@@ -48,7 +48,7 @@ class QuantitySelector extends Component
         // Dispatch an event for quantity change
         $this->dispatch('quantityUpdated', ['productId' => $this->productId, 'quantity' => $this->quantity]);
 
-        $this->dispatch('syncLocalCartFromSession');
+        $this->dispatch('shoppingCartUpdated');
     }
 
     public function decrement()
@@ -81,7 +81,7 @@ class QuantitySelector extends Component
             // Dispatch an event for quantity change
             $this->dispatch('quantityUpdated', ['productId' => $this->productId, 'quantity' => $this->quantity]);
 
-            $this->dispatch('syncLocalCartFromSession');
+            $this->dispatch('shoppingCartUpdated');
         }
     }
 

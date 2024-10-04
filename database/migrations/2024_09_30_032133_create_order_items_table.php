@@ -18,6 +18,7 @@ return new class extends Migration
             $table->integer('quantity');
             $table->decimal('price', 8, 2); // Price at the time of order
             $table->timestamps();
+            $table->softDeletes();
         });
     }
 

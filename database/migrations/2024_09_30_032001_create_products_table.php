@@ -20,6 +20,7 @@ return new class extends Migration
             $table->integer('stock');
             $table->boolean('status')->default(1); // Active or inactive
             $table->foreignId('category_id')->constrained('categories')->onDelete('cascade');
+            $table->foreignId('unit_id')->nullable()->constrained('product_units')->onDelete('cascade');
             $table->timestamps();
             $table->softDeletes();
         });

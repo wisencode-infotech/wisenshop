@@ -18,6 +18,7 @@ return new class extends Migration
             $table->decimal('amount', 8, 2);
             $table->string('status'); // Example: success, failed
             $table->timestamps();
+            $table->softDeletes();
         });
     }
 

@@ -12,6 +12,7 @@ use App\Models\User;
 use App\Models\Setting;
 use App\Models\Language;
 use App\Models\Currency;
+use App\Models\ProductUnit;
 use Illuminate\Database\Seeder;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Str;
@@ -77,6 +78,14 @@ class FakeAppSeeder extends Seeder
         foreach ($categories as $category) {
             Product::factory(10)->create([
                 'category_id' => $category->id,
+            ]);
+        }
+
+        $product_units = ProductUnit::all();
+
+        foreach ($product_units as $product_unit) {
+            Product::factory(10)->create([
+                'unit_id' => $product_unit->id,
             ]);
         }
 

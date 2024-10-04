@@ -11,7 +11,7 @@
                               <i class="fa fa-arrow-left mx-2"></i>
                            </div>
                            <div class="rounded-full bg-yellow-500 px-3 text-xs font-semibold leading-6 text-light">
-                               {{ $product->discount_value }}%
+                               <!-- Block for top right side of the product image -->
                            </div>
                        </div>
                         <div class="product-gallery h-full">
@@ -67,22 +67,20 @@
                         <div class="w-full">
                            <div class="flex w-full items-start justify-between space-x-8 rtl:space-x-reverse">
                               <h1 class="text-lg font-semibold tracking-tight text-heading md:text-xl xl:text-2xl cursor-pointer transition-colors hover:text-accent">{{ $product->name }}</h1>
-                              <livewire:wishlist-button :item-id="$product->id" />
+                              <livewire:wishlist-button :product_id="$product->id" />
                            </div>
                            <div class="mt-2 flex items-center justify-between">
-                              {{-- <span class="block text-sm font-normal text-body">1lb</span> --}}
                               <div class="inline-flex shrink-0 items-center rounded border border-accent bg-accent px-3 py-1 text-sm text-white">
-                                 4.67
-                                 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 25.056 24" class="h-2.5 w-2.5 ltr:ml-1 rtl:mr-1">
-                                    <g data-name="Group 36413" fill="currentColor">
-                                       <path id="Path_22667" data-name="Path 22667" d="M19.474,34.679l-6.946-4.346L5.583,34.679a.734.734,0,0,1-1.1-.8L6.469,25.93.263,20.668a.735.735,0,0,1,.421-1.3l8.1-.566,3.064-7.6a.765.765,0,0,1,1.362,0l3.064,7.6,8.1.566a.735.735,0,0,1,.421,1.3L18.588,25.93l1.987,7.949a.734.734,0,0,1-1.1.8Z" transform="translate(0 -10.792)"></path>
-                                    </g>
-                                 </svg>
+                                 <i class="fa fa-star"></i>
+                                 @if (($prouct_avg_rating = $product->average_rating) > 0)
+                                    {{ $prouct_avg_rating }}
+                                 @endif
+                                 <span class="ms-1">({{ $product->total_reviews . ' ' . __trans('Reviews') }})</span>
                               </div>
                            </div>
                            <div class="mt-3 text-sm leading-7 text-body md:mt-4 react-editor-description">
                               <div>{!! $product->description !!}</div>
-                              <!-- <br><span><button class="mt-1 inline-block font-bold text-accent ">Read more</button></span> -->
+                              {{-- <br><span><button class="mt-1 inline-block font-bold text-accent ">Read more</button></span> --}}
                            </div>
                            <span class="my-5 flex items-center md:my-10"><ins class="text-2xl font-semibold text-accent no-underline md:text-3xl">${{ $product->discounted_price }}</ins><del class="text-sm font-normal text-muted ltr:ml-2 rtl:mr-2 md:text-base">${{ $product->price }}</del></span>
                            <div class="mt-6 flex flex-col items-center md:mt-6 lg:flex-row">

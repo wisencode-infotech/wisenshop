@@ -15,16 +15,20 @@
             @foreach ($products as $product)
                 <article
                     class="product-card cart-type-helium h-full overflow-hidden rounded border border-border-200 bg-light transition-shadow duration-200 hover:shadow-sm">
-                    <div class="cursor-pointer relative flex h-48 w-auto items-center justify-center sm:h-64" wire:navigate href="{{ route('frontend.product-detail', ['product_slug' => $product->slug]) }}"><span class="sr-only">{{ __trans('Product') }}
-                            {{ __trans('Image') }}</span><img alt="Apples" loading="lazy" decoding="async" data-nimg="fill"
+                    <div class="cursor-pointer relative flex h-48 w-auto items-center justify-center sm:h-64">
+                        
+                        <span class="sr-only">{{ __trans('Product') }} {{ __trans('Image') }}</span>
+
+                        <img alt="{{ $product->title }}" loading="lazy" decoding="async" data-nimg="fill"
                             class="block object-contain product-image"
                             style="position:absolute;height:100%;width:100%;left:0;top:0;right:0;bottom:0;color:transparent"
+                            wire:navigate href="{{ route('frontend.product-detail', ['product_slug' => $product->slug]) }}"
                             sizes="(max-width: 768px) 100vw" src="{{ $product->display_image_url }}">
-                            @if ($product->discount_value > 0)
-                            <div class="absolute top-3 rounded-full bg-yellow-500 px-1.5 text-xs font-semibold leading-6 text-light ltr:right-3 rtl:left-3 sm:px-2 md:top-4 md:px-2.5 ltr:md:right-4 rtl:md:left-4">
-                                {{ $product->discount_value }}%
-                            </div>
-                            @endif
+
+                        <div class="absolute top-0 left-0 py-1 px-2">
+                            @livewire('wishlist-button', ['product_id' => $product->id, key(uniqid())])
+                        </div>
+
                     </div>
                     <header class="relative p-3 md:p-5 md:py-6">
                         <h3 role="button" wire:navigate href="{{ route('frontend.product-detail', ['product_slug' => $product->slug]) }}" class="mb-2 text-sm font-semibold truncate text-heading">{{ $product->name }}

@@ -9,8 +9,6 @@
     <link rel="stylesheet" href="{{asset('assets/frontend/css/main.css')}}" data-n-g="" />
     <link rel="stylesheet" href="{{asset('assets/frontend/css/style.css')}}">
 
-    
-
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css" />
 
     @livewireStyles
@@ -62,7 +60,7 @@
 
     <script src="{{ asset('assets/frontend/js/app.js') }}"></script>
 
-    <script src="{{ asset('assets/frontend/js/cart.js') }}"></script>
+    <script src="{{ asset('assets/frontend/js/preferences.js') }}"></script>
 
 
 

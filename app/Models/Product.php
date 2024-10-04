@@ -38,7 +38,7 @@ class Product extends Model
 
     public function reviews(): HasMany
     {
-        return $this->hasMany(Review::class);
+        return $this->hasMany(ProductReview::class);
     }
 
     public function cartItems(): HasMany
@@ -69,7 +69,8 @@ class Product extends Model
         return (!empty($display_image)) ? $display_image->image_url : ProductImage::$placeholder_url;
     }
 
-    public function getDiscountedPriceAttribute() {
+    public function getDiscountedPriceAttribute() 
+    {
         if (!empty($this->discount_type) && !empty($this->discount_value)) {
             if($this->discount_type == 'percentage') {
                 $discounted_amount = ($this->price * $this->discount_value) / 100;
@@ -80,5 +81,15 @@ class Product extends Model
             return number_format($product_origin_price, 2);
         }
         return $this->price;
+    }
+
+    public function getTotalReviewsAttribute()
+    {
+        return $this->reviews()->select('id')->count();
+    }
+
+    public function getAverageRatingAttribute()
+    {
+        return $this->reviews()->avg('rating') ?? 0;
     }
 }

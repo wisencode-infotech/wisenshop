@@ -47,9 +47,19 @@
                         @enderror
                     </div>
 
+                    <div class="form-group mb-3">
+                        <label for="can_have_variations" class="form-label">Can Have Variations?</label>
+                        <input type="checkbox" name="can_have_variations" id="can_have_variations" class="form-check-input @error('can_have_variations') is-invalid @enderror" value="1" {{ old('can_have_variations', $product_unit->can_have_variations ?? 0) == 1 ? 'checked' : '' }}>
+                        @error('can_have_variations')
+                        <span class="invalid-feedback" role="alert">
+                            <strong>{{ $message }}</strong>
+                        </span>
+                        @enderror
+                    </div>
+
                     <!-- Submit Button -->
                     <div class="form-group text-end">
-                        <button type="submit" class="btn btn-primary btn-rounded">Update Currency</button>
+                        <button type="submit" class="btn btn-primary btn-rounded">Update Unit</button>
                     </div>
                 </form>
             </div>

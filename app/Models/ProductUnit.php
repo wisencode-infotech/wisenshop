@@ -10,5 +10,5 @@ class ProductUnit extends Model
 {
     use HasFactory, SoftDeletes;
 
-    protected $fillable = ['name', 'short_name'];
+    protected $fillable = ['name', 'can_have_variations', 'short_name'];
 }

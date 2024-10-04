@@ -39,6 +39,7 @@
                                     <th scope="col" style="width: 60px">#</th>
                                     <th scope="col">Name</th>
                                     <th scope="col">Short Name</th>
+                                    <th scope="col">Have Variation</th>
                                     <th scope="col">Action</th>
                                 </tr>
                             </thead>

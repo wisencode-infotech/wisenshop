@@ -5,8 +5,8 @@ $(document).ready(function () {
         ajax: APP_BACKEND_URL + '/product',
         columns: [
             { data: 'DT_RowIndex', name: 'DT_RowIndex', orderable: false, searchable: false },
-            { data: 'category', name: 'category' },
             { data: 'name', name: 'name' },
+            { data: 'category', name: 'category' },
             { data: 'status', name: 'status' },
             { 
                 data: 'action', 

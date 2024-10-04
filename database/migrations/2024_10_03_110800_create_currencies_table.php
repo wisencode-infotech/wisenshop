@@ -19,6 +19,7 @@ return new class extends Migration
             $table->decimal('exchange_rate', 15, 8)->default(1); // Exchange rate compared to base currency
             $table->boolean('active')->default(true); // Status of currency
             $table->timestamps(); // Created_at and updated_at columns
+            $table->softDeletes();
         });
     }
 

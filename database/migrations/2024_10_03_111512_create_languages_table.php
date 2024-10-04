@@ -16,6 +16,7 @@ return new class extends Migration
             $table->string('code', 10); // Language code (e.g., 'en', 'es')
             $table->string('name'); // Language name (e.g., 'English', 'Spanish')
             $table->timestamps(); // Optional timestamps
+            $table->softDeletes();
         });
     }
 

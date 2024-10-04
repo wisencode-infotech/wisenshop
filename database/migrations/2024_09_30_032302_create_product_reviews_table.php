@@ -18,6 +18,7 @@ return new class extends Migration
             $table->integer('rating'); // 1 to 5 stars
             $table->text('review')->nullable();
             $table->timestamps();
+            $table->softDeletes();
         });
     }
 

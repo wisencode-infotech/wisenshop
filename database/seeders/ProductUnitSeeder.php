@@ -14,7 +14,7 @@ class ProductUnitSeeder extends Seeder
             ['name' => 'Gram', 'short_name' => 'g'],
             ['name' => 'Liter', 'short_name' => 'L'],
             ['name' => 'Milliliter', 'short_name' => 'ml'],
-            ['name' => 'Piece', 'short_name' => 'pc'],
+            ['name' => 'Piece', 'short_name' => 'pc', 'can_have_variations' => '1'],
             ['name' => 'Dozen', 'short_name' => 'dz'],
         ];
 

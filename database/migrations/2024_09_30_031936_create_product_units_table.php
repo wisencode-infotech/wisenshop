@@ -10,9 +10,11 @@ class CreateProductUnitsTable extends Migration
     {
         Schema::create('product_units', function (Blueprint $table) {
             $table->id();
-            $table->string('name')->unique(); // E.g., 'kilogram', 'liter'
-            $table->string('short_name')->unique(); // E.g., 'kg', 'L'
+            $table->string('name')->unique();
+            $table->string('short_name')->unique();
+            $table->enum('can_have_variations', [0, 1]);
             $table->timestamps();
+            $table->softDeletes();
         });
     }
 

@@ -20,6 +20,7 @@ return new class extends Migration
             $table->timestamp('valid_until')->nullable();
             $table->integer('usage_limit')->nullable(); // Optional: limit number of uses
             $table->timestamps();
+            $table->softDeletes();
         });
     }
 

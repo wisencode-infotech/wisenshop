@@ -17,6 +17,7 @@ return new class extends Migration
             $table->string('status'); // Example: pending, shipped, delivered
             $table->decimal('total_price', 10, 2);
             $table->timestamps();
+            $table->softDeletes();
         });
     }
 

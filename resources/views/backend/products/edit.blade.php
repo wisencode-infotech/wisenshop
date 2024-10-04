@@ -84,7 +84,7 @@
 
                             <div class="mb-3">
                                 <label for="unit" class="form-label">Unit</label>
-                                <select name="unit_id" class="form-select">
+                                <select name="unit_id" id="unit_id" class="form-select">
                                     <option value="">Select Unit</option>
                                     @foreach($units as $unit)
                                     <option value="{{ $unit->id }}" {{ $unit->id == old('unit_id', $product->unit_id) ? 'selected' : '' }}>{{ $unit->name }}</option>
@@ -236,7 +236,7 @@
     });
 
     document.addEventListener('DOMContentLoaded', function () {
-        const isVariationProductCheckbox = document.getElementById('is_variation_product');
+        const isVariationProductCheckbox = document.getElementById('unit_id');
         const variationsSection = document.getElementById('variations-section');
 
         function toggleVariationsSection() {

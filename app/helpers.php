@@ -6,6 +6,7 @@ use App\Models\Cart;
 use App\Models\Setting;
 use App\Models\Language;
 use App\Models\Wishlist;
+use App\Models\Currency;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Cache;
 use Illuminate\Support\Facades\Session;
@@ -117,5 +118,13 @@ if (!function_exists('getAllLanguages'))
     function getAllLanguages()
     {
         return Language::all();
+    }
+}
+
+if (!function_exists('getAllCurrency')) 
+{
+    function getAllCurrency()
+    {
+        return Currency::all();
     }
 }

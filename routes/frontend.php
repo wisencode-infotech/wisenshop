@@ -54,6 +54,12 @@ Route::get('/locale/{locale}', function (string $locale) {
     return redirect()->back();
 })->name('change.locale');
 
+Route::get('/currency/{currency}', function (string $currency) {
+    Session::put('user_currency', $currency);
+
+    return redirect()->back();
+})->name('change.currency');
+
 
 Route::get('/fetch-session-preferences', function() {
     return response()->json([

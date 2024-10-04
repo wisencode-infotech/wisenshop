@@ -2,6 +2,7 @@
 
 namespace App\Livewire;
 
+use App\Helpers\WishlistHelper;
 use Livewire\Component;
 
 class WishlistButton extends Component
@@ -14,32 +15,25 @@ class WishlistButton extends Component
         $this->product_id = $product_id;
 
         // Check if the item is in the session-based wishlist
-        $wishlist = session()->get('wishlist', []);
+        $wishlist = WishlistHelper::items();
 
         $this->in_wish_list = in_array($this->product_id, $wishlist);
     }
 
     public function toggleWishlist()
     {
-        // Get the wishlist from the session or create an empty one
-        $wishlist = session()->get('wishlist', []);
-
         if ($this->in_wish_list) {
-            // Remove item from the wishlist
-            $wishlist = array_diff($wishlist, [$this->product_id]);
-            
-            session()->put('wishlist', $wishlist);
 
+            WishlistHelper::removeWishlist($this->product_id);
             $this->in_wish_list = false;
+            
         } else {
-            // Add item to the wishlist
 
-            $wishlist[] = $this->product_id;
-
-            session()->put('wishlist', $wishlist);
-
+            WishlistHelper::addWishlist($this->product_id);
             $this->in_wish_list = true;
         }
+
+        $wishlist = WishlistHelper::items();
 
         $this->dispatch('wishListUpdated', $wishlist);
     }

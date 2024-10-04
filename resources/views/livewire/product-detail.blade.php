@@ -91,9 +91,15 @@
 
                            </span>
 
+                           @if ($product->variations()->count() > 0)
+                              <div class="mt-6 flex flex-col items-center md:mt-6 lg:flex-row">
+                                 @livewire('product-variation', ['product_id' => $product->id])
+                              </div>
+                           @endif
+
                            <div class="mt-6 flex flex-col items-center md:mt-6 lg:flex-row">
                               <div class="mb-3 w-full lg:mb-0 lg:max-w-[400px]">
-                                @livewire('quantity-selector', ['productId' => $product->id, 'layout' => 'large'])
+                                @livewire('quantity-selector', ['product_id' => $product->id, 'layout' => 'large'])
                             </div>
 
                               {{-- <span class="whitespace-nowrap text-base text-body ltr:lg:ml-7 rtl:lg:mr-7">{{ $product->stock }} pieces available</span> --}}

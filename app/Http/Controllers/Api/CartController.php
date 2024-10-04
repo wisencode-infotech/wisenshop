@@ -22,10 +22,10 @@ class CartController extends APIController
 
     public function add(Request $request)
     {
-        $productId = $request->input('product_id');
+        $product_id = $request->input('product_id');
         $quantity = $request->input('quantity', 1);
 
-        $this->cartService->addToCart($productId, $quantity);
+        $this->cartService->addToCart($product_id, $quantity);
         return $this->sendSuccess(null, 'Product added to cart');
     }
 

@@ -30,7 +30,7 @@ class UpdateCurrencyRates extends Command
         $this->info('Fetching exchange rates...');
 
         // Fetch exchange rates from an external API
-        $response = Http::get('https://api.exchangerate-api.com/v4/latest/USD'); // Replace with your API URL
+        $response = Http::get('https://api.exchangerate-api.com/v4/latest/EUR'); // Replace with your API URL
 
         if ($response->successful()) {
             $rates = $response->json()['rates'];

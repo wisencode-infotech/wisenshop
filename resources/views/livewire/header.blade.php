@@ -39,7 +39,7 @@
                     @foreach(getAllCurrency() as $currency)
                         <li class="menu-child-item font-chivo hover:filter-green group py-[10px] px-[22px] transition-all duration-200 hover:pl-[ 25px] hover:opacity-100">
                             <a class="flex items-center font-normal text-heading no-underline transition duration-200 hover:text-accent focus:text-accent" href="{{ route('frontend.change.currency', $currency->code) }}">
-                                {{ ucfirst($currency->code) }} ({{ ucfirst($currency->symbol) }})
+                                {{ ucfirst($currency->code) }}
                             </a>
                         </li>
                     @endforeach

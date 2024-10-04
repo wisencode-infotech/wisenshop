@@ -3,6 +3,7 @@
 use App\Models\Product;
 use App\Models\Translation;
 use App\Models\Cart;
+use App\Models\Currency;
 use App\Models\Setting;
 use App\Models\Language;
 use App\Models\Wishlist;
@@ -90,6 +91,10 @@ if (!function_exists('__updateSetting'))
         
         Cache::forget($cache_key);
 
+        // Remove app currency from cache after saving settings
+        if ($key == 'site_currency')
+            Cache::forget('app.currency');
+
         Cache::rememberForever($cache_key, function() use($value) { 
             return $value;
         });
@@ -117,5 +122,49 @@ if (!function_exists('getAllLanguages'))
     function getAllLanguages()
     {
         return Language::all();
+    }
+}
+
+if (!function_exists('__appCurrency')) 
+{
+    function __appCurrency()
+    {
+        $site_currency_code = __setting('site_currency');
+
+        $cache_key = "app.currency";
+
+        return Cache::rememberForever($cache_key, function() use ($site_currency_code) { 
+            return Currency::where('code', $site_currency_code)->first();
+        });
+    }
+}
+
+if (!function_exists('__userCurrencyCode')) 
+{
+    function __userCurrencyCode()
+    {
+        return session('user_currency_code', 'EUR');
+    }
+}
+
+if (!function_exists('__userCurrency')) 
+{
+    function __userCurrency()
+    {
+        $user_currency_code = __userCurrencyCode();
+
+        $cache_key = "user.currency";
+
+        return Cache::rememberForever($cache_key, function() use ($user_currency_code) { 
+            return Currency::where('code', $user_currency_code)->first();
+        });
+    }
+}
+
+if (!function_exists('__userCurrencySymbol')) 
+{
+    function __userCurrencySymbol()
+    {
+        return __userCurrency()->symbol ?? '';
     }
 }

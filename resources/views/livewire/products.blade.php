@@ -42,9 +42,13 @@
                             
                             </div>
 
-                            <div class="relative"><del
-                                    class="absolute text-xs italic text-opacity-75 -top-4 text-muted md:-top-5">${{ $product->price }}</del><span
-                                    class="text-sm font-semibold text-accent md:text-base">${{ $product->discounted_price }}</span>
+                            <div class="relative">
+
+                                @if ($product->discounted_price < $product->price)
+                                    <del class="absolute text-xs italic text-opacity-75 -top-4 text-muted md:-top-5">{{ __userCurrencySymbol() }} {{ $product->price }}</del>
+                                @endif
+                                
+                                <span class="text-sm font-semibold text-accent md:text-base">{{ __userCurrencySymbol() }} {{ $product->discounted_price }}</span>
                             </div>
                             <div class="hidden">
                                 <button wire:navigate href="{{ route('frontend.product-detail', ['product_slug' => $product->slug]) }}"

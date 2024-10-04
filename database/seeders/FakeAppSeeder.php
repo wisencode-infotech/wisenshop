@@ -36,6 +36,9 @@ class FakeAppSeeder extends Seeder
 
         // Setting seeder
         $settings = [
+                'header_logo' => 'assets/frontend/img/logo.png',
+                'footer_logo' => 'assets/frontend/img/logo.png',
+                'fav_logo' => 'assets/frontend/img/logo.png',
                 'phone_number' => '9696669999',
                 'email' => 'example@domain.com',
                 'address' => '123 Example Street, Sample City, ST 12345',

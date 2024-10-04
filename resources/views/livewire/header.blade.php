@@ -21,7 +21,7 @@
                             class="object-contain"
                             style="position:absolute;height:100%;width:100%;left:0;top:0;right:0;bottom:0;color:transparent"
                             sizes="(max-width: 768px) 100vw"
-                            src="{{ asset('assets/frontend/img/logo.png') }}">
+                            src="{{  asset(__setting('header_logo')) }}">
                         </span>
                 </a>
             </div>

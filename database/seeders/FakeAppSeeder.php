@@ -48,7 +48,8 @@ class FakeAppSeeder extends Seeder
                 'facebook_link' => 'https://facebook.com/example',
                 'instagram_link' => 'https://instagram.com/example',
                 'copyright_link' => 'Copyright © Albertoshop. All rights reserved worldwide.',
-                'site_title' => 'Albertoshop'
+                'site_title' => 'Albertoshop',
+                'site_currency' => 'USD'
             ];
 
         foreach ($settings as $meta_key => $meta_value) {

@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Backend;
 
 use App\Http\Controllers\Controller;
 use App\Models\Setting;
+use App\Models\Currency;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Str;
@@ -13,8 +14,9 @@ class SettingController extends Controller
     public function index()
     {
         $settings = Setting::all();
+        $currencies = Currency::all(); 
 
-        return view('backend.settings.index', compact('settings'));
+        return view('backend.settings.index', compact('settings', 'currencies'));
     }
 
     public function update(Request $request)

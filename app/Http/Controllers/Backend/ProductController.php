@@ -41,7 +41,7 @@ class ProductController extends Controller
                     }
                 })
                 ->addColumn('action', function($row) {
-                    $btn = '<a href="'.route('backend.category.edit', $row->id).'" class="edit btn btn-primary btn-sm">Edit</a>';
+                    $btn = '<a href="'.route('backend.product.edit', $row->id).'" class="edit btn btn-primary btn-sm">Edit</a>';
                     $btn .= ' <button class="btn btn-danger btn-sm delete" data-id="'.$row->id.'">Delete</button>';
                     return $btn;
                 })
@@ -134,6 +134,30 @@ class ProductController extends Controller
         }
 
         return redirect()->route('backend.product.index')->with('success', 'Product created successfully.');
+    }
+
+    /**
+     * Show the form for editing the specified category.
+     */
+    public function edit(Product $product)
+    {
+        $units = ProductUnit::all();
+        $categories = Category::all();
+        return view('backend.products.edit', compact('product', 'units', 'categories')); // Return the edit view
+    }
+
+    public function removeImage(Request $request)
+    {
+        $image = ProductImage::findOrFail($request->image_id);
+
+        // Assuming the image file needs to be deleted from the storage
+        if (Storage::exists($image->image_url)) {
+            Storage::delete($image->image_url);
+        }
+
+        $image->delete();
+
+        return response()->json(['success' => true, 'message' => 'Image removed successfully.']);
     }
 
     private function generateUniqueSlug($slug)

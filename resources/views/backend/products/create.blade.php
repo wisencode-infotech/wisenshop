@@ -82,24 +82,15 @@
 
                     <div class="mb-3">
                     <label for="unit" class="form-label">Unit</label>
-                    <select name="unit_id" class="form-select">
-                                            <option value="">Select Unit</option>
-                                            @foreach($units as $unit)
-                                                <option value="{{ $unit->id }}" {{ old('unit_id') == $unit->id ? 'selected' : '' }}>{{ $unit->name }}</option>
-                                            @endforeach
-                                        </select>
-                                        @error('unit_id')
+                        <select name="unit_id" id="unit_id" class="form-select">
+                            <option value="">Select Unit</option>
+                            @foreach($units as $unit)
+                                <option value="{{ $unit->id }}" data-can_have_variations="{{ $unit->can_have_variations }}" {{ old('unit_id') == $unit->id ? 'selected' : '' }}>{{ $unit->name }}</option>
+                            @endforeach
+                        </select>
+                        @error('unit_id')
                             <span class="invalid-feedback">{{ $message }}</span>
                         @enderror
-                    </div>
-
-                    <div class="mb-3">
-                        <div class="form-check">
-                            <input class="form-check-input" type="checkbox" id="is_variation_product" name="is_variation_product" value="1" {{ old('is_variation_product') ? 'checked' : '' }}>
-                            <label class="form-check-label" for="is_variation_product">
-                                Is this a variation product?
-                            </label>
-                        </div>
                     </div>
 
                 </div>
@@ -210,25 +201,32 @@
     });
 
     document.addEventListener('DOMContentLoaded', function () {
-    const isVariationProductCheckbox = document.getElementById('is_variation_product');
-    const variationsSection = document.getElementById('variations-section');
+        const unitSelect = document.getElementById('unit_id'); // Select element for unit
+        const variationsSection = document.getElementById('variations-section');
 
-    function toggleVariationsSection() {
-        if (isVariationProductCheckbox.checked) {
-            variationsSection.style.display = 'block';
-        } else {
-            variationsSection.style.display = 'none';
+        function toggleVariationsSection() {
+            // Get the selected option
+            const selectedOption = unitSelect.options[unitSelect.selectedIndex];
+
+            // Check the data-can_have_variations attribute of the selected option
+            const canHaveVariations = selectedOption.getAttribute('data-can_have_variations') == 1;
+
+            // Show or hide the variations section based on the attribute
+            if (canHaveVariations) {
+                variationsSection.style.display = 'block';
+            } else {
+                variationsSection.style.display = 'none';
+            }
         }
-    }
 
-    // Show/hide variations on page load
-    toggleVariationsSection();
-
-    // Listen for checkbox change
-    isVariationProductCheckbox.addEventListener('change', function () {
+        // Show/hide variations on page load
         toggleVariationsSection();
+
+        // Listen for change events on the select element
+        unitSelect.addEventListener('change', function () {
+            toggleVariationsSection();
+        });
     });
-});
 
 </script>
 @endsection

@@ -24,15 +24,25 @@ class ProductController extends Controller
                 ->addColumn('name', function($row) {
                     return $row->name;
                 })
+                 ->addColumn('price', function($row) {
+                    return $row->price;
+                })
                 ->addColumn('status', function($row) {
-                    return $row->status == 1 ? 'Active' : 'InActive';
+                    if($row->status == '1')
+                    {
+                        return '<span class="badge rounded-pill badge-soft-success font-size-12">Active</span>';
+                    }
+                    else
+                    {
+                        return '<span class="badge rounded-pill badge-soft-danger font-size-12">InActive</span>'; 
+                    }
                 })
                 ->addColumn('action', function($row) {
                     $btn = '<a href="'.route('backend.category.edit', $row->id).'" class="edit btn btn-primary btn-sm">Edit</a>';
                     $btn .= ' <button class="btn btn-danger btn-sm delete" data-id="'.$row->id.'">Delete</button>';
                     return $btn;
                 })
-                ->rawColumns(['action', 'category'])
+                ->rawColumns(['action', 'status'])
                 ->make(true);
         }
 

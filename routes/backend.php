@@ -3,6 +3,7 @@
 use App\Http\Controllers\Backend\CategoryController;
 use App\Http\Controllers\Backend\SiteBannerController;
 use App\Http\Controllers\Backend\ProductController;
+use App\Http\Controllers\Backend\ProductUnitController;
 use App\Http\Controllers\Backend\TranslationController;
 use App\Http\Controllers\Backend\OrderController;
 use App\Http\Controllers\Backend\HomeController;
@@ -20,6 +21,7 @@ Route::middleware(['auth'])->group(function () {
     Route::resource('category', CategoryController::class);
     Route::resource('site-banner', SiteBannerController::class);
     Route::resource('product', ProductController::class);
+    Route::resource('product-unit', ProductUnitController::class);
     Route::resource('translation', TranslationController::class);
     Route::resource('order', OrderController::class);
     Route::resource('currency', CurrencyController::class);

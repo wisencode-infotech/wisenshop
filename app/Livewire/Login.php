@@ -2,6 +2,7 @@
 
 namespace App\Livewire;
 
+use App\Helpers\CartHelper;
 use Illuminate\Support\Facades\Auth;
 use Livewire\Component;
 use App\Models\Cart;
@@ -22,28 +23,12 @@ class Login extends Component
         $this->validate();
 
         if (Auth::attempt(['email' => $this->email, 'password' => $this->password])) {
-            
-           $cart_items = Session::get('cart', []);
 
-            foreach ($cart_items as $product_id => $value) {
+            // Sync session cart to user
+            CartHelper::syncToDatabse();
 
-                $cart_product = Cart::where('product_id', $product_id)->where('user_id', auth()->user()->id)->first();
-
-                $quantity = $value['quantity'];
-
-                if(!empty($cart_product)){
-                    $quantity = $quantity + $cart_product->quantity;
-                }else{
-                    $cart_product = new Cart();
-                }
-                
-                $cart_product->user_id = auth()->user()->id;
-                $cart_product->product_id = $product_id;
-                $cart_product->quantity = $quantity;
-                $cart_product->save();
-            }
-
-            Session::forget('cart');
+            // Sync session wishlist to user
+            syncWishlistToUser();
 
             $this->dispatch('shoppingCartUpdated');
 

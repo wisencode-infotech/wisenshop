@@ -2,6 +2,7 @@
 
 namespace App\Livewire;
 
+use App\Helpers\CartHelper;
 use Illuminate\Support\Facades\Session;
 use Livewire\Component;
 
@@ -13,7 +14,7 @@ class CartIcon extends Component
 
     public function mount()
     {
-        $cart = shoppingCart();
+        $cart = CartHelper::items();
 
         $this->itemCount = count($cart);
     }
@@ -32,7 +33,7 @@ class CartIcon extends Component
 
     public function updateCartQuantity()
     {
-        $cart = shoppingCart();
+        $cart = CartHelper::items();
         
         $this->itemCount = count($cart);
     }

@@ -2,55 +2,50 @@
 
 namespace App\Livewire;
 
+use App\Helpers\CartHelper;
 use Livewire\Component;
-use Illuminate\Support\Facades\Session;
 
 class CartPage extends Component
 {
-    public $cart = [];
+    public $cart_items = [];
 
     public $total_price = 0;
 
     public function mount()
     {
-        $this->cart = shoppingCart();
+        $this->cart_items = CartHelper::items();
 
-        $this->total_price = shoppingCartTotal();
+        $this->total_price = CartHelper::total();
     }
 
     protected $listeners = ['quantityUpdated' => 'updateCartQuantity', 'remove-cart-product' => 'removeCartProduct'];
 
     public function updateCartQuantity($data)
     {
-        if (isset($this->cart[$data['productId']])) {
-            $this->cart[$data['productId']]['quantity'] = $data['quantity'];
+        CartHelper::saveQuantity($data['productId'], $data['quantity']);
 
-            updateCart($data['productId'], $data['quantity']);
-        }
+        $this->cart_items = CartHelper::items();
 
-        $this->total_price = shoppingCartTotal();
+        $this->total_price = CartHelper::total();
     }
 
     public function removeCartProduct($product_id)
     {
-        if (!empty($this->cart[$product_id])) {
+        CartHelper::removeItem($product_id);
 
-            unset($this->cart[$product_id]);
-            
-            updateCart($product_id, 0); 
+        $this->cart_items = CartHelper::items();
 
-            $this->dispatch('itemRemoved');
+        $this->total_price = CartHelper::total();
 
-            $this->total_price = shoppingCartTotal();
+        $this->dispatch('itemRemoved');
 
-            $this->dispatch('shoppingCartUpdated');
-        }
+        $this->dispatch('shoppingCartUpdated');
     }
 
     public function render()
     {
         return view('livewire.cart-page', [
-            'cart' => $this->cart
+            'cart' => $this->cart_items
         ]);
     }
 }

@@ -5,7 +5,8 @@ use App\Models\Translation;
 use App\Models\Cart;
 use App\Models\Setting;
 use App\Models\Language;
-
+use App\Models\Wishlist;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Cache;
 use Illuminate\Support\Facades\Session;
 
@@ -95,102 +96,6 @@ if (!function_exists('__updateSetting'))
     }
 }
 
-
-if (!function_exists('updateCart')) 
-{
-    function updateCart($productId, $quantity)
-    {
-        if (auth()->check()) {
-
-            if ($quantity > 0) {
-                Cart::updateOrCreate(
-                    [
-                        'user_id' => auth()->user()->id,
-                        'product_id' => $productId,
-                    ],
-                    ['quantity' => $quantity]
-                );
-            } else {
-                Cart::where('user_id', auth()->user()->id)
-                    ->where('product_id', $productId)
-                    ->delete();
-            }
-        } else {
-            
-            $cart = shoppingCart();
-
-            if ($quantity > 0) {
-                $cart[$productId] = [
-                    'quantity' => $quantity,
-                ];
-            } else {
-                unset($cart[$productId]);
-            }
-
-            Session::put('cart', $cart);
-        }
-    }
-}
-
-
-
-if (!function_exists('shoppingCart')) 
-{
-    function shoppingCart($options = [])
-    {
-
-        $cart_items = [];
-
-        if (auth()->check()) {
-
-            $db_cart_items  = Cart::where('user_id', auth()->user()->id)->get();
-
-            $cart_items = [];
-
-            foreach ($db_cart_items as $db_item) {
-                $cart_items[$db_item->product_id] = [
-                    'quantity' => $db_item->quantity,
-                    'product_price' => $db_item->product->discounted_price ?? 0,
-                    'product' => $db_item->product,
-                ];
-            }
-
-            return $cart_items;
-
-        } else {
-
-            $cart_items = Session::get('cart', []);
-
-            foreach ($cart_items as $product_id => &$item) {
-                $product = Product::find($product_id);
-
-                if ($product) {
-                    $item['product'] = $product;
-                    $item['product_price'] = ($product->discounted_price ?? 0);
-                }
-            }
-
-            return $cart_items;
-        }
-    }
-}
-
-if (!function_exists('shoppingCartTotal')) 
-{
-    function shoppingCartTotal()
-    {
-        $cart_items = shoppingCart();
-
-        $total = 0;
-
-        foreach ($cart_items as $item) {
-            $total += ($item['quantity'] ?? 0) * ($item['product_price'] ?? 0);
-        }
-
-        return $total;
-    }
-}
-
 if (!function_exists('__updateTrans')) 
 {
     function __updateTrans($key, $value, $locale = '', $group = null)
@@ -219,5 +124,28 @@ if (!function_exists('wishList'))
     function wishList()
     {
         return Session::get('wishlist', []);
+    }
+}
+
+if (!function_exists('syncWishlistToUser'))
+{
+    function syncWishlistToUser($user_id = null)
+    {
+        $user_id =  (!empty($user_id)) ? $user_id : Auth::user()->id;
+
+        $wishlist = wishList();
+
+        foreach ($wishlist as $product_id) {
+
+            if (!Wishlist::where('product_id', $product_id)->where('user_id', $user_id)->exists()) {
+                $wishlist = new Wishlist();
+
+                $wishlist->user_id = $user_id;
+                $wishlist->product_id = $product_id;
+                $wishlist->save();
+            }
+        }
+
+        Session::forget('wishlist');
     }
 }

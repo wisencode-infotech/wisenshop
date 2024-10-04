@@ -1,5 +1,6 @@
 <?php
 
+use App\Helpers\CartHelper;
 use Illuminate\Support\Facades\Route;
 use App\Livewire\ContactPage;
 use App\Livewire\HomePage;
@@ -56,7 +57,7 @@ Route::get('/locale/{locale}', function (string $locale) {
 
 Route::get('/fetch-session-preferences', function() {
     return response()->json([
-        'cart' => shoppingCart()
+        'cart' => CartHelper::items()
     ]);
 })->name('fetch-session-preferences');
 
@@ -67,7 +68,7 @@ Route::post('/sync-session-preferences', function(Request $request) {
 
     $wishlist = $request->wishlist ?? [];
 
-    $stored_shopping_cart = shoppingCart();
+    $stored_shopping_cart = CartHelper::items();
     $stored_wishlist = wishList();
 
     if (!empty($cart) && empty($stored_shopping_cart)) {

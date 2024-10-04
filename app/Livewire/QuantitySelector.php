@@ -2,6 +2,7 @@
 
 namespace App\Livewire;
 
+use App\Helpers\CartHelper;
 use Livewire\Component;
 use Illuminate\Support\Facades\Session;
 
@@ -17,7 +18,7 @@ class QuantitySelector extends Component
         $this->layout = $layout;
 
         // Check if the product already exists in the session (cart)
-        $cart = shoppingCart();
+        $cart = CartHelper::items();
 
         // If the item exists in the cart, set the quantity
         if (isset($cart[$this->productId])) {
@@ -29,7 +30,7 @@ class QuantitySelector extends Component
     {
         $this->quantity++;
 
-        updateCart($this->productId, $this->quantity);
+        CartHelper::saveQuantity($this->productId, $this->quantity);
 
         if ($this->quantity == 1) {
             $this->dispatch('itemAdded'); // dispatch event with item price
@@ -46,7 +47,7 @@ class QuantitySelector extends Component
         if ($this->quantity > 0) {
             $this->quantity--;
 
-            updateCart($this->productId, $this->quantity);
+            CartHelper::saveQuantity($this->productId, $this->quantity);
 
             if ($this->quantity == 0) {
                 $this->dispatch('itemRemoved');

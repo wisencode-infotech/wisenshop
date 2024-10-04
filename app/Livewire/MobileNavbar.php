@@ -2,6 +2,7 @@
 
 namespace App\Livewire;
 
+use App\Helpers\CartHelper;
 use Illuminate\Support\Facades\Session;
 use Livewire\Component;
 
@@ -24,7 +25,7 @@ class MobileNavbar extends Component
 
     public function mount()
     {
-        $cart = shoppingCart();
+        $cart = CartHelper::items();
 
         $this->cart_items_count = count($cart);
     }

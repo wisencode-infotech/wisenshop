@@ -2,6 +2,7 @@
 
 namespace App\Livewire;
 
+use App\Helpers\CartHelper;
 use Livewire\Component;
 use Illuminate\Support\Facades\Session;
 
@@ -12,9 +13,9 @@ class ProductCartButton extends Component
 
     public function mount()
     {
-        $cart = shoppingCart();
+        $cart = CartHelper::items();
 
-        $this->totalPrice = shoppingCartTotal();
+        $this->totalPrice = CartHelper::total();
 
         $this->itemCount = count($cart);
     }
@@ -25,7 +26,7 @@ class ProductCartButton extends Component
     {
         $this->itemCount++;
 
-        $this->totalPrice = shoppingCartTotal();
+        $this->totalPrice = CartHelper::total();
     }
 
     public function itemRemoved()
@@ -33,16 +34,16 @@ class ProductCartButton extends Component
         if ($this->itemCount > 0)
             $this->itemCount--;
 
-        $this->totalPrice = shoppingCartTotal();
+        $this->totalPrice = CartHelper::total();
     }
 
     public function updateCartQuantity()
     {
-        $cart = shoppingCart();
+        $cart = CartHelper::items();
 
         $this->itemCount = count($cart);
 
-        $this->totalPrice = shoppingCartTotal();
+        $this->totalPrice = CartHelper::total();
     }
 
     public function render()

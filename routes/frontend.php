@@ -54,28 +54,40 @@ Route::get('/locale/{locale}', function (string $locale) {
 })->name('change.locale');
 
 
-Route::get('/fetch-session-cart', function() {
+Route::get('/fetch-session-preferences', function() {
     return response()->json([
         'cart' => shoppingCart()
     ]);
-})->name('fetch-session-cart');
+})->name('fetch-session-preferences');
 
-Route::post('/sync-session-cart', function(Request $request) {
+Route::post('/sync-session-preferences', function(Request $request) {
 
     $cart = $request->cart ?? [];
-    $updated = false;
+    $cart_updated = $wishlist_updated = false;
 
-    if (!empty($cart) && empty(shoppingCart())) {
-        Session::put('cart', $request->cart ?? []);
-        $updated = true;
+    $wishlist = $request->wishlist ?? [];
+
+    $stored_shopping_cart = shoppingCart();
+    $stored_wishlist = wishList();
+
+    if (!empty($cart) && empty($stored_shopping_cart)) {
+        Session::put('cart', $cart ?? []);
+        $cart_updated = true;
+    }
+
+    if (!empty($wishlist) && empty($stored_wishlist)) {
+        Session::put('wishlist', $wishlist ?? []);
+        $wishlist_updated = true;
     }
 
     return response()->json([
-        'cart' => shoppingCart(),
-        'updated' => $updated
+        'cart' => $stored_shopping_cart,
+        'wishlist' => $stored_wishlist,
+        'cart_updated' => $cart_updated,
+        'wishlist_updated' => $wishlist_updated
     ]);
 
-})->name('sync-session-cart');
+})->name('sync-session-preferences');
 
 Livewire::setScriptRoute(function ($handle) {
     return Route::get(url('/') . '/livewire/livewire.js', $handle);

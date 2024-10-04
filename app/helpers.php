@@ -213,3 +213,11 @@ if (!function_exists('getAllLanguages')) {
         return Language::all();
     }
 }
+
+if (!function_exists('wishList'))
+{
+    function wishList()
+    {
+        return Session::get('wishlist', []);
+    }
+}

@@ -12,8 +12,10 @@ class WishlistButton extends Component
     public function mount($product_id)
     {
         $this->product_id = $product_id;
+
         // Check if the item is in the session-based wishlist
         $wishlist = session()->get('wishlist', []);
+
         $this->in_wish_list = in_array($this->product_id, $wishlist);
     }
 
@@ -25,14 +27,21 @@ class WishlistButton extends Component
         if ($this->in_wish_list) {
             // Remove item from the wishlist
             $wishlist = array_diff($wishlist, [$this->product_id]);
+            
             session()->put('wishlist', $wishlist);
+
             $this->in_wish_list = false;
         } else {
             // Add item to the wishlist
+
             $wishlist[] = $this->product_id;
+
             session()->put('wishlist', $wishlist);
+
             $this->in_wish_list = true;
         }
+
+        $this->dispatch('wishListUpdated', $wishlist);
     }
 
     public function render()

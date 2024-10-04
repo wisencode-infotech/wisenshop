@@ -26,7 +26,7 @@
                             sizes="(max-width: 768px) 100vw" src="{{ $product->display_image_url }}">
 
                         <div class="absolute top-0 left-0 py-1 px-2">
-                            <livewire:wishlist-button :product_id="$product->id" />
+                            @livewire('wishlist-button', ['product_id' => $product->id, key(uniqid())])
                         </div>
 
                     </div>

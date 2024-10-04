@@ -60,7 +60,7 @@
 
     <script src="{{ asset('assets/frontend/js/app.js') }}"></script>
 
-    <script src="{{ asset('assets/frontend/js/cart.js') }}"></script>
+    <script src="{{ asset('assets/frontend/js/preferences.js') }}"></script>
 
 
 

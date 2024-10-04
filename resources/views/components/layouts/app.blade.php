@@ -55,14 +55,12 @@
         
         var _app_base_url = '{{ url("/") }}';
         var _user_is_loggedin = {{ auth()->check() ? 'true' : 'false' }};
-        
+
     </script>
 
     <script src="{{ asset('assets/frontend/js/app.js') }}"></script>
 
     <script src="{{ asset('assets/frontend/js/preferences.js') }}"></script>
-
-
 
 </body>
 </html>

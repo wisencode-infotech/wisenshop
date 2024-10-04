@@ -3,6 +3,7 @@
 namespace App\Livewire;
 
 use App\Helpers\CartHelper;
+use App\Helpers\WishlistHelper;
 use Illuminate\Support\Facades\Auth;
 use Livewire\Component;
 use App\Models\Cart;
@@ -28,7 +29,7 @@ class Login extends Component
             CartHelper::syncToDatabse();
 
             // Sync session wishlist to user
-            syncWishlistToUser();
+            WishlistHelper::syncWishlistToUser();
 
             $this->dispatch('shoppingCartUpdated');
 

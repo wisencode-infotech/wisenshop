@@ -10,9 +10,7 @@ class Logout extends Component
 {
     public function logout()
     {
-        // Session::forget('cart');
-
-        // $this->dispatch('shoppingCartUpdated');
+        Session::flush();
 
         Auth::logout(); // Log the user out
 

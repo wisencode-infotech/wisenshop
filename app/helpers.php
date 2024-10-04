@@ -117,11 +117,15 @@ if (!function_exists('__updateTrans'))
     }
 }
 
-if (!function_exists('getAllLanguages')) 
+if (!function_exists('__languages')) 
 {
-    function getAllLanguages()
+    function __languages()
     {
-        return Language::all();
+        $cache_key = "app.languages";
+
+        return Cache::rememberForever($cache_key, function() { 
+            return Language::all();
+        });
     }
 }
 
@@ -166,5 +170,17 @@ if (!function_exists('__userCurrencySymbol'))
     function __userCurrencySymbol()
     {
         return __userCurrency()->symbol ?? '';
+    }
+}
+
+if (!function_exists('__currencies')) 
+{
+    function __currencies()
+    {
+        $cache_key = "app.currencies";
+
+        return Cache::rememberForever($cache_key, function() { 
+            return Currency::all();
+        });
     }
 }

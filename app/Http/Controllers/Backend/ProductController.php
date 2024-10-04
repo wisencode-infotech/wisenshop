@@ -93,7 +93,7 @@ class ProductController extends Controller
             }
         }
 
-        if ($request->has('is_variation_product')) {
+        if (!empty($request->variations)) {
             foreach ($request->variations as $variation) {
                 $product->variations()->create([
                     'name' => $variation['name'],
@@ -145,7 +145,7 @@ class ProductController extends Controller
             }
         }
 
-        if ($request->has('is_variation_product')) {
+        if (!empty($request->variations)) {
             // Get current product variations from the database
             $existingVariations = $product->variations()->pluck('id')->toArray();
             $requestVariationIds = array_filter(array_column($request->variations, 'id')); // Filter out any null/undefined IDs from the request
@@ -182,6 +182,16 @@ class ProductController extends Controller
         }
 
         return redirect()->route('backend.product.edit', $product)->with('success', 'Product updated successfully.');
+    }
+
+    public function destroy($id)
+    {
+        $product = Product::find($id);
+        if ($product) {
+            $product->delete();
+            return response()->json(['success' => 'Product deleted successfully.']);
+        }
+        return response()->json(['error' => 'Product not found.'], 404);
     }
 
     public function removeImage(Request $request)

@@ -20,16 +20,24 @@
                     @csrf
 
                     @foreach($settings as $setting)
-                    <div class="form-group mb-3">
-                        <label for="{{ $setting->key }}" class="form-label">{{ ucwords(str_replace('_', ' ', $setting->key)) }}</label>
-                        <input type="text" name="settings[{{ $loop->index }}][value]" class="form-control @error('name') is-invalid @enderror" value="{{ $setting->value }}" required>
-                        <input type="hidden" name="settings[{{ $loop->index }}][key]" value="{{ $setting->key }}">
-                        @error('name')
-                            <span class="invalid-feedback" role="alert">
-                                <strong>{{ $message }}</strong>
-                            </span>
-                        @enderror
-                    </div>
+                        <div class="form-group mb-3">
+                            <label for="{{ $setting->key }}" class="form-label">{{ ucwords(str_replace('_', ' ', $setting->key)) }}</label>
+                            @if (in_array($setting->key, ['header_logo', 'footer_logo', 'fav_logo']))
+                                <input type="file" name="settings[{{ $loop->index }}][value]" class="form-control @error('settings.'.$loop->index.'.value') is-invalid @enderror" accept="image/*">
+
+                                @if ($setting->value)
+                                    <img src="{{ asset($setting->value) }}" alt="Header Logo" style="max-width: 200px; margin-top: 10px;">
+                                @endif
+                            @else
+                                <input type="text" name="settings[{{ $loop->index }}][value]" class="form-control @error('settings.'.$loop->index.'.value') is-invalid @enderror" value="{{ $setting->value }}" required>
+                            @endif
+                            <input type="hidden" name="settings[{{ $loop->index }}][key]" value="{{ $setting->key }}">
+                            @error('settings.'.$loop->index.'.value')
+                                <span class="invalid-feedback" role="alert">
+                                    <strong>{{ $message }}</strong>
+                                </span>
+                            @enderror
+                        </div>
                     @endforeach
 
                     <div class="form-group text-end">

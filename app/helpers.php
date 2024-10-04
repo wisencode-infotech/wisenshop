@@ -112,40 +112,10 @@ if (!function_exists('__updateTrans'))
     }
 }
 
-if (!function_exists('getAllLanguages')) {
+if (!function_exists('getAllLanguages')) 
+{
     function getAllLanguages()
     {
         return Language::all();
-    }
-}
-
-if (!function_exists('wishList'))
-{
-    function wishList()
-    {
-        return Session::get('wishlist', []);
-    }
-}
-
-if (!function_exists('syncWishlistToUser'))
-{
-    function syncWishlistToUser($user_id = null)
-    {
-        $user_id =  (!empty($user_id)) ? $user_id : Auth::user()->id;
-
-        $wishlist = wishList();
-
-        foreach ($wishlist as $product_id) {
-
-            if (!Wishlist::where('product_id', $product_id)->where('user_id', $user_id)->exists()) {
-                $wishlist = new Wishlist();
-
-                $wishlist->user_id = $user_id;
-                $wishlist->product_id = $product_id;
-                $wishlist->save();
-            }
-        }
-
-        Session::forget('wishlist');
     }
 }

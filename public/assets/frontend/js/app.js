@@ -26,7 +26,19 @@ $(document).on('click', '.mobile-header-filter-close-btn', function() {
     mobile_filter_products_drawer_section.addClass('hidden');
 });
 
+
+function toggleSearchBarVisibility() {
+    const filter_section = document.querySelector('.top-product-search-bar');
+    const searchBarVisible = localStorage.getItem('searchBarVisible');
+
+    if (window.location.pathname === "/" && searchBarVisible === 'true') {
+        filter_section.classList.remove('hidden'); 
+        localStorage.removeItem('searchBarVisible');
+    }
+}
+
+toggleSearchBarVisibility();
+
 $(document).on('click', '.top-product-search-btn', function() {
-    const filter_section = $('.top-product-search-bar');
-    filter_section.removeClass('hidden');
+    localStorage.setItem('searchBarVisible', 'true');
 });

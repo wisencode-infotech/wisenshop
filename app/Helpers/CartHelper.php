@@ -110,7 +110,7 @@ class CartHelper
     {
         $user_id =  (!empty($user_id)) ? $user_id : Auth::user()->id;
 
-        $cart_items = self::items();
+        $cart_items = Session::get('cart', []);
 
         foreach ($cart_items as $product_id => $value) {
 

@@ -56,10 +56,15 @@ class Product extends Model
         return $this->hasOne(ProductImage::class);
     }
 
+    public function variations()
+{
+    return $this->hasMany(ProductVariation::class);
+}
+
     // Accessors
     public function getDisplayImageURLAttribute()
     {
-        $display_image = $this->display_image;
+        $display_image = $this->displayImage;
         
         return (!empty($display_image)) ? $display_image->image_url : ProductImage::$placeholder_url;
     }

@@ -37,8 +37,8 @@
                             <thead class="table-light">
                                 <tr>
                                     <th scope="col" style="width: 60px">#</th>
-                                    <th scope="col">Category</th>
                                     <th scope="col">Name</th>
+                                    <th scope="col">Category</th>
                                     <th scope="col">Price</th>
                                     <th scope="col">Status</th>
                                     <th scope="col">Action</th>

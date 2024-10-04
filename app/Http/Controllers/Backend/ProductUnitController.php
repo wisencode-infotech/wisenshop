@@ -27,12 +27,22 @@ class ProductUnitController extends Controller
                 ->addColumn('short_name', function($row) {
                     return $row->short_name;
                 })
+                ->addColumn('can_have_variations', function($row) {
+                    if($row->can_have_variations == 1)
+                    {
+                        return '<span class="badge rounded-pill badge-soft-success font-size-12">Yes</span>';
+                    }
+                    else
+                    {
+                        return '<span class="badge rounded-pill badge-soft-danger font-size-12">No</span>';
+                    }
+                })
                 ->addColumn('action', function($row) {
                     $btn = '<a href="'.route('backend.product-unit.edit', $row->id).'" class="edit btn btn-primary btn-sm">Edit</a>';
                     $btn .= ' <button class="btn btn-danger btn-sm delete" data-id="'.$row->id.'">Delete</button>';
                     return $btn;
                 })
-                ->rawColumns(['action', 'code'])
+                ->rawColumns(['action','can_have_variations', 'code'])
                 ->make(true);
         }
 
@@ -60,9 +70,10 @@ class ProductUnitController extends Controller
         ]);
 
         // Create a new currency in the database
-        $currency = ProductUnit::create([
+        $product_unit = ProductUnit::create([
             'name' => $request->name,
-            'short_name' => $request->short_name
+            'short_name' => $request->short_name,
+            'can_have_variations' => $request->can_have_variations ?? '0'
         ]);
 
         return redirect()->route('backend.product-unit.index')
@@ -90,16 +101,18 @@ class ProductUnitController extends Controller
      */
     public function update(Request $request, ProductUnit $product_unit)
     {
+
         // Validate the request data
         $request->validate([
             'name' => 'required|string|max:20',
-            'short_name' => 'required|string|max:20|unique:product_units,short_name'
+            'short_name' => 'required|string|max:20|unique:product_units,short_name,' . $product_unit->id,
         ]);
 
 
         $data = [
             'name' => $request->name,
-            'short_name' => $request->short_name
+            'short_name' => $request->short_name,
+            'can_have_variations' => $request->can_have_variations ?? '0'
         ];
 
         // Update the currency data

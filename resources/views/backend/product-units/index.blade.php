@@ -5,8 +5,8 @@
 @section('content')
 
 @component('backend.components.breadcrumb')
-@slot('li_1') Product @endslot
-@slot('title') Product @endslot
+@slot('li_1') Product Unit @endslot
+@slot('title') Product Unit @endslot
 @endcomponent
 
 <div class="row">
@@ -25,7 +25,7 @@
                     <!-- end col -->
                     <div class="col-sm-auto">
                         <div class="text-sm-end">
-                            <a href="{{ route('backend.product.create') }}" class="btn btn-success btn-rounded" id="addProject-btn"><i class="mdi mdi-plus me-1"></i> Add New</a>
+                            <a href="{{ route('backend.product-unit.create') }}" class="btn btn-success btn-rounded" id="addProject-btn"><i class="mdi mdi-plus me-1"></i> Add New</a>
                         </div>
                     </div>
                     <!-- end col -->
@@ -33,14 +33,12 @@
                 <!-- end row -->
                 <div class="">
                     <div class="table-responsive">
-                        <table class="table project-list-table align-middle table-nowrap dt-responsive nowrap w-100 table-borderless" id="products-table">
+                        <table class="table project-list-table align-middle table-nowrap dt-responsive nowrap w-100 table-borderless" id="product-units-table">
                             <thead class="table-light">
                                 <tr>
                                     <th scope="col" style="width: 60px">#</th>
-                                    <th scope="col">Category</th>
                                     <th scope="col">Name</th>
-                                    <th scope="col">Price</th>
-                                    <th scope="col">Status</th>
+                                    <th scope="col">Short Name</th>
                                     <th scope="col">Action</th>
                                 </tr>
                             </thead>
@@ -54,5 +52,5 @@
 
 @endsection
 @section('script')
-<script src="{{ asset('assets/backend/js/datatable/products.js') }}"></script>
+<script src="{{ asset('assets/backend/js/datatable/product-units.js') }}"></script>
 @endsection

@@ -25,6 +25,7 @@
 
         <form action="{{ route('backend.product.update', $product) }}" method="POST" enctype="multipart/form-data">
             @csrf
+            @method('PATCH')
 
             <!-- Product Info Section -->
             <div class="row">
@@ -126,7 +127,7 @@
                                     <div class="col-md-2 mb-3">
                                         <div class="card">
                                             <div class="card-body text-center">
-                                                <button type="button" class="btn-close position-absolute top-0 end-0 p-2" aria-label="Close" data-id="{{ $image->id }}" onclick="removeImage({{ $image->id }})"></button>
+                                                <button type="button" class="btn-close position-absolute top-0 end-0 p-2 remove_image" aria-label="Close" data-href="{{ route('backend.product.image.remove', $image) }}"></button>
                                                 <img src="{{ $image->image_url }}" alt="Product Image" class="img-fluid" style="height:60px;">
                                             </div>
                                         </div>
@@ -148,37 +149,40 @@
 
                             <div id="variations-container">
                                 @if($product->variations->isNotEmpty())
-                                @foreach($product->variations as $variation)
-                                <div class="variation-row row mb-3">
-                                    <div class="col-md-3">
-                                        <label for="variation_name" class="form-label">Variation Name</label>
-                                        <input type="text" name="variations[0][name]" class="form-control" placeholder="XL, RED, etc" value="{{ old('name', $variation->name) }}">
-                                        @error('variations.0.name')
-                                        <span class="text-danger">{{ $message }}</span>
-                                        @enderror
-                                    </div>
-                                    <div class="col-md-3">
-                                        <label for="variation_price" class="form-label">Price</label>
-                                        <input type="number" name="variations[0][price]" class="form-control" value="{{ old('price', $variation->price) }}">
-                                        @error('variations.0.price')
-                                        <span class="text-danger">{{ $message }}</span>
-                                        @enderror
-                                    </div>
-                                    <div class="col-md-2">
-                                        <label for="variation_stock" class="form-label">Stock</label>
-                                        <input type="number" name="variations[0][stock]" class="form-control" value="{{ old('stock', $variation->stock) }}">
-                                        @error('variations.0.stock')
-                                        <span class="text-danger">{{ $message }}</span>
-                                        @enderror
-                                    </div>
-                                    <div class="col-md-1">
-                                        <label style="visibility:hidden;" for="variation_remove" class="form-label">remove</label>
-                                        <button type="button" class="btn btn-danger btn-remove-variation">Remove</button>
-                                    </div>
-                                </div>
-                                @endforeach
+                                    @foreach($product->variations as $index => $variation)
+                                        <div class="variation-row row mb-3">
+                                            <!-- Hidden input for the variation ID -->
+                                            <input type="hidden" name="variations[{{ $index }}][id]" value="{{ $variation->id }}">
+                                            <div class="col-md-3">
+                                                <label for="variation_name" class="form-label">Variation Name</label>
+                                                <input type="text" name="variations[{{ $index }}][name]" class="form-control" placeholder="XL, RED, etc" value="{{ old('variations.' . $index . '.name', $variation->name) }}">
+                                                @error('variations.' . $index . '.name')
+                                                    <span class="text-danger">{{ $message }}</span>
+                                                @enderror
+                                            </div>
+                                            <div class="col-md-3">
+                                                <label for="variation_price" class="form-label">Price</label>
+                                                <input type="number" name="variations[{{ $index }}][price]" class="form-control" value="{{ old('variations.' . $index . '.price', $variation->price) }}">
+                                                @error('variations.' . $index . '.price')
+                                                    <span class="text-danger">{{ $message }}</span>
+                                                @enderror
+                                            </div>
+                                            <div class="col-md-2">
+                                                <label for="variation_stock" class="form-label">Stock</label>
+                                                <input type="number" name="variations[{{ $index }}][stock]" class="form-control" value="{{ old('variations.' . $index . '.stock', $variation->stock) }}">
+                                                @error('variations.' . $index . '.stock')
+                                                    <span class="text-danger">{{ $message }}</span>
+                                                @enderror
+                                            </div>
+                                            <div class="col-md-1">
+                                                <label style="visibility:hidden;" for="variation_remove" class="form-label">remove</label>
+                                                <button type="button" class="btn btn-danger btn-remove-variation">Remove</button>
+                                            </div>
+                                        </div>
+                                    @endforeach
                                 @endif
                             </div>
+
 
                             <button type="button" class="btn btn-secondary" id="add-variation">Add Another Variation</button>
                         </div>
@@ -195,11 +199,13 @@
 
 @section('script')
 <script>
-    let variationIndex = 1;
+    var total_variations = '<?php echo $product->variations->isNotEmpty() ? $product->variations->count() : 0 ?>';
+    let variationIndex = parseInt(total_variations) + 1;
     document.getElementById('add-variation').addEventListener('click', function () {
         const container = document.getElementById('variations-container');
         const variationRow = `
         <div class="variation-row row mb-3">
+        <input type="hidden" name="variations[${variationIndex}][id]" value="">
         <div class="col-md-3">
         <label for="variation_name_${variationIndex}" class="form-label">Variation Name</label>
         <input type="text" name="variations[${variationIndex}][name]" class="form-control">
@@ -248,6 +254,36 @@
         isVariationProductCheckbox.addEventListener('change', function () {
             toggleVariationsSection();
         });
+    });
+
+    $(document).on('click', '.remove_image', function(e) {
+        e.preventDefault();
+
+        var url = $(this).data('href');
+        var imageElement = $(this).closest('.col-md-2');
+
+        // Ask for confirmation
+        if (confirm('Are you sure you want to remove this image?')) {
+            $.ajax({
+                url: url,
+                type: 'DELETE',
+                data: {
+                    _token: '{{ csrf_token() }}'
+                },
+                success: function(response) {
+                    // On success, remove the image element from the DOM
+                    if(response.success) {
+                        imageElement.remove();
+                    } else {
+                        alert('Something went wrong. Please try again.');
+                    }
+                },
+                error: function(xhr) {
+                    console.error(xhr);
+                    alert('Error removing image.');
+                }
+            });
+        }
     });
 
 </script>

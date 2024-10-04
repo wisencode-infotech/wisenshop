@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Backend;
 
 use App\Http\Controllers\Controller;
+use App\Http\Requests\StoreProductRequest;
 use App\Models\Category;
 use App\Models\Product;
 use App\Models\ProductImage;
@@ -60,40 +61,9 @@ class ProductController extends Controller
         return view('backend.products.create', compact('units', 'categories')); // Return the create view
     }
 
-    public function store(Request $request)
+    public function store(StoreProductRequest $request)
     {
-         // Common validation rules
-    $rules = [
-        'category_id' => 'required|exists:categories,id',
-        'name' => 'required|string|max:255',
-        'description' => 'required|string',
-        'price' => 'required|numeric|min:0',
-        'stock' => 'nullable|integer|min:0',
-        'images.*' => 'nullable|image|mimes:jpeg,png,jpg,gif,svg|max:2048',
-        'unit_id' => 'required|exists:product_units,id',
-    ];
-
-    // If variation product, add variation validation rules
-    if ($request->has('is_variation_product')) {
-        $rules = array_merge($rules, [
-            'variations.*.name' => 'required|string|max:255',
-            'variations.*.price' => 'nullable|numeric|min:0',
-            'variations.*.stock' => 'nullable|integer|min:0',
-        ]);
-    }
-
-    // Custom error messages
-    $messages = [
-        'category_id.required' => 'Please select a category.',
-        'name.required' => 'Product name is required.',
-        'price.required' => 'Price is required.',
-        'price.numeric' => 'Price must be a valid number.',
-        'images.*.image' => 'Uploaded file must be an image.',
-        'variations.*.name.required' => 'Variation name is required.',
-    ];
-
-    // Validate the request
-    $validatedData = $request->validate($rules, $messages);
+        $validatedData = $request->validated();
 
         // Generate a unique slug
         $slug = Str::slug($request->name);
@@ -146,6 +116,74 @@ class ProductController extends Controller
         return view('backend.products.edit', compact('product', 'units', 'categories')); // Return the edit view
     }
 
+    public function update(StoreProductRequest $request, Product $product)
+    {
+        $validatedData = $request->validated();
+
+        $product->name = $request->name;
+
+        $slug = Str::slug($request->name);
+        $product->slug = $this->generateUniqueSlug($slug);
+        $product->description = $request->description;
+        $product->price = $request->price;
+        $product->stock = $request->stock;
+        $product->category_id = $request->category_id;
+        $product->unit_id = $request->unit_id;
+        $product->save();
+
+        // Check if images were uploaded
+        if ($request->hasFile('images')) {
+            foreach ($request->file('images') as $image) {
+                // Store image in products/{product_id}/
+                $path = $image->store('products/' . $product->id, 'public');
+                
+                // Save image path to product_images table
+                ProductImage::create([
+                    'product_id' => $product->id,
+                    'image_path' => $path,
+                ]);
+            }
+        }
+
+        if ($request->has('is_variation_product')) {
+            // Get current product variations from the database
+            $existingVariations = $product->variations()->pluck('id')->toArray();
+            $requestVariationIds = array_filter(array_column($request->variations, 'id')); // Filter out any null/undefined IDs from the request
+        
+            // Find variations that are no longer in the request and delete them
+            $variationsToDelete = array_diff($existingVariations, $requestVariationIds);
+            $product->variations()->whereIn('id', $variationsToDelete)->delete();
+        
+            // Loop through the variations from the request
+            foreach ($request->variations as $variation) {
+                // Check if variation has an ID (exists in the database)
+                if (isset($variation['id'])) {
+                    // Update existing variation
+                    $productVariation = $product->variations()->find($variation['id']);
+                    if ($productVariation) {
+                        $productVariation->update([
+                            'name' => $variation['name'],
+                            'price' => $variation['price'] ?? null,
+                            'stock' => $variation['stock'] ?? null
+                        ]);
+                    }
+                } else {
+                    // Create new variation (doesn't have an ID)
+                    $product->variations()->create([
+                        'name' => $variation['name'],
+                        'price' => $variation['price'] ?? null,
+                        'stock' => $variation['stock'] ?? null
+                    ]);
+                }
+            }
+        } else {
+            // If not a variation product, ensure all variations are deleted
+            $product->variations()->delete();
+        }
+
+        return redirect()->route('backend.product.edit', $product)->with('success', 'Product updated successfully.');
+    }
+
     public function removeImage(Request $request)
     {
         $image = ProductImage::findOrFail($request->image_id);
@@ -172,5 +210,19 @@ class ProductController extends Controller
         }
 
         return $slug;
+    }
+
+    public function destroyImage(ProductImage $image)
+    {
+
+        // Delete the image file from storage
+        if (Storage::disk('public')->exists($image->image_path)) {
+            Storage::disk('public')->delete($image->image_path);
+        }
+
+        // Delete the image record from the database
+        $image->delete();
+
+        return response()->json(['success' => true]);
     }
 }

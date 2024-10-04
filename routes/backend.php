@@ -28,4 +28,7 @@ Route::middleware(['auth'])->group(function () {
     Route::resource('language', LanguageController::class);
     Route::get('settings', [SettingController::class, 'index'])->name('settings.index');
     Route::post('update-settings', [SettingController::class, 'update'])->name('settings.update');
+
+    Route::delete('product/image/{image}/remove', [ProductController::class, 'destroyImage'])->name('product.image.remove');
+
 });

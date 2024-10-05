@@ -20,10 +20,8 @@ class CartPage extends Component
 
     protected $listeners = ['quantityUpdated' => 'updateCartQuantity', 'remove-cart-product' => 'removeCartProduct'];
 
-    public function updateCartQuantity($data)
+    public function updateCartQuantity($data = [])
     {
-        CartHelper::saveQuantity($data['product_id'], $data['product_variation_id'], $data['quantity']);
-
         $this->cart_items = CartHelper::items();
 
         $this->total_price = CartHelper::total();

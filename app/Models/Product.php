@@ -101,4 +101,14 @@ class Product extends Model
     {
         return $this->reviews()->avg('rating') ?? 0;
     }
+
+    public function getTotalVariationsAttribute()
+    {
+        return ProductVariation::select('id')->where('product_id', $this->id)->count();
+    }
+
+    public function getVariationNamesAttribute()
+    {
+        return ProductVariation::select('name')->where('product_id', $this->id)->pluck('name');
+    }
 }

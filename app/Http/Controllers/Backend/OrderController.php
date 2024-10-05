@@ -21,7 +21,6 @@ class OrderController extends Controller
 
     public function index(Request $request)
     {
-
          if ($request->ajax()) {
             $data = Order::latest()->get();
             return Datatables::of($data)

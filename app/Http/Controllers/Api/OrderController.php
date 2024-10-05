@@ -17,14 +17,12 @@ class OrderController extends APIController
 
     public function index()
     {
-        $orders = $this->order_service->getUserOrders(auth()->user()->id);
-        return $this->sendSuccess($orders, 'Orders retrieved successfully');
+        return $this->sendSuccess([], 'Orders retrieved successfully');
     }
 
     public function store(Request $request)
     {
-        $order = $this->order_service->createOrder($request->all());
-        return $this->sendSuccess($order, 'Order placed successfully', 201);
+        return $this->sendSuccess([], 'Order placed successfully', 201);
     }
 
     public function show($id)

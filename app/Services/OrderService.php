@@ -2,18 +2,19 @@
 
 namespace App\Services;
 
-use App\Models\Order;
-
 class OrderService
 {
-    public function getUserOrders($userId)
+    public $order;
+
+    public function setRecord($order)
     {
-        return Order::where('user_id', $userId)->get();
+        $this->order = $order;
     }
 
-    public function createOrder(array $data)
+    public function updateStatus($status)
     {
-        // Logic to create an order
-        return Order::create($data);
+        $this->order->status = $status;
+
+        $this->order->save();
     }
 }

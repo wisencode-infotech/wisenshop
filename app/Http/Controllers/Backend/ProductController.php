@@ -29,7 +29,7 @@ class ProductController extends Controller
                     return $row->name;
                 })
                  ->addColumn('price', function($row) {
-                    return $row->price;
+                    return $row->price. ' ' . __appCurrencySymbol();;
                 })
                 ->addColumn('status', function($row) {
                     if($row->status == '1')

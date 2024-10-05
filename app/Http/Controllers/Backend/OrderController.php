@@ -30,23 +30,15 @@ class OrderController extends Controller
                     return $row->user->name;
                 })
                 ->addColumn('status', function($row) {
-                    if($row->status == 'pending')
-                    {
-                        return '<span class="badge rounded-pill badge-soft-warning font-size-12">'.$row->status.'</span>';
-                    }
-                    elseif ($row->status == 'completed') {
-                        return '<span class="badge rounded-pill badge-soft-success font-size-12">'.$row->status.'</span>';   
-                    }
-                    else
-                    {
-                        return '<span class="badge rounded-pill badge-soft-info font-size-12">'.$row->status.'</span>';
-                    }
+                    $status = config('general.order_statuses.'. $row->status);
+                    $status_color = config('general.order_statuses_color.'. $row->status);
+                    return '<span class="badge rounded-pill badge-soft-'. $status_color .' font-size-12">'.$status.'</span>';
                 })
                 ->addColumn('amount', function($row) {
-                    return $row->total_price;
+                    return $row->total_price . ' ' . __appCurrencySymbol();
                 })
                 ->addColumn('action', function($row) {
-                    $btn = '<a href="'.route('backend.order.show', $row).'" class="edit btn btn-primary btn-sm">View Details</a>';
+                    $btn = '<a href="'.route('backend.order.show', $row).'" class="edit btn btn-primary btn-sm">View</a>';
                     return $btn;
                 })
                 ->rawColumns(['action','user_name', 'status'])
@@ -62,6 +54,8 @@ class OrderController extends Controller
      */
     public function show(Order $order)
     {
-        return view('backend.orders.show', compact('order')); // Return the show view
+        $status = config('general.order_statuses.'. $order->status);
+        $status_color = config('general.order_statuses_color.'. $order->status);
+        return view('backend.orders.show', compact('order', 'status', 'status_color'));
     }
 }

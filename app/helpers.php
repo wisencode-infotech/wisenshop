@@ -184,3 +184,15 @@ if (!function_exists('__currencies'))
         });
     }
 }
+
+if (!function_exists('__appCurrencySymbol')) 
+{
+    function __appCurrencySymbol()
+    {
+        $currency_info = __appCurrency();
+        if ( !empty($currency_info) ) 
+            return $currency_info->symbol;
+        else
+            return 'EUR';
+    }
+}

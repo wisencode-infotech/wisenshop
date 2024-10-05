@@ -74,11 +74,12 @@ class CartHelper
                 $product = $db_cart_item->product;
 
                 $cart_items[$product_key] = [
-                    'quantity' => $db_cart_item->quantity,
-                    'product_price' => $product->discounted_price ?? 0,
-                    'product' => $product,
                     'product_id' => $product->id,
-                    'product_variation_id' => $db_cart_item->product_variation_id
+                    'product_variation_id' => $db_cart_item->product_variation_id,
+                    'product_name' => $product->name,
+                    'product_price' => $product->priceWithCurrency() ?? 0,
+                    'product_picture' => $product->display_image_url,
+                    'quantity' => $db_cart_item->quantity
                 ];
             }
 
@@ -92,8 +93,9 @@ class CartHelper
                 $product = Product::find($product_id);
 
                 if ($product) {
-                    $item['product'] = $product;
-                    $item['product_price'] = ($product->discounted_price ?? 0);
+                    $item['product_name'] = $product->name;
+                    $item['product_price'] = ($product->priceWithCurrency() ?? 0);
+                    $item['product_picture'] = $product->display_image_url;
                 }
             }
 

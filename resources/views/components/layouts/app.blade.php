@@ -10,6 +10,7 @@
     
     <link rel="stylesheet" href="{{asset('assets/frontend/css/main.css')}}" data-n-g="" />
     <link rel="stylesheet" href="{{asset('assets/frontend/css/style.css')}}">
+    <link rel="stylesheet" href="{{asset('assets/frontend/css/app.css')}}">
 
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css" />
 

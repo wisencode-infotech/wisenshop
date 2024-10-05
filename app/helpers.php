@@ -1,15 +1,10 @@
 <?php
 
-use App\Models\Product;
 use App\Models\Translation;
-use App\Models\Cart;
 use App\Models\Currency;
 use App\Models\Setting;
 use App\Models\Language;
-use App\Models\Wishlist;
-use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Cache;
-use Illuminate\Support\Facades\Session;
 
 if (!function_exists('__trans')) 
 {

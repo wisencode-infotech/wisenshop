@@ -28,7 +28,7 @@
                                  <span class="flex ltr:ml-2 rtl:mr-2">{{ count($cart) }} {{ __trans('Items') }}</span>
                               </div>
                               <button class="flex">
-                                 <span class="flex h-full shrink-0 items-center rounded-full bg-light px-5 text-accent font-bold">{{ number_format($total_price, 2) }}</span>
+                                 <span class="flex h-full shrink-0 items-center rounded-full bg-light px-5 text-accent font-bold">{{ __userCurrencySymbol() }} {{ number_format($total_price, 2) }}</span>
                               </button>
                            </header>
                         @endif
@@ -37,15 +37,19 @@
                            @foreach($cart as $cart_key => $item)
                               <div class="flex items-center border-b border-solid border-border-200 border-opacity-75 px-4 py-4 text-sm sm:px-6" style="opacity: 1;">
 
+                                 <div wire:loading.flex class="absolute inset-0 z-10 flex items-center justify-center bg-accent bg-opacity-10">
+                                    <div class="loader"></div>
+                                </div>
+
                                  @livewire('quantity-selector', ['product_id' => $item['product_id'], 'product_variation_id' => $item['product_variation_id'], 'layout' => 'cart', key(uniqid())])
                                  
-                                 <div class="relative mx-4 flex h-10 w-10 shrink-0 items-center justify-center overflow-hidden bg-gray-100 sm:h-16 sm:w-16"><img alt="Apples" loading="lazy" decoding="async" data-nimg="fill" class="object-contain" sizes="(max-width: 768px) 100vw" srcset="{{ $item['product']->display_image_url }}" src="{{ $item['product']->display_image_url }}" style="position: absolute; height: 100%; width: 100%; inset: 0px; color: transparent;"></div>
+                                 <div class="relative mx-4 flex h-10 w-10 shrink-0 items-center justify-center overflow-hidden bg-gray-100 sm:h-16 sm:w-16"><img alt="Apples" loading="lazy" decoding="async" data-nimg="fill" class="object-contain" sizes="(max-width: 768px) 100vw" srcset="{{ $item['product_picture'] }}" src="{{ $item['product_picture'] }}" style="position: absolute; height: 100%; width: 100%; inset: 0px; color: transparent;"></div>
                                  <div>
-                                    <h3 class="font-bold text-heading">{{ $item['product']->name }} </h3>
-                                    <p class="my-2.5 font-semibold text-accent">${{ $item['product']->discounted_price }}</p>
+                                    <h3 class="font-bold text-heading">{{ $item['product_name'] }} </h3>
+                                    <p class="my-2.5 font-semibold text-accent">{{ __userCurrencySymbol() }} {{ $item['product_price'] }}</p>
                                     <!-- <span class="text-xs text-body">{{ $item['quantity'] }} X 1lb</span> -->
                                  </div>
-                                 <span class="font-bold text-heading ltr:ml-auto rtl:mr-auto">{{ __userCurrencySymbol() }} {{ $item['product']->discounted_price *  $item['quantity']}}</span>
+                                 <span class="font-bold text-heading ltr:ml-auto rtl:mr-auto">{{ __userCurrencySymbol() }} {{ $item['product_price'] *  $item['quantity']}}</span>
                                  <button  x-on:click="$dispatch('remove-cart-product', { product_id: {{ $item['product_id'] }} }) " class="flex h-7 w-7 shrink-0 items-center justify-center rounded-full text-muted transition-all duration-200 hover:bg-gray-100 hover:text-red-600 focus:bg-gray-100 focus:text-red-600 focus:outline-0 ltr:ml-3 ltr:-mr-2 rtl:mr-3 rtl:-ml-2">
                                     <span class="sr-only">close</span>
                                     <svg class="h-3 w-3" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor">
@@ -57,7 +61,7 @@
                         </div>
 
                         @if (count($cart) > 0)
-                        <div class="mt-4 w-full max-w-md bg-light px-6 py-5 md:ml-auto"><button class="flex h-12 w-full justify-between rounded-full bg-accent p-1 text-sm font-bold shadow-700 transition-colors hover:bg-accent-hover focus:bg-accent-hover focus:outline-0 md:h-14"><span class="flex h-full flex-1 items-center px-5 text-light">Checkout</span><span class="flex h-full shrink-0 items-center rounded-full bg-light px-5 text-accent">{{ number_format($total_price, 2) }}</span></button></div>
+                        <div class="mt-4 w-full max-w-md bg-light px-6 py-5 md:ml-auto"><button class="flex h-12 w-full justify-between rounded-full bg-accent p-1 text-sm font-bold shadow-700 transition-colors hover:bg-accent-hover focus:bg-accent-hover focus:outline-0 md:h-14"><span class="flex h-full flex-1 items-center px-5 text-light">{{ __trans('Checkout') }}</span><span class="flex h-full shrink-0 items-center rounded-full bg-light px-5 text-accent">{{ __userCurrencySymbol() }} {{ number_format($total_price, 2) }}</span></button></div>
                         @else
                         <div class="flex flex-col items-center justify-center h-64 bg-white mt-4">
                            <!-- Icon (Shopping Cart) -->

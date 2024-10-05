@@ -1,0 +1,23 @@
+/* Loader Spinner */
+.loader {
+    border: 4px solid rgba(0, 0, 0, 0.1);
+    border-radius: 50%;
+    border-top: 4px solid rgb(0, 159, 127);
+    width: 24px;
+    height: 24px;
+    animation: spin 1s linear infinite;
+}
+
+@keyframes spin {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
+}
+
+/* To handle the overlay */
+.wire-loading {
+    display: none;
+}
+
+.wire-loading.flex {
+    display: flex;
+}

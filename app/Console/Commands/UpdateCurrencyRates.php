@@ -27,10 +27,12 @@ class UpdateCurrencyRates extends Command
      */
     public function handle()
     {
-        $this->info('Fetching exchange rates...');
+        $site_currency_code = __setting('site_currency');
+        
+        $this->info('Fetching exchange rates... BASE CURRENCY : ' . $site_currency_code);
 
         // Fetch exchange rates from an external API
-        $response = Http::get('https://api.exchangerate-api.com/v4/latest/EUR'); // Replace with your API URL
+        $response = Http::get('https://api.exchangerate-api.com/v4/latest/' . ($site_currency_code ?? 'EUR')); // Replace with your API URL
 
         if ($response->successful()) {
             $rates = $response->json()['rates'];

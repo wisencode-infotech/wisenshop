@@ -57,10 +57,10 @@ class Product extends Model
         return $this->hasOne(ProductImage::class);
     }
 
-    public function variations()
-{
-    return $this->hasMany(ProductVariation::class);
-}
+    public function variations(): HasMany
+    {
+        return $this->hasMany(ProductVariation::class);
+    }
 
     // Accessors
     public function getDisplayImageURLAttribute()
@@ -70,18 +70,26 @@ class Product extends Model
         return (!empty($display_image)) ? $display_image->image_url : ProductImage::$placeholder_url;
     }
 
-    public function getDiscountedPriceAttribute() 
+    // Accessors
+    public function priceWithCurrency($currency_code = '')
     {
-        if (!empty($this->discount_type) && !empty($this->discount_value)) {
-            if($this->discount_type == 'percentage') {
-                $discounted_amount = ($this->price * $this->discount_value) / 100;
-                $product_origin_price = $this->price - $discounted_amount;
-            } else {
-                $product_origin_price = $this->price - $this->discount_value;
-            }
-            return number_format($product_origin_price, 2);
+        if (empty($currency_code))
+            $currency_code = __userCurrencyCode();
+
+        $exchange_rate = 1;
+
+        if (__userCurrencyCode() != __appCurrency()->code) {
+            $currency = Currency::where('code', $currency_code)->select('exchange_rate')->first();
+    
+            $exchange_rate = $currency->exchange_rate ?? 1;
         }
-        return $this->price;
+
+        return ($this->price * $exchange_rate);
+    }
+
+    public function getDiscountedPriceAttribute($currency_code = '') 
+    {
+        return $this->priceWithCurrency($currency_code);
     }
 
     public function getTotalReviewsAttribute()

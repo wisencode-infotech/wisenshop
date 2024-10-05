@@ -82,13 +82,27 @@
                               <div>{!! $product->description !!}</div>
                               {{-- <br><span><button class="mt-1 inline-block font-bold text-accent ">Read more</button></span> --}}
                            </div>
-                           <span class="my-5 flex items-center md:my-10"><ins class="text-2xl font-semibold text-accent no-underline md:text-3xl">${{ $product->discounted_price }}</ins><del class="text-sm font-normal text-muted ltr:ml-2 rtl:mr-2 md:text-base">${{ $product->price }}</del></span>
+                           <span class="my-5 flex items-center md:my-10">
+                              <ins class="text-2xl font-semibold text-accent no-underline md:text-3xl">{{ __userCurrencySymbol() }} {{ $product->discounted_price }}</ins>
+
+                              @if ($product->discounted_price < $product->price)
+                                 <del class="text-sm font-normal text-muted ltr:ml-2 rtl:mr-2 md:text-base">{{ __userCurrencySymbol() }} {{ $product->priceWithCurrency() }}</del>
+                              @endif
+
+                           </span>
+
+                           @if ($product->variations()->count() > 0)
+                              <div class="mt-6 flex flex-col items-center md:mt-6 lg:flex-row">
+                                 @livewire('product-variation', ['product_id' => $product->id])
+                              </div>
+                           @endif
+
                            <div class="mt-6 flex flex-col items-center md:mt-6 lg:flex-row">
                               <div class="mb-3 w-full lg:mb-0 lg:max-w-[400px]">
-                                @livewire('quantity-selector', ['productId' => $product->id, 'layout' => 'large'])
+                                @livewire('quantity-selector', ['product_id' => $product->id, 'layout' => 'large'])
                             </div>
 
-                              {{-- <span class="whitespace-nowrap text-base text-body ltr:lg:ml-7 rtl:lg:mr-7">{{ $product->stock }} pieces available</span> --}}
+                              <span class="whitespace-nowrap text-base text-body ltr:lg:ml-7 rtl:lg:mr-7">{{ $product->stock }} {{ __trans('pieces available') }}</span>
                            </div>
                         </div>
                         <div class="mt-4 flex w-full flex-row items-start border-t border-border-200 border-opacity-60 pt-4 md:mt-6 md:pt-6">
@@ -110,7 +124,7 @@
                </article>
                <div class="p-5 md:pb-10 lg:p-14 xl:p-16">
                   <h2 class="mb-6 text-lg font-semibold tracking-tight text-heading">{{ __trans('Related Products') }}</h2>
-                 <livewire:products :category_id="$product->category_id" />
+                 <livewire:products :category_id="$product->category_id" :exclude_product_ids="[$product->id]" />
                </div>
             </article>
             

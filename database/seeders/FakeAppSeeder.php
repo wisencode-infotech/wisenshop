@@ -10,8 +10,6 @@ use App\Models\Product;
 use App\Models\SiteBanner;
 use App\Models\User;
 use App\Models\Setting;
-use App\Models\Language;
-use App\Models\Currency;
 use App\Models\ProductUnit;
 use Illuminate\Database\Seeder;
 use Illuminate\Support\Facades\Hash;
@@ -48,12 +46,14 @@ class FakeAppSeeder extends Seeder
                 'facebook_link' => 'https://facebook.com/example',
                 'instagram_link' => 'https://instagram.com/example',
                 'copyright_link' => 'Copyright © Albertoshop. All rights reserved worldwide.',
-                'site_title' => 'Albertoshop'
+                'site_title' => 'Albertoshop',
+                'site_currency' => 'EUR'
             ];
 
         foreach ($settings as $meta_key => $meta_value) {
-            Setting::create([
-                'key' => $meta_key,
+            Setting::updateOrCreate([
+                'key' => $meta_key
+            ], [
                 'value' => $meta_value
             ]);
         }
@@ -70,22 +70,15 @@ class FakeAppSeeder extends Seeder
             ]);
         }
 
-
         // Products seeder
 
         $categories = Category::all();
+        $product_unit_ids = ProductUnit::pluck('id')->toArray();
 
         foreach ($categories as $category) {
             Product::factory(10)->create([
                 'category_id' => $category->id,
-            ]);
-        }
-
-        $product_units = ProductUnit::all();
-
-        foreach ($product_units as $product_unit) {
-            Product::factory(10)->create([
-                'unit_id' => $product_unit->id,
+                'unit_id' => $product_unit_ids[array_rand($product_unit_ids)]
             ]);
         }
 
@@ -143,34 +136,5 @@ class FakeAppSeeder extends Seeder
                 'description' => fake()->paragraph()
             ]);
         }
-
-
-        // Language seeder
-        $languages = [
-            ['code' => 'en', 'name' => 'English'],
-            ['code' => 'es', 'name' => 'Spanish']
-        ];
-
-        foreach ($languages as $language) {
-            Language::create($language);
-        }
-
-
-        // Currency seeder
-
-        $currencies = [
-            ['name' => 'US Dollar', 'code' => 'USD', 'symbol' => '$', 'exchange_rate' => 1.00, 'active' => true],
-            ['name' => 'Euro', 'code' => 'EUR', 'symbol' => '€', 'exchange_rate' => 0.85, 'active' => true],
-            ['name' => 'British Pound', 'code' => 'GBP', 'symbol' => '£', 'exchange_rate' => 0.76, 'active' => true],
-            ['name' => 'Japanese Yen', 'code' => 'JPY', 'symbol' => '¥', 'exchange_rate' => 110.17, 'active' => true],
-            ['name' => 'Australian Dollar', 'code' => 'AUD', 'symbol' => 'A$', 'exchange_rate' => 1.34, 'active' => true],
-            ['name' => 'Canadian Dollar', 'code' => 'CAD', 'symbol' => 'C$', 'exchange_rate' => 1.26, 'active' => true],
-            ['name' => 'Swiss Franc', 'code' => 'CHF', 'symbol' => 'CHF', 'exchange_rate' => 0.92, 'active' => true],
-            ['name' => 'Chinese Yuan', 'code' => 'CNY', 'symbol' => '¥', 'exchange_rate' => 6.45, 'active' => true],
-            ['name' => 'New Zealand Dollar', 'code' => 'NZD', 'symbol' => 'NZ$', 'exchange_rate' => 1.41, 'active' => true],
-            ['name' => 'Indian Rupee', 'code' => 'INR', 'symbol' => '₹', 'exchange_rate' => 73.58, 'active' => true]
-        ];
-
-        Currency::insert($currencies);
     }
 }

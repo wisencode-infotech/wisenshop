@@ -19,6 +19,7 @@ class Products extends Component
     public $sort = 'asc'; // default sorting
     public $minPrice = null;
     public $maxPrice = null;
+    public $exclude_product_ids = [];
 
     // Pagination theme - adjust as per your CSS framework
     protected $paginationTheme = 'bootstrap'; // or 'tailwind'
@@ -31,12 +32,12 @@ class Products extends Component
      * @param int|null $category_id
      * @param int $per_page
      */
-    public function mount($category_id = null, $per_page = 10)
+    public function mount($category_id = null, $per_page = 10, $exclude_product_ids = [])
     {
-        // Session::forget('cart');
         $this->category_id = $category_id ?? null;
         $this->per_page = $per_page;
         $this->paginate_count = $per_page;
+        $this->exclude_product_ids = $exclude_product_ids;
     }
 
     public function applyFilters($filters)
@@ -108,6 +109,11 @@ class Products extends Component
 
         // Sort products by name
         $query->orderBy('name', $this->sort);
+
+        // Exclude specific product_ids
+        if (!empty($this->exclude_product_ids)) {
+            $query->whereNotIn('id', $this->exclude_product_ids);
+        }
 
         // Paginate results
         $products = $query->paginate($this->paginate_count);

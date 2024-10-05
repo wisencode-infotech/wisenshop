@@ -1,6 +1,7 @@
 <?php
 
 use App\Helpers\CartHelper;
+use App\Helpers\WishlistHelper;
 use Illuminate\Support\Facades\Route;
 use App\Livewire\ContactPage;
 use App\Livewire\HomePage;
@@ -13,6 +14,8 @@ use Illuminate\Support\Facades\Session;
 use Livewire\Livewire;
 use Illuminate\Support\Facades\App;
 use App\Http\Middleware\SetLocale;
+use App\Models\Wishlist;
+use Illuminate\Support\Facades\Cache;
 
 Route::middleware([SetLocale::class])->group(function () {
 // Homepage
@@ -54,10 +57,22 @@ Route::get('/locale/{locale}', function (string $locale) {
     return redirect()->back();
 })->name('change.locale');
 
+Route::get('/currency/{currency}', function (string $currency) {
+    
+    $cache_key = "user.currency";
+
+    Cache::forget($cache_key);
+
+    Session::put('user_currency_code', $currency);
+
+    return redirect()->back();
+})->name('change.currency');
+
 
 Route::get('/fetch-session-preferences', function() {
     return response()->json([
-        'cart' => CartHelper::items()
+        'cart' => CartHelper::items(),
+        'wishlist' => WishlistHelper::items()
     ]);
 })->name('fetch-session-preferences');
 
@@ -69,7 +84,7 @@ Route::post('/sync-session-preferences', function(Request $request) {
     $wishlist = $request->wishlist ?? [];
 
     $stored_shopping_cart = CartHelper::items();
-    $stored_wishlist = wishList();
+    $stored_wishlist = WishlistHelper::items();
 
     if (!empty($cart) && empty($stored_shopping_cart)) {
         Session::put('cart', $cart ?? []);

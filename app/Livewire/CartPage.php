@@ -22,7 +22,7 @@ class CartPage extends Component
 
     public function updateCartQuantity($data)
     {
-        CartHelper::saveQuantity($data['productId'], $data['quantity']);
+        CartHelper::saveQuantity($data['product_id'], $data['quantity']);
 
         $this->cart_items = CartHelper::items();
 

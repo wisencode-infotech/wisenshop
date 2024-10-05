@@ -28,6 +28,17 @@
                                 @if ($setting->value)
                                     <img src="{{ asset($setting->value) }}" alt="Header Logo" style="max-width: 200px; margin-top: 10px;">
                                 @endif
+
+                            @elseif($setting->key === 'site_currency')
+                                
+                                <select name="settings[{{ $loop->index }}][value]" class="form-select  @error('settings.'.$loop->index.'.value') is-invalid @enderror" required>
+                                    @foreach($currencies as $currency)
+                                        <option value="{{ $currency->code }}" {{ $setting->value == $currency->code ? 'selected' : '' }}>
+                                            {{ $currency->name }} ({{ $currency->symbol }})
+                                        </option>
+                                    @endforeach
+                                </select>  
+
                             @else
                                 <input type="text" name="settings[{{ $loop->index }}][value]" class="form-control @error('settings.'.$loop->index.'.value') is-invalid @enderror" value="{{ $setting->value }}" required>
                             @endif

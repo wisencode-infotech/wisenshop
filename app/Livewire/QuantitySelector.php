@@ -4,25 +4,26 @@ namespace App\Livewire;
 
 use App\Helpers\CartHelper;
 use Livewire\Component;
-use Illuminate\Support\Facades\Session;
 
 class QuantitySelector extends Component
 {
     public $quantity = 0; // Default quantity
-    public $productId; // To hold the product ID
+    public $product_id; // To hold the product ID
+    public $product_has_variation = false;
     public $layout = 'slim'; 
 
-    public function mount($productId, $layout = 'slim')
+    public function mount($product_id, $layout = 'slim', $product_has_variation = false)
     {
-        $this->productId = $productId;
+        $this->product_id = $product_id;
         $this->layout = $layout;
+        $this->product_has_variation = $product_has_variation;
 
         // Check if the product already exists in the session (cart)
         $cart = CartHelper::items();
 
         // If the item exists in the cart, set the quantity
-        if (isset($cart[$this->productId])) {
-            $this->quantity = $cart[$this->productId]['quantity'];
+        if (isset($cart[$this->product_id])) {
+            $this->quantity = $cart[$this->product_id]['quantity'];
         }
     }
 
@@ -30,14 +31,14 @@ class QuantitySelector extends Component
     {
         $this->quantity++;
 
-        CartHelper::saveQuantity($this->productId, $this->quantity);
+        CartHelper::saveQuantity($this->product_id, $this->quantity);
 
         if ($this->quantity == 1) {
             $this->dispatch('itemAdded'); // dispatch event with item price
         }
 
         // Dispatch an event for quantity change
-        $this->dispatch('quantityUpdated', ['productId' => $this->productId, 'quantity' => $this->quantity]);
+        $this->dispatch('quantityUpdated', ['product_id' => $this->product_id, 'quantity' => $this->quantity]);
 
         $this->dispatch('shoppingCartUpdated');
     }
@@ -47,14 +48,14 @@ class QuantitySelector extends Component
         if ($this->quantity > 0) {
             $this->quantity--;
 
-            CartHelper::saveQuantity($this->productId, $this->quantity);
+            CartHelper::saveQuantity($this->product_id, $this->quantity);
 
             if ($this->quantity == 0) {
                 $this->dispatch('itemRemoved');
             }
 
             // Dispatch an event for quantity change
-            $this->dispatch('quantityUpdated', ['productId' => $this->productId, 'quantity' => $this->quantity]);
+            $this->dispatch('quantityUpdated', ['product_id' => $this->product_id, 'quantity' => $this->quantity]);
 
             $this->dispatch('shoppingCartUpdated');
         }

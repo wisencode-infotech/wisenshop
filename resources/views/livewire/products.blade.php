@@ -38,13 +38,17 @@
                             
                             <div class="flex overflow-hidden order-5 sm:order-4 w-9 sm:w-24 h-24 sm:h-10 bg-accent text-light rounded-full flex-col-reverse sm:flex-row absolute sm:relative bottom-0 sm:bottom-auto ltr:right-0 rtl:left-0 ltr:sm:right-auto ltr:sm:left-auto">
 
-                            @livewire('quantity-selector', ['productId' => $product->id, key(uniqid())])
+                            @livewire('quantity-selector', ['product_id' => $product->id, key(uniqid())])
                             
                             </div>
 
-                            <div class="relative"><del
-                                    class="absolute text-xs italic text-opacity-75 -top-4 text-muted md:-top-5">${{ $product->price }}</del><span
-                                    class="text-sm font-semibold text-accent md:text-base">${{ $product->discounted_price }}</span>
+                            <div class="relative">
+
+                                @if ($product->discounted_price < $product->price)
+                                    <del class="absolute text-xs italic text-opacity-75 -top-4 text-muted md:-top-5">{{ __userCurrencySymbol() }} {{ $product->price }}</del>
+                                @endif
+                                
+                                <span class="text-sm font-semibold text-accent md:text-base">{{ __userCurrencySymbol() }} {{ $product->discounted_price }}</span>
                             </div>
                             <div class="hidden">
                                 <button wire:navigate href="{{ route('frontend.product-detail', ['product_slug' => $product->slug]) }}"

@@ -14,10 +14,14 @@
                                 role="button" 
                                  :class="{ 'active': selectedCategoryId == {{ $category->id }} }" 
             
-                                x-on:click="
-                                    selectedCategoryId = {{ $category->id }};
-                                    $dispatch('category-selected', { category_id: {{ $category->id }} })
-                                "
+                                 x-on:click="
+                                        if (selectedCategoryId === {{ $category->id }}) {
+                                            selectedCategoryId = null; // Deselect the category
+                                        } else {
+                                            selectedCategoryId = {{ $category->id }}; // Select the category
+                                        }
+                                        $dispatch('category-selected', { category_id: selectedCategoryId })
+                                    "
                             >
                                 <!-- Full Width and Height Image -->
                                 <img src="{{ $category->image_url }}" class="absolute inset-0 w-full h-full object-cover" />

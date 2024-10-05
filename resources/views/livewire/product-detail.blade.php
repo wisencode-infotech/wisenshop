@@ -70,7 +70,7 @@
                                  {{ $product->name }}
                               </h1>
 
-                              <div class="flex items-center space-x-8 rtl:space-x-reverse">
+                              <div class="flex items-center rtl:space-x-reverse">
                                  @livewire('remind-when-stock-available', ['product' => $product])
                                  <livewire:wishlist-button :product_id="$product->id" />
                               </div>

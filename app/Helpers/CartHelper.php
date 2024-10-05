@@ -26,23 +26,30 @@ class CartHelper
                     [
                         'user_id' => $user_id,
                         'product_id' => $product_id,
+                        'product_variant_id' => $product_variant_id
                     ],
                     ['quantity' => $quantity]
                 );
             } else {
                 Cart::where('user_id', $user_id)
                     ->where('product_id', $product_id)
+                    ->where('product_variant_id', $product_variant_id)
                     ->delete();
             }
         } else { // Save to session
             $cart = CartHelper::items();
 
+            if (empty($product_variant_id))
+                $product_key = $product_id;
+            else
+                $product_key = $product_id . '||' . $product_variant_id;
+
             if ($quantity > 0) {
-                $cart[$product_id] = [
+                $cart[$product_key] = [
                     'quantity' => $quantity,
                 ];
             } else {
-                unset($cart[$product_id]);
+                unset($cart[$product_key]);
             }
 
             Session::put('cart', $cart);
@@ -62,7 +69,10 @@ class CartHelper
             $cart_items = [];
 
             foreach ($db_cart_items as $db_item) {
-                $cart_items[$db_item->product_id] = [
+
+                $product_key = (empty($db_item->product_variant_id)) ? $db_item->product_id : $db_item->product_id . '||' . $db_item->product_variant_id;
+
+                $cart_items[$product_key] = [
                     'quantity' => $db_item->quantity,
                     'product_price' => $db_item->product->discounted_price ?? 0,
                     'product' => $db_item->product,
@@ -112,9 +122,17 @@ class CartHelper
 
         $cart_items = Session::get('cart', []);
 
-        foreach ($cart_items as $product_id => $value) {
+        foreach ($cart_items as $cart_key => $value) {
 
-            $cart_product = Cart::where('product_id', $product_id)->where('user_id', $user_id)->first();
+            $cart_key_parts = explode('||', $cart_key);
+
+            $product_id = $cart_key_parts[0];
+            $product_variant_id = $cart_key_parts[1] ?? null;
+
+            if (empty($product_variant_id))
+                $cart_product = Cart::where('product_id', $product_id)->where('user_id', $user_id)->first();
+            else
+                $cart_product = Cart::where('product_id', $product_id)->where('product_variant_id', $product_variant_id)->where('user_id', $user_id)->first();
 
             $quantity = $value['quantity'];
 
@@ -126,6 +144,7 @@ class CartHelper
 
             $cart_product->user_id = $user_id;
             $cart_product->product_id = $product_id;
+            $cart_product->product_variant_id = $product_variant_id;
             $cart_product->quantity = $quantity;
             $cart_product->save();
         }

@@ -19,7 +19,7 @@ class ProductController extends Controller
     {
 
         if ($request->ajax()) {
-            $data = Product::latest()->get();
+            $data = Product::withoutGlobalScope('public_visibility')->latest()->get();
             return Datatables::of($data)
                 ->addIndexColumn() // Adds the row index
                 ->addColumn('category', function($row) {
@@ -41,16 +41,26 @@ class ProductController extends Controller
                         return '<span class="badge rounded-pill badge-soft-danger font-size-12">InActive</span>'; 
                     }
                 })
+                 ->addColumn('public_visibility', function($row) {
+                    if($row->public_visibility == '1')
+                    {
+                        return '<span class="badge rounded-pill badge-soft-success font-size-12">Yes</span>';
+                    }
+                    else
+                    {
+                        return '<span class="badge rounded-pill badge-soft-danger font-size-12">No</span>'; 
+                    }
+                })
                 ->addColumn('action', function($row) {
                     $btn = '<a href="'.route('backend.product.edit', $row->id).'" class="edit btn btn-primary btn-sm">Edit</a>';
                     $btn .= ' <button class="btn btn-danger btn-sm delete" data-id="'.$row->id.'">Delete</button>';
                     return $btn;
                 })
-                ->rawColumns(['action', 'status'])
+                ->rawColumns(['action', 'status', 'public_visibility'])
                 ->make(true);
         }
 
-        $products = Product::all(); // Fetch all products
+        $products = Product::withoutGlobalScope('public_visibility')->get(); // Fetch all products
         return view('backend.products.index', compact('products'));
     }
 
@@ -77,6 +87,7 @@ class ProductController extends Controller
         $product->price = $request->price;
         $product->stock = $request->stock;
         $product->category_id = $request->category_id;
+        $product->public_visibility = $request->public_visibility;
         $product->unit_id = $request->unit_id;
         $product->save();
 
@@ -115,15 +126,19 @@ class ProductController extends Controller
     /**
      * Show the form for editing the specified category.
      */
-    public function edit(Product $product)
+    public function edit($id)
     {
+        $product = Product::withoutGlobalScope('public_visibility')->where('id', $id)->first();
+        
         $units = ProductUnit::all();
         $categories = Category::all();
         return view('backend.products.edit', compact('product', 'units', 'categories')); // Return the edit view
     }
 
-    public function update(StoreProductRequest $request, Product $product)
+    public function update(StoreProductRequest $request, $id)
     {
+        $product = Product::withoutGlobalScope('public_visibility')->findOrFail($id);
+
         $validatedData = $request->validated();
 
         // Check if the product name has changed
@@ -138,6 +153,7 @@ class ProductController extends Controller
         $product->price = $request->price;
         $product->stock = $request->stock;
         $product->category_id = $request->category_id;
+        $product->public_visibility = $request->public_visibility;
         $product->unit_id = $request->unit_id;
         $product->save();
 

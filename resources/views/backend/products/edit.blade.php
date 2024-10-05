@@ -146,6 +146,15 @@
                                 @endforeach
                             </div>
                             @endif
+
+                            <div class="mb-3">
+                                <label for="public_visibility" class="form-label">{{ __trans('Public Visibility') }}</label>
+                                <select name="public_visibility" class="form-select @error('public_visibility') is-invalid @enderror">
+                                    <option value="1" @if($product->public_visibility == 1) selected @endif>{{ __trans('Yes') }}</option>
+                                    <option value="0" @if($product->public_visibility == 0) selected @endif>{{ __trans('No') }}</option>
+                                </select>
+                            </div>
+
                         </div>
                     </div>
                 </div>

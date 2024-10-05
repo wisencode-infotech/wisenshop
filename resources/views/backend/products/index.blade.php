@@ -41,6 +41,7 @@
                                     <th scope="col">Category</th>
                                     <th scope="col">Price</th>
                                     <th scope="col">Status</th>
+                                    <th scope="col">Public Visibility</th>
                                     <th scope="col">Action</th>
                                 </tr>
                             </thead>

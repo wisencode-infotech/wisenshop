@@ -9,6 +9,7 @@ use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Database\Eloquent\Relations\BelongsToMany;
 use Illuminate\Database\Eloquent\Relations\HasOne;
 use Illuminate\Database\Eloquent\SoftDeletes;
+use Illuminate\Database\Eloquent\Builder; 
 
 class Product extends Model
 {
@@ -21,6 +22,7 @@ class Product extends Model
         'price',
         'stock',
         'category_id',
+        'public_visibility',
         'status',
     ];
 
@@ -111,4 +113,13 @@ class Product extends Model
     {
         return ProductVariation::select('name')->where('product_id', $this->id)->pluck('name');
     }
+
+    // scope
+    protected static function booted()
+    {
+        static::addGlobalScope('public_visibility', function (Builder $builder) {
+            $builder->where('public_visibility', '1');
+        });
+    }
+
 }

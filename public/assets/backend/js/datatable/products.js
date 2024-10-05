@@ -9,6 +9,7 @@ $(document).ready(function () {
             { data: 'category', name: 'category' },
             { data: 'price', name: 'price' },
             { data: 'status', name: 'status' },
+            { data: 'public_visibility', name: 'public_visibility' },
             { 
                 data: 'action', 
                 name: 'action', 

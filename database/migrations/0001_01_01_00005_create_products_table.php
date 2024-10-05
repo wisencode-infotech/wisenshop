@@ -26,6 +26,8 @@ return new class extends Migration
             $table->decimal('discount_value', 8, 2)->nullable();                // discount value
             $table->datetime('discount_start_date')->nullable();               // start date of the discount
             $table->datetime('discount_end_date')->nullable();            // end date of the discount
+
+            $table->char('public_visibility', 2)->default('1');
             $table->timestamps();
             $table->softDeletes();
         });

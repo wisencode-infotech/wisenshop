@@ -15,6 +15,7 @@ return new class extends Migration
             $table->id();
             $table->string('key')->unique();
             $table->text('value');
+            $table->integer('sort_number')->nullable();
             $table->timestamps();
         });
     }

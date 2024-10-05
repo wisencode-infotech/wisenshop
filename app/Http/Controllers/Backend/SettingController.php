@@ -13,7 +13,7 @@ class SettingController extends Controller
 {
     public function index()
     {
-        $settings = Setting::all();
+        $settings = Setting::orderBy('sort_number', 'ASC')->get();
         $currencies = Currency::all(); 
 
         return view('backend.settings.index', compact('settings', 'currencies'));

@@ -126,10 +126,13 @@ class ProductController extends Controller
     {
         $validatedData = $request->validated();
 
-        $product->name = $request->name;
+        // Check if the product name has changed
+        if ($request->name !== $product->name) {
+            $slug = Str::slug($request->name);
+            $product->slug = $this->generateUniqueSlug($slug); // Update slug only if the name has changed
+        }
 
-        $slug = Str::slug($request->name);
-        $product->slug = $this->generateUniqueSlug($slug);
+        $product->name = $request->name;
         $product->short_description = $request->short_description;
         $product->description = $request->description;
         $product->price = $request->price;

@@ -32,8 +32,14 @@
                 <div class="col-lg-6">
                     <div class="card">
                         <div class="card-body">
-                            <h4 class="header-title">Product Information</h4>
-
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <h4 class="header-title">Product Information</h4>
+                                </div>
+                                <div class="col-md-6 text-end">
+                                    <a target="_blank" href="{{ route('frontend.product-detail', $product->slug) }}"><i class="fa fa-eye"></i> View Product</a>
+                                </div>
+                            </div>
                             <div class="mb-3">
                                 <label for="category_id" class="form-label">Category</label>
                                 <select name="category_id" class="form-select @error('category_id') is-invalid @enderror">
@@ -188,8 +194,12 @@
                     </div>
                 </div>
             </div>
-            <div class="form-group text-end">
-                <button type="submit" class="btn btn-success btn-rounded">Update Product</button>
+            <div class="row">
+                <div class="col-12">
+                    <div class="form-group text-end">
+                        <button type="submit" class="btn btn-success btn-rounded">Update Product</button>
+                    </div>
+                </div>
             </div>
         </form>
     </div>

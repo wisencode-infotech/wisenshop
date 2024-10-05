@@ -57,6 +57,14 @@
                     </div>
 
                     <div class="mb-3">
+                        <label for="name" class="form-label">Short Description</label>
+                        <input type="text" name="short_description" class="form-control @error('short_description') is-invalid @enderror" id="short_description" placeholder="Enter product short description" value="{{ old('short_description') }}">
+                        @error('short_description')
+                            <span class="invalid-feedback">{{ $message }}</span>
+                        @enderror
+                    </div>
+
+                    <div class="mb-3">
                         <label for="description" class="form-label">Description</label>
                         <textarea name="description" class="form-control @error('description') is-invalid @enderror" id="description" rows="4">{{ old('description') }}</textarea>
                         @error('description')
@@ -73,15 +81,7 @@
                     </div>
                     
                     <div class="mb-3">
-                        <label for="stock" class="form-label">Stock</label>
-                        <input type="number" name="stock" class="form-control @error('stock') is-invalid @enderror" id="stock" placeholder="Enter product stock" value="{{ old('stock') }}">
-                        @error('stock')
-                            <span class="invalid-feedback">{{ $message }}</span>
-                        @enderror
-                    </div>
-
-                    <div class="mb-3">
-                    <label for="unit" class="form-label">Unit</label>
+                        <label for="unit" class="form-label">Unit</label>
                         <select name="unit_id" id="unit_id" class="form-select">
                             <option value="">Select Unit</option>
                             @foreach($units as $unit)
@@ -89,6 +89,14 @@
                             @endforeach
                         </select>
                         @error('unit_id')
+                            <span class="invalid-feedback">{{ $message }}</span>
+                        @enderror
+                    </div>
+
+                    <div class="mb-3" id="stock-container">
+                        <label for="stock" class="form-label">Stock</label>
+                        <input type="number" name="stock" class="form-control @error('stock') is-invalid @enderror" id="stock" placeholder="Enter product stock" value="{{ old('stock') }}">
+                        @error('stock')
                             <span class="invalid-feedback">{{ $message }}</span>
                         @enderror
                     </div>
@@ -201,7 +209,8 @@
     });
 
     document.addEventListener('DOMContentLoaded', function () {
-        const unitSelect = document.getElementById('unit_id'); // Select element for unit
+        const unitSelect = document.getElementById('unit_id');
+        const mainStockContainer = document.getElementById('stock-container');
         const variationsSection = document.getElementById('variations-section');
 
         function toggleVariationsSection() {
@@ -214,8 +223,10 @@
             // Show or hide the variations section based on the attribute
             if (canHaveVariations) {
                 variationsSection.style.display = 'block';
+                mainStockContainer.style.display = 'none';
             } else {
                 variationsSection.style.display = 'none';
+                mainStockContainer.style.display = 'block';
             }
         }
 

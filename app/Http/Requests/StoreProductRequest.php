@@ -22,6 +22,7 @@ class StoreProductRequest extends FormRequest
         $rules = [
             'category_id' => 'required|exists:categories,id',
             'name' => 'required|string|max:255',
+            'short_description' => 'required|string|max:255',
             'description' => 'required|string',
             'price' => 'required|numeric|min:0',
             'stock' => 'nullable|integer|min:0',
@@ -50,6 +51,8 @@ class StoreProductRequest extends FormRequest
             'category_id.required' => 'Please select a category.',
             'category_id.exists' => 'Selected category does not exist.',
             'name.required' => 'Product name is required.',
+            'short_description.required' => 'Short description is required.',
+            'short_description.max' => 'Short description must not greater than 255 characters',
             'description.required' => 'Product description is required.',
             'price.required' => 'Price is required.',
             'price.numeric' => 'Price must be a valid number.',

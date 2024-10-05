@@ -71,6 +71,7 @@ class ProductController extends Controller
 
         $product = new Product();
         $product->name = $request->name;
+        $product->short_description = $request->short_description;
         $product->slug = $slug;
         $product->description = $request->description;
         $product->price = $request->price;
@@ -93,7 +94,12 @@ class ProductController extends Controller
             }
         }
 
-        if (!empty($request->variations)) {
+        // Check if all variations are empty
+        $variationsNotEmpty = collect($request->variations)->contains(function ($variation) {
+            return !is_null($variation['name']) || !is_null($variation['price']) || !is_null($variation['stock']);
+        });
+
+        if (!empty($variationsNotEmpty)) {
             foreach ($request->variations as $variation) {
                 $product->variations()->create([
                     'name' => $variation['name'],
@@ -124,6 +130,7 @@ class ProductController extends Controller
 
         $slug = Str::slug($request->name);
         $product->slug = $this->generateUniqueSlug($slug);
+        $product->short_description = $request->short_description;
         $product->description = $request->description;
         $product->price = $request->price;
         $product->stock = $request->stock;
@@ -145,7 +152,12 @@ class ProductController extends Controller
             }
         }
 
-        if (!empty($request->variations)) {
+        // Check if all variations are empty
+        $variationsNotEmpty = collect($request->variations)->contains(function ($variation) {
+            return !is_null($variation['name']) || !is_null($variation['price']) || !is_null($variation['stock']);
+        });
+
+        if (!empty($variationsNotEmpty)) {
             // Get current product variations from the database
             $existingVariations = $product->variations()->pluck('id')->toArray();
             $requestVariationIds = array_filter(array_column($request->variations, 'id')); // Filter out any null/undefined IDs from the request
@@ -214,7 +226,7 @@ class ProductController extends Controller
         $count = 1;
 
         // Keep checking if the slug exists and append a number if it does
-        while (Product::where('slug', $slug)->exists()) {
+        while (Product::where('slug', $slug)->withTrashed()->exists()) {
             $slug = $originalSlug . '-' . $count;
             $count++;
         }

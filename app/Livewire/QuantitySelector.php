@@ -15,20 +15,24 @@ class QuantitySelector extends Component
 
     protected $listeners = ['productVariantChanged'];
 
-    public function mount($product_id, $layout = 'slim')
+    public function mount($product_id, $layout = 'slim', $product_variation_id = null)
     {
         $this->product_id = $product_id;
         $this->layout = $layout;
 
-        $product_variations_query = ProductVariation::select('id')->where('product_id', $this->product_id);
-        $this->product_variation_id = ($product_variations_query->count() > 0) ? $product_variations_query->first()->id ?? null : null;
+        if (!empty($product_variation_id)) {
+            $this->product_variation_id = $product_variation_id;
+        } else {
+            $product_variations_query = ProductVariation::select('id')->where('product_id', $this->product_id);
+            $this->product_variation_id = ($product_variations_query->count() > 0) ? $product_variations_query->first()->id ?? null : null;
+        }
 
         // Check if the product already exists in the session (cart)
         $cart = CartHelper::items();
 
         // If the item exists in the cart, set the quantity
-        if (isset($cart[$this->product_id])) {
-            // $this->quantity = $cart[$this->product_id]['quantity'];
+        if (isset($cart[CartHelper::generateKey($this->product_id, $this->product_variation_id)])) {
+            $this->quantity = $cart[CartHelper::generateKey($this->product_id, $this->product_variation_id)]['quantity'];
         }
     }
 

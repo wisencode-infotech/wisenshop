@@ -37,7 +37,7 @@
                            @foreach($cart as $cart_key => $item)
                               <div class="flex items-center border-b border-solid border-border-200 border-opacity-75 px-4 py-4 text-sm sm:px-6" style="opacity: 1;">
 
-                                 @livewire('quantity-selector', ['product_id' => $item['product_id'], 'layout' => 'cart', key(uniqid())])
+                                 @livewire('quantity-selector', ['product_id' => $item['product_id'], 'product_variation_id' => $item['product_variation_id'], 'layout' => 'cart', key(uniqid())])
                                  
                                  <div class="relative mx-4 flex h-10 w-10 shrink-0 items-center justify-center overflow-hidden bg-gray-100 sm:h-16 sm:w-16"><img alt="Apples" loading="lazy" decoding="async" data-nimg="fill" class="object-contain" sizes="(max-width: 768px) 100vw" srcset="{{ $item['product']->display_image_url }}" src="{{ $item['product']->display_image_url }}" style="position: absolute; height: 100%; width: 100%; inset: 0px; color: transparent;"></div>
                                  <div>
@@ -45,7 +45,7 @@
                                     <p class="my-2.5 font-semibold text-accent">${{ $item['product']->discounted_price }}</p>
                                     <!-- <span class="text-xs text-body">{{ $item['quantity'] }} X 1lb</span> -->
                                  </div>
-                                 <span class="font-bold text-heading ltr:ml-auto rtl:mr-auto">${{ $item['product']->discounted_price *  $item['quantity']}}</span>
+                                 <span class="font-bold text-heading ltr:ml-auto rtl:mr-auto">{{ __userCurrencySymbol() }} {{ $item['product']->discounted_price *  $item['quantity']}}</span>
                                  <button  x-on:click="$dispatch('remove-cart-product', { product_id: {{ $item['product_id'] }} }) " class="flex h-7 w-7 shrink-0 items-center justify-center rounded-full text-muted transition-all duration-200 hover:bg-gray-100 hover:text-red-600 focus:bg-gray-100 focus:text-red-600 focus:outline-0 ltr:ml-3 ltr:-mr-2 rtl:mr-3 rtl:-ml-2">
                                     <span class="sr-only">close</span>
                                     <svg class="h-3 w-3" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor">

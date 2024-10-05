@@ -10,7 +10,11 @@ class Logout extends Component
 {
     public function logout()
     {
+        $current_locale = session('app_locale', config('locale', 'es'));
+
         Session::flush();
+
+        session()->put('app_locale', $current_locale);
 
         Auth::logout(); // Log the user out
 

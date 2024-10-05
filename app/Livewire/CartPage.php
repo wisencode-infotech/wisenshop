@@ -29,7 +29,7 @@ class CartPage extends Component
         $this->total_price = CartHelper::total();
     }
 
-    public function removeCartProduct($product_id, $product_variation_id)
+    public function removeCartProduct($product_id, $product_variation_id = null)
     {
         CartHelper::removeItem($product_id, $product_variation_id);
 
@@ -44,6 +44,7 @@ class CartPage extends Component
 
     public function render()
     {
+        // dd($this->cart_items);
         return view('livewire.cart-page', [
             'cart' => $this->cart_items
         ]);

@@ -125,6 +125,8 @@ class CartHelper
 
         $cart_items = Session::get('cart', []);
 
+        // dd($cart_items);
+
         foreach ($cart_items as $cart_key => $value) {
 
             list($product_id, $product_variation_id) = self::parseKey($cart_key);
@@ -162,11 +164,11 @@ class CartHelper
 
     public static function parseKey($cart_key = '')
     {
-        $cart_key_parts = explode('||', $cart_key);
+        $cart_key_parts = explode('||', (string) $cart_key);
 
         return [
-            'product_id' => $cart_key_parts[0] ?? 0,
-            'product_variation_id' => $cart_key_parts[1] ?? null
+            $cart_key_parts[0] ?? 0,
+            $cart_key_parts[1] ?? null
         ];
     }
 }

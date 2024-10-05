@@ -121,7 +121,7 @@ class RemindWhenStockAvailable extends Component
         if (!empty($this->product_variation_id))
             $this->stock = ProductVariation::select('stock')->where('id', $this->product_variation_id)->first()->stock ?? 0;
         else
-            $this->stock = Product::select('stock')->where('id', $this->product_id)->first()->stock ?? 0;
+            $this->stock = Product::select('stock')->where('id', $this->product->id)->first()->stock ?? 0;
     }
 
     public function productVariantChanged($product_id, $product_variation_id = null)

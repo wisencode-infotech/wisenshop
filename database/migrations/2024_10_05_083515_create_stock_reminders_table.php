@@ -14,7 +14,7 @@ return new class extends Migration
         Schema::create('stock_reminders', function (Blueprint $table) {
             $table->id();
             $table->foreignId('product_id')->constrained('products')->onDelete('cascade');
-            $table->integer('variant_id')->nullable();
+            $table->foreignId('product_variation_id')->nullable()->constrained('product_variations')->onDelete('cascade');
             $table->string('email');
             $table->timestamps();
         });

@@ -43,7 +43,7 @@ class RemindWhenStockAvailable extends Component
 
             if (!empty($product_variation_id)) {
                 $this->isReminded = StockReminder::where('product_id', $this->product->id)
-                ->where('variant_id', $product_variation_id)
+                ->where('product_variation_id', $product_variation_id)
                 ->where('email', Auth::user()->email)
                 ->exists();
             } else {
@@ -65,6 +65,7 @@ class RemindWhenStockAvailable extends Component
                     // Create stock reminder for user
                     StockReminder::create([
                         'product_id' => $this->product->id,
+                        'product_variation_id' => $this->product_variation_id,
                         'email' => $this->email,
                     ]);
                 }
@@ -90,12 +91,12 @@ class RemindWhenStockAvailable extends Component
 
         if (!empty($this->product_variation_id)) {
             if (!StockReminder::where('product_id', $this->product->id)
-            ->where('variant_id', $this->product_variation_id)
+            ->where('product_variation_id', $this->product_variation_id)
             ->where('email', $this->email)
             ->exists()) {
                 StockReminder::create([
                 'product_id' => $this->product->id,
-                'variant_id' => $this->product_variation_id,
+                'product_variation_id' => $this->product_variation_id,
                 'email' => $this->email,
                 ]);
             }

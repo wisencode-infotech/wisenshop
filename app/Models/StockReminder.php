@@ -10,6 +10,6 @@ class StockReminder extends Model
     use HasFactory;
 
     protected $fillable = [
-        'email', 'product_id', 'variant_id'
+        'email', 'product_id', 'product_variation_id'
     ];
 }

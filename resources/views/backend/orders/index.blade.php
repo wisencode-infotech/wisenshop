@@ -54,4 +54,28 @@
 @endsection
 @section('script')
 <script src="{{ asset('assets/backend/js/datatable/orders.js') }}"></script>
+<script type="text/javascript">
+    $(document).on('click', '.update-order-status', function(e) {
+        e.preventDefault(); 
+        let url = $(this).attr('href'); 
+        $.ajax({
+            url: url,
+            type: 'POST',
+            data: {
+                _token: "{{ csrf_token() }}" 
+            },
+            success: function(response) {
+                if (response.success) {
+                     $('#orders-table').DataTable().ajax.reload(null, false);
+                } else {
+                    alert('Failed to update status. Please try again.');
+                }
+            },
+            error: function(xhr, status, error) {
+                console.log('AJAX Error:', error);
+                alert('An error occurred. Please try again.');
+            }
+        });
+    });
+</script>
 @endsection

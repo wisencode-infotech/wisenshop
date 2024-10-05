@@ -32,7 +32,7 @@ Route::middleware(['auth'])->group(function () {
     Route::delete('product/image/{image}/remove', [ProductController::class, 'destroyImage'])->name('product.image.remove');
 
     Route::group(['prefix' => 'order', 'as' => 'order.'], function() {
-        Route::post('status', [OrderController::class, 'updateStatus'])->name('update.status');
+        Route::post('status/{order}', [OrderController::class, 'updateStatus'])->name('update.status');
     });
 
 });

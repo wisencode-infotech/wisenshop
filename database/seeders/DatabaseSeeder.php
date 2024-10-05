@@ -2,9 +2,9 @@
 
 namespace Database\Seeders;
 
-use App\Models\User;
-// use Illuminate\Database\Console\Seeds\WithoutModelEvents;
+use App\Models\Setting;
 use Illuminate\Database\Seeder;
+use Illuminate\Support\Facades\Artisan;
 
 class DatabaseSeeder extends Seeder
 {
@@ -13,6 +13,23 @@ class DatabaseSeeder extends Seeder
      */
     public function run(): void
     {
-        // User::factory(10)->create();
+        // Language seeder
+        (new LanguageSeeder())->run();
+
+        // Currency seeder
+        (new CurrencySeeder())->run();
+
+        // Set site base currency in settings
+        Setting::updateOrCreate([
+            'key' => 'site_currency'
+        ], [
+            'value' => 'EUR'
+        ]);
+
+        // Update currency exchange rates based on site base currency
+        Artisan::call('currency:update-exchange-rates');
+
+        // ProductUnit seeder
+        (new ProductUnitSeeder())->run();
     }
 }

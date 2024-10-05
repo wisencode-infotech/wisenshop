@@ -1,4 +1,4 @@
-<div class="w-full pt-4 pb-20 lg:py-6 px-4 xl:px-0 mt-4">
+<div class="w-full pt-4 pb-20 lg:py-6 px-4 xl:px-0">
 
     @if(count($products) == 0)
 

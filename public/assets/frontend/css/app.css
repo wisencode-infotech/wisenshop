@@ -21,3 +21,53 @@
 .wire-loading.flex {
     display: flex;
 }
+
+/*custom css*/
+.banner-slide-content {
+    background-size: cover; /* Ensures the background image covers the entire slide */
+    background-position: center; /* Centers the background image */
+    color: white; /* Change this based on your background */
+    padding: 20px; /* Adjust padding as needed */
+    height: 200px; /* Adjust height as needed */
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    position: relative; /* Ensures the content is positioned correctly */
+}
+
+.banner-title {
+    font-size: 1.5rem; /* Adjust font size as needed */
+    margin: 0.5rem 0;
+    text-align: left; /* Center the title text */
+}
+
+.banner-description {
+    font-size: 1rem; /* Adjust font size as needed */
+    margin: 0.5rem 0;
+    text-align: left; /* Center the description text */
+}
+
+.product_category {
+    border-width: 1px !important;
+}
+
+.product_category:hover{
+	border-color: #009f7f !important;
+}
+
+.product_category.active{
+	border-color: #009f7f !important;
+}
+
+button.products-filter {
+    background-color: #2299dd;
+    color: #fff;
+}
+
+button.products-filter:hover {
+    background-color: #1979b1;
+    color: #fff;
+}
+
+/*End custom css*/

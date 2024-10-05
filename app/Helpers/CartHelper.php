@@ -4,6 +4,7 @@ namespace App\Helpers;
 
 use App\Models\Cart;
 use App\Models\Product;
+use App\Models\ProductVariation;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Session;
 
@@ -77,6 +78,7 @@ class CartHelper
                     'product_id' => $product->id,
                     'product_variation_id' => $db_cart_item->product_variation_id,
                     'product_name' => $product->name,
+                    'product_variation_name' => (!empty($db_cart_item->product_variation_id)) ? ProductVariation::find($db_cart_item->product_variation_id)->name ?? '' : '',
                     'product_price' => $product->priceWithCurrency() ?? 0,
                     'product_picture' => $product->display_image_url,
                     'quantity' => $db_cart_item->quantity
@@ -154,6 +156,18 @@ class CartHelper
         }
 
         Session::forget('cart');
+    }
+
+    public static function getQuantity($product_id, $product_variation_id, $initial_quantity = 0)
+    {   
+        $quantity = $initial_quantity;
+
+        $items = self::items();
+
+        if (isset($items[self::generateKey($product_id, $product_variation_id)]))
+            $quantity = $items[self::generateKey($product_id, $product_variation_id)]['quantity'];
+
+        return $quantity;
     }
 
     public static function generateKey($product_id, $product_variation_id)

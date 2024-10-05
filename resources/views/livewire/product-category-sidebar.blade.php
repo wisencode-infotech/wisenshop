@@ -1,5 +1,4 @@
 <div class="sticky hidden h-full bg-gray-100 lg:w-[380px] xl:block top-32 xl:top-24 2xl:top-22">
-      
     <aside class="hidden h-full w-full bg-light lg:sticky lg:w-[380px] lg:bg-gray-100 xl:block  lg:top-22">
         
         <div data-overlayscrollbars-initialize="" class="os-theme-thin-dark" style="max-height:calc(100vh - 88px)" data-overlayscrollbars="host">
@@ -8,14 +7,10 @@
             </div>
             <div data-overlayscrollbars-contents="" data-overlayscrollbars-viewport="scrollbarHidden" style="margin-right: 0px; margin-bottom: 0px; margin-left: 0px; top: 0px; right: auto; left: 0px; width: calc(100% + 0px); padding: 0px; overflow-y: scroll;">
                 <div class="p-5">
-
-                    <a  wire:navigate href="{{ route('frontend.home') }}" class="text-sm text-green-600 hover:text-green-800 font-semibold transition duration-200 ease-in-out">
-                        <i class="fa fa-filter"></i>
-                        {{ __trans('Clear Filter') }}</a>
                     
                     <div x-data="{ selectedCategoryId: @entangle('selectedCategoryId') }" class="grid grid-cols-2 gap-4">
                         @foreach($product_categories as $category)
-                            <div class="relative text-center rounded flex items-end overflow-hidden cursor-pointer border-2 h-40 product_category" 
+                            <div class="relative text-center rounded flex items-end overflow-hidden cursor-pointer h-40 product_category" 
                                 role="button" 
                                  :class="{ 'active': selectedCategoryId == {{ $category->id }} }" 
             
@@ -29,8 +24,8 @@
                                 
                                 <!-- Overlay for Title -->
                                 <div class="absolute inset-0 flex items-end justify-center">
-                                    <span class="text-sm md:text-md font-semibold text-white text-center px-2.5 block bg-black bg-opacity-20 w-full">
-                                        {{ $category->name }}
+                                    <span class="text-sm md:text-md font-semibold text-white text-center block bg-black bg-opacity-20 w-full">
+                                        {{ \Str::limit($category->name, 18) }}
                                     </span>
                                 </div>
                             </div>
@@ -50,5 +45,10 @@
             </div>
         </div>
     </aside>
+
+    <button class="products-filter fixed top-1/2 z-40 -mt-5 hidden flex-col items-center justify-center rounded bg-accent p-3 pt-3.5 text-sm font-semibold text-light shadow-900 transition-colors duration-200 focus:outline-0 ltr:left-0 rtl:rounded-tr-none rtl:rounded-br-none ltr:rug-0 ltr:rounded-tl-none ltr:rounded-bl-none lg:flex bg-opacity-80">
+        <i class="fa fa-filter"></i>
+    </button>
+
 </div>
 

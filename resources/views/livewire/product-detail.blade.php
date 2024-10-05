@@ -79,7 +79,7 @@
                               </div>
                            </div>
                            <div class="mt-3 text-sm leading-7 text-body md:mt-4 react-editor-description">
-                              <div>{!! $product->description !!}</div>
+                              <div>{!! $product->short_description !!}</div>
                               {{-- <br><span><button class="mt-1 inline-block font-bold text-accent ">Read more</button></span> --}}
                            </div>
                            <span class="my-5 flex items-center md:my-10">

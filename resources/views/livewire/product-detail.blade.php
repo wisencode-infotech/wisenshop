@@ -102,7 +102,7 @@
                                 @livewire('quantity-selector', ['product_id' => $product->id, 'layout' => 'large'])
                             </div>
 
-                              {{-- <span class="whitespace-nowrap text-base text-body ltr:lg:ml-7 rtl:lg:mr-7">{{ $product->stock }} pieces available</span> --}}
+                              <span class="whitespace-nowrap text-base text-body ltr:lg:ml-7 rtl:lg:mr-7">{{ $product->stock }} {{ __trans('pieces available') }}</span>
                            </div>
                         </div>
                         <div class="mt-4 flex w-full flex-row items-start border-t border-border-200 border-opacity-60 pt-4 md:mt-6 md:pt-6">

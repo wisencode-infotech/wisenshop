@@ -65,9 +65,15 @@
                      </div>
                      <div class="flex flex-col items-start p-5 pt-10 md:w-1/2 lg:p-14 xl:p-16">
                         <div class="w-full">
-                           <div class="flex w-full items-start justify-between space-x-8 rtl:space-x-reverse">
-                              <h1 class="text-lg font-semibold tracking-tight text-heading md:text-xl xl:text-2xl cursor-pointer transition-colors hover:text-accent">{{ $product->name }}</h1>
-                              <livewire:wishlist-button :product_id="$product->id" />
+                           <div class="flex w-full items-center justify-between">
+                              <h1 class="text-lg font-semibold tracking-tight text-heading md:text-xl xl:text-2xl cursor-pointer transition-colors hover:text-accent">
+                                 {{ $product->name }}
+                              </h1>
+
+                              <div class="flex items-center space-x-8 rtl:space-x-reverse">
+                                 @livewire('remind-when-stock-available', ['product' => $product])
+                                 <livewire:wishlist-button :product_id="$product->id" />
+                              </div>
                            </div>
                            <div class="mt-2 flex items-center justify-between">
                               <div class="inline-flex shrink-0 items-center rounded border border-accent bg-accent px-3 py-1 text-sm text-white">

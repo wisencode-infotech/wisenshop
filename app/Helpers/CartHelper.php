@@ -14,7 +14,7 @@ class CartHelper
         return (Auth::check()) ? 'database' : 'session';
     }
 
-    public static function saveQuantity($product_id, $quantity)
+    public static function saveQuantity($product_id, $product_variant_id, $quantity)
     {
         $disk = self::disk();
 
@@ -88,9 +88,9 @@ class CartHelper
         }
     }
 
-    public static function removeItem($product_id)
+    public static function removeItem($product_id, $product_variant_id)
     {
-        self::saveQuantity($product_id, 0);
+        self::saveQuantity($product_id, $product_variant_id, 0);
     }
 
     public static function total()

@@ -22,6 +22,10 @@ return new class extends Migration
             $table->boolean('status')->default(1); // Active or inactive
             $table->foreignId('category_id')->constrained('categories')->onDelete('cascade');
             $table->foreignId('unit_id')->nullable()->constrained('product_units')->onDelete('cascade');
+            $table->enum('discount_type', ['percentage', 'amount'])->nullable();  // discount type (percentage or amount)
+            $table->decimal('discount_value', 8, 2)->nullable();                // discount value
+            $table->datetime('discount_start_date')->nullable();               // start date of the discount
+            $table->datetime('discount_end_date')->nullable();            // end date of the discount
             $table->timestamps();
             $table->softDeletes();
         });

@@ -3,42 +3,52 @@
 namespace App\Livewire;
 
 use App\Helpers\CartHelper;
+use App\Models\ProductVariation;
 use Livewire\Component;
 
 class QuantitySelector extends Component
 {
     public $quantity = 0; // Default quantity
     public $product_id; // To hold the product ID
-    public $product_has_variation = false;
-    public $layout = 'slim'; 
+    public $product_variant_id = null; // To hold the product variant ID
+    public $layout = 'slim';
 
-    public function mount($product_id, $layout = 'slim', $product_has_variation = false)
+    protected $listeners = ['productVariantChanged'];
+
+    public function mount($product_id, $layout = 'slim')
     {
         $this->product_id = $product_id;
         $this->layout = $layout;
-        $this->product_has_variation = $product_has_variation;
+
+        $product_variations_query = ProductVariation::select('id')->where('product_id', $this->product_id);
+        $this->product_variant_id = ($product_variations_query->count() > 0) ? $product_variations_query->first()->id ?? null : null;
 
         // Check if the product already exists in the session (cart)
         $cart = CartHelper::items();
 
         // If the item exists in the cart, set the quantity
         if (isset($cart[$this->product_id])) {
-            $this->quantity = $cart[$this->product_id]['quantity'];
+            // $this->quantity = $cart[$this->product_id]['quantity'];
         }
+    }
+
+    public function productVariantChanged($product_variant_id)
+    {
+        $this->product_variant_id = $product_variant_id;
     }
 
     public function increment()
     {
         $this->quantity++;
 
-        CartHelper::saveQuantity($this->product_id, $this->quantity);
+        CartHelper::saveQuantity($this->product_id, $this->product_variant_id, $this->quantity);
 
         if ($this->quantity == 1) {
             $this->dispatch('itemAdded'); // dispatch event with item price
         }
 
         // Dispatch an event for quantity change
-        $this->dispatch('quantityUpdated', ['product_id' => $this->product_id, 'quantity' => $this->quantity]);
+        $this->dispatch('quantityUpdated', ['product_id' => $this->product_id, 'product_variant_id' => $this->product_variant_id, 'quantity' => $this->quantity]);
 
         $this->dispatch('shoppingCartUpdated');
     }
@@ -48,14 +58,14 @@ class QuantitySelector extends Component
         if ($this->quantity > 0) {
             $this->quantity--;
 
-            CartHelper::saveQuantity($this->product_id, $this->quantity);
+            CartHelper::saveQuantity($this->product_id, $this->product_variant_id, $this->quantity);
 
             if ($this->quantity == 0) {
                 $this->dispatch('itemRemoved');
             }
 
             // Dispatch an event for quantity change
-            $this->dispatch('quantityUpdated', ['product_id' => $this->product_id, 'quantity' => $this->quantity]);
+            $this->dispatch('quantityUpdated', ['product_id' => $this->product_id, 'product_variant_id' => $this->product_variant_id, 'quantity' => $this->quantity]);
 
             $this->dispatch('shoppingCartUpdated');
         }

@@ -70,22 +70,15 @@ class FakeAppSeeder extends Seeder
             ]);
         }
 
-
         // Products seeder
 
         $categories = Category::all();
+        $product_unit_ids = ProductUnit::pluck('id')->toArray();
 
         foreach ($categories as $category) {
             Product::factory(10)->create([
                 'category_id' => $category->id,
-            ]);
-        }
-
-        $product_units = ProductUnit::all();
-
-        foreach ($product_units as $product_unit) {
-            Product::factory(10)->create([
-                'unit_id' => $product_unit->id,
+                'unit_id' => $product_unit_ids[array_rand($product_unit_ids)]
             ]);
         }
 

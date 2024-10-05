@@ -48,7 +48,7 @@
                                                   </div>
                                                </aside>
 
-                                               <aside class="mobile-filter-products-drawer-section hidden h-full bg-light lg:sticky xl:block xl:w-72 lg:top-22">
+                                               <aside class="mobile-filter-products-drawer-section hidden h-full bg-light lg:sticky xl:block lg:top-22">
                                                   <div class="max-h-full grow overflow-hidden">
                                                      <div class="px-5">
 

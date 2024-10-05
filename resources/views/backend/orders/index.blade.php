@@ -66,14 +66,15 @@
             },
             success: function(response) {
                 if (response.success) {
+                     toastr.success(response.message, 'Success');
                      $('#orders-table').DataTable().ajax.reload(null, false);
                 } else {
-                    alert('Failed to update status. Please try again.');
+                    toastr.error('Failed to update status. Please try again.', 'Error');
                 }
             },
             error: function(xhr, status, error) {
                 console.log('AJAX Error:', error);
-                alert('An error occurred. Please try again.');
+                 toastr.error('An error occurred. Please try again.', 'Error');
             }
         });
     });

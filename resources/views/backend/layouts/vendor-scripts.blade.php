@@ -5,6 +5,8 @@
 <script src="{{ URL::asset('assets/backend/libs/simplebar/simplebar.min.js')}}"></script>
 <script src="{{ URL::asset('assets/backend/libs/node-waves/node-waves.min.js')}}"></script>
 <script src="{{ URL::asset('assets/backend/libs/datatables/datatables.min.js')}}"></script>
+<script src="{{ URL::asset('assets/backend/js/pages/toastr.min.js')}}"></script>
+<script src="{{ URL::asset('assets/backend/js/pages/toastr.init.js')}}"></script>
 <script>
     $('#change-password').on('submit',function(event){
         event.preventDefault();

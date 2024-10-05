@@ -27,18 +27,17 @@ class QuantitySelector extends Component
             $this->product_variation_id = ($product_variations_query->count() > 0) ? $product_variations_query->first()->id ?? null : null;
         }
 
-        // Check if the product already exists in the session (cart)
-        $cart = CartHelper::items();
-
         // If the item exists in the cart, set the quantity
-        if (isset($cart[CartHelper::generateKey($this->product_id, $this->product_variation_id)])) {
-            $this->quantity = $cart[CartHelper::generateKey($this->product_id, $this->product_variation_id)]['quantity'];
-        }
+        $this->quantity = CartHelper::getQuantity($this->product_id, $this->product_variation_id, $this->quantity);
     }
 
-    public function productVariantChanged($product_variation_id)
+    public function productVariantChanged($product_id, $product_variation_id = null)
     {
+        $this->product_id = $product_id;
+
         $this->product_variation_id = $product_variation_id;
+
+        $this->quantity = CartHelper::getQuantity($this->product_id, $this->product_variation_id, $this->quantity);
     }
 
     public function increment()

@@ -20,7 +20,7 @@ class ProductVariation extends Component
 
     public function updateProductVariant()
     {
-        $this->dispatch('productVariantChanged', $this->selected_product_variation);
+        $this->dispatch('productVariantChanged', $this->product->id, $this->selected_product_variation);
     }
 
     public function render()

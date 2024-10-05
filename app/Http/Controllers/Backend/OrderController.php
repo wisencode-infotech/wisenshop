@@ -38,6 +38,11 @@ class OrderController extends Controller
                 })
                 ->addColumn('action', function($row) {
                     $btn = '<a href="'.route('backend.order.show', $row).'" class="edit btn btn-primary btn-sm">View</a>';
+                    $status = config('general.order_statuses.'. $row->status);
+                    if($status == 'Pending')
+                    {
+                        $btn .= '&nbsp'.'<a href="'.route('backend.order.update.status', $row).'" class="update-order-status btn btn-warning btn-sm">Export & Accept</a>';
+                    }
                     return $btn;
                 })
                 ->rawColumns(['action','user_name', 'status'])
@@ -56,5 +61,17 @@ class OrderController extends Controller
         $status = config('general.order_statuses.'. $order->status);
         $status_color = config('general.order_statuses_color.'. $order->status);
         return view('backend.orders.show', compact('order', 'status', 'status_color'));
+    }
+
+    public function updateStatus(Order $order)
+    {
+        $this->order_service->setRecord($order);
+        $this->order_service->updateStatus(2);
+
+        return response()->json([
+            'order' => $order,
+            'success' => 200,
+            'message' => 'Order Accepted successfully.',
+        ]);
     }
 }

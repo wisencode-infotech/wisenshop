@@ -72,7 +72,6 @@ class Product extends Model
         return (!empty($display_image)) ? $display_image->image_url : ProductImage::$placeholder_url;
     }
 
-    // Accessors
     public function priceWithCurrency($currency_code = '')
     {
         if (empty($currency_code))

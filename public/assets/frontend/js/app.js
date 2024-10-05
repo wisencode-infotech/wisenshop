@@ -44,6 +44,18 @@ $(document).on('click', '.products-filter', function() {
     mobile_filter_products_drawer_section.removeClass('hidden');
 });
 
+$(document).on('click', '.mobile-bottom-menu', function() {
+    setAllMobileMenusAsInactiveButThis(this);
+});
+
+function setAllMobileMenusAsInactiveButThis(menu_element = null)
+{
+    $(".mobile-bottom-menu").removeClass('text-accent');
+
+    if (menu_element != null && typeof menu_element != 'undefined')
+        $(menu_element).addClass('text-accent');
+}
+
 // function toggleSearchBarVisibility() {
 //     const filter_section = document.querySelector('.top-product-search-bar');
 //     const searchBarVisible = localStorage.getItem('searchBarVisible');

@@ -64,6 +64,12 @@
                                 @enderror
                             </div>
 
+                            <!-- Slug Field (Auto-generated, Read-only) -->
+                            <div class="form-group mb-3">
+                                <label for="slug" class="form-label">Slug (Auto-generated)</label>
+                                <input type="text" class="form-control" value="{{ $product->slug }}" readonly>
+                            </div>
+
                             <div class="mb-3">
                                 <label for="name" class="form-label">Short Description</label>
                                 <input type="text" name="short_description" class="form-control @error('short_description') is-invalid @enderror" id="short_description" placeholder="Enter product short description" value="{{ old('short_description', $product->short_description) }}">

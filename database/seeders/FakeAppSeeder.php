@@ -102,7 +102,7 @@ class FakeAppSeeder extends Seeder
         foreach ($users as $user) {
             $order = Order::create([
                 'user_id' => $user->id,
-                'status' => 'pending',
+                'status' => array_rand(config('general.order_statuses')),
                 'total_price' => 0,
             ]);
 

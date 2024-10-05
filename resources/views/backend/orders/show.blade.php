@@ -14,7 +14,12 @@
      <div class="card">
         <div class="card-body">
             <div class="invoice-title">
-                <h4 class="float-end font-size-16">Order # {{ $order->id }}</h4>
+                <div class="float-end">
+                    <h4 class="float-end font-size-16">Order # {{ $order->id }}</h4>
+                    <br>
+                    <span class="badge rounded-pill badge-soft-{{ $status_color }} font-size-12">{{ $status }}</span>
+                </div>
+                
                 <div class="auth-logo mb-4">
                     <img src="{{ url('assets/frontend/img/logo.png') }}" class="img-fluid img-thumbnail" alt="">
                 </div>
@@ -72,18 +77,18 @@
                     </thead>
                     <tbody>
                         @php $subtotal = 0; $total = 0; @endphp
-                        @foreach($order->products as $product)
+                        @foreach($order->products as $index => $product)
                         <tr>
-                            <td>{{ $product->id }}</td>
+                            <td>{{ ++$index }}</td>
                             <td>{{ $product->name }}</td>
-                            <td class="text-end">$499.00</td>
+                            <td class="text-end">{{ __appCurrencySymbol() }}499.00</td>
                         </tr>
                         @php $subtotal += $product->price; @endphp
                         @php $total += $product->price; @endphp
                         @endforeach
                         <tr>
                             <td colspan="2" class="text-end">Sub Total</td>
-                            <td class="text-end">${{ number_format($subtotal, 2) }}</td>
+                            <td class="text-end">{{ __appCurrencySymbol() }}{{ number_format($subtotal, 2) }}</td>
                         </tr>
                         <!-- <tr>
                             <td colspan="2" class="border-0 text-end">
@@ -93,7 +98,7 @@
                             <tr>
                                 <td colspan="2" class="border-0 text-end">
                                     <strong>Total</strong></td>
-                                    <td class="border-0 text-end"><h4 class="m-0">${{ number_format($total, 2) }}</h4></td>
+                                    <td class="border-0 text-end"><h4 class="m-0">{{ __appCurrencySymbol() }} {{ number_format($total, 2) }}</h4></td>
                                 </tr>
                             </tbody>
                         </table>

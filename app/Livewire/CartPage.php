@@ -22,16 +22,16 @@ class CartPage extends Component
 
     public function updateCartQuantity($data)
     {
-        CartHelper::saveQuantity($data['product_id'], $data['product_variant_id'], $data['quantity']);
+        CartHelper::saveQuantity($data['product_id'], $data['product_variation_id'], $data['quantity']);
 
         $this->cart_items = CartHelper::items();
 
         $this->total_price = CartHelper::total();
     }
 
-    public function removeCartProduct($product_id, $product_variant_id)
+    public function removeCartProduct($product_id, $product_variation_id)
     {
-        CartHelper::removeItem($product_id, $product_variant_id);
+        CartHelper::removeItem($product_id, $product_variation_id);
 
         $this->cart_items = CartHelper::items();
 

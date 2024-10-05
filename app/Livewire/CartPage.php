@@ -29,7 +29,7 @@ class CartPage extends Component
 
     public function removeCartProduct($product_id, $product_variation_id = null)
     {
-        CartHelper::removeItem($product_id, $product_variation_id);
+        CartHelper::removeItem($product_id, (!empty($product_variation_id) ? $product_variation_id : null));
 
         $this->cart_items = CartHelper::items();
 

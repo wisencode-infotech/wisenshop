@@ -3,7 +3,7 @@
     <!-- Reminder button -->
     <button wire:click="remind" type="button" 
             class="mt-0.5 flex h-8 w-8 shrink-0 items-center justify-center rounded-full transition-colors text-lg text-accent mr-1
-            border {{ $isReminded ? 'border-green-500' : 'border-gray-300' }} p-1">
+            border {{ $isReminded ? 'border-green-500' : 'border-gray-300' }} p-1" title="{{ __trans('Remind me when stock is available') }}">
         <i class="fa-{{ $isReminded ? 'solid' : 'regular' }} fa-bell"></i>
     </button>
 

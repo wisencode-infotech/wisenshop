@@ -15,8 +15,8 @@ return new class extends Migration
             $table->id();
             $table->string('name');
             $table->string('slug')->unique();
-            $table->string('short_description');
-            $table->text('description');
+            $table->string('short_description')->nullable();
+            $table->text('description')->nullable();
             $table->decimal('price', 8, 2);
             $table->integer('stock')->nullable();
             $table->boolean('status')->default(1); // Active or inactive

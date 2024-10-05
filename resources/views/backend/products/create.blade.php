@@ -164,8 +164,12 @@
                     </div>
                 </div>
             </div>
-            <div class="form-group text-end">
-                <button type="submit" class="btn btn-success btn-rounded">Create Product</button>
+            <div class="row">
+                <div class="col-12">
+                    <div class="form-group text-end">
+                        <button type="submit" class="btn btn-success btn-rounded">Create Product</button>
+                    </div>
+                </div>
             </div>
         </form>
     </div>

@@ -50,11 +50,23 @@ class FakeAppSeeder extends Seeder
                 'site_currency' => 'EUR'
             ];
 
-        foreach ($settings as $meta_key => $meta_value) {
+        $multidimensionalSettings = [];
+        $sortNumber = 1;
+        
+        foreach ($settings as $key => $value) {
+            $multidimensionalSettings[] = [
+                'key' => $key,
+                'value' => $value,
+                'sort_number' => $sortNumber++
+            ];
+        }
+
+        foreach ($multidimensionalSettings as $setting) {
             Setting::updateOrCreate([
-                'key' => $meta_key
+                'key' => $setting['key'],
             ], [
-                'value' => $meta_value
+                'value' => $setting['value'],
+                'sort_number' => $setting['sort_number']
             ]);
         }
 

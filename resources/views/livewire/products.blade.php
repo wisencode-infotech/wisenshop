@@ -36,11 +36,17 @@
                         <p class="text-xs text-muted pr-9">{{ \Str::limit($product->short_description, 70) }}</p>
                         <div class="relative flex items-center justify-between mt-7 min-h-6 md:mt-8">
                             
-                            <div class="flex overflow-hidden order-5 sm:order-4 w-9 sm:w-24 h-24 sm:h-10 bg-accent text-light rounded-full flex-col-reverse sm:flex-row absolute sm:relative bottom-0 sm:bottom-auto ltr:right-0 rtl:left-0 ltr:sm:right-auto ltr:sm:left-auto">
-
-                            @livewire('quantity-selector', ['product_id' => $product->id, key(uniqid())])
-                            
-                            </div>
+                            @if (($product_variations = $product->total_variations) > 0)
+                                <div class="flex overflow-hidden order-5 sm:order-4 w-9 h-24 sm:h-10 bg-accent text-light rounded-full flex-col-reverse sm:flex-row absolute sm:relative bottom-0 sm:bottom-auto ltr:right-0 rtl:left-0 ltr:sm:right-auto ltr:sm:left-auto">
+                                    <button class="w-100 m-auto" wire:navigate href="{{ route('frontend.product-detail', ['product_slug' => $product->slug]) }}" title="{{ __trans('View Product') }}">
+                                        <i class="fa fa-eye"></i>
+                                    </button>
+                                </div>
+                            @else
+                                <div class="flex overflow-hidden order-5 sm:order-4 w-9 sm:w-24 h-24 sm:h-10 bg-accent text-light rounded-full flex-col-reverse sm:flex-row absolute sm:relative bottom-0 sm:bottom-auto ltr:right-0 rtl:left-0 ltr:sm:right-auto ltr:sm:left-auto">
+                                    @livewire('quantity-selector', ['product_id' => $product->id, key(uniqid())])
+                                </div>
+                            @endif
 
                             <div class="relative">
 

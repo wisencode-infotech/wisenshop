@@ -3,6 +3,9 @@
 <div class="bg-gray-100 px-4 py-8 lg:py-10 lg:px-8 xl:py-14 xl:px-16 2xl:px-20">
    <div class="m-auto flex w-full max-w-5xl flex-col items-center rtl:space-x-reverse lg:flex-row lg:items-start lg:space-x-8">
       <div class="w-full space-y-6 lg:max-w-2xl">
+
+        <h3 class="text-2xl font-bold text-heading">Checkout</h3>
+
          <div class="bg-light p-5 shadow-700 md:p-8">
             <div class="mb-5 flex items-center justify-between md:mb-8">
                <div class="flex items-center space-x-3 rtl:space-x-reverse md:space-x-4">
@@ -148,21 +151,9 @@
                   <p class="text-sm text-body">Shipping <span class="text-xs font-semibold text-accent"></span></p>
                   <span class="text-sm text-body"> $0.00</span>
                </div>
-               <div class="mt-5 !mb-4 flex justify-between">
-                  <p role="button" class="text-xs font-bold transition duration-200 text-body hover:text-accent">Do you have coupon?</p>
-               </div>
                <div class="flex justify-between pt-3 border-t-4 border-double border-border-200">
                   <p class="text-base font-semibold text-heading">Total</p>
                   <span class="text-base font-semibold text-heading">{{ __userCurrencySymbol() }} {{ number_format($total_price, 2) }}</span>
-               </div>
-            </div>
-            <div>
-               <div class="mt-2 space-y-2">
-                  <div class="flex justify-between text-sm text-body"><span>Wallet <span class="lowercase">Points</span></span><span>0</span></div>
-                  <div class="flex justify-between text-sm text-body"><span>Wallet currency</span><span>$0.00</span></div>
-               </div>
-               <div class="mt-3">
-                  <div class="flex items-center"><input id="use_wallet" name="use_wallet" type="checkbox" class="checkbox" disabled=""><label for="use_wallet" class="text-body text-sm primary">Do you want to use wallet?</label></div>
                </div>
             </div>
             <div class="p-5 mt-10 border border-gray-200 bg-light">

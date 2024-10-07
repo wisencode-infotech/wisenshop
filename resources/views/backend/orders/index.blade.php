@@ -39,6 +39,7 @@
                          <form method="POST" action="{{ route('backend.order.bulk.export') }}" target="_blank" class="d-inline">
                             @csrf
                             <input type="hidden" name="action" value="export-multi-orders-with-view">
+                            <input type="hidden" name="status" value="2" value="export-multi-orders-with-view">
                             <button type="submit" class="btn btn-primary export_accept_pending_orders d-none">
                                 Export Pending Orders
                             </button>

@@ -6,6 +6,7 @@ use App\Models\Category;
 use App\Models\Order;
 use App\Models\OrderItem;
 use App\Models\Payment;
+use App\Models\PaymentMethod;
 use App\Models\Product;
 use App\Models\SiteBanner;
 use App\Models\User;
@@ -147,6 +148,25 @@ class FakeAppSeeder extends Seeder
                 'title' => $site_banner,
                 'description' => fake()->paragraph()
             ]);
+        }
+
+        // Site banner seeder
+
+        $payment_methods = [
+            [
+                'name' => 'CoinPayments',
+                'description' => 'Secure & Trusted Crypto Payment Gateway',
+                'logo_url' => 'https://www.coinpayments.net/2024.03/img/cps-since.svg'
+            ],
+            [
+                'name' => 'Cash on Delivery',
+                'description' => 'Pay on Delivery',
+                'logo_url' => 'https://img.freepik.com/premium-vector/cash-delivery_569841-175.jpg?w=826'
+            ]
+        ];
+
+        foreach ($payment_methods as $payment_method) {
+            PaymentMethod::create($payment_method);
         }
     }
 }

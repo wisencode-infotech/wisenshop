@@ -149,7 +149,7 @@
                                             </div>
                                             <div class="card-footer bg-white">
                                                 <div class="simple-switch text-center">
-                                                    <input type="checkbox" id="square-switch{{ $image->id }}" class="make_primary_image" data-action="{{ route('backend.product.image.make-primary', $image) }}" switch="none" style="width: 80px;" {{ $image->is_primary == 1 ? 'checked' : '' }}>
+                                                    <input type="checkbox" id="square-switch{{ $image->id }}" class="make_primary_image" data-action="{{ route('backend.product.image.make-primary', $image) }}" switch="none" style="width: 80px;" {{ $image->is_primary == '1' ? 'checked' : '' }}>
                                                     <label for="square-switch{{ $image->id }}" data-on-label="Primary" data-off-label="Off" style="width: 80px;"></label>
                                                 </div>
                                             </div>
@@ -306,7 +306,7 @@
         e.preventDefault();
 
         var url = $(this).data('href');
-        var imageElement = $(this).closest('.col-md-2');
+        var imageElement = $(this).closest('.col-md-3');
 
         // Ask for confirmation
         if (confirm('Are you sure you want to remove this image?')) {

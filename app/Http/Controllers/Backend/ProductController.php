@@ -231,7 +231,10 @@ class ProductController extends Controller
 
     public function removeImage(Request $request)
     {
+
         $image = ProductImage::findOrFail($request->image_id);
+
+        $product = $image->product;
 
         // Assuming the image file needs to be deleted from the storage
         if (Storage::exists($image->image_url)) {
@@ -239,6 +242,8 @@ class ProductController extends Controller
         }
 
         $image->delete();
+
+        $product->makePrimaryImage();
 
         return response()->json(['success' => true, 'message' => 'Image removed successfully.']);
     }
@@ -260,13 +265,16 @@ class ProductController extends Controller
     public function destroyImage(ProductImage $image)
     {
 
+        $product = $image->product;
+
         // Delete the image file from storage
         if (Storage::disk('public')->exists($image->image_path)) {
             Storage::disk('public')->delete($image->image_path);
         }
 
-        // Delete the image record from the database
         $image->delete();
+
+        $product->makePrimaryImage();
 
         return response()->json(['success' => true]);
     }

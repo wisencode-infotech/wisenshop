@@ -96,12 +96,19 @@ class OrderController extends Controller
         $orders = Order::query();
 
         if ($request->has('status') && is_numeric($request->status)) {
-            $orders->where('status', $request->status);
+            $orders->where('status', (int) $request->status);
 
             $options['export_as'] = 'pending-orders-' . date('YmdHis') . '.pdf';
         }
+        
+        $orders = $orders->get();
 
-        return $this->bulkExportWithMultiOrders($orders->get(), $options);
+        foreach($orders as $order) {
+            $this->order_service->setRecord($order);
+            $this->order_service->updateStatus(2);
+        }
+
+        return $this->bulkExportWithMultiOrders($orders, $options);
     }
 
     public function bulkExportWithMultiOrders($orders, $options = [])

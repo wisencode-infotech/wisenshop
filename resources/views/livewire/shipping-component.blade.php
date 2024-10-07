@@ -16,7 +16,7 @@
             <div class="w-full">
                <div class=" react-tel-input ">
                   <div class="special-label">Phone</div>
-                  <input class="form-control !p-0 ltr:!pr-4 rtl:!pl-4 ltr:!pl-1 rtl:!pr-1 !flex !items-center !w-full !appearance-none !transition !duration-300 !ease-in-out !text-heading !text-sm focus:!outline-none focus:!ring-0 !border !border-border-base !rounded focus:!border-accent !h-12" placeholder="1 (702) 123-4567" type="tel" value="+1 (936) 514-1641">
+                  <input class="form-control !p-0 ltr:!pr-4 rtl:!pl-4 ltr:!pl-1 rtl:!pr-1 !flex !items-center !w-full !appearance-none !transition !duration-300 !ease-in-out !text-heading !text-sm focus:!outline-none focus:!ring-0 !border !border-border-base !rounded focus:!border-accent !h-12" placeholder="1 (702) 123-4567" type="tel" value="{{ auth()->user()->phone }}">
                </div>
             </div>
          </div>
@@ -163,12 +163,16 @@
 
                     @foreach($payment_methods as $payment_method)
                      <div id="headlessui-radiogroup-option-:rh:" role="radio" aria-checked="false" tabindex="0" data-headlessui-state="">
-                        <div wire:click="selectPaymentMethod({{ $payment_method->id }})" class="payment_method_section relative flex h-full w-full cursor-pointer items-center justify-center rounded border border-gray-200 bg-light p-3 text-center {{ $selected_payment_method_id === $payment_method->id ? 'active' : '' }}"><span class="text-xs font-semibold text-heading">{{ $payment_method->name }}</span></div>
+                        <div wire:click="selectPaymentMethod({{ $payment_method->id }}, '{{ $payment_method->description }}')" class="payment_method_section relative flex h-full w-full cursor-pointer items-center justify-center rounded border border-gray-200 bg-light p-3 text-center {{ $selected_payment_method_id === $payment_method->id ? 'active' : '' }}"><span class="text-xs font-semibold text-heading">{{ $payment_method->name }}</span></div>
                      </div>
                     @endforeach
                   </div>
                </div>
-               <!-- <div><span class="block text-sm text-body">Please Pay After You Receive Your Goods!</span></div> -->
+               @if(!empty($payment_method_description))
+               <div>
+                    <span class="block text-sm text-body">{{ $payment_method_description }}</span>
+                </div>
+                @endif
             </div>
             <button data-variant="normal" class="inline-flex items-center justify-center shrink-0 font-semibold leading-none rounded outline-none transition duration-300 ease-in-out focus:outline-0 focus:shadow focus:ring-1 focus:ring-accent-700 bg-accent text-light border border-transparent hover:bg-accent-hover px-5 py-0 h-12 mt-5 w-full" disabled="">Place Order</button>
             <!-- <div class="mt-3">

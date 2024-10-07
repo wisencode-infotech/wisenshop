@@ -13,6 +13,7 @@ class ShippingComponent extends Component
     public $billing_addresses = [];
     public $selected_shipping_address_id;
     public $selected_billing_address_id;
+    public $selected_payment_method_id;
     public $cart_items = [];
     public $total_price = 0;
 
@@ -44,6 +45,11 @@ class ShippingComponent extends Component
     public function selectBillingAddress($address_id)
     {
         $this->selected_billing_address_id = $address_id;
+    }
+
+    public function selectPaymentMethod($payment_method_id)
+    {
+        $this->selected_payment_method_id = $payment_method_id;
     }
 
     public function loadAddresses()

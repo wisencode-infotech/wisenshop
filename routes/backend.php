@@ -33,6 +33,7 @@ Route::middleware(['auth'])->group(function () {
 
     Route::group(['prefix' => 'order', 'as' => 'order.'], function() {
         Route::post('status/{order}', [OrderController::class, 'updateStatus'])->name('update.status');
+        Route::post('export-pending-orders', [OrderController::class, 'exportPendingOrders'])->name('export-pending-orders');
     });
 
 });

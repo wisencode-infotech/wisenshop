@@ -21,11 +21,28 @@
                                 <i class="bx bx-search-alt search-icon"></i>
                             </div>
                         </div>
+                        <div class="me-2 d-inline-block">
+                            <div class="position-relative d-flex flex-wrap gap-2">
+                              <button type="button" class="select-status-filter btn btn-outline-dark btn-rounded waves-effect waves-light" value="" data-value = "All">All</button>
+                              <button type="button" class="select-status-filter btn btn-outline-warning btn-rounded waves-effect waves-light"  value="1" data-value = "Pending">Pending</button>
+                              <button type="button" class="select-status-filter btn btn-outline-success btn-rounded waves-effect waves-light" value="2" data-value = "Accepted">Accepted</button>
+                              <button type="button" class="select-status-filter btn btn-outline-info btn-rounded waves-effect waves-light" value="3" data-value = "Shipped">Shipped</button>
+                              <button type="button" class="select-status-filter btn btn-outline-primary btn-rounded waves-effect waves-light" value="4" data-value = "Finalized">Finalized</button>
+                              <button type="button" class="select-status-filter btn btn-outline-danger btn-rounded waves-effect waves-light" value="5" data-value = "Cancelled">Cancelled</button>
+                              <button type="button" class="select-status-filter btn btn-outline-secondary btn-rounded waves-effect waves-light" value="6" data-value = "Returned">Returned</button>
+                            </div>
+                        </div>
                     </div>
                     <!-- end col -->
                     <div class="col-sm-auto">
                         <div class="text-sm-end">
-                            
+                         <form method="POST" action="{{ route('backend.order.export-pending-orders') }}" target="_blank" class="d-inline">
+                            @csrf
+                            <input type="hidden" name="status" value="2"> <!-- Set the status here -->
+                            <button type="submit" class="btn btn-primary export_accept_pending_orders d-none">
+                                Export Pending Orders
+                            </button>
+                        </form>
                         </div>
                     </div>
                     <!-- end col -->

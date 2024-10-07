@@ -9,6 +9,9 @@ use Illuminate\Http\Request;
 use Yajra\DataTables\Facades\DataTables;
 use Illuminate\Support\Str;
 use Illuminate\Support\Facades\Storage;
+use Dompdf\Dompdf;
+use Dompdf\Options;
+
 
 class OrderController extends Controller
 {
@@ -22,7 +25,15 @@ class OrderController extends Controller
     public function index(Request $request)
     {
          if ($request->ajax()) {
-            $data = Order::latest()->get();
+            $status_filter = $request->input('status_filter');
+
+            $query = Order::query();
+            if ($status_filter) {
+                $query->where('status', $status_filter);
+            }
+
+            $data = $query->latest()->get();
+
             return Datatables::of($data)
                 ->addIndexColumn() // Adds the row index
                 ->addColumn('user_name', function($row) {
@@ -73,5 +84,28 @@ class OrderController extends Controller
             'success' => 200,
             'message' => 'Order Accepted successfully.',
         ]);
+    }
+
+   public function exportPendingOrders(Request $request)
+    {
+        $status = $request->status ?? '';
+
+        if ($status) {
+            $pending_orders = Order::where('status', $status)->get();
+            $options = new Options();
+            $options->set('defaultFont', 'DejaVu Sans');
+            $options->set('isRemoteEnabled', true); // Enable remote file access
+            $options->set('isHtml5ParserEnabled', true); // Enable HTML5 parsing
+            $dompdf = new Dompdf($options);
+
+            $html = view('backend.orders.pdf.export-pending-orders-pdf', compact('pending_orders'))->render();
+
+            $dompdf->loadHtml($html);
+            $dompdf->render();
+            
+            return $dompdf->stream('pending_orders.pdf', ['Attachment' => false]);
+        }
+
+        return redirect()->back()->with('error', 'Invalid status.');
     }
 }

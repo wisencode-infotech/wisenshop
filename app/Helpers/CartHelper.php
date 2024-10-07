@@ -91,13 +91,21 @@ class CartHelper
 
             $cart_items = Session::get('cart', []);
 
-            foreach ($cart_items as $product_id => &$item) {
-                $product = Product::find($product_id);
+            foreach ($cart_items as &$item) {
+                $product = Product::where('id', $item['product_id'])->select('id', 'name', 'price')->first();
 
                 if ($product) {
                     $item['product_name'] = $product->name;
                     $item['product_price'] = ($product->priceWithCurrency() ?? 0);
                     $item['product_picture'] = $product->display_image_url;
+                }
+
+                if (!empty($item['product_variation_id'])) {
+
+                    $product_variation = ProductVariation::where('id', $item['product_variation_id'])->select('name')->first();
+
+                    if ($product)
+                        $item['product_variation_name'] = $product_variation->name;
                 }
             }
 

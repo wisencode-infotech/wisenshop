@@ -122,6 +122,8 @@
                  </aside>
               </div>
            </div>
+           @livewire('address-modal')
+
         </div>
      </div>
   </div>

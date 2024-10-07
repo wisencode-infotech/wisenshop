@@ -4,6 +4,7 @@ namespace App\Livewire;
 
 use App\Helpers\CartHelper;
 use Livewire\Component;
+use Illuminate\Support\Facades\Auth;
 
 class CartPage extends Component
 {
@@ -38,6 +39,17 @@ class CartPage extends Component
         $this->dispatch('itemRemoved');
 
         $this->dispatch('shoppingCartUpdated');
+    }
+
+    public function handleCheckout()
+    {
+        if (Auth::check()) {
+            // If the user is logged in, redirect to the shipping page
+            return redirect()->route('frontend.shipping');
+        } else {
+            // If the user is not logged in, redirect to guest checkout form
+            return redirect()->route('frontend.guest.checkout');
+        }
     }
 
     public function render()

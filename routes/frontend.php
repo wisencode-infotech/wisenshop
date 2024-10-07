@@ -16,6 +16,8 @@ use Illuminate\Support\Facades\App;
 use App\Http\Middleware\SetLocale;
 use App\Models\Wishlist;
 use Illuminate\Support\Facades\Cache;
+use App\Livewire\GuestCheckout;
+use App\Livewire\ShippingComponent;
 
 Route::middleware([SetLocale::class])->group(function () {
 // Homepage
@@ -31,6 +33,9 @@ Route::get('/cart', CartPage::class)->name('cart');
 Route::get('login', Login::class)->name('login');
 Route::post('login', [Login::class, 'authenticate'])->name('authenticate');
 Route::get('logout', [Logout::class, 'logout'])->name('logout');
+
+Route::get('/guest-checkout', GuestCheckout::class)->name('guest.checkout');
+Route::get('/shipping', ShippingComponent::class)->name('shipping');
 
 // Route::get('register', [RegisterController::class, 'showRegistrationForm'])->name('register');
 // Route::post('register', [RegisterController::class, 'register']);

@@ -4,6 +4,12 @@
 
 @section('content')
 
+<style>
+    input[switch]:checked+label:after {
+        left: 58px;
+    }
+</style>
+
 @component('backend.components.breadcrumb')
 @slot('li_1') Product @endslot
 @slot('title') Edit @endslot
@@ -135,11 +141,17 @@
                             <div class="row">
 
                                 @foreach($product->images as $image)
-                                    <div class="col-md-2 mb-3">
+                                    <div class="col-md-3">
                                         <div class="card">
                                             <div class="card-body text-center">
                                                 <button type="button" class="btn-close position-absolute top-0 end-0 p-2 remove_image" aria-label="Close" data-href="{{ route('backend.product.image.remove', $image) }}"></button>
                                                 <img src="{{ $image->image_url }}" alt="Product Image" class="img-fluid" style="height:60px;">
+                                            </div>
+                                            <div class="card-footer bg-white">
+                                                <div class="simple-switch text-center">
+                                                    <input type="checkbox" id="square-switch{{ $image->id }}" class="make_primary_image" data-action="{{ route('backend.product.image.make-primary', $image) }}" switch="none" style="width: 80px;" {{ $image->is_primary == '1' ? 'checked' : '' }}>
+                                                    <label for="square-switch{{ $image->id }}" data-on-label="Primary" data-off-label="Off" style="width: 80px;"></label>
+                                                </div>
                                             </div>
                                         </div>
                                     </div>
@@ -294,7 +306,7 @@
         e.preventDefault();
 
         var url = $(this).data('href');
-        var imageElement = $(this).closest('.col-md-2');
+        var imageElement = $(this).closest('.col-md-3');
 
         // Ask for confirmation
         if (confirm('Are you sure you want to remove this image?')) {
@@ -318,6 +330,24 @@
                 }
             });
         }
+    });
+
+    $('.make_primary_image').on('click', function() {
+        var obj = $(this);
+        $.ajax({
+            url: $(this).data('action'),
+            type: 'POST',
+            data: {
+                _token: '{{ csrf_token() }}'
+            },
+            success: function(response) {
+                $('.make_primary_image').prop('checked', false);
+                $(obj).prop('checked', true);
+                toastr.success(response.message)
+            },
+            error: function(xhr) {
+            }
+        });
     });
 
 </script>

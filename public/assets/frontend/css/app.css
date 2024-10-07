@@ -70,4 +70,19 @@ button.products-filter:hover {
     color: #fff;
 }
 
+.small-select {
+    min-width: 70px;
+    height: 40px;
+    padding-left: 2px;
+    padding-right: 2px;
+    padding-top: 0px;
+    padding-bottom: 0px;
+    font-size: 13px;
+    color: var(--color-accent);
+}
+
+.small-select:focus {
+    /* border-color: transparent; */
+}
+
 /*End custom css*/

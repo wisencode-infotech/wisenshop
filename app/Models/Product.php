@@ -51,12 +51,12 @@ class Product extends Model
 
     public function images(): HasMany
     {
-        return $this->hasMany(ProductImage::class);
+        return $this->hasMany(ProductImage::class)->orderBy('is_primary', 'DESC');
     }
 
     public function displayImage(): HasOne
     {
-        return $this->hasOne(ProductImage::class);
+        return $this->hasOne(ProductImage::class)->where('is_primary', '1');
     }
 
     public function variations(): HasMany
@@ -119,6 +119,15 @@ class Product extends Model
         static::addGlobalScope('public_visibility', function (Builder $builder) {
             $builder->where('public_visibility', '1');
         });
+    }
+
+    public function makePrimaryImage() {
+        $product_image = $this->images()->where('is_primary', '1')->first();
+        if( empty($product_image) && $this->images->count() > 0) {
+            $first_image = $this->images()->first();
+            $first_image->is_primary = '1';
+            $first_image->save();
+        }
     }
 
 }

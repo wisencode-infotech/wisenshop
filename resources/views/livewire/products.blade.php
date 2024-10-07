@@ -42,28 +42,24 @@
 
                         <p class="text-xs text-muted pr-9">{{ \Str::limit($product->short_description, 70) }}</p>
                         <div class="relative flex items-center justify-between mt-7 min-h-6 md:mt-8">
-                            
-                            @if (($product_variations = $product->total_variations) > 0)
-                                <div class="flex overflow-hidden order-5 sm:order-4 w-9 h-24 sm:h-10 bg-accent text-light rounded-full flex-col-reverse sm:flex-row absolute sm:relative bottom-0 sm:bottom-auto ltr:right-0 rtl:left-0 ltr:sm:right-auto ltr:sm:left-auto">
-                                    <button class="w-100 m-auto" wire:navigate href="{{ route('frontend.product-detail', ['product_slug' => $product->slug]) }}" title="{{ __trans('View Product') }}">
-                                        <i class="fa fa-eye"></i>
-                                    </button>
-                                </div>
-                            @else
-                                <div class="flex overflow-hidden order-5 sm:order-4 w-9 sm:w-24 h-24 sm:h-10 bg-accent text-light rounded-full flex-col-reverse sm:flex-row absolute sm:relative bottom-0 sm:bottom-auto ltr:right-0 rtl:left-0 ltr:sm:right-auto ltr:sm:left-auto">
-                                    @livewire('quantity-selector', ['product_id' => $product->id, key(uniqid())])
-                                </div>
-                            @endif
+
+                            <div class="flex overflow-hidden order-5 sm:order-4 w-9 sm:w-24 h-24 sm:h-10 bg-accent text-light rounded-full flex-col-reverse sm:flex-row absolute sm:relative bottom-0 sm:bottom-auto ltr:right-0 rtl:left-0 ltr:sm:right-auto ltr:sm:left-auto">
+                                @livewire('quantity-selector', ['product_id' => $product->id], key('quantity-selector-' . uniqid()))
+                            </div>
 
                             <div class="relative">
-
-                                @if ($product->discounted_price < $product->price)
-                                    <del class="absolute text-xs italic text-opacity-75 -top-4 text-muted md:-top-5">{{ __userCurrencySymbol() }} {{ $product->price }}</del>
-                                @endif
-                                
-                                <span class="text-sm font-semibold text-accent md:text-base">{{ __userCurrencySymbol() }} {{ $product->discounted_price }}</span>
+                                <span class="text-sm font-semibold text-accent md:text-base">
+                                    @livewire('product-price', ['product_id' => $product->id], key('product-price-' . uniqid()))
+                                </span>
                             </div>
+
+                            @if ($product->variations()->count() > 0)
+                                <div class="flex">
+                                    @livewire('product-variation', ['product_id' => $product->id, 'layout' => 'products-list'], key('product-variation-' . uniqid()))
+                                </div>
+                            @endif
                         </div>
+
                     </header>
                 </article>
             @endforeach

@@ -13,7 +13,7 @@ class QuantitySelector extends Component
     public $product_variation_id = null; // To hold the product variant ID
     public $layout = 'slim';
 
-    protected $listeners = ['productVariantChanged'];
+    // protected $listeners = ['productVariantChanged'];
 
     public function mount($product_id, $layout = 'slim', $product_variation_id = null)
     {
@@ -31,13 +31,23 @@ class QuantitySelector extends Component
         $this->quantity = CartHelper::getQuantity($this->product_id, $this->product_variation_id, $this->quantity);
     }
 
+    public function getListeners()
+    {
+        return [
+            "productVariantChanged-{$this->product_id}" => 'productVariantChanged'
+        ];
+    }
+
     public function productVariantChanged($product_id, $product_variation_id = null)
     {
+        if ($this->product_id !== $product_id)
+            return;
+        
         $this->product_id = $product_id;
 
         $this->product_variation_id = $product_variation_id;
 
-        $this->quantity = CartHelper::getQuantity($this->product_id, $this->product_variation_id, $this->quantity);
+        $this->quantity = CartHelper::getQuantity($this->product_id, $this->product_variation_id);
     }
 
     public function increment()

@@ -4,14 +4,17 @@ namespace App\Http\Controllers\Backend;
 
 use App\Http\Controllers\Controller;
 use App\Http\Requests\StoreProductRequest;
+use App\Mail\StockReminderMail;
 use App\Models\Category;
 use App\Models\Product;
 use App\Models\ProductImage;
 use App\Models\ProductUnit;
+use App\Models\StockReminder;
 use Illuminate\Http\Request;
 use Yajra\DataTables\Facades\DataTables;
 use Illuminate\Support\Str;
 use Illuminate\Support\Facades\Storage;
+use Illuminate\Support\Facades\Mail;
 
 class ProductController extends Controller
 {
@@ -102,6 +105,8 @@ class ProductController extends Controller
                     'product_id' => $product->id,
                     'image_path' => $path,
                 ]);
+
+                $product->makePrimaryImage();
             }
         }
 
@@ -139,6 +144,8 @@ class ProductController extends Controller
     {
         $product = Product::withoutGlobalScope('public_visibility')->findOrFail($id);
 
+        $old_stock = $product->stock;
+
         $validatedData = $request->validated();
 
         // Check if the product name has changed
@@ -168,6 +175,8 @@ class ProductController extends Controller
                     'product_id' => $product->id,
                     'image_path' => $path,
                 ]);
+
+                $product->makePrimaryImage();
             }
         }
 
@@ -212,6 +221,22 @@ class ProductController extends Controller
             $product->variations()->delete();
         }
 
+        $changes = $product->getChanges();
+
+        if( !empty($changes) && array_filter($changes) ) {
+            if (isset($changes['stock']) && $changes['stock'] > 0 && $old_stock == 0) {
+                // Fetch all emails for users who have reminders for this product
+                $reminders = StockReminder::where('product_id', $product->id)->get();
+
+                foreach ($reminders as $reminder) {
+                    // Send an email notification to each user
+                    Mail::to($reminder->email)->queue(new StockReminderMail($product));
+
+                    $reminder->delete();
+                }
+            }
+        }
+
         return redirect()->route('backend.product.edit', $product)->with('success', 'Product updated successfully.');
     }
 
@@ -227,7 +252,10 @@ class ProductController extends Controller
 
     public function removeImage(Request $request)
     {
+
         $image = ProductImage::findOrFail($request->image_id);
+
+        $product = $image->product;
 
         // Assuming the image file needs to be deleted from the storage
         if (Storage::exists($image->image_url)) {
@@ -235,6 +263,8 @@ class ProductController extends Controller
         }
 
         $image->delete();
+
+        $product->makePrimaryImage();
 
         return response()->json(['success' => true, 'message' => 'Image removed successfully.']);
     }
@@ -256,14 +286,27 @@ class ProductController extends Controller
     public function destroyImage(ProductImage $image)
     {
 
+        $product = $image->product;
+
         // Delete the image file from storage
         if (Storage::disk('public')->exists($image->image_path)) {
             Storage::disk('public')->delete($image->image_path);
         }
 
-        // Delete the image record from the database
         $image->delete();
 
+        $product->makePrimaryImage();
+
         return response()->json(['success' => true]);
+    }
+
+    public function makePrimaryImage(ProductImage $image) {
+        $product = $image->product;
+        ProductImage::where('product_id', $product->id)->update([
+            'is_primary' => '0'
+        ]);
+        $image->is_primary = '1';
+        $image->save();
+        return response()->json(['success' => true, 'message' => 'Primary image saved']);
     }
 }

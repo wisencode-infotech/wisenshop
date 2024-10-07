@@ -11,16 +11,20 @@ class ProductVariation extends Component
     public $production_variations;
     public $selected_product_variation;
 
-    public function mount($product_id)
+    public $layout = 'default';
+
+    public function mount($product_id, $layout = 'default')
     {
         $this->product = Product::find($product_id);
         $this->production_variations = $this->product->variations;
         $this->selected_product_variation = ($this->production_variations->count() > 0) ? $this->production_variations->first()->id ?? null : null;
+
+        $this->layout = $layout;
     }
 
     public function updateProductVariant()
     {
-        $this->dispatch('productVariantChanged', $this->product->id, $this->selected_product_variation);
+        $this->dispatch('productVariantChanged-' . $this->product->id, $this->product->id, $this->selected_product_variation);
     }
 
     public function render()

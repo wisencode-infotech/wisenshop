@@ -33,7 +33,7 @@ class GuestCheckout extends Component
         $user = User::create([
             'name' => $this->name,
             'email' => $this->email,
-            'phone_number' => $this->phone_number,
+            'phone' => $this->phone_number,
             'password' => Hash::make($this->password),
         ]);
 

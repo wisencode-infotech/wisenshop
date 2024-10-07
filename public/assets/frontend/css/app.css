@@ -97,4 +97,12 @@ button.products-filter:hover {
     background-color: white;
 }
 
+.payment_method_section.active{
+     box-shadow: var(--tw-ring-offset-shadow, 0 0 #0000), var(--tw-ring-shadow, 0 0 #0000), var(--tw-shadow) !important;
+    --tw-border-opacity: 1 !important;
+    border-color: rgba(var(--color-accent), var(--tw-border-opacity)) !important;
+    border-width: 1px !important;
+    background-color: white;
+}
+
 /*End custom css*/

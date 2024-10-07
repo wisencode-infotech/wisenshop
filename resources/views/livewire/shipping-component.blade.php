@@ -82,7 +82,7 @@
                <div class="grid grid-cols-1 gap-4 sm:grid-cols-2 md:grid-cols-3" role="none">
                 @foreach($shipping_addresses as $shipping_address)  
                   <div id="headlessui-radiogroup-option-:re:" role="radio" aria-checked="false" tabindex="0" data-headlessui-state="">
-                     <div  wire:click="selectShippingAddress({{ $shipping_address->id }})" class="group relative cursor-pointer rounded border p-4 hover:border-accent border-transparent bg-gray-100 shipping_address_container {{ $selected_shipping_address_id === $shipping_address->id ? 'active' : '' }}">
+                     <div wire:click="selectShippingAddress({{ $shipping_address->id }})" class="group relative cursor-pointer rounded border p-4 hover:border-accent border-transparent bg-gray-100 shipping_address_container {{ $selected_shipping_address_id === $shipping_address->id ? 'active' : '' }}">
                         <!-- border-accent shadow-sm -->
                         <!-- border-transparent bg-gray-100 -->
                         <p class="mb-3 text-sm font-semibold capitalize text-heading">Shipping</p>
@@ -160,17 +160,20 @@
                <div id="headlessui-radiogroup-:rf:" role="radiogroup" aria-labelledby="headlessui-label-:rg:">
                   <label class="mb-5 block text-base font-semibold text-heading" id="headlessui-label-:rg:" role="none">Choose Payment Method</label>
                   <div class="mb-8 grid grid-cols-2 gap-4 md:grid-cols-3" role="none">
+
+                    @foreach($payment_methods as $payment_method)
                      <div id="headlessui-radiogroup-option-:rh:" role="radio" aria-checked="false" tabindex="0" data-headlessui-state="">
-                        <div class="relative flex h-full w-full cursor-pointer items-center justify-center rounded border border-gray-200 bg-light p-3 text-center"><span class="text-xs font-semibold text-heading">Cash On Delivery</span></div>
+                        <div wire:click="selectPaymentMethod({{ $payment_method->id }})" class="payment_method_section relative flex h-full w-full cursor-pointer items-center justify-center rounded border border-gray-200 bg-light p-3 text-center {{ $selected_payment_method_id === $payment_method->id ? 'active' : '' }}"><span class="text-xs font-semibold text-heading">{{ $payment_method->name }}</span></div>
                      </div>
+                    @endforeach
                   </div>
                </div>
-               <div><span class="block text-sm text-body">Please Pay After You Receive Your Goods!</span></div>
+               <!-- <div><span class="block text-sm text-body">Please Pay After You Receive Your Goods!</span></div> -->
             </div>
-            <button data-variant="normal" class="inline-flex items-center justify-center shrink-0 font-semibold leading-none rounded outline-none transition duration-300 ease-in-out focus:outline-0 focus:shadow focus:ring-1 focus:ring-accent-700 border border-border-base bg-gray-300 hover:bg-gray-300 border-border-400 text-body cursor-not-allowed px-5 py-0 h-12 mt-5 w-full" disabled="">Place Order</button>
-            <div class="mt-3">
+            <button data-variant="normal" class="inline-flex items-center justify-center shrink-0 font-semibold leading-none rounded outline-none transition duration-300 ease-in-out focus:outline-0 focus:shadow focus:ring-1 focus:ring-accent-700 bg-accent text-light border border-transparent hover:bg-accent-hover px-5 py-0 h-12 mt-5 w-full" disabled="">Place Order</button>
+            <!-- <div class="mt-3">
                <p class="my-2 text-sm ltr:text-left rtl:text-right text-red-500">Please select and fill all the fields and place your order</p>
-            </div>
+            </div> -->
          </div>
       </div>
    </div>

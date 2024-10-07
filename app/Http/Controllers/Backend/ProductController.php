@@ -4,14 +4,17 @@ namespace App\Http\Controllers\Backend;
 
 use App\Http\Controllers\Controller;
 use App\Http\Requests\StoreProductRequest;
+use App\Mail\StockReminderMail;
 use App\Models\Category;
 use App\Models\Product;
 use App\Models\ProductImage;
 use App\Models\ProductUnit;
+use App\Models\StockReminder;
 use Illuminate\Http\Request;
 use Yajra\DataTables\Facades\DataTables;
 use Illuminate\Support\Str;
 use Illuminate\Support\Facades\Storage;
+use Illuminate\Support\Facades\Mail;
 
 class ProductController extends Controller
 {
@@ -141,6 +144,8 @@ class ProductController extends Controller
     {
         $product = Product::withoutGlobalScope('public_visibility')->findOrFail($id);
 
+        $old_stock = $product->stock;
+
         $validatedData = $request->validated();
 
         // Check if the product name has changed
@@ -214,6 +219,22 @@ class ProductController extends Controller
         } else {
             // If not a variation product, ensure all variations are deleted
             $product->variations()->delete();
+        }
+
+        $changes = $product->getChanges();
+
+        if( !empty($changes) && array_filter($changes) ) {
+            if (isset($changes['stock']) && $changes['stock'] > 0 && $old_stock == 0) {
+                // Fetch all emails for users who have reminders for this product
+                $reminders = StockReminder::where('product_id', $product->id)->get();
+
+                foreach ($reminders as $reminder) {
+                    // Send an email notification to each user
+                    Mail::to($reminder->email)->queue(new StockReminderMail($product));
+
+                    $reminder->delete();
+                }
+            }
         }
 
         return redirect()->route('backend.product.edit', $product)->with('success', 'Product updated successfully.');

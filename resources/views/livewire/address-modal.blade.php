@@ -17,10 +17,10 @@
                   <label class="block text-body-dark font-semibold text-sm leading-none mb-3">Type</label>
                   <div class="flex items-center space-x-4 rtl:space-x-reverse">
                      <div>
-                        <div class="flex items-center"><input id="billing" wire:model="address_type"  type="radio" class="radio_radio_input__Jo_uR" @if($address_type === 'billing') checked @endif value="billing"><label for="billing" class="text-sm text-body">Billing</label></div>
+                        <div class="flex items-center"><input id="billing" wire:model="address_type"  type="radio" class="radio_radio_input__Jo_uR" @if($address_type === 'billing') checked @endif value="billing"><label for="billing" class="text-sm text-body ms-2">Billing</label></div>
                      </div>
                      <div>
-                        <div class="flex items-center"><input id="shipping" wire:model="address_type"  type="radio" class="radio_radio_input__Jo_uR" @if($address_type === 'shipping') checked @endif value="shipping"><label for="shipping" class="text-sm text-body">Shipping</label></div>
+                        <div class="flex items-center"><input id="shipping" wire:model="address_type"  type="radio" class="radio_radio_input__Jo_uR" @if($address_type === 'shipping') checked @endif value="shipping"><label for="shipping" class="text-sm text-body ms-2">Shipping</label></div>
                      </div>
                   </div>
                </div>
@@ -28,30 +28,30 @@
                 <div>
                   <label for="country" class="mb-3 block text-sm font-semibold leading-none text-body-dark">Country</label>
                   <input id="country" wire:model="country" type="text" class="flex w-full appearance-none items-center px-4 text-sm text-heading transition duration-300 ease-in-out focus:outline-0 focus:ring-0 border border-border-base rounded focus:border-accent h-12" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false" aria-invalid="false">
-                    @error('country') <span class="error text-red-500">{{ $message }}</span> @enderror
+                    @error('country') <span class="error text-red-500 text-sm">{{ $message }}</span> @enderror
                 </div>
 
 
                 <div>
                   <label for="city" class="mb-3 block text-sm font-semibold leading-none text-body-dark">City</label>
                   <input id="city" wire:model="city" type="text" class="flex w-full appearance-none items-center px-4 text-sm text-heading transition duration-300 ease-in-out focus:outline-0 focus:ring-0 border border-border-base rounded focus:border-accent h-12" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false" aria-invalid="false">
-                    @error('city') <span class="error text-red-500">{{ $message }}</span> @enderror
+                    @error('city') <span class="error text-red-500 text-sm">{{ $message }}</span> @enderror
                 </div>
                 
 
                 <div><label for="state" class="mb-3 block text-sm font-semibold leading-none text-body-dark">State</label><input id="state" wire:model="state" type="text" class="flex w-full appearance-none items-center px-4 text-sm text-heading transition duration-300 ease-in-out focus:outline-0 focus:ring-0 border border-border-base rounded focus:border-accent h-12" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false" aria-invalid="false">
-                    @error('state') <span class="error text-red-500">{{ $message }}</span> @enderror
+                    @error('state') <span class="error text-red-500 text-sm">{{ $message }}</span> @enderror
                 </div>
                 
 
                 <div><label for="postal_code" class="mb-3 block text-sm font-semibold leading-none text-body-dark">Postal Code</label><input id="postal_code" wire:model="postal_code" type="text" class="flex w-full appearance-none items-center px-4 text-sm text-heading transition duration-300 ease-in-out focus:outline-0 focus:ring-0 border border-border-base rounded focus:border-accent h-12" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false" aria-invalid="false">
-                    @error('postal_code') <span class="error text-red-500">{{ $message }}</span> @enderror
+                    @error('postal_code') <span class="error text-red-500 text-sm">{{ $message }}</span> @enderror
                 </div> 
                 
 
 
                <div class="col-span-2"><label for="address" class="mb-3 block text-sm font-semibold leading-none text-body-dark">Street Address</label><textarea id="address" wire:model="address" class="flex w-full appearance-none items-center rounded px-4 py-3 text-sm text-heading transition duration-300 ease-in-out focus:outline-0 focus:ring-0 border border-border-base focus:border-accent" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false" rows="4"></textarea>
-                @error('address') <span class="error text-red-500">{{ $message }}</span> @enderror
+                @error('address') <span class="error text-red-500 text-sm">{{ $message }}</span> @enderror
                </div>
                
                

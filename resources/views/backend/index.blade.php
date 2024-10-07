@@ -17,8 +17,103 @@
                         <div class="card-body">
                             <div class="media">
                                 <div class="media-body">
-                                    <p class="text-muted fw-medium">Orders</p>
-                                    <h4 class="mb-0">{{ $total_completed_orders }}</h4>
+                                    <p class="text-muted fw-medium">Pending Orders</p>
+                                    <h4 class="mb-0">{{ $total_pending_orders }}</h4>
+                                </div>
+
+                                <div class="mini-stat-icon avatar-sm rounded-circle bg-primary align-self-center">
+                                    <span class="avatar-title">
+                                        <i class="bx bx-copy-alt font-size-24"></i>
+                                    </span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-md-3">
+                    <div class="card mini-stats-wid">
+                        <div class="card-body">
+                            <div class="media">
+                                <div class="media-body">
+                                    <p class="text-muted fw-medium">Accepted Orders</p>
+                                    <h4 class="mb-0">{{ $total_accepted_orders }}</h4>
+                                </div>
+
+                                <div class="mini-stat-icon avatar-sm rounded-circle bg-primary align-self-center">
+                                    <span class="avatar-title">
+                                        <i class="bx bx-copy-alt font-size-24"></i>
+                                    </span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-md-3">
+                    <div class="card mini-stats-wid">
+                        <div class="card-body">
+                            <div class="media">
+                                <div class="media-body">
+                                    <p class="text-muted fw-medium">Shipped Orders</p>
+                                    <h4 class="mb-0">{{ $total_shipped_orders }}</h4>
+                                </div>
+
+                                <div class="mini-stat-icon avatar-sm rounded-circle bg-primary align-self-center">
+                                    <span class="avatar-title">
+                                        <i class="bx bx-copy-alt font-size-24"></i>
+                                    </span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-md-3">
+                    <div class="card mini-stats-wid">
+                        <div class="card-body">
+                            <div class="media">
+                                <div class="media-body">
+                                    <p class="text-muted fw-medium">Finalized Orders</p>
+                                    <h4 class="mb-0">{{ $total_finalized_orders }}</h4>
+                                </div>
+
+                                <div class="mini-stat-icon avatar-sm rounded-circle bg-primary align-self-center">
+                                    <span class="avatar-title">
+                                        <i class="bx bx-copy-alt font-size-24"></i>
+                                    </span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-md-3">
+                    <div class="card mini-stats-wid">
+                        <div class="card-body">
+                            <div class="media">
+                                <div class="media-body">
+                                    <p class="text-muted fw-medium">Cancelled Orders</p>
+                                    <h4 class="mb-0">{{ $total_cancelled_orders }}</h4>
+                                </div>
+
+                                <div class="mini-stat-icon avatar-sm rounded-circle bg-primary align-self-center">
+                                    <span class="avatar-title">
+                                        <i class="bx bx-copy-alt font-size-24"></i>
+                                    </span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-md-3">
+                    <div class="card mini-stats-wid">
+                        <div class="card-body">
+                            <div class="media">
+                                <div class="media-body">
+                                    <p class="text-muted fw-medium">Return Orders</p>
+                                    <h4 class="mb-0">{{ $total_return_orders }}</h4>
                                 </div>
 
                                 <div class="mini-stat-icon avatar-sm rounded-circle bg-primary align-self-center">
@@ -48,7 +143,7 @@
                         </div>
                     </div>
                 </div>
-                <div class="col-md-3">
+                <!-- <div class="col-md-3">
                     <div class="card mini-stats-wid">
                         <div class="card-body">
                             <div class="media">
@@ -65,7 +160,7 @@
                             </div>
                         </div>
                     </div>
-                </div>
+                </div> -->
             </div>
             <!-- end row -->
         </div>

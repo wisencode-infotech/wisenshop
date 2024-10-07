@@ -37,9 +37,14 @@ class HomeController extends Controller
 
     public function root()
     {
-        $total_completed_orders = Order::where('status','completed')->count();
-        $total_completed_orders_amount = Order::where('status','completed')->sum('total_price');
-        return view('backend.index', compact('total_completed_orders', 'total_completed_orders_amount'));
+        $total_pending_orders = Order::where('status','1')->count();
+        $total_accepted_orders = Order::where('status','2')->count();
+        $total_shipped_orders = Order::where('status','3')->count();
+        $total_finalized_orders = Order::where('status','4')->count();
+        $total_cancelled_orders = Order::where('status','5')->count();
+        $total_return_orders = Order::where('status','6')->count();
+        $total_completed_orders_amount = Order::where('status','4')->sum('total_price');
+        return view('backend.index', compact('total_pending_orders','total_accepted_orders','total_shipped_orders','total_finalized_orders','total_cancelled_orders','total_return_orders', 'total_completed_orders_amount'));
     }
 
     /*Language Translation*/

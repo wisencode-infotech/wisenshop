@@ -5,6 +5,7 @@ namespace App\Livewire;
 use Livewire\Component;
 use App\Models\ShippingAddress;
 use App\Models\BillingAddress;
+use App\Models\PaymentMethod;
 use App\Helpers\CartHelper;
 
 class ShippingComponent extends Component
@@ -16,6 +17,7 @@ class ShippingComponent extends Component
     public $selected_payment_method_id;
     public $cart_items = [];
     public $total_price = 0;
+    public $payment_methods = [];
 
     protected $listeners = ['addressSaved' => 'loadAddresses'];
 
@@ -35,6 +37,8 @@ class ShippingComponent extends Component
 
         $this->cart_items = CartHelper::items();
         $this->total_price = CartHelper::total();
+
+        $this->payment_methods = PaymentMethod::all();
     }
 
     public function selectShippingAddress($address_id)

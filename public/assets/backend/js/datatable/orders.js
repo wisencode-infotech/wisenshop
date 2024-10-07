@@ -6,6 +6,15 @@ $(document).ready(function () {
                 url: APP_BACKEND_URL + '/order', // Base URL for Orders
                 data: function (d) {
                     d.status_filter = $('.select-status-filter.active').val() || ''; // Pass the selected locale
+                },
+                "dataSrc": function (json) {
+                    // Capture the response data and store it in a variable
+                    if(json.data.length > 0 && $('.select-status-filter.active').val() == 1) {
+                        $('.export_accept_pending_orders').removeClass('d-none');
+                    } else {
+                        $('.export_accept_pending_orders').addClass('d-none');
+                    }
+                    return json.data;  // Adjust this based on your data structure
                 }
             },
         columns: [

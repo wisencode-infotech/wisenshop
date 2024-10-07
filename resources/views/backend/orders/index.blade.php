@@ -36,10 +36,10 @@
                     <!-- end col -->
                     <div class="col-sm-auto">
                         <div class="text-sm-end">
-                         <form method="POST" action="{{ route('backend.order.bulk.export') }}" target="_blank" class="d-inline">
+                         <form method="POST" action="{{ route('backend.order.bulk.export') }}" target="_blank" class="d-inline" id="export-orders-form">
                             @csrf
                             <input type="hidden" name="action" value="export-multi-orders-with-view">
-                            <input type="hidden" name="status" value="2" value="export-multi-orders-with-view">
+                            <input type="hidden" name="status" value="1" value="export-multi-orders-with-view">
                             <button type="submit" class="btn btn-primary export_accept_pending_orders d-none">
                                 Export Pending Orders
                             </button>
@@ -95,6 +95,12 @@
                  toastr.error('An error occurred. Please try again.', 'Error');
             }
         });
+    });
+
+    $('#export-orders-form').submit(function() {
+        setTimeout(function() {
+            $('#orders-table').DataTable().ajax.reload(null, false);
+        }, 2000);
     });
 </script>
 @endsection

@@ -29,7 +29,10 @@ Route::middleware(['auth'])->group(function () {
     Route::get('settings', [SettingController::class, 'index'])->name('settings.index');
     Route::post('update-settings', [SettingController::class, 'update'])->name('settings.update');
 
-    Route::delete('product/image/{image}/remove', [ProductController::class, 'destroyImage'])->name('product.image.remove');
+    Route::group(['prefix' => 'product', 'as' => 'product.'], function() {
+        Route::delete('image/{image}/remove', [ProductController::class, 'destroyImage'])->name('image.remove');
+        Route::post('image/{image}/make-primary', [ProductController::class, 'makePrimaryImage'])->name('image.make-primary');
+    });
 
     Route::group(['prefix' => 'order', 'as' => 'order.'], function() {
         Route::post('status/{order}', [OrderController::class, 'updateStatus'])->name('update.status');

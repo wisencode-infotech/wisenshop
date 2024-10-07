@@ -102,6 +102,8 @@ class ProductController extends Controller
                     'product_id' => $product->id,
                     'image_path' => $path,
                 ]);
+
+                $product->makePrimaryImage();
             }
         }
 
@@ -168,6 +170,8 @@ class ProductController extends Controller
                     'product_id' => $product->id,
                     'image_path' => $path,
                 ]);
+
+                $product->makePrimaryImage();
             }
         }
 
@@ -265,5 +269,15 @@ class ProductController extends Controller
         $image->delete();
 
         return response()->json(['success' => true]);
+    }
+
+    public function makePrimaryImage(ProductImage $image) {
+        $product = $image->product;
+        ProductImage::where('product_id', $product->id)->update([
+            'is_primary' => '0'
+        ]);
+        $image->is_primary = '1';
+        $image->save();
+        return response()->json(['success' => true, 'message' => 'Primary image saved']);
     }
 }

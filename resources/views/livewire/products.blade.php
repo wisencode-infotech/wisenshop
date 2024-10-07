@@ -48,12 +48,9 @@
                             </div>
 
                             <div class="relative">
-
-                                @if ($product->discounted_price < $product->price)
-                                    <del class="absolute text-xs italic text-opacity-75 -top-4 text-muted md:-top-5">{{ __userCurrencySymbol() }} {{ $product->price }}</del>
-                                @endif
-                                
-                                <span class="text-sm font-semibold text-accent md:text-base">{{ __userCurrencySymbol() }} {{ $product->discounted_price }}</span>
+                                <span class="text-sm font-semibold text-accent md:text-base">
+                                    @livewire('product-price', ['product_id' => $product->id], key('product-price-' . uniqid()))
+                                </span>
                             </div>
 
                             @if ($product->variations()->count() > 0)

@@ -24,7 +24,7 @@ class OrderController extends Controller
 
     public function index(Request $request)
     {
-         if ($request->ajax()) {
+        if ($request->ajax()) {
             $status_filter = $request->input('status_filter');
 
             $query = Order::query();
@@ -36,27 +36,26 @@ class OrderController extends Controller
 
             return Datatables::of($data)
                 ->addIndexColumn() // Adds the row index
-                ->addColumn('user_name', function($row) {
+                ->addColumn('user_name', function ($row) {
                     return $row->user->name;
                 })
-                ->addColumn('status', function($row) {
-                    $status = config('general.order_statuses.'. $row->status);
-                    $status_color = config('general.order_statuses_color.'. $row->status);
-                    return '<span class="badge rounded-pill badge-soft-'. $status_color .' font-size-12">'.$status.'</span>';
+                ->addColumn('status', function ($row) {
+                    $status = config('general.order_statuses.' . $row->status);
+                    $status_color = config('general.order_statuses_color.' . $row->status);
+                    return '<span class="badge rounded-pill badge-soft-' . $status_color . ' font-size-12">' . $status . '</span>';
                 })
-                ->addColumn('amount', function($row) {
+                ->addColumn('amount', function ($row) {
                     return $row->total_price . ' ' . __appCurrencySymbol();
                 })
-                ->addColumn('action', function($row) {
-                    $btn = '<a href="'.route('backend.order.show', $row).'" class="edit btn btn-primary btn-sm">View</a>';
-                    $status = config('general.order_statuses.'. $row->status);
-                    if($status == 'Pending')
-                    {
-                        $btn .= '&nbsp'.'<a href="'.route('backend.order.update.status', $row).'" class="update-order-status btn btn-warning btn-sm">Export & Accept</a>';
+                ->addColumn('action', function ($row) {
+                    $btn = '<a href="' . route('backend.order.show', $row) . '" class="edit btn btn-primary btn-sm">View</a>';
+                    $status = config('general.order_statuses.' . $row->status);
+                    if ($status == 'Pending') {
+                        $btn .= '&nbsp' . '<a href="' . route('backend.order.update.status', $row) . '" class="update-order-status btn btn-warning btn-sm">Export & Accept</a>';
                     }
                     return $btn;
                 })
-                ->rawColumns(['action','user_name', 'status'])
+                ->rawColumns(['action', 'user_name', 'status'])
                 ->make(true);
         }
 
@@ -69,8 +68,8 @@ class OrderController extends Controller
      */
     public function show(Order $order)
     {
-        $status = config('general.order_statuses.'. $order->status);
-        $status_color = config('general.order_statuses_color.'. $order->status);
+        $status = config('general.order_statuses.' . $order->status);
+        $status_color = config('general.order_statuses_color.' . $order->status);
         return view('backend.orders.show', compact('order', 'status', 'status_color'));
     }
 
@@ -86,26 +85,46 @@ class OrderController extends Controller
         ]);
     }
 
-   public function exportPendingOrders(Request $request)
+    public function bulkExport(Request $request)
     {
-        $status = $request->status ?? '';
+        $options = [];
 
-        if ($status) {
-            $pending_orders = Order::where('status', $status)->get();
-            $options = new Options();
-            $options->set('defaultFont', 'DejaVu Sans');
-            $options->set('isRemoteEnabled', true); // Enable remote file access
-            $options->set('isHtml5ParserEnabled', true); // Enable HTML5 parsing
-            $dompdf = new Dompdf($options);
+        $action = $request->action ?? 'default'; // multi-orders-with-view
 
-            $html = view('backend.orders.pdf.export-pending-orders-pdf', compact('pending_orders'))->render();
+        $options['action'] = $action;
 
-            $dompdf->loadHtml($html);
-            $dompdf->render();
-            
-            return $dompdf->stream('pending_orders.pdf', ['Attachment' => false]);
+        $orders = Order::query();
+
+        if ($request->has('status') && is_numeric($request->status)) {
+            $orders->where('status', $request->status);
+
+            $options['export_as'] = 'pending-orders-' . date('YmdHis') . '.pdf';
         }
 
-        return redirect()->back()->with('error', 'Invalid status.');
+        return $this->bulkExportWithMultiOrders($orders->get(), $options);
     }
+
+    public function bulkExportWithMultiOrders($orders, $options = [])
+    {
+        $dompdf_options = new Options();
+        $dompdf_options->set('defaultFont', 'DejaVu Sans');
+        $dompdf_options->set('isRemoteEnabled', true); // Enable remote file access
+        $dompdf_options->set('isHtml5ParserEnabled', true); // Enable HTML5 parsing
+
+        $dompdf = new Dompdf($dompdf_options);
+
+        $html = '';
+
+        if ($options['action'] == 'export-multi-orders-with-view') {
+            $html = view('backend.orders.pdf.orders-info-pdf', compact('orders'))->render();
+        }
+
+        $export_name = $options['export_as'] ?? 'exported-orders.pdf';
+
+        $dompdf->loadHtml($html);
+        $dompdf->render();
+
+        return $dompdf->stream($export_name, ['Attachment' => false]);
+    }
+
 }

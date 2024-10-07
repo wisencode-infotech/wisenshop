@@ -15,9 +15,9 @@
     <div class="logo">
         <img src="{{ asset('assets/frontend/img/logo.png') }}" alt="Logo" height="80">
     </div>
-    <div class="title">Pending Orders</div>
+    <div class="title">Orders</div>
 
-    @foreach($pending_orders as $order)
+    @foreach($orders as $order)
     <div style="border:2px solid black;margin:20px 0;page-break-inside: avoid;">
         <table class="table" >
         <tbody>

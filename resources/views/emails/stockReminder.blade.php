@@ -1,9 +1,12 @@
 <x-mail::message>
+
+@if (!empty($productVariation))
+# {{ $product->name }} is Back in Stock for {{ $productVariation->name }}!
+@else
 # {{ $product->name }} is Back in Stock!
+@endif
 
 Good news! The product you're interested in is now available.
-
-**Product**: {{ $product->name }}
 
 <!-- Show the product image -->
 <img src="{{ $product->display_image_url }}" alt="{{ $product->name }}" width="200" />

@@ -200,12 +200,32 @@ class ProductController extends Controller
                 if (isset($variation['id'])) {
                     // Update existing variation
                     $productVariation = $product->variations()->find($variation['id']);
+
                     if ($productVariation) {
+
+                        $old_variant_stock = $productVariation->stock;
+
                         $productVariation->update([
                             'name' => $variation['name'],
                             'price' => $variation['price'] ?? null,
                             'stock' => $variation['stock'] ?? null
                         ]);
+
+                        $variation_changes = $productVariation->getChanges();
+
+                        if( !empty($variation_changes) && array_filter($variation_changes) ) {
+                            if (isset($variation_changes['stock']) && $variation_changes['stock'] > 0 && $old_variant_stock == 0) {
+                                
+                                $reminders = StockReminder::where('product_id', $product->id)->where('product_variation_id', $productVariation->id)->get();
+                
+                                foreach ($reminders as $reminder) {
+                                    // Send an email notification to each user
+                                    Mail::to($reminder->email)->queue(new StockReminderMail($product, $productVariation));
+                
+                                    $reminder->delete();
+                                }
+                            }
+                        }
                     }
                 } else {
                     // Create new variation (doesn't have an ID)

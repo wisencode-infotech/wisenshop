@@ -15,6 +15,7 @@ class CreateProductVariationsTable extends Migration
             $table->decimal('price', 10, 2)->nullable(); // Price for the variation
             $table->integer('stock')->default(0); // Stock for the variation
             $table->timestamps();
+            $table->softDeletes();
         });
     }
 

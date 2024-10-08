@@ -21,12 +21,24 @@ class PaymentMethodController extends Controller
                 ->addColumn('image', function($row) {
                     return '<img src="' . $row->logo_url . '" height="50" width="50" />';
                 })
+                ->addColumn('is_default', function($row) {
+                    
+                    if ($row->is_default == 1) {
+                        $badge_title = 'Yes';
+                        $badge_class = 'badge-soft-success';
+                    } else {
+                        $badge_title = 'No';
+                        $badge_class = 'badge-soft-danger';
+                    }
+
+                    return '<span class="badge rounded-pill font-size-12 ' . $badge_class . '">' .  $badge_title . '</span>';
+                })
                 ->addColumn('action', function($row) {
                     $btn = '<a href="'.route('backend.payment-method.edit', $row->id).'" class="edit btn btn-primary btn-sm">Edit</a>';
                     $btn .= ' <button class="btn btn-danger btn-sm delete" data-id="'.$row->id.'">Delete</button>';
                     return $btn;
                 })
-                ->rawColumns(['action', 'image'])
+                ->rawColumns(['action', 'image', 'is_default'])
                 ->make(true);
         }
 
@@ -54,11 +66,15 @@ class PaymentMethodController extends Controller
         ]);
 
         // Create a new payment method in the database
-        PaymentMethod::create([
+        $payment_method = PaymentMethod::create([
             'logo_url' => $request->logo_url,
             'name' => $request->name,
-            'description' => $request->description
+            'description' => $request->description,
+            'is_default' => $request->has('is_default') ? true : false
         ]);
+
+        // Set is_default false for others if active for this
+        $this->setOthersIsDefaultFalseIfActive($payment_method);
 
         return redirect()->route('backend.payment-method.index')
                          ->with('success', 'Payment method created successfully.');
@@ -94,11 +110,15 @@ class PaymentMethodController extends Controller
         $data = [
             'logo_url' => $request->logo_url,
             'name' => $request->name,
-            'description' => $request->description
+            'description' => $request->description,
+            'is_default' => $request->has('is_default') ? true : false
         ];
 
         // Update the payment_method data
         $payment_method->update($data);
+
+        // Set is_default false for others if active for this
+        $this->setOthersIsDefaultFalseIfActive($payment_method);
 
         return redirect()->route('backend.payment-method.index')
                          ->with('success', 'Payment method updated successfully.');
@@ -118,5 +138,17 @@ class PaymentMethodController extends Controller
         }
 
         return response()->json(['error' => 'Payment method not found.'], 404);
+    }
+
+    /**
+     * Set is_default false for others if active for this
+     */
+    public function setOthersIsDefaultFalseIfActive($payment_method)
+    {
+        if ($payment_method->is_default == 1) {
+            PaymentMethod::where('id', '<>', $payment_method->id)->update([
+                'is_default' => false
+            ]);
+        }
     }
 }

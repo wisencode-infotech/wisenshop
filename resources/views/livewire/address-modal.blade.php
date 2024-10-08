@@ -10,53 +10,53 @@
             </svg>
          </button>
          <div class="min-h-screen p-5 bg-light sm:p-8 md:min-h-0 md:rounded-xl">
-            <h1 class="mb-4 text-lg font-semibold text-center text-heading sm:mb-6">Add New Address</h1>
+            <h1 class="mb-4 text-lg font-semibold text-center text-heading sm:mb-6">{{ __trans('Add New Address') }}</h1>
             <form wire:submit.prevent="saveAddress" class="grid h-full grid-cols-2 gap-5">
                <input type="hidden" wire:model="id">
                <div class="col-span-2">
-                  <label class="block text-body-dark font-semibold text-sm leading-none mb-3">Type</label>
+                  <label class="block text-body-dark font-semibold text-sm leading-none mb-3">{{ __trans('Type') }}</label>
                   <div class="flex items-center space-x-4 rtl:space-x-reverse">
                      <div>
-                        <div class="flex items-center"><input id="billing" wire:model="address_type"  type="radio" class="radio_radio_input__Jo_uR" @if($address_type === 'billing') checked @endif value="billing"><label for="billing" class="text-sm text-body ms-2">Billing</label></div>
+                        <div class="flex items-center"><input id="billing" wire:model="address_type"  type="radio" class="radio_radio_input__Jo_uR" @if($address_type === 'billing') checked @endif value="billing"><label for="billing" class="text-sm text-body ms-2">{{ __trans('Billing') }}</label></div>
                      </div>
                      <div>
-                        <div class="flex items-center"><input id="shipping" wire:model="address_type"  type="radio" class="radio_radio_input__Jo_uR" @if($address_type === 'shipping') checked @endif value="shipping"><label for="shipping" class="text-sm text-body ms-2">Shipping</label></div>
+                        <div class="flex items-center"><input id="shipping" wire:model="address_type"  type="radio" class="radio_radio_input__Jo_uR" @if($address_type === 'shipping') checked @endif value="shipping"><label for="shipping" class="text-sm text-body ms-2">{{ __trans('Shipping') }}</label></div>
                      </div>
                   </div>
                </div>
 
                 <div>
-                  <label for="country" class="mb-3 block text-sm font-semibold leading-none text-body-dark">Country</label>
+                  <label for="country" class="mb-3 block text-sm font-semibold leading-none text-body-dark">{{ __trans('Country') }}</label>
                   <input id="country" wire:model="country" type="text" class="flex w-full appearance-none items-center px-4 text-sm text-heading transition duration-300 ease-in-out focus:outline-0 focus:ring-0 border border-border-base rounded focus:border-accent h-12" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false" aria-invalid="false">
-                    @error('country') <span class="error text-red-500 text-sm">{{ $message }}</span> @enderror
+                    @error('country') <span class="error text-red-500 text-xs mt-1">{{ $message }}</span> @enderror
                 </div>
 
 
                 <div>
-                  <label for="city" class="mb-3 block text-sm font-semibold leading-none text-body-dark">City</label>
+                  <label for="city" class="mb-3 block text-sm font-semibold leading-none text-body-dark">{{ __trans('City') }}</label>
                   <input id="city" wire:model="city" type="text" class="flex w-full appearance-none items-center px-4 text-sm text-heading transition duration-300 ease-in-out focus:outline-0 focus:ring-0 border border-border-base rounded focus:border-accent h-12" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false" aria-invalid="false">
-                    @error('city') <span class="error text-red-500 text-sm">{{ $message }}</span> @enderror
+                    @error('city') <span class="error text-red-500 text-xs mt-1">{{ $message }}</span> @enderror
                 </div>
                 
 
-                <div><label for="state" class="mb-3 block text-sm font-semibold leading-none text-body-dark">State</label><input id="state" wire:model="state" type="text" class="flex w-full appearance-none items-center px-4 text-sm text-heading transition duration-300 ease-in-out focus:outline-0 focus:ring-0 border border-border-base rounded focus:border-accent h-12" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false" aria-invalid="false">
-                    @error('state') <span class="error text-red-500 text-sm">{{ $message }}</span> @enderror
+                <div><label for="state" class="mb-3 block text-sm font-semibold leading-none text-body-dark">{{ __trans('State') }}</label><input id="state" wire:model="state" type="text" class="flex w-full appearance-none items-center px-4 text-sm text-heading transition duration-300 ease-in-out focus:outline-0 focus:ring-0 border border-border-base rounded focus:border-accent h-12" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false" aria-invalid="false">
+                    @error('state') <span class="error text-red-500 text-xs mt-1">{{ $message }}</span> @enderror
                 </div>
                 
 
-                <div><label for="postal_code" class="mb-3 block text-sm font-semibold leading-none text-body-dark">Postal Code</label><input id="postal_code" wire:model="postal_code" type="text" class="flex w-full appearance-none items-center px-4 text-sm text-heading transition duration-300 ease-in-out focus:outline-0 focus:ring-0 border border-border-base rounded focus:border-accent h-12" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false" aria-invalid="false">
-                    @error('postal_code') <span class="error text-red-500 text-sm">{{ $message }}</span> @enderror
+                <div><label for="postal_code" class="mb-3 block text-sm font-semibold leading-none text-body-dark">{{ __trans('Postal Code') }}</label><input id="postal_code" wire:model="postal_code" type="text" class="flex w-full appearance-none items-center px-4 text-sm text-heading transition duration-300 ease-in-out focus:outline-0 focus:ring-0 border border-border-base rounded focus:border-accent h-12" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false" aria-invalid="false">
+                    @error('postal_code') <span class="error text-red-500 text-xs mt-1">{{ $message }}</span> @enderror
                 </div> 
                 
 
 
-               <div class="col-span-2"><label for="address" class="mb-3 block text-sm font-semibold leading-none text-body-dark">Street Address</label><textarea id="address" wire:model="address" class="flex w-full appearance-none items-center rounded px-4 py-3 text-sm text-heading transition duration-300 ease-in-out focus:outline-0 focus:ring-0 border border-border-base focus:border-accent" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false" rows="4"></textarea>
-                @error('address') <span class="error text-red-500 text-sm">{{ $message }}</span> @enderror
+               <div class="col-span-2"><label for="address" class="mb-3 block text-sm font-semibold leading-none text-body-dark">{{ __trans('Street Address') }}</label><textarea id="address" wire:model="address" class="flex w-full appearance-none items-center rounded px-4 py-3 text-sm text-heading transition duration-300 ease-in-out focus:outline-0 focus:ring-0 border border-border-base focus:border-accent" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false" rows="4"></textarea>
+                @error('address') <span class="error text-red-500 text-xs mt-1">{{ $message }}</span> @enderror
                </div>
                
                
               
-               <button data-variant="normal" class="inline-flex items-center justify-center shrink-0 font-semibold leading-none rounded outline-none transition duration-300 ease-in-out focus:outline-0 focus:shadow focus:ring-1 focus:ring-accent-700 bg-accent text-light border border-transparent hover:bg-accent-hover px-5 py-0 h-12 w-full col-span-2">Update Address</button>
+               <button data-variant="normal" class="inline-flex items-center justify-center shrink-0 font-semibold leading-none rounded outline-none transition duration-300 ease-in-out focus:outline-0 focus:shadow focus:ring-1 focus:ring-accent-700 bg-accent text-light border border-transparent hover:bg-accent-hover px-5 py-0 h-12 w-full col-span-2">{{ __trans('Update Address') }}</button>
             </form>
          </div>
       </div>

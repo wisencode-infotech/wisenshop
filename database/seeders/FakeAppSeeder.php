@@ -12,6 +12,7 @@ use App\Models\SiteBanner;
 use App\Models\User;
 use App\Models\Setting;
 use App\Models\ProductUnit;
+use App\Models\Currency;
 use Illuminate\Database\Seeder;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Str;
@@ -101,10 +102,12 @@ class FakeAppSeeder extends Seeder
 
         $users = User::all();
         $products = Product::all();
+        $currency_ids = Currency::pluck('id')->toArray();
 
         foreach ($users as $user) {
             $order = Order::create([
                 'user_id' => $user->id,
+                'currency_id' => $currency_ids[array_rand($currency_ids)],
                 'status' => array_rand(config('general.order_statuses')),
                 'total_price' => 0,
             ]);

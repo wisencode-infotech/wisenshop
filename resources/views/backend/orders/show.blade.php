@@ -9,6 +9,8 @@
 @slot('title') Details #{{ $order->id }} @endslot
 @endcomponent
 
+@php $currency = $order->currency; @endphp
+
 <div class="row">
     <div class="col-lg-12">
      <div class="card">
@@ -27,33 +29,58 @@
             <hr>
             <div class="row">
                 <div class="col-sm-6">
+                    @if(!empty($order->address->billing_address_id))
                     <address>
                         <strong>Billed To:</strong><br>
-                        John Smith<br>
-                        1234 Main<br>
-                        Apt. 4B<br>
-                        Springfield, ST 54321
+                        {{ $order->user->name }}<br>
+                        {{ $order->address->billingAddress->address }}<br>
+                        {{ $order->address->billingAddress->city }}<br>
+                        {{ $order->address->billingAddress->state }},  {{ $order->address->billingAddress->postal_code }}<br>
+                        {{ $order->address->billingAddress->country }}
                     </address>
+                    @endif
                 </div>
                 <div class="col-sm-6 text-sm-end">
+                    @if(!empty($order->address->shipping_address_id))
                     <address class="mt-2 mt-sm-0">
                         <strong>Shipped To:</strong><br>
-                        Kenny Rigdon<br>
-                        1234 Main<br>
-                        Apt. 4B<br>
-                        Springfield, ST 54321
+                        {{ $order->address->shippingAddress->address }}<br>
+                        {{ $order->address->shippingAddress->city }}<br>
+                        {{ $order->address->shippingAddress->state }},  {{ $order->address->shippingAddress->postal_code }}<br>
+                        {{ $order->address->shippingAddress->country }}
                     </address>
+                    @endif
                 </div>
             </div>
             <div class="row">
                 <div class="col-sm-6 mt-3">
+                    @if(!empty($extraInformation['customer_contact_email']))
+                    <p>{{ $extraInformation['customer_contact_email'] ?? 'N/A' }}</p>
+                    @endif
+
+                    @if(!empty($extraInformation['customer_contact_phone']))
+                    <p>{{ $extraInformation['customer_contact_phone'] ?? 'N/A' }}</p>
+                    @endif
+
+                    @if(!empty($extraInformation['customer_additional_notes']))
+                    <p>Notes: {{ $extraInformation['customer_additional_notes'] ?? 'N/A' }}</p>
+                    @endif
+
+                    @if(!empty($order->payment->details))
                     <address>
-                        <strong>Payment Method:</strong><br>
-                        @foreach($order->payment as $payment)
-                        {{ $payment->payment_method }}<br>
-                        @endforeach
-                        {{ $order->user->email }}
+                        <strong>Payment Method</strong><br>
+                        {{ $order->payment->details->name }}<br>
+                        {{ $order->payment->details->description }}
                     </address>
+                    @endif
+
+                  
+                    <address>
+                        <strong>Currency</strong><br>
+                        {{ $currency->code }}
+                    </address>
+                   
+
                 </div>
                 <div class="col-sm-6 mt-3 text-sm-end">
                     <address>
@@ -76,19 +103,27 @@
                         </tr>
                     </thead>
                     <tbody>
+                       
                         @php $subtotal = 0; $total = 0; @endphp
+
                         @foreach($order->products as $index => $product)
+
+                        @php
+                            $price = $product->pivot->price;
+                            $quantity = $product->pivot->quantity;
+                        @endphp
+                        
                         <tr>
                             <td>{{ ++$index }}</td>
-                            <td>{{ $product->name }}</td>
-                            <td class="text-end">{{ __appCurrencySymbol() }}499.00</td>
+                            <td>{{ $quantity .' X '. $product->name }}</td>
+                            <td class="text-end">{{ $currency->symbol }}{{ $price * $quantity }}</td>
                         </tr>
-                        @php $subtotal += $product->price; @endphp
-                        @php $total += $product->price; @endphp
+                        @php $subtotal += $price * $quantity; @endphp
+                        @php $total += $price * $quantity; @endphp
                         @endforeach
                         <tr>
                             <td colspan="2" class="text-end">Sub Total</td>
-                            <td class="text-end">{{ __appCurrencySymbol() }}{{ number_format($subtotal, 2) }}</td>
+                            <td class="text-end">{{ $currency->symbol }}{{ number_format($subtotal, 2) }}</td>
                         </tr>
                         <!-- <tr>
                             <td colspan="2" class="border-0 text-end">
@@ -98,7 +133,7 @@
                             <tr>
                                 <td colspan="2" class="border-0 text-end">
                                     <strong>Total</strong></td>
-                                    <td class="border-0 text-end"><h4 class="m-0">{{ __appCurrencySymbol() }} {{ number_format($total, 2) }}</h4></td>
+                                    <td class="border-0 text-end"><h4 class="m-0">{{ $currency->symbol }} {{ number_format($total, 2) }}</h4></td>
                                 </tr>
                             </tbody>
                         </table>

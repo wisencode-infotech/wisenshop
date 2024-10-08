@@ -110,6 +110,7 @@ class Checkout extends Component
                     'phone' => $this->phone,
                     'email' => $this->email,
                     'order_notes' => $this->order_notes,
+                    'currency' => __userCurrency(),
                 ]);
 
         $this->isPlacingOrder = false;

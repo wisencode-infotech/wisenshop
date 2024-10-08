@@ -46,7 +46,7 @@ class SettingController extends Controller
             } else {
                 $value = $setting['value'] ?? null;
 
-                if (!in_array($setting['key'], ['header_logo', 'footer_logo', 'fav_logo'])){
+                if (!in_array($setting['key'], ['header_logo', 'footer_logo', 'fav_logo', 'email_header_logo'])){
                     Setting::updateOrCreate(
                         ['key' => $setting['key']],
                         ['value' => $value]

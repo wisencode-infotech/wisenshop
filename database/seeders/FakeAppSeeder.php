@@ -38,6 +38,8 @@ class FakeAppSeeder extends Seeder
                 'header_logo' => 'assets/frontend/img/logo.png',
                 'footer_logo' => 'assets/frontend/img/logo.png',
                 'fav_logo' => 'assets/frontend/img/logo.png',
+                'email_header_logo' => 'assets/frontend/img/logo.png',
+                'email_footer_content' => '© 2024 '.config('app.name').'. All rights reserved.',
                 'phone_number' => '9696669999',
                 'email' => 'example@domain.com',
                 'address' => '123 Example Street, Sample City, ST 12345',

@@ -22,7 +22,7 @@
                     @foreach($settings as $setting)
                         <div class="form-group mb-3">
                             <label for="{{ $setting->key }}" class="form-label">{{ ucwords(str_replace('_', ' ', $setting->key)) }}</label>
-                            @if (in_array($setting->key, ['header_logo', 'footer_logo', 'fav_logo']))
+                            @if (in_array($setting->key, ['header_logo', 'footer_logo', 'fav_logo','email_header_logo']))
                                 <input type="file" name="settings[{{ $loop->index }}][value]" class="form-control @error('settings.'.$loop->index.'.value') is-invalid @enderror" accept="image/*">
 
                                 @if ($setting->value)

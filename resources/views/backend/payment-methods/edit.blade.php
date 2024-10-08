@@ -58,6 +58,17 @@
                         @enderror
                     </div>
 
+                    <!-- is_default Field -->
+                    <div class="form-group mb-3">
+                        <input type="checkbox" name="is_default" id="is_default" class="form-check-inline @error('is_default') is-invalid @enderror" {{ old('is_default', $payment_method->is_default == 1) ? 'checked' : '' }}>
+                        <label for="is_default" class="form-check-label">Is Default?</label>
+                        @error('is_default')
+                            <span class="invalid-feedback" role="alert">
+                                <strong>{{ $message }}</strong>
+                            </span>
+                        @enderror
+                    </div>
+
                     <!-- Submit Button -->
                     <div class="form-group text-end">
                         <button type="submit" class="btn btn-primary btn-rounded">Update Payment Method</button>

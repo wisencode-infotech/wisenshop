@@ -158,12 +158,14 @@ class FakeAppSeeder extends Seeder
             [
                 'name' => 'CoinPayments',
                 'description' => 'Secure & Trusted Crypto Payment Gateway',
-                'logo_url' => 'https://www.coinpayments.net/2024.03/img/cps-since.svg'
+                'logo_url' => 'https://www.coinpayments.net/2024.03/img/cps-since.svg',
+                'is_default' => true
             ],
             [
                 'name' => 'Cash on Delivery',
                 'description' => 'Pay on Delivery',
-                'logo_url' => 'https://img.freepik.com/premium-vector/cash-delivery_569841-175.jpg?w=826'
+                'logo_url' => 'https://img.freepik.com/premium-vector/cash-delivery_569841-175.jpg?w=826',
+                'is_default' => false
             ]
         ];
 

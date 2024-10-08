@@ -12,8 +12,6 @@ class ProductStock extends Component
     public $product_variation_id;
     public $stock = 0;
 
-    protected $listeners = ['productVariantChanged'];
-
     public function mount($product_id, $product_variation_id = null)
     {
         $this->product_id = $product_id;
@@ -25,6 +23,13 @@ class ProductStock extends Component
         }
 
         $this->setStock();
+    }
+
+    public function getListeners()
+    {
+        return [
+            "productVariantChanged-{$this->product_id}" => 'productVariantChanged'
+        ];
     }
 
     public function productVariantChanged($product_id, $product_variation_id = null)

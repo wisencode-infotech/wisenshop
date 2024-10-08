@@ -4,18 +4,18 @@
    <div class="m-auto flex w-full max-w-5xl flex-col items-center rtl:space-x-reverse lg:flex-row lg:items-start lg:space-x-8">
       <div class="w-full space-y-6 lg:max-w-2xl">
 
-        <h3 class="text-2xl font-bold text-heading">Checkout</h3>
+        <h3 class="text-2xl font-bold text-heading">{{ __trans('Checkout') }}</h3>
 
          <div class="bg-light p-5 shadow-700 md:p-8">
             <div class="mb-5 flex items-center justify-between md:mb-8">
                <div class="flex items-center space-x-3 rtl:space-x-reverse md:space-x-4">
                   <span class="flex h-8 w-8 items-center justify-center rounded-full bg-accent text-base text-light lg:text-xl">1</span>
-                  <p class="text-lg capitalize text-heading lg:text-xl">Contact Number</p>
+                  <p class="text-lg capitalize text-heading lg:text-xl">{{ __trans('Contact Number') }}</p>
                </div>
             </div>
             <div class="w-full">
                <div class=" react-tel-input ">
-                  <div class="special-label">Phone</div>
+                  <div class="special-label">{{ __trans('Phone') }}</div>
                   <input class="form-control !p-0 ltr:!pr-4 rtl:!pl-4 ltr:!pl-1 rtl:!pr-1 !flex !items-center !w-full !appearance-none !transition !duration-300 !ease-in-out !text-heading !text-sm focus:!outline-none focus:!ring-0 !border !border-border-base !rounded focus:!border-accent !h-12" placeholder="1 (702) 123-4567" type="tel" value="{{ auth()->user()->phone }}">
                </div>
             </div>
@@ -24,34 +24,34 @@
             <div class="mb-5 flex items-center justify-between md:mb-8">
                <div class="flex items-center space-x-3 rtl:space-x-reverse md:space-x-4">
                   <span class="flex h-8 w-8 items-center justify-center rounded-full bg-accent text-base text-light lg:text-xl">2</span>
-                  <p class="text-lg capitalize text-heading lg:text-xl">Billing Address</p>
+                  <p class="text-lg capitalize text-heading lg:text-xl">{{ __trans('Billing Address') }}</p>
                </div>
                <button wire:click="$dispatch('open-modal', { type: 'billing' })" class="flex items-center text-sm font-semibold text-accent transition-colors duration-200 hover:text-accent-hover focus:text-accent-hover focus:outline-0">
                   <svg fill="none" viewBox="0 0 24 24" stroke="currentColor" class="h-4 w-4 stroke-2 ltr:mr-0.5 rtl:ml-0.5">
                      <path stroke-linecap="round" stroke-linejoin="round" d="M12 6v6m0 0v6m0-6h6m-6 0H6"></path>
                   </svg>
-                  Add
+                  {{ __trans('Add') }}
                </button>
             </div>
             <div id="headlessui-radiogroup-:r9:" role="radiogroup" aria-labelledby="headlessui-label-:ra:">
-               <label class="sr-only" id="headlessui-label-:ra:" role="none">Billing Address</label>
+               <label class="sr-only" id="headlessui-label-:ra:" role="none">{{ __trans('Billing Address') }}</label>
 
                <div class="grid grid-cols-1 gap-4 sm:grid-cols-2 md:grid-cols-3" role="none">
 
                   @foreach($billing_addresses as $billing_address)  
                   <div id="headlessui-radiogroup-option-:rb:" role="radio" aria-checked="true" tabindex="0" data-headlessui-state="checked">
                      <div wire:click="selectBillingAddress({{ $billing_address->id }})" class="group relative cursor-pointer rounded border p-4 hover:border-accent border-transparent bg-gray-100 shipping_address_container {{ $selected_billing_address_id === $billing_address->id ? 'active' : '' }}">
-                        <p class="mb-3 text-sm font-semibold capitalize text-heading">Billing</p>
+                        <p class="mb-3 text-sm font-semibold capitalize text-heading">{{ __trans('Billing') }}</p>
                         <p class="text-sm text-sub-heading">{{ $billing_address->address }}, {{ $billing_address->city }}, {{ $billing_address->state }} {{ $billing_address->postal_code }}, {{ $billing_address->country }}</p>
                         <div class="absolute top-4 flex space-x-2 opacity-0 group-hover:opacity-100 ltr:right-4 rtl:left-4 rtl:space-x-reverse">
                            <button wire:click="$dispatch('editBillingAddress', { address_id: {{ $billing_address->id }} })" class="flex h-5 w-5 items-center justify-center rounded-full bg-accent text-light">
-                              <span class="sr-only">Edit</span>
+                              <span class="sr-only">{{ __trans('Edit') }}</span>
                               <svg class="h-3 w-3" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor">
                                  <path d="M13.586 3.586a2 2 0 112.828 2.828l-.793.793-2.828-2.828.793-.793zM11.379 5.793L3 14.172V17h2.828l8.38-8.379-2.83-2.828z"></path>
                               </svg>
                            </button>
                            <button wire:click="$dispatch('deleteBillingAddress', { address_id: {{ $billing_address->id }} })" class="flex h-5 w-5 items-center justify-center rounded-full bg-red-600 text-light">
-                              <span class="sr-only">Delete</span>
+                              <span class="sr-only">{{ __trans('Delete') }}</span>
                               <svg class="h-3 w-3" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor">
                                  <path fill-rule="evenodd" d="M4.293 4.293a1 1 0 011.414 0L10 8.586l4.293-4.293a1 1 0 111.414 1.414L11.414 10l4.293 4.293a1 1 0 01-1.414 1.414L10 11.414l-4.293 4.293a1 1 0 01-1.414-1.414L8.586 10 4.293 5.707a1 1 0 010-1.414z" clip-rule="evenodd"></path>
                               </svg>
@@ -68,34 +68,34 @@
             <div class="mb-5 flex items-center justify-between md:mb-8">
                <div class="flex items-center space-x-3 rtl:space-x-reverse md:space-x-4">
                   <span class="flex h-8 w-8 items-center justify-center rounded-full bg-accent text-base text-light lg:text-xl">3</span>
-                  <p class="text-lg capitalize text-heading lg:text-xl">Shipping Address</p>
+                  <p class="text-lg capitalize text-heading lg:text-xl">{{ __trans('Shipping Address') }}</p>
                </div>
                <button wire:click="$dispatch('open-modal', { type: 'shipping' })" class="flex items-center text-sm font-semibold text-accent transition-colors duration-200 hover:text-accent-hover focus:text-accent-hover focus:outline-0">
                   <svg fill="none" viewBox="0 0 24 24" stroke="currentColor" class="h-4 w-4 stroke-2 ltr:mr-0.5 rtl:ml-0.5">
                      <path stroke-linecap="round" stroke-linejoin="round" d="M12 6v6m0 0v6m0-6h6m-6 0H6"></path>
                   </svg>
-                  Add
+                  {{ __trans('Add') }}
                </button>
             </div>
             <div id="headlessui-radiogroup-:rc:" role="radiogroup" aria-labelledby="headlessui-label-:rd:">
-               <label class="sr-only" id="headlessui-label-:rd:" role="none">Shipping Address</label>
+               <label class="sr-only" id="headlessui-label-:rd:" role="none">{{ __trans('Shipping Address') }}</label>
                <div class="grid grid-cols-1 gap-4 sm:grid-cols-2 md:grid-cols-3" role="none">
                 @foreach($shipping_addresses as $shipping_address)  
                   <div id="headlessui-radiogroup-option-:re:" role="radio" aria-checked="false" tabindex="0" data-headlessui-state="">
                      <div wire:click="selectShippingAddress({{ $shipping_address->id }})" class="group relative cursor-pointer rounded border p-4 hover:border-accent border-transparent bg-gray-100 shipping_address_container {{ $selected_shipping_address_id === $shipping_address->id ? 'active' : '' }}">
                         <!-- border-accent shadow-sm -->
                         <!-- border-transparent bg-gray-100 -->
-                        <p class="mb-3 text-sm font-semibold capitalize text-heading">Shipping</p>
+                        <p class="mb-3 text-sm font-semibold capitalize text-heading">{{ __trans('Shipping') }}</p>
                         <p class="text-sm text-sub-heading">{{ $shipping_address->address }}, {{ $shipping_address->city }}, {{ $shipping_address->state }} {{ $shipping_address->postal_code }}, {{ $shipping_address->country }}</p>
                         <div class="absolute top-4 flex space-x-2 opacity-0 group-hover:opacity-100 ltr:right-4 rtl:left-4 rtl:space-x-reverse">
                            <button wire:click="$dispatch('editShippingAddress', { address_id: {{ $shipping_address->id }} })" class="flex h-5 w-5 items-center justify-center rounded-full bg-accent text-light">
-                              <span class="sr-only">Edit</span>
+                              <span class="sr-only">{{ __trans('Edit') }}</span>
                               <svg class="h-3 w-3" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor">
                                  <path d="M13.586 3.586a2 2 0 112.828 2.828l-.793.793-2.828-2.828.793-.793zM11.379 5.793L3 14.172V17h2.828l8.38-8.379-2.83-2.828z"></path>
                               </svg>
                            </button>
                            <button wire:click="$dispatch('deleteShippingAddress', { address_id: {{ $shipping_address->id }} })" class="flex h-5 w-5 items-center justify-center rounded-full bg-red-600 text-light">
-                              <span class="sr-only">Delete</span>
+                              <span class="sr-only">{{ __trans('Delete') }}</span>
                               <svg class="h-3 w-3" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor">
                                  <path fill-rule="evenodd" d="M4.293 4.293a1 1 0 011.414 0L10 8.586l4.293-4.293a1 1 0 111.414 1.414L11.414 10l4.293 4.293a1 1 0 01-1.414 1.414L10 11.414l-4.293 4.293a1 1 0 01-1.414-1.414L8.586 10 4.293 5.707a1 1 0 010-1.414z" clip-rule="evenodd"></path>
                               </svg>
@@ -112,7 +112,7 @@
             <div class="mb-5 flex items-center justify-between md:mb-8">
                <div class="flex items-center space-x-3 rtl:space-x-reverse md:space-x-4">
                   <span class="flex h-8 w-8 items-center justify-center rounded-full bg-accent text-base text-light lg:text-xl">4</span>
-                  <p class="text-lg capitalize text-heading lg:text-xl">Order Note</p>
+                  <p class="text-lg capitalize text-heading lg:text-xl">{{ __trans('Order Note') }}</p>
                </div>
             </div>
             <div class="block">
@@ -134,31 +134,31 @@
                     @endif
                     <span>  
                     </span></span></div>
-                  <span class="text-sm text-body">{{ __userCurrencySymbol() }} {{ $item['product_price'] * $item['quantity'] }}</span>
+                  <span class="text-sm text-body font-semibold">{{ __userCurrencySymbol() }} {{ $item['product_price'] * $item['quantity'] }}</span>
                </div>
                 @endforeach
             </div>
             <div class="mt-4 space-y-2">
                <div class="flex justify-between">
-                  <p class="text-sm text-body">Sub Total</p>
-                  <span class="text-sm text-body">{{ __userCurrencySymbol() }} {{ number_format($total_price, 2) }}</span>
+                  <p class="text-sm text-body font-semibold">{{ __trans('Sub Total') }}</p>
+                  <span class="text-sm text-body font-semibold">{{ __userCurrencySymbol() }} {{ number_format($total_price, 2) }}</span>
                </div>
                <div class="flex justify-between">
-                  <p class="text-sm text-body">Tax</p>
-                  <span class="text-sm text-body">$0.00</span>
+                  <p class="text-sm text-body font-semibold">{{ __trans('Tax') }}</p>
+                  <span class="text-sm text-body font-semibold">{{ __userCurrencySymbol() }}0.00</span>
                </div>
                <div class="flex justify-between">
-                  <p class="text-sm text-body">Shipping <span class="text-xs font-semibold text-accent"></span></p>
-                  <span class="text-sm text-body"> $0.00</span>
+                  <p class="text-sm text-body font-semibold">{{ __trans('Shipping') }} <span class="text-xs font-semibold text-accent"></span></p>
+                  <span class="text-sm text-body font-semibold">{{ __userCurrencySymbol() }}0.00</span>
                </div>
                <div class="flex justify-between pt-3 border-t-4 border-double border-border-200">
-                  <p class="text-base font-semibold text-heading">Total</p>
+                  <p class="text-base font-semibold text-heading">{{ __trans('Total') }}</p>
                   <span class="text-base font-semibold text-heading">{{ __userCurrencySymbol() }} {{ number_format($total_price, 2) }}</span>
                </div>
             </div>
             <div class="p-5 mt-10 border border-gray-200 bg-light">
                <div id="headlessui-radiogroup-:rf:" role="radiogroup" aria-labelledby="headlessui-label-:rg:">
-                  <label class="mb-5 block text-base font-semibold text-heading" id="headlessui-label-:rg:" role="none">Choose Payment Method</label>
+                  <label class="mb-5 block text-base font-semibold text-heading" id="headlessui-label-:rg:" role="none">{{ __trans('Choose Payment Method') }}</label>
                   <div class="mb-8 grid grid-cols-2 gap-4 md:grid-cols-3" role="none">
 
                     @foreach($payment_methods as $payment_method)
@@ -174,7 +174,7 @@
                 </div>
                 @endif
             </div>
-            <button data-variant="normal" class="inline-flex items-center justify-center shrink-0 font-semibold leading-none rounded outline-none transition duration-300 ease-in-out focus:outline-0 focus:shadow focus:ring-1 focus:ring-accent-700 bg-accent text-light border border-transparent hover:bg-accent-hover px-5 py-0 h-12 mt-5 w-full" disabled="">Place Order</button>
+            <button data-variant="normal" class="inline-flex items-center justify-center shrink-0 font-semibold leading-none rounded outline-none transition duration-300 ease-in-out focus:outline-0 focus:shadow focus:ring-1 focus:ring-accent-700 bg-accent text-light border border-transparent hover:bg-accent-hover px-5 py-0 h-12 mt-5 w-full" disabled="">{{ __trans('Place Order') }}</button>
             <!-- <div class="mt-3">
                <p class="my-2 text-sm ltr:text-left rtl:text-right text-red-500">Please select and fill all the fields and place your order</p>
             </div> -->

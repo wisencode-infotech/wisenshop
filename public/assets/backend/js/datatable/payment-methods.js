@@ -8,6 +8,7 @@ $(document).ready(function () {
             { data: 'image', name: 'image' },
             { data: 'name', name: 'name' },
             { data: 'description', name: 'description' },
+            { data: 'is_default', name: 'is_default' },
             { 
                 data: 'action', 
                 name: 'action', 

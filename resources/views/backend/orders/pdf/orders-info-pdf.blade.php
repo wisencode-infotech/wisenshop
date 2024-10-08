@@ -39,7 +39,7 @@
 
 <body>
     <div class="logo">
-        <img src="{{ asset('assets/frontend/img/logo.png') }}" alt="Logo" height="80">
+        <img src="{{ public_path('assets/frontend/img/logo.png') }}" alt="Logo" height="80">
     </div>
     <div class="title">Orders</div>
     @foreach ($orders as $order)

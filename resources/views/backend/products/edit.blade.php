@@ -11,7 +11,7 @@
 </style>
 
 @component('backend.components.breadcrumb')
-@slot('li_1') Product @endslot
+@slot('li_1') <a href="{{ route('backend.product.index') }}">Product</a> @endslot
 @slot('title') Edit @endslot
 @endcomponent
 

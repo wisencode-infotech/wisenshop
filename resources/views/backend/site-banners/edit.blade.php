@@ -1,18 +1,18 @@
 @extends('backend.layouts.master')
 
-@section('title') Category @endsection
+@section('title') Site Banner @endsection
 
 @section('content')
 
 @component('backend.components.breadcrumb')
-@slot('li_1') Category @endslot
+@slot('li_1') <a href="{{ route('backend.site-banner.index') }}">Site Banner</a> @endslot
 @slot('title') Edit @endslot
 @endcomponent
 
 <div class="row">
     <div class="col-lg-12">
         <div class="card">
-            <div class="card-header">{{ __('Edit Category') }}</div>
+            <div class="card-header">{{ __('Edit Site Banner') }}</div>
 
             <div class="card-body">
                 @if (session('success'))

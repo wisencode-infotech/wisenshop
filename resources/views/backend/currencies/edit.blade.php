@@ -5,7 +5,7 @@
 @section('content')
 
 @component('backend.components.breadcrumb')
-@slot('li_1') Currency @endslot
+@slot('li_1') <a href="{{ route('backend.currency.index') }}">Currency</a> @endslot
 @slot('title') Edit @endslot
 @endcomponent
 

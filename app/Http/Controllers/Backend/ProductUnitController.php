@@ -12,7 +12,7 @@ use Illuminate\Support\Facades\Storage;
 class ProductUnitController extends Controller
 {
     /**
-     * Display a listing of the categories.
+     * Display a listing of the product units.
      */
     public function index(Request $request)
     {
@@ -51,7 +51,7 @@ class ProductUnitController extends Controller
     }
 
     /**
-     * Show the form for creating a new category.
+     * Show the form for creating a new product unit.
      */
     public function create()
     {
@@ -59,7 +59,7 @@ class ProductUnitController extends Controller
     }
 
     /**
-     * Store a newly created category in storage.
+     * Store a newly created product unit in storage.
      */
     public function store(Request $request)
     {
@@ -69,7 +69,7 @@ class ProductUnitController extends Controller
             'short_name' => 'required|string|max:20|unique:product_units,short_name'
         ]);
 
-        // Create a new currency in the database
+        // Create a new product unit in the database
         $product_unit = ProductUnit::create([
             'name' => $request->name,
             'short_name' => $request->short_name,
@@ -81,7 +81,7 @@ class ProductUnitController extends Controller
     }
 
     /**
-     * Display the specified category.
+     * Display the specified product unit.
      */
     public function show(ProductUnit $product_unit)
     {
@@ -89,7 +89,7 @@ class ProductUnitController extends Controller
     }
 
     /**
-     * Show the form for editing the specified category.
+     * Show the form for editing the specified product unit.
      */
     public function edit(ProductUnit $product_unit)
     {
@@ -97,7 +97,7 @@ class ProductUnitController extends Controller
     }
 
     /**
-     * Update the specified category in storage.
+     * Update the specified product unit in storage.
      */
     public function update(Request $request, ProductUnit $product_unit)
     {
@@ -115,7 +115,7 @@ class ProductUnitController extends Controller
             'can_have_variations' => $request->can_have_variations ?? '0'
         ];
 
-        // Update the currency data
+        // Update the product unit data
         $product_unit->update($data);
 
         return redirect()->route('backend.product-unit.index')
@@ -123,7 +123,7 @@ class ProductUnitController extends Controller
     }
 
     /**
-     * Remove the specified category from storage.
+     * Remove the specified product unit from storage.
      */
     public function destroy($id)
     {

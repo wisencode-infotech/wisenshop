@@ -11,7 +11,7 @@ use Yajra\DataTables\Facades\DataTables;
 class LanguageController extends Controller
 {
     /**
-     * Display a listing of the categories.
+     * Display a listing of the languages.
      */
     public function index(Request $request)
     {
@@ -37,7 +37,7 @@ class LanguageController extends Controller
     }
 
     /**
-     * Show the form for creating a new category.
+     * Show the form for creating a new language.
      */
     public function create()
     {
@@ -45,7 +45,7 @@ class LanguageController extends Controller
     }
 
     /**
-     * Store a newly created category in storage.
+     * Store a newly created language in storage.
      */
     public function store(Request $request)
     {
@@ -66,7 +66,7 @@ class LanguageController extends Controller
     }
 
     /**
-     * Display the specified category.
+     * Display the specified language.
      */
     public function show(Language $language)
     {
@@ -74,7 +74,7 @@ class LanguageController extends Controller
     }
 
     /**
-     * Show the form for editing the specified category.
+     * Show the form for editing the specified language.
      */
     public function edit(Language $language)
     {
@@ -82,7 +82,7 @@ class LanguageController extends Controller
     }
 
     /**
-     * Update the specified category in storage.
+     * Update the specified language in storage.
      */
     public function update(Request $request, Language $language)
     {
@@ -105,7 +105,7 @@ class LanguageController extends Controller
     }
 
     /**
-     * Remove the specified category from storage.
+     * Remove the specified language from storage.
      */
     public function destroy($id)
     {

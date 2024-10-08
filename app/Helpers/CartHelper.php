@@ -112,7 +112,7 @@ class CartHelper
 
                 if (!empty($item['product_variation_id'])) {
 
-                    $product_variation = ProductVariation::where('id', $item['product_variation_id'])->select('name', 'price')->first();
+                    $product_variation = ProductVariation::withTrashed()->where('id', $item['product_variation_id'])->select('name', 'price')->first();
 
                     if ($product)
                         $item['product_variation_name'] = $product_variation->name;

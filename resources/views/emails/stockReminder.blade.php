@@ -1,7 +1,7 @@
 <x-mail::message>
 
 @if (!empty($productVariation))
-# {{ $product->name }} is Back in Stock for {{ $productVariation->name }}!
+# {{ $product->name }} is Back in Stock  ({{ $productVariation->name }})!
 @else
 # {{ $product->name }} is Back in Stock!
 @endif

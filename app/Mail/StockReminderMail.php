@@ -35,7 +35,7 @@ class StockReminderMail extends Mailable
         $subject = 'Product Back in Stock - ' . $this->product->name;
 
         if (!empty($this->productVariation)) {
-            $subject .= ' for '. $this->productVariation->name;
+            $subject .= ' (' . $this->productVariation->name . ')';
         }
 
         return new Envelope(

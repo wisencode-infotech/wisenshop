@@ -44,11 +44,11 @@ class CartPage extends Component
     public function handleCheckout()
     {
         if (Auth::check()) {
-            // If the user is logged in, redirect to the shipping page
-            return redirect()->route('frontend.shipping');
+            // If the user is logged in, redirect to the checkout page
+            return redirect()->intended('/checkout');
         } else {
             // If the user is not logged in, redirect to guest checkout form
-            return redirect()->route('frontend.guest.checkout');
+            return redirect()->intended('/guest-checkout');
         }
     }
 

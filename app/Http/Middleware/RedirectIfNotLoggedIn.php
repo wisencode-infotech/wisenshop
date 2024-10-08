@@ -19,7 +19,7 @@ class RedirectIfNotLoggedIn
         // Check if the user is not logged in
         if (!Auth::check()) {
             // Redirect to the homepage if not authenticated
-            return redirect()->route('frontend.guest-checkout');
+            return redirect()->intended('/');
         }
 
         // Proceed with the request if authenticated

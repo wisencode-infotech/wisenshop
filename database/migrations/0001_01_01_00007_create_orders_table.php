@@ -16,6 +16,7 @@ return new class extends Migration
             $table->foreignId('user_id')->constrained('users')->onDelete('cascade');
             $table->string('status'); // Example: pending, shipped, delivered
             $table->decimal('total_price', 10, 2);
+            $table->json('extra_information')->nullable();
             $table->timestamps();
             $table->softDeletes();
         });

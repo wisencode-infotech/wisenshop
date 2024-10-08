@@ -11,7 +11,7 @@ class Payment extends Model
 {
     use HasFactory, SoftDeletes;
 
-    protected $fillable = ['order_id', 'payment_method', 'amount', 'status'];
+    protected $fillable = ['order_id', 'payment_method_id', 'amount', 'status'];
 
     // Relationships
     public function order(): BelongsTo

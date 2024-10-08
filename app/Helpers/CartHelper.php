@@ -5,6 +5,10 @@ namespace App\Helpers;
 use App\Models\Cart;
 use App\Models\Product;
 use App\Models\ProductVariation;
+use App\Models\Order;
+use App\Models\OrderAddress;
+use App\Models\OrderItem;
+use App\Models\Payment;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Session;
 
@@ -203,4 +207,62 @@ class CartHelper
             $cart_key_parts[1] ?? null
         ];
     }
+
+    public static function clearDatabaseCart($user_id = null)
+    {
+        $user_id = $user_id ?? Auth::user()->id;
+
+        // Remove cart items for the user from the database
+        Cart::where('user_id', $user_id)->delete();
+    }
+
+    public static function createOrder($data = [])
+    {
+        // Create Order
+        $order = new Order();
+        $order->user_id = auth()->user()->id;
+        $order->status = 1;
+        $order->total_price = $data['total_price'];
+        $order->extra_information = json_encode([
+                'customer_contact_phone' => $data['phone'],
+                'customer_contact_email' => $data['email'],
+                'customer_additional_notes' => $data['order_notes'],
+            ]);
+        $order->save();
+
+        // Save Order Address
+        OrderAddress::create([
+            'order_id' => $order->id,
+            'shipping_address_id' => $data['shipping_address_id'],
+            'billing_address_id' => $data['billing_address_id']
+        ]);
+
+        // Save Order Items
+        $cart_items = self::items();
+        foreach ($cart_items as $cart_key => $item) {
+
+            OrderItem::create([
+                'order_id' => $order->id,
+                'product_id' => $item['product_id'],
+                'product_variation_id' => $item['product_variation_id'],
+                'quantity' => $item['quantity'],
+                'price' => $item['product_price'],
+            ]);
+        }
+
+        // Save Payment
+        Payment::create([
+            'order_id' => $order->id,
+            'payment_method_id' => $data['payment_method_id'],
+            'amount' => $data['total_price'],
+            'status' => 'completed', // Change as per your payment status logic
+        ]);
+
+        // Clear the cart after successful order placement
+        self::clearDatabaseCart();
+
+        return $order->id;
+    }
+
+    
 }

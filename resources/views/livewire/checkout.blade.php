@@ -192,7 +192,7 @@
             <div class="p-5 mt-10 border border-gray-200 bg-light">
                <div id="headlessui-radiogroup-:rf:" role="radiogroup" aria-labelledby="headlessui-label-:rg:">
                   <label class="mb-5 block text-base font-semibold text-heading" id="headlessui-label-:rg:" role="none">{{ __trans('Choose Payment Method') }}</label>
-                  <div class="mb-8 grid grid-cols-2 gap-4 md:grid-cols-3" role="none">
+                  <div class="mb-8 grid grid-cols-2 gap-4 md:grid-cols-2" role="none">
 
                     @foreach($payment_methods as $payment_method)
                      <div id="headlessui-radiogroup-option-:rh:" role="radio" aria-checked="false" tabindex="0" data-headlessui-state="">
@@ -211,7 +211,7 @@
             <div class="p-5 mt-10 border border-gray-200 bg-light">
                <div id="headlessui-radiogroup-:rf:" role="radiogroup" aria-labelledby="headlessui-label-:rg:">
                   <label class="mb-5 block text-base font-semibold text-heading" id="headlessui-label-:rg:" role="none">{{ __trans('Shipping Method') }}</label>
-                  <div class="mb-8 grid grid-cols-2 gap-4 md:grid-cols-3" role="none">
+                  <div class="mb-8 grid grid-cols-2 gap-4 md:grid-cols-2" role="none">
                      <div id="headlessui-radiogroup-option-:rh:" role="radio" aria-checked="false" tabindex="0" data-headlessui-state="">
                         <div class="payment_method_section relative flex h-full w-full cursor-pointer items-center justify-center rounded border border-gray-200 bg-light p-3 text-center active"><span class="text-xs font-semibold text-heading">{{ $shipping_method->name }}</span></div>
                      </div>

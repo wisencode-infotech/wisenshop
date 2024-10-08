@@ -12,6 +12,5 @@ Good news! The product you're interested in is now available.
     View Product
 </x-mail::button>
 
-Thanks,<br>
-{{ config('app.name') }}
+@include('emails.partials.regards')
 </x-mail::message>

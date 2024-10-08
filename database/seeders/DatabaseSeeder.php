@@ -31,5 +31,8 @@ class DatabaseSeeder extends Seeder
 
         // ProductUnit seeder
         (new ProductUnitSeeder())->run();
+
+        // ShippingMethod seeder
+        (new ShippingMethodSeeder())->run();
     }
 }

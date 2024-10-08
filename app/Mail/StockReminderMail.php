@@ -14,14 +14,16 @@ class StockReminderMail extends Mailable
     use Queueable, SerializesModels;
 
     public $product;  // To hold the product instance
+    public $productVariation;  // To hold the productVariation instance
 
     /**
      * Create a new message instance.
      */
-    public function __construct($product)
+    public function __construct($product, $productVariation = null)
     {
         // Set the product data
         $this->product = $product;
+        $this->productVariation = $productVariation;
     }
 
     /**
@@ -29,8 +31,15 @@ class StockReminderMail extends Mailable
      */
     public function envelope(): Envelope
     {
+
+        $subject = 'Product Back in Stock - ' . $this->product->name;
+
+        if (!empty($this->productVariation)) {
+            $subject .= ' for '. $this->productVariation->name;
+        }
+
         return new Envelope(
-            subject: 'Product Back in Stock - ' . $this->product->name, // Include product name in subject
+            subject: $subject, // Include product name in subject
         );
     }
 
@@ -42,7 +51,8 @@ class StockReminderMail extends Mailable
         return new Content(
             markdown: 'emails.stockReminder',  // The markdown view to use
             with: [
-                'product' => $this->product  // Pass the product data to the view
+                'product' => $this->product,
+                'productVariation' => $this->productVariation
             ]
         );
     }

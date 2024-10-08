@@ -19,7 +19,6 @@ use Illuminate\Support\Facades\Cache;
 use App\Livewire\GuestCheckout;
 use App\Livewire\ShippingComponent;
 
-Route::middleware([SetLocale::class])->group(function () {
 // Homepage
 Route::get('/', HomePage::class)->name('home');
 
@@ -112,6 +111,4 @@ Route::post('/sync-session-preferences', function(Request $request) {
 
 Livewire::setScriptRoute(function ($handle) {
     return Route::get(url('/') . '/livewire/livewire.js', $handle);
-});
-
 });

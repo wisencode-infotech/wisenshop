@@ -221,6 +221,7 @@ class CartHelper
         // Create Order
         $order = new Order();
         $order->user_id = auth()->user()->id;
+        $order->currency_id = $data['currency']->id;
         $order->status = 1;
         $order->total_price = $data['total_price'];
         $order->extra_information = json_encode([

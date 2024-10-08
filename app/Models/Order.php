@@ -8,6 +8,7 @@ use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Database\Eloquent\Relations\BelongsToMany;
 use Illuminate\Database\Eloquent\SoftDeletes;
+use Illuminate\Database\Eloquent\Relations\HasOne;
 
 class Order extends Model
 {
@@ -29,17 +30,32 @@ class Order extends Model
     public function products(): BelongsToMany
     {
         return $this->belongsToMany(Product::class, 'order_items')
-                    ->withPivot('quantity', 'price')
+                    ->withPivot('quantity', 'price', 'product_variation_id')
                     ->withTimestamps();
     }
 
-    public function payment(): HasMany
+    public function currency(): BelongsTo
     {
-        return $this->hasMany(Payment::class);
+        return $this->belongsTo(Currency::class);
     }
 
-    public function address(): BelongsTo
+    // public function payment(): HasMany
+    // {
+    //     return $this->hasMany(Payment::class);
+    // }
+
+    public function payment(): BelongsTo
     {
-        return $this->belongsTo(Address::class);
+        return $this->belongsTo(Payment::class, 'id', 'order_id');
+    }
+
+    // public function address(): BelongsTo
+    // {
+    //     return $this->belongsTo(Address::class);
+    // }
+
+    public function address(): HasOne
+    {
+        return $this->hasOne(OrderAddress::class);
     }
 }

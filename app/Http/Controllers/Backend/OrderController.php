@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Backend;
 use App\Http\Controllers\Controller;
 use App\Services\OrderService;
 use App\Models\Order;
+use App\Models\OrderAddress;
 use Illuminate\Http\Request;
 use Yajra\DataTables\Facades\DataTables;
 use Illuminate\Support\Str;
@@ -69,10 +70,11 @@ class OrderController extends Controller
      * Display the specified order.
      */
     public function show(Order $order)
-    {
+    { 
+        $extraInformation = json_decode($order->extra_information, true);
         $status = config('general.order_statuses.' . $order->status);
         $status_color = config('general.order_statuses_color.' . $order->status);
-        return view('backend.orders.show', compact('order', 'status', 'status_color'));
+        return view('backend.orders.show', compact('order', 'status', 'status_color', 'extraInformation'));
     }
 
     public function updateStatus(Order $order)

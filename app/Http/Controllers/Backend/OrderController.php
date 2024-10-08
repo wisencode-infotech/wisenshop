@@ -59,12 +59,12 @@ class OrderController extends Controller
                 ->make(true);
         }
 
-        $categories = Order::all(); // Fetch all categories
+        $categories = Order::all(); // Fetch all orders
         return view('backend.orders.index', compact('categories'));
     }
 
     /**
-     * Display the specified category.
+     * Display the specified order.
      */
     public function show(Order $order)
     {

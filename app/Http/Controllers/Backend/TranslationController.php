@@ -14,7 +14,7 @@ use Illuminate\Support\Facades\Storage;
 class TranslationController extends Controller
 {
     /**
-     * Display a listing of the site banners.
+     * Display a listing of the translation.
      */
     public function index(Request $request)
     {
@@ -56,7 +56,7 @@ class TranslationController extends Controller
     }
 
     /**
-     * Show the form for creating a new site banners.
+     * Show the form for creating a new translations.
      */
     public function create()
     {
@@ -65,7 +65,7 @@ class TranslationController extends Controller
     }
 
     /**
-     * Store a newly created site banners in storage.
+     * Store a newly created translation in storage.
      */
     public function store(Request $request)
     {
@@ -76,8 +76,8 @@ class TranslationController extends Controller
             'value' => 'required|string',
         ]);
 
-        // Create a new category in the database
-        $category = Translation::create([
+        // Create a new translation in the database
+        $translation = Translation::create([
             'locale' => $request->locale,
             'key' => $request->key,
             'value' => $request->value
@@ -90,7 +90,7 @@ class TranslationController extends Controller
     }
 
     /**
-     * Display the specified category.
+     * Display the specified translation.
      */
     public function show(Translation $translation)
     {
@@ -98,7 +98,7 @@ class TranslationController extends Controller
     }
 
     /**
-     * Show the form for editing the specified category.
+     * Show the form for editing the specified translation.
      */
     public function edit(Translation $translation)
     {
@@ -106,7 +106,7 @@ class TranslationController extends Controller
     }
 
     /**
-     * Update the specified category in storage.
+     * Update the specified translation in storage.
      */
     public function update(Request $request, Translation $translation)
     {
@@ -133,7 +133,7 @@ class TranslationController extends Controller
     }
 
     /**
-     * Remove the specified category from storage.
+     * Remove the specified translation from storage.
      */
     public function destroy($id)
     {

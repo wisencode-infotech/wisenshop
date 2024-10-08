@@ -5,7 +5,7 @@
 @section('content')
 
 @component('backend.components.breadcrumb')
-@slot('li_1') Translation @endslot
+@slot('li_1') <a href="{{ route('backend.translation.index') }}">Translation</a> @endslot
 @slot('title') Edit @endslot
 @endcomponent
 

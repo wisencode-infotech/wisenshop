@@ -72,8 +72,8 @@ class SiteBannerController extends Controller
             }
         }
 
-        // Create a new category in the database
-        $category = SiteBanner::create([
+        // Create a new site banner in the database
+        $site_banner = SiteBanner::create([
             'title' => $request->title,
             'image_path' => $imagePath,
             'description' => !empty($request->description) ? $request->description : null,
@@ -84,7 +84,7 @@ class SiteBannerController extends Controller
     }
 
     /**
-     * Display the specified category.
+     * Display the specified site banner.
      */
     public function show(SiteBanner $site_banner)
     {
@@ -92,7 +92,7 @@ class SiteBannerController extends Controller
     }
 
     /**
-     * Show the form for editing the specified category.
+     * Show the form for editing the specified site banner.
      */
     public function edit(SiteBanner $site_banner)
     {
@@ -100,7 +100,7 @@ class SiteBannerController extends Controller
     }
 
     /**
-     * Update the specified category in storage.
+     * Update the specified site banner in storage.
      */
     public function update(Request $request, SiteBanner $site_banner)
     {
@@ -130,7 +130,7 @@ class SiteBannerController extends Controller
             }
         }
 
-        // Update the category data
+        // Update the site banner data
         $site_banner->update($data);
 
         return redirect()->route('backend.site-banner.index')
@@ -138,7 +138,7 @@ class SiteBannerController extends Controller
     }
 
     /**
-     * Remove the specified category from storage.
+     * Remove the specified site banner from storage.
      */
     public function destroy($id)
     {

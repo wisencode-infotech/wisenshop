@@ -5,7 +5,7 @@
 @section('content')
 
 @component('backend.components.breadcrumb')
-@slot('li_1') Category @endslot
+@slot('li_1') <a href="{{ route('backend.category.index') }}">Category</a> @endslot
 @slot('title') Edit @endslot
 @endcomponent
 

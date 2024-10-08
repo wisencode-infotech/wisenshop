@@ -1,8 +1,8 @@
 <div class="fixed inset-0 z-50 overflow-y-auto {{ $is_modal_open ? '' : 'hidden' }}" dir="ltr" id="headlessui-dialog-:rf:" role="dialog" aria-modal="true" data-headlessui-state="open">
    <div class="min-h-full text-center md:p-5">
-      <div class="fixed inset-0 h-full w-full bg-gray-900 bg-opacity-50 opacity-100"></div>
-      <span class="inline-block h-screen align-middle" aria-hidden="true">&ZeroWidthSpace;</span>
-      <div  class="min-w-content inline-block relative  max-w-full align-middle transition-all ltr:text-left rtl:text-right opacity-100 scale-100" id="headlessui-dialog-panel-:rg:" data-headlessui-state="open">
+      <div class="{{ $is_modal_open ? '' : 'lg:' }}fixed inset-0 h-full w-full bg-gray-900 bg-opacity-50 opacity-100"></div>
+      <span class="{{ $is_modal_open ? 'lg:' : '' }}inline-block h-screen align-middle" aria-hidden="true">&ZeroWidthSpace;</span>
+      <div  class="min-w-content relative sm:inline-block max-w-full align-middle transition-all ltr:text-left rtl:text-right opacity-100 scale-100" id="headlessui-dialog-panel-:rg:" data-headlessui-state="open">
          <button wire:click="closeModal" aria-label="Close panel" class="absolute top-4 z-[60] inline-block outline-none focus:outline-0 ltr:right-4 rtl:left-4">
             <span class="sr-only">close</span>
             <svg class="h-4 w-4" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor">

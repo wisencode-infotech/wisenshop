@@ -5,7 +5,7 @@
 @section('content')
 
 @component('backend.components.breadcrumb')
-@slot('li_1') Language @endslot
+@slot('li_1') <a href="{{ route('backend.language.index') }}">Language</a> @endslot
 @slot('title') Edit @endslot
 @endcomponent
 

@@ -14,9 +14,9 @@ return new class extends Migration
         Schema::create('payments', function (Blueprint $table) {
             $table->id();
             $table->foreignId('order_id')->constrained('orders')->onDelete('cascade');
-            $table->string('payment_method'); // Example: credit card, PayPal
+            $table->foreignId('payment_method_id')->constrained('payment_methods')->onDelete('cascade');
             $table->decimal('amount', 8, 2);
-            $table->string('status'); // Example: completed, failed
+            $table->string('status');
             $table->timestamps();
             $table->softDeletes();
         });

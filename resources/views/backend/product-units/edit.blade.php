@@ -1,18 +1,18 @@
 @extends('backend.layouts.master')
 
-@section('title') Currency @endsection
+@section('title') Product Unit @endsection
 
 @section('content')
 
 @component('backend.components.breadcrumb')
-@slot('li_1') Currency @endslot
+@slot('li_1') <a href="{{ route('backend.product-unit.index') }}">Product Unit</a> @endslot
 @slot('title') Edit @endslot
 @endcomponent
 
 <div class="row">
     <div class="col-lg-12">
         <div class="card">
-            <div class="card-header">{{ __('Edit Currency') }}</div>
+            <div class="card-header">{{ __('Edit Product Unit') }}</div>
 
             <div class="card-body">
                 @if (session('success'))

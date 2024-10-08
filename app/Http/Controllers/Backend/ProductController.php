@@ -129,7 +129,7 @@ class ProductController extends Controller
     }
 
     /**
-     * Show the form for editing the specified category.
+     * Show the form for editing the specified product.
      */
     public function edit($id)
     {

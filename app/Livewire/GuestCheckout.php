@@ -48,7 +48,7 @@ class GuestCheckout extends Component
 
         $this->dispatch('shoppingCartUpdated'); 
 
-        return redirect()->intended('/shipping');
+        return redirect()->intended('/checkout');
     }
 
     public function render()

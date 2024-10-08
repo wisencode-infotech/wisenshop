@@ -12,7 +12,7 @@
                     </span>
                 </a>
 
-                <a href="index" class="logo logo-light">
+                <a href="{{ route('backend.home') }}" class="logo logo-light">
                     <span class="logo-sm">
                         <img src="{{ URL::asset ('/assets/backend/images/logo-light.svg') }}" alt="" height="22">
                     </span>

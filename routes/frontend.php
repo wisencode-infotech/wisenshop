@@ -17,9 +17,9 @@ use App\Http\Middleware\SetLocale;
 use App\Models\Wishlist;
 use Illuminate\Support\Facades\Cache;
 use App\Livewire\GuestCheckout;
-use App\Livewire\ShippingComponent;
+use App\Livewire\Checkout;
+use App\Http\Middleware\RedirectIfNotLoggedIn;
 
-Route::middleware([SetLocale::class])->group(function () {
 // Homepage
 Route::get('/', HomePage::class)->name('home');
 
@@ -35,7 +35,7 @@ Route::post('login', [Login::class, 'authenticate'])->name('authenticate');
 Route::get('logout', [Logout::class, 'logout'])->name('logout');
 
 Route::get('/guest-checkout', GuestCheckout::class)->name('guest.checkout');
-Route::get('/shipping', ShippingComponent::class)->name('shipping');
+Route::get('/checkout', Checkout::class)->name('checkout')->middleware(RedirectIfNotLoggedIn::class);
 
 // Route::get('register', [RegisterController::class, 'showRegistrationForm'])->name('register');
 // Route::post('register', [RegisterController::class, 'register']);
@@ -112,6 +112,4 @@ Route::post('/sync-session-preferences', function(Request $request) {
 
 Livewire::setScriptRoute(function ($handle) {
     return Route::get(url('/') . '/livewire/livewire.js', $handle);
-});
-
 });

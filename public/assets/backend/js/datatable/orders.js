@@ -18,6 +18,15 @@ $(document).ready(function () {
                 }
             },
         columns: [
+            { 
+                data: 'checkbox', 
+                name: 'checkbox', 
+                orderable: false, 
+                searchable: false, 
+                render: function(data, type, row, meta) {
+                    return data;
+                }
+            },
             { data: 'DT_RowIndex', name: 'DT_RowIndex', orderable: false, searchable: false },
             { data: 'user_name', name: 'user_name' },
             { data: 'status', name: 'status' },
@@ -36,6 +45,44 @@ $(document).ready(function () {
         lengthMenu: [ [10, 25, 50, 100], [10, 25, 50, 100] ], // Define entries options
         pageLength: 10 // Default page size
     });
+
+     // Checkbox change event listener
+     $('#orders-table').on('change', '.order-checkbox', function() {
+        // Update the selected order IDs when any checkbox is changed
+        updateSelectedOrderIds();
+        
+        // Check or uncheck "Select All" checkbox based on individual checkboxes
+        if ($('.order-checkbox:checked').length === $('.order-checkbox').length) {
+            $('#select-all').prop('checked', true); // All are checked
+        } else {
+            $('#select-all').prop('checked', false); // Not all are checked
+        }
+    });
+
+     $('#select-all').on('change', function() {
+        // Check or uncheck all checkboxes based on the state of "Select All"
+        $('.order-checkbox').prop('checked', this.checked);
+        
+        // Update the hidden input with the IDs of selected checkboxes
+        updateSelectedOrderIds();
+    });
+
+     function updateSelectedOrderIds() {
+        // Get all selected checkbox values (IDs)
+        var selectedOrderIds = $('.order-checkbox:checked').map(function() {
+            return $(this).val();
+        }).get(); // Get all values as an array
+
+        // Set the hidden input's value to the selected IDs as a comma-separated string
+        $('#order_ids').val(selectedOrderIds.join(','));
+
+        // Show or hide the button based on whether any checkboxes are selected
+        if (selectedOrderIds.length > 0) {
+            $('.show-on-checkbox-checked').removeClass('d-none');
+        } else {
+            $('.show-on-checkbox-checked').addClass('d-none');
+        }
+    }
 
     // Search functionality
     $('#searchTableList').on('keyup', function () {

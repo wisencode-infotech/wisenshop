@@ -12,7 +12,7 @@ use Illuminate\Support\Facades\Storage;
 class CurrencyController extends Controller
 {
     /**
-     * Display a listing of the categories.
+     * Display a listing of the currency.
      */
     public function index(Request $request)
     {
@@ -44,7 +44,7 @@ class CurrencyController extends Controller
     }
 
     /**
-     * Show the form for creating a new category.
+     * Show the form for creating a new currency.
      */
     public function create()
     {
@@ -52,7 +52,7 @@ class CurrencyController extends Controller
     }
 
     /**
-     * Store a newly created category in storage.
+     * Store a newly created currency in storage.
      */
     public function store(Request $request)
     {
@@ -75,7 +75,7 @@ class CurrencyController extends Controller
     }
 
     /**
-     * Display the specified category.
+     * Display the specified currency.
      */
     public function show(Currency $currency)
     {
@@ -83,7 +83,7 @@ class CurrencyController extends Controller
     }
 
     /**
-     * Show the form for editing the specified category.
+     * Show the form for editing the specified currency.
      */
     public function edit(Currency $currency)
     {
@@ -91,7 +91,7 @@ class CurrencyController extends Controller
     }
 
     /**
-     * Update the specified category in storage.
+     * Update the specified currency in storage.
      */
     public function update(Request $request, Currency $currency)
     {
@@ -116,7 +116,7 @@ class CurrencyController extends Controller
     }
 
     /**
-     * Remove the specified category from storage.
+     * Remove the specified currency from storage.
      */
     public function destroy($id)
     {

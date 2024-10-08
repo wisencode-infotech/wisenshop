@@ -128,31 +128,7 @@ class FakeAppSeeder extends Seeder
             $order->update(['total_price' => $totalPrice]);
         }
 
-        // Payment seeder
-
-        $orders = Order::all();
-
-        foreach ($orders as $order) {
-            Payment::create([
-                'order_id' => $order->id,
-                'payment_method' => 'credit_card',
-                'amount' => $order->total_price,
-                'status' => 'completed',
-            ]);
-        }
-
-        // Site banner seeder
-
-        $site_banners = ['Cash on Delivery', 'Gift Voucher', 'Free Delivery', 'Coupon Saving'];
-
-        foreach ($site_banners as $site_banner) {
-            SiteBanner::create([
-                'title' => $site_banner,
-                'description' => fake()->paragraph()
-            ]);
-        }
-
-        // Site banner seeder
+        // Payment methods seeder
 
         $payment_methods = [
             [
@@ -171,6 +147,31 @@ class FakeAppSeeder extends Seeder
 
         foreach ($payment_methods as $payment_method) {
             PaymentMethod::create($payment_method);
+        }
+
+        // Payment seeder
+
+        $orders = Order::all();
+        $payment_method_ids = PaymentMethod::pluck('id')->toArray();
+
+        foreach ($orders as $order) {
+            Payment::create([
+                'order_id' => $order->id,
+                'payment_method_id' => $payment_method_ids[array_rand($payment_method_ids)],
+                'amount' => $order->total_price,
+                'status' => 'completed',
+            ]);
+        }
+
+        // Site banner seeder
+
+        $site_banners = ['Cash on Delivery', 'Gift Voucher', 'Free Delivery', 'Coupon Saving'];
+
+        foreach ($site_banners as $site_banner) {
+            SiteBanner::create([
+                'title' => $site_banner,
+                'description' => fake()->paragraph()
+            ]);
         }
     }
 }

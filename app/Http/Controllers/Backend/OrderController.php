@@ -9,8 +9,7 @@ use Illuminate\Http\Request;
 use Yajra\DataTables\Facades\DataTables;
 use Illuminate\Support\Str;
 use Illuminate\Support\Facades\Storage;
-use Dompdf\Dompdf;
-use Dompdf\Options;
+use PDF;
 
 
 class OrderController extends Controller
@@ -36,6 +35,9 @@ class OrderController extends Controller
 
             return Datatables::of($data)
                 ->addIndexColumn() // Adds the row index
+                ->addColumn('checkbox', function ($row) {
+                    return '<input type="checkbox" name="order_ids[]" value="' . $row->id . '" class="order-checkbox">';
+                })
                 ->addColumn('user_name', function ($row) {
                     return $row->user->name;
                 })
@@ -55,16 +57,16 @@ class OrderController extends Controller
                     }
                     return $btn;
                 })
-                ->rawColumns(['action', 'user_name', 'status'])
+                ->rawColumns(['action', 'user_name', 'status', 'checkbox'])
                 ->make(true);
         }
 
-        $categories = Order::all(); // Fetch all categories
+        $categories = Order::all(); // Fetch all orders
         return view('backend.orders.index', compact('categories'));
     }
 
     /**
-     * Display the specified category.
+     * Display the specified order.
      */
     public function show(Order $order)
     {
@@ -113,25 +115,49 @@ class OrderController extends Controller
 
     public function bulkExportWithMultiOrders($orders, $options = [])
     {
-        $dompdf_options = new Options();
-        $dompdf_options->set('defaultFont', 'DejaVu Sans');
-        $dompdf_options->set('isRemoteEnabled', true); // Enable remote file access
-        $dompdf_options->set('isHtml5ParserEnabled', true); // Enable HTML5 parsing
-
-        $dompdf = new Dompdf($dompdf_options);
-
-        $html = '';
-
-        if ($options['action'] == 'export-multi-orders-with-view') {
-            $html = view('backend.orders.pdf.orders-info-pdf', compact('orders'))->render();
-        }
 
         $export_name = $options['export_as'] ?? 'exported-orders.pdf';
 
-        $dompdf->loadHtml($html);
-        $dompdf->render();
+        $pdf = PDF::loadView('backend.orders.pdf.orders-info-pdf', [
+                'orders' => $orders
+            ]);
 
-        return $dompdf->stream($export_name, ['Attachment' => false]);
+        // Return the generated PDF in the browser
+        return $pdf->stream($export_name);
+    }
+
+    public function bulkUpdate(Request $request)
+    {
+        // Validate the incoming request
+        $validated = $request->validate([
+            'order_ids' => 'required|array',
+            'order_ids.*' => 'string', // Accept strings since they may be comma-separated
+            'order_status' => 'required|integer|in:1,2,3,4,5,6', // Ensure order status is valid
+        ]);
+
+        // Since order_ids could be an array with one element containing "10,11"
+        // Check if the first element contains a comma
+        if (isset($validated['order_ids'][0]) && strpos($validated['order_ids'][0], ',') !== false) {
+            // Split the string into an array of IDs
+            $orderIds = explode(',', $validated['order_ids'][0]);
+        } else {
+            // If it's not a comma-separated string, use the existing array
+            $orderIds = $validated['order_ids'];
+        }
+
+        // Convert string IDs to integers
+        $orderIds = array_map('intval', $orderIds);
+
+        // Retrieve orders based on the IDs from the request
+        $orders = Order::whereIn('id', $orderIds)->get();
+
+        // Update the status for each order
+        foreach ($orders as $order) {
+            $order->status = $validated['order_status'];
+            $order->save();
+        }
+
+        return response()->json(['status' => 200, 'message' => 'Order statuses updated successfully.']);
     }
 
 }

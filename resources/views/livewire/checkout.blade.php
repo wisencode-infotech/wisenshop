@@ -2,14 +2,12 @@
 
 <div class="bg-gray-100 px-4 py-8 lg:py-10 lg:px-8 xl:py-14 xl:px-16 2xl:px-20">
 
-   <div wire:loading.flex class="absolute inset-0 z-10 flex items-center justify-center bg-accent bg-opacity-10">
-      <div class="loader"></div>
-   </div>
 
    <div class="m-auto flex w-full max-w-5xl flex-col items-center rtl:space-x-reverse lg:flex-row lg:items-start lg:space-x-8">
-
+      <div wire:loading.flex wire:target="placeOrder" class="absolute inset-0 z-10 flex items-center justify-center bg-accent bg-opacity-10">
+         <div class="loader"></div>
+     </div>
       <div class="w-full space-y-6 lg:max-w-2xl">
-
         <h3 class="text-2xl font-bold text-heading">{{ __trans('Checkout') }}</h3>
          <div class="bg-light p-5 shadow-700 md:p-8">
             <div class="mb-5 flex items-center justify-between md:mb-8">
@@ -228,10 +226,10 @@
 
             @if(count($cart) != 0)
             <button wire:click="placeOrder"  wire:loading.attr="disabled" data-variant="normal" class="inline-flex items-center justify-center shrink-0 font-semibold leading-none rounded outline-none transition duration-300 ease-in-out focus:outline-0 focus:shadow focus:ring-1 focus:ring-accent-700 bg-accent text-light border border-transparent hover:bg-accent-hover px-5 py-0 h-12 mt-5 w-full">
-               <span wire:loading.remove>
+               <span wire:loading.remove wire:target="placeOrder">
                     {{ __trans('Place Order') }}
                 </span>
-                <span wire:loading>
+                <span wire:loading wire:target="placeOrder">
                     {{ __trans('Placing Order...') }}
                 </span>
             </button>
@@ -242,4 +240,7 @@
          </div>
       </div>
    </div>
+
 </div>
+
+

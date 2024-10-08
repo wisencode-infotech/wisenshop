@@ -24,7 +24,7 @@ class Checkout extends Component
     public $phone;
     public $email;
     public $order_notes;
-    public $loading = false;
+    public $isPlacingOrder = false;
     
 
     protected $listeners = ['addressSaved' => 'loadAddresses'];
@@ -87,7 +87,7 @@ class Checkout extends Component
 
     public function placeOrder()
     {
-        $this->loading = true;
+        $this->isPlacingOrder = true;
 
         $this->validate([
             'selected_shipping_address_id' => 'required',
@@ -112,7 +112,7 @@ class Checkout extends Component
                     'order_notes' => $this->order_notes,
                 ]);
 
-        $this->loading = false;
+        $this->isPlacingOrder = false;
 
         session()->flash('message', 'Order placed successfully!');
 

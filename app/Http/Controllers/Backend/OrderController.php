@@ -36,6 +36,9 @@ class OrderController extends Controller
 
             return Datatables::of($data)
                 ->addIndexColumn() // Adds the row index
+                ->addColumn('checkbox', function ($row) {
+                    return '<input type="checkbox" name="order_ids[]" value="' . $row->id . '" class="order-checkbox">';
+                })
                 ->addColumn('user_name', function ($row) {
                     return $row->user->name;
                 })
@@ -55,7 +58,7 @@ class OrderController extends Controller
                     }
                     return $btn;
                 })
-                ->rawColumns(['action', 'user_name', 'status'])
+                ->rawColumns(['action', 'user_name', 'status', 'checkbox'])
                 ->make(true);
         }
 
@@ -132,6 +135,40 @@ class OrderController extends Controller
         $dompdf->render();
 
         return $dompdf->stream($export_name, ['Attachment' => false]);
+    }
+
+    public function bulkUpdate(Request $request)
+    {
+        // Validate the incoming request
+        $validated = $request->validate([
+            'order_ids' => 'required|array',
+            'order_ids.*' => 'string', // Accept strings since they may be comma-separated
+            'order_status' => 'required|integer|in:1,2,3,4,5,6', // Ensure order status is valid
+        ]);
+
+        // Since order_ids could be an array with one element containing "10,11"
+        // Check if the first element contains a comma
+        if (isset($validated['order_ids'][0]) && strpos($validated['order_ids'][0], ',') !== false) {
+            // Split the string into an array of IDs
+            $orderIds = explode(',', $validated['order_ids'][0]);
+        } else {
+            // If it's not a comma-separated string, use the existing array
+            $orderIds = $validated['order_ids'];
+        }
+
+        // Convert string IDs to integers
+        $orderIds = array_map('intval', $orderIds);
+
+        // Retrieve orders based on the IDs from the request
+        $orders = Order::whereIn('id', $orderIds)->get();
+
+        // Update the status for each order
+        foreach ($orders as $order) {
+            $order->status = $validated['order_status'];
+            $order->save();
+        }
+
+        return response()->json(['status' => 200, 'message' => 'Order statuses updated successfully.']);
     }
 
 }

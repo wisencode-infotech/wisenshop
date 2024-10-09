@@ -128,6 +128,13 @@
                         <span key="t-calendar">Settings</span>
                     </a>
                 </li>
+                
+                <li>
+                    <a href="{{ route('backend.home-settings.index') }}" class="waves-effect">
+                        <i class="bx bx-cog"></i>
+                        <span key="t-calendar">Home Page Settings</span>
+                    </a>
+                </li>
             </ul>
         </div>
         <!-- Sidebar -->

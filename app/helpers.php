@@ -2,6 +2,7 @@
 
 use App\Models\Translation;
 use App\Models\Currency;
+use App\Models\HomePageSetting;
 use App\Models\Setting;
 use App\Models\Language;
 use Illuminate\Support\Facades\Cache;
@@ -189,6 +190,24 @@ if (!function_exists('__appCurrencySymbol'))
             return $currency_info->symbol;
         else
             return 'EUR';
+    }
+}
+
+if (!function_exists('__homeSetting')) 
+{
+    function __homeSetting($key, $decode = false) 
+    {
+        $setting = HomePageSetting::where('meta_key', $key)->first();
+
+        if (!empty($setting)) {
+
+            if($decode == true && !empty($setting->meta_value))
+                return json_decode($setting->meta_value, TRUE);
+
+            return $setting->meta_value;
+        }
+
+        return '';
     }
 }
 

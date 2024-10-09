@@ -49,7 +49,7 @@
                                                         <span
                                                             class="flex shrink-0 text-sm font-bold text-heading ltr:mr-4 rtl:ml-4 lg:text-base">Order<span
                                                                 class="font-normal">#{{ $order->id }}</span></span><span
-                                                            class="max-w-full truncate whitespace-nowrap rounded bg-status-processing bg-opacity-[.15] text-status-processing px-3 py-2 text-sm"
+                                                            class="max-w-full truncate whitespace-nowrap rounded bg-accent text-accent-contrast px-3 py-2 text-sm"
                                                             title="Order Processing">{{ config('general.order_statuses.' . $order->status) }}</span>
                                                     </div>
                                                     <div class="flex flex-col p-5 md:p-3 lg:px-4 lg:py-5">

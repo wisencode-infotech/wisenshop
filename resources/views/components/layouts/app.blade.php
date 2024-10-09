@@ -35,7 +35,7 @@
 
                     @livewire('mobile-navbar')
 
-                    @if (!request()->routeIs('frontend.home'))
+                    @if (!request()->routeIs('frontend.home') && !request()->routeIs('frontend.profile'))
                         @livewire('footer')
                     @endif
                 </div>

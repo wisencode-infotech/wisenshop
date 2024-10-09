@@ -26,4 +26,22 @@ class ShippingAddress extends Model
     {
         return $this->belongsTo(User::class);
     }
+
+    public function getFullAddressAttribute() {
+        $address = $this->address;
+        
+        if ( !empty($this->city) ) 
+            $address .= ' ' . $this->city;
+
+        if ( !empty($this->state) ) 
+            $address .= ' ' . $this->state;
+        
+        if ( !empty($this->postal_code) ) 
+            $address .= ' ' . $this->postal_code;
+
+        if ( !empty($this->country) ) 
+            $address .= ' ' . $this->country;
+
+        return $address;
+    }
 }

@@ -58,4 +58,9 @@ class Order extends Model
     {
         return $this->hasOne(OrderAddress::class);
     }
+
+    public function customer(): BelongsTo
+    {
+        return $this->belongsTo(User::class, 'user_id');
+    }
 }

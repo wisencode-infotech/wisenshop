@@ -10,7 +10,7 @@
               <div class="relative z-[51] w-full max-w-6xl bg-light md:rounded-xl xl:min-w-[1152px]">
                <div class="flex flex-col h-full pb-8 pt-8 items-center justify-center h-64 bg-white mt-4 md:border-border-200">
                   <!-- Icon (Shopping Cart) -->
-                 <i class="fa fa-shopping-cart text-muted text-xl"></i>
+                 <i class="fa fa-frown fa-3x text-muted text-xl"></i>
                 
                   <!-- Text -->
                   <p class="mt-4 text-lg font-semibold text-gray-700">{{ __trans("Sorry, No orders found") }}</p>

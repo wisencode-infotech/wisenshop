@@ -92,7 +92,7 @@
             </div>
 
             <div class="text-sm text-center text-body sm:text-base">
-                Already have an account? <a class="font-semibold underline transition-colors duration-200 ms-1 text-accent hover:text-accent-hover hover:no-underline focus:text-accent-700 focus:no-underline focus:outline-none" wire:navigate href="{{ route('frontend.login') }}">{{ __trans('Login') }}</a>
+                {{ __trans('Already have an account') }}? <a class="font-semibold underline transition-colors duration-200 ms-1 text-accent hover:text-accent-hover hover:no-underline focus:text-accent-700 focus:no-underline focus:outline-none" wire:navigate href="{{ route('frontend.login') }}">{{ __trans('Login') }}</a>
             </div>
         </div>
     </div>

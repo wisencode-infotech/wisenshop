@@ -6,13 +6,22 @@
          <div class="w-full px-5 py-10 mx-auto  bg-light lg:bg-gray-100 xl:flex-row xl:py-14 xl:px-8 2xl:px-14">
 
           @if(count($orders) == 0)
-
-              <div class="flex flex-col items-center w-7/12 mx-auto">
-                  <div class="w-full h-full flex items-center justify-center">
-                      <img alt="{{ __trans('Sorry, No Product Found :(') }}" loading="lazy" width="200" height="153" decoding="async" data-nimg="1" class="object-contain" src="{{ asset('assets/frontend/img/no-result.png') }}" style="color: transparent;">
-                  </div>
-                  <h3 class="w-full text-center text-xl font-semibold text-body my-7">{{ __trans('Sorry, No orders found :(') }}</h3>
-              </div>
+            
+              <div class="relative z-[51] w-full max-w-6xl bg-light md:rounded-xl xl:min-w-[1152px]">
+               <div class="flex flex-col h-full pb-8 pt-8 items-center justify-center h-64 bg-white mt-4 md:border-border-200">
+                  <!-- Icon (Shopping Cart) -->
+                 <i class="fa fa-shopping-cart text-muted text-xl"></i>
+                
+                  <!-- Text -->
+                  <p class="mt-4 text-lg font-semibold text-gray-700">{{ __trans("Sorry, No orders found") }}</p>
+                  
+                  
+                  <!-- Button (Optional) -->
+                  <a wire:navigate href="{{ route('frontend.home') }}" class="mt-6 inline-block px-6 py-2 text-accent-contrast bg-accent rounded-lg hover:bg-accent-hover">
+                     {{ __trans('Shop Now') }}
+                  </a> 
+                </div>  
+             </div>
 
           @else
              <div class="">

@@ -15,7 +15,7 @@
                             wire:model="email" 
                             class="flex w-full appearance-none items-center px-3 text-sm text-heading transition duration-300 ease-in-out focus:outline-0 focus:ring-0 border border-border-base rounded focus:border-accent h-10" 
                             autocomplete="off" 
-                            placeholder="{{ __('Your Email') }}"
+                            placeholder="{{ __trans('Your Email') }}"
                         />
                         @error('email') <span class="text-red-500 text-xs mt-1">{{ $message }}</span> @enderror
                     </div>
@@ -32,7 +32,7 @@
                                 wire:model="password" 
                                 class="flex w-full appearance-none items-center px-3 text-sm text-heading transition duration-300 ease-in-out focus:outline-0 focus:ring-0 border border-border-base rounded focus:border-accent h-10" 
                                 autocomplete="off" 
-                                placeholder="{{ __('New Password') }}"
+                                placeholder="{{ __trans('New Password') }}"
                             />
                         @error('password') <span class="text-red-500">{{ $message }}</span> @enderror
                     </div>
@@ -48,7 +48,7 @@
                                 wire:model="password_confirmation" 
                                 class="flex w-full appearance-none items-center px-3 text-sm text-heading transition duration-300 ease-in-out focus:outline-0 focus:ring-0 border border-border-base rounded focus:border-accent h-10" 
                                 autocomplete="off" 
-                                placeholder="{{ __('Confirm Password') }}"
+                                placeholder="{{ __trans('Confirm Password') }}"
                             />
                             @error('password_confirmation') <span class="text-red-500">{{ $message }}</span> @enderror
                     </div>

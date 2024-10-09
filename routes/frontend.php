@@ -23,6 +23,7 @@ use App\Livewire\GuestCheckout;
 use App\Livewire\Checkout;
 use App\Http\Middleware\RedirectIfNotLoggedIn;
 use App\Livewire\OrderDetails;
+use App\Livewire\MyOrders;
 
 // Homepage
 Route::get('/', HomePage::class)->name('home');
@@ -33,6 +34,9 @@ Route::get('/contact-us', ContactPage::class)->name('contact-us');
 Route::get('/product-detail/{product_slug}', ProductDetail::class)->name('product-detail');
 
 Route::get('/cart', CartPage::class)->name('cart');
+Route::get('/my-orders', MyOrders::class)->name('my-orders');
+
+
 
 Route::get('login', Login::class)->name('login');
 Route::post('login', [Login::class, 'authenticate'])->name('authenticate');

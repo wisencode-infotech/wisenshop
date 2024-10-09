@@ -30,6 +30,9 @@
                     <div class="">
                         <div class="relative z-[51] w-full max-w-6xl bg-light md:rounded-xl xl:min-w-[1152px]">
                             <div class="flex h-full flex-col bg-white pb-5 md:border md:border-border-200">
+
+                                <h3 class="py-5 px-5 text-xl font-semibold text-heading">My Orders</h3>
+                                
                                 <div data-overlayscrollbars-initialize="" class="os-theme-thin-dark w-full"
                                     data-overlayscrollbars="host" style="height: calc(100% - 80px);">
                                     <div class="os-size-observer">

@@ -109,7 +109,7 @@ class OrderController extends Controller
 
         foreach($orders as $order) {
             $this->order_service->setRecord($order);
-            // $this->order_service->updateStatus(2);
+            $this->order_service->updateStatus(2);
         }
 
         return $this->bulkExportWithMultiOrders($orders, $options);

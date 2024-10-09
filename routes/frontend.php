@@ -19,6 +19,7 @@ use Illuminate\Support\Facades\Cache;
 use App\Livewire\GuestCheckout;
 use App\Livewire\Checkout;
 use App\Http\Middleware\RedirectIfNotLoggedIn;
+use App\Livewire\OrderDetails;
 
 // Homepage
 Route::get('/', HomePage::class)->name('home');
@@ -36,6 +37,12 @@ Route::get('logout', [Logout::class, 'logout'])->name('logout');
 
 Route::get('/guest-checkout', GuestCheckout::class)->name('guest.checkout');
 Route::get('/checkout', Checkout::class)->name('checkout')->middleware(RedirectIfNotLoggedIn::class);
+
+Route::prefix('orders')->name('orders.')->group(function () {
+    Route::prefix('{order}')->group(function () {
+        Route::get('details', OrderDetails::class)->name('details');
+    });
+});
 
 // Route::get('register', [RegisterController::class, 'showRegistrationForm'])->name('register');
 // Route::post('register', [RegisterController::class, 'register']);

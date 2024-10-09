@@ -16078,7 +16078,7 @@
           var val = parseInt(value, 10);
           set(prop, Optional.some(val));
           getValueRgb().each(function (rgb) {
-            var hex = copyRgbToHex(form, rgb);
+            var hex = copy__convertRgbToHex(form, rgb);
             updatePreview(form, hex);
           });
         };
@@ -16130,7 +16130,7 @@
           apis: {
             updateHex: function (form, hex) {
               Representing.setValue(form, { hex: hex.value });
-              copyHexToRgb(form, hex);
+              copy__convertHexToRgb(form, hex);
               updatePreview(form, hex);
             }
           }

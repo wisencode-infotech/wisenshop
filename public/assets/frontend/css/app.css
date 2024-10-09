@@ -52,12 +52,12 @@
     border-width: 1px !important;
 }
 
-.product_category:hover{
-	border-color: #009f7f !important;
+.product_category:hover {
+	border-color: rgba(var(--color-accent)) !important;
 }
 
-.product_category.active{
-	border-color: #009f7f !important;
+.product_category.active {
+	border-color: rgba(var(--color-accent)) !important;
 }
 
 /*button.products-filter {
@@ -70,11 +70,12 @@ button.products-filter:hover {
     color: #fff;
 }*/
 
-button.reset_filter_btn{
+button.reset_filter_btn {
     background-color: #e1d7d7;
     color: black;
 }
-button.reset_filter_btn:hover{
+
+button.reset_filter_btn:hover {
     background-color: grey;
     color: white;
 }
@@ -94,7 +95,7 @@ button.reset_filter_btn:hover{
     padding-left: 1rem !important;
 }
 
-.shipping_address_container.active{
+.shipping_address_container.active {
     box-shadow: var(--tw-ring-offset-shadow, 0 0 #0000), var(--tw-ring-shadow, 0 0 #0000), var(--tw-shadow) !important;
     --tw-border-opacity: 1 !important;
     border-color: rgba(var(--color-accent), var(--tw-border-opacity)) !important;
@@ -102,12 +103,16 @@ button.reset_filter_btn:hover{
     background-color: white;
 }
 
-.payment_method_section.active{
+.payment_method_section.active {
      box-shadow: var(--tw-ring-offset-shadow, 0 0 #0000), var(--tw-ring-shadow, 0 0 #0000), var(--tw-shadow) !important;
     --tw-border-opacity: 1 !important;
     border-color: rgba(var(--color-accent), var(--tw-border-opacity)) !important;
     border-width: 1px !important;
     background-color: white;
+}
+
+.text-accent-constrast {
+    color: rgba(var(--color-accent-contrast)) !important;
 }
 
 /*End custom css*/

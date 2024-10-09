@@ -52,7 +52,7 @@ class SettingController extends Controller
                 if (!in_array($key, ['header_logo', 'footer_logo', 'fav_logo', 'email_header_logo'])) {
 
                     if (str_starts_with($key, 'color-')) {
-                        $value = hexToRgb($value);
+                        $value = __convertHexToRgb($value);
                     }
 
                     Setting::updateOrCreate(

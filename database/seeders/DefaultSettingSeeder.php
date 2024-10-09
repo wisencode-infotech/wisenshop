@@ -106,13 +106,14 @@ class DefaultSettingSeeder extends Seeder
         // Site colors settings seeder
         $colors_settings = [
             'color-accent' => '0, 159, 127',
+            'color-accent-hover' => '0, 119, 95',
+            'color-accent-contrast' => '255, 255, 255',
             'color-accent-200' => '1, 147, 118',
             'color-accent-300' => '204, 236, 229',
             'color-accent-400' => '153, 217, 204',
             'color-accent-500' => '77, 188, 165',
             'color-accent-600' => '0, 159, 127',
             'color-accent-700' => '0, 143, 114',
-            'color-accent-hover' => '0, 119, 95',
             'color-light' => '255, 255, 255',
             'color-dark' => '0, 0, 0',
             'color-muted-black' => '17, 17, 17',

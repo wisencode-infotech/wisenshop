@@ -6988,8 +6988,8 @@
       return {
         borderwidth: getRaw(element, 'border-width').getOr(''),
         borderstyle: getRaw(element, 'border-style').getOr(''),
-        bordercolor: getRaw(element, 'border-color').map(rgbToHex(dom)).getOr(''),
-        backgroundcolor: getRaw(element, 'background-color').map(rgbToHex(dom)).getOr('')
+        bordercolor: getRaw(element, 'border-color').map(__convertRgbToHex(dom)).getOr(''),
+        backgroundcolor: getRaw(element, 'background-color').map(__convertRgbToHex(dom)).getOr('')
       };
     };
     var getSharedValues = function (data) {
@@ -7106,8 +7106,8 @@
       var extractAdvancedStyleData = function (dom) {
         return {
           borderstyle: get$1(style, 'border-style').getOr(''),
-          bordercolor: rgbToHex(dom)(get$1(style, 'border-color').getOr('')),
-          backgroundcolor: rgbToHex(dom)(get$1(style, 'background-color').getOr(''))
+          bordercolor: __convertRgbToHex(dom)(get$1(style, 'border-color').getOr('')),
+          backgroundcolor: __convertRgbToHex(dom)(get$1(style, 'background-color').getOr(''))
         };
       };
       var defaultData = {

@@ -20,27 +20,27 @@
       <div class="flex flex-col">
          <h3 class="mt-3 mb-4 font-semibold text-heading lg:mb-7">Explore</h3>
          <ul class="space-y-3">
-            <li><a class="text-sm transition-colors text-heading hover:text-orange-500" href="/shops">Shops</a></li>
-            <li><a class="text-sm transition-colors text-heading hover:text-orange-500" href="/authors">Authors</a></li>
-            <li><a class="text-sm transition-colors text-heading hover:text-orange-500" href="/flash-sales">Flash Deals</a></li>
-            <li><a class="text-sm transition-colors text-heading hover:text-orange-500" href="/offers">Coupon</a></li>
+            <li><a class="text-sm transition-colors text-heading hover:text-accent" href="/shops">Shops</a></li>
+            <li><a class="text-sm transition-colors text-heading hover:text-accent" href="/authors">Authors</a></li>
+            <li><a class="text-sm transition-colors text-heading hover:text-accent" href="/flash-sales">Flash Deals</a></li>
+            <li><a class="text-sm transition-colors text-heading hover:text-accent" href="/offers">Coupon</a></li>
          </ul>
       </div>
       <div class="flex flex-col">
          <h3 class="mt-3 mb-4 font-semibold text-heading lg:mb-7">Customer Service</h3>
          <ul class="space-y-3">
-            <li><a class="text-sm transition-colors text-heading hover:text-orange-500" href="/help">FAQ &amp; Helps</a></li>
-            <li><a class="text-sm transition-colors text-heading hover:text-orange-500" href="/vendor-refund-policies">Vendor Refund Policies</a></li>
-            <li><a class="text-sm transition-colors text-heading hover:text-orange-500" href="/customer-refund-policies">Customer Refund Policies</a></li>
+            <li><a class="text-sm transition-colors text-heading hover:text-accent" href="/help">FAQ &amp; Helps</a></li>
+            <li><a class="text-sm transition-colors text-heading hover:text-accent" href="/vendor-refund-policies">Vendor Refund Policies</a></li>
+            <li><a class="text-sm transition-colors text-heading hover:text-accent" href="/customer-refund-policies">Customer Refund Policies</a></li>
          </ul>
       </div>
       <div class="flex flex-col">
          <h3 class="mt-3 mb-4 font-semibold text-heading lg:mb-7">Our information</h3>
          <ul class="space-y-3">
-            <li><a class="text-sm transition-colors text-heading hover:text-orange-500" href="/manufacturers">Manufacturers</a></li>
-            <li><a class="text-sm transition-colors text-heading hover:text-orange-500" href="/privacy">Privacy policies</a></li>
-            <li><a class="text-sm transition-colors text-heading hover:text-orange-500" href="/terms">Terms &amp; conditions</a></li>
-            <li><a class="text-sm transition-colors text-heading hover:text-orange-500" href="/contact">Contact Us</a></li>
+            <li><a class="text-sm transition-colors text-heading hover:text-accent" href="/manufacturers">Manufacturers</a></li>
+            <li><a class="text-sm transition-colors text-heading hover:text-accent" href="/privacy">Privacy policies</a></li>
+            <li><a class="text-sm transition-colors text-heading hover:text-accent" href="/terms">Terms &amp; conditions</a></li>
+            <li><a class="text-sm transition-colors text-heading hover:text-accent" href="/contact">Contact Us</a></li>
          </ul>
       </div>
       <div class="col-span-full md:col-span-2 lg:col-auto">

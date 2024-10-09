@@ -8,7 +8,11 @@
 
     <link rel="icon" href="{{  asset(__setting('fav_logo')) }}" type="image/png"> 
     
-    <link rel="stylesheet" href="{{asset('assets/frontend/css/main.css')}}" data-n-g="" />
+    <link rel="stylesheet" href="{{ asset('assets/frontend/css/customizer.css') }}"/>
+
+    @include('components.layouts.site-customizer')
+
+    <link rel="stylesheet" href="{{asset('assets/frontend/css/main.css')}}"/>
     <link rel="stylesheet" href="{{asset('assets/frontend/css/style.css')}}">
     <link rel="stylesheet" href="{{asset('assets/frontend/css/app.css')}}">
 

@@ -14,7 +14,11 @@ class Order extends Model
 {
     use HasFactory, SoftDeletes;
 
-    protected $fillable = ['user_id', 'status', 'total_price'];
+    protected $fillable = [
+        'user_id',
+        'status',
+        'total_price'
+    ];
 
     // Relationships
     public function user(): BelongsTo
@@ -39,20 +43,10 @@ class Order extends Model
         return $this->belongsTo(Currency::class);
     }
 
-    // public function payment(): HasMany
-    // {
-    //     return $this->hasMany(Payment::class);
-    // }
-
-    public function payment(): BelongsTo
+    public function payment(): HasOne
     {
-        return $this->belongsTo(Payment::class, 'id', 'order_id');
+        return $this->hasOne(Payment::class);
     }
-
-    // public function address(): BelongsTo
-    // {
-    //     return $this->belongsTo(Address::class);
-    // }
 
     public function address(): HasOne
     {

@@ -81,10 +81,6 @@ button.products-filter:hover {
     color: var(--color-accent);
 }
 
-.small-select:focus {
-    /* border-color: transparent; */
-}
-
 .ltr\:\!pl-1 {
     padding-left: 1rem !important;
 }

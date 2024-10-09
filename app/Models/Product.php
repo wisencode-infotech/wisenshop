@@ -121,9 +121,12 @@ class Product extends Model
         });
     }
 
-    public function makePrimaryImage() {
+    // Helper functions
+    public function makePrimaryImage() 
+    {
         $product_image = $this->images()->where('is_primary', '1')->first();
-        if( empty($product_image) && $this->images->count() > 0) {
+
+        if ( empty($product_image) && $this->images->count() > 0) {
             $first_image = $this->images()->first();
             $first_image->is_primary = '1';
             $first_image->save();

@@ -56,6 +56,10 @@ function setAllMobileMenusAsInactiveButThis(menu_element = null)
         $(menu_element).addClass('text-accent');
 }
 
+$('.profile_menu_btn').on('click', function() {
+    $('.profile_menu_section').toggleClass('hidden');
+});
+
 // function toggleSearchBarVisibility() {
 //     const filter_section = document.querySelector('.top-product-search-bar');
 //     const searchBarVisible = localStorage.getItem('searchBarVisible');

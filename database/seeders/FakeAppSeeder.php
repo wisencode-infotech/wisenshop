@@ -34,46 +34,6 @@ class FakeAppSeeder extends Seeder
 
         User::factory(10)->create();
 
-        // Setting seeder
-        $settings = [
-                'header_logo' => 'assets/frontend/img/logo.png',
-                'footer_logo' => 'assets/frontend/img/logo.png',
-                'fav_logo' => 'assets/frontend/img/logo.png',
-                'email_header_logo' => 'assets/frontend/img/logo.png',
-                'email_footer_content' => '© 2024 '.config('app.name').'. All rights reserved.',
-                'phone_number' => '9696669999',
-                'email' => 'example@domain.com',
-                'address' => '123 Example Street, Sample City, ST 12345',
-                'website' => 'https://www.example.com',
-                'receiver_emails' => 'receiverA@user.com, receiverB@user.com',
-                'twitter_link' => 'https://twitter.com/example',
-                'facebook_link' => 'https://facebook.com/example',
-                'instagram_link' => 'https://instagram.com/example',
-                'copyright_link' => 'Copyright © Albertoshop. All rights reserved worldwide.',
-                'site_title' => 'Albertoshop',
-                'site_currency' => 'EUR'
-            ];
-
-        $multidimensionalSettings = [];
-        $sortNumber = 1;
-        
-        foreach ($settings as $key => $value) {
-            $multidimensionalSettings[] = [
-                'key' => $key,
-                'value' => $value,
-                'sort_number' => $sortNumber++
-            ];
-        }
-
-        foreach ($multidimensionalSettings as $setting) {
-            Setting::updateOrCreate([
-                'key' => $setting['key'],
-            ], [
-                'value' => $setting['value'],
-                'sort_number' => $setting['sort_number']
-            ]);
-        }
-
         // Categories seeder
 
         $categories = ['Cannabis Bulk Flowers', 'Cannabis Bulk Hash', 'Cannabis Bulk Isolate', 'Cannabis Bulk Distilate', 'Cannabis Bulk Terpenes', 'Cannabis Bulk Extracts'];

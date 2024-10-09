@@ -19,12 +19,8 @@ class DatabaseSeeder extends Seeder
         // Currency seeder
         (new CurrencySeeder())->run();
 
-        // Set site base currency in settings
-        Setting::updateOrCreate([
-            'key' => 'site_currency'
-        ], [
-            'value' => 'EUR'
-        ]);
+        // Set site default settings
+        (new DefaultSettingSeeder())->run();
 
         // Update currency exchange rates based on site base currency
         Artisan::call('currency:update-exchange-rates');

@@ -2,7 +2,7 @@
 .loader {
     border: 4px solid rgba(0, 0, 0, 0.1);
     border-radius: 50%;
-    border-top: 4px solid rgb(0, 159, 127);
+    border-top: 4px solid rgb(var(--color-accent));
     width: 24px;
     height: 24px;
     animation: spin 1s linear infinite;
@@ -52,22 +52,22 @@
     border-width: 1px !important;
 }
 
-.product_category:hover{
-	border-color: #009f7f !important;
+.product_category:hover {
+	border-color: rgba(var(--color-accent)) !important;
 }
 
-.product_category.active{
-	border-color: #009f7f !important;
+.product_category.active {
+	border-color: rgba(var(--color-accent)) !important;
 }
 
-button.products-filter {
-    background-color: #2299dd;
-    color: #fff;
+button.reset_filter_btn {
+    background-color: #e1d7d7;
+    color: black;
 }
 
-button.products-filter:hover {
-    background-color: #1979b1;
-    color: #fff;
+button.reset_filter_btn:hover {
+    background-color: grey;
+    color: white;
 }
 
 .small-select {
@@ -81,15 +81,11 @@ button.products-filter:hover {
     color: var(--color-accent);
 }
 
-.small-select:focus {
-    /* border-color: transparent; */
-}
-
 .ltr\:\!pl-1 {
     padding-left: 1rem !important;
 }
 
-.shipping_address_container.active{
+.shipping_address_container.active {
     box-shadow: var(--tw-ring-offset-shadow, 0 0 #0000), var(--tw-ring-shadow, 0 0 #0000), var(--tw-shadow) !important;
     --tw-border-opacity: 1 !important;
     border-color: rgba(var(--color-accent), var(--tw-border-opacity)) !important;
@@ -97,12 +93,20 @@ button.products-filter:hover {
     background-color: white;
 }
 
-.payment_method_section.active{
+.payment_method_section.active {
      box-shadow: var(--tw-ring-offset-shadow, 0 0 #0000), var(--tw-ring-shadow, 0 0 #0000), var(--tw-shadow) !important;
     --tw-border-opacity: 1 !important;
     border-color: rgba(var(--color-accent), var(--tw-border-opacity)) !important;
     border-width: 1px !important;
     background-color: white;
+}
+
+.text-accent-contrast {
+    color: rgba(var(--color-accent-contrast));
+}
+
+.border-active {
+    border-color: rgba(var(--color-accent));
 }
 
 /*End custom css*/

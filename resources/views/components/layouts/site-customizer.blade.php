@@ -1,0 +1,62 @@
+<style type="text/css">
+:root {
+    --color-accent: {{ __setting('color-accent') }};
+    --color-accent-hover : {{ __setting('color-accent-hover') }};
+    --color-accent-contrast : {{ __setting('color-accent-contrast') }};
+    --color-accent-200 : {{ __setting('color-accent-200') }};
+    --color-accent-300 : {{ __setting('color-accent-300') }};
+    --color-accent-400 : {{ __setting('color-accent-400') }};
+    --color-accent-500 : {{ __setting('color-accent-500') }};
+    --color-accent-600 : {{ __setting('color-accent-600') }};
+    --color-accent-700 : {{ __setting('color-accent-700') }};
+    --color-light: {{ __setting('color-light') }};
+    --color-dark: {{ __setting('color-dark') }};
+    --color-muted-black: {{ __setting('color-muted-black') }};
+    --color-current: currentColor;
+    --text-base: 107, {{ __setting('text-base') }};
+    --text-base-dark: {{ __setting('text-base-dark') }};
+    --text-muted: {{ __setting('text-muted') }};
+    --text-muted-light: {{ __setting('text-muted-light') }};
+    --text-sub-heading: {{ __setting('text-sub-heading') }};
+    --text-heading: {{ __setting('text-heading') }};
+    --text-bolder: {{ __setting('text-bolder') }};
+    --color-border-50: {{ __setting('color-border-50') }};
+    --color-border-100: {{ __setting('color-border-100') }};
+    --color-border-200: {{ __setting('color-border-200') }};
+    --color-border-base: {{ __setting('color-border-base') }};
+    --color-border-400: {{ __setting('color-border-400') }};
+    --color-gray-50: 249, 250, 251;
+    --color-gray-100: 243, 244, 246;
+    --color-gray-200: 229, 231, 235;
+    --color-gray-300: 209, 213, 219;
+    --color-gray-400: 156, 163, 175;
+    --color-gray-500: 107, 114, 128;
+    --color-gray-600: 75, 85, 99;
+    --color-gray-700: 55, 65, 81;
+    --color-gray-800: 31, 41, 55;
+    --color-gray-900: 31, 41, 55;
+    --color-orange-50: 255, 247, 237;
+    --color-orange-100: 255, 237, 213;
+    --color-orange-200: 254, 215, 170;
+    --color-orange-300: 253, 186, 116;
+    --color-orange-400: 251, 146, 60;
+    --color-orange-500: 249, 115, 22;
+    --color-orange-600: 234, 88, 12;
+    --color-orange-700: 194, 65, 12;
+    --color-orange-800: 154, 52, 18;
+    --color-orange-900: 124, 45, 18;
+    --color-pending: 201, 161, 22;
+    --color-processing: 158, 117, 0;
+    --color-complete: 0, 161, 127;
+    --color-canceled: 227, 110, 1;
+    --color-failed: 238, 43, 0;
+    --color-out-for-delivery: 126, 173, 66;
+    --text-base-dark: 51, 51, 51;
+    --h1: 2.5rem;
+    --h2: 2rem;
+    --h3: 1.5rem;
+    --h4: 1.25rem;
+    --h5: 1.125rem;
+    --h6: 1rem
+}
+</style>

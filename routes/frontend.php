@@ -6,6 +6,9 @@ use Illuminate\Support\Facades\Route;
 use App\Livewire\ContactPage;
 use App\Livewire\HomePage;
 use App\Livewire\Login;
+use App\Livewire\Register;
+use App\Livewire\ForgotPassword;
+use App\Livewire\ResetPassword;
 use App\Livewire\Logout;
 use App\Livewire\ProductDetail;
 use App\Livewire\CartPage;
@@ -20,6 +23,7 @@ use App\Livewire\GuestCheckout;
 use App\Livewire\Checkout;
 use App\Http\Middleware\RedirectIfNotLoggedIn;
 use App\Livewire\OrderDetails;
+use App\Livewire\MyOrders;
 
 // Homepage
 Route::get('/', HomePage::class)->name('home');
@@ -30,10 +34,18 @@ Route::get('/contact-us', ContactPage::class)->name('contact-us');
 Route::get('/product-detail/{product_slug}', ProductDetail::class)->name('product-detail');
 
 Route::get('/cart', CartPage::class)->name('cart');
+Route::get('/my-orders', MyOrders::class)->name('my-orders');
+
+
 
 Route::get('login', Login::class)->name('login');
 Route::post('login', [Login::class, 'authenticate'])->name('authenticate');
 Route::get('logout', [Logout::class, 'logout'])->name('logout');
+
+Route::get('register', Register::class)->name('register');
+Route::get('forgot-password', ForgotPassword::class)->name('forgot-password');
+Route::get('/reset-password/{token}', ResetPassword::class)->name('password.reset');
+
 
 Route::get('/guest-checkout', GuestCheckout::class)->name('guest.checkout');
 Route::get('/checkout', Checkout::class)->name('checkout')->middleware(RedirectIfNotLoggedIn::class);

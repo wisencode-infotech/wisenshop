@@ -98,9 +98,7 @@
 
                 @if(request()->routeIs('frontend.home') || request()->routeIs('livewire.update'))
                 <button data-variant="custom" class="top-product-search-btn inline-flex items-center justify-center shrink-0 font-semibold leading-none rounded outline-none transition duration-300 ease-in-out focus:outline-0 focus:shadow focus:ring-1 focus:ring-accent-700 px-5 py-0 h-12 hidden h-[38px] w-[38px] items-center  gap-2 rounded-full border border-border-200 bg-light !p-1 text-sm !font-normal focus:!shadow-none focus:!ring-0 md:text-base lg:!flex">
-                   <svg viewBox="0 0 17.048 18" class="h-4 w-4">
-                      <path d="M380.321,383.992l3.225,3.218c.167.167.341.329.5.506a.894.894,0,1,1-1.286,1.238c-1.087-1.067-2.179-2.131-3.227-3.236a.924.924,0,0,0-1.325-.222,7.509,7.509,0,1,1-3.3-14.207,7.532,7.532,0,0,1,6,11.936C380.736,383.462,380.552,383.685,380.321,383.992Zm-5.537.521a5.707,5.707,0,1,0-5.675-5.72A5.675,5.675,0,0,0,374.784,384.513Z" transform="translate(-367.297 -371.285)" fill="currentColor"></path>
-                   </svg>
+                   <i class="fa fa-search"></i>
                 </button>
                 @endif
 
@@ -148,19 +146,29 @@
 
                    @livewire('cart-icon')
                 </ul>
+
+                @if (auth()->check())
+                <div class="lg:inline-flex">
+                   <div class="relative inline-block ltr:text-left rtl:text-right" data-headlessui-state="open">
+                      <button class="profile_menu_btn flex items-center focus:outline-0" id="headlessui-menu-button-:rn:" type="button" aria-haspopup="menu" aria-expanded="true" data-headlessui-state="open" aria-controls="headlessui-menu-items-:r19:">
+                         <div class="relative cursor-pointer overflow-hidden rounded-full border border-border-100 h-[38px] w-[38px] border-border-200"><img alt="user name" fetchpriority="high" srcset="{{ asset('assets/frontend/img/man-thumbnail.webp') }}" src="{{ asset('assets/frontend/img/man-thumbnail.webp') }}" style="position: absolute; height: 100%; width: 100%; inset: 0px; color: transparent;"></div>
+                         <span class="sr-only">user</span>
+                      </button>
+                      <ul class="profile_menu_section absolute hidden mt-5 w-48 rounded bg-white pb-4 shadow-700 focus:outline-none ltr:right-0 ltr:origin-top-right rtl:left-0 rtl:origin-top-left transform opacity-100 scale-100"  >
+                         <li id="headlessui-menu-item-:r1c:" role="menuitem" tabindex="-1" data-headlessui-state=""><button wire:navigate href="{{ route('frontend.my-orders') }}" class="block w-full py-2.5 px-6 text-sm font-semibold capitalize text-heading transition duration-200 hover:text-accent focus:outline-0 ltr:text-left rtl:text-right text-heading">My Orders</button></li>
+                         <li id="headlessui-menu-item-:r1f:" role="menuitem" tabindex="-1" data-headlessui-state=""><button wire:navigate href="{{ route('frontend.logout') }}" class="block w-full py-2.5 px-6 text-sm font-semibold capitalize text-heading transition duration-200 hover:text-accent focus:outline-0 ltr:text-left rtl:text-right">Logout</button></li>
+                      </ul>
+                   </div>
+                </div>
+                @endif
+
+                @if (!auth()->check())
                 <div class="flex items-center space-x-4 rtl:space-x-reverse">
                     <div class="hidden lg:inline-flex"></div>
-
-                    @if (auth()->check())
-                       <a wire:navigate href="{{ route('frontend.logout') }}" class="hidden h-9 shrink-0 items-center justify-center rounded border border-transparent bg-accent px-3 py-0 text-sm font-semibold leading-none text-light outline-none transition duration-300 ease-in-out hover:bg-accent-hover focus:shadow focus:outline-none focus:ring-1 focus:ring-accent-700 sm:inline-flex">{{ __trans('Logout') }}</a>
-                    @else
-                        <a wire:navigate href="{{ route('frontend.login') }}"
+                    <a wire:navigate href="{{ route('frontend.login') }}"
                         class="hidden h-9 shrink-0 items-center justify-center rounded border border-transparent bg-accent px-3 py-0 text-sm font-semibold leading-none text-light outline-none transition duration-300 ease-in-out hover:bg-accent-hover focus:shadow focus:outline-none focus:ring-1 focus:ring-accent-700 sm:inline-flex">{{ __trans('Login') }}</a>
-
-
-                    @endif
-
                 </div>
+                 @endif
             </div>
         </div>
     </div>

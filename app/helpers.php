@@ -210,3 +210,22 @@ if (!function_exists('__homeSetting'))
         return '';
     }
 }
+
+if (!function_exists('__convertRgbToHex'))
+{
+    function __convertRgbToHex($rgb)
+    {
+        $rgbValues = array_map('intval', explode(',', str_replace(['rgb(', ')'], '', trim($rgb))));
+        return count($rgbValues) === 3 ? sprintf("#%02x%02x%02x", ...$rgbValues) : $rgb;
+    }
+}
+
+if (!function_exists('__convertHexToRgb')) 
+{
+    function __convertHexToRgb($hex)
+    {
+        $hex = ltrim($hex, '#');
+        $hex = strlen($hex) === 3 ? preg_replace('/(.)/', '$1$1', $hex) : $hex;
+        return strlen($hex) === 6 ? implode(', ', array_map('hexdec', str_split($hex, 2))) : null;
+    }
+}

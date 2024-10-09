@@ -42,7 +42,14 @@
         <img src="{{ public_path('assets/frontend/img/logo.png') }}" alt="Logo" height="80">
     </div>
     <div class="title">Orders</div>
+
     @foreach ($orders as $order)
+
+    @php 
+        $currency = $order->currency; 
+        $extraInformation = json_decode($order->extra_information, true);
+    @endphp
+
         <div style="border:2px solid black;margin:20px 0;page-break-inside: avoid;">
             <table class="table">
                 <tbody>
@@ -54,10 +61,68 @@
                         <td><strong>Username:</strong></td>
                         <td>{{ $order->user->name ?? 'N/A' }}</td>
                     </tr>
+
+                    @if(!empty($order->payment->details))
                     <tr>
-                        <td><strong>Address:</strong></td>
-                        <td>{{ $order->address ?? 'Kenny Rigdon, 1234 Main, Apt. 4B, Springfield, ST 54321.' }}</td>
+                        <td><strong>Payment Method:</strong></td>
+                        <td>
+                            {{ $order->payment->details->name }}<br>
+                            {{ $order->payment->details->description }}
+                        </td>
                     </tr>
+                    @endif
+                    
+
+                    @if(!empty($order->address->billing_address_id))
+                    <tr>
+                        <td><strong>Billing Address:</strong></td>
+                        <td> 
+                            {{ $order->address->billingAddress->address }}<br>
+                            {{ $order->address->billingAddress->city }}<br>
+                            {{ $order->address->billingAddress->state }},  {{ $order->address->billingAddress->postal_code }}<br>
+                            {{ $order->address->billingAddress->country }}
+                        </td>
+                    </tr>
+                    @endif
+
+                    @if(!empty($order->address->shipping_address_id))
+                    <tr>
+                        <td><strong>Shipping Address:</strong></td>
+                        <td> 
+                            {{ $order->address->shippingAddress->address }}<br>
+                            {{ $order->address->shippingAddress->city }}<br>
+                            {{ $order->address->shippingAddress->state }},  {{ $order->address->shippingAddress->postal_code }}<br>
+                            {{ $order->address->shippingAddress->country }}
+                        </td>
+                    </tr>
+                    @endif
+
+                    <tr>
+                        <td><strong>Currency:</strong></td>
+                        <td>{{ $currency->code }}</td>
+                    </tr>
+
+                    @if(!empty($extraInformation['customer_contact_email']))
+                    <tr>
+                        <td><strong>Email:</strong></td>
+                        <td>{{ $extraInformation['customer_contact_email'] ?? 'N/A' }}</td>
+                    </tr>
+                    @endif
+
+                    @if(!empty($extraInformation['customer_contact_phone']))
+                    <tr>
+                        <td><strong>Phone Number:</strong></td>
+                        <td>{{ $extraInformation['customer_contact_phone'] ?? 'N/A' }}</td>
+                    </tr>
+                    @endif
+
+                    @if(!empty($extraInformation['customer_additional_notes']))
+                    <tr>
+                        <td><strong>Notes:</strong></td>
+                        <td>{{ $extraInformation['customer_additional_notes'] ?? 'N/A' }}</td>
+                    </tr>
+                    @endif
+
                 </tbody>
             </table>
 
@@ -82,9 +147,9 @@
                         <!-- Loop through each product associated with the order -->
                         <tr>
                             <td>{{ $product->name ?? '' }}</td>
-                            <td>{{ number_format($price, 2) }}</td>
+                            <td>{{ $currency->symbol }}{{ number_format($price, 2) }}</td>
                             <td>{{ $product->pivot->quantity }}</td> <!-- Use the pivot quantity -->
-                            <td>{{ number_format($price * $quantity, 2) }}</td>
+                            <td>{{ $currency->symbol }}{{ number_format($price * $quantity, 2) }}</td>
                             <!-- Calculate subtotal for each item -->
                         </tr>
                         @php 
@@ -95,7 +160,7 @@
                 <tfoot>
                     <tr>
                         <td colspan="3" style="text-align: right;"><strong>Total:</strong></td>
-                        <td><strong>{{ number_format($total, 2) }}</strong></td>
+                        <td><strong>{{ $currency->symbol }}{{ number_format($total, 2) }}</strong></td>
                     </tr>
                 </tfoot>
             </table>

@@ -12,7 +12,7 @@
          <div class="bg-light p-5 shadow-700 md:p-8">
             <div class="mb-5 flex items-center justify-between md:mb-8">
                <div class="flex items-center space-x-3 rtl:space-x-reverse md:space-x-4">
-                  <span class="flex h-8 w-8 items-center justify-center rounded-full bg-accent text-base text-light lg:text-xl">1</span>
+                  <span class="flex h-8 w-8 items-center justify-center rounded-full bg-accent text-base text-accent-contrast lg:text-xl">1</span>
                   <p class="text-lg capitalize text-heading lg:text-xl">{{ __trans('Contact Info') }}</p>
                </div>
             </div>
@@ -35,7 +35,7 @@
          <div class="bg-light p-5 shadow-700 md:p-8">
             <div class="mb-5 flex items-center justify-between md:mb-8">
                <div class="flex items-center space-x-3 rtl:space-x-reverse md:space-x-4">
-                  <span class="flex h-8 w-8 items-center justify-center rounded-full bg-accent text-base text-light lg:text-xl">2</span>
+                  <span class="flex h-8 w-8 items-center justify-center rounded-full bg-accent text-base text-accent-contrast lg:text-xl">2</span>
                   <p class="text-lg capitalize text-heading lg:text-xl">{{ __trans('Billing Address') }}</p>
                </div>
                <button wire:click="$dispatch('open-modal', { type: 'billing' })" class="flex items-center text-sm font-semibold text-accent transition-colors duration-200 hover:text-accent-hover focus:text-accent-hover focus:outline-0">
@@ -89,7 +89,7 @@
          <div class="bg-light p-5 shadow-700 md:p-8">
             <div class="mb-5 flex items-center justify-between md:mb-8">
                <div class="flex items-center space-x-3 rtl:space-x-reverse md:space-x-4">
-                  <span class="flex h-8 w-8 items-center justify-center rounded-full bg-accent text-base text-light lg:text-xl">3</span>
+                  <span class="flex h-8 w-8 items-center justify-center rounded-full bg-accent text-base text-accent-contrast lg:text-xl">3</span>
                   <p class="text-lg capitalize text-heading lg:text-xl">{{ __trans('Shipping Address') }}</p>
                </div>
                <button wire:click="$dispatch('open-modal', { type: 'shipping' })" class="flex items-center text-sm font-semibold text-accent transition-colors duration-200 hover:text-accent-hover focus:text-accent-hover focus:outline-0">
@@ -144,7 +144,7 @@
          <div class="bg-light p-5 shadow-700 md:p-8">
             <div class="mb-5 flex items-center justify-between md:mb-8">
                <div class="flex items-center space-x-3 rtl:space-x-reverse md:space-x-4">
-                  <span class="flex h-8 w-8 items-center justify-center rounded-full bg-accent text-base text-light lg:text-xl">4</span>
+                  <span class="flex h-8 w-8 items-center justify-center rounded-full bg-accent text-base text-accent-contrast lg:text-xl">4</span>
                   <p class="text-lg capitalize text-heading lg:text-xl">{{ __trans('Order Note') }}</p>
                </div>
             </div>
@@ -225,7 +225,7 @@
             </div>
 
             @if(count($cart) != 0)
-            <button wire:click="placeOrder"  wire:loading.attr="disabled" data-variant="normal" class="inline-flex items-center justify-center shrink-0 font-semibold leading-none rounded outline-none transition duration-300 ease-in-out focus:outline-0 focus:shadow focus:ring-1 focus:ring-accent-700 bg-accent text-light border border-transparent hover:bg-accent-hover px-5 py-0 h-12 mt-5 w-full">
+            <button wire:click="placeOrder"  wire:loading.attr="disabled" data-variant="normal" class="inline-flex items-center justify-center shrink-0 font-semibold leading-none rounded outline-none transition duration-300 ease-in-out focus:outline-0 focus:shadow focus:ring-1 focus:ring-accent-700 bg-accent text-accent-contrast border border-transparent hover:bg-accent-hover px-5 py-0 h-12 mt-5 w-full">
                <span wire:loading.remove wire:target="placeOrder">
                     {{ __trans('Place Order') }}
                 </span>

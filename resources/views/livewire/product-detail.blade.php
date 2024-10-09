@@ -66,7 +66,7 @@
                      <div class="flex flex-col items-start p-5 pt-10 md:w-1/2 lg:p-14 xl:p-16">
                         <div class="w-full">
                            <div class="flex w-full items-center justify-between">
-                              <h1 class="text-lg font-semibold tracking-tight text-heading md:text-xl xl:text-2xl cursor-pointer transition-colors hover:text-accent">
+                              <h1 class="text-lg font-semibold tracking-tight text-heading md:text-xl xl:text-2xl cursor-pointer transition-colors hover:text-accent text-accent-contrast">
                                  {{ $product->name }}
                               </h1>
 
@@ -76,12 +76,12 @@
                               </div>
                            </div>
                            <div class="mt-2 flex items-center justify-between">
-                              <div class="inline-flex shrink-0 items-center rounded border border-accent bg-accent px-3 py-1 text-sm text-white">
+                              <div class="inline-flex shrink-0 items-center rounded border border-accent bg-accent px-3 py-1 text-sm text-accent-contrast">
                                  <i class="fa fa-star"></i>
                                  @if (($prouct_avg_rating = $product->average_rating) > 0)
                                     {{ $prouct_avg_rating }}
                                  @endif
-                                 <span class="ms-1 text-accent-contrast">({{ $product->total_reviews . ' ' . __trans('Reviews') }})</span>
+                                 <span class="ms-1">({{ $product->total_reviews . ' ' . __trans('Reviews') }})</span>
                               </div>
                            </div>
                            <div class="mt-3 text-sm leading-7 text-body md:mt-4 react-editor-description">
@@ -89,7 +89,7 @@
                               {{-- <br><span><button class="mt-1 inline-block font-bold text-accent ">Read more</button></span> --}}
                            </div>
                            <span class="my-5 flex items-center md:my-10">
-                              <ins class="text-2xl font-semibold text-accent no-underline md:text-3xl">
+                              <ins class="text-2xl font-semibold text-accent no-underline md:text-3xl text-accent-contrast">
                                  @livewire('product-price', ['product_id' => $product->id])
                               </ins>
                            </span>

@@ -48,7 +48,7 @@
                             </div>
 
                             <div class="relative">
-                                <span class="text-sm font-semibold text-accent md:text-base">
+                                <span class="text-sm font-semibold text-accent-contrast md:text-base">
                                     @livewire('product-price', ['product_id' => $product->id], key('product-price-' . uniqid()))
                                 </span>
                             </div>

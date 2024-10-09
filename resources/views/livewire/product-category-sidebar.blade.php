@@ -28,7 +28,7 @@
                                 
                                 <!-- Overlay for Title -->
                                 <div class="absolute inset-0 flex items-end justify-center">
-                                    <span class="text-sm md:text-md font-semibold text-accent-contrast text-center block bg-accent bg-opacity-20 w-full">
+                                    <span class="text-sm md:text-md font-semibold text-accent-contrast text-center block bg-accent bg-opacity-40 w-full">
                                         {{ \Str::limit($category->name, 18) }}
                                     </span>
                                 </div>

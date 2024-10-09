@@ -24,6 +24,7 @@ use App\Livewire\Checkout;
 use App\Http\Middleware\RedirectIfNotLoggedIn;
 use App\Livewire\OrderDetails;
 use App\Livewire\MyOrders;
+use App\Livewire\Profile;
 
 // Homepage
 Route::get('/', HomePage::class)->name('home');
@@ -45,6 +46,10 @@ Route::get('logout', [Logout::class, 'logout'])->name('logout');
 Route::get('register', Register::class)->name('register');
 Route::get('forgot-password', ForgotPassword::class)->name('forgot-password');
 Route::get('/reset-password/{token}', ResetPassword::class)->name('password.reset');
+
+
+Route::get('profile', Profile::class)->name('profile');
+
 
 
 Route::get('/guest-checkout', GuestCheckout::class)->name('guest.checkout');

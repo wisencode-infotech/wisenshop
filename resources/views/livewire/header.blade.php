@@ -155,6 +155,7 @@
                          <span class="sr-only">user</span>
                       </button>
                       <ul class="profile_menu_section absolute hidden mt-5 w-48 rounded bg-white pb-4 shadow-700 focus:outline-none ltr:right-0 ltr:origin-top-right rtl:left-0 rtl:origin-top-left transform opacity-100 scale-100"  >
+                         <li id="headlessui-menu-item-:r1c:" role="menuitem" tabindex="-1" data-headlessui-state=""><button wire:navigate href="{{ route('frontend.profile') }}" class="block w-full py-2.5 px-6 text-sm font-semibold capitalize text-heading transition duration-200 hover:text-accent focus:outline-0 ltr:text-left rtl:text-right text-heading">Profile</button></li>
                          <li id="headlessui-menu-item-:r1c:" role="menuitem" tabindex="-1" data-headlessui-state=""><button wire:navigate href="{{ route('frontend.my-orders') }}" class="block w-full py-2.5 px-6 text-sm font-semibold capitalize text-heading transition duration-200 hover:text-accent focus:outline-0 ltr:text-left rtl:text-right text-heading">My Orders</button></li>
                          <li id="headlessui-menu-item-:r1f:" role="menuitem" tabindex="-1" data-headlessui-state=""><button wire:navigate href="{{ route('frontend.logout') }}" class="block w-full py-2.5 px-6 text-sm font-semibold capitalize text-heading transition duration-200 hover:text-accent focus:outline-0 ltr:text-left rtl:text-right">Logout</button></li>
                       </ul>

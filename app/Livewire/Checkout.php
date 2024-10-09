@@ -8,6 +8,8 @@ use App\Models\BillingAddress;
 use App\Models\PaymentMethod;
 use App\Models\ShippingMethod;
 use App\Helpers\CartHelper;
+use App\Models\Order;
+use App\Services\OrderService;
 
 class Checkout extends Component
 {
@@ -102,7 +104,7 @@ class Checkout extends Component
             'phone.required_without' => 'Please provide either phone or email.',
         ]);
 
-        $order = CartHelper::createOrder([
+        $order_id = CartHelper::createOrder([
                     'shipping_address_id' => $this->selected_shipping_address_id,
                     'billing_address_id' => $this->selected_billing_address_id,
                     'payment_method_id' => $this->selected_payment_method_id,
@@ -113,7 +115,12 @@ class Checkout extends Component
                     'currency' => __userCurrency(),
                 ]);
 
+        $order = Order::find($order_id);
+
         $this->isPlacingOrder = false;
+
+        $order_service = new OrderService();
+        $order_service->placeOrder($order);
 
         session()->flash('message', 'Order placed successfully!');
 

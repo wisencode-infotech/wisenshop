@@ -1,13 +1,14 @@
 <style type="text/css">
 :root {
     --color-accent: {{ __setting('color-accent') }};
+    --color-accent-hover : {{ __setting('color-accent-hover') }};
+    --color-accent-contrast : {{ __setting('color-accent-contrast') }};
     --color-accent-200 : {{ __setting('color-accent-200') }};
     --color-accent-300 : {{ __setting('color-accent-300') }};
     --color-accent-400 : {{ __setting('color-accent-400') }};
     --color-accent-500 : {{ __setting('color-accent-500') }};
     --color-accent-600 : {{ __setting('color-accent-600') }};
     --color-accent-700 : {{ __setting('color-accent-700') }};
-    --color-accent-hover : {{ __setting('color-accent-hover') }};
     --color-light: {{ __setting('color-light') }};
     --color-dark: {{ __setting('color-dark') }};
     --color-muted-black: {{ __setting('color-muted-black') }};

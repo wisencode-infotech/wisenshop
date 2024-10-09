@@ -192,53 +192,21 @@ if (!function_exists('__appCurrencySymbol'))
     }
 }
 
-if (!function_exists('rgbToHex')) 
+if (!function_exists('__convertRgbToHex'))
 {
-    function rgbToHex($rgb) {
-
-        // Normalize input if it's in "rgb(180, 19, 19)" format
-        $rgb = trim($rgb); // Remove any extra spaces
-        
-        // Remove the 'rgb()' wrapper if it exists
-        $rgb = str_replace(['rgb(', ')'], '', $rgb);
-
-        // Now, we expect the input to be in "180, 19, 19" format
-        $rgbArray = explode(',', $rgb);
-
-        // Ensure we have exactly 3 values for R, G, and B
-        if (count($rgbArray) === 3) {
-            $r = intval(trim($rgbArray[0])); // Trim in case there are spaces
-            $g = intval(trim($rgbArray[1]));
-            $b = intval(trim($rgbArray[2]));
-
-            // Convert RGB to hex and return it
-            return sprintf("#%02x%02x%02x", $r, $g, $b);
-        }
-
-        // If the input is invalid, return the original value or handle the error as needed
-        return $rgb;
+    function __convertRgbToHex($rgb)
+    {
+        $rgbValues = array_map('intval', explode(',', str_replace(['rgb(', ')'], '', trim($rgb))));
+        return count($rgbValues) === 3 ? sprintf("#%02x%02x%02x", ...$rgbValues) : $rgb;
     }
 }
 
-if (!function_exists('hexToRgb')) {
-    function hexToRgb($hex) {
-        // Normalize the input by removing the '#' if it exists
+if (!function_exists('__convertHexToRgb')) 
+{
+    function __convertHexToRgb($hex)
+    {
         $hex = ltrim($hex, '#');
-
-        // If the hex code is shorthand (3 digits), expand it to 6 digits
-        if (strlen($hex) === 3) {
-            $hex = $hex[0].$hex[0].$hex[1].$hex[1].$hex[2].$hex[2];
-        }
-
-        // Now we expect the hex to be in "RRGGBB" format
-        if (strlen($hex) === 6) {
-            $r = hexdec(substr($hex, 0, 2));
-            $g = hexdec(substr($hex, 2, 2));
-            $b = hexdec(substr($hex, 4, 2));
-
-            return "{$r}, {$g}, {$b}";
-        }
-
-        return null;
+        $hex = strlen($hex) === 3 ? preg_replace('/(.)/', '$1$1', $hex) : $hex;
+        return strlen($hex) === 6 ? implode(', ', array_map('hexdec', str_split($hex, 2))) : null;
     }
 }

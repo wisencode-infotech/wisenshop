@@ -5,6 +5,7 @@ namespace App\Livewire;
 use Livewire\Component;
 use Livewire\WithPagination;
 use App\Models\Order;
+use Illuminate\Support\Facades\Auth;
 
 class MyOrders extends Component
 {
@@ -23,7 +24,7 @@ class MyOrders extends Component
 
     public function render()
     {
-        $orders = Order::where('user_id', auth()->id())->orderBy('id', 'desc')
+        $orders = Order::where('user_id', Auth::user()->id)->orderBy('id', 'desc')
                        ->paginate($this->paginate_count);
 
         return view('livewire.my-orders', [

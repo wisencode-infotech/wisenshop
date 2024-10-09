@@ -12,7 +12,7 @@
                         @foreach($product_categories as $category)
                             <div class="relative text-center rounded flex items-end overflow-hidden cursor-pointer h-40 product_category" 
                                 role="button" 
-                                 :class="{ 'active': selectedCategoryId == {{ $category->id }} }" 
+                                 :class="{ 'active border-active': selectedCategoryId == {{ $category->id }} }" 
             
                                  x-on:click="
                                         if (selectedCategoryId === {{ $category->id }}) {
@@ -28,7 +28,7 @@
                                 
                                 <!-- Overlay for Title -->
                                 <div class="absolute inset-0 flex items-end justify-center">
-                                    <span class="text-sm md:text-md font-semibold text-white text-center block bg-black bg-opacity-20 w-full">
+                                    <span class="text-sm md:text-md font-semibold text-accent-contrast text-center block bg-accent bg-opacity-40 w-full">
                                         {{ \Str::limit($category->name, 18) }}
                                     </span>
                                 </div>

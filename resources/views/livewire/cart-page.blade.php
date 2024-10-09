@@ -79,7 +79,7 @@
                            <p class="mt-1 text-sm text-gray-500">{{ __trans('Browse our products and add them to your cart') }}</p>
                            
                            <!-- Button (Optional) -->
-                           <a wire:navigate href="{{ route('frontend.home') }}" class="mt-6 inline-block px-6 py-2 text-white bg-accent-500 rounded-lg hover:bg-accent-hover">
+                           <a wire:navigate href="{{ route('frontend.home') }}" class="mt-6 inline-block px-6 py-2 text-accent-contrast bg-accent rounded-lg hover:bg-accent-hover">
                               {{ __trans('Shop Now') }}
                            </a>
                          </div>                         

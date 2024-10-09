@@ -13,6 +13,11 @@ class ProductDetail extends Component
     {
         $product = Product::where('slug', $this->product_slug)->first();
 
+        // If no product is found, throw a 404 error
+        if (!$product) {
+            abort(401);
+        }
+
         return view('livewire.product-detail', [
             'product' => $product,
         ]);

@@ -8,19 +8,26 @@ use App\Models\Category;
 class ProductCategorySidebar extends Component
 {
     public $product_categories;
-    public $selectedCategoryId;
+    public $selectedCategoryIds = [];
 
-    public function mount()
+    public function mount($default_categories = null)
     {
         $this->product_categories = Category::all();
-        $this->selectedCategoryId = request()->get('catid');
+        
+        if (request()->get('catid')) {
+            $this->selectedCategoryIds = [(int) request()->get('catid')];
+        } else if( !empty($default_categories) ) {
+            $this->selectedCategoryIds = $default_categories;
+        }
+
+        
     }
 
     public function render()
     {
         return view('livewire.product-category-sidebar', [
             'product_categories' => $this->product_categories,
-            'selectedCategoryId' => $this->selectedCategoryId, 
+            'selectedCategoryIds' => $this->selectedCategoryIds, 
         ]);
     }
 }

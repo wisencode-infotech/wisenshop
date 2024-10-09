@@ -8,20 +8,20 @@
             <div data-overlayscrollbars-contents="" data-overlayscrollbars-viewport="scrollbarHidden" style="margin-right: 0px; margin-bottom: 0px; margin-left: 0px; top: 0px; right: auto; left: 0px; width: calc(100% + 0px); padding: 0px; overflow-y: scroll;">
                 <div class="p-5">
                     
-                    <div x-data="{ selectedCategoryId: @entangle('selectedCategoryId') }" class="grid grid-cols-2 gap-4">
+                    <div x-data="{ selectedCategoryIds: @entangle('selectedCategoryIds') }" class="grid grid-cols-2 gap-4">
                         @foreach($product_categories as $category)
-                            <div class="relative text-center rounded flex items-end overflow-hidden cursor-pointer h-40 product_category" 
+                            <div 
+                                class="relative text-center rounded flex items-end overflow-hidden cursor-pointer h-40 product_category" 
                                 role="button" 
-                                 :class="{ 'active': selectedCategoryId == {{ $category->id }} }" 
-            
-                                 x-on:click="
-                                        if (selectedCategoryId === {{ $category->id }}) {
-                                            selectedCategoryId = null; // Deselect the category
-                                        } else {
-                                            selectedCategoryId = {{ $category->id }}; // Select the category
-                                        }
-                                        $dispatch('category-selected', { category_id: selectedCategoryId })
-                                    "
+                                :class="{ 'active': selectedCategoryIds.includes({{ $category->id }}) }"
+                                x-on:click="
+                                    if (selectedCategoryIds.includes({{ $category->id }})) {
+                                        selectedCategoryIds = selectedCategoryIds.filter(id => id !== {{ $category->id }}); // Deselect category
+                                    } else {
+                                        selectedCategoryIds.push({{ $category->id }}); // Select category
+                                    }
+                                    $dispatch('category-selected', { category_id: selectedCategoryIds })
+                                "
                             >
                                 <!-- Full Width and Height Image -->
                                 <img src="{{ $category->image_url }}" class="absolute inset-0 w-full h-full object-cover" />
@@ -35,6 +35,7 @@
                             </div>
                         @endforeach
                     </div>
+
                 </div>
             </div>
             <div class="os-scrollbar os-scrollbar-horizontal os-theme-dark os-scrollbar-auto-hide os-scrollbar-handle-interactive os-scrollbar-cornerless os-scrollbar-unusable os-scrollbar-auto-hide-hidden">

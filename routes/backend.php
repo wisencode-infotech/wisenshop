@@ -8,6 +8,7 @@ use App\Http\Controllers\Backend\TranslationController;
 use App\Http\Controllers\Backend\OrderController;
 use App\Http\Controllers\Backend\HomeController;
 use App\Http\Controllers\Backend\CurrencyController;
+use App\Http\Controllers\Backend\HomePageSettingsController;
 use App\Http\Controllers\Backend\LanguageController;
 use App\Http\Controllers\Backend\PaymentMethodController;
 use Illuminate\Support\Facades\Auth;
@@ -44,6 +45,11 @@ Route::middleware(['auth'])->group(function () {
             Route::post('update', [OrderController::class, 'bulkUpdate'])->name('update');
         });
 
+    });
+
+    Route::group(['prefix' => 'home-settings', 'as' => 'home-settings.'], function() {
+        Route::get('index', [HomePageSettingsController::class, 'index'])->name('index');
+        Route::post('store', [HomePageSettingsController::class, 'store'])->name('store');
     });
 
 });

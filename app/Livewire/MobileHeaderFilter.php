@@ -21,6 +21,23 @@ class MobileHeaderFilter extends Component
         ]);
     }
 
+    public function resetFilters()
+    {
+        $this->search = '';
+        $this->sort = 'asc'; // reset to default sorting
+        $this->minPrice = null;
+        $this->maxPrice = null;
+        
+        // Optionally, you can dispatch an event to reset filters in the parent component
+        $this->dispatch('filterProducts', [
+            'search' => $this->search,
+            'sort' => $this->sort,
+            'minPrice' => $this->minPrice,
+            'maxPrice' => $this->maxPrice,
+        ]);
+    }
+    
+
     public function render()
     {
         return view('livewire.mobile-header-filter');

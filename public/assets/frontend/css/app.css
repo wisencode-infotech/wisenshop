@@ -60,14 +60,23 @@
 	border-color: #009f7f !important;
 }
 
-button.products-filter {
+/*button.products-filter {
     background-color: #2299dd;
     color: #fff;
 }
 
 button.products-filter:hover {
-    background-color: #1979b1;
+    background-color: var(--color-accent);
     color: #fff;
+}*/
+
+button.reset_filter_btn{
+    background-color: #e1d7d7;
+    color: black;
+}
+button.reset_filter_btn:hover{
+    background-color: grey;
+    color: white;
 }
 
 .small-select {

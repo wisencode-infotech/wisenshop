@@ -45,14 +45,18 @@
                                         </div>
                                 @endforeach
                             @elseif ($setting_group_title === 'site-colors')
-                                @foreach ($settings->where('setting_group_id', $setting_group_id) as $setting)
-                                        <div class="form-group mb-3">
-                                            <label for="{{ $setting->key }}"
-                                                class="form-label">{{ ucwords(str_replace('_', ' ', $setting->key)) }}</label>
+                                <h4 class="mt-4">Colors</h4>
+                                <div class="row">
+                                    @foreach ($settings->where('setting_group_id', $setting_group_id) as $index => $setting)
+                                        <div class="col-md-2 mb-3">
+                                            <label for="{{ $setting->key }}" class="form-label">{{ ucwords(str_replace('_', ' ', $setting->key)) }}</label>
 
                                             <input type="color" name="settings[{{ $setting->key }}]"
                                                 class="form-control rgb-input @error('settings.' . $setting->key) is-invalid @enderror"
-                                                value="{{ $setting->value }}" placeholder="RGB (e.g., 70, 35, 35)" required>
+                                                value="{{ rgbToHex($setting->value) }}" required>
+
+                                            <!-- Hidden input to store the RGB value -->
+                                            <!-- <input type="hidden" id="{{ $setting->key }}_rgb" name="settings[{{ $setting->key }}_rgb]">     -->
 
                                             @error('settings.' . $setting->key)
                                                 <span class="invalid-feedback" role="alert">
@@ -60,7 +64,8 @@
                                                 </span>
                                             @enderror
                                         </div>
-                                @endforeach
+                                    @endforeach
+                                </div>
                             @else
                                 @foreach ($settings->where('setting_group_id', $setting_group_id) as $setting)
                                         <div class="form-group mb-3">
@@ -107,39 +112,4 @@
 @endsection
 
 @section('scripts')
-    <script type="text/javascript">
-        $(document).ready(function() {
-            // Attach event listener for input change
-            $('.rgb-input').on('input', function() {
-                let color = $(this).val();
-        
-                // If the value starts with a '#', convert hex to RGB
-                if (color.startsWith('#')) {
-                    let rgb = hexToRgb(color);
-        
-                    if (rgb) {
-                        // Set the value to RGB format
-                        $(this).val(`${rgb.r}, ${rgb.g}, ${rgb.b}`);
-                    }
-                }
-            });
-        
-            // Function to convert hex to RGB
-            function hexToRgb(hex) {
-                // Expand shorthand form (e.g. "03F") to full form (e.g. "0033FF")
-                let shorthandRegex = /^#?([a-f\d])([a-f\d])([a-f\d])$/i;
-                hex = hex.replace(shorthandRegex, function(m, r, g, b) {
-                    return r + r + g + g + b + b;
-                });
-        
-                // Convert hex to RGB
-                let result = /^#?([a-f\d]{2})([a-f\d]{2})([a-f\d]{2})$/i.exec(hex);
-                return result ? {
-                    r: parseInt(result[1], 16),
-                    g: parseInt(result[2], 16),
-                    b: parseInt(result[3], 16)
-                } : null;
-            }
-        });
-    </script>
 @endsection

@@ -151,7 +151,7 @@
                 <div class="lg:inline-flex">
                    <div class="relative inline-block ltr:text-left rtl:text-right" data-headlessui-state="open">
                       <button class="profile_menu_btn flex items-center focus:outline-0" id="headlessui-menu-button-:rn:" type="button" aria-haspopup="menu" aria-expanded="true" data-headlessui-state="open" aria-controls="headlessui-menu-items-:r19:">
-                         <div class="relative cursor-pointer overflow-hidden rounded-full border border-border-100 h-[38px] w-[38px] border-border-200"><img alt="user name" fetchpriority="high" srcset="{{ asset('assets/frontend/img/man-thumbnail.webp') }}" src="{{ asset('assets/frontend/img/man-thumbnail.webp') }}" style="position: absolute; height: 100%; width: 100%; inset: 0px; color: transparent;"></div>
+                         <div class="relative cursor-pointer overflow-hidden rounded-full border border-border-100 h-[38px] w-[38px] border-border-200"><img alt="user name" fetchpriority="high" srcset="{{ auth()->user()->profile_image_url }}" src="{{ auth()->user()->profile_image_url }}" style="position: absolute; height: 100%; width: 100%; inset: 0px; color: transparent;"></div>
                          <span class="sr-only">user</span>
                       </button>
                       <ul class="profile_menu_section absolute hidden mt-5 w-48 rounded bg-white pb-4 shadow-700 focus:outline-none ltr:right-0 ltr:origin-top-right rtl:left-0 rtl:origin-top-left transform opacity-100 scale-100"  >

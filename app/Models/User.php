@@ -8,6 +8,7 @@ use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Database\Eloquent\SoftDeletes;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
+use Illuminate\Support\Facades\Storage;
 
 class User extends Authenticatable
 {
@@ -34,6 +35,9 @@ class User extends Authenticatable
         'password',
         'remember_token',
     ];
+
+    // Define a placeholder URL
+    public static $placeholder_url = 'https://avatar.iran.liara.run/public/boy';
 
     /**
      * Get the attributes that should be cast.
@@ -67,5 +71,15 @@ class User extends Authenticatable
     public function cartItems(): HasMany
     {
         return $this->hasMany(Cart::class);
+    }
+
+    // Accessors
+    public function getProfileImageURLAttribute()
+    {
+        if ($this->profile_image && Storage::disk('public')->exists($this->profile_image)) {
+            return Storage::disk('public')->url($this->profile_image); // Return the URL of the stored image
+        }
+
+        return self::$placeholder_url;
     }
 }

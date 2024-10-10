@@ -21,6 +21,26 @@
 
             <h1 class="mb-5 font-body text-lg font-bold text-heading md:text-xl">{{ __trans('Profile') }}</h1>
             <form wire:submit.prevent="submit">
+
+                <div class="mb-6">
+                    <label for="profile_image" class="mb-2 block text-sm font-semibold leading-none text-body-dark">{{ __trans('Profile Image') }}</label>
+                    <div class="flex items-center">
+                        <!-- Profile Image Preview -->
+                        <div class="w-24 h-24 overflow-hidden border border-gray-300 mr-4">
+                            <img src="{{ $temp_image_url ? $temp_image_url : $profile_image }}" alt="Profile Image" class="object-cover w-full h-full">
+                        </div><br>
+
+                        <!-- File Input -->
+                        <input 
+                            id="profile_image" 
+                            type="file" 
+                            wire:model="profile_image"
+                            class="flex w-full appearance-none items-center text-sm text-heading transition duration-300 ease-in-out focus:outline-0 focus:ring-0 border border-border-base rounded h-10" style="margin-left:10px;" 
+                            accept="image/*">
+                    </div>
+                    @error('profile_image') <span class="text-red-500 text-xs mt-1">{{ $message }}</span> @enderror
+                </div>
+
                 <!-- Name Field -->
                 <div class="grid grid-cols-1 gap-4">
                     <div>

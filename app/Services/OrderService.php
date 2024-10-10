@@ -5,6 +5,7 @@ namespace App\Services;
 use App\Mail\OrderPlacedMail;
 use App\Mail\OrderStatusChangedMail;
 use Illuminate\Support\Facades\Mail;
+use App\Services\ProductService;
 
 class OrderService
 {
@@ -27,6 +28,9 @@ class OrderService
     public function placeOrder($order)
     {
         $this->setRecord($order);
+
+        $product_service = new ProductService();
+        $product_service->updateStock($order);
 
         // Send email when the order is placed
         $this->sendOrderPlacedEmail();

@@ -12,8 +12,7 @@ class QuantitySelector extends Component
     public $product_id; // To hold the product ID
     public $product_variation_id = null; // To hold the product variant ID
     public $layout = 'slim';
-
-    // protected $listeners = ['productVariantChanged'];
+    public $stock_available = true;
 
     public function mount($product_id, $layout = 'slim', $product_variation_id = null)
     {
@@ -34,7 +33,8 @@ class QuantitySelector extends Component
     public function getListeners()
     {
         return [
-            "productVariantChanged-{$this->product_id}" => 'productVariantChanged'
+            "productVariantChanged-{$this->product_id}" => 'productVariantChanged',
+            "productStockChanged-{$this->product_id}" => 'productStockChanged'
         ];
     }
 
@@ -50,6 +50,11 @@ class QuantitySelector extends Component
         $this->quantity = CartHelper::getQuantity($this->product_id, $this->product_variation_id);
     }
 
+    public function productStockChanged($product_id, $product_variation_id, $stock)
+    {
+        $this->stock_available = $stock > 0;
+    }
+
     public function increment()
     {
         $this->quantity++;
@@ -57,10 +62,9 @@ class QuantitySelector extends Component
         CartHelper::saveQuantity($this->product_id, $this->product_variation_id, $this->quantity);
 
         if ($this->quantity == 1) {
-            $this->dispatch('itemAdded'); // dispatch event with item price
+            $this->dispatch('itemAdded');
         }
 
-        // Dispatch an event for quantity change
         $this->dispatch('quantityUpdated', ['product_id' => $this->product_id, 'product_variation_id' => $this->product_variation_id, 'quantity' => $this->quantity]);
 
         $this->dispatch('shoppingCartUpdated');
@@ -77,7 +81,6 @@ class QuantitySelector extends Component
                 $this->dispatch('itemRemoved');
             }
 
-            // Dispatch an event for quantity change
             $this->dispatch('quantityUpdated', ['product_id' => $this->product_id, 'product_variation_id' => $this->product_variation_id, 'quantity' => $this->quantity]);
 
             $this->dispatch('shoppingCartUpdated');

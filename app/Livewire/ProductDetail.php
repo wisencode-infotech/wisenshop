@@ -7,19 +7,20 @@ use App\Models\Product;
 
 class ProductDetail extends Component
 {
-    public $product_slug;
+    public $product;
+
+    public function mount($product_slug)
+    {
+        $this->product = Product::where('slug', $product_slug)->first();
+
+        if (!$this->product)
+            abort(404);
+    }
 
     public function render()
     {
-        $product = Product::where('slug', $this->product_slug)->first();
-
-        // If no product is found, throw a 404 error
-        if (!$product) {
-            abort(401);
-        }
-
         return view('livewire.product-detail', [
-            'product' => $product,
+            'product' => $this->product,
         ]);
     }
 }

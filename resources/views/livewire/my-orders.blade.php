@@ -2,19 +2,7 @@
 
 <div>
     <div class="flex flex-col items-start w-full px-5 py-10 mx-auto max-w-1920 bg-light lg:bg-gray-100 xl:flex-row xl:py-14 xl:px-8 2xl:px-14">
-        <aside class="hidden shrink-0 ltr:mr-8 rtl:ml-8 xl:block xl:w-80">
-            <div class="overflow-hidden rounded border border-border-200 bg-light">
-                <ul class="py-7">
-                    <li class="py-1"><a class="block border-l-4 border-transparent py-2 px-10 font-semibold text-heading transition-colors hover:text-accent focus:text-accent" wire:navigate href="{{ route('frontend.profile') }}">Profile</a></li>
-                    <li class="py-1"><a class="block border-l-4 border-transparent py-2 px-10 font-semibold text-heading transition-colors hover:text-accent focus:text-accent !border-accent text-accent" wire:navigate href="{{ route('frontend.my-orders') }}">My Orders</a></li>
-                    <li class="py-1"><a class="block border-l-4 border-transparent py-2 px-10 font-semibold text-heading transition-colors hover:text-accent focus:text-accent" href="/wishlists">My Wishlists</a></li>
-                    <li class="py-1"><a class="block border-l-4 border-transparent py-2 px-10 font-semibold text-heading transition-colors hover:text-accent focus:text-accent" wire:navigate href="{{ route('frontend.contact-us') }}">Need Help</a></li>
-                </ul>
-                <ul class="border-t border-border-200 bg-light py-4">
-                    <li class="block py-2 px-11 "><button class="font-semibold text-heading transition-colors hover:text-accent focus:text-accent" wire:navigate href="{{ route('frontend.logout') }}">Logout</button></li>
-                </ul>
-            </div>
-        </aside>
+        @livewire('user-sidebar')
         <div class="w-full overflow-hidden lg:flex">
             <div class="h-[80vh] min-h-[670px] w-full ltr:pr-5 rtl:pl-5 md:w-1/3 md:shrink-0 ltr:lg:pr-8 rtl:lg:pl-8">
                 <div class="flex h-full flex-col bg-white pb-5 md:border md:border-border-200">

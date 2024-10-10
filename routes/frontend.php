@@ -22,6 +22,7 @@ use App\Http\Middleware\RedirectIfNotLoggedIn;
 use App\Livewire\OrderDetails;
 use App\Livewire\MyOrders;
 use App\Livewire\Profile;
+use App\Livewire\MyWishList;
 
 // Homepage
 Route::get('/', HomePage::class)->name('home');
@@ -45,6 +46,7 @@ Route::get('/guest-checkout', GuestCheckout::class)->name('guest.checkout');
 
 Route::middleware(RedirectIfNotLoggedIn::class)->group(function () {
     Route::get('/profile', Profile::class)->name('profile');
+    Route::get('/my-wishlist', MyWishList::class)->name('my-wishlist');
     Route::get('/my-orders', MyOrders::class)->name('my-orders');
     Route::get('/checkout', Checkout::class)->name('checkout');
 });

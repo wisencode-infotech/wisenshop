@@ -98,9 +98,34 @@ class Product extends Model
         return $this->reviews()->select('id')->count();
     }
 
+    public function getTotal5StarReviewsAttribute()
+    {
+        return $this->reviews()->select('id')->where('rating', 5)->count();
+    }
+
+    public function getTotal4StarReviewsAttribute()
+    {
+        return $this->reviews()->select('id')->where('rating', 4)->count();
+    }
+
+    public function getTotal3StarReviewsAttribute()
+    {
+        return $this->reviews()->select('id')->where('rating', 3)->count();
+    }
+
+    public function getTotal2StarReviewsAttribute()
+    {
+        return $this->reviews()->select('id')->where('rating', 2)->count();
+    }
+
+    public function getTotal1StarReviewsAttribute()
+    {
+        return $this->reviews()->select('id')->where('rating', 1)->count();
+    }
+
     public function getAverageRatingAttribute()
     {
-        return $this->reviews()->avg('rating') ?? 0;
+        return number_format($this->reviews()->avg('rating') ?? 0, 1);
     }
 
     public function getTotalVariationsAttribute()

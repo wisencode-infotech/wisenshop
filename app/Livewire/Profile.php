@@ -4,15 +4,21 @@ namespace App\Livewire;
 
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Facades\URL;
 use Livewire\Component;
+use Livewire\WithFileUploads; 
 
 class Profile extends Component
 {
+    use WithFileUploads;
+
     public $name;
     public $email;
     public $phone_number;
     public $password;
     public $password_confirmation;
+    public $profile_image;
+    public $temp_image_url; 
 
     // Mount the current user's data
     public function mount()
@@ -22,6 +28,16 @@ class Profile extends Component
         $this->name = $user->name;
         $this->email = $user->email;
         $this->phone_number = $user->phone;
+        $this->profile_image = $user->profile_image_url;
+        $this->temp_image_url = null;
+    }
+
+    public function updatedProfileImage()
+    {
+        // Generate temporary URL for the new image
+        if ($this->profile_image) {
+            $this->temp_image_url = $this->profile_image->temporaryUrl();
+        }
     }
 
     public function submit()
@@ -44,6 +60,13 @@ class Profile extends Component
             $user->password = Hash::make($this->password);
         }
 
+        // Handle the profile image upload
+        if ($this->profile_image) {
+            $path = $this->profile_image->store('profile_images', 'public');
+            $user->profile_image = $path;
+            $this->temp_image_url = null;
+        }
+
         $user->save();
 
         return redirect()->route('frontend.home');
@@ -51,6 +74,8 @@ class Profile extends Component
 
     public function render()
     {
-        return view('livewire.profile');
+        return view('livewire.profile', [
+            'temp_image_url' => $this->temp_image_url
+        ]);
     }
 }

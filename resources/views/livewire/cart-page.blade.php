@@ -1,9 +1,10 @@
 @section('title', __trans('Cart'))
 
 <div>
-   <div class="min-h-full text-center md:p-5"> 
-         <div class="min-w-content relative sm:inline-block max-w-full align-middle transition-all ltr:text-left rtl:text-right opacity-100 scale-100" id="headlessui-dialog-panel-:r1:" data-headlessui-state="open">
-           <article class="relative z-[51] w-full max-w-6xl bg-light md:rounded-xl xl:min-w-[1152px]">
+    <div class="flex flex-col items-start w-full px-5 py-10 mx-auto max-w-1920 bg-light lg:bg-gray-100 xl:flex-row xl:py-14 xl:px-8 2xl:px-14">
+        @livewire('user-sidebar')
+        <div class="w-full overflow-hidden lg:flex">
+             <article class="relative z-[51] w-full max-w-6xl bg-light md:rounded-xl xl:min-w-[1152px]">
                <article class="rounded-lg bg-light">
                   <div class="flex flex-col border-b border-border-200 border-opacity-70 md:flex-row">
                      <div class="p-6 pt-10 w-full lg:p-14 xl:p-16">
@@ -101,6 +102,6 @@
                   </div>
                </article>
             </article>
-         </div>
-      </div>
+        </div>
+    </div>
 </div>

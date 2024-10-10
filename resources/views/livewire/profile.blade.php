@@ -1,8 +1,11 @@
 @section('title', __trans('Profile'))
 
 <div>
-    <div class="mx-auto flex w-full max-w-lg flex-col px-4 py-8 pb-16 md:flex-row md:pb-8 xl:py-10 xl:px-6 xl:pb-10 2xl:px-10">
-        <div class="order-1 mb-6 w-full rounded-lg bg-light p-4 md:order-2 md:mb-0 md:p-6 ltr:md:ml-6 rtl:md:mr-6 ltr:lg:ml-8 rtl:lg:mr-8">
+    <div class="flex flex-col items-start w-full px-5 py-10 mx-auto max-w-1920 bg-light lg:bg-gray-100 xl:flex-row xl:py-14 xl:px-8 2xl:px-14">
+        @livewire('user-sidebar')
+        <div class="w-full overflow-hidden lg:flex">
+            <div class="h-[80vh] min-h-[670px] w-full ltr:pr-5 rtl:pl-5 md:w-1/2 md:shrink-0 ltr:lg:pr-8 rtl:lg:pl-8">
+                <div class="order-1 mb-6 w-full rounded-lg bg-light p-4 md:order-2 md:mb-0 md:p-6 ltr:md:ml-6 rtl:md:mr-6 ltr:lg:ml-8 rtl:lg:mr-8">
 
             <div class="mb-8">
                 <div class="flex justify-center">
@@ -18,6 +21,26 @@
 
             <h1 class="mb-5 font-body text-lg font-bold text-heading md:text-xl">{{ __trans('Profile') }}</h1>
             <form wire:submit.prevent="submit">
+
+                <div class="mb-6">
+                    <label for="profile_image" class="mb-2 block text-sm font-semibold leading-none text-body-dark">{{ __trans('Profile Image') }}</label>
+                    <div class="flex items-center">
+                        <!-- Profile Image Preview -->
+                        <div class="w-24 h-24 overflow-hidden border border-gray-300 mr-4">
+                            <img src="{{ $temp_image_url ? $temp_image_url : $profile_image }}" alt="Profile Image" class="object-cover w-full h-full">
+                        </div><br>
+
+                        <!-- File Input -->
+                        <input 
+                            id="profile_image" 
+                            type="file" 
+                            wire:model="profile_image"
+                            class="flex w-full appearance-none items-center text-sm text-heading transition duration-300 ease-in-out focus:outline-0 focus:ring-0 border border-border-base rounded h-10" style="margin-left:10px;" 
+                            accept="image/*">
+                    </div>
+                    @error('profile_image') <span class="text-red-500 text-xs mt-1">{{ $message }}</span> @enderror
+                </div>
+
                 <!-- Name Field -->
                 <div class="grid grid-cols-1 gap-4">
                     <div>
@@ -98,6 +121,8 @@
                     </button>
                 </div>
             </form>
+        </div>
+            </div>
         </div>
     </div>
 </div>

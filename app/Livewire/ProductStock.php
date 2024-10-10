@@ -11,11 +11,13 @@ class ProductStock extends Component
     public $product_id;
     public $product_variation_id;
     public $stock = 0;
+    public $layout = 'default';
 
-    public function mount($product_id, $product_variation_id = null)
+    public function mount($product_id, $product_variation_id = null, $layout = null)
     {
         $this->product_id = $product_id;
         $this->product_variation_id = $product_variation_id;
+        $this->layout = $layout;
 
         if (empty($product_variation_id)) {
             $product_variations_query = ProductVariation::select('id')->where('product_id', $this->product_id);
@@ -47,6 +49,8 @@ class ProductStock extends Component
             $this->stock = ProductVariation::select('stock')->where('id', $this->product_variation_id)->first()->stock ?? 0;
         else
             $this->stock = Product::select('stock')->where('id', $this->product_id)->first()->stock ?? 0;
+
+        $this->dispatch('productStockChanged-' . $this->product_id, $this->product_id, $this->product_variation_id, $this->stock);
     }
 
     public function render()

@@ -66,7 +66,7 @@
                      <div class="flex flex-col items-start p-5 pt-10 md:w-1/2 lg:p-14 xl:p-16">
                         <div class="w-full">
                            <div class="flex w-full items-center justify-between">
-                              <h1 class="text-lg font-semibold tracking-tight text-heading md:text-xl xl:text-2xl cursor-pointer transition-colors hover:text-accent text-accent-contrast">
+                              <h1 class="text-lg font-semibold tracking-tight text-heading md:text-xl xl:text-2xl cursor-pointer transition-colors hover:text-accent text-accent">
                                  {{ $product->name }}
                               </h1>
 
@@ -126,6 +126,108 @@
                      <p class="text-sm text-body react-editor-description">{!! $product->description !!}</p>
                   </div>
                </article>
+
+               <div class="p-5 md:py-12 lg:px-16">
+                  <h2 class="mb-7 text-lg font-semibold tracking-tight text-heading">Ratings &amp; Reviews of  {{ $product->name }}</h2>
+                  <div class="flex w-full flex-col divide-y divide-gray-200 divide-opacity-70 sm:flex-row sm:items-center sm:space-x-8 sm:divide-y-0 sm:divide-x rtl:sm:space-x-reverse rtl:sm:divide-x-reverse">
+                     <div class="w-full pb-4 sm:w-auto sm:pb-0">
+                        <span class="inline-flex shrink-0 items-center rounded-full bg-accent text-white px-6 py-2 text-3xl font-semibold mb-4">
+                          {{ $prouct_avg_rating }}
+                           <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 25.056 24" class="h-6 w-6 ltr:ml-2 rtl:mr-2">
+                              <g data-name="Group 36413" fill="currentColor">
+                                 <path id="Path_22667" data-name="Path 22667" d="M19.474,34.679l-6.946-4.346L5.583,34.679a.734.734,0,0,1-1.1-.8L6.469,25.93.263,20.668a.735.735,0,0,1,.421-1.3l8.1-.566,3.064-7.6a.765.765,0,0,1,1.362,0l3.064,7.6,8.1.566a.735.735,0,0,1,.421,1.3L18.588,25.93l1.987,7.949a.734.734,0,0,1-1.1.8Z" transform="translate(0 -10.792)"></path>
+                              </g>
+                           </svg>
+                        </span>
+                        <p class="text-base text-gray-400"><span>{{ $product->total_reviews }} ratings</span></p>
+                     </div>
+
+                     <div class="w-full space-y-3 py-0.5 pt-4 sm:w-auto sm:pt-0 ltr:sm:pl-8 rtl:sm:pr-8">
+                      @foreach ([5, 4, 3, 2, 1] as $star)
+
+                          @php
+                              $count = $product->{'total_' . $star . '_star_reviews'};
+                              $percentage = $product->total_reviews > 0 ? ($count / $product->total_reviews) * 100 : 0;
+                              $color = config('general.review_colors.' . $star); // Get the color for the current star
+                          @endphp
+
+                          <div class="flex items-center text-sm text-heading">
+                              <div class="flex w-11 shrink-0 items-center space-x-1 font-semibold rtl:space-x-reverse">
+                                  <span class="text-sm font-semibold text-heading">{{ $star }}</span>
+                                  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 25.056 24" class="h-2.5 w-2.5 ltr:ml-1.5 rtl:mr-1.5">
+                                      <g data-name="Group 36413" fill="currentColor">
+                                          <path id="Path_22667" data-name="Path 22667" d="M19.474,34.679l-6.946-4.346L5.583,34.679a.734.734,0,0,1-1.1-.8L6.469,25.93.263,20.668a.735.735,0,0,1,.421-1.3l8.1-.566,3.064-7.6a.765.765,0,0,1,1.362,0l3.064,7.6,8.1.566a.735.735,0,0,1,.421,1.3L18.588,25.93l1.987,7.949a.734.734,0,0,1-1.1.8Z" transform="translate(0 -10.792)"></path>
+                                      </g>
+                                  </svg>
+                              </div>
+                              <div class="relative h-[5px] w-52 overflow-hidden rounded-md bg-[#F1F1F1]">
+                              <div class="absolute h-full rounded-md {{ $color }}" style="width: {{ $percentage }}%;"></div>
+                              </div>
+                              <div class="shrink-0 ltr:pl-5 rtl:pr-5">{{ $count }}</div>
+                          </div>
+                      @endforeach
+                  </div>
+                  </div>
+               </div>
+
+               <div>
+                  <div class="border-t border-b border-border-200 border-opacity-70 px-5 ltr:lg:pl-16 ltr:lg:pr-10 rtl:lg:pr-16 rtl:lg:pl-10">
+                     <div class="flex flex-col justify-between sm:flex-row sm:items-center">
+                        <h2 class="mt-3 text-lg font-semibold tracking-tight text-heading sm:mt-0">Product Reviews ({{ $product->total_reviews }})</h2>
+                        <div class="flex flex-col items-center border-border-200 border-opacity-70 py-3 sm:space-y-1 ltr:sm:border-l rtl:sm:border-r lg:flex-row lg:space-y-0 lg:!border-0 lg:py-0">
+                           <div class="w-full shrink-0 border-border-200 border-opacity-70 ltr:sm:pl-8 ltr:sm:pr-5 rtl:sm:pl-5 rtl:sm:pr-8 lg:w-auto lg:py-5 ltr:lg:border-l rtl:lg:border-r">
+                              <!-- <div class="flex items-center">
+                                 <span class="min-w-[50px] text-sm text-body ltr:mr-2 rtl:ml-2">Sort By :</span>
+                                 <div class=" css-b62m3t-container">
+                                    <span id="react-select-2-live-region" class="css-7pg0cj-a11yText"></span><span aria-live="polite" aria-atomic="false" aria-relevant="additions text" role="log" class="css-7pg0cj-a11yText"></span>
+                                    <div class=" css-1fxaex9">
+                                       <div class=" css-7u2net">
+                                          <div class=" css-1ek5eys-singleValue">Ratings: Low to High</div>
+                                          <input id="react-select-2-input" tabindex="0" inputmode="none" aria-autocomplete="list" aria-expanded="false" aria-haspopup="true" role="combobox" aria-activedescendant="" aria-readonly="true" class="css-1hac4vs-dummyInput" value="">
+                                       </div>
+                                       <div class=" css-1wy0on6">
+                                          <span class=" css-1hyfx7x"></span>
+                                          <div class=" css-1jtba1a-indicatorContainer" aria-hidden="true">
+                                             <svg height="20" width="20" viewBox="0 0 20 20" aria-hidden="true" focusable="false" class="css-8mmkcg">
+                                                <path d="M4.516 7.548c0.436-0.446 1.043-0.481 1.576 0l3.908 3.747 3.908-3.747c0.533-0.481 1.141-0.446 1.574 0 0.436 0.445 0.408 1.197 0 1.615-0.406 0.418-4.695 4.502-4.695 4.502-0.217 0.223-0.502 0.335-0.787 0.335s-0.57-0.112-0.789-0.335c0 0-4.287-4.084-4.695-4.502s-0.436-1.17 0-1.615z"></path>
+                                             </svg>
+                                          </div>
+                                       </div>
+                                    </div>
+                                 </div>
+                              </div> -->
+                           </div>
+                           <div class="w-full shrink-0 border-border-200 border-opacity-70 ltr:sm:pl-8 ltr:sm:pr-5 rtl:sm:pl-5 rtl:sm:pr-8 lg:w-auto lg:py-5 ltr:lg:border-l rtl:lg:border-r">
+                              <!-- <div class="flex items-center">
+                                 <span class="min-w-[50px] text-sm text-body ltr:mr-2 rtl:ml-2">Filter :</span>
+                                 <div class=" css-b62m3t-container">
+                                    <span id="react-select-3-live-region" class="css-7pg0cj-a11yText"></span><span aria-live="polite" aria-atomic="false" aria-relevant="additions text" role="log" class="css-7pg0cj-a11yText"></span>
+                                    <div class=" css-xnv90r">
+                                       <div class=" css-7u2net">
+                                          <div class=" css-1ek5eys-singleValue">5 Star</div>
+                                          <input id="react-select-3-input" tabindex="0" inputmode="none" aria-autocomplete="list" aria-expanded="false" aria-haspopup="true" role="combobox" aria-activedescendant="" aria-readonly="true" class="css-1hac4vs-dummyInput" value="">
+                                       </div>
+                                       <div class=" css-1wy0on6">
+                                          <span class=" css-1hyfx7x"></span>
+                                          <div class=" css-1jtba1a-indicatorContainer" aria-hidden="true">
+                                             <svg height="20" width="20" viewBox="0 0 20 20" aria-hidden="true" focusable="false" class="css-8mmkcg">
+                                                <path d="M4.516 7.548c0.436-0.446 1.043-0.481 1.576 0l3.908 3.747 3.908-3.747c0.533-0.481 1.141-0.446 1.574 0 0.436 0.445 0.408 1.197 0 1.615-0.406 0.418-4.695 4.502-4.695 4.502-0.217 0.223-0.502 0.335-0.787 0.335s-0.57-0.112-0.789-0.335c0 0-4.287-4.084-4.695-4.502s-0.436-1.17 0-1.615z"></path>
+                                             </svg>
+                                          </div>
+                                       </div>
+                                    </div>
+                                 </div>
+                              </div> -->
+                           </div>
+                        </div>
+                     </div>
+                  </div>
+                  <div class="flex flex-col items-center justify-center px-5 py-16 border-b border-border-200 border-opacity-70">
+                     <h3 class="text-lg font-semibold text-gray-400">No reviews found</h3>
+                  </div>
+               </div>
+
+
                <div class="p-5 md:pb-10 lg:p-14 xl:p-16">
                   <h2 class="mb-6 text-lg font-semibold tracking-tight text-heading">{{ __trans('Related Products') }}</h2>
                  <livewire:products :category_id="$product->category_id" :exclude_product_ids="[$product->id]" />

@@ -15,9 +15,6 @@ use App\Livewire\CartPage;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Session;
 use Livewire\Livewire;
-use Illuminate\Support\Facades\App;
-use App\Http\Middleware\SetLocale;
-use App\Models\Wishlist;
 use Illuminate\Support\Facades\Cache;
 use App\Livewire\GuestCheckout;
 use App\Livewire\Checkout;
@@ -25,6 +22,7 @@ use App\Http\Middleware\RedirectIfNotLoggedIn;
 use App\Livewire\OrderDetails;
 use App\Livewire\MyOrders;
 use App\Livewire\Profile;
+use App\Livewire\MyWishList;
 
 // Homepage
 Route::get('/', HomePage::class)->name('home');
@@ -35,9 +33,6 @@ Route::get('/contact-us', ContactPage::class)->name('contact-us');
 Route::get('/product-detail/{product_slug}', ProductDetail::class)->name('product-detail');
 
 Route::get('/cart', CartPage::class)->name('cart');
-Route::get('/my-orders', MyOrders::class)->name('my-orders');
-
-
 
 Route::get('login', Login::class)->name('login');
 Route::post('login', [Login::class, 'authenticate'])->name('authenticate');
@@ -47,38 +42,20 @@ Route::get('register', Register::class)->name('register');
 Route::get('forgot-password', ForgotPassword::class)->name('forgot-password');
 Route::get('/reset-password/{token}', ResetPassword::class)->name('password.reset');
 
-
-Route::get('profile', Profile::class)->name('profile');
-
-
-
 Route::get('/guest-checkout', GuestCheckout::class)->name('guest.checkout');
-Route::get('/checkout', Checkout::class)->name('checkout')->middleware(RedirectIfNotLoggedIn::class);
+
+Route::middleware(RedirectIfNotLoggedIn::class)->group(function () {
+    Route::get('/profile', Profile::class)->name('profile');
+    Route::get('/my-wishlist', MyWishList::class)->name('my-wishlist');
+    Route::get('/my-orders', MyOrders::class)->name('my-orders');
+    Route::get('/checkout', Checkout::class)->name('checkout');
+});
 
 Route::prefix('orders')->name('orders.')->group(function () {
     Route::prefix('{order}')->group(function () {
         Route::get('details', OrderDetails::class)->name('details');
     });
 });
-
-// Route::get('register', [RegisterController::class, 'showRegistrationForm'])->name('register');
-// Route::post('register', [RegisterController::class, 'register']);
-
-// Route::get('password/reset', [ForgotPasswordController::class, 'showLinkRequestForm'])->name('password.request');
-// Route::post('password/email', [ForgotPasswordController::class, 'sendResetLinkEmail'])->name('password.email');
-// Route::get('password/reset/{token}', [ResetPasswordController::class, 'showResetForm'])->name('password.reset');
-// Route::post('password/reset', [ResetPasswordController::class, 'reset']);
-
-// Route::get('/locale/{locale}', function ($locale) {
-//     app()->setLocale($locale);
-//     return redirect()->back();
-// });
-
-// Route::get('/locale/{locale}', function ($locale) {
-//     app()->setLocale($locale);
-//     Session::put('locale', $locale);
-//     return redirect()->back();
-// })->name('change.locale');
 
 Route::get('/locale/{locale}', function (string $locale) {
     Session::put('app_locale', $locale);
@@ -87,7 +64,7 @@ Route::get('/locale/{locale}', function (string $locale) {
 })->name('change.locale');
 
 Route::get('/currency/{currency}', function (string $currency) {
-    
+
     $cache_key = "user.currency";
 
     Cache::forget($cache_key);
@@ -98,14 +75,14 @@ Route::get('/currency/{currency}', function (string $currency) {
 })->name('change.currency');
 
 
-Route::get('/fetch-session-preferences', function() {
+Route::get('/fetch-session-preferences', function () {
     return response()->json([
         'cart' => CartHelper::items(),
         'wishlist' => WishlistHelper::items()
     ]);
 })->name('fetch-session-preferences');
 
-Route::post('/sync-session-preferences', function(Request $request) {
+Route::post('/sync-session-preferences', function (Request $request) {
 
     $cart = $request->cart ?? [];
     $cart_updated = $wishlist_updated = false;
@@ -131,7 +108,6 @@ Route::post('/sync-session-preferences', function(Request $request) {
         'cart_updated' => $cart_updated,
         'wishlist_updated' => $wishlist_updated
     ]);
-
 })->name('sync-session-preferences');
 
 Livewire::setScriptRoute(function ($handle) {

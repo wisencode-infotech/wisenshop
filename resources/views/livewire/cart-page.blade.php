@@ -8,6 +8,18 @@
                   <div class="flex flex-col border-b border-border-200 border-opacity-70 md:flex-row">
                      <div class="p-6 pt-10 w-full lg:p-14 xl:p-16">
 
+                        <div class="mb-8 flex items-center justify-between lg:mb-10">
+                           <div role="button" class="transition-colors duration-200 bg-accent hover:bg-accent-hover focus:outline-0 rounded-full px-3 text-xs font-semibold leading-6 text-accent-contrast" wire:navigate href="{{ route('frontend.home') }}" title="Back">
+                              <i class="fa fa-arrow-left mx-2"></i>
+                           </div>
+                           <div class="mb-2 text-3xl font-bold truncate text-heading text-accent">
+                              <i class="fa fa-shopping-cart text-accent"></i> <span class="text-accent">{{ __trans('Cart') }}</span>
+                           </div>
+                           <div class="rounded-full bg-yellow-500 px-3 text-xs font-semibold leading-6 text-light">
+                               
+                           </div>
+                       </div>
+
                         @if (count($cart) > 0)
                            <header class="top-0 z-10 flex items-center justify-between border-b border-border-200 border-opacity-75 bg-light px-6 py-4">
                               <div class="flex font-semibold text-accent">

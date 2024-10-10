@@ -3,6 +3,19 @@
 <div>
     <div class="mx-auto flex w-full max-w-lg flex-col px-4 py-8 pb-16 md:flex-row md:pb-8 xl:py-10 xl:px-6 xl:pb-10 2xl:px-10">
         <div class="order-1 mb-6 w-full rounded-lg bg-light p-4 md:order-2 md:mb-0 md:p-6 ltr:md:ml-6 rtl:md:mr-6 ltr:lg:ml-8 rtl:lg:mr-8">
+
+            <div class="mb-8">
+                <div class="flex justify-center">
+                    <a class="inline-flex" wire:navigate href="{{ route('frontend.home') }}">
+                        <img
+                            alt="{{  asset(__setting('site_title')) }}" loading="eager" decoding="async" data-nimg="fill"
+                            class="object-contain"
+                            sizes="(max-width: 768px) 100vw"
+                            src="{{  asset(__setting('header_logo')) }}">
+                    </a>
+                </div>
+            </div>
+
             <h1 class="mb-5 font-body text-lg font-bold text-heading md:text-xl">{{ __trans('Profile') }}</h1>
             <form wire:submit.prevent="submit">
                 <!-- Name Field -->

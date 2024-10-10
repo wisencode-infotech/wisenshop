@@ -8,6 +8,7 @@ use Illuminate\Support\Str;
 use Livewire\Component;
 use App\Helpers\CartHelper;
 use App\Helpers\WishlistHelper;
+use Illuminate\Support\Facades\Auth;
 
 class GuestCheckout extends Component
 {
@@ -15,6 +16,12 @@ class GuestCheckout extends Component
     public $email;
     public $phone_number;
     public $password;
+
+    public function mount()
+    {
+        if (Auth::check())
+            return redirect()->intended(route('frontend.checkout'));
+    }
 
     // Handle guest checkout form submission
     public function submit()

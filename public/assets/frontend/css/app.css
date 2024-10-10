@@ -109,4 +109,9 @@ button.reset_filter_btn:hover {
     border-color: rgba(var(--color-accent));
 }
 
+.product-list-out-of-stock-span {
+    height: 35px;
+    margin-top: 10px;
+}
+
 /*End custom css*/

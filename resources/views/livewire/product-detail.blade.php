@@ -66,7 +66,7 @@
                      <div class="flex flex-col items-start p-5 pt-10 md:w-1/2 lg:p-14 xl:p-16">
                         <div class="w-full">
                            <div class="flex w-full items-center justify-between">
-                              <h1 class="text-lg font-semibold tracking-tight text-heading md:text-xl xl:text-2xl cursor-pointer transition-colors hover:text-accent text-accent-contrast">
+                              <h1 class="text-lg font-semibold tracking-tight text-heading md:text-xl xl:text-2xl cursor-pointer transition-colors hover:text-accent text-accent">
                                  {{ $product->name }}
                               </h1>
 

@@ -123,9 +123,9 @@
                             <tr data-row-key="2021-03-08 10:24:53" class="rc-table-row rc-table-row-level-0 !cursor-auto">
                                 <td class="rc-table-cell rc-table-cell-ellipsis" style="text-align: left;">
                                     <div class="flex items-center">
-                                        <div class="relative flex h-16 w-16 shrink-0 overflow-hidden rounded"><img alt="Apples" loading="lazy" decoding="async" data-nimg="fill" class="h-full w-full object-cover" sizes="(max-width: 768px) 100vw" srcset="{{ $product->display_image_url }}" src="{{ $product->display_image_url }}" style="position: absolute; height: 100%; width: 100%; inset: 0px; color: transparent;"></div>
+                                        <div class="relative flex h-16 w-16 shrink-0 overflow-hidden rounded"><img alt="{{ $product->name }}" loading="lazy" decoding="async" data-nimg="fill" class="h-full w-full object-cover" sizes="(max-width: 768px) 100vw" srcset="{{ $product->display_image_url }}" src="{{ $product->display_image_url }}" style="position: absolute; height: 100%; width: 100%; inset: 0px; color: transparent;"></div>
                                         <div class="flex flex-col overflow-hidden ltr:ml-4 rtl:mr-4">
-                                            <div class="mb-1 flex space-x-1 rtl:space-x-reverse"><a class="inline-block overflow-hidden truncate text-sm text-body transition-colors hover:text-accent hover:underline" href="/products/apples">{{ $product->name }}</a>
+                                            <div class="mb-1 flex space-x-1 rtl:space-x-reverse"><a class="inline-block overflow-hidden truncate text-sm text-body transition-colors hover:text-accent hover:underline" href="{{ route('frontend.product-detail', ['product_slug' => $product->slug]) }}">{{ $product->name }}</a>
 
                                             <!-- <span class="inline-block overflow-hidden truncate text-sm text-body">x</span> -->
 
@@ -141,7 +141,13 @@
                                 <td class="rc-table-cell" style="text-align: right;">
                                     <div>{{ $order_data->currency->symbol }}{{ $price * $quantity }}</div>
                                 </td>
-                                <td class="rc-table-cell" style="text-align: right;"></td>
+
+                                
+                                <td class="rc-table-cell" style="text-align: right;">
+                                    @if($order_data->status == 4)
+                                    <button  wire:click="$dispatch('openReviewModal', { product_id: {{ $product->id }} })" class="cursor-pointer text-sm font-semibold text-body transition-colors hover:text-accent">Write a review</button>
+                                    @endif
+                                </td>
                             </tr>
                             @endforeach
                         </tbody>

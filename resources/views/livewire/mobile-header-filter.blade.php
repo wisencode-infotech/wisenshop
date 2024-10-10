@@ -128,7 +128,7 @@
               </div>
            </div>
            @livewire('address-modal')
-
+           @livewire('product-review-model')
         </div>
      </div>
   </div>

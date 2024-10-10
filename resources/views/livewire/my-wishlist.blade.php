@@ -37,7 +37,7 @@
                            <span class="flex min-w-150 items-center sm:justify-end"><ins class="text-xl font-semibold text-heading no-underline">{{ __userCurrencySymbol().''.$wishlist->product->price }}</ins></span>
 
                            <div class="flex items-center space-x-6 rtl:space-x-reverse sm:justify-end">
-                              @livewire('quantity-selector', ['product_id' => $wishlist->product->id], key(uniqid()))
+                              @livewire('quantity-selector', ['product_id' => $wishlist->product->id, 'layout' => 'cart', key(uniqid())])
                               <span class="flex h-7 w-px border-r border-dashed border-gray-300"></span>
                               <button wire:click="removeFromWishlist({{ $wishlist->id }})" class="whitespace-nowrap text-sm font-semibold text-red-500 hover:underline sm:mt-0">{{ __trans('Remove') }}</button>
                            </div>

@@ -7,13 +7,13 @@ use Livewire\Component;
 
 class OrderDetails extends Component
 {
-    public $order;
+    public $order_data;
     public $customer;
 
     // Use route model binding to receive the $order model directly
     public function mount(Order $order)
     {
-        $this->order = $order;
+        $this->order_data = $order;
         $this->customer = $this->order->customer ?? '';
     }
 

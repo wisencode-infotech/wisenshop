@@ -10,31 +10,34 @@ use App\Models\ShippingMethod;
 use App\Helpers\CartHelper;
 use App\Models\Order;
 use App\Services\OrderService;
+use Illuminate\Support\Facades\Auth;
 
 class Checkout extends Component
 {
-    public $shipping_addresses = [];
-    public $billing_addresses = [];
+    public $shipping_addresses = null;
+    public $billing_addresses = null;
     public $selected_shipping_address_id;
     public $selected_billing_address_id;
     public $selected_payment_method_id;
     public $payment_method_description;
     public $cart_items = [];
     public $total_price = 0;
-    public $payment_methods = [];
-    public $shipping_method = [];
+    public $payment_methods = null;
+    public $shipping_method = null;
     public $phone;
     public $email;
     public $order_notes;
     public $isPlacingOrder = false;
     
-
     protected $listeners = ['addressSaved' => 'loadAddresses'];
 
-    public function mount(){
+    public function mount()
+    {
+        if (CartHelper::isEmpty())
+            return redirect()->intended(route('frontend.cart'));
 
-        $this->shipping_addresses = ShippingAddress::where('user_id', auth()->user()->id)->get();
-        $this->billing_addresses = BillingAddress::where('user_id', auth()->user()->id)->get();
+        $this->shipping_addresses = ShippingAddress::where('user_id', Auth::user()->id)->get();
+        $this->billing_addresses = BillingAddress::where('user_id', Auth::user()->id)->get();
 
         // Select the first address by default if there are any addresses
         if ($this->shipping_addresses->isNotEmpty()) {
@@ -60,8 +63,8 @@ class Checkout extends Component
 
         $this->shipping_method = ShippingMethod::where('is_active', 1)->first();
 
-        $this->phone = auth()->user()->phone;
-        $this->email = auth()->user()->email;
+        $this->phone = Auth::user()->phone;
+        $this->email = Auth::user()->email;
     }
 
     public function selectShippingAddress($address_id)
@@ -83,8 +86,8 @@ class Checkout extends Component
 
     public function loadAddresses()
     {
-        $this->shipping_addresses = ShippingAddress::where('user_id', auth()->user()->id)->get();
-        $this->billing_addresses = BillingAddress::where('user_id', auth()->user()->id)->get();
+        $this->shipping_addresses = ShippingAddress::where('user_id', Auth::user()->id)->get();
+        $this->billing_addresses = BillingAddress::where('user_id', Auth::user()->id)->get();
     }
 
     public function placeOrder()

@@ -19,19 +19,26 @@
                            <a class="text-lg font-semibold text-heading transition-colors hover:text-accent" href="{{ route('frontend.product-detail', ['product_slug' => $wishlist->product->slug]) }}">{{ $wishlist->product->name }}</a>
                            <p class="mt-1.5 flex flex-col items-start space-y-3">
                               <a class="inline-block w-auto text-sm font-semibold text-body-dark transition-colors hover:text-accent" href="{{ route('frontend.home', ['catid' => $wishlist->product->category_id]) }}">{{ $wishlist->product->category->name }}</a>
-                              <!-- <span class="inline-flex shrink-0 items-center rounded-full bg-accent text-white px-2 py-[3px] text-sm !rounded">
-                                 3.33
+                              @if ($wishlist->product->average_rating > 0)
+                              <span class="inline-flex shrink-0 items-center rounded-full bg-accent text-white px-2 py-[3px] text-sm !rounded">
+                                 
+                                 {{ $wishlist->product->average_rating }}
+                                 
                                  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 25.056 24" class="h-2.5 w-2.5 ltr:ml-1 rtl:mr-1">
                                     <g data-name="Group 36413" fill="currentColor">
                                        <path id="Path_22667" data-name="Path 22667" d="M19.474,34.679l-6.946-4.346L5.583,34.679a.734.734,0,0,1-1.1-.8L6.469,25.93.263,20.668a.735.735,0,0,1,.421-1.3l8.1-.566,3.064-7.6a.765.765,0,0,1,1.362,0l3.064,7.6,8.1.566a.735.735,0,0,1,.421,1.3L18.588,25.93l1.987,7.949a.734.734,0,0,1-1.1.8Z" transform="translate(0 -10.792)"></path>
                                     </g>
-                                 </svg>
-                              </span> -->
+                                 </svg>  
+                              </span>
+                              @endif
                            </p>
                         </div>
                         <div class="mt-4 flex w-full flex-col justify-between space-y-3 xs:flex-row xs:space-y-0 sm:w-auto sm:flex-col sm:justify-end sm:space-y-3 md:mt-0">
                            <span class="flex min-w-150 items-center sm:justify-end"><ins class="text-xl font-semibold text-heading no-underline">{{ __userCurrencySymbol().''.$wishlist->product->price }}</ins></span>
+
                            <div class="flex items-center space-x-6 rtl:space-x-reverse sm:justify-end">
+                              @livewire('quantity-selector', ['product_id' => $wishlist->product->id], key(uniqid()))
+                              <span class="flex h-7 w-px border-r border-dashed border-gray-300"></span>
                               <button wire:click="removeFromWishlist({{ $wishlist->id }})" class="whitespace-nowrap text-sm font-semibold text-red-500 hover:underline sm:mt-0">{{ __trans('Remove') }}</button>
                            </div>
                         </div>

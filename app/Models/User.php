@@ -36,9 +36,6 @@ class User extends Authenticatable
         'remember_token',
     ];
 
-    // Define a placeholder URL
-    public static $placeholder_url = 'https://avatar.iran.liara.run/public/boy';
-
     /**
      * Get the attributes that should be cast.
      *
@@ -78,8 +75,10 @@ class User extends Authenticatable
     {
         if ($this->profile_image && Storage::disk('public')->exists($this->profile_image)) {
             return Storage::disk('public')->url($this->profile_image); // Return the URL of the stored image
+        }else{
+
         }
 
-        return self::$placeholder_url;
+        return 'https://avatar.iran.liara.run/username?username='.$this->name;
     }
 }

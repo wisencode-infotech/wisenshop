@@ -13,13 +13,27 @@ class MyOrders extends Component
 
     public $paginate_count = 5;
     protected $paginationTheme = 'bootstrap';
+    public $order_data;
+    public $show_mobile_order_data = false;
 
-    /**
-     * Load more orders by increasing pagination count.
-     */
+    public function mount()
+    {
+        $this->order_data = Order::where('user_id', Auth::id())
+                                ->orderBy('id', 'desc')
+                                ->first();
+    }
+
     public function loadMore()
     {
         $this->paginate_count += 5; // Load 10 more orders
+    }
+
+    public function showOrder($orderId) {
+        $this->order_data = Order::find($orderId);
+    }
+
+    public function showMobileOrder($orderId) {
+        $this->show_mobile_order_data = Order::find($orderId);
     }
 
     public function render()
@@ -28,7 +42,7 @@ class MyOrders extends Component
                        ->paginate($this->paginate_count);
 
         return view('livewire.my-orders', [
-            'orders' => $orders,
+            'orders' => $orders
         ]);
     }
 }

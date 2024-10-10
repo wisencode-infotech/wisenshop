@@ -13,6 +13,7 @@
     @include('components.layouts.site-customizer')
 
     <link rel="stylesheet" href="{{asset('assets/frontend/css/main.css')}}"/>
+    <link rel="stylesheet" href="{{asset('assets/frontend/css/rc-style.css')}}"/>
     <link rel="stylesheet" href="{{asset('assets/frontend/css/style.css')}}">
     <link rel="stylesheet" href="{{asset('assets/frontend/css/app.css')}}">
 

@@ -1,4 +1,4 @@
-<div class="flex w-full flex-col border border-border-200 bg-white lg:w-2/3">
+<div class="flex w-full flex-col border border-border-200 bg-white">
     @if($order_data)
     <div class="flex flex-col items-center p-5 md:flex-row md:justify-between">
         <h2 class="mb-2 flex text-sm font-semibold text-heading md:text-lg">Order Details <span class="px-2">-</span> {{ $order_data->id }}</h2>

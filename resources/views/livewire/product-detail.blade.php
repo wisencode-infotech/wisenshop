@@ -128,7 +128,7 @@
                </article>
 
                <div class="p-5 md:py-12 lg:px-16">
-                  <h2 class="mb-7 text-lg font-semibold tracking-tight text-heading">Ratings &amp; Reviews of  {{ $product->name }}</h2>
+                  <h2 class="mb-7 text-lg font-semibold tracking-tight text-heading">{{ __trans('Ratings & Reviews of') }} {{ $product->name }}</h2>
                   <div class="flex w-full flex-col divide-y divide-gray-200 divide-opacity-70 sm:flex-row sm:items-center sm:space-x-8 sm:divide-y-0 sm:divide-x rtl:sm:space-x-reverse rtl:sm:divide-x-reverse">
                      <div class="w-full pb-4 sm:w-auto sm:pb-0">
                         <span class="inline-flex shrink-0 items-center rounded-full bg-accent text-white px-6 py-2 text-3xl font-semibold mb-4">
@@ -139,7 +139,7 @@
                               </g>
                            </svg>
                         </span>
-                        <p class="text-base text-gray-400"><span>{{ $product->total_reviews }} ratings</span></p>
+                        <p class="text-base text-gray-400"><span>{{ $product->total_reviews }} {{ __trans('ratings') }}</span></p>
                      </div>
 
                      <div class="w-full space-y-3 py-0.5 pt-4 sm:w-auto sm:pt-0 ltr:sm:pl-8 rtl:sm:pr-8">
@@ -173,7 +173,7 @@
                <div>
                   <div class="border-t border-b border-border-200 border-opacity-70 px-5 ltr:lg:pl-16 ltr:lg:pr-10 rtl:lg:pr-16 rtl:lg:pl-10">
                      <div class="flex flex-col justify-between sm:flex-row sm:items-center">
-                        <h2 class="mt-3 text-lg font-semibold tracking-tight text-heading sm:mt-0">Product Reviews ({{ $product->total_reviews }})</h2>
+                        <h2 class="mt-3 text-lg font-semibold tracking-tight text-heading sm:mt-0">{{ __trans('Product Reviews') }} ({{ $product->total_reviews }})</h2>
                         <div class="flex flex-col items-center border-border-200 border-opacity-70 py-3 sm:space-y-1 ltr:sm:border-l rtl:sm:border-r lg:flex-row lg:space-y-0 lg:!border-0 lg:py-0">
                            <div class="w-full shrink-0 border-border-200 border-opacity-70 ltr:sm:pl-8 ltr:sm:pr-5 rtl:sm:pl-5 rtl:sm:pr-8 lg:w-auto lg:py-5 ltr:lg:border-l rtl:lg:border-r">
                               <!-- <div class="flex items-center">
@@ -222,8 +222,8 @@
                         </div>
                      </div>
                   </div>
-                  <div class="flex flex-col items-center justify-center px-5 py-16 border-b border-border-200 border-opacity-70">
-                     <h3 class="text-lg font-semibold text-gray-400">No reviews found</h3>
+                  <div class="flex flex-col px-5 py-4 lg:px-16 lg:py-8 border-b border-border-200 border-opacity-70">
+                     <livewire:product-reviews :product_id="$product->id" />
                   </div>
                </div>
 

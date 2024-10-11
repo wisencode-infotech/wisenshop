@@ -11,6 +11,8 @@ use App\Http\Controllers\Backend\CurrencyController;
 use App\Http\Controllers\Backend\HomePageSettingsController;
 use App\Http\Controllers\Backend\LanguageController;
 use App\Http\Controllers\Backend\PaymentMethodController;
+use App\Http\Controllers\Backend\InquiryController;
+use App\Http\Controllers\Backend\NotificationController;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Backend\SettingController;
@@ -30,6 +32,7 @@ Route::middleware(['auth'])->group(function () {
     Route::resource('language', LanguageController::class);
     Route::resource('payment-method', PaymentMethodController::class);
     Route::resource('inquiry', InquiryController::class);
+    Route::resource('notification', NotificationController::class);
     Route::get('settings', [SettingController::class, 'index'])->name('settings.index');
     Route::post('update-settings', [SettingController::class, 'update'])->name('settings.update');
 

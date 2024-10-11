@@ -4,6 +4,7 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Relations\BelongsTo;
 
 class Notification extends Model
 {
@@ -19,4 +20,10 @@ class Notification extends Model
         'meta_data',
         'is_read',
     ];
+
+    // Relationships
+    public function user(): BelongsTo
+    {
+        return $this->belongsTo(User::class);
+    }
 }

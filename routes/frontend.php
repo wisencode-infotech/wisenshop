@@ -23,6 +23,8 @@ use App\Livewire\OrderDetails;
 use App\Livewire\MyOrders;
 use App\Livewire\Profile;
 use App\Livewire\MyWishList;
+use App\Livewire\ThankYouPage;
+
 
 // Homepage
 Route::get('/', HomePage::class)->name('home');
@@ -49,6 +51,7 @@ Route::middleware(RedirectIfNotLoggedIn::class)->group(function () {
     Route::get('/my-wishlist', MyWishList::class)->name('my-wishlist');
     Route::get('/my-orders', MyOrders::class)->name('my-orders');
     Route::get('/checkout', Checkout::class)->name('checkout');
+    Route::get('/thank-you/{order_id}', ThankYouPage::class)->name('thank-you');
 });
 
 Route::prefix('orders')->name('orders.')->group(function () {

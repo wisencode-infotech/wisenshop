@@ -29,6 +29,7 @@ Route::middleware(['auth'])->group(function () {
     Route::resource('currency', CurrencyController::class);
     Route::resource('language', LanguageController::class);
     Route::resource('payment-method', PaymentMethodController::class);
+    Route::resource('inquiry', InquiryController::class);
     Route::get('settings', [SettingController::class, 'index'])->name('settings.index');
     Route::post('update-settings', [SettingController::class, 'update'])->name('settings.update');
 

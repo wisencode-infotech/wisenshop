@@ -5,7 +5,9 @@ use App\Models\Currency;
 use App\Models\HomePageSetting;
 use App\Models\Setting;
 use App\Models\Language;
+use App\Models\Notification;
 use Illuminate\Support\Facades\Cache;
+use Illuminate\Support\Facades\Log;
 
 if (!function_exists('__trans')) 
 {
@@ -227,5 +229,37 @@ if (!function_exists('__convertHexToRgb'))
         $hex = ltrim($hex, '#');
         $hex = strlen($hex) === 3 ? preg_replace('/(.)/', '$1$1', $hex) : $hex;
         return strlen($hex) === 6 ? implode(', ', array_map('hexdec', str_split($hex, 2))) : null;
+    }
+}
+
+if (!function_exists('__addNotification'))
+{
+    function __addNotification(array $params)
+    {
+        try {
+            // Ensure necessary parameters are set
+            $title = $params['title'] ?? null;
+            $message = $params['message'] ?? null;
+
+            if (!$title || !$message) {
+                throw new Exception('Title and message are required for notifications.');
+            }
+
+            $notification = Notification::create([
+                'title'     => $title,
+                'message'   => $message,
+                'user_id'   => $params['user_id'] ?? null,
+                'is_global' => $params['is_global'] ?? false,
+                'type'      => $params['type'] ?? 'info',
+                'url'       => $params['url'] ?? null,
+                'meta_data' => isset($params['meta_data']) ? json_encode($params['meta_data']) : null,
+                'is_read'   => $params['is_read'] ?? false,
+            ]);
+
+            return $notification;
+        } catch (Exception $e) {
+            Log::error('Failed to add notification: ' . $e->getMessage());
+            return false;
+        }
     }
 }

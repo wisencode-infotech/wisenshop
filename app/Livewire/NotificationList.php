@@ -4,6 +4,7 @@ namespace App\Livewire;
 
 use Livewire\Component;
 use App\Models\Notification;
+use Illuminate\Support\Facades\Auth;
 use Livewire\WithPagination;
 
 class NotificationList extends Component
@@ -14,7 +15,7 @@ class NotificationList extends Component
 
     public function mount(){
         Notification::where('is_read', 0)
-            ->where('user_id', auth()->user()->id)
+            ->where('user_id', Auth::user()->id)
             ->update(['is_read' => 1]);
 
         $this->dispatch('refreshNotificationIcon');
@@ -28,7 +29,7 @@ class NotificationList extends Component
     public function render()
     {
         $notifications = Notification::where(function($query) {
-            $query->where('user_id', auth()->user()->id)
+            $query->where('user_id', Auth::user()->id)
                   ->orWhere('is_global', 1);
         })
         ->orderBy('created_at', 'desc')

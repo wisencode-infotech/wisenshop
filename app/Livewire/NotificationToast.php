@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Http\Livewire;
+namespace App\Livewire;
 
 use Livewire\Component;
 
@@ -25,7 +25,7 @@ class NotificationToast extends Component
         ];
 
         // Dispatch a browser event to show the notification
-        $this->dispatchBrowserEvent('showNotification', ['type' => $type, 'message' => $message]);
+        $this->dispatch('showNotification', ['type' => $type, 'message' => $message]);
     }
 
     public function render()

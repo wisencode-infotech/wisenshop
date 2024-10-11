@@ -14,6 +14,8 @@ class Wishlist extends Model
 
     public function product(): BelongsTo
     {
-        return $this->belongsTo(Product::class);
+        // return $this->belongsTo(Product::class);
+        return $this->belongsTo(Product::class)
+                    ->withPivot('quantity', 'price', 'product_variation_id');
     }
 }

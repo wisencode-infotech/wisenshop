@@ -5,6 +5,8 @@ namespace App\Livewire;
 use App\Helpers\WishlistHelper;
 use App\Models\Product;
 use Livewire\Component;
+use App\Models\Wishlist;
+use App\Models\ProductVariation;
 
 class MyWishlist extends Component
 {
@@ -17,12 +19,46 @@ class MyWishlist extends Component
 
     public function setProducts()
     {
-        $this->wishlist_products = Product::whereIn('id', WishlistHelper::items())->get();
+        $wishlistItems = WishlistHelper::items();
+
+        $this->wishlist_products = collect();
+
+        foreach ($wishlistItems as $item) {
+            
+            $product = Product::find($item['product_id']);
+
+            $data = new \stdClass();
+            $data->product_id = $product->id;
+            $data->name = $product->name;
+            $data->display_image_url = $product->display_image_url;
+            $data->average_rating = $product->average_rating;
+            $data->category_name = $product->category->name;
+            $data->category_id = $product->category_id;
+            $data->slug = $product->slug;
+            $data->product_variation_id = $item['product_variation_id'];
+            
+            if (!is_null($item['product_variation_id'])) {
+                $variation = ProductVariation::find($item['product_variation_id']);
+
+                if ($variation) {
+                    // Set variation details
+                    $data->price = $variation->price;
+                    $data->stock = $variation->stock;
+                    $data->variation_name = $variation->name;
+                }
+            } else {
+                $data->price = $product->price;
+                $data->stock = $product->stock;
+                $data->variation_name = null;
+            }
+            $this->wishlist_products->push($data);
+        }
     }
 
-    public function removeFromWishlist($product_id)
+
+    public function removeFromWishlist($product_id, $product_variation_id = null)
     {
-        WishlistHelper::removeWishlist($product_id);
+        WishlistHelper::removeWishlist($product_id, $product_variation_id);
 
         $this->setProducts();
 

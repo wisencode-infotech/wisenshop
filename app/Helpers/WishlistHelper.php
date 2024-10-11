@@ -30,6 +30,8 @@ class WishlistHelper
 
             $wishlist_items = Session::get('wishlist', []);
 
+            // dd($wishlist_items);
+
             return $wishlist_items;
         }
     }
@@ -118,12 +120,16 @@ class WishlistHelper
 
         $wishlist = self::items();
 
+       
+
         if (empty($wishlist))
             return $exists;
 
         foreach ($wishlist as $wishlist_items) {
-            $wishlist_product_id = $wishlist_items['product_id'];
-            $wishlist_product_variation_id = $wishlist_items['product_variation_id'] ?? null;
+
+             // dd($wishlist_items);
+            $wishlist_product_id = $wishlist_items->product_id;
+            $wishlist_product_variation_id = $wishlist_items->product_variation_id ?? null;
 
             if (!$exists && $wishlist_product_id == $product_id && $wishlist_product_variation_id == $product_variation_id)
                 $exists = true;

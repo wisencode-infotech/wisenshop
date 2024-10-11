@@ -16,9 +16,9 @@
                         <img alt="text" loading="lazy" decoding="async" data-nimg="fill" sizes="100vw" srcset="{{ $product->display_image_url }}" src="{{ $product->display_image_url }}" style="position: absolute; height: 100%; width: 100%; inset: 0px; color: transparent;"></div>
                      <div class="flex w-full flex-col items-start sm:flex-row sm:justify-between sm:space-x-4 rtl:sm:space-x-reverse xl:items-center">
                         <div class="flex w-full flex-col sm:items-start">
-                           <a class="text-lg font-semibold text-heading transition-colors hover:text-accent" href="{{ route('frontend.product-detail', ['product_slug' => $product->slug]) }}">{{ $product->name }}</a>
+                           <a class="text-lg font-semibold text-heading transition-colors hover:text-accent" href="{{ route('frontend.product-detail', ['product_slug' => $product->slug]) }}">{{ $product->name }} <span class="text-muted text-sm">{{ $product->variation_name ? ' ('.$product->variation_name.')' : '' }}</span></a>
                            <p class="mt-1.5 flex flex-col items-start space-y-3">
-                              <a class="inline-block w-auto text-sm font-semibold text-body-dark transition-colors hover:text-accent" href="{{ route('frontend.home', ['catid' => $product->category_id]) }}">{{ $product->category->name }}</a>
+                              <a class="inline-block w-auto text-sm font-semibold text-body-dark transition-colors hover:text-accent" href="{{ route('frontend.home', ['catid' => $product->category_id]) }}">{{ $product->category_name }}</a>
                               @if ($product->average_rating > 0)
                               <span class="inline-flex shrink-0 items-center rounded-full bg-accent text-white px-2 py-[3px] text-sm !rounded">
                                  
@@ -38,7 +38,7 @@
 
                            <div class="flex items-center space-x-6 rtl:space-x-reverse sm:justify-end">
                               
-                              <button wire:click="removeFromWishlist({{ $product->id }})" class="whitespace-nowrap text-sm font-semibold text-red-500 hover:underline sm:mt-0">{{ __trans('Remove') }}</button>
+                              <button wire:click="removeFromWishlist({{ $product->product_id }},{{ $product->product_variation_id ?? null }})" class="whitespace-nowrap text-sm font-semibold text-red-500 hover:underline sm:mt-0">{{ __trans('Remove') }}</button>
                            </div>
                         </div>
                      </div>

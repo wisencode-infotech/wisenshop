@@ -56,9 +56,25 @@ function setAllMobileMenusAsInactiveButThis(menu_element = null)
         $(menu_element).addClass('text-accent');
 }
 
+$(document).on('click', function(event) {
+    if (!$(event.target).closest('.profile_menu_section, .profile_menu_btn').length) {
+        $('.profile_menu_section').addClass('hidden');
+    }
+
+    if (!$(event.target).closest('.notification_menu_section, .notification_menu_btn').length) {
+        $('.notification_menu_section').addClass('hidden');
+    }
+});
+
 $('.profile_menu_btn').on('click', function() {
     $('.profile_menu_section').toggleClass('hidden');
 });
+
+$('.notification_menu_btn').on('click', function() {
+    $('.notification_menu_section').toggleClass('hidden');
+});
+
+
 
 // function toggleSearchBarVisibility() {
 //     const filter_section = document.querySelector('.top-product-search-bar');

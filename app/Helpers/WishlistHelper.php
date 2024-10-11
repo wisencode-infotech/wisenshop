@@ -34,6 +34,33 @@ class WishlistHelper
         }
     }
 
+    // public static function itemsWithDetails()
+    // {
+    //     $user_id = (Auth::check()) ? Auth::user()->id : 'session';
+        
+    //     $wishlist_items = [];
+
+    //     if (self::disk() == 'database') {
+
+    //         $wishlist_items = Wishlist::where('user_id', $user_id)->get();
+
+    //         return $wishlist_items;
+
+    //     } else {
+
+    //         $wishlist_items = Session::get('wishlist', []);
+
+    //         foreach ($wishlist_items as $key => $product_id) {
+    //             $product = Product::where('id', $product_id)->select('id', 'name', 'price')->first();
+
+               
+    //         }
+
+
+    //         return $wishlist_items;
+    //     }
+    // }
+
     public static function addWishlist($product_id)
     {
         $user_id = (Auth::check()) ? Auth::user()->id : 'session';

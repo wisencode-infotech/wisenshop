@@ -24,6 +24,8 @@ use App\Livewire\MyOrders;
 use App\Livewire\Profile;
 use App\Livewire\MyWishList;
 use App\Livewire\ThankYouPage;
+use App\Livewire\NotificationList;
+
 
 
 // Homepage
@@ -35,6 +37,7 @@ Route::get('/contact-us', ContactPage::class)->name('contact-us');
 Route::get('/product-detail/{product_slug}', ProductDetail::class)->name('product-detail');
 
 Route::get('/cart', CartPage::class)->name('cart');
+Route::get('/my-wishlist', MyWishList::class)->name('my-wishlist');
 
 Route::get('login', Login::class)->name('login');
 Route::post('login', [Login::class, 'authenticate'])->name('authenticate');
@@ -48,10 +51,10 @@ Route::get('/guest-checkout', GuestCheckout::class)->name('guest.checkout');
 
 Route::middleware(RedirectIfNotLoggedIn::class)->group(function () {
     Route::get('/profile', Profile::class)->name('profile');
-    Route::get('/my-wishlist', MyWishList::class)->name('my-wishlist');
     Route::get('/my-orders', MyOrders::class)->name('my-orders');
     Route::get('/checkout', Checkout::class)->name('checkout');
     Route::get('/thank-you/{order_id}', ThankYouPage::class)->name('thank-you');
+    Route::get('/notifications', NotificationList::class)->name('notifications.index');
 });
 
 Route::prefix('orders')->name('orders.')->group(function () {

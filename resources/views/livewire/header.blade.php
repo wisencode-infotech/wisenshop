@@ -143,11 +143,14 @@
                        </ul>
                     </li>
 
-
+                   
                    @livewire('cart-icon')
                 </ul>
 
                 @if (auth()->check())
+
+                @livewire('notification-icon') 
+                
                 <div class="lg:inline-flex">
                    <div class="relative inline-block ltr:text-left rtl:text-right" data-headlessui-state="open">
                       <button class="profile_menu_btn flex items-center focus:outline-0" id="headlessui-menu-button-:rn:" type="button" aria-haspopup="menu" aria-expanded="true" data-headlessui-state="open" aria-controls="headlessui-menu-items-:r19:">

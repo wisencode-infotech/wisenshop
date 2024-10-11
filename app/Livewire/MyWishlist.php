@@ -2,35 +2,31 @@
 
 namespace App\Livewire;
 
+use App\Helpers\WishlistHelper;
+use App\Models\Product;
 use Livewire\Component;
-use Illuminate\Support\Facades\Auth;
-use App\Models\Wishlist;
 
 class MyWishlist extends Component
 {
-    public $wishlists;
+    public $wishlist_products;
 
     public function mount()
     {
-        $this->loadWishlists();
+        $this->setProducts();
     }
 
-    public function loadWishlists()
+    public function setProducts()
     {
-        $this->wishlists = Wishlist::where('user_id', Auth::id())->get();
+        $this->wishlist_products = Product::whereIn('id', WishlistHelper::items())->get();
     }
 
-    public function removeFromWishlist($id)
+    public function removeFromWishlist($product_id)
     {
-        $wishlistItem = Wishlist::find($id);
-        
-        if ($wishlistItem && $wishlistItem->user_id == Auth::id()) {
-            $wishlistItem->delete();
-            $this->loadWishlists(); // Refresh the wishlist
-            session()->flash('message', 'Item removed from wishlist.');
-        } else {
-            session()->flash('error', 'Item not found.');
-        }
+        WishlistHelper::removeWishlist($product_id);
+
+        $this->setProducts();
+
+        session()->flash('message', 'Item removed from wishlist.');
     }
 
     public function render()

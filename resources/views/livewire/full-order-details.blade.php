@@ -21,7 +21,7 @@
                         <div class="w-full lg:w-auto"><span class="px-3 py-1 rounded-full bg-status-processing bg-opacity-[.15] text-status-processing min-h-[2rem] items-center justify-center text-[9px] !leading-none xs:text-sm inline-flex">{{ config('general.order_statuses.' . $order_data->status) }}</span></div>
                     </div>
                     <div class="flex items-center gap-3 md:ml-auto"><span class="block text-xs shrink-0 grow-0 basis-auto xs:text-base lg:inline-block">{{ __trans('Payment Method') }} :</span>
-                        <div class="w-full lg:w-auto"><span class="px-3 py-1 rounded-full text-light bg-accent bg-opacity-[.15] !text-accent min-h-[2rem] items-center justify-center truncate whitespace-nowrap text-[9px] !leading-none xs:text-sm inline-flex">{{ $order_data->payment->details->name }}</span></div>
+                        <div class="w-full lg:w-auto"><span class="px-3 py-1 rounded-full text-light bg-accent !text-accent min-h-[2rem] items-center justify-center truncate whitespace-nowrap text-[9px] !leading-none xs:text-sm inline-flex">{{ $order_data->payment->details->name }}</span></div>
                     </div>
                 </div>
             </div>

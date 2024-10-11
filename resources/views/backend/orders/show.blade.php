@@ -54,16 +54,16 @@
             </div>
             <div class="row">
                 <div class="col-sm-6 mt-3">
-                    @if(!empty($extraInformation['customer_contact_email']))
-                    <p>{{ $extraInformation['customer_contact_email'] ?? 'N/A' }}</p>
+                    @if(!empty($extra_information['customer_contact_email']))
+                    <p>{{ $extra_information['customer_contact_email'] ?? 'N/A' }}</p>
                     @endif
 
-                    @if(!empty($extraInformation['customer_contact_phone']))
-                    <p>{{ $extraInformation['customer_contact_phone'] ?? 'N/A' }}</p>
+                    @if(!empty($extra_information['customer_contact_phone']))
+                    <p>{{ $extra_information['customer_contact_phone'] ?? 'N/A' }}</p>
                     @endif
 
-                    @if(!empty($extraInformation['customer_additional_notes']))
-                    <p>Notes: {{ $extraInformation['customer_additional_notes'] ?? 'N/A' }}</p>
+                    @if(!empty($extra_information['customer_additional_notes']))
+                    <p>Notes: {{ $extra_information['customer_additional_notes'] ?? 'N/A' }}</p>
                     @endif
 
                     @if(!empty($order->payment->details))

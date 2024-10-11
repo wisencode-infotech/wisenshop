@@ -22,7 +22,7 @@ class WishlistHelper
 
         if (self::disk() == 'database') {
 
-            $wishlist_items = Wishlist::where('user_id', $user_id)->pluck('product_id', 'product_variation_id')->toArray();
+            $wishlist_items = Wishlist::where('user_id', $user_id)->select('product_id', 'product_variation_id')->get()->toArray();
 
             return $wishlist_items;
 
@@ -120,16 +120,12 @@ class WishlistHelper
 
         $wishlist = self::items();
 
-       
-
         if (empty($wishlist))
             return $exists;
 
         foreach ($wishlist as $wishlist_items) {
-
-             // dd($wishlist_items);
-            $wishlist_product_id = $wishlist_items->product_id;
-            $wishlist_product_variation_id = $wishlist_items->product_variation_id ?? null;
+            $wishlist_product_id = $wishlist_items['product_id'];
+            $wishlist_product_variation_id = $wishlist_items['product_variation_id'] ?? null;
 
             if (!$exists && $wishlist_product_id == $product_id && $wishlist_product_variation_id == $product_variation_id)
                 $exists = true;

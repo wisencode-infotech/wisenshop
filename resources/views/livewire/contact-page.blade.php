@@ -45,43 +45,41 @@
             class="order-1 mb-8 w-full rounded-lg bg-light p-5 md:order-2 md:mb-0 md:p-8 ltr:md:ml-7 rtl:md:mr-7 ltr:lg:ml-9 rtl:lg:mr-9">
             <h1 class="mb-7 font-body text-xl font-bold text-heading md:text-2xl">{{ __trans('How can we improve your experience?') }}
             </h1>
-            <form>
+            <form wire:submit.prevent="submitForm">
                 <div class="grid grid-cols-1 gap-5 sm:grid-cols-2">
-                    <div><label for="name"
-                            class="mb-3 block text-sm font-semibold leading-none text-body-dark">Name</label><input
-                            id="name" name="name" type="text"
-                            class="flex w-full appearance-none items-center px-4 text-sm text-heading transition duration-300 ease-in-out focus:outline-0 focus:ring-0 border border-border-base rounded focus:border-accent h-12"
-                            autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false"
-                            aria-invalid="false" placeholder="Your name..."></div>
-                    <div><label for="email"
-                            class="mb-3 block text-sm font-semibold leading-none text-body-dark">Email</label><input
-                            id="email" name="email" type="email"
-                            class="flex w-full appearance-none items-center px-4 text-sm text-heading transition duration-300 ease-in-out focus:outline-0 focus:ring-0 border border-border-base rounded focus:border-accent h-12"
-                            autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false"
-                            aria-invalid="false" placeholder="Your email..."></div>
+                    <div>
+                        <label for="name" class="mb-3 block text-sm font-semibold text-body-dark">Name</label>
+                        <input wire:model="name" id="name" name="name" type="text"
+                            class="w-full border rounded h-12" placeholder="Your name...">
+                        @error('name') <span class="text-red-500">{{ $message }}</span> @enderror
+                    </div>
+
+                    <div>
+                        <label for="email" class="mb-3 block text-sm font-semibold text-body-dark">Email</label>
+                        <input wire:model="email" id="email" name="email" type="email"
+                            class="w-full border rounded h-12" placeholder="Your email...">
+                        @error('email') <span class="text-red-500">{{ $message }}</span> @enderror
+                    </div>
                 </div>
-                <div class="my-5"><label for="subject"
-                        class="mb-3 block text-sm font-semibold leading-none text-body-dark">Subject</label><input
-                        id="subject" name="subject" type="text"
-                        class="flex w-full appearance-none items-center px-4 text-sm text-heading transition duration-300 ease-in-out focus:outline-0 focus:ring-0 border border-border-base rounded focus:border-accent h-12"
-                        autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false"
-                        aria-invalid="false" placeholder="Your subject..."></div>
-                <div class="my-5"><label for="description"
-                        class="mb-3 block text-sm font-semibold leading-none text-body-dark">Description</label>
-                    <textarea id="description" name="description"
-                        class="flex w-full appearance-none items-center rounded px-4 py-3 text-sm text-heading transition duration-300 ease-in-out focus:outline-0 focus:ring-0 border border-border-base focus:border-accent"
-                        autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false" rows="4"
-                        placeholder="Your message..." maxlength="150"></textarea>
+
+                <div class="my-5">
+                    <label for="subject" class="mb-3 block text-sm font-semibold text-body-dark">Subject</label>
+                    <input wire:model="subject" id="subject" name="subject" type="text"
+                        class="w-full border rounded h-12" placeholder="Your subject...">
+                    @error('subject') <span class="text-red-500">{{ $message }}</span> @enderror
                 </div>
-                <div class="text-[#1F2937] text-base font-medium">
-                    <div class="flex items-center"><input id="isChecked" name="isChecked" type="checkbox"
-                            class="checkbox"><label for="isChecked"
-                            class="text-[#1F2937] text-base font-medium text-body text-sm primary">I'd like to hear
-                            from Pickbazar in the future. (You can unsubscribe at any time)</label></div>
+
+                <div class="my-5">
+                    <label for="description" class="mb-3 block text-sm font-semibold text-body-dark">Description</label>
+                    <textarea wire:model="description" id="description" name="description"
+                        class="w-full border rounded h-12" rows="4" placeholder="Your message..." maxlength="150"></textarea>
+                    @error('description') <span class="text-red-500">{{ $message }}</span> @enderror
                 </div>
-                <div class="text-center mt-8"><button data-variant="normal"
-                        class="inline-flex items-center justify-center shrink-0 font-semibold leading-none rounded outline-none transition duration-300 ease-in-out focus:outline-0 focus:shadow focus:ring-1 focus:ring-accent-700 bg-accent text-light border border-transparent hover:bg-accent-hover px-6 py-5 text-sm font-bold uppercase">Send
-                        Message</button></div>
+
+                <div class="text-center mt-8">
+                    <button type="submit"
+                        class="px-6 py-3 bg-accent text-light rounded font-bold uppercase">Send Message</button>
+                </div>
             </form>
         </div>
     </div>

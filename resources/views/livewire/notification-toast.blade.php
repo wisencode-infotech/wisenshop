@@ -3,8 +3,9 @@
         document.addEventListener('DOMContentLoaded', function () {
             // Listen for the Livewire event and trigger toastr notification
             window.addEventListener('showNotification', event => {
-                let type = event.detail.type || 'info'; // Default to 'info' type
-                let message = event.detail.message || 'Notification triggered';
+                var detail = event.detail[0] ?? event.detail;
+                let type = detail.type || 'info'; // Default to 'info' type
+                let message = detail.message || 'Notification triggered';
 
                 // Display toastr notification
                 if (typeof toastr !== 'undefined') {

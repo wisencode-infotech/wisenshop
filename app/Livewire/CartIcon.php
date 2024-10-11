@@ -21,6 +21,8 @@ class CartIcon extends Component
 
     public function itemAdded()
     {
+        $this->dispatch('notify', 'success', __trans('Item added to the cart'));
+
         $this->itemCount++; // Increment the item count when an item is added
     }
 
@@ -28,6 +30,8 @@ class CartIcon extends Component
     {
         if ($this->itemCount > 0) {
             $this->itemCount--; // Decrement the item count when an item is removed
+
+            $this->dispatch('notify', 'error', __trans('Item removed from the cart'));
         }
     }
 

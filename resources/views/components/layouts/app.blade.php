@@ -7,8 +7,6 @@
     <title>@yield('title')</title>
 
     <link rel="icon" href="{{  asset(__setting('fav_logo')) }}" type="image/png"> 
-    
-    <link rel="stylesheet" href="{{ asset('assets/frontend/css/customizer.css') }}"/>
 
     @include('components.layouts.site-customizer')
 
@@ -18,6 +16,8 @@
     <link rel="stylesheet" href="{{asset('assets/frontend/css/app.css')}}">
 
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css" />
+
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.css" rel="stylesheet">
 
     @livewireStyles
 </head>
@@ -46,6 +46,8 @@
 
     @livewire('mobile-header-filter')
 
+    @livewire('notification-toast')
+
     @livewireScripts
 
     <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
@@ -56,8 +58,6 @@
     <script src="https://kit.fontawesome.com/76125ef05e.js" crossorigin="anonymous"></script>
 
     <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
-
-    <link href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.css" rel="stylesheet">
 
     @yield('scripts')
 
@@ -73,6 +73,16 @@
     <script src="{{ asset('assets/frontend/js/preferences.js') }}"></script>
 
     <script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.js"></script>
+
+    <script>
+        toastr.options = {
+            "closeButton": true,
+            "progressBar": true,
+            "positionClass": "toast-top-center",
+            "timeOut": "5000",
+            "extendedTimeOut": "1000",
+        };
+    </script>
 
 </body>
 </html>

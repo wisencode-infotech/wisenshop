@@ -1,4 +1,4 @@
-@section('title', __trans('Shipping'))
+@section('title', __trans('Checkout'))
 
 <div class="bg-gray-100 px-4 py-8 lg:py-10 lg:px-8 xl:py-14 xl:px-16 2xl:px-20">
 

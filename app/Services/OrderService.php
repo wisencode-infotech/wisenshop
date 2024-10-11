@@ -56,13 +56,13 @@ class OrderService
     {
         // Send order placed email to the customer
         if ( !empty($this->order->customer) )
-            Mail::to($this->order->customer->email)->queue(new OrderPlacedMail($this->order));
+            Mail::to($this->order->customer_contact_email)->queue(new OrderPlacedMail($this->order));
     }
 
     protected function sendStatusChangedEmail()
     {
         // Send email notification for order status change
         if ( !empty($this->order->customer) )
-            Mail::to($this->order->customer->email)->queue(new OrderStatusChangedMail($this->order));
+            Mail::to($this->order->customer_contact_email)->queue(new OrderStatusChangedMail($this->order));
     }
 }

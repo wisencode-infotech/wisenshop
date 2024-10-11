@@ -57,4 +57,15 @@ class Order extends Model
     {
         return $this->belongsTo(User::class, 'user_id');
     }
+
+    // Accessors
+    public function getCustomerContactEmailAttribute()
+    {
+        $order_extra_information = json_decode($this->extra_information, true);
+
+        if (!empty($order_extra_information) && !empty($order_extra_information['customer_contact_email']))
+            return $order_extra_information['customer_contact_email'];
+        else    
+            return $this->customer->email;
+    }
 }

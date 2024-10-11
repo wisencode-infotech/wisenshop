@@ -127,7 +127,7 @@ class Checkout extends Component
 
         session()->flash('message', 'Order placed successfully!');
 
-        return redirect()->intended('/');
+        return redirect()->intended('/thank-you/'.$order_id);
     }
 
     public function render()

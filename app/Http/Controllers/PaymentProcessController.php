@@ -21,7 +21,7 @@ class PaymentProcessController extends Controller
                     'currency1' => $order->currency->code,
                     'currency2' => 'LTCT',
                     'buyer_email' => $order->customer_contact_email,
-                    'buyer_name' => 'Ali',
+                    'buyer_name' => $order->customer->name ?? 'alberto-guest',
                     'custom' => "$order->id",
                     'ipn_url' => route('frontend.coinpayments.callback'),
                     'success_url' => route('frontend.home').'?payment_status=completed',

@@ -10,6 +10,7 @@ class Kernel extends ConsoleKernel
     protected $commands = [
         // Register your custom commands here
         Commands\UpdateCurrencyRates::class,
+        Commands\FreshInstallWisenShop::class
     ];
 
     protected function schedule(Schedule $schedule)

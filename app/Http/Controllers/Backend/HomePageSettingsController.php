@@ -41,7 +41,7 @@ class HomePageSettingsController extends Controller
 
         $request->validate([
             'banner_image' => 'image|mimes:jpeg,png,jpg,gif|max:2048',
-            'banner_description' => 'string',
+            'banner_description' => 'nullable|max:250',
             'banner_url' => 'nullable|url',
         ]);
 

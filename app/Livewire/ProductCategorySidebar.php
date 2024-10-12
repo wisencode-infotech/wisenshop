@@ -19,15 +19,16 @@ class ProductCategorySidebar extends Component
         } else if( !empty($default_categories) ) {
             $this->selectedCategoryIds = $default_categories;
         }
-
-        
     }
 
     public function render()
     {
+        $banner_settings = __homeSetting('banner_settings', true);
+
         return view('livewire.product-category-sidebar', [
             'product_categories' => $this->product_categories,
             'selectedCategoryIds' => $this->selectedCategoryIds, 
+            'banner_settings' => $banner_settings, 
         ]);
     }
 }

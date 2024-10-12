@@ -44,10 +44,16 @@ class NotificationController extends Controller
                     return strtoupper($row->type);
                 })
                 ->addColumn('action', function($row) {
-                    if(!empty($row->url))
-                    {
-                        return '<a href='.$row->url.' target="_blank"><i class="fa fa-link"></i></a>';
+                    if ($row->is_read == 0) {
+                        $btn = '<a href="javascript:void(0);" data-id="' . $row->id . '" data-status="1" class="update-notification-status btn btn-secondary btn-sm">Mark as Read</a>&nbsp;';
+                    } else {
+                        $btn = '<a href="javascript:void(0);" data-id="' . $row->id . '" data-status="0" class="update-notification-status btn btn-danger btn-sm">Mark as UnRead</a>&nbsp;';
                     }
+                    if (!empty($row->url)) {
+                        $btn .= '<a href="' . $row->url . '" target="_blank"><i class="fa fa-link"></i></a>';
+                    }
+
+                    return $btn;
                 })
                 ->rawColumns(['action', 'type', 'is_read'])
                 ->make(true);
@@ -58,12 +64,16 @@ class NotificationController extends Controller
     }
 
    
-    /**
-     * Display the specified notification.
-     */
-    public function show(Notification $notification)
+   public function ChangeMarkAsReadUnRead($notificationId, $status)
     {
-        
+        $notification = Notification::findOrFail($notificationId);
+        $notification->is_read = $status;
+        $notification->save();
+
+        return response()->json([
+            'success' => true,
+            'message' => $status == 1 ? 'Notification marked as read.' : 'Notification marked as unread.'
+        ]);
     }
 
    

@@ -18,7 +18,7 @@
 
                 <li>
                     <a href="javascript: void(0);" class="has-arrow waves-effect">
-                        <i class="bx bx-store"></i>
+                        <i class="bx bxs-gift"></i>
                         <span key="t-ecommerce">Category</span>
                     </a>
                     <ul class="sub-menu" aria-expanded="false">
@@ -29,7 +29,7 @@
 
                 <li>
                     <a href="javascript: void(0);" class="has-arrow waves-effect">
-                        <i class="bx bx-store"></i>
+                        <i class="bx bxs-slideshow"></i>
                         <span key="t-ecommerce">Site Banners</span>
                     </a>
                     <ul class="sub-menu" aria-expanded="false">
@@ -40,7 +40,7 @@
 
                 <li>
                     <a href="javascript: void(0);" class="has-arrow waves-effect">
-                        <i class="bx bx-store"></i>
+                        <i class="bx bxl-product-hunt"></i>
                         <span key="t-ecommerce">Products</span>
                     </a>
                     <ul class="sub-menu" aria-expanded="false">
@@ -51,7 +51,7 @@
 
                 <li>
                     <a href="javascript: void(0);" class="has-arrow waves-effect">
-                        <i class="bx bx-store"></i>
+                        <i class="mdi mdi-flask-round-bottom-outline"></i>
                         <span key="t-ecommerce">Product Units</span>
                     </a>
                     <ul class="sub-menu" aria-expanded="false">
@@ -62,7 +62,7 @@
 
                 <li>
                     <a href="javascript: void(0);" class="has-arrow waves-effect">
-                        <i class="bx bx-store"></i>
+                        <i class="bx bx-transfer-alt"></i>
                         <span key="t-ecommerce">Translation</span>
                     </a>
                     <ul class="sub-menu" aria-expanded="false">
@@ -73,7 +73,7 @@
 
                 <li>
                     <a href="javascript: void(0);" class="has-arrow waves-effect">
-                        <i class="bx bx-store"></i>
+                        <i class="fas fa-shipping-fast"></i>
                         <span key="t-ecommerce">Orders</span>
                     </a>
 
@@ -85,7 +85,7 @@
 
                 <li>
                     <a href="javascript: void(0);" class="has-arrow waves-effect">
-                        <i class="bx bx-store"></i>
+                        <i class="mdi mdi-currency-sign"></i>
                         <span key="t-ecommerce">Currencies</span>
                     </a>
 
@@ -98,7 +98,7 @@
 
                 <li>
                     <a href="javascript: void(0);" class="has-arrow waves-effect">
-                        <i class="bx bx-store"></i>
+                        <i class="fas fa-sign-language"></i>
                         <span key="t-ecommerce">Languages</span>
                     </a>
 
@@ -111,7 +111,7 @@
 
                 <li>
                     <a href="javascript: void(0);" class="has-arrow waves-effect">
-                        <i class="bx bx-store"></i>
+                        <i class="fas fa-money-check"></i>
                         <span key="t-ecommerce">Payment Methods</span>
                     </a>
 
@@ -124,7 +124,7 @@
 
                 <li>
                     <a href="javascript: void(0);" class="has-arrow waves-effect">
-                        <i class="bx bx-store"></i>
+                        <i class="mdi mdi-head-question-outline"></i>
                         <span key="t-ecommerce">Inquiries</span>
                     </a>
 

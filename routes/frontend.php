@@ -95,8 +95,14 @@ Route::post('/sync-session-preferences', function (Request $request) {
 
     $wishlist = $request->wishlist ?? [];
 
+    $wishlist = array_filter($wishlist, function($item) {
+        return !empty($item); // Filter out any empty items
+    });
+
     $stored_shopping_cart = CartHelper::items();
     $stored_wishlist = WishlistHelper::items();
+
+    
 
     if (!empty($cart) && empty($stored_shopping_cart)) {
         Session::put('cart', $cart ?? []);

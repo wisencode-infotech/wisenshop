@@ -24,7 +24,7 @@ class MyWishlist extends Component
         $this->wishlist_products = collect();
 
         foreach ($wishlistItems as $item) {
-            
+           
             $product = Product::find($item['product_id']);
 
             $data = new \stdClass();

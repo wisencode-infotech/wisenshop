@@ -22,7 +22,9 @@ class MyOrders extends Component
                             ->orderBy('id', 'desc')
                             ->first();
 
-        $this->selected_order_id = $this->order_data->id;                          
+        if(!empty($this->order_data))                            {
+            $this->selected_order_id = $this->order_data->id;                              
+        }
     }
 
     public function loadMore()

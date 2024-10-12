@@ -29,6 +29,7 @@ class Checkout extends Component
     public $email;
     public $order_notes;
     public $isPlacingOrder = false;
+    public $copy_to_billing = false;
     
     protected $listeners = ['addressSaved' => 'loadAddresses'];
 
@@ -73,6 +74,37 @@ class Checkout extends Component
         $this->selected_shipping_address_id = $address_id;
     }
 
+    public function copyShippingAddress()
+    {
+        if ($this->copy_to_billing && $this->selected_shipping_address_id) {
+            $shipping_address = ShippingAddress::find($this->selected_shipping_address_id);
+            if ($shipping_address) {
+                
+                $billing_address = BillingAddress::where('shipping_address_id', $this->selected_shipping_address_id)->first();
+
+                if(empty($billing_address))    {
+                    $billing_address = BillingAddress::create([
+                        'user_id' => auth()->id(),
+                        'shipping_address_id' => $shipping_address->id,
+                        'address' => $shipping_address->address,
+                        'city' => $shipping_address->city,
+                        'state' => $shipping_address->state,
+                        'postal_code' => $shipping_address->postal_code,
+                        'country' => $shipping_address->country,
+                    ]);
+
+                    $this->selected_billing_address_id = $billing_address->id;
+                }
+
+                $this->selected_billing_address_id = $billing_address->id;
+
+                $this->copy_to_billing = false;
+
+                $this->billing_addresses = BillingAddress::where('user_id', auth()->id())->get();
+            }
+        }
+    }
+
     public function selectBillingAddress($address_id)
     {
         $this->selected_billing_address_id = $address_id;
@@ -89,6 +121,10 @@ class Checkout extends Component
     {
         $this->shipping_addresses = ShippingAddress::where('user_id', Auth::user()->id)->get();
         $this->billing_addresses = BillingAddress::where('user_id', Auth::user()->id)->get();
+        
+        if ($this->shipping_addresses->isNotEmpty() && count($this->shipping_addresses) == 1) {
+            $this->selected_shipping_address_id = $this->shipping_addresses->first()->id;
+        }
     }
 
     public function placeOrder()
@@ -107,7 +143,7 @@ class Checkout extends Component
             'email.required_without' => 'Please provide either phone or email.',
             'phone.required_without' => 'Please provide either phone or email.',
         ]);
-
+        
         $product_service = new ProductService();
         $stock_available = $product_service->validateStock(CartHelper::items());
 
@@ -132,6 +168,7 @@ class Checkout extends Component
                 'order_notes' => $this->order_notes,
                 'currency' => __userCurrency(),
             ]);
+
 
             $order = Order::find($order_id);
 

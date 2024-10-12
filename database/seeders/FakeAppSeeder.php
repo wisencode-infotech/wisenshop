@@ -13,7 +13,10 @@ use App\Models\User;
 use App\Models\Setting;
 use App\Models\ProductUnit;
 use App\Models\Currency;
+use App\Models\ProductReview;
+use App\Models\Notification;
 use Illuminate\Database\Seeder;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Str;
 
@@ -125,6 +128,51 @@ class FakeAppSeeder extends Seeder
                 'status' => 'completed',
             ]);
         }
+
+        // Products review seeder
+
+        $product_ids = Product::pluck('id')->toArray();
+
+        $user_ids = User::pluck('id')->toArray();
+
+        $product_review_counter = 0;
+
+        while ($product_review_counter <= 200) {
+            ProductReview::create([
+                'user_id' => $user_ids[array_rand($user_ids)],
+                'product_id' => $product_ids[array_rand($product_ids)],
+                'rating' => rand(1, 5),
+                'review' => fake()->paragraph()
+            ]);
+
+            $product_review_counter++;
+        }
+
+        // Notification seeder
+
+        $user_ids = User::pluck('id')->toArray();
+
+        $notification_types = ['order'];
+
+        $global_status = [true, false];
+
+        $notification_counter = 0;
+
+        while ($notification_counter <= 200) {
+            Notification::create([
+                'title'     => fake()->sentence(),
+                'message'   => fake()->paragraph(),
+                'user_id'   => $user_ids[array_rand($user_ids)],
+                'is_global' => $global_status[array_rand($global_status)],
+                'type'      => $notification_types[array_rand($notification_types)],
+                'url'       => fake()->url(),
+                'meta_data' => json_encode(['key' => fake()->word()]),
+                'is_read'   => rand(0, 1) == 1,
+            ]);
+
+            $notification_counter++;
+        }
+
 
         // Site banner seeder
 

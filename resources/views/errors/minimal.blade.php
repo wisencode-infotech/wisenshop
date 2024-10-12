@@ -61,7 +61,7 @@
 
 <body>
     <div class="error-container">
-        <img src="{{ __setting('header_logo') }}" alt="Site Logo" class="logo">
+        <img src="{{ asset(__setting('header_logo')) }}" alt="Site Logo" class="logo">
 
         <div class="error-code">
             @yield('code', '404')

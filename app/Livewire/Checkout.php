@@ -10,6 +10,7 @@ use App\Models\ShippingMethod;
 use App\Helpers\CartHelper;
 use App\Models\Order;
 use App\Services\OrderService;
+use App\Services\ProductService;
 use Illuminate\Support\Facades\Auth;
 
 class Checkout extends Component
@@ -107,27 +108,42 @@ class Checkout extends Component
             'phone.required_without' => 'Please provide either phone or email.',
         ]);
 
-        $order_id = CartHelper::createOrder([
-                    'shipping_address_id' => $this->selected_shipping_address_id,
-                    'billing_address_id' => $this->selected_billing_address_id,
-                    'payment_method_id' => $this->selected_payment_method_id,
-                    'total_price' => $this->total_price,
-                    'phone' => $this->phone,
-                    'email' => $this->email,
-                    'order_notes' => $this->order_notes,
-                    'currency' => __userCurrency(),
-                ]);
+        $product_service = new ProductService();
+        $stock_available = $product_service->validateStock(CartHelper::items());
 
-        $order = Order::find($order_id);
+        if ( !empty($stock_available) ) {
+            foreach ($stock_available as $stock_available_each_product) {
+                if ( $stock_available_each_product['is_variant'] == true ) {
+                    $this->dispatch('notify', 'error', __trans('Item '. $stock_available_each_product['product_variant']->name .' stock not available. please remove from cart.'));
+                } else if ( $stock_available_each_product['is_variant'] == false ) {
+                    $this->dispatch('notify', 'error', __trans('Item '. $stock_available_each_product['product']->name .' stock not available. please remove from cart.'));
+                }
+            }
+        }
 
-        $this->isPlacingOrder = false;
+        if ( empty($stock_available) ) {
+            $order_id = CartHelper::createOrder([
+                'shipping_address_id' => $this->selected_shipping_address_id,
+                'billing_address_id' => $this->selected_billing_address_id,
+                'payment_method_id' => $this->selected_payment_method_id,
+                'total_price' => $this->total_price,
+                'phone' => $this->phone,
+                'email' => $this->email,
+                'order_notes' => $this->order_notes,
+                'currency' => __userCurrency(),
+            ]);
 
-        $order_service = new OrderService();
-        $order_service->placeOrder($order);
+            $order = Order::find($order_id);
 
-        session()->flash('message', 'Order placed successfully!');
+            $this->isPlacingOrder = false;
 
-        return redirect()->intended('/thank-you/'.$order_id);
+            $order_service = new OrderService();
+            $order_service->placeOrder($order);
+
+            session()->flash('message', 'Order placed successfully!');
+
+            return redirect()->intended('/thank-you/'.$order_id);
+        }
     }
 
     public function render()

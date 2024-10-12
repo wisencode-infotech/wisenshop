@@ -30,6 +30,14 @@ class SettingController extends Controller
             'settings.*_logo' => 'required|image'
         ]);
 
+        $is_franchisee = $request->has('settings') && isset($request->settings['is_franchisee']) ? true : false;
+
+        $request->merge([
+            'settings' => array_merge($request->input('settings', []), [
+                'is_franchisee' => $is_franchisee
+            ])
+        ]);
+
         // Update settings in the database
         foreach ($request->settings as $key => $value) {
 

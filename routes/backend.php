@@ -43,6 +43,7 @@ Route::middleware(['auth'])->group(function () {
 
     Route::group(['prefix' => 'order', 'as' => 'order.'], function() {
         Route::post('status/{order}', [OrderController::class, 'updateStatus'])->name('update.status');
+        Route::post('change-status', [OrderController::class, 'changeStatus'])->name('change.status');
 
         Route::group(['prefix' => 'bulk', 'as' => 'bulk.'], function() {
             Route::post('export', [OrderController::class, 'bulkExport'])->name('export');

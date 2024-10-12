@@ -182,5 +182,32 @@ aria-labelledby="myLargeModalLabel" aria-hidden="true">
         });
     });
 });
+
+    $(document).on('change', '.change_status', function(e) {
+    var selected_status = $(this).val();
+    var order_id = $(this).find('option:selected').data('order-id'); 
+        $.ajax({
+            url: "{{ route('backend.order.change.status') }}", // The action URL of the form
+            type: 'POST',
+            headers: {
+                'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content') // Passing the CSRF token in headers
+            },
+            data: {
+                'selected_status': selected_status,
+                'order_id': order_id,
+            },
+            dataType: 'json',
+            success: function(response) {
+                toastr.success(response.message);
+                $('#orders-table').DataTable().ajax.reload(null, false); // Reload the DataTable
+            },
+            error: function(error) {
+                toastr.error('Something went wrong!');
+            },
+            complete: function() {
+                // Any additional actions after the request completes
+            }
+        });
+    });
 </script>
 @endsection

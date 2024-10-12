@@ -107,6 +107,19 @@ class Checkout extends Component
             'phone.required_without' => 'Please provide either phone or email.',
         ]);
 
+         // Check stock availability
+        $out_of_stock_products = CartHelper::checkStockAvailability();
+
+        if(!empty($out_of_stock_products)){
+            foreach ($out_of_stock_products as $key => $value) {
+               $message = 'Unfortunately, the product "' . $value['name'] . '" is only available in a quantity of ' . $value['available_stock'] . '. Please adjust your order accordingly.';
+               $this->dispatch('notify', 'error', $message);
+            }
+
+            $this->isPlacingOrder = false;
+            return;
+        }
+
         $order_id = CartHelper::createOrder([
                     'shipping_address_id' => $this->selected_shipping_address_id,
                     'billing_address_id' => $this->selected_billing_address_id,

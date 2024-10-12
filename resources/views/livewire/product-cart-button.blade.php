@@ -16,6 +16,6 @@
         </svg>
         <span class="flex ltr:ml-2 rtl:mr-2">{{ $itemCount }} {{ __trans('Item') }}</span>
     </span>
-    <span class="w-full px-2 py-2 mt-3 rounded bg-light text-accent">${{ number_format($totalPrice, 2) }}</span>
+    <span class="w-full px-2 py-2 mt-3 rounded bg-light text-accent">{{ __userCurrencySymbol() }}{{ number_format($totalPrice, 2) }}</span>
 </button>
 

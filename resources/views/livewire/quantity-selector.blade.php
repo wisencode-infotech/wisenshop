@@ -6,7 +6,7 @@
                     class="cursor-pointer p-2 transition-colors duration-200 hover:bg-accent-hover focus:outline-0 px-5">
                     <i class="fa fa-minus"></i>
                 </button>
-                <div class="flex flex-1 items-center justify-center px-3 text-sm font-semibold !px-0 text-heading">
+                <div class="flex flex-1 items-center justify-center px-3 text-sm font-semibold !px-0">
                     {{ $quantity }}</div>
                 <button wire:click="increment"
                     class="cursor-pointer p-2 transition-colors duration-200 hover:bg-accent-hover focus:outline-0 px-5"

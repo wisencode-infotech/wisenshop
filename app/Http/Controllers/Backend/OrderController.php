@@ -51,7 +51,17 @@ class OrderController extends Controller
                     return $row->total_price . ' ' . __appCurrencySymbol();
                 })
                 ->addColumn('action', function ($row) {
-                    $btn = '<a href="' . route('backend.order.show', $row) . '" class="edit btn btn-primary btn-sm">View</a>';
+                    $all_statuses = config('general.order_statuses');
+                    $current_status = $row->status;
+                    $btn = '<div class="d-flex align-items-center">';
+
+                    $btn .= '<select class="form-control change_status form-control-sm" style="width: auto; margin-right: 5px;">';
+                    foreach ($all_statuses as $key => $value) {
+                        $selected = $key == $current_status ? 'selected' : '';
+                        $btn .= '<option data-order-id = '.$row->id.' value="' . $key . '" ' . $selected . '>' . $value . '</option>';
+                    }
+                    $btn .= '</select>';
+                    $btn .= '<a href="' . route('backend.order.show', $row) . '" class="edit btn btn-primary btn-sm">View</a>';
                     $status = config('general.order_statuses.' . $row->status);
                     if ($status == 'Pending') {
                         $btn .= '&nbsp' . '<a href="' . route('backend.order.update.status', $row) . '" class="update-order-status btn btn-warning btn-sm">Export & Accept</a>';
@@ -157,6 +167,21 @@ class OrderController extends Controller
         foreach ($orders as $order) {
             $order->status = $validated['order_status'];
             $order->save();
+        }
+
+        return response()->json(['status' => 200, 'message' => 'Order statuses updated successfully.']);
+    }
+
+    public function changeStatus(Request $request)
+    {
+        $selected_status = $request->selected_status ?? '';
+        $order_id = $request->order_id ?? '';
+        
+        if($selected_status)
+        {
+            $order = Order::find($order_id);
+            $this->order_service->setRecord($order);
+            $this->order_service->updateStatus($selected_status); 
         }
 
         return response()->json(['status' => 200, 'message' => 'Order statuses updated successfully.']);

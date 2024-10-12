@@ -107,7 +107,7 @@ class Checkout extends Component
             'email.required_without' => 'Please provide either phone or email.',
             'phone.required_without' => 'Please provide either phone or email.',
         ]);
-
+        
         $product_service = new ProductService();
         $stock_available = $product_service->validateStock(CartHelper::items());
 
@@ -132,6 +132,7 @@ class Checkout extends Component
                 'order_notes' => $this->order_notes,
                 'currency' => __userCurrency(),
             ]);
+
 
             $order = Order::find($order_id);
 

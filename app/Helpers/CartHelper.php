@@ -269,5 +269,5 @@ class CartHelper
     {
         return count(self::items()) == 0;
     }
-    
+        
 }

@@ -54,6 +54,7 @@ Route::middleware(['auth'])->group(function () {
     Route::group(['prefix' => 'home-settings', 'as' => 'home-settings.'], function() {
         Route::get('index', [HomePageSettingsController::class, 'index'])->name('index');
         Route::post('store', [HomePageSettingsController::class, 'store'])->name('store');
+        Route::post('banner-store', [HomePageSettingsController::class, 'bannerStore'])->name('banner-store');
     });
 
 });

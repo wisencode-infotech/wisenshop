@@ -38,4 +38,58 @@
         </div>
     </div>
 </div>
+
+<div class="row">
+    <div class="col-lg-12">
+        <div class="card">
+            <h3 class="card-header bg-white">{{ __('Banner Settings') }}</h3>
+
+            <div class="card-body">
+                @if (session('success'))
+                    <div class="alert alert-success">
+                        {{ session('success') }}
+                    </div>
+                @endif
+
+                @if ($errors->any())
+                    <div class="alert alert-danger">
+                        <ul>
+                            @foreach ($errors->all() as $error)
+                                <li>{{ $error }}</li>
+                            @endforeach
+                        </ul>
+                    </div>
+                @endif
+
+                <form method="POST" action="{{ route('backend.home-settings.banner-store') }}" enctype="multipart/form-data"> 
+                    @csrf
+
+                    <div class="row">
+                        <div class="col-md-12 mb-3">
+                            <label for="banner_image">{{ __('Banner Image') }}</label>
+                            <input type="file" name="banner_image" class="form-control">
+                        </div>
+
+                        @if(!empty($banner_settings['banner_image']))
+                            <img src="{{ Storage::disk('public')->url($banner_settings['banner_image'])  }}" class="img-fluid" style="max-height: 300px;max-width: 300px;">
+                        @endif
+
+                        <div class="col-md-12 mb-3 mt-3">
+                            <label for="banner_description">{{ __('Banner Description') }}</label>
+                            <textarea name="banner_description" class="form-control" rows="3">{{ $banner_settings['banner_description'] ?? '' }}</textarea>
+                        </div>
+                        <div class="col-md-12 mb-3">
+                            <label for="banner_url">{{ __('Banner URL') }}</label>
+                            <input type="url" name="banner_url" class="form-control" value="{{ $banner_settings['banner_url'] ?? '' }}">
+                        </div>
+                    </div>
+
+                    <div class="form-group text-end">
+                        <button type="submit" class="btn btn-primary btn-rounded">Save</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
 @endsection

@@ -1,15 +1,15 @@
 <div>
     @if ($stock_available)
         @if ($layout == 'cart')
-            <div class="flex overflow-hidden flex-col-reverse items-center w-8 h-24 bg-gray-100 text-heading rounded-full text-accent-contrast">
+            <div class="flex overflow-hidden flex-col-reverse items-center w-8 h-24 bg-accent text-heading rounded-full text-accent-contrast">
                 <button wire:click="decrement"
-                    class="cursor-pointer p-2 transition-colors duration-200 hover:bg-accent-hover focus:outline-0 hover:!bg-gray-100">
+                    class="cursor-pointer p-2 transition-colors duration-200 hover:bg-accent-hover focus:outline-0 px-5">
                     <i class="fa fa-minus"></i>
                 </button>
                 <div class="flex flex-1 items-center justify-center px-3 text-sm font-semibold !px-0 text-heading">
                     {{ $quantity }}</div>
                 <button wire:click="increment"
-                    class="cursor-pointer p-2 transition-colors duration-200 hover:bg-accent-hover focus:outline-0 hover:!bg-gray-100"
+                    class="cursor-pointer p-2 transition-colors duration-200 hover:bg-accent-hover focus:outline-0 px-5"
                     title="">
                     <i class="fa fa-plus"></i>
                 </button>

@@ -32,7 +32,7 @@ class HomePageSettingsController extends Controller
 
         $this->saveSettings('display_specific_categories_on_page_load', $display_specific_categories_on_page_load);
 
-        return redirect()->back()->with('success', 'saved settings');
+        return redirect()->back()->with('category-success', 'saved settings');
     }
 
     public function bannerStore(Request $request)
@@ -62,7 +62,7 @@ class HomePageSettingsController extends Controller
         // Save the banner settings as JSON in the database
         $this->saveSettings('banner_settings', json_encode($bannerSettings));
 
-        return redirect()->back()->with('success', 'Banner settings saved successfully');
+        return redirect()->back()->with('banner-success', 'Banner settings saved successfully');
     }
 
     public function saveSettings($key, $value) {

@@ -4,15 +4,25 @@
 
 @section('content')
 
+@if ($errors->any())
+    <div class="alert alert-danger">
+        <ul>
+            @foreach ($errors->all() as $error)
+                <li>{{ $error }}</li>
+            @endforeach
+        </ul>
+    </div>
+@endif
+                
 <div class="row">
     <div class="col-lg-12">
         <div class="card">
             <h3 class="card-header bg-white">{{ __('Default Categories') }}</h3>
 
             <div class="card-body">
-                @if (session('success'))
+                @if (session('category-success'))
                     <div class="alert alert-success">
-                        {{ session('success') }}
+                        {{ session('category-success') }}
                     </div>
                 @endif
 
@@ -45,19 +55,9 @@
             <h3 class="card-header bg-white">{{ __('Banner Settings') }}</h3>
 
             <div class="card-body">
-                @if (session('success'))
+                @if (session('banner-success'))
                     <div class="alert alert-success">
-                        {{ session('success') }}
-                    </div>
-                @endif
-
-                @if ($errors->any())
-                    <div class="alert alert-danger">
-                        <ul>
-                            @foreach ($errors->all() as $error)
-                                <li>{{ $error }}</li>
-                            @endforeach
-                        </ul>
+                        {{ session('banner-success') }}
                     </div>
                 @endif
 

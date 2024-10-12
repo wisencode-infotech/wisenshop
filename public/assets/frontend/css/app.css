@@ -147,8 +147,12 @@ button.reset_filter_btn:hover {
     margin-right: 15%;
 }
 
-.custom-ml-5{
+.custom-ml-5 {
     margin-left: 5%;
+}
+
+.border-1 {
+    border-width: 1px;
 }
 
 /*End custom css*/

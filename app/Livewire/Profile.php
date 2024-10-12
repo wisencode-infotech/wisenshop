@@ -61,7 +61,7 @@ class Profile extends Component
         }
 
         // Handle the profile image upload
-        if ($this->profile_image) {
+        if ($this->profile_image && !is_string($this->profile_image)) {
             $path = $this->profile_image->store('profile_images', 'public');
             $user->profile_image = $path;
             $this->temp_image_url = null;

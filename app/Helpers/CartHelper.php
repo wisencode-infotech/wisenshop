@@ -269,30 +269,5 @@ class CartHelper
     {
         return count(self::items()) == 0;
     }
-
-    public static function checkStockAvailability()
-    {
-        $cart_items = self::items();
-        $out_of_stock_products = [];
-
-        foreach ($cart_items as $item) {
-            $product = Product::find($item['product_id']);
-            $product_variation = ProductVariation::find($item['product_variation_id']);
-
-            // Assuming the stock field is 'stock' in your product or product_variation table
-            $stock_quantity = ($product_variation) ? $product_variation->stock : $product->stock;
-
-            if ($item['quantity'] > $stock_quantity) {
-                $out_of_stock_products[] = [
-                    'name' => $product->name,
-                    'variation' => $product_variation->name ?? '',
-                    'available_stock' => $stock_quantity,
-                    'requested_quantity' => $item['quantity'],
-                ];
-            }
-        }
-
-        return $out_of_stock_products;
-    }
         
 }

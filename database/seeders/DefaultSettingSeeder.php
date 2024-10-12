@@ -146,7 +146,8 @@ class DefaultSettingSeeder extends Seeder
         // General site setting seeder
         $general_site_settings = [
             'site_title' => 'Albertoshop',
-            'site_currency' => 'EUR'
+            'site_currency' => 'EUR',
+            'is_franchisee' => false
         ];
 
         $setting_sort_number = 1;

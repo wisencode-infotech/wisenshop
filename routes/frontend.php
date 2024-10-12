@@ -23,7 +23,7 @@ use App\Http\Middleware\RedirectIfNotLoggedIn;
 use App\Livewire\OrderDetails;
 use App\Livewire\MyOrders;
 use App\Livewire\Profile;
-use App\Livewire\MyWishList;
+use App\Livewire\MyWishlist;
 use App\Livewire\ThankYouPage;
 use App\Livewire\NotificationList;
 
@@ -38,7 +38,7 @@ Route::get('/contact-us', ContactPage::class)->name('contact-us');
 Route::get('/product-detail/{product_slug}', ProductDetail::class)->name('product-detail');
 
 Route::get('/cart', CartPage::class)->name('cart');
-Route::get('/my-wishlist', MyWishList::class)->name('my-wishlist');
+Route::get('/my-wishlist', MyWishlist::class)->name('my-wishlist');
 
 Route::get('login', Login::class)->name('login');
 Route::post('login', [Login::class, 'authenticate'])->name('authenticate');

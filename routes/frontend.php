@@ -2,6 +2,7 @@
 
 use App\Helpers\CartHelper;
 use App\Helpers\WishlistHelper;
+use App\Http\Controllers\PaymentProcessController;
 use Illuminate\Support\Facades\Route;
 use App\Livewire\ContactPage;
 use App\Livewire\HomePage;
@@ -115,6 +116,9 @@ Route::post('/sync-session-preferences', function (Request $request) {
         'wishlist_updated' => $wishlist_updated
     ]);
 })->name('sync-session-preferences');
+
+Route::get('/payment-process/{order}', [PaymentProcessController::class, 'index'])->name('payment-process');
+Route::post('/coinpayments/callback', [PaymentProcessController::class, 'coinpayments_callback'])->name('coinpayments.callback');
 
 Livewire::setScriptRoute(function ($handle) {
     return Route::get(url('/') . '/livewire/livewire.js', $handle);

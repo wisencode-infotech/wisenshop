@@ -4,6 +4,7 @@ namespace App\Services;
 
 use App\Mail\OrderPlacedMail;
 use App\Mail\OrderStatusChangedMail;
+use App\Models\Transaction;
 use Illuminate\Support\Facades\Mail;
 use App\Services\ProductService;
 
@@ -64,5 +65,14 @@ class OrderService
         // Send email notification for order status change
         if ( !empty($this->order->customer) )
             Mail::to($this->order->customer_contact_email)->queue(new OrderStatusChangedMail($this->order));
+    }
+
+    public function saveOrderTransaction($transaction_id, $status) {
+        $transaction = new Transaction();
+        $transaction->order_id = $this->order->id;
+        $transaction->transaction_id = $transaction_id;
+        $transaction->amount = $this->order->total_price;
+        $transaction->status = $status;
+        $transaction->save();
     }
 }

@@ -135,14 +135,20 @@ class Checkout extends Component
 
             $order = Order::find($order_id);
 
-            $this->isPlacingOrder = false;
+            $payment_method = $order?->payment?->details?->name ?? '';
 
-            $order_service = new OrderService();
-            $order_service->placeOrder($order);
+            if ($payment_method == 'CoinPayments' ) {
+                return redirect()->route('frontend.payment-process', $order);
+            } else {
+                $this->isPlacingOrder = false;
 
-            session()->flash('message', 'Order placed successfully!');
+                $order_service = new OrderService();
+                $order_service->placeOrder($order);
 
-            return redirect()->intended('/thank-you/'.$order_id);
+                session()->flash('message', 'Order placed successfully!');
+
+                return redirect()->intended('/thank-you/'.$order_id);
+            }
         }
     }
 

@@ -51,6 +51,17 @@
         </div>
     </aside>
 
+    <!-- Banner Section -->
+    @if($banner_settings && !empty($banner_settings['banner_image']))
+    <div class="banner-section px-4">
+        <div class="text-center">
+            <a href="{{ $banner_settings['banner_url'] ?? '#' }}" class="btn btn-primary">
+                <img src="{{ Storage::disk('public')->url($banner_settings['banner_image']) }}" class="img-fluid" alt="{{ $banner_settings['banner_description'] }}">
+            </a>
+        </div>
+    </div>
+    @endif
+
     <button class="products-filter fixed top-1/2 z-40 -mt-5 hidden flex-col items-center justify-center rounded bg-accent p-3 pt-3.5 text-sm font-semibold text-light shadow-900 transition-colors duration-200 focus:outline-0 ltr:left-0 rtl:rounded-tr-none rtl:rounded-br-none ltr:rug-0 ltr:rounded-tl-none ltr:rounded-bl-none lg:flex bg-opacity-80">
         <i class="fa fa-filter"></i>
     </button>

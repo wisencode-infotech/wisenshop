@@ -53,7 +53,7 @@
                                     @endphp
                                     @if($notifications)
                                     @foreach($notifications as $notification)
-                                    <a href="javascript: void(0);" class="text-reset notification-item">
+                                    <a href="{{ $notification->url ?? 'javascript:void(0)' }}" class="text-reset notification-item">
                                         <div class="d-flex" style="padding: .75rem 1rem;">
                                             <div class="avatar-xs me-3">
                                                 <span class="avatar-title bg-primary rounded-circle font-size-16">

@@ -33,6 +33,10 @@ Route::middleware(['auth'])->group(function () {
     Route::resource('payment-method', PaymentMethodController::class);
     Route::resource('inquiry', InquiryController::class);
     Route::resource('notification', NotificationController::class);
+    
+    // Corrected route for changing the read status of notifications.
+    Route::post('notification/{notification}/{status}', [NotificationController::class, 'ChangeMarkAsReadUnRead'])->name('notification.markas');
+
     Route::get('settings', [SettingController::class, 'index'])->name('settings.index');
     Route::post('update-settings', [SettingController::class, 'update'])->name('settings.update');
 
@@ -49,7 +53,6 @@ Route::middleware(['auth'])->group(function () {
             Route::post('export', [OrderController::class, 'bulkExport'])->name('export');
             Route::post('update', [OrderController::class, 'bulkUpdate'])->name('update');
         });
-
     });
 
     Route::group(['prefix' => 'home-settings', 'as' => 'home-settings.'], function() {
@@ -57,5 +60,4 @@ Route::middleware(['auth'])->group(function () {
         Route::post('store', [HomePageSettingsController::class, 'store'])->name('store');
         Route::post('banner-store', [HomePageSettingsController::class, 'bannerStore'])->name('banner-store');
     });
-
 });

@@ -56,4 +56,29 @@
 @endsection
 @section('script')
 <script src="{{ asset('assets/backend/js/datatable/notifications.js') }}"></script>
+<script type="text/javascript">
+    $(document).on('click', '.update-notification-status', function(e) {
+    e.preventDefault();
+    
+    var notificationId = $(this).data('id');
+    var status = $(this).data('status');
+
+    $.ajax({
+        url: "{{ route('backend.notification.markas', ['notification' => '__id__', 'status' => '__status__']) }}"
+            .replace('__id__', notificationId)
+            .replace('__status__', status),
+        type: 'POST',
+        headers: {
+            'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+        },
+        success: function(response) {
+            toastr.success(response.message);
+            $('#notification-table').DataTable().ajax.reload(null, false); // Reload the DataTable
+        },
+        error: function(error) {
+            toastr.error('Something went wrong!');
+        }
+    });
+});
+</script>
 @endsection

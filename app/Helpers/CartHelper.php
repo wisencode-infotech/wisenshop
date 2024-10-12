@@ -260,7 +260,7 @@ class CartHelper
         ]);
 
         // Clear the cart after successful order placement
-        self::clearDatabaseCart();
+        // self::clearDatabaseCart();
 
         return $order->id;
     }

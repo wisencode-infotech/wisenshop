@@ -26,4 +26,9 @@ class Notification extends Model
     {
         return $this->belongsTo(User::class);
     }
+
+     public static function unreadCount()
+    {
+        return self::where('is_read', 0)->count();
+    }
 }

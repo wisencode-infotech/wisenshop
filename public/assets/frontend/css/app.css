@@ -155,4 +155,8 @@ button.reset_filter_btn:hover {
     border-width: 1px;
 }
 
+.home-sidebar-banner {
+    max-width: 345px;
+}
+
 /*End custom css*/

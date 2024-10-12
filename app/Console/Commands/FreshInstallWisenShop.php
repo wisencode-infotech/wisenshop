@@ -29,7 +29,7 @@ class FreshInstallWisenShop extends Command
     {
         // Ask for user confirmation before proceeding
         if (!$this->confirm('This will refresh the database and seed it. Are you sure you want to continue?')) {
-            $this->info('Operation cancelled.');
+            $this->info('Fresh install process cancelled.');
             return Command::SUCCESS;
         }
 

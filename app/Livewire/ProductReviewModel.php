@@ -5,7 +5,8 @@ namespace App\Livewire;
 use Livewire\Component;
 use Livewire\WithFileUploads;
 use App\Models\Product;
-use App\Models\ProductReview; // Import ProductReview model
+use App\Models\ProductReview;
+use Illuminate\Support\Facades\Auth;
 
 class ProductReviewModel extends Component
 {
@@ -43,7 +44,7 @@ class ProductReviewModel extends Component
 
         // Save the review to the database
         ProductReview::create([
-            'user_id' => auth()->id(), // Assuming the user is authenticated
+            'user_id' => Auth::id(), // Assuming the user is authenticated
             'product_id' => $this->product->id,
             'rating' => $this->rating,
             'review' => $this->comment,

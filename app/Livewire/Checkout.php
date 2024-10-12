@@ -182,6 +182,9 @@ class Checkout extends Component
                 $order_service = new OrderService();
                 $order_service->placeOrder($order);
 
+                // Clear the cart after successful order placement
+                CartHelper::clearDatabaseCart();
+
                 session()->flash('message', 'Order placed successfully!');
 
                 return redirect()->intended('/thank-you/'.$order_id);

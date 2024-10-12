@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Helpers\CartHelper;
 use App\Models\Order;
 use Illuminate\Http\Request;
 use App\Services\CoinPaymentsService;
@@ -89,10 +90,15 @@ class PaymentProcessController extends Controller
             // Payment failed
             $order_service->updateStatus(5);
 
+            $order_service->saveOrderTransaction($transaction_id, 'CANCELLED');
+
         } else {
             // Payment pending
-            // $order_service->updateStatus(1);
+            $order_service->saveOrderTransaction($transaction_id, 'UNPAID');
         }
+
+        // Clear the cart after successful order placement
+        CartHelper::clearDatabaseCart($order->user_id);
 
         // Send a 200 OK response back to CoinPayments
         return response('IPN handled', 200);

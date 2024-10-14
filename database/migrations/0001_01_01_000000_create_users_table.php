@@ -19,6 +19,14 @@ return new class extends Migration
             $table->string('password');
             $table->string('phone')->nullable();
             $table->string('profile_image')->nullable();
+
+            $table->string('role')->nullable()->default('ROLE_BUYER');
+            $table->decimal('credit', 11, 2)->nullable();
+            $table->string('affiliate_code')->nullable();
+            $table->string('referral_code')->nullable();
+            $table->decimal('commission', 12, 2)->nullable()->default(2);
+            $table->decimal('affiliate_earnings', 12, 2)->nullable()->default(2);
+
             $table->rememberToken();
             $table->timestamps();
             $table->softDeletes();

@@ -147,7 +147,8 @@ class DefaultSettingSeeder extends Seeder
         $general_site_settings = [
             'site_title' => 'Albertoshop',
             'site_currency' => 'EUR',
-            'is_franchisee' => false
+            'affiliate_commission' => 2,
+            'minimum_payout' => 0
         ];
 
         $setting_sort_number = 1;

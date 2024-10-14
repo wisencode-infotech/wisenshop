@@ -71,9 +71,7 @@
                               </h1>
 
                               <div class="flex items-center rtl:space-x-reverse">
-                                 @if ( empty(__setting('is_franchisee')) )
-                                    @livewire('remind-when-stock-available', ['product' => $product])
-                                 @endif
+                                 @livewire('remind-when-stock-available', ['product' => $product])
                                  <livewire:wishlist-button :product_id="$product->id" />
                               </div>
                            </div>
@@ -107,7 +105,7 @@
                                 @livewire('quantity-selector', ['product_id' => $product->id, 'layout' => 'large'])
                             </div>
 
-                            @if ( empty(__setting('is_franchisee')) )
+                            @if ( false )
                               @livewire('product-stock', ['product_id' => $product->id, 'layout' => 'product-detail'])
                             @endif
 

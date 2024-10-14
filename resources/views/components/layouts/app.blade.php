@@ -10,7 +10,7 @@
 
     @include('components.layouts.site-customizer')
 
-    <link rel="stylesheet" href="{{ mix('css/all.css') }}">
+    <link rel="stylesheet" href="{{ mix('assets/frontend/css/mix.css') }}">
 
     @livewireStyles
 </head>
@@ -59,7 +59,7 @@
 
     </script>
 
-    <script src="{{ mix('js/all.js') }}"></script>
+    <script src="{{ mix('assets/frontend/js/mix.js') }}"></script>
 
     @yield('scripts')
 

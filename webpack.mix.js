@@ -1,8 +1,7 @@
 const mix = require('laravel-mix');
 
 // JavaScript Files
-mix.js('resources/js/app.js', 'public/assets/frontend/js') // Save compiled app.js here
-   .scripts([
+mix.scripts([
        'public/assets/frontend/js/jquery.min.js',
        'public/assets/frontend/js/swiper-bundle.min.js',
        'public/assets/frontend/js/axios.min.js',

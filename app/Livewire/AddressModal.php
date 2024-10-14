@@ -37,6 +37,7 @@ class AddressModal extends Component
 
     public function resetFields()
     {
+        $this->id = '';
         $this->address = '';
         $this->city = '';
         $this->state = '';

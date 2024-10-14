@@ -159,4 +159,10 @@ button.reset_filter_btn:hover {
     max-width: 345px;
 }
 
+@media (max-width: 768px) {
+    .absolute-right-minus-21px {
+        right: -21px;
+    }
+}
+
 /*End custom css*/

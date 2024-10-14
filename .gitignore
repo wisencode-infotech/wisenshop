@@ -20,3 +20,5 @@ composer.lock
 /.idea
 /.vscode
 /.zed
+/public/assets/frontend/css/mix.css
+/public/assets/frontend/js/mix.js

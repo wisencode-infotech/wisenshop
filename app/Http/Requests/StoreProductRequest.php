@@ -26,7 +26,7 @@ class StoreProductRequest extends FormRequest
             'description' => 'required|string',
             'price' => 'required|numeric|min:0',
             'stock' => 'nullable|integer|min:0',
-            'images.*' => 'nullable|image|mimes:jpeg,png,jpg,gif,svg|max:2048',
+            'images.*' => 'nullable|image|mimes:jpeg,png,webp,jpg,gif,svg|max:2048',
             'unit_id' => 'required|exists:product_units,id',
         ];
 
@@ -57,7 +57,7 @@ class StoreProductRequest extends FormRequest
             'price.required' => 'Price is required.',
             'price.numeric' => 'Price must be a valid number.',
             'images.*.image' => 'Uploaded file must be an image.',
-            'images.*.mimes' => 'Image must be a file of type: jpeg, png, jpg, gif, svg.',
+            'images.*.mimes' => 'Image must be a file of type: jpeg, png,webp, jpg, gif, svg.',
             'unit_id.required' => 'Please select a product unit.',
             'unit_id.exists' => 'Selected unit does not exist.',
             'variations.*.name.required' => 'Variation name is required.',

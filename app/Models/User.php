@@ -24,6 +24,15 @@ class User extends Authenticatable
         'email',
         'password',
         'phone',
+        'profile_image',
+        'role',
+        'credit',
+        'role',
+        'credit',
+        'affiliate_code',
+        'referral_code',
+        'commission',
+        'affiliate_earnings',
     ];
 
     /**

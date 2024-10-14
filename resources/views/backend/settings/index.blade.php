@@ -83,11 +83,6 @@
                                                         </option>
                                                     @endforeach
                                                 </select>
-                                            @elseif ($setting->key === 'is_franchisee')
-                                            <div class="simple-switch">
-                                                <input type="checkbox" id="square-switch{{ $setting->id }}" name="settings[{{ $setting->key }}]" switch="none" value="1" {{ $setting->value == true ? 'checked' : '' }}>
-                                                <label for="square-switch{{ $setting->id }}" data-on-label="Yes" data-off-label="No"></label>
-                                            </div>
                                             @else
                                                 <input type="text" name="settings[{{ $setting->key }}]"
                                                     class="form-control @error('settings.' . $setting->key) is-invalid @enderror"

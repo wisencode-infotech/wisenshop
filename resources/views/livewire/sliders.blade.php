@@ -11,14 +11,6 @@
                         </div>
                     </div>
                     @endforeach
-                    @foreach($banners as $banner_key => $banner)
-                    <div class="swiper-slide">
-                        <div class="banner-slide-content" style="background-image: url({{ $banner->image_url  }});">
-                            <h2 class="banner-title">{{ $banner->title }}</h2>
-                            <p class="banner-description">{{ $banner->description }}</p>
-                        </div>
-                    </div>
-                    @endforeach
                 </div>
             </div>
             <div class="next absolute top-2/4 z-10 -mt-4 flex h-8 w-8 cursor-pointer items-center justify-center rounded-full border border-border-200 border-opacity-70 bg-light text-heading shadow-xl transition-all duration-200 hover:border-accent hover:bg-accent hover:text-light ltr:-right-4 rtl:-left-4 md:-mt-5 md:h-9 md:w-9 ltr:md:-right-5 swiper-button-disabled" role="button"><span class="sr-only">Next</span><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" width="18" height="18">

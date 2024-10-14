@@ -10,14 +10,7 @@
 
     @include('components.layouts.site-customizer')
 
-    <link rel="stylesheet" href="{{asset('assets/frontend/css/main.css')}}"/>
-    <link rel="stylesheet" href="{{asset('assets/frontend/css/rc-style.css')}}"/>
-    <link rel="stylesheet" href="{{asset('assets/frontend/css/style.css')}}">
-    <link rel="stylesheet" href="{{asset('assets/frontend/css/app.css')}}">
-
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css" />
-
-    <link href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="{{ mix('assets/frontend/css/mix.css') }}">
 
     @livewireStyles
 </head>
@@ -34,32 +27,30 @@
                         {{ $slot }}
                     </div>
 
-                    @livewire('mobile-navbar')
+                    <div wire:ignore>
+                        @livewire('mobile-navbar')
+                    </div>
 
-                    @if (!request()->routeIs('frontend.home'))
-                        @livewire('footer')
-                    @endif
+                    <div wire:ignore>
+                        @if (!request()->routeIs('frontend.home'))
+                            @livewire('footer')
+                        @endif
+                    </div>
                 </div>
             </main>
         </div>
     </div>
 
-    @livewire('mobile-header-filter')
+    
+    <div wire:ignore>
+        @livewire('mobile-header-filter')
+    </div>
 
-    @livewire('notification-toast')
+    <div wire:ignore>
+        @livewire('notification-toast')
+    </div>
 
     @livewireScripts
-
-    <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
-
-    <!-- Swiper JS -->
-    <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
-
-    <script src="https://kit.fontawesome.com/76125ef05e.js" crossorigin="anonymous"></script>
-
-    <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
-
-    @yield('scripts')
 
     <script>
         
@@ -68,11 +59,11 @@
 
     </script>
 
-    <script src="{{ asset('assets/frontend/js/app.js') }}"></script>
+    <script src="{{ mix('assets/frontend/js/mix.js') }}"></script>
 
-    <script src="{{ asset('assets/frontend/js/preferences.js') }}"></script>
+    @yield('scripts')
 
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.js"></script>
+    <script src="https://kit.fontawesome.com/76125ef05e.js" crossorigin="anonymous"></script>
 
     <script>
         toastr.options = {

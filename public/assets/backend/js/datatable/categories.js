@@ -16,6 +16,7 @@ $(document).ready(function () {
                 orderable: false,
                 searchable: false
             },
+            { data: 'order', name: 'order' },
             { 
                 data: 'action', 
                 name: 'action', 

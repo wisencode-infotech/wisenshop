@@ -40,6 +40,7 @@
                                     <th scope="col">name</th>
                                     <th scope="col">Slug</th>
                                     <th scope="col">Image</th>
+                                    <th scope="col">Sorting Order</th>
                                     <th scope="col">Action</th>
                                 </tr>
                             </thead>

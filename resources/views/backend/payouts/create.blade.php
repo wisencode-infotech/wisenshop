@@ -43,7 +43,7 @@
 
                             <div class="mb-3">
                                 <label for="iban" class="form-label">IBAN</label>
-                                <input type="text" name="iban" class="form-control @error('iban') is-invalid @enderror" id="iban" placeholder="Enter IBAN" value="{{ old('iban') }}">
+                                <input type="text" name="iban" class="form-control @error('iban') is-invalid @enderror" id="iban" placeholder="Enter IBAN" value="{{ old('iban', auth()->user()->ibans) }}">
                                 @error('iban')
                                     <span class="invalid-feedback">{{ $message }}</span>
                                 @enderror

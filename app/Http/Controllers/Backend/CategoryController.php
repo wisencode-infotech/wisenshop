@@ -82,6 +82,7 @@ class CategoryController extends Controller
             'name' => $request->name,
             'slug' => $slug,
             'image_path' => $imagePath,
+            'order' => $request->order,
             'description' => !empty($request->description) ? $request->description : null,
         ]);
 
@@ -119,7 +120,8 @@ class CategoryController extends Controller
 
         $data = [
             'name' => $request->name,
-            'description' => $request->description
+            'description' => $request->description,
+            'order' => $request->order,
         ];
 
          // Handle image upload if a new image is provided

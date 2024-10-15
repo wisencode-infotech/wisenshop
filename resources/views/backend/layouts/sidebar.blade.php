@@ -16,6 +16,19 @@
                     </a>
                 </li>
 
+                @if(__currentUserRole() == 'ROLE_ADMIN')
+
+                <li>
+                    <a href="javascript: void(0);" class="has-arrow waves-effect">
+                        <i class="bx bx-user"></i>
+                        <span key="t-ecommerce">Users</span>
+                    </a>
+                    <ul class="sub-menu" aria-expanded="false">
+                        <li><a href="{{ route('backend.users.create') }}" key="t-products">Add New</a></li>
+                        <li><a href="{{ route('backend.users.index') }}" key="t-product-detail">All</a></li>
+                    </ul>
+                </li>
+                
                 <li>
                     <a href="javascript: void(0);" class="has-arrow waves-effect">
                         <i class="bx bxs-gift"></i>
@@ -37,6 +50,7 @@
                         <li><a href="{{ route('backend.site-banner.index') }}" key="t-product-detail">All</a></li>
                     </ul>
                 </li>
+                @endif
 
                 <li>
                     <a href="javascript: void(0);" class="has-arrow waves-effect">
@@ -49,6 +63,7 @@
                     </ul>
                 </li>
 
+                @if(__currentUserRole() == 'ROLE_ADMIN')
                 <li>
                     <a href="javascript: void(0);" class="has-arrow waves-effect">
                         <i class="mdi mdi-flask-round-bottom-outline"></i>
@@ -140,6 +155,7 @@
                         <span key="t-calendar">Settings</span>
                     </a>
                 </li>
+
                 
                 <li>
                     <a href="{{ route('backend.home-settings.index') }}" class="waves-effect">
@@ -147,6 +163,7 @@
                         <span key="t-calendar">Home Page Settings</span>
                     </a>
                 </li>
+                @endif
             </ul>
         </div>
         <!-- Sidebar -->

@@ -16,15 +16,22 @@ use App\Http\Controllers\Backend\NotificationController;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Backend\SettingController;
+use App\Http\Controllers\Backend\UserController;
+
 
 Auth::routes();
 
 Route::get('/', [HomeController::class, 'root'])->name('home');
 
-Route::middleware(['auth'])->group(function () {
+
+Route::middleware(['auth', 'check.role:ROLE_ADMIN,ROLE_FRANCHISE'])->group(function () {
+    Route::resource('product', ProductController::class);
+});
+
+Route::middleware(['auth', 'check.role:ROLE_ADMIN'])->group(function () {
     Route::resource('category', CategoryController::class);
     Route::resource('site-banner', SiteBannerController::class);
-    Route::resource('product', ProductController::class);
+
     Route::resource('product-unit', ProductUnitController::class);
     Route::resource('translation', TranslationController::class);
     Route::resource('order', OrderController::class);
@@ -33,6 +40,9 @@ Route::middleware(['auth'])->group(function () {
     Route::resource('payment-method', PaymentMethodController::class);
     Route::resource('inquiry', InquiryController::class);
     Route::resource('notification', NotificationController::class);
+    
+    Route::resource('users', UserController::class);
+
     
     // Corrected route for changing the read status of notifications.
     Route::post('notification/{notification}/{status}', [NotificationController::class, 'ChangeMarkAsReadUnRead'])->name('notification.markas');

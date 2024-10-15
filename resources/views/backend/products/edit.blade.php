@@ -115,7 +115,7 @@
 
                             <div class="mb-3" id="stock-container">
                                 <label for="stock" class="form-label">Stock</label>
-                                <input type="number" name="stock" class="form-control @error('stock') is-invalid @enderror" id="stock" placeholder="Enter product stock" value="{{ old('stock', $product->stock) }}">
+                                <input type="number" name="stock" class="form-control @error('stock') is-invalid @enderror" id="stock" placeholder="Enter product stock" value="{{ old('stock', __productStock($product->id)) }}">
                                 @error('stock')
                                 <span class="invalid-feedback">{{ $message }}</span>
                                 @enderror
@@ -201,7 +201,7 @@
                                             </div>
                                             <div class="col-md-2">
                                                 <label for="variation_stock" class="form-label">Stock</label>
-                                                <input type="number" name="variations[{{ $index }}][stock]" class="form-control" value="{{ old('variations.' . $index . '.stock', $variation->stock) }}">
+                                                <input type="number" name="variations[{{ $index }}][stock]" class="form-control" value="{{ old('variations.' . $index . '.stock', __productStock($product->id, $variation->id)) }}">
                                                 @error('variations.' . $index . '.stock')
                                                     <span class="text-danger">{{ $message }}</span>
                                                 @enderror

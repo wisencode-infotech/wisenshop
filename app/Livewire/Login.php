@@ -25,18 +25,29 @@ class Login extends Component
 
         if (Auth::attempt(['email' => $this->email, 'password' => $this->password])) {
 
-            // Sync session cart to user
-            CartHelper::syncToDatabse();
+            if (Auth::user()->role != 'ROLE_BUYER') { // Prevent users being logged in with role <> ROLE_BUYER
+                Auth::logout();
+                
+                session()->invalidate();
+                session()->regenerateToken();
 
-            // Sync session wishlist to user
-            WishlistHelper::syncWishlistToUser();
+                $this->addError('email', __trans('Your account is not eligible for buying.'));
 
-            $this->dispatch('shoppingCartUpdated');
+                return;
+            } else { // successful login attempt
+                // Sync session cart to user
+                CartHelper::syncToDatabse();
 
-            return redirect()->intended('/');
+                // Sync session wishlist to user
+                WishlistHelper::syncWishlistToUser();
+
+                $this->dispatch('shoppingCartUpdated');
+
+                return redirect()->intended('/');
+            }
         } else {
             // Handle failed authentication
-            $this->addError('email', 'The provided credentials do not match our records.');
+            $this->addError('email', __trans('The provided credentials do not match our records.'));
         }
     }
 

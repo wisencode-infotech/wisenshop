@@ -14,10 +14,10 @@ class SetLocale
      */
     public function handle($request, Closure $next)
     {
-        if (empty(app()->getLocale()))
-            session()->put('app_locale', config('locale', 'es'));
+        if ( empty(app()->getLocale()) || empty(session('app_locale')) )
+            session()->put('app_locale', config('app.locale', 'es'));
         
-        App::setLocale(session('app_locale'), config('locale', 'es'));
+        App::setLocale(session('app_locale'), config('app.locale', 'es'));
 
         return $next($request);
     }

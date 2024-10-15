@@ -93,34 +93,14 @@ class Product extends Model
         return $this->priceWithCurrency($currency_code);
     }
 
-    public function getTotalReviewsAttribute()
+    public function getTotalReviewsAttribute($rating = null)
     {
-        return $this->reviews()->select('id')->count();
-    }
+        $reviews = $this->reviews();
 
-    public function getTotal5StarReviewsAttribute()
-    {
-        return $this->reviews()->select('id')->where('rating', 5)->count();
-    }
+        if (!is_null($rating))
+            $reviews = $reviews->where('rating', $rating);
 
-    public function getTotal4StarReviewsAttribute()
-    {
-        return $this->reviews()->select('id')->where('rating', 4)->count();
-    }
-
-    public function getTotal3StarReviewsAttribute()
-    {
-        return $this->reviews()->select('id')->where('rating', 3)->count();
-    }
-
-    public function getTotal2StarReviewsAttribute()
-    {
-        return $this->reviews()->select('id')->where('rating', 2)->count();
-    }
-
-    public function getTotal1StarReviewsAttribute()
-    {
-        return $this->reviews()->select('id')->where('rating', 1)->count();
+        return $reviews->select('id')->count();
     }
 
     public function getAverageRatingAttribute()

@@ -11,12 +11,11 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('franchise_affiliate_payouts', function (Blueprint $table) {
+        Schema::create('user_roles', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('user_id')->comment('for_franchise_users')->constrained('users')->onDelete('cascade');
-            $table->string('iban')->nullable();
-            $table->string('status')->nullable()->default('pending');
+            $table->string('role');
             $table->timestamps();
+            $table->softDeletes();
         });
     }
 
@@ -25,6 +24,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('franchise_affiliate_payouts');
+        Schema::dropIfExists('user_roles');
     }
 };

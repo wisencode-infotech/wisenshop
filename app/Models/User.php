@@ -25,7 +25,7 @@ class User extends Authenticatable
         'password',
         'phone',
         'profile_image',
-        'role',
+        'user_role_id',
         'credit',
         'role',
         'credit',

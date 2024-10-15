@@ -148,7 +148,7 @@
                       @foreach ([5, 4, 3, 2, 1] as $star)
 
                           @php
-                              $count = $product->{'total_' . $star . '_star_reviews'};
+                              $count = $count = $product->getTotalReviewsAttribute($star);
                               $percentage = $product->total_reviews > 0 ? ($count / $product->total_reviews) * 100 : 0;
                               $color = config('general.review_colors.' . $star); // Get the color for the current star
                           @endphp

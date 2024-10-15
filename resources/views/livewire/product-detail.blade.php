@@ -105,7 +105,7 @@
                                 @livewire('quantity-selector', ['product_id' => $product->id, 'layout' => 'large'])
                             </div>
 
-                            @if ( false )
+                            @if ( empty(__setting('is_franchisee')) )
                               @livewire('product-stock', ['product_id' => $product->id, 'layout' => 'product-detail'])
                             @endif
 

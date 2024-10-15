@@ -53,13 +53,7 @@
                                 <p class="form-control-plaintext">{{ $product->name }}</p>
                             </div>
 
-                            @foreach($units as $unit)
-                                @if($product->unit_id == $unit->id)
-                                    @php $can_have_variations = $unit->can_have_variations; @endphp
-                                @endif
-                            @endforeach    
-
-                            @if(!$can_have_variations)
+                            @if($product->variations->isEmpty())
                             <!-- Stock -->
                             <div class="mb-3" id="stock-container">
                                 <label for="stock" class="form-label">Stock</label>
@@ -74,7 +68,7 @@
                     </div>
                 </div>
 
-                <!-- Product Variations -->
+            <!-- Product Variations -->
             @if($product->variations->isNotEmpty())
             <div class="col-6" id="variations-section">
                 <div class="card">

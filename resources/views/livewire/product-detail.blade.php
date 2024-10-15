@@ -126,7 +126,9 @@
                      <p class="text-sm text-body react-editor-description">{!! $product->description !!}</p>
 
 
-                     
+                     <div>
+                        <livewire:franchise-product :product_id="$product->id" />
+                     </div>
 
                   </div>
 

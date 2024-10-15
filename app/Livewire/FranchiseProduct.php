@@ -19,17 +19,18 @@ class FranchiseProduct extends Component
             ->with(['user', 'product', 'variation']) // Eager load relationships
             ->get();
 
-
+        // Group by user_id
         $this->franchise_grouped_availabilities = $availabilities->groupBy('user_id')->map(function ($items) {
             return [
                 'user' => $items->first()->user, // Get the user object from the first item
                 'availabilities' => $items,
             ];
-        });
+        });    
     }
 
     public function render()
     {
+        
         return view('livewire.franchise-product', [
             'availabilities' => $this->franchise_grouped_availabilities,
         ]);

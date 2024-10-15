@@ -2,6 +2,7 @@
 
 namespace Database\Factories;
 
+use App\Models\UserRole;
 use Illuminate\Database\Eloquent\Factories\Factory;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Str;
@@ -23,6 +24,8 @@ class UserFactory extends Factory
      */
     public function definition(): array
     {
+        $user_role_ids = UserRole::where('role', '<>', 'admin')->pluck('id')->toArray();
+        
         return [
             'name' => fake()->name(),
             'email' => fake()->unique()->safeEmail(),
@@ -30,6 +33,7 @@ class UserFactory extends Factory
             'password' => static::$password ??= Hash::make('password'),
             'phone' => fake()->phoneNumber(),
             'remember_token' => Str::random(10),
+            'user_role_id' => $user_role_ids[array_rand($user_role_ids)]
         ];
     }
 

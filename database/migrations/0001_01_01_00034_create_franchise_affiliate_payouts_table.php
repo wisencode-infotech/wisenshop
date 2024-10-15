@@ -15,6 +15,7 @@ return new class extends Migration
             $table->id();
             $table->foreignId('user_id')->comment('for_franchise_users')->constrained('users')->onDelete('cascade');
             $table->string('iban')->nullable();
+            $table->string('status')->nullable()->default('pending');
             $table->timestamps();
         });
     }

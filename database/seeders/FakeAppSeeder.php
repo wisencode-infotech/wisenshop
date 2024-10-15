@@ -10,13 +10,12 @@ use App\Models\PaymentMethod;
 use App\Models\Product;
 use App\Models\SiteBanner;
 use App\Models\User;
-use App\Models\Setting;
 use App\Models\ProductUnit;
 use App\Models\Currency;
 use App\Models\ProductReview;
 use App\Models\Notification;
+use App\Models\UserRole;
 use Illuminate\Database\Seeder;
-use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Str;
 
@@ -27,13 +26,33 @@ class FakeAppSeeder extends Seeder
      */
     public function run(): void
     {
+        // User roles seeder
+
+        UserRole::insert([
+            [
+                'id' => 1,
+                'role' => 'admin',
+                'created_at' => date('Y-m-d H:i:s')
+            ],
+            [
+                'id' => 2,
+                'role' => 'buyer',
+                'created_at' => date('Y-m-d H:i:s')
+            ],
+            [
+                'id' => 3,
+                'role' => 'franchise',
+                'created_at' => date('Y-m-d H:i:s')
+            ]
+        ]);
+
         // User seeder
 
         User::create([
             'name' => 'Administrator',
             'email' => 'admin@example.com',
             'password' => Hash::make('cbd2024!#'),
-            'role' => 'ROLE_ADMIN',
+            'user_role_id' => 1
         ]);
 
         User::factory(10)->create();

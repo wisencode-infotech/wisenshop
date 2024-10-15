@@ -55,7 +55,7 @@
                         <path d="M6.002 5.03L10.539.265a.826.826 0 011.211 0 .94.94 0 010 1.275l-5.141 5.4a.827.827 0 01-1.183.026L.249 1.545a.937.937 0 010-1.275.826.826 0 011.211 0z" fill="currentColor"></path>
                     </svg>
                 </div>
-                <ul class="shadow-dropDown invisible absolute top-full z-30 rounded-md bg-light py-4 opacity-0 shadow transition-all duration-300 group-hover:visible group-hover:opacity-100  xl:w-[100px]">
+                <ul class="shadow-dropDown invisible absolute top-full z-30 rounded-md bg-light py-4 opacity-0 shadow transition-all duration-300 group-hover:visible group-hover:opacity-100  xl:w-[100px] absolute-right-minus-21px">
                     @foreach(__languages() as $language)
                         <li class="menu-child-item font-chivo hover:filter-green group py-[10px] px-[22px] transition-all duration-200 hover:pl-[25px] hover:opacity-100">
                             <a class="flex items-center font-normal text-heading no-underline transition duration-200 hover:text-accent focus:text-accent" href="{{ route('frontend.change.locale', $language->code) }}">

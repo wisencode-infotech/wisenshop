@@ -16,6 +16,22 @@
                     </a>
                 </li>
 
+                @if(__currentUserRole() == 'franchise')
+                <li>
+                    <a href="{{ route('backend.my-referrals') }}" class="waves-effect">
+                        <i class="bx bx-user"></i>
+                        <span key="t-calendar">My Referrals</span>
+                    </a>
+                </li>
+
+                <li>
+                    <a href="{{ route('backend.payouts') }}" class="waves-effect">
+                        <i class="bx bx-money"></i>
+                        <span key="t-calendar">Payouts</span>
+                    </a>
+                </li>
+                @endif
+
                 @if(__currentUserRole() == 'admin')
 
                 <li>

@@ -124,7 +124,12 @@
                   <div class="border-b border-border-200 border-opacity-70 px-5 py-4 lg:px-16 lg:py-14">
                      <h2 class="mb-4 text-lg font-semibold tracking-tight text-heading md:mb-6">{{ __trans('Description') }}</h2>
                      <p class="text-sm text-body react-editor-description">{!! $product->description !!}</p>
+
+
+                     
+
                   </div>
+
                </article>
 
                <div class="p-5 md:py-12 lg:px-16">
@@ -176,48 +181,9 @@
                         <h2 class="mt-3 text-lg font-semibold tracking-tight text-heading sm:mt-0">{{ __trans('Product Reviews') }} ({{ $product->total_reviews }})</h2>
                         <div class="flex flex-col items-center border-border-200 border-opacity-70 py-3 sm:space-y-1 ltr:sm:border-l rtl:sm:border-r lg:flex-row lg:space-y-0 lg:!border-0 lg:py-0">
                            <div class="w-full shrink-0 border-border-200 border-opacity-70 ltr:sm:pl-8 ltr:sm:pr-5 rtl:sm:pl-5 rtl:sm:pr-8 lg:w-auto lg:py-5 ltr:lg:border-l rtl:lg:border-r">
-                              <!-- <div class="flex items-center">
-                                 <span class="min-w-[50px] text-sm text-body ltr:mr-2 rtl:ml-2">Sort By :</span>
-                                 <div class=" css-b62m3t-container">
-                                    <span id="react-select-2-live-region" class="css-7pg0cj-a11yText"></span><span aria-live="polite" aria-atomic="false" aria-relevant="additions text" role="log" class="css-7pg0cj-a11yText"></span>
-                                    <div class=" css-1fxaex9">
-                                       <div class=" css-7u2net">
-                                          <div class=" css-1ek5eys-singleValue">Ratings: Low to High</div>
-                                          <input id="react-select-2-input" tabindex="0" inputmode="none" aria-autocomplete="list" aria-expanded="false" aria-haspopup="true" role="combobox" aria-activedescendant="" aria-readonly="true" class="css-1hac4vs-dummyInput" value="">
-                                       </div>
-                                       <div class=" css-1wy0on6">
-                                          <span class=" css-1hyfx7x"></span>
-                                          <div class=" css-1jtba1a-indicatorContainer" aria-hidden="true">
-                                             <svg height="20" width="20" viewBox="0 0 20 20" aria-hidden="true" focusable="false" class="css-8mmkcg">
-                                                <path d="M4.516 7.548c0.436-0.446 1.043-0.481 1.576 0l3.908 3.747 3.908-3.747c0.533-0.481 1.141-0.446 1.574 0 0.436 0.445 0.408 1.197 0 1.615-0.406 0.418-4.695 4.502-4.695 4.502-0.217 0.223-0.502 0.335-0.787 0.335s-0.57-0.112-0.789-0.335c0 0-4.287-4.084-4.695-4.502s-0.436-1.17 0-1.615z"></path>
-                                             </svg>
-                                          </div>
-                                       </div>
-                                    </div>
-                                 </div>
-                              </div> -->
+                              
                            </div>
                            <div class="w-full shrink-0 border-border-200 border-opacity-70 ltr:sm:pl-8 ltr:sm:pr-5 rtl:sm:pl-5 rtl:sm:pr-8 lg:w-auto lg:py-5 ltr:lg:border-l rtl:lg:border-r">
-                              <!-- <div class="flex items-center">
-                                 <span class="min-w-[50px] text-sm text-body ltr:mr-2 rtl:ml-2">Filter :</span>
-                                 <div class=" css-b62m3t-container">
-                                    <span id="react-select-3-live-region" class="css-7pg0cj-a11yText"></span><span aria-live="polite" aria-atomic="false" aria-relevant="additions text" role="log" class="css-7pg0cj-a11yText"></span>
-                                    <div class=" css-xnv90r">
-                                       <div class=" css-7u2net">
-                                          <div class=" css-1ek5eys-singleValue">5 Star</div>
-                                          <input id="react-select-3-input" tabindex="0" inputmode="none" aria-autocomplete="list" aria-expanded="false" aria-haspopup="true" role="combobox" aria-activedescendant="" aria-readonly="true" class="css-1hac4vs-dummyInput" value="">
-                                       </div>
-                                       <div class=" css-1wy0on6">
-                                          <span class=" css-1hyfx7x"></span>
-                                          <div class=" css-1jtba1a-indicatorContainer" aria-hidden="true">
-                                             <svg height="20" width="20" viewBox="0 0 20 20" aria-hidden="true" focusable="false" class="css-8mmkcg">
-                                                <path d="M4.516 7.548c0.436-0.446 1.043-0.481 1.576 0l3.908 3.747 3.908-3.747c0.533-0.481 1.141-0.446 1.574 0 0.436 0.445 0.408 1.197 0 1.615-0.406 0.418-4.695 4.502-4.695 4.502-0.217 0.223-0.502 0.335-0.787 0.335s-0.57-0.112-0.789-0.335c0 0-4.287-4.084-4.695-4.502s-0.436-1.17 0-1.615z"></path>
-                                             </svg>
-                                          </div>
-                                       </div>
-                                    </div>
-                                 </div>
-                              </div> -->
                            </div>
                         </div>
                      </div>

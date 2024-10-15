@@ -279,20 +279,6 @@ if (!function_exists('__currentUserRole'))
     }
 }
 
-// if (!function_exists('__productDisabled')) 
-// {
-//     function __productDisabled()
-//     {
-//         if (auth()->check()) {
-//             if(auth()->user()->userRole->role == 'franchise'){
-//                 return 'disabled';
-//             }
-//         }
-
-//         return '';
-//     }
-// }
-
 if (!function_exists('__productStock')) 
 {
     function __productStock($product_id, $product_variation_id = null)

@@ -18,6 +18,9 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Backend\SettingController;
 use App\Http\Controllers\Backend\UserController;
 use App\Http\Controllers\Backend\FranchiseProductController;
+use App\Http\Controllers\Backend\MyReferralController;
+use App\Http\Controllers\Backend\PayoutController;
+
 
 
 Auth::routes();
@@ -27,8 +30,12 @@ Route::get('/', [HomeController::class, 'root'])->name('home');
 
 Route::middleware(['auth', 'check.role:admin,franchise'])->group(function () {
     Route::resource('product', ProductController::class);
+});
+
+Route::middleware(['auth', 'check.role:franchise'])->group(function () {
     Route::resource('franchise-product', FranchiseProductController::class);
-    
+    Route::get('my-referrals', [MyReferralController::class, 'index'])->name('my-referrals');
+    Route::get('payouts', [PayoutController::class, 'index'])->name('payouts');
 });
 
 Route::middleware(['auth', 'check.role:admin'])->group(function () {

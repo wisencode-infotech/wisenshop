@@ -43,13 +43,13 @@
                             
                             <!-- Category -->
                             <div class="mb-3">
-                                <label class="form-label">Category:</label>
+                                <label class="form-label">Category</label>
                                 <p class="form-control-plaintext">{{ $product->category->name }}</p>
                             </div>
 
                             <!-- Product Name -->
                             <div class="mb-3">
-                                <label class="form-label">Product Name:</label>
+                                <label class="form-label">Product Name</label>
                                 <p class="form-control-plaintext">{{ $product->name }}</p>
                             </div>
 
@@ -88,17 +88,23 @@
                                         <input type="hidden" name="variations[{{ $index }}][id]" value="{{ $variation->id }}">
                                         <!-- Variation Name -->
                                         <div class="col-md-3">
-                                            <label class="form-label">Variation Name:</label>
+                                            @if($index == 0)
+                                            <label class="form-label">Variation Name</label>
+                                            @endif
                                             <p class="form-control-plaintext">{{ $variation->name }}</p>
                                         </div>
                                         <!-- Variation Price -->
                                         <div class="col-md-3">
-                                            <label class="form-label">Price:</label>
+                                            @if($index == 0)
+                                            <label class="form-label">Price</label>
+                                            @endif
                                             <p class="form-control-plaintext">{{ $variation->price }}</p>
                                         </div>
                                         <!-- Variation Stock -->
                                         <div class="col-md-2">
+                                            @if($index == 0)
                                             <label for="variation_stock" class="form-label">Stock</label>
+                                            @endif
                                             <input type="number" name="variations[{{ $index }}][stock]" class="form-control" value="{{ old('variations.' . $index . '.stock', __productStock($product->id, $variation->id)) }}">
                                             @error('variations.' . $index . '.stock')
                                                 <span class="text-danger">{{ $message }}</span>

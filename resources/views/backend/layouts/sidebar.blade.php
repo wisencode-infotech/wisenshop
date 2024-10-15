@@ -16,7 +16,7 @@
                     </a>
                 </li>
 
-                @if(__currentUserRole() == 'ROLE_ADMIN')
+                @if(__currentUserRole() == 'admin')
 
                 <li>
                     <a href="javascript: void(0);" class="has-arrow waves-effect">
@@ -58,12 +58,14 @@
                         <span key="t-ecommerce">Products</span>
                     </a>
                     <ul class="sub-menu" aria-expanded="false">
+                        @if(__currentUserRole() == 'admin')
                         <li><a href="{{ route('backend.product.create') }}" key="t-products">Add New</a></li>
+                        @endif
                         <li><a href="{{ route('backend.product.index') }}" key="t-product-detail">All</a></li>
                     </ul>
                 </li>
 
-                @if(__currentUserRole() == 'ROLE_ADMIN')
+                @if(__currentUserRole() == 'admin')
                 <li>
                     <a href="javascript: void(0);" class="has-arrow waves-effect">
                         <i class="mdi mdi-flask-round-bottom-outline"></i>

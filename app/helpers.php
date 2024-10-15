@@ -272,18 +272,32 @@ if (!function_exists('__currentUserRole'))
     function __currentUserRole()
     {
         if (auth()->check()) {
-            return auth()->user()->role;
+            return auth()->user()->userRole->role;
         }
 
-        return 'ROLE_BUYER';
+        return 'buyer';
     }
 }
+
+// if (!function_exists('__productDisabled')) 
+// {
+//     function __productDisabled()
+//     {
+//         if (auth()->check()) {
+//             if(auth()->user()->userRole->role == 'franchise'){
+//                 return 'disabled';
+//             }
+//         }
+
+//         return '';
+//     }
+// }
 
 if (!function_exists('__productStock')) 
 {
     function __productStock($product_id, $product_variation_id = null)
     {
-        if (__currentUserRole() == 'ROLE_FRANCHISE') {
+        if (__currentUserRole() == 'franchise') {
 
             $franchise_product = FranchiseProductAvailability::where('product_id', $product_id);
 

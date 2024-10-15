@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Backend;
 
 use App\Models\User;
+use App\Models\UserRole;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Storage;
@@ -14,7 +15,7 @@ class UserController extends Controller
     public function index(Request $request)
     {
         if ($request->ajax()) {
-            $data = User::where('role','!=','ROLE_ADMIN')->latest()->get();
+            $data = User::where('user_role_id','!=',1)->latest()->get();
             return Datatables::of($data)
                 ->addIndexColumn() // Adds row index
                 ->addColumn('name', function($row) {
@@ -23,11 +24,11 @@ class UserController extends Controller
                 ->addColumn('email', function($row) {
                     return $row->email;
                 })
-                ->addColumn('role', function($row) {
+                ->addColumn('user_role_id', function($row) {
                     // Display the role with a badge
-                    if ($row->role == 'ROLE_FRANCHISE') {
+                    if ($row->userRole->role == 'franchise') {
                         return '<span class="badge rounded-pill badge-soft-primary font-size-12">Franchise</span>';
-                    } else if ($row->role == 'ROLE_BUYER') {
+                    } else if ($row->userRole->role == 'buyer') {
                         return '<span class="badge rounded-pill badge-soft-info font-size-12">Buyer</span>';
                     }
                 })
@@ -36,7 +37,7 @@ class UserController extends Controller
                     $btn .= ' <button class="btn btn-danger btn-sm delete" data-id="'.$row->id.'">Delete</button>';
                     return $btn;
                 })
-                ->rawColumns(['action', 'role', 'status'])
+                ->rawColumns(['action', 'user_role_id', 'status'])
                 ->make(true);
         }
 
@@ -46,7 +47,7 @@ class UserController extends Controller
     // Show create form
     public function create()
     {
-        $roles = ['ROLE_FRANCHISE', 'ROLE_BUYER'];
+        $roles = UserRole::where('role', '!=', 'admin')->get();
         return view('backend.users.create', compact('roles'));
     }
 
@@ -58,7 +59,7 @@ class UserController extends Controller
             'email' => 'required|string|email|max:255|unique:users',
             'password' => 'required|string|min:8',
             'phone' => 'required|nullable|string|max:15',
-            'role' => 'required|in:ROLE_BUYER,ROLE_FRANCHISE',
+            'role' => 'required',
             'profile_image' => 'nullable|image|mimes:jpeg,png,jpg,gif|max:2048',
         ]);
 
@@ -75,7 +76,7 @@ class UserController extends Controller
             'email' => $request->email,
             'password' => Hash::make($request->password),
             'phone' => $request->phone,
-            'role' => $request->role ?? 'ROLE_FRANCHISE',
+            'user_role_id' => $request->role,
             'profile_image' => $imagePath,
             'status' => 1, // Default to active
         ]);
@@ -87,7 +88,7 @@ class UserController extends Controller
     public function edit($id)
     {
         $user = User::findOrFail($id);
-        $roles = ['ROLE_BUYER', 'ROLE_FRANCHISE'];
+        $roles = UserRole::where('role', '!=', 'admin')->get();
         return view('backend.users.edit', compact('user', 'roles'));
     }
 
@@ -100,7 +101,7 @@ class UserController extends Controller
             'name' => 'required|string|max:255',
             'email' => 'required|string|email|max:255|unique:users,email,'.$user->id,
             'phone' => 'nullable|string|max:15',
-            'role' => 'required|in:ROLE_BUYER,ROLE_FRANCHISE',
+            'role' => 'required',
             'profile_image' => 'nullable|image|mimes:jpeg,png,jpg,gif|max:2048',
         ]);
 
@@ -116,14 +117,21 @@ class UserController extends Controller
             $imagePath = $user->profile_image;
         }
 
-        // Update the user
-        $user->update([
+        $data = [
             'name' => $request->name,
             'email' => $request->email,
             'phone' => $request->phone,
-            'role' => $request->role,
+            'user_role_id' => $request->role,
             'profile_image' => $imagePath,
-        ]);
+        ];
+
+        // Only update the password if it's not blank
+        if ($request->filled('password')) {
+            $data['password'] = Hash::make($request->password);
+        }
+
+        // Update the user with the prepared data
+        $user->update($data);
 
         return redirect()->route('backend.users.index')->with('success', 'User updated successfully.');
     }

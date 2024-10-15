@@ -13,6 +13,7 @@ return new class extends Migration
     {
         Schema::create('franchise_affiliate_payouts', function (Blueprint $table) {
             $table->id();
+            $table->decimal('amount', 11, 2);
             $table->foreignId('user_id')->comment('for_franchise_users')->constrained('users')->onDelete('cascade');
             $table->string('iban')->nullable();
             $table->string('status')->nullable()->default('pending');

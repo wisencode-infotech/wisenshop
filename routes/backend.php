@@ -17,6 +17,7 @@ use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Backend\SettingController;
 use App\Http\Controllers\Backend\UserController;
+use App\Http\Controllers\Backend\FranchiseProductController;
 
 
 Auth::routes();
@@ -24,11 +25,13 @@ Auth::routes();
 Route::get('/', [HomeController::class, 'root'])->name('home');
 
 
-Route::middleware(['auth', 'check.role:ROLE_ADMIN,ROLE_FRANCHISE'])->group(function () {
+Route::middleware(['auth', 'check.role:admin,franchise'])->group(function () {
     Route::resource('product', ProductController::class);
+    Route::resource('franchise-product', FranchiseProductController::class);
+    
 });
 
-Route::middleware(['auth', 'check.role:ROLE_ADMIN'])->group(function () {
+Route::middleware(['auth', 'check.role:admin'])->group(function () {
     Route::resource('category', CategoryController::class);
     Route::resource('site-banner', SiteBannerController::class);
 

@@ -55,8 +55,16 @@ class ProductController extends Controller
                     }
                 })
                 ->addColumn('action', function($row) {
-                    $btn = '<a href="'.route('backend.product.edit', $row->id).'" class="edit btn btn-primary btn-sm">Edit</a>';
-                    $btn .= ' <button class="btn btn-danger btn-sm delete" data-id="'.$row->id.'">Delete</button>';
+
+                    if (__currentUserRole() == 'admin') {
+
+                        $btn = '<a href="'.route('backend.product.edit', $row->id).'" class="edit btn btn-primary btn-sm">Edit</a>';
+
+                        $btn .= ' <button class="btn btn-danger btn-sm delete" data-id="'.$row->id.'">Delete</button>';
+                    } else {
+                        $btn = '<a href="'.route('backend.franchise-product.edit', $row->id).'" class="edit btn btn-primary btn-sm">Edit</a>';
+                    }
+                    
                     return $btn;
                 })
                 ->rawColumns(['action', 'status', 'public_visibility'])

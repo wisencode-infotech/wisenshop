@@ -15,6 +15,12 @@ class Register extends Component
     public $phone_number;
     public $password;
     public $password_confirmation;
+    public $referral_code; 
+
+    public function mount()
+    {
+        $this->referral_code = request()->query('referral_code');
+    }
 
     // Handle registration form submission
     public function submit()
@@ -33,6 +39,8 @@ class Register extends Component
             'email' => $this->email,
             'phone' => $this->phone_number,
             'password' => Hash::make($this->password),
+            'user_role_id' => 2,
+            'referral_code' => $this->referral_code,
         ]);
 
         // Automatically log in the user after registration

@@ -1,35 +1,53 @@
 <div class="mt-4">
-    
-
     @if($availabilities->isNotEmpty())
 
-        <h2 class="mb-4 text-lg font-semibold tracking-tight text-heading md:mb-6">{{ __trans('Product Availability') }}</h2>
+    <h2 class="mb-4 mt-8 text-lg font-semibold tracking-tight text-heading md:mb-6">{{ __trans('Product Availability') }}</h2>
 
         @foreach ($availabilities as $userId => $group)
-            <div class="user-group mb-6 border rounded-lg bg-white shadow-md transition-transform transform hover:scale-105">
-                <div class="p-4 bg-gradient-to-r from-blue-300 to-blue-500 rounded-t-lg">
-                    <h2 class="text-xl font-semibold">{{ $group['user']->name ?? 'Unknown User' }}</h2>
-                </div>
-                <div class="mt-4 p-4">
-                    @foreach ($group['availabilities'] as $availability)
-                        <div class="availability-item border border-gray-300 rounded-lg p-3 mb-4 shadow hover:shadow-lg transition-shadow">
-                            <div class="flex justify-between items-center">
-                                <div>
-                                    <p class="text-lg font-medium text-blue-600">
-                                        <i class="fas fa-box-open mr-1"></i>
-                                        <span>{{ optional($availability->product)->name ?? 'No product available' }}</span>
-                                    </p>
-                                    @if(!empty($availability->product_variation_id))
-                                        <p class="text-sm text-gray-500">Variation: <span class="text-gray-700">{{ optional($availability->variation)->name ?? 'No variation' }}</span></p>
-                                    @endif
-                                </div>
-                                <div>
-                                    <p class="text-xl font-bold text-green-600">Qty: {{ $availability->quantity }}</p>
-                                </div>
+
+            <div class="flow-root">
+                <ul role="list" class="divide-y divide-gray-200 dark:divide-gray-700">
+
+                    <li class="py-3 sm:py-4">
+                        <div class="flex items-center space-x-4">
+                            <div class="flex-shrink-0">
+                                <img class="w-8 h-8 rounded-full" src="{{ $group['user']->profile_image_url }}" alt="Neil image">
                             </div>
+                            <div class="flex-1 min-w-0">
+                                <p class="text-sm font-medium text-gray-900 truncate dark:text-white">
+                                   {{ $group['user']->name ?? 'Unknown User' }}
+                                </p>
+                                <p class="text-sm text-gray-500 truncate dark:text-gray-400">
+                                    {{ $group['user']->address ?? '' }}
+                                </p>
+                            </div>
+                           <!-- <div class="inline-flex items-center text-base font-semibold text-gray-900 dark:text-white">
+                                $320
+                            </div> -->
                         </div>
-                    @endforeach
-                </div>
+
+                        <div class="mt-4 p-4">
+                            @foreach ($group['availabilities'] as $availability)
+                                <div class="availability-item border border-transparent rounded-lg p-4 mb-4 shadow hover:shadow-lg transition-shadow bg-white dark:bg-gray-800 dark:hover:bg-gray-700 cursor-pointer transform hover:-translate-y-1 transition-transform">
+                                    <div class="flex justify-between items-center">
+                                        <!-- Product Info -->
+                                        <div>
+                                            <p class="text-base text-gray-700 dark:text-gray-300 font-medium">
+                                                {{ optional($availability->variation)->name ?? 'No variation' }}
+                                            </p>
+                                        </div>
+                                        <!-- Quantity Badge -->
+                                        <div>
+                                            <span class="inline-flex items-center px-3 py-1 rounded-lg text-sm font-semibold text-gray-800 dark:text-gray-100 bg-gray-100 dark:bg-gray-700">
+                                                {{ $availability->quantity }}
+                                            </span>
+                                        </div>
+                                    </div>
+                                </div>
+                            @endforeach
+                        </div>
+                    </li>
+            </ul>
             </div>
         @endforeach
     @endif

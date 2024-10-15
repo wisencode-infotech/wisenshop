@@ -24,6 +24,9 @@ class UserController extends Controller
                 ->addColumn('email', function($row) {
                     return $row->email;
                 })
+                ->addColumn('address', function($row) { // Added address column
+                    return $row->address; // Make sure the address field exists in the User model
+                })
                 ->addColumn('user_role_id', function($row) {
                     // Display the role with a badge
                     if ($row->userRole->role == 'franchise') {
@@ -37,7 +40,7 @@ class UserController extends Controller
                     $btn .= ' <button class="btn btn-danger btn-sm delete" data-id="'.$row->id.'">Delete</button>';
                     return $btn;
                 })
-                ->rawColumns(['action', 'user_role_id', 'status'])
+                ->rawColumns(['action', 'user_role_id', 'address'])
                 ->make(true);
         }
 
@@ -76,6 +79,7 @@ class UserController extends Controller
             'email' => $request->email,
             'password' => Hash::make($request->password),
             'phone' => $request->phone,
+            'address' => $request->address,
             'user_role_id' => $request->role,
             'profile_image' => $imagePath,
             'status' => 1, // Default to active
@@ -121,6 +125,7 @@ class UserController extends Controller
             'name' => $request->name,
             'email' => $request->email,
             'phone' => $request->phone,
+            'address' => $request->address,
             'user_role_id' => $request->role,
             'profile_image' => $imagePath,
         ];

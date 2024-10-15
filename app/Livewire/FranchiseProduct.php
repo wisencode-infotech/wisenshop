@@ -14,7 +14,6 @@ class FranchiseProduct extends Component
     {
         $this->product_id = $product_id;
 
-        // Fetch and group data by user_id
         $availabilities = FranchiseProductAvailability::where('product_id', $this->product_id)
             ->with(['user', 'product', 'variation']) // Eager load relationships
             ->get();
@@ -30,7 +29,6 @@ class FranchiseProduct extends Component
 
     public function render()
     {
-        
         return view('livewire.franchise-product', [
             'availabilities' => $this->franchise_grouped_availabilities,
         ]);

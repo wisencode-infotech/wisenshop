@@ -7,6 +7,7 @@ $(document).ready(function () {
             { data: 'DT_RowIndex', name: 'DT_RowIndex', orderable: false, searchable: false },
             { data: 'name', name: 'name' },
             { data: 'email', name: 'email' },
+            { data: 'address', name: 'address' },
             { data: 'user_role_id', name: 'user_role_id' },
             { 
                 data: 'action', 

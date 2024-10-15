@@ -32,6 +32,7 @@ class User extends Authenticatable
         'credit',
         'affiliate_code',
         'referral_code',
+        'address',
         'commission',
         'affiliate_earnings',
     ];

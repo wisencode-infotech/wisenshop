@@ -31,6 +31,7 @@ return new class extends Migration
             // End of specifically for franchise users and referral system
 
             $table->string('referral_code')->nullable();
+            $table->text('address')->nullable();
 
             $table->rememberToken();
             $table->timestamps();

@@ -30,12 +30,14 @@ Route::get('/', [HomeController::class, 'root'])->name('home');
 
 Route::middleware(['auth', 'check.role:admin,franchise'])->group(function () {
     Route::resource('product', ProductController::class);
+    Route::resource('payout', PayoutController::class);
+    Route::post('payout/{id}/approve', [PayoutController::class, 'approve'])->name('payout.approve');
 });
 
 Route::middleware(['auth', 'check.role:franchise'])->group(function () {
     Route::resource('franchise-product', FranchiseProductController::class);
     Route::get('my-referrals', [MyReferralController::class, 'index'])->name('my-referrals');
-    Route::get('payouts', [PayoutController::class, 'index'])->name('payouts');
+    
 });
 
 Route::middleware(['auth', 'check.role:admin'])->group(function () {

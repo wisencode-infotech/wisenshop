@@ -57,6 +57,60 @@
                                 @enderror
                             </div>
 
+                            <!-- Affiliate Code -->
+                            <div class="mb-3">
+                                <label for="affiliate_code" class="form-label">Affiliate Code</label>
+                                <input type="text" name="affiliate_code" class="form-control @error('affiliate_code') is-invalid @enderror" id="affiliate_code" placeholder="Enter affiliate code" value="{{ old('affiliate_code') }}">
+                                @error('affiliate_code')
+                                    <span class="invalid-feedback">{{ $message }}</span>
+                                @enderror
+                            </div>
+
+                            <!-- Credit -->
+                            <div class="mb-3">
+                                <label for="credit" class="form-label">Credit</label>
+                                <input type="text" name="credit" class="form-control @error('credit') is-invalid @enderror" id="credit" placeholder="Enter credit" value="{{ old('credit') }}">
+                                @error('credit')
+                                    <span class="invalid-feedback">{{ $message }}</span>
+                                @enderror
+                            </div>
+
+                            <!-- Commission -->
+                            <div class="mb-3">
+                                <label for="commission" class="form-label">Commission</label>
+                                <input type="text" name="commission" class="form-control @error('commission') is-invalid @enderror" id="commission" placeholder="Enter commission" value="{{ old('commission', 2) }}">
+                                @error('commission')
+                                    <span class="invalid-feedback">{{ $message }}</span>
+                                @enderror
+                            </div>
+
+                            <!-- Affiliate Earnings -->
+                            <div class="mb-3">
+                                <label for="affiliate_earnings" class="form-label">Affiliate Earnings</label>
+                                <input type="text" name="affiliate_earnings" class="form-control @error('affiliate_earnings') is-invalid @enderror" id="affiliate_earnings" placeholder="Enter affiliate earnings" value="{{ old('affiliate_earnings', 2) }}">
+                                @error('affiliate_earnings')
+                                    <span class="invalid-feedback">{{ $message }}</span>
+                                @enderror
+                            </div>
+
+                            <!-- IBAN -->
+                            <div class="mb-3">
+                                <label for="iban" class="form-label">IBAN</label>
+                                <input type="text" name="iban" class="form-control @error('iban') is-invalid @enderror" id="iban" placeholder="Enter IBAN" value="{{ old('iban') }}">
+                                @error('iban')
+                                    <span class="invalid-feedback">{{ $message }}</span>
+                                @enderror
+                            </div>
+
+                            <!-- Referral Code -->
+                            <div class="mb-3">
+                                <label for="referral_code" class="form-label">Referral Code</label>
+                                <input type="text" name="referral_code" class="form-control @error('referral_code') is-invalid @enderror" id="referral_code" placeholder="Enter referral code" value="{{ old('referral_code') }}">
+                                @error('referral_code')
+                                    <span class="invalid-feedback">{{ $message }}</span>
+                                @enderror
+                            </div>
+
                             <div class="mb-3">
                                 <label for="address" class="form-label">Address</label>
                                 <input type="text" name="address" class="form-control @error('address') is-invalid @enderror" id="address" placeholder="Enter address" value="{{ old('address') }}">

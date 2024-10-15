@@ -60,6 +60,54 @@
                             </div>
 
                             <div class="mb-3">
+                                <label for="affiliate_code" class="form-label">Affiliate Code</label>
+                                <input type="text" name="affiliate_code" class="form-control @error('affiliate_code') is-invalid @enderror" id="affiliate_code" placeholder="Enter affiliate code" value="{{ old('affiliate_code', $user->affiliate_code) }}">
+                                @error('affiliate_code')
+                                    <span class="invalid-feedback">{{ $message }}</span>
+                                @enderror
+                            </div>
+
+                            <div class="mb-3">
+                                <label for="credit" class="form-label">Credit</label>
+                                <input type="text" name="credit" class="form-control @error('credit') is-invalid @enderror" id="credit" placeholder="Enter credit amount" value="{{ old('credit', $user->credit) }}">
+                                @error('credit')
+                                    <span class="invalid-feedback">{{ $message }}</span>
+                                @enderror
+                            </div>
+
+                            <div class="mb-3">
+                                <label for="commission" class="form-label">Commission</label>
+                                <input type="text" name="commission" class="form-control @error('commission') is-invalid @enderror" id="commission" placeholder="Enter commission amount" value="{{ old('commission', $user->commission) }}">
+                                @error('commission')
+                                    <span class="invalid-feedback">{{ $message }}</span>
+                                @enderror
+                            </div>
+
+                            <div class="mb-3">
+                                <label for="affiliate_earnings" class="form-label">Affiliate Earnings</label>
+                                <input type="text" name="affiliate_earnings" class="form-control @error('affiliate_earnings') is-invalid @enderror" id="affiliate_earnings" placeholder="Enter affiliate earnings" value="{{ old('affiliate_earnings', $user->affiliate_earnings) }}">
+                                @error('affiliate_earnings')
+                                    <span class="invalid-feedback">{{ $message }}</span>
+                                @enderror
+                            </div>
+
+                            <div class="mb-3">
+                                <label for="iban" class="form-label">IBAN</label>
+                                <input type="text" name="iban" class="form-control @error('iban') is-invalid @enderror" id="iban" placeholder="Enter IBAN" value="{{ old('iban', $user->iban) }}">
+                                @error('iban')
+                                    <span class="invalid-feedback">{{ $message }}</span>
+                                @enderror
+                            </div>
+
+                            <div class="mb-3">
+                                <label for="referral_code" class="form-label">Referral Code</label>
+                                <input type="text" name="referral_code" class="form-control @error('referral_code') is-invalid @enderror" id="referral_code" placeholder="Enter referral code" value="{{ old('referral_code', $user->referral_code) }}">
+                                @error('referral_code')
+                                    <span class="invalid-feedback">{{ $message }}</span>
+                                @enderror
+                            </div>
+
+                            <div class="mb-3">
                                 <label for="address" class="form-label">Address</label>
                                 <input type="text" name="address" class="form-control @error('address') is-invalid @enderror" id="address" placeholder="Enter address" value="{{ old('address', $user->address) }}">
                                 @error('address')

@@ -23,7 +23,7 @@ class FranchiseProductController extends Controller
     {
         $product = Product::withoutGlobalScope('public_visibility')->findOrFail($id);
 
-        if (!empty($request->stock)) {
+        if (isset($request->stock)) {
             $franchise_product = FranchiseProductAvailability::where('product_id', $product->id)
                                 ->where('user_id', auth()->user()->id)
                                 ->first();
@@ -39,7 +39,7 @@ class FranchiseProductController extends Controller
             $franchise_product->save(); 
         }
         
-        if (!empty($request->variations)) {
+        if (isset($request->variations)) {
             foreach ($request->variations as $variation) {
                 
                 if (isset($variation['id'])) {

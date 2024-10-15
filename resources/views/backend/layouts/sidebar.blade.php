@@ -23,14 +23,14 @@
                         <span key="t-calendar">My Referrals</span>
                     </a>
                 </li>
+                @endif
 
                 <li>
-                    <a href="{{ route('backend.payouts') }}" class="waves-effect">
+                    <a href="{{ route('backend.payout.index') }}" class="waves-effect">
                         <i class="bx bx-money"></i>
                         <span key="t-calendar">Payouts</span>
                     </a>
                 </li>
-                @endif
 
                 @if(__currentUserRole() == 'admin')
 

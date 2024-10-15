@@ -64,6 +64,12 @@ class UserController extends Controller
             'phone' => 'required|nullable|string|max:15',
             'role' => 'required',
             'profile_image' => 'nullable|image|mimes:jpeg,png,jpg,gif|max:2048',
+            'affiliate_code' => 'nullable|string|max:255',
+            'credit' => 'nullable|numeric',
+            'commission' => 'nullable|numeric',
+            'affiliate_earnings' => 'nullable|numeric',
+            'iban' => 'nullable|string|max:255',
+            'referral_code' => 'nullable|string|max:255',
         ]);
 
         // Handle file upload
@@ -82,6 +88,12 @@ class UserController extends Controller
             'address' => $request->address,
             'user_role_id' => $request->role,
             'profile_image' => $imagePath,
+            'affiliate_code' => $request->affiliate_code,
+            'credit' => $request->credit,
+            'commission' => $request->commission,
+            'affiliate_earnings' => $request->affiliate_earnings,
+            'iban' => $request->iban,
+            'referral_code' => $request->referral_code,
             'status' => 1, // Default to active
         ]);
 
@@ -107,6 +119,12 @@ class UserController extends Controller
             'phone' => 'nullable|string|max:15',
             'role' => 'required',
             'profile_image' => 'nullable|image|mimes:jpeg,png,jpg,gif|max:2048',
+            'affiliate_code' => 'nullable|string|max:255',
+            'credit' => 'nullable|numeric',
+            'commission' => 'nullable|numeric',
+            'affiliate_earnings' => 'nullable|numeric',
+            'iban' => 'nullable|string|max:255',
+            'referral_code' => 'nullable|string|max:255',
         ]);
 
         // Handle file upload
@@ -128,6 +146,12 @@ class UserController extends Controller
             'address' => $request->address,
             'user_role_id' => $request->role,
             'profile_image' => $imagePath,
+            'affiliate_code' => $request->affiliate_code,
+            'credit' => $request->credit,
+            'commission' => $request->commission,
+            'affiliate_earnings' => $request->affiliate_earnings,
+            'iban' => $request->iban,
+            'referral_code' => $request->referral_code,
         ];
 
         // Only update the password if it's not blank

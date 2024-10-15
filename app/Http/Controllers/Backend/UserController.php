@@ -24,6 +24,9 @@ class UserController extends Controller
                 ->addColumn('email', function($row) {
                     return $row->email;
                 })
+                ->addColumn('total_orders', function($row) {
+                    return $row->total_orders_sum;
+                })
                 ->addColumn('address', function($row) { // Added address column
                     return $row->address; // Make sure the address field exists in the User model
                 })
@@ -40,7 +43,7 @@ class UserController extends Controller
                     $btn .= ' <button class="btn btn-danger btn-sm delete" data-id="'.$row->id.'">Delete</button>';
                     return $btn;
                 })
-                ->rawColumns(['action', 'user_role_id', 'address'])
+                ->rawColumns(['action', 'user_role_id', 'address', 'total_orders'])
                 ->make(true);
         }
 

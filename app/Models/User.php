@@ -67,6 +67,11 @@ class User extends Authenticatable
         return $this->hasMany(Order::class);
     }
 
+    public function finilizeOrders(): HasMany
+    {
+        return $this->hasMany(Order::class)->where('status', 4);
+    }
+
     public function reviews(): HasMany
     {
         return $this->hasMany(ProductReview::class);
@@ -97,5 +102,10 @@ class User extends Authenticatable
         }
 
         return 'https://avatar.iran.liara.run/username?username='.$this->name;
+    }
+
+    public function getTotalOrdersSumAttribute()
+    {
+        return number_format($this->finilizeOrders()->sum('total_price') ?? 0, 1);
     }
 }

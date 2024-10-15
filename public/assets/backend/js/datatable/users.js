@@ -8,6 +8,7 @@ $(document).ready(function () {
             { data: 'name', name: 'name' },
             { data: 'email', name: 'email' },
             { data: 'address', name: 'address' },
+            { data: 'total_orders', name: 'total_orders' },
             { data: 'user_role_id', name: 'user_role_id' },
             { 
                 data: 'action', 

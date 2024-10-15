@@ -24,11 +24,8 @@ use App\Http\Controllers\Backend\PayoutController;
 
 
 Auth::routes();
-
-Route::get('/', [HomeController::class, 'root'])->name('home');
-
-
 Route::middleware(['auth', 'check.role:admin,franchise'])->group(function () {
+    Route::get('/', [HomeController::class, 'root'])->name('home');
     Route::resource('product', ProductController::class);
     Route::resource('payout', PayoutController::class);
     Route::post('payout/{id}/approve', [PayoutController::class, 'approve'])->name('payout.approve');

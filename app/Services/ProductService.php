@@ -11,7 +11,7 @@ class ProductService
 
     public function updateStock($order)
     {
-        if ( empty(__setting('is_franchisee')) ) {
+        if ( true ) {
             $order_items = $order->orderItems;
 
             foreach ($order_items as $order_item) {
@@ -32,7 +32,7 @@ class ProductService
 
         $response = [];
 
-        if ( empty(__setting('is_franchisee')) ) {
+        if ( true ) {
 
             foreach ($cart_items as $cart_item) {
                 if (!empty($cart_item['product_variation_id'])) {

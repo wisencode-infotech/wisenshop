@@ -9,9 +9,11 @@ use App\Models\Notification;
 use App\Models\Product;
 use App\Models\ProductVariation;
 use App\Models\FranchiseProductAvailability;
+use App\Models\User;
 use Illuminate\Support\Facades\Cache;
 use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Session;
 
 if (!function_exists('__trans')) 
 {
@@ -153,11 +155,11 @@ if (!function_exists('setCurrency'))
 
         Cache::forget($cache_key);
 
-        if (auth()->check()) {
+        if (Auth::check()) {
 
-            $user = Auth::user();
-            $user->currency_id = Currency::where('code', $currency)->first()->id;
-            $user->save();
+            User::where('id', Auth::user()->id)->update([
+                'currency_id' => Currency::where('code', $currency)->first()->id
+            ]);
         }
 
         Session::put('user_currency_code', $currency);
@@ -168,7 +170,7 @@ if (!function_exists('__userCurrencyCode'))
 {
     function __userCurrencyCode()
     {
-        if (auth()->check()) {
+        if (Auth::check()) {
 
             $user = Auth::user();
 
@@ -302,8 +304,8 @@ if (!function_exists('__currentUserRole'))
 {
     function __currentUserRole()
     {
-        if (auth()->check()) {
-            return auth()->user()->userRole->role;
+        if (Auth::check()) {
+            return Auth::user()->userRole->role;
         }
 
         return 'buyer';
@@ -333,5 +335,21 @@ if (!function_exists('__productStock'))
         }
         
         return 0;
+    }
+}
+
+if (!function_exists('__isFranchise')) 
+{
+    function __isFranchise()
+    {
+        return __currentUserRole() === 'franchise';
+    }
+}
+
+if (!function_exists('notification')) 
+{
+    function notification()
+    {
+        return new Notification();
     }
 }

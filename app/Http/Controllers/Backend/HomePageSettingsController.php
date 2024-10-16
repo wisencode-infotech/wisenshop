@@ -40,7 +40,7 @@ class HomePageSettingsController extends Controller
         $existing_banner_settings = __homeSetting('banner_settings', true);
 
         $request->validate([
-            'banner_image' => 'image|mimes:jpeg,png,jpg,gif|max:2048',
+            'banner_image' => 'image|mimes:jpeg,png,webp,jpg,gif|max:2048',
             'banner_description' => 'nullable|max:250',
             'banner_url' => 'nullable|url',
         ]);

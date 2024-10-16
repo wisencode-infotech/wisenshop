@@ -132,7 +132,7 @@
                             <div class="media">
                                 <div class="media-body">
                                     <p class="text-muted fw-medium">Revenue</p>
-                                    <h4 class="mb-0">${{ $total_completed_orders_amount }}</h4>
+                                    <h4 class="mb-0">{{ __appCurrencySymbol() }} {{ $total_completed_orders_amount }}</h4>
                                 </div>
 
                                 <div class="avatar-sm rounded-circle bg-primary align-self-center mini-stat-icon">
@@ -146,7 +146,7 @@
                 </div>
                 @endif
 
-                @if(__currentUserRole() == 'franchise')
+                @if(__isFranchise())
                 <div class="col-md-3">
                     <div class="card mini-stats-wid">
                         <div class="card-body">
@@ -172,7 +172,7 @@
                             <div class="media">
                                 <div class="media-body">
                                     <p class="text-muted fw-medium">Total Credit</p>
-                                    <h4 class="mb-0">{{ __appCurrencySymbol() }}{{ auth()->user()->credit ?? 0 }}</h4>
+                                    <h4 class="mb-0">{{ __appCurrencySymbol() }} {{ auth()->user()->credit ?? 0 }}</h4>
                                 </div>
 
                                 <div class="mini-stat-icon avatar-sm rounded-circle bg-primary align-self-center">

@@ -38,10 +38,10 @@ $(document).on('click', '.delete', function () {
             },
             success: function (response) {
                 $('#languages-table').DataTable().ajax.reload(); // Reload table after deletion
-                alert(response.success);
+                toastr.success(response.success);
             },
             error: function (response) {
-                alert('Error: ' + response.error);
+                toastr.error('Error: ' + response.error);
             }
         });
     }

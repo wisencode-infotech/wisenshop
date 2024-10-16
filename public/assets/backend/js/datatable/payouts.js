@@ -39,10 +39,10 @@ $(document).on('click', '.approve', function () {
             },
             success: function (response) {
                 $('#payouts-table').DataTable().ajax.reload(); // Reload table after approval
-                alert(response.success);
+                toastr.success(response.success);
             },
             error: function (response) {
-                alert('Error: ' + response.error);
+                toastr.error('Error: ' + response.error);
             }
         });
     }

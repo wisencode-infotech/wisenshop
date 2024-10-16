@@ -9,7 +9,8 @@ use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Database\Eloquent\Relations\BelongsToMany;
 use Illuminate\Database\Eloquent\Relations\HasOne;
 use Illuminate\Database\Eloquent\SoftDeletes;
-use Illuminate\Database\Eloquent\Builder; 
+use Illuminate\Database\Eloquent\Builder;
+use Illuminate\Support\Facades\Auth;
 
 class Product extends Model
 {
@@ -128,6 +129,15 @@ class Product extends Model
             $first_image->is_primary = '1';
             $first_image->save();
         }
+    }
+
+    // Scopes
+    public function scopeAuthenticated(Builder $query): Builder
+    {
+        if (!__isAdmin())
+            return $query->whereIn('public_visibility', [1, 0]);
+
+        return $query;
     }
 
 }

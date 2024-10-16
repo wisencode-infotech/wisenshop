@@ -16,7 +16,7 @@
                     </a>
                 </li>
 
-                @if(__currentUserRole() == 'franchise')
+                @if(__isFranchise())
                 <li>
                     <a href="{{ route('backend.my-referrals') }}" class="waves-effect">
                         <i class="bx bx-user"></i>

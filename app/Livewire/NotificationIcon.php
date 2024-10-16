@@ -4,6 +4,7 @@ namespace App\Livewire;
 
 use Livewire\Component;
 use App\Models\Notification;
+use Illuminate\Support\Facades\Auth;
 
 class NotificationIcon extends Component
 {
@@ -21,7 +22,7 @@ class NotificationIcon extends Component
     public function loadNotifications()
     {
         $this->notifications = Notification::where(function($query) {
-                $query->where('user_id', auth()->user()->id)
+                $query->where('user_id', Auth::id())
                       ->orWhere('is_global', 1);
             })
             ->orderBy('created_at', 'desc')
@@ -33,7 +34,7 @@ class NotificationIcon extends Component
     {
         $this->total_unread_notification = Notification::where('is_read', 0)
             ->where(function($query) {
-                $query->where('user_id', auth()->user()->id)
+                $query->where('user_id', Auth::id())
                       ->orWhere('is_global', 1);
             })->count();
     }
@@ -43,7 +44,6 @@ class NotificationIcon extends Component
         $this->loadNotifications();
         $this->updateUnreadCount();
     }
-
 
     public function render()
     {

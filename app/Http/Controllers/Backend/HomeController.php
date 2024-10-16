@@ -47,9 +47,12 @@ class HomeController extends Controller
 
         $total_referral_users = 0;
 
-        if(__currentUserRole() == 'franchise'){
-            if(!empty(auth()->user()->affiliate_code)){
-                $total_referral_users = User::where('referral_code', auth()->user()->affiliate_code)->count();
+        if (__isFranchise()) {
+            
+            $user = Auth::user();
+
+            if(!empty($user->affiliate_code)){
+                $total_referral_users = User::where('referral_code', $user->affiliate_code)->count();
             }
         }
 

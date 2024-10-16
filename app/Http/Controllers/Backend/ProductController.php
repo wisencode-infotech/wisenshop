@@ -25,7 +25,7 @@ class ProductController extends Controller
         if ($request->ajax()) {
             $data = Product::latest();
 
-            if (__currentUserRole() == 'franchise') {
+            if (__isFranchise()) {
                 $data = $data->whereIn('public_visibility', [1, 0]);
             }
 

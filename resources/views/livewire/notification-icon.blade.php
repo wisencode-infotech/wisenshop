@@ -12,7 +12,7 @@
         <ul class="notification_menu_section absolute hidden mt-5 w-72 rounded-lg bg-white shadow-lg pb-4 right-0 transform opacity-100 scale-100 z-50">
             @forelse($notifications->take(4) as $notification) <!-- Show only first 4 notifications -->
                 <li class="border-b border-gray-200 last:border-none">
-                    <a wire:navigate href="{{ $notification->url ?? '/' }}" class="flex items-start p-4 hover:bg-gray-100 transition duration-200">
+                    <a target="_blank" href="{{ $notification->url ?? '/' }}" class="flex items-start p-4 hover:bg-gray-100 transition duration-200">
                         <!-- Icon based on notification type -->
                         @if($notification->type == 'order')
                             <div class="flex-shrink-0 bg-blue-100 text-blue-600 rounded-full h-10 w-10 flex items-center justify-center">

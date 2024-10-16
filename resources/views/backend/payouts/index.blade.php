@@ -23,7 +23,7 @@
                         </div>
                     </div>
                     <!-- end col -->
-                    @if(__currentUserRole() == 'franchise')
+                    @if(__isFranchise())
                     <div class="col-sm-auto">
                         <div class="text-sm-end">
                             <a href="{{ route('backend.payout.create') }}" class="btn btn-success btn-rounded" id="addProject-btn"><i class="mdi mdi-plus me-1"></i> Create payout</a>

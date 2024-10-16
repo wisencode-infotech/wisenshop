@@ -316,7 +316,7 @@ if (!function_exists('__productStock'))
 {
     function __productStock($product_id, $product_variation_id = null)
     {
-        if (__currentUserRole() == 'franchise') {
+        if (__isFranchise()) {
 
             $franchise_product = FranchiseProductAvailability::where('product_id', $product_id);
 
@@ -335,6 +335,14 @@ if (!function_exists('__productStock'))
         }
         
         return 0;
+    }
+}
+
+if (!function_exists('__isAdmin')) 
+{
+    function __isAdmin()
+    {
+        return __currentUserRole() === 'admin';
     }
 }
 

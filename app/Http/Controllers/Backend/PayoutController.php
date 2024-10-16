@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Backend;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Models\FranchiseAffiliatePayout;
+use Illuminate\Support\Facades\Auth;
 use Yajra\DataTables\DataTables;
 
 class PayoutController extends Controller
@@ -15,8 +16,8 @@ class PayoutController extends Controller
 
             $data = FranchiseAffiliatePayout::latest();
 
-            if(__currentUserRole() == 'franchise'){
-                $data = $data->where('user_id', auth()->user()->id);
+            if (__isFranchise()) {
+                $data = $data->where('user_id', Auth::id());
             }
 
             $data = $data->get();
@@ -30,7 +31,7 @@ class PayoutController extends Controller
                     return $row->iban;
                 })
                 ->addColumn('user_id', function($row) {
-                    if(__currentUserRole() == 'franchise'){
+                    if (__isFranchise()) {
                         return '-';
                     }
 
@@ -47,12 +48,12 @@ class PayoutController extends Controller
 
                     $btn = '';
 
-                    if(__currentUserRole() == 'franchise' &&  $row->status == 'pending'){
+                    if(__isFranchise() &&  $row->status == 'pending'){
                         $btn = '<a href="'.route('backend.payout.edit', $row->id).'" class="edit btn btn-primary btn-sm">Edit</a>';
                     }
 
                     if(__currentUserRole() == 'admin' &&  $row->status == 'pending'){
-                        $btn = '<button class="btn btn-success btn-sm approve" data-id="'.$row->id.'">Approved</button>';
+                        $btn = '<button class="btn btn-success btn-sm approve" data-id="'.$row->id.'">Approve</button>';
                     }
                     
                     return $btn;
@@ -83,7 +84,7 @@ class PayoutController extends Controller
         ]);
 
         FranchiseAffiliatePayout::create([
-            'user_id' => auth()->user()->id,
+            'user_id' => Auth::id(),
             'amount' => $request->amount,
             'iban' => $request->iban,
             'status' => 'pending',
@@ -96,7 +97,7 @@ class PayoutController extends Controller
     {
         $payout = FranchiseAffiliatePayout::findOrFail($id);
 
-        if ($payout->user_id !== auth()->user()->id) {
+        if ($payout->user_id !== Auth::id()) {
             return redirect()->route('backend.payout.index')->with('error', 'Unauthorized action.');
         }
 

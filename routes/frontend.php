@@ -26,6 +26,7 @@ use App\Livewire\Profile;
 use App\Livewire\MyWishlist;
 use App\Livewire\ThankYouPage;
 use App\Livewire\NotificationList;
+use App\Livewire\Credit;
 
 
 
@@ -53,6 +54,7 @@ Route::get('/guest-checkout', GuestCheckout::class)->name('guest.checkout');
 Route::middleware(RedirectIfNotLoggedIn::class)->group(function () {
     Route::get('/profile', Profile::class)->name('profile');
     Route::get('/my-orders', MyOrders::class)->name('my-orders');
+    Route::get('/credit', Credit::class)->name('credit');
     Route::get('/checkout', Checkout::class)->name('checkout');
     Route::get('/thank-you/{order_id}', ThankYouPage::class)->name('thank-you');
     Route::get('/notifications', NotificationList::class)->name('notifications.index');
@@ -72,12 +74,8 @@ Route::get('/locale/{locale}', function (string $locale) {
 
 Route::get('/currency/{currency}', function (string $currency) {
 
-    $cache_key = "user.currency";
-
-    Cache::forget($cache_key);
-
-    Session::put('user_currency_code', $currency);
-
+    setCurrency($currency);
+    
     return redirect()->back();
 })->name('change.currency');
 

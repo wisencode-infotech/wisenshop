@@ -39,6 +39,14 @@
                                 @error('amount')
                                     <span class="invalid-feedback">{{ $message }}</span>
                                 @enderror
+
+                                <div class="text-muted mt-2">
+                                    <small>
+                                        <i class="bi bi-info-circle-fill"></i> 
+                                        Minimum Payout should be <strong>{{ __setting('minimum_payout') }}</strong>
+                                    </small>
+                                </div>
+            
                             </div>
 
                             <div class="mb-3">

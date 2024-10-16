@@ -26,7 +26,7 @@
                     @if(__currentUserRole() == 'franchise')
                     <div class="col-sm-auto">
                         <div class="text-sm-end">
-                            <a href="{{ route('backend.payout.create') }}" class="btn btn-success btn-rounded" id="addProject-btn"><i class="mdi mdi-plus me-1"></i> Add New</a>
+                            <a href="{{ route('backend.payout.create') }}" class="btn btn-success btn-rounded" id="addProject-btn"><i class="mdi mdi-plus me-1"></i> Create payout</a>
                         </div>
                     </div>
                     @endif

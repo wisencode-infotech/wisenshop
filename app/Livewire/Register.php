@@ -42,6 +42,7 @@ class Register extends Component
             'password' => Hash::make($this->password),
             'user_role_id' => UserRole::where('role', 'buyer')->first()->id,
             'referral_code' => $this->referral_code,
+            'currency_id' => __userCurrency()->id
         ]);
 
         // Automatically log in the user after registration

@@ -71,8 +71,14 @@ class PayoutController extends Controller
 
     public function store(Request $request)
     {
+        $minimum_payout = __setting('minimum_payout');
+
         $request->validate([
-            'amount' => 'required|numeric|min:0',
+            'amount' => ['required', 'numeric', 'min:0', function ($attribute, $value, $fail) use ($minimum_payout) {
+                    if ($value < $minimum_payout) {
+                        $fail('The ' . $attribute . ' must be at least ' . $minimum_payout . '.');
+                    }
+                }],
             'iban' => 'required|string|max:34',
         ]);
 
@@ -99,8 +105,14 @@ class PayoutController extends Controller
 
     public function update(Request $request, $id)
     {
+        $minimum_payout = __setting('minimum_payout');
+        
         $request->validate([
-            'amount' => 'required|numeric|min:0',
+            'amount' => ['required', 'numeric', 'min:0', function ($attribute, $value, $fail) use ($minimum_payout) {
+                    if ($value < $minimum_payout) {
+                        $fail('The ' . $attribute . ' must be at least ' . $minimum_payout . '.');
+                    }
+                }],
             'iban' => 'required|string|max:34',
         ]);
 

@@ -11,6 +11,7 @@ use App\Models\ProductVariation;
 use App\Models\FranchiseProductAvailability;
 use Illuminate\Support\Facades\Cache;
 use Illuminate\Support\Facades\Log;
+use Illuminate\Support\Facades\Auth;
 
 if (!function_exists('__trans')) 
 {
@@ -144,10 +145,38 @@ if (!function_exists('__appCurrency'))
     }
 }
 
+if (!function_exists('setCurrency')) 
+{
+    function setCurrency($currency)
+    {
+        $cache_key = "user.currency";
+
+        Cache::forget($cache_key);
+
+        if (auth()->check()) {
+
+            $user = Auth::user();
+            $user->currency_id = Currency::where('code', $currency)->first()->id;
+            $user->save();
+        }
+
+        Session::put('user_currency_code', $currency);
+    }
+}
+
 if (!function_exists('__userCurrencyCode')) 
 {
     function __userCurrencyCode()
     {
+        if (auth()->check()) {
+
+            $user = Auth::user();
+
+            if(!empty($user->currency)){
+                return $user->currency->code;
+            }
+        }
+
         return session('user_currency_code', 'EUR');
     }
 }
@@ -158,11 +187,13 @@ if (!function_exists('__userCurrency'))
     {
         $user_currency_code = __userCurrencyCode();
 
-        $cache_key = "user.currency";
+        return Currency::where('code', $user_currency_code)->first();
 
-        return Cache::rememberForever($cache_key, function() use ($user_currency_code) { 
-            return Currency::where('code', $user_currency_code)->first();
-        });
+        // $cache_key = "user.currency";
+
+        // return Cache::rememberForever($cache_key, function() use ($user_currency_code) { 
+        //     return Currency::where('code', $user_currency_code)->first();
+        // });
     }
 }
 

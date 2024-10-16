@@ -127,6 +127,14 @@
                         </select>
                     </div>
 
+                    <div class="mb-3">
+                        <label for="is_home" class="form-label">{{ __trans('Need to show in Home?') }}</label>
+                        <select name="is_home" class="form-select @error('is_home') is-invalid @enderror">
+                            <option value="1">{{ __trans('Yes') }}</option>
+                            <option value="0">{{ __trans('No') }}</option>
+                        </select>
+                    </div>
+
                 </div>
             </div>
         </div>

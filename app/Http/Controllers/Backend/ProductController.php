@@ -52,7 +52,7 @@ class ProductController extends Controller
                         return '<span class="badge rounded-pill badge-soft-danger font-size-12">InActive</span>'; 
                     }
                 })
-                 ->addColumn('public_visibility', function($row) {
+                ->addColumn('public_visibility', function($row) {
                     if ($row->public_visibility == '1') {
 
                         return '<span class="badge rounded-pill badge-soft-success font-size-12">Public</span>';
@@ -64,6 +64,16 @@ class ProductController extends Controller
                     } else {
 
                         return '<span class="badge rounded-pill badge-soft-danger font-size-12">Hidden</span>'; 
+                    }
+                })
+                ->addColumn('is_home', function($row) {
+                    if ($row->is_home == '1') {
+
+                        return '<span class="badge rounded-pill badge-soft-success font-size-12">Yes</span>';
+
+                    } else {
+
+                        return '<span class="badge rounded-pill badge-soft-danger font-size-12">No</span>'; 
                     }
                 })
                 ->addColumn('action', function($row) {
@@ -79,7 +89,7 @@ class ProductController extends Controller
                     
                     return $btn;
                 })
-                ->rawColumns(['action', 'status', 'public_visibility'])
+                ->rawColumns(['action', 'status', 'public_visibility', 'is_home'])
                 ->make(true);
         }
 
@@ -111,6 +121,7 @@ class ProductController extends Controller
         $product->stock = $request->stock;
         $product->category_id = $request->category_id;
         $product->public_visibility = $request->public_visibility;
+        $product->is_home = $request->is_home;
         $product->unit_id = $request->unit_id;
         $product->save();
 
@@ -181,6 +192,7 @@ class ProductController extends Controller
         $product->stock = $request->stock;
         $product->category_id = $request->category_id;
         $product->public_visibility = $request->public_visibility;
+        $product->is_home = $request->is_home;
         $product->unit_id = $request->unit_id;
         $product->slug = $request->slug;
         $product->save();

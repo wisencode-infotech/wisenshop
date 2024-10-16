@@ -10,6 +10,7 @@ $(document).ready(function () {
             { data: 'price', name: 'price' },
             { data: 'status', name: 'status' },
             { data: 'public_visibility', name: 'public_visibility' },
+            { data: 'is_home', name: 'is_home' },
             { 
                 data: 'action', 
                 name: 'action', 

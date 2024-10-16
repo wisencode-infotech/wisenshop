@@ -78,5 +78,7 @@ Route::middleware(['auth', 'check.role:admin'])->group(function () {
         Route::get('index', [HomePageSettingsController::class, 'index'])->name('index');
         Route::post('store', [HomePageSettingsController::class, 'store'])->name('store');
         Route::post('banner-store', [HomePageSettingsController::class, 'bannerStore'])->name('banner-store');
+        Route::post('sorting-store', [HomePageSettingsController::class, 'sortingStore'])->name('sorting-store');
+        
     });
 });

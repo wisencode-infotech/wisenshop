@@ -36,6 +36,7 @@ class User extends Authenticatable
         'address',
         'commission',
         'affiliate_earnings',
+        'currency_id',
     ];
 
     /**
@@ -90,6 +91,11 @@ class User extends Authenticatable
     public function userRole(): BelongsTo
     {
         return $this->belongsTo(UserRole::class, 'user_role_id');
+    }
+
+    public function currency(): BelongsTo
+    {
+        return $this->belongsTo(Currency::class);
     }
 
     // Accessors

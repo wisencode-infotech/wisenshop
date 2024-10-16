@@ -40,7 +40,7 @@ class OrderController extends Controller
                     return '<input type="checkbox" name="order_ids[]" value="' . $row->id . '" class="order-checkbox">';
                 })
                 ->addColumn('user_name', function ($row) {
-                    return $row->user->name;
+                    return $row->user->name ?? '';
                 })
                 ->addColumn('status', function ($row) {
                     $status = config('general.order_statuses.' . $row->status);

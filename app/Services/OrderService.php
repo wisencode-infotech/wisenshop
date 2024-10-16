@@ -71,7 +71,8 @@ class OrderService
             Mail::to($this->order->customer_contact_email)->queue(new OrderStatusChangedMail($this->order));
     }
 
-    public function saveOrderTransaction($transaction_id, $status) {
+    public function saveOrderTransaction($transaction_id, $status) 
+    {
         $transaction = new Transaction();
         $transaction->order_id = $this->order->id;
         $transaction->transaction_id = $transaction_id;
@@ -80,36 +81,8 @@ class OrderService
         $transaction->save();
     }
 
-    public function updateFranchiseCommision($status) {
-        
-        $order_detail = $this->order;
-
-        $user = $order_detail->user;
-
-        if(!empty($user->referral_code)){
-
-            $reffral_user = User::where('affiliate_code', $user->referral_code)->first();
-
-            if(!empty($reffral_user)){
-
-                $reffral_commision = $reffral_user->commission;
-
-                $commision = $order_detail->total_price * $reffral_commision / 100;
-
-                if($order_detail->status == 4 && $status != 4){
-                    $total_credit = $reffral_user->credit - $commision;
-                    $reffral_user->credit = $total_credit;
-                    $reffral_user->save();
-                }
-
-                if ($status == 4) {
-                    $total_credit = $reffral_user->credit + $commision;
-                    $reffral_user->credit = $total_credit;
-                    $reffral_user->save();
-                } 
-                
-            }
-            
-        }
+    public function updateFranchiseCommision($status) 
+    {    
+        (new UserService($this->order->user))->handleUserCommission($this->order, $status);
     }
 }

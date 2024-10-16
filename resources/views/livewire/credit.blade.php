@@ -10,9 +10,15 @@
                      <h1 class="text-center text-lg font-semibold text-heading sm:text-xl">{{ __trans('Credit') }}</h1>
                   </div>
 
-                  <div class="flex flex-col items-center justify-center h-64 bg-white mt-4">
-                    <p class="mt-1 text-lg  font-semibold text-gray-700">{{ __appCurrencySymbol() }}0</p>
-                  </div>      
+                  <div class="flex items-center justify-center h-64 mt-4">
+                    <div class="bg-accent text-white px-6 py-3 rounded-full shadow-lg">
+                      <p class="text-2xl font-bold">
+                        <span class="align-top text-sm">{{ __appCurrencySymbol() }}</span> 
+                        <span class="text-4xl">{{ number_format(Auth::user()->credit ?? 0, 2) }}</span>
+                      </p>
+                    </div>
+                  </div>                  
+                     
                </div>
             </div>
         </div>

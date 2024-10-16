@@ -82,9 +82,10 @@ class OrderController extends Controller
     public function show(Order $order)
     { 
         $extra_information = json_decode($order->extra_information, true);
+        $all_statuses = config('general.order_statuses');
         $status = config('general.order_statuses.' . $order->status);
         $status_color = config('general.order_statuses_color.' . $order->status);
-        return view('backend.orders.show', compact('order', 'status', 'status_color', 'extra_information'));
+        return view('backend.orders.show', compact('order', 'status', 'status_color', 'extra_information', 'all_statuses'));
     }
 
     public function updateStatus(Order $order)

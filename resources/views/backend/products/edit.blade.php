@@ -73,7 +73,7 @@
                             <!-- Slug Field (Auto-generated, Read-only) -->
                             <div class="form-group mb-3">
                                 <label for="slug" class="form-label">Slug (Auto-generated)</label>
-                                <input type="text" class="form-control" value="{{ $product->slug }}" readonly>
+                                <input type="text" name="slug" class="form-control" value="{{ $product->slug }}">
                             </div>
 
                             <div class="mb-3">
@@ -162,8 +162,8 @@
                             <div class="mb-3">
                                 <label for="public_visibility" class="form-label">{{ __trans('Public Visibility') }}</label>
                                 <select name="public_visibility" class="form-select @error('public_visibility') is-invalid @enderror">
-                                    <option value="1" @if($product->public_visibility == 1) selected @endif>{{ __trans('Yes') }}</option>
-                                    <option value="0" @if($product->public_visibility == 0) selected @endif>{{ __trans('No') }}</option>
+                                    <option value="1" @if($product->public_visibility == 1) selected @endif>{{ __trans('Public') }}</option>
+                                    <option value="0" @if($product->public_visibility == 0) selected @endif>{{ __trans('Private') }}</option>
                                 </select>
                             </div>
 

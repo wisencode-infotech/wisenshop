@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Backend;
 
 use App\Http\Controllers\Controller;
 use App\Http\Requests\StoreProductRequest;
+use App\Http\Requests\UpdateProductRequest;
 use App\Mail\StockReminderMail;
 use App\Models\Category;
 use App\Models\Product;
@@ -47,11 +48,11 @@ class ProductController extends Controller
                  ->addColumn('public_visibility', function($row) {
                     if($row->public_visibility == '1')
                     {
-                        return '<span class="badge rounded-pill badge-soft-success font-size-12">Yes</span>';
+                        return '<span class="badge rounded-pill badge-soft-success font-size-12">Public</span>';
                     }
                     else
                     {
-                        return '<span class="badge rounded-pill badge-soft-danger font-size-12">No</span>'; 
+                        return '<span class="badge rounded-pill badge-soft-danger font-size-12">Private</span>'; 
                     }
                 })
                 ->addColumn('action', function($row) {
@@ -148,7 +149,7 @@ class ProductController extends Controller
         return view('backend.products.edit', compact('product', 'units', 'categories')); // Return the edit view
     }
 
-    public function update(StoreProductRequest $request, $id)
+    public function update(UpdateProductRequest $request, $id)
     {
         $product = Product::withoutGlobalScope('public_visibility')->findOrFail($id);
 
@@ -157,10 +158,10 @@ class ProductController extends Controller
         $validatedData = $request->validated();
 
         // Check if the product name has changed
-        if ($request->name !== $product->name) {
-            $slug = Str::slug($request->name);
-            $product->slug = $this->generateUniqueSlug($slug); // Update slug only if the name has changed
-        }
+        // if ($request->name !== $product->name) {
+        //     $slug = Str::slug($request->name);
+        //     $product->slug = $this->generateUniqueSlug($slug); // Update slug only if the name has changed
+        // }
 
         $product->name = $request->name;
         $product->short_description = $request->short_description;
@@ -170,6 +171,7 @@ class ProductController extends Controller
         $product->category_id = $request->category_id;
         $product->public_visibility = $request->public_visibility;
         $product->unit_id = $request->unit_id;
+        $product->slug = $request->slug;
         $product->save();
 
         // Check if images were uploaded

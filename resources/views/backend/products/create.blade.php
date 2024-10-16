@@ -121,8 +121,8 @@
                     <div class="mb-3">
                         <label for="public_visibility" class="form-label">{{ __trans('Public Visibility') }}</label>
                         <select name="public_visibility" class="form-select @error('public_visibility') is-invalid @enderror">
-                            <option value="1">{{ __trans('Yes') }}</option>
-                            <option value="0">{{ __trans('No') }}</option>
+                            <option value="1">{{ __trans('Public') }}</option>
+                            <option value="0">{{ __trans('Private') }}</option>
                         </select>
                     </div>
 

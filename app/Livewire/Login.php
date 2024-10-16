@@ -25,7 +25,7 @@ class Login extends Component
 
         if (Auth::attempt(['email' => $this->email, 'password' => $this->password])) {
 
-            if (Auth::user()->role != 'ROLE_BUYER') { // Prevent users being logged in with role <> ROLE_BUYER
+            if ((Auth::user()->userRole->role) != 'buyer') { // Prevent users being logged in with role <> ROLE_BUYER
                 Auth::logout();
                 
                 session()->invalidate();

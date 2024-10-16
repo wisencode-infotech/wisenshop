@@ -5,8 +5,10 @@ namespace App\Services;
 use App\Mail\OrderPlacedMail;
 use App\Mail\OrderStatusChangedMail;
 use App\Models\Transaction;
+use App\Models\User;
 use Illuminate\Support\Facades\Mail;
 use App\Services\ProductService;
+use Illuminate\Support\Facades\Auth;
 
 class OrderService
 {
@@ -19,6 +21,8 @@ class OrderService
 
     public function updateStatus($status)
     {
+        $this->updateFranchiseCommision($status);
+
         $this->order->status = $status;
 
         $this->order->save();
@@ -74,5 +78,38 @@ class OrderService
         $transaction->amount = $this->order->total_price;
         $transaction->status = $status;
         $transaction->save();
+    }
+
+    public function updateFranchiseCommision($status) {
+        
+        $order_detail = $this->order;
+
+        $user = $order_detail->user;
+
+        if(!empty($user->referral_code)){
+
+            $reffral_user = User::where('affiliate_code', $user->referral_code)->first();
+
+            if(!empty($reffral_user)){
+
+                $reffral_commision = $reffral_user->commission;
+
+                $commision = $order_detail->total_price * $reffral_commision / 100;
+
+                if($order_detail->status == 4 && $status != 4){
+                    $total_credit = $reffral_user->credit - $commision;
+                    $reffral_user->credit = $total_credit;
+                    $reffral_user->save();
+                }
+
+                if ($status == 4) {
+                    $total_credit = $reffral_user->credit + $commision;
+                    $reffral_user->credit = $total_credit;
+                    $reffral_user->save();
+                } 
+                
+            }
+            
+        }
     }
 }

@@ -166,8 +166,11 @@ class OrderController extends Controller
 
         // Update the status for each order
         foreach ($orders as $order) {
-            $order->status = $validated['order_status'];
-            $order->save();
+            // $order->status = $validated['order_status'];
+            // $order->save();
+            $this->order_service->setRecord($order);
+            $this->order_service->updateStatus($validated['order_status']); 
+
         }
 
         return response()->json(['status' => 200, 'message' => 'Order statuses updated successfully.']);

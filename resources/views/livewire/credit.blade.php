@@ -11,12 +11,7 @@
                   </div>
 
                   <div class="flex flex-col items-center justify-center h-64 bg-white mt-4">
-                        
-                    <i class="fa fa-dollar text-muted text-xl"></i>
-                  
-                    <!-- Text -->
-                    <p class="mt-4 text-md text-gray-500">{{ __trans('Amount') }}</p>
-                    <p class="mt-1 text-lg font-semibold text-gray-700">$1000</p>
+                    <p class="mt-1 text-lg  font-semibold text-gray-700">{{ __appCurrencySymbol() }}0</p>
                   </div>      
                </div>
             </div>

@@ -9,6 +9,14 @@
 
                 // Display toastr notification
                 if (typeof toastr !== 'undefined') {
+
+                    toastr.options = {
+                        "positionClass": "toast-bottom-center", // Position the toastr at the bottom center
+                        "timeOut": "5000", 
+                        "closeButton": true,
+                        "progressBar": true,
+                    };
+
                     toastr[type](message);
                 } else {
                     alert(message); // Fallback to alert if toastr is not available

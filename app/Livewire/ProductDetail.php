@@ -11,8 +11,9 @@ class ProductDetail extends Component
 
     public function mount($product_slug)
     {
-        $this->product = Product::where('slug', $product_slug)->first();
+        $this->product = Product::whereIn('public_visibility', [1, 0])->where('slug', $product_slug)->first();
 
+        
         if (!$this->product)
             abort(404);
     }

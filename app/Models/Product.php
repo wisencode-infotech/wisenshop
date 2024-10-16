@@ -118,14 +118,6 @@ class Product extends Model
         return ProductVariation::select('name')->where('product_id', $this->id)->pluck('name');
     }
 
-    // scope
-    protected static function booted()
-    {
-        static::addGlobalScope('public_visibility', function (Builder $builder) {
-            $builder->where('public_visibility', '1');
-        });
-    }
-
     // Helper functions
     public function makePrimaryImage() 
     {

@@ -123,6 +123,7 @@
                         <select name="public_visibility" class="form-select @error('public_visibility') is-invalid @enderror">
                             <option value="1">{{ __trans('Public') }}</option>
                             <option value="0">{{ __trans('Private') }}</option>
+                            <option value="2">{{ __trans('Hidden') }}</option>
                         </select>
                     </div>
 

@@ -23,7 +23,14 @@ class ProductController extends Controller
     {
 
         if ($request->ajax()) {
-            $data = Product::withoutGlobalScope('public_visibility')->latest()->get();
+            $data = Product::latest();
+
+            if (__currentUserRole() == 'franchise') {
+                $data = $data->whereIn('public_visibility', [1, 0]);
+            }
+
+            $data = $data->get();
+
             return Datatables::of($data)
                 ->addIndexColumn() // Adds the row index
                 ->addColumn('category', function($row) {
@@ -46,13 +53,17 @@ class ProductController extends Controller
                     }
                 })
                  ->addColumn('public_visibility', function($row) {
-                    if($row->public_visibility == '1')
-                    {
+                    if ($row->public_visibility == '1') {
+
                         return '<span class="badge rounded-pill badge-soft-success font-size-12">Public</span>';
-                    }
-                    else
-                    {
-                        return '<span class="badge rounded-pill badge-soft-danger font-size-12">Private</span>'; 
+
+                    } else if($row->public_visibility == '0') {
+
+                        return '<span class="badge rounded-pill badge-soft-warning font-size-12">Private</span>'; 
+
+                    } else {
+
+                        return '<span class="badge rounded-pill badge-soft-danger font-size-12">Hidden</span>'; 
                     }
                 })
                 ->addColumn('action', function($row) {
@@ -72,7 +83,7 @@ class ProductController extends Controller
                 ->make(true);
         }
 
-        $products = Product::withoutGlobalScope('public_visibility')->get(); // Fetch all products
+        $products = Product::get(); // Fetch all products
         return view('backend.products.index', compact('products'));
     }
 
@@ -142,7 +153,7 @@ class ProductController extends Controller
      */
     public function edit($id)
     {
-        $product = Product::withoutGlobalScope('public_visibility')->where('id', $id)->first();
+        $product = Product::where('id', $id)->first();
         
         $units = ProductUnit::all();
         $categories = Category::all();
@@ -151,7 +162,7 @@ class ProductController extends Controller
 
     public function update(UpdateProductRequest $request, $id)
     {
-        $product = Product::withoutGlobalScope('public_visibility')->findOrFail($id);
+        $product = Product::findOrFail($id);
 
         $old_stock = $product->stock;
 

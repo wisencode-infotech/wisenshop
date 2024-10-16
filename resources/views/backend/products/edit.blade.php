@@ -164,6 +164,7 @@
                                 <select name="public_visibility" class="form-select @error('public_visibility') is-invalid @enderror">
                                     <option value="1" @if($product->public_visibility == 1) selected @endif>{{ __trans('Public') }}</option>
                                     <option value="0" @if($product->public_visibility == 0) selected @endif>{{ __trans('Private') }}</option>
+                                    <option value="2" @if($product->public_visibility == 2) selected @endif>{{ __trans('Hidden') }}</option>
                                 </select>
                             </div>
 

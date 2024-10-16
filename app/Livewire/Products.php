@@ -92,6 +92,8 @@ class Products extends Component
         // Start building the query for products
         $query = Product::query();
 
+        $query->where('public_visibility', 1);
+
         // Filter by category if a category_id is set
         if ($this->category_id) {
             $query->whereIn('category_id', $this->category_id);

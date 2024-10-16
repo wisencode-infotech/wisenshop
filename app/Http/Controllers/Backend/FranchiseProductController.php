@@ -12,7 +12,10 @@ class FranchiseProductController extends Controller
 {
     public function edit($id)
     {
-        $product = Product::withoutGlobalScope('public_visibility')->where('id', $id)->first();
+        $product = Product::whereIn('public_visibility', [1, 0])->where('id', $id)->first();
+
+        if (!$product)
+            abort(404);
         
         $units = ProductUnit::all();
 
@@ -21,7 +24,7 @@ class FranchiseProductController extends Controller
 
     public function update(Request $request, $id)
     {
-        $product = Product::withoutGlobalScope('public_visibility')->findOrFail($id);
+        $product = Product::whereIn('public_visibility', [1, 0])->findOrFail($id);
 
         if (isset($request->stock)) {
             $franchise_product = FranchiseProductAvailability::where('product_id', $product->id)

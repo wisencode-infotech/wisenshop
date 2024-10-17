@@ -77,7 +77,7 @@ class MyWishlist extends Component
 
         $this->setProducts();
 
-        session()->flash('message', 'Item removed from wishlist.');
+        $this->dispatch('notify', 'error', __trans('Item removed from the wishlist'));
     }
 
     public function render()

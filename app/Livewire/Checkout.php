@@ -185,7 +185,7 @@ class Checkout extends Component
                 // Clear the cart after successful order placement
                 CartHelper::clearDatabaseCart();
 
-                session()->flash('message', 'Order placed successfully!');
+                $this->dispatch('notify', 'success', __trans('Order placed successfully!'));
 
                 return redirect()->intended('/thank-you/'.$order_id);
             }

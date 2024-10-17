@@ -71,8 +71,8 @@ class RemindWhenStockAvailable extends Component
                 }
 
             $this->isReminded = true;
-
-            session()->flash('message', 'Reminder set successfully!');
+            
+            $this->dispatch('notify', 'success', __trans('Reminder set successfully!'));
         } else {
             // If the user is not logged in, open the drawer to ask for the email
             $this->isDrawerOpen = true;
@@ -114,7 +114,7 @@ class RemindWhenStockAvailable extends Component
         $this->isReminded = true;
         $this->isDrawerOpen = false; // Close the drawer after saving
 
-        session()->flash('message', 'Reminder set successfully!');
+        $this->dispatch('notify', 'success', __trans('Reminder set successfully!'));
     }
 
     public function setStock()

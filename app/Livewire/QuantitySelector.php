@@ -57,7 +57,7 @@ class QuantitySelector extends Component
 
     public function increment()
     {
-        $this->quantity++;
+        // $this->quantity++;
 
         CartHelper::saveQuantity($this->product_id, $this->product_variation_id, $this->quantity);
 
@@ -68,12 +68,14 @@ class QuantitySelector extends Component
         $this->dispatch('quantityUpdated', ['product_id' => $this->product_id, 'product_variation_id' => $this->product_variation_id, 'quantity' => $this->quantity]);
 
         $this->dispatch('shoppingCartUpdated');
+
+        $this->skipRender();
     }
 
     public function decrement()
     {
         if ($this->quantity > 0) {
-            $this->quantity--;
+            // $this->quantity--;
 
             CartHelper::saveQuantity($this->product_id, $this->product_variation_id, $this->quantity);
 
@@ -85,6 +87,8 @@ class QuantitySelector extends Component
 
             $this->dispatch('shoppingCartUpdated');
         }
+
+        $this->skipRender();
     }
 
     public function render()

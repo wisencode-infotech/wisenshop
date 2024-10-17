@@ -52,7 +52,7 @@ class SiteBannerController extends Controller
     {
         // Validate the request data
         $request->validate([
-            'title' => 'required|string|max:255',
+            'title' => 'nullable|max:255',
             'image' => 'nullable|image|mimes:jpeg,png,jpg,gif,svg,webp|max:2048', // Max 2MB
         ]);
 
@@ -106,7 +106,7 @@ class SiteBannerController extends Controller
     {
         // Validate the request data
         $request->validate([
-            'title' => 'required|string|max:255' . $site_banner->id,
+            'title' => 'nullable|string|max:255' . $site_banner->id,
             'description' => 'nullable|string',
             'image' => 'nullable|image|mimes:jpeg,png,jpg,gif,svg,webp|max:2048', // Max 2MB
         ]);

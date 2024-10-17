@@ -57,8 +57,8 @@ class UserService
         $this->adjustCredit($user, $amount);
 
         $notificationData = [
-            'title' => abs($amount) . ' ' . $action . '  your credit score.',
-            'message' => abs($amount) . ' ' . $action . '  your credit score. Order #' . $order->id . ' is ' . $status,
+            'title' => __appCurrencySymbol().''.number_format(abs($amount), 2) . ' ' . $action . '  your credit score.',
+            'message' => __appCurrencySymbol().''.number_format(abs($amount), 2) . ' ' . $action . '  your credit score. Order #' . $order->id . ' is ' . $status,
             'user_id' => $user->id,
             'is_global' => false,
             'type' => 'credit',

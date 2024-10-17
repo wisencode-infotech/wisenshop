@@ -45,6 +45,30 @@ class Register extends Component
             'currency_id' => __userCurrency()->id
         ]);
 
+        if (!empty($this->referral_code)) {
+
+            $refferal_user = User::where('affiliate_code', $this->referral_code)->first();
+
+            if (!empty($refferal_user)) {
+
+                $data = [
+
+                    'title' => $refferal_user->name.' is registered.',
+                    'message' => $refferal_user->name.' is registered from your referral with '.$this->referral_code,
+                    'user_id' => $refferal_user->id,
+                    'is_global' => false,
+                    'type' => 'referral_register',
+                    'url' => '',
+                    'meta_data' => [
+                        'refferal_user_id' => $refferal_user->id
+                    ],
+                    'is_read' => false
+                ];
+
+                __addNotification($data);
+            } 
+        }
+
         // Automatically log in the user after registration
         auth()->login($user);
 

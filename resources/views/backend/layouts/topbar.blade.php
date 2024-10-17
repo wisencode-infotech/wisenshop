@@ -61,7 +61,11 @@
                                     <div class="d-flex" style="padding: .75rem 1rem;">
                                         <div class="avatar-xs me-3">
                                             <span class="avatar-title bg-primary rounded-circle font-size-16">
+                                                @if($notification->type == 'order')
                                                 <i class="bx bx-cart"></i>
+                                                @else
+                                                <i class="bx bx-bell"></i>
+                                                @endif
                                             </span>
                                         </div>
                                         <div class="flex-grow-1">

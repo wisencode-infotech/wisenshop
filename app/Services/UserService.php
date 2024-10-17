@@ -43,12 +43,12 @@ class UserService
 
         // Deduct credit if status is updated from 4 to non-4.
         if ($order->status == 4 && $latest_status != 4) {
-            $this->handleCreditChange($user, -$commission_amount, $order, $status, 'deducted');
+            $this->handleCreditChange($user, -$commission_amount, $order, $status, 'deducted from ');
         }
 
         // Add credit if status is updated to 4.
         if ($latest_status == 4) {
-            $this->handleCreditChange($user, $commission_amount, $order, $status, 'added');
+            $this->handleCreditChange($user, $commission_amount, $order, $status, 'added to ');
         }
     }
 
@@ -57,8 +57,8 @@ class UserService
         $this->adjustCredit($user, $amount);
 
         $notificationData = [
-            'title' => abs($amount) . ' ' . $action . ' to your credit score.',
-            'message' => abs($amount) . ' ' . $action . ' to your credit score. Order #' . $order->id . ' is ' . $status,
+            'title' => abs($amount) . ' ' . $action . '  your credit score.',
+            'message' => abs($amount) . ' ' . $action . '  your credit score. Order #' . $order->id . ' is ' . $status,
             'user_id' => $user->id,
             'is_global' => false,
             'type' => 'credit',

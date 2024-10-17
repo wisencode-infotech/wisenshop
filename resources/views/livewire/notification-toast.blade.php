@@ -15,6 +15,7 @@
                         "timeOut": "5000", 
                         "closeButton": true,
                         "progressBar": true,
+                        // "timeOut": 0, 
                     };
 
                     toastr[type](message);

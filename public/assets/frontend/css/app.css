@@ -192,3 +192,73 @@ button.reset_filter_btn:hover {
 }
 
 /*End custom css*/
+
+/*Toaster css*/
+#toast-container > .toast {
+    font-family: 'Poppins', sans-serif;
+    padding: 8px 12px 8px 50px;
+    border-radius: 8px; /* Modern rounded corners */
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15); /* Light shadow for depth */
+    transition: all 0.3s ease; /* Smooth transition */
+    width: 280px; /* Moderate width for compact display */
+}
+/* Toast success */
+#toast-container > .toast-success {
+    background-color: #009f7f;
+    color: #fff;
+}
+/* Toast error */
+#toast-container > .toast-error {
+    background-color: #8c0a0a;
+    color: #fff;
+}
+/* Toast info */
+#toast-container > .toast-info {
+    background-color: #2196F3;
+    color: #fff;
+}
+/* Toast warning */
+#toast-container > .toast-warning {
+    background-color: #FF9800;
+    color: #fff;
+}
+/* Title styling */
+#toast-container > .toast .toast-title {
+    font-weight: 600;
+    font-size: 14px;
+    margin-bottom: 4px;
+}
+/* Message styling */
+#toast-container > .toast .toast-message {
+    font-size: 12px;
+    margin: 0;
+    margin-top: 2px;
+    line-height: 1.4;
+}
+/* Close button */
+#toast-container > .toast .toast-close-button {
+    color: #fff;
+    opacity: 0.8;
+    transition: opacity 0.3s;
+}
+#toast-container > .toast .toast-close-button:hover {
+    opacity: 1;
+}
+
+#toast-container > .toast-success {
+    background-size: 16px; 
+    background-position: 16px center;
+}
+
+#toast-container > .toast-error {
+    background-size: 16px; 
+    background-position: 16px center;
+}
+
+/* Responsive behavior */
+@media (max-width: 480px) {
+    #toast-container > .toast {
+        width: 90%; /* Adapt for smaller screens */
+    }
+}
+/*End Toaster css*/

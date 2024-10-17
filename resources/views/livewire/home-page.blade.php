@@ -1,5 +1,4 @@
 @section('title', 'Home')
-
 <div>
     <livewire:sliders />
     <livewire:mobile-topbar-filters />

@@ -24,7 +24,7 @@
                                 ">
                                 <!-- Full Width and Height Image -->
                                 <img src="{{ $category->image_url }}"
-                                    class="absolute inset-0 object-cover" />
+                                    class="absolute object-cover" style="top: 15%;" />
 
                                 <!-- Overlay for Title -->
                                 <div class="absolute inset-0 flex items-end justify-center">

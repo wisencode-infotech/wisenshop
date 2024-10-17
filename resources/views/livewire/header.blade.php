@@ -4,7 +4,7 @@
         <div
             class="flex w-full transform-gpu items-center justify-between bg-light px-5 transition-transform duration-300 lg:h-22 lg:px-6 2xl:px-8 lg:absolute lg:border-0 lg:bg-transparent lg:shadow-none">
             <button
-                class="group hidden h-full w-6 shrink-0 items-center justify-center focus:text-accent focus:outline-0 ltr:mr-6 rtl:ml-6 lg:flex xl:hidden"><span
+                class="mobile-pages-drawer-btn group hidden h-full w-6 shrink-0 items-center justify-center focus:text-accent focus:outline-0 ltr:mr-6 rtl:ml-6 lg:flex xl:hidden"><span
                     class="sr-only">{{ __trans('Burger Menu') }}</span>
                 <div class="flex w-full flex-col space-y-1.5"><span
                         class="h-0.5 w-1/2 rounded bg-gray-600 transition-all group-hover:w-full"></span><span

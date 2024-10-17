@@ -10,6 +10,7 @@ $(document).ready(function () {
             { data: 'price', name: 'price' },
             { data: 'status', name: 'status' },
             { data: 'public_visibility', name: 'public_visibility' },
+            { data: 'is_home', name: 'is_home' },
             { 
                 data: 'action', 
                 name: 'action', 
@@ -41,10 +42,10 @@ $(document).on('click', '.delete', function () {
             },
             success: function (response) {
                 $('#products-table').DataTable().ajax.reload(); // Reload table after deletion
-                alert(response.success);
+                toastr.success(response.success);
             },
             error: function (response) {
-                alert('Error: ' + response.error);
+                toastr.error('Error: ' + response.error);
             }
         });
     }

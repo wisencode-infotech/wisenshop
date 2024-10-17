@@ -11,10 +11,12 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('franchise_affiliate_payouts', function (Blueprint $table) {
+        Schema::create('franchise_product_availabilities', function (Blueprint $table) {
             $table->id();
+            $table->foreignId('product_id')->constrained('products')->onDelete('cascade');
+            $table->foreignId('product_variation_id')->nullable()->constrained('product_variations')->onDelete('cascade');
             $table->foreignId('user_id')->comment('for_franchise_users')->constrained('users')->onDelete('cascade');
-            $table->string('iban')->nullable();
+            $table->integer('quantity');
             $table->timestamps();
         });
     }
@@ -24,6 +26,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('franchise_affiliate_payouts');
+        Schema::dropIfExists('franchise_product_availabilities');
     }
 };

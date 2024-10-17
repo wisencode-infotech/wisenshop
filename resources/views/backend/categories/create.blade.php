@@ -57,6 +57,16 @@
                         @enderror
                     </div>
 
+                    <div class="form-group mb-3">
+                        <label for="order" class="form-label">Sorting Order</label>
+                        <input type="text" name="order" class="form-control @error('order') is-invalid @enderror" value="{{ old('order') }}" required>
+                        @error('order')
+                        <span class="invalid-feedback" role="alert">
+                            <strong>{{ $message }}</strong>
+                        </span>
+                        @enderror
+                    </div>
+
                     <!-- Submit Button -->
                     <div class="form-group text-end">
                         <button type="submit" class="btn btn-success btn-rounded">Create Category</button>

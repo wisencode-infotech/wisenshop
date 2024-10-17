@@ -16,6 +16,35 @@
                     </a>
                 </li>
 
+                @if(__isFranchise())
+                <li>
+                    <a href="{{ route('backend.my-referrals') }}" class="waves-effect">
+                        <i class="bx bx-user"></i>
+                        <span key="t-calendar">My Referrals</span>
+                    </a>
+                </li>
+                @endif
+
+                <li>
+                    <a href="{{ route('backend.payout.index') }}" class="waves-effect">
+                        <i class="bx bx-money"></i>
+                        <span key="t-calendar">Payouts</span>
+                    </a>
+                </li>
+
+                @if(__currentUserRole() == 'admin')
+
+                <li>
+                    <a href="javascript: void(0);" class="has-arrow waves-effect">
+                        <i class="bx bx-user"></i>
+                        <span key="t-ecommerce">Users</span>
+                    </a>
+                    <ul class="sub-menu" aria-expanded="false">
+                        <li><a href="{{ route('backend.users.create') }}" key="t-products">Add New</a></li>
+                        <li><a href="{{ route('backend.users.index') }}" key="t-product-detail">All</a></li>
+                    </ul>
+                </li>
+                
                 <li>
                     <a href="javascript: void(0);" class="has-arrow waves-effect">
                         <i class="bx bxs-gift"></i>
@@ -37,6 +66,7 @@
                         <li><a href="{{ route('backend.site-banner.index') }}" key="t-product-detail">All</a></li>
                     </ul>
                 </li>
+                @endif
 
                 <li>
                     <a href="javascript: void(0);" class="has-arrow waves-effect">
@@ -44,11 +74,14 @@
                         <span key="t-ecommerce">Products</span>
                     </a>
                     <ul class="sub-menu" aria-expanded="false">
+                        @if(__currentUserRole() == 'admin')
                         <li><a href="{{ route('backend.product.create') }}" key="t-products">Add New</a></li>
+                        @endif
                         <li><a href="{{ route('backend.product.index') }}" key="t-product-detail">All</a></li>
                     </ul>
                 </li>
 
+                @if(__currentUserRole() == 'admin')
                 <li>
                     <a href="javascript: void(0);" class="has-arrow waves-effect">
                         <i class="mdi mdi-flask-round-bottom-outline"></i>
@@ -140,6 +173,7 @@
                         <span key="t-calendar">Settings</span>
                     </a>
                 </li>
+
                 
                 <li>
                     <a href="{{ route('backend.home-settings.index') }}" class="waves-effect">
@@ -147,6 +181,7 @@
                         <span key="t-calendar">Home Page Settings</span>
                     </a>
                 </li>
+                @endif
             </ul>
         </div>
         <!-- Sidebar -->

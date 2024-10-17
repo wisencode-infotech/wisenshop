@@ -69,6 +69,11 @@
                         @enderror
                     </div>
 
+                    <div class="form-group mb-3">
+                        <label for="order" class="form-label">Sorting Order</label>
+                        <input type="number" name="order" class="form-control" value="{{ $category->order }}">
+                    </div>
+
                     <!-- Submit Button -->
                     <div class="form-group text-end">
                         <button type="submit" class="btn btn-primary btn-rounded">Update Category</button>

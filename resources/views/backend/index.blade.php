@@ -12,6 +12,7 @@
     <div class="row">
         <div class="col-xl-12">
             <div class="row">
+                @if(__currentUserRole() == 'admin')
                 <div class="col-md-3">
                     <div class="card mini-stats-wid">
                         <div class="card-body">
@@ -131,7 +132,7 @@
                             <div class="media">
                                 <div class="media-body">
                                     <p class="text-muted fw-medium">Revenue</p>
-                                    <h4 class="mb-0">${{ $total_completed_orders_amount }}</h4>
+                                    <h4 class="mb-0">{{ __appCurrencySymbol() }} {{ $total_completed_orders_amount }}</h4>
                                 </div>
 
                                 <div class="avatar-sm rounded-circle bg-primary align-self-center mini-stat-icon">
@@ -143,6 +144,48 @@
                         </div>
                     </div>
                 </div>
+                @endif
+
+                @if(__isFranchise())
+                <div class="col-md-3">
+                    <div class="card mini-stats-wid">
+                        <div class="card-body">
+                            <div class="media">
+                                <div class="media-body">
+                                    <p class="text-muted fw-medium">Referred Users</p>
+                                    <h4 class="mb-0">{{ $total_referral_users }}</h4>
+                                </div>
+
+                                <div class="mini-stat-icon avatar-sm rounded-circle bg-primary align-self-center">
+                                    <span class="avatar-title">
+                                        <i class="bx bx-user font-size-24"></i>
+                                    </span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-md-3">
+                    <div class="card mini-stats-wid">
+                        <div class="card-body">
+                            <div class="media">
+                                <div class="media-body">
+                                    <p class="text-muted fw-medium">Total Credit</p>
+                                    <h4 class="mb-0">{{ __appCurrencySymbol() }} {{ auth()->user()->credit ?? 0 }}</h4>
+                                </div>
+
+                                <div class="mini-stat-icon avatar-sm rounded-circle bg-primary align-self-center">
+                                    <span class="avatar-title">
+                                        <i class="bx bx-dollar-circle font-size-24"></i>
+                                    </span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                @endif
                 <!-- <div class="col-md-3">
                     <div class="card mini-stats-wid">
                         <div class="card-body">

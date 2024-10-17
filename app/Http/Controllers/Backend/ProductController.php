@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Backend;
 
 use App\Http\Controllers\Controller;
 use App\Http\Requests\StoreProductRequest;
+use App\Http\Requests\UpdateProductRequest;
 use App\Mail\StockReminderMail;
 use App\Models\Category;
 use App\Models\Product;
@@ -22,7 +23,14 @@ class ProductController extends Controller
     {
 
         if ($request->ajax()) {
-            $data = Product::withoutGlobalScope('public_visibility')->latest()->get();
+            $data = Product::latest();
+
+            if (__isFranchise()) {
+                $data = $data->whereIn('public_visibility', [1, 0]);
+            }
+
+            $data = $data->get();
+
             return Datatables::of($data)
                 ->addIndexColumn() // Adds the row index
                 ->addColumn('category', function($row) {
@@ -44,26 +52,48 @@ class ProductController extends Controller
                         return '<span class="badge rounded-pill badge-soft-danger font-size-12">InActive</span>'; 
                     }
                 })
-                 ->addColumn('public_visibility', function($row) {
-                    if($row->public_visibility == '1')
-                    {
-                        return '<span class="badge rounded-pill badge-soft-success font-size-12">Yes</span>';
+                ->addColumn('public_visibility', function($row) {
+                    if ($row->public_visibility == '1') {
+
+                        return '<span class="badge rounded-pill badge-soft-success font-size-12">Public</span>';
+
+                    } else if($row->public_visibility == '0') {
+
+                        return '<span class="badge rounded-pill badge-soft-warning font-size-12">Private</span>'; 
+
+                    } else {
+
+                        return '<span class="badge rounded-pill badge-soft-danger font-size-12">Hidden</span>'; 
                     }
-                    else
-                    {
+                })
+                ->addColumn('is_home', function($row) {
+                    if ($row->is_home == '1') {
+
+                        return '<span class="badge rounded-pill badge-soft-success font-size-12">Yes</span>';
+
+                    } else {
+
                         return '<span class="badge rounded-pill badge-soft-danger font-size-12">No</span>'; 
                     }
                 })
                 ->addColumn('action', function($row) {
-                    $btn = '<a href="'.route('backend.product.edit', $row->id).'" class="edit btn btn-primary btn-sm">Edit</a>';
-                    $btn .= ' <button class="btn btn-danger btn-sm delete" data-id="'.$row->id.'">Delete</button>';
+
+                    if (__currentUserRole() == 'admin') {
+
+                        $btn = '<a href="'.route('backend.product.edit', $row->id).'" class="edit btn btn-primary btn-sm">Edit</a>';
+
+                        $btn .= ' <button class="btn btn-danger btn-sm delete" data-id="'.$row->id.'">Delete</button>';
+                    } else {
+                        $btn = '<a href="'.route('backend.franchise-product.edit', $row->id).'" class="edit btn btn-primary btn-sm">Edit</a>';
+                    }
+                    
                     return $btn;
                 })
-                ->rawColumns(['action', 'status', 'public_visibility'])
+                ->rawColumns(['action', 'status', 'public_visibility', 'is_home'])
                 ->make(true);
         }
 
-        $products = Product::withoutGlobalScope('public_visibility')->get(); // Fetch all products
+        $products = Product::get(); // Fetch all products
         return view('backend.products.index', compact('products'));
     }
 
@@ -91,6 +121,7 @@ class ProductController extends Controller
         $product->stock = $request->stock;
         $product->category_id = $request->category_id;
         $product->public_visibility = $request->public_visibility;
+        $product->is_home = $request->is_home;
         $product->unit_id = $request->unit_id;
         $product->save();
 
@@ -133,26 +164,26 @@ class ProductController extends Controller
      */
     public function edit($id)
     {
-        $product = Product::withoutGlobalScope('public_visibility')->where('id', $id)->first();
+        $product = Product::where('id', $id)->first();
         
         $units = ProductUnit::all();
         $categories = Category::all();
         return view('backend.products.edit', compact('product', 'units', 'categories')); // Return the edit view
     }
 
-    public function update(StoreProductRequest $request, $id)
+    public function update(UpdateProductRequest $request, $id)
     {
-        $product = Product::withoutGlobalScope('public_visibility')->findOrFail($id);
+        $product = Product::findOrFail($id);
 
         $old_stock = $product->stock;
 
         $validatedData = $request->validated();
 
         // Check if the product name has changed
-        if ($request->name !== $product->name) {
-            $slug = Str::slug($request->name);
-            $product->slug = $this->generateUniqueSlug($slug); // Update slug only if the name has changed
-        }
+        // if ($request->name !== $product->name) {
+        //     $slug = Str::slug($request->name);
+        //     $product->slug = $this->generateUniqueSlug($slug); // Update slug only if the name has changed
+        // }
 
         $product->name = $request->name;
         $product->short_description = $request->short_description;
@@ -161,7 +192,9 @@ class ProductController extends Controller
         $product->stock = $request->stock;
         $product->category_id = $request->category_id;
         $product->public_visibility = $request->public_visibility;
+        $product->is_home = $request->is_home;
         $product->unit_id = $request->unit_id;
+        $product->slug = $request->slug;
         $product->save();
 
         // Check if images were uploaded

@@ -7,6 +7,7 @@ use App\Models\Product;
 use Livewire\Component;
 use App\Models\Wishlist;
 use App\Models\ProductVariation;
+use App\Helpers\CartHelper;
 
 class MyWishlist extends Component
 {
@@ -55,6 +56,20 @@ class MyWishlist extends Component
         }
     }
 
+    public function addToCart($product_id, $product_variation_id = null)
+    {
+        CartHelper::saveQuantity($product_id, $product_variation_id, 1);
+
+        $this->dispatch('itemAdded');
+
+        $this->dispatch('quantityUpdated', ['product_id' => $product_id, 'product_variation_id' => $product_variation_id, 'quantity' => 1]);
+
+        $this->dispatch('shoppingCartUpdated');
+
+        WishlistHelper::removeWishlist($product_id, $product_variation_id);
+
+        $this->setProducts();
+    }
 
     public function removeFromWishlist($product_id, $product_variation_id = null)
     {

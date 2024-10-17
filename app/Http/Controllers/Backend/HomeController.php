@@ -44,7 +44,19 @@ class HomeController extends Controller
         $total_cancelled_orders = Order::where('status','5')->count();
         $total_return_orders = Order::where('status','6')->count();
         $total_completed_orders_amount = Order::where('status','4')->sum('total_price');
-        return view('backend.index', compact('total_pending_orders','total_accepted_orders','total_shipped_orders','total_finalized_orders','total_cancelled_orders','total_return_orders', 'total_completed_orders_amount'));
+
+        $total_referral_users = 0;
+
+        if (__isFranchise()) {
+            
+            $user = Auth::user();
+
+            if(!empty($user->affiliate_code)){
+                $total_referral_users = User::where('referral_code', $user->affiliate_code)->count();
+            }
+        }
+
+        return view('backend.index', compact('total_pending_orders','total_accepted_orders','total_shipped_orders','total_finalized_orders','total_cancelled_orders','total_return_orders', 'total_completed_orders_amount', 'total_referral_users'));
     }
 
     /*Language Translation*/
@@ -67,7 +79,7 @@ class HomeController extends Controller
             'name' => ['required', 'string', 'max:255'],
             'email' => ['required', 'string', 'email', 'max:255'],
             'dob' => ['required', 'date', 'before:today'],
-            'avatar' => ['nullable', 'image', 'mimes:jpg,jpeg,png', 'max:1024'],
+            'avatar' => ['nullable', 'image', 'mimes:jpg,jpeg,png,webp', 'max:1024'],
         ]);
 
         $user = User::find($id);

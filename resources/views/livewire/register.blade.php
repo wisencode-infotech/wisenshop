@@ -96,6 +96,20 @@
                     </div>
                 </div>
 
+                <div class="mt-4 grid grid-cols-1 gap-4">
+                    <div>
+                        <label for="referral_code" class="mb-2 block text-sm font-semibold leading-none text-body-dark">{{ __trans('Reference code') }}</label>
+                        <input 
+                            id="referral_code" 
+                            type="text" 
+                            wire:model="referral_code"
+                            class="flex w-full appearance-none items-center px-3 text-sm text-heading transition duration-300 ease-in-out focus:outline-0 focus:ring-0 border border-border-base rounded focus:border-accent h-10" 
+                            autocomplete="off" 
+                            placeholder="{{ __trans('Reference code') }}">
+                        @error('referral_code') <span class="text-red-500 text-xs mt-1">{{ $message }}</span> @enderror
+                    </div>
+                </div>
+
                 <!-- Submit Button -->
                 <div class="text-center mt-6">
                     <button type="submit" wire:loading.attr="disabled"  

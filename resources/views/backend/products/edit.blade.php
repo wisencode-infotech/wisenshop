@@ -73,7 +73,7 @@
                             <!-- Slug Field (Auto-generated, Read-only) -->
                             <div class="form-group mb-3">
                                 <label for="slug" class="form-label">Slug (Auto-generated)</label>
-                                <input type="text" class="form-control" value="{{ $product->slug }}" readonly>
+                                <input type="text" name="slug" class="form-control" value="{{ $product->slug }}">
                             </div>
 
                             <div class="mb-3">
@@ -115,7 +115,7 @@
 
                             <div class="mb-3" id="stock-container">
                                 <label for="stock" class="form-label">Stock</label>
-                                <input type="number" name="stock" class="form-control @error('stock') is-invalid @enderror" id="stock" placeholder="Enter product stock" value="{{ old('stock', $product->stock) }}">
+                                <input type="number" name="stock" class="form-control @error('stock') is-invalid @enderror" id="stock" placeholder="Enter product stock" value="{{ old('stock', __productStock($product->id)) }}">
                                 @error('stock')
                                 <span class="invalid-feedback">{{ $message }}</span>
                                 @enderror
@@ -162,8 +162,17 @@
                             <div class="mb-3">
                                 <label for="public_visibility" class="form-label">{{ __trans('Public Visibility') }}</label>
                                 <select name="public_visibility" class="form-select @error('public_visibility') is-invalid @enderror">
-                                    <option value="1" @if($product->public_visibility == 1) selected @endif>{{ __trans('Yes') }}</option>
-                                    <option value="0" @if($product->public_visibility == 0) selected @endif>{{ __trans('No') }}</option>
+                                    <option value="1" @if($product->public_visibility == 1) selected @endif>{{ __trans('Public') }}</option>
+                                    <option value="0" @if($product->public_visibility == 0) selected @endif>{{ __trans('Private') }}</option>
+                                    <option value="2" @if($product->public_visibility == 2) selected @endif>{{ __trans('Hidden') }}</option>
+                                </select>
+                            </div>
+
+                            <div class="mb-3">
+                                <label for="is_home" class="form-label">{{ __trans('Need to show in Home?') }}</label>
+                                <select name="is_home" class="form-select @error('is_home') is-invalid @enderror">
+                                    <option value="1" @if($product->is_home == 1) selected @endif>{{ __trans('Yes') }}</option>
+                                    <option value="0" @if($product->is_home == 0) selected @endif>{{ __trans('No') }}</option>
                                 </select>
                             </div>
 
@@ -201,7 +210,7 @@
                                             </div>
                                             <div class="col-md-2">
                                                 <label for="variation_stock" class="form-label">Stock</label>
-                                                <input type="number" name="variations[{{ $index }}][stock]" class="form-control" value="{{ old('variations.' . $index . '.stock', $variation->stock) }}">
+                                                <input type="number" name="variations[{{ $index }}][stock]" class="form-control" value="{{ old('variations.' . $index . '.stock', __productStock($product->id, $variation->id)) }}">
                                                 @error('variations.' . $index . '.stock')
                                                     <span class="text-danger">{{ $message }}</span>
                                                 @enderror

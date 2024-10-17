@@ -7,12 +7,13 @@ use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Database\Eloquent\SoftDeletes;
 use Illuminate\Support\Facades\Storage;
+use Illuminate\Database\Eloquent\Builder; 
 
 class Category extends Model
 {
     use HasFactory, SoftDeletes;
 
-    protected $fillable = ['name', 'slug', 'description', 'image_path'];
+    protected $fillable = ['name', 'slug', 'description', 'image_path', 'order'];
 
     // Define a placeholder URL
     public static $placeholder_url = 'https://placehold.co/158X100/FFF/000';
@@ -33,5 +34,13 @@ class Category extends Model
 
         // If image_path is not set or file does not exist, return the placeholder URL
         return self::$placeholder_url; // Ensure to use self:: for static property access
+    }
+
+    // scope
+    protected static function booted()
+    {
+        static::addGlobalScope('order', function (Builder $builder) {
+            $builder->orderBy('order', 'asc');
+        });
     }
 }

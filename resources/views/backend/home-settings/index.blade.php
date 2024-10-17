@@ -13,18 +13,19 @@
         </ul>
     </div>
 @endif
+
+ @if (session('success'))
+    <div class="alert alert-success">
+        {{ session('success') }}
+    </div>
+@endif
                 
 <div class="row">
-    <div class="col-lg-12">
+    <div class="col-lg-4">
         <div class="card">
             <h3 class="card-header bg-white">{{ __('Default Categories') }}</h3>
 
             <div class="card-body">
-                @if (session('category-success'))
-                    <div class="alert alert-success">
-                        {{ session('category-success') }}
-                    </div>
-                @endif
 
                 <form method="POST" action="{{ route('backend.home-settings.store') }}" enctype="multipart/form-data">
                     @csrf
@@ -47,19 +48,12 @@
             </div>
         </div>
     </div>
-</div>
 
-<div class="row">
-    <div class="col-lg-12">
+    <div class="col-lg-4">
         <div class="card">
             <h3 class="card-header bg-white">{{ __('Banner Settings') }}</h3>
 
             <div class="card-body">
-                @if (session('banner-success'))
-                    <div class="alert alert-success">
-                        {{ session('banner-success') }}
-                    </div>
-                @endif
 
                 <form method="POST" action="{{ route('backend.home-settings.banner-store') }}" enctype="multipart/form-data"> 
                     @csrf
@@ -91,5 +85,33 @@
             </div>
         </div>
     </div>
+
+    <div class="col-lg-4">
+        <div class="card">
+            <h3 class="card-header bg-white">{{ __('Default home sorting method') }}</h3>
+
+            <div class="card-body">
+
+                <form method="POST" action="{{ route('backend.home-settings.sorting-store') }}" enctype="multipart/form-data"> 
+                    @csrf
+                    <div class="row">
+                        <div class="col-md-12 mb-3 mt-3">
+                            <label for="banner_description">{{ __('Default home sorting method') }}</label>
+                            <select name="default_home_sorting_method" class="form-select" required>
+                                <option value="default" @if($default_home_sorting_method == 'default') selected @endif>Default</option>
+                                <option value="random" @if($default_home_sorting_method == 'random') selected @endif>Random</option>
+                                <option value="custom" @if($default_home_sorting_method == 'custom') selected @endif>Custom</option>
+                            </select>
+                        </div>
+                    </div>
+
+                    <div class="form-group text-end">
+                        <button type="submit" class="btn btn-primary btn-rounded">Save</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
 </div>
+
 @endsection

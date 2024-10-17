@@ -17,7 +17,9 @@ class HomePageSettingsController extends Controller
 
         $banner_settings = __homeSetting('banner_settings', true);
 
-        return view('backend.home-settings.index', compact('categories', 'display_specific_categories_on_page_load', 'banner_settings'));
+        $default_home_sorting_method = __homeSetting('default_home_sorting_method');
+
+        return view('backend.home-settings.index', compact('categories', 'display_specific_categories_on_page_load', 'banner_settings', 'default_home_sorting_method'));
     }
 
     public function store(Request $request)
@@ -32,7 +34,7 @@ class HomePageSettingsController extends Controller
 
         $this->saveSettings('display_specific_categories_on_page_load', $display_specific_categories_on_page_load);
 
-        return redirect()->back()->with('category-success', 'saved settings');
+        return redirect()->back()->with('success', 'saved settings');
     }
 
     public function bannerStore(Request $request)
@@ -40,7 +42,7 @@ class HomePageSettingsController extends Controller
         $existing_banner_settings = __homeSetting('banner_settings', true);
 
         $request->validate([
-            'banner_image' => 'image|mimes:jpeg,png,jpg,gif|max:2048',
+            'banner_image' => 'image|mimes:jpeg,png,webp,jpg,gif|max:2048',
             'banner_description' => 'nullable|max:250',
             'banner_url' => 'nullable|url',
         ]);
@@ -62,7 +64,21 @@ class HomePageSettingsController extends Controller
         // Save the banner settings as JSON in the database
         $this->saveSettings('banner_settings', json_encode($bannerSettings));
 
-        return redirect()->back()->with('banner-success', 'Banner settings saved successfully');
+        return redirect()->back()->with('success', 'Banner settings saved successfully');
+    }
+
+    
+    public function sortingStore(Request $request)
+    {
+        $existing_banner_settings = __homeSetting('default_home_sorting_method', true);
+
+        $request->validate([
+            'default_home_sorting_method' => 'required',
+        ]);
+
+        $this->saveSettings('default_home_sorting_method', $request->default_home_sorting_method);
+
+        return redirect()->back()->with('success', 'Sorting settings saved successfully');
     }
 
     public function saveSettings($key, $value) {

@@ -19,7 +19,14 @@
                 <div class="float-end">
                     <h4 class="float-end font-size-16">Order # {{ $order->id }}</h4>
                     <br>
-                    <span class="badge rounded-pill badge-soft-{{ $status_color }} font-size-12">{{ $status }}</span>
+
+                    <select class="form-control change_status form-control-sm" style="width: auto; margin-right: 5px;">
+                        @foreach ($all_statuses as $key => $value)
+                            <option data-order-id = "{{ $order->id }}" value="{{ $key }}" @if($order->status == $key) selected @endif>{{ $value }}</option>
+                        @endforeach
+                    </select>
+
+                    <!-- <span class="badge rounded-pill badge-soft-{{ $status_color }} font-size-12">{{ $status }}</span> -->
                 </div>
                 
                 <div class="auth-logo mb-4">
@@ -150,4 +157,32 @@
 
     @endsection
     @section('script')
+    <script type="text/javascript">
+         $(document).on('change', '.change_status', function(e) {
+            var selected_status = $(this).val();
+            var order_id = $(this).find('option:selected').data('order-id'); 
+                $.ajax({
+                    url: "{{ route('backend.order.change.status') }}", // The action URL of the form
+                    type: 'POST',
+                    headers: {
+                        'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content') // Passing the CSRF token in headers
+                    },
+                    data: {
+                        'selected_status': selected_status,
+                        'order_id': order_id,
+                    },
+                    dataType: 'json',
+                    success: function(response) {
+                        toastr.success(response.message);
+                        $('#orders-table').DataTable().ajax.reload(null, false); // Reload the DataTable
+                    },
+                    error: function(error) {
+                        toastr.error('Something went wrong!');
+                    },
+                    complete: function() {
+                        // Any additional actions after the request completes
+                    }
+                });
+            });
+    </script>
     @endsection

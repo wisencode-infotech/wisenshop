@@ -9,6 +9,7 @@ use Illuminate\Database\Eloquent\SoftDeletes;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 use Illuminate\Support\Facades\Storage;
+use Illuminate\Database\Eloquent\Relations\BelongsTo;
 
 class User extends Authenticatable
 {
@@ -25,14 +26,17 @@ class User extends Authenticatable
         'password',
         'phone',
         'profile_image',
-        'role',
+        'user_role_id',
         'credit',
         'role',
         'credit',
+        'iban',
         'affiliate_code',
         'referral_code',
+        'address',
         'commission',
         'affiliate_earnings',
+        'currency_id',
     ];
 
     /**
@@ -64,6 +68,11 @@ class User extends Authenticatable
         return $this->hasMany(Order::class);
     }
 
+    public function finilizeOrders(): HasMany
+    {
+        return $this->hasMany(Order::class)->where('status', 4);
+    }
+
     public function reviews(): HasMany
     {
         return $this->hasMany(ProductReview::class);
@@ -79,6 +88,16 @@ class User extends Authenticatable
         return $this->hasMany(Notification::class);
     }
 
+    public function userRole(): BelongsTo
+    {
+        return $this->belongsTo(UserRole::class, 'user_role_id');
+    }
+
+    public function currency(): BelongsTo
+    {
+        return $this->belongsTo(Currency::class);
+    }
+
     // Accessors
     public function getProfileImageURLAttribute()
     {
@@ -89,5 +108,10 @@ class User extends Authenticatable
         }
 
         return 'https://avatar.iran.liara.run/username?username='.$this->name;
+    }
+
+    public function getTotalOrdersSumAttribute()
+    {
+        return number_format($this->finilizeOrders()->sum('total_price') ?? 0, 1);
     }
 }

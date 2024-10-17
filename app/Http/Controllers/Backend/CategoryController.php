@@ -53,7 +53,7 @@ class CategoryController extends Controller
         // Validate the request data
         $request->validate([
             'name' => 'required|string|max:255|unique:categories,name',
-            'image' => 'nullable|image|mimes:jpeg,png,jpg,gif,svg|max:2048', // Max 2MB
+            'image' => 'nullable|image|mimes:jpeg,png,webp,jpg,gif,svg|max:2048', // Max 2MB
         ]);
 
         
@@ -82,6 +82,7 @@ class CategoryController extends Controller
             'name' => $request->name,
             'slug' => $slug,
             'image_path' => $imagePath,
+            'order' => $request->order,
             'description' => !empty($request->description) ? $request->description : null,
         ]);
 
@@ -114,12 +115,13 @@ class CategoryController extends Controller
         $request->validate([
             'name' => 'required|string|max:255|unique:categories,name,' . $category->id,
             'description' => 'nullable|string',
-            'image' => 'nullable|image|mimes:jpeg,png,jpg,gif,svg|max:2048', // Max 2MB
+            'image' => 'nullable|image|mimes:jpeg,png,webp,jpg,gif,svg|max:2048', // Max 2MB
         ]);
 
         $data = [
             'name' => $request->name,
-            'description' => $request->description
+            'description' => $request->description,
+            'order' => $request->order,
         ];
 
          // Handle image upload if a new image is provided

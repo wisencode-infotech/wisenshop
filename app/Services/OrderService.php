@@ -5,8 +5,10 @@ namespace App\Services;
 use App\Mail\OrderPlacedMail;
 use App\Mail\OrderStatusChangedMail;
 use App\Models\Transaction;
+use App\Models\User;
 use Illuminate\Support\Facades\Mail;
 use App\Services\ProductService;
+use Illuminate\Support\Facades\Auth;
 
 class OrderService
 {
@@ -19,6 +21,8 @@ class OrderService
 
     public function updateStatus($status)
     {
+        $this->updateFranchiseCommision($status);
+
         $this->order->status = $status;
 
         $this->order->save();
@@ -67,12 +71,18 @@ class OrderService
             Mail::to($this->order->customer_contact_email)->queue(new OrderStatusChangedMail($this->order));
     }
 
-    public function saveOrderTransaction($transaction_id, $status) {
+    public function saveOrderTransaction($transaction_id, $status) 
+    {
         $transaction = new Transaction();
         $transaction->order_id = $this->order->id;
         $transaction->transaction_id = $transaction_id;
         $transaction->amount = $this->order->total_price;
         $transaction->status = $status;
         $transaction->save();
+    }
+
+    public function updateFranchiseCommision($status) 
+    {    
+        (new UserService($this->order->user))->handleUserCommission($this->order, $status);
     }
 }

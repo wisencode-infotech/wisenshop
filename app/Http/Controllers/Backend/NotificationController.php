@@ -18,7 +18,7 @@ class NotificationController extends Controller
     {
 
         if ($request->ajax()) {
-            $data = Notification::latest()->get();
+            $data = Notification::authenticated()->latest()->get();
             return Datatables::of($data)
                 ->addIndexColumn() // Adds the row index
                 ->addColumn('user_id', function($row) {

@@ -71,7 +71,9 @@
                     </div>
                 </div>
             </div>
+            @if (count($orders) != 0)
             <livewire:full-order-details :order_data="$order_data" />
+            @endif
         </div>
         
     </div>

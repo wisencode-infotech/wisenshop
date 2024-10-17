@@ -6,8 +6,14 @@ use App\Models\HomePageSetting;
 use App\Models\Setting;
 use App\Models\Language;
 use App\Models\Notification;
+use App\Models\Product;
+use App\Models\ProductVariation;
+use App\Models\FranchiseProductAvailability;
+use App\Models\User;
 use Illuminate\Support\Facades\Cache;
 use Illuminate\Support\Facades\Log;
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Session;
 
 if (!function_exists('__trans')) 
 {
@@ -141,10 +147,38 @@ if (!function_exists('__appCurrency'))
     }
 }
 
+if (!function_exists('setCurrency')) 
+{
+    function setCurrency($currency)
+    {
+        $cache_key = "user.currency";
+
+        Cache::forget($cache_key);
+
+        if (Auth::check()) {
+
+            User::where('id', Auth::user()->id)->update([
+                'currency_id' => Currency::where('code', $currency)->first()->id
+            ]);
+        }
+
+        Session::put('user_currency_code', $currency);
+    }
+}
+
 if (!function_exists('__userCurrencyCode')) 
 {
     function __userCurrencyCode()
     {
+        if (Auth::check()) {
+
+            $user = Auth::user();
+
+            if(!empty($user->currency)){
+                return $user->currency->code;
+            }
+        }
+
         return session('user_currency_code', 'EUR');
     }
 }
@@ -155,11 +189,13 @@ if (!function_exists('__userCurrency'))
     {
         $user_currency_code = __userCurrencyCode();
 
-        $cache_key = "user.currency";
+        return Currency::where('code', $user_currency_code)->first();
 
-        return Cache::rememberForever($cache_key, function() use ($user_currency_code) { 
-            return Currency::where('code', $user_currency_code)->first();
-        });
+        // $cache_key = "user.currency";
+
+        // return Cache::rememberForever($cache_key, function() use ($user_currency_code) { 
+        //     return Currency::where('code', $user_currency_code)->first();
+        // });
     }
 }
 
@@ -261,5 +297,67 @@ if (!function_exists('__addNotification'))
             Log::error('Failed to add notification: ' . $e->getMessage());
             return false;
         }
+    }
+}
+
+if (!function_exists('__currentUserRole')) 
+{
+    function __currentUserRole()
+    {
+        if (Auth::check()) {
+            return Auth::user()->userRole->role;
+        }
+
+        return 'buyer';
+    }
+}
+
+if (!function_exists('__productStock')) 
+{
+    function __productStock($product_id, $product_variation_id = null)
+    {
+        if (__isFranchise()) {
+
+            $franchise_product = FranchiseProductAvailability::where('product_id', $product_id);
+
+            if (!empty($product_variation_id)) {
+                $franchise_product = $franchise_product->where('product_variation_id', $product_variation_id);
+            }
+
+            $franchise_product = $franchise_product->first();
+
+            return $franchise_product->quantity ?? 0;
+            
+        } elseif(!empty($product_variation_id)) {
+            return ProductVariation::find($product_variation_id)->stock ?? 0;
+        } else {
+            return Product::find($product_id)->stock ?? 0;
+        }
+        
+        return 0;
+    }
+}
+
+if (!function_exists('__isAdmin')) 
+{
+    function __isAdmin()
+    {
+        return __currentUserRole() === 'admin';
+    }
+}
+
+if (!function_exists('__isFranchise')) 
+{
+    function __isFranchise()
+    {
+        return __currentUserRole() === 'franchise';
+    }
+}
+
+if (!function_exists('notification')) 
+{
+    function notification()
+    {
+        return new Notification();
     }
 }

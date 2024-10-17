@@ -40,7 +40,7 @@ class OrderController extends Controller
                     return '<input type="checkbox" name="order_ids[]" value="' . $row->id . '" class="order-checkbox">';
                 })
                 ->addColumn('user_name', function ($row) {
-                    return $row->user->name;
+                    return $row->user->name ?? '';
                 })
                 ->addColumn('status', function ($row) {
                     $status = config('general.order_statuses.' . $row->status);
@@ -82,9 +82,10 @@ class OrderController extends Controller
     public function show(Order $order)
     { 
         $extra_information = json_decode($order->extra_information, true);
+        $all_statuses = config('general.order_statuses');
         $status = config('general.order_statuses.' . $order->status);
         $status_color = config('general.order_statuses_color.' . $order->status);
-        return view('backend.orders.show', compact('order', 'status', 'status_color', 'extra_information'));
+        return view('backend.orders.show', compact('order', 'status', 'status_color', 'extra_information', 'all_statuses'));
     }
 
     public function updateStatus(Order $order)
@@ -165,8 +166,11 @@ class OrderController extends Controller
 
         // Update the status for each order
         foreach ($orders as $order) {
-            $order->status = $validated['order_status'];
-            $order->save();
+            // $order->status = $validated['order_status'];
+            // $order->save();
+            $this->order_service->setRecord($order);
+            $this->order_service->updateStatus($validated['order_status']); 
+
         }
 
         return response()->json(['status' => 200, 'message' => 'Order statuses updated successfully.']);

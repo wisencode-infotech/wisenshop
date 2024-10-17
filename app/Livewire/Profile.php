@@ -69,7 +69,7 @@ class Profile extends Component
 
         $user->save();
 
-        return redirect()->route('frontend.home');
+        $this->dispatch('notify', 'success', __trans('Profile updated successfully!'));
     }
 
     public function render()

@@ -9,7 +9,8 @@ use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Database\Eloquent\Relations\BelongsToMany;
 use Illuminate\Database\Eloquent\Relations\HasOne;
 use Illuminate\Database\Eloquent\SoftDeletes;
-use Illuminate\Database\Eloquent\Builder; 
+use Illuminate\Database\Eloquent\Builder;
+use Illuminate\Support\Facades\Auth;
 
 class Product extends Model
 {
@@ -29,7 +30,7 @@ class Product extends Model
     // Relationships
     public function category(): BelongsTo
     {
-        return $this->belongsTo(Category::class);
+        return $this->belongsTo(Category::class)->withTrashed();
     }
 
     public function orders(): BelongsToMany
@@ -93,34 +94,14 @@ class Product extends Model
         return $this->priceWithCurrency($currency_code);
     }
 
-    public function getTotalReviewsAttribute()
+    public function getTotalReviewsAttribute($rating = null)
     {
-        return $this->reviews()->select('id')->count();
-    }
+        $reviews = $this->reviews();
 
-    public function getTotal5StarReviewsAttribute()
-    {
-        return $this->reviews()->select('id')->where('rating', 5)->count();
-    }
+        if (!is_null($rating))
+            $reviews = $reviews->where('rating', $rating);
 
-    public function getTotal4StarReviewsAttribute()
-    {
-        return $this->reviews()->select('id')->where('rating', 4)->count();
-    }
-
-    public function getTotal3StarReviewsAttribute()
-    {
-        return $this->reviews()->select('id')->where('rating', 3)->count();
-    }
-
-    public function getTotal2StarReviewsAttribute()
-    {
-        return $this->reviews()->select('id')->where('rating', 2)->count();
-    }
-
-    public function getTotal1StarReviewsAttribute()
-    {
-        return $this->reviews()->select('id')->where('rating', 1)->count();
+        return $reviews->select('id')->count();
     }
 
     public function getAverageRatingAttribute()
@@ -138,14 +119,6 @@ class Product extends Model
         return ProductVariation::select('name')->where('product_id', $this->id)->pluck('name');
     }
 
-    // scope
-    protected static function booted()
-    {
-        static::addGlobalScope('public_visibility', function (Builder $builder) {
-            $builder->where('public_visibility', '1');
-        });
-    }
-
     // Helper functions
     public function makePrimaryImage() 
     {
@@ -156,6 +129,15 @@ class Product extends Model
             $first_image->is_primary = '1';
             $first_image->save();
         }
+    }
+
+    // Scopes
+    public function scopeAuthenticated(Builder $query): Builder
+    {
+        if (!__isAdmin())
+            return $query->whereIn('public_visibility', [1, 0]);
+
+        return $query;
     }
 
 }

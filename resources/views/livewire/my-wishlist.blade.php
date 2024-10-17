@@ -10,6 +10,22 @@
                      <h1 class="text-center text-lg font-semibold text-heading sm:text-xl">{{ __trans('My Wishlists') }}</h1>
                   </div>
 
+                   @if (count($wishlist_products) == 0)
+                     <div class="flex flex-col items-center justify-center h-64 bg-white mt-4">
+                        
+                       <i class="fa fa-heart text-muted text-xl"></i>
+                      
+                        <!-- Text -->
+                        <p class="mt-4 text-lg font-semibold text-gray-700">{{ __trans('Your wishlist is empty') }}</p>
+                        <p class="mt-1 text-sm text-gray-500">{{ __trans('Browse our products and add them to your wishlist') }}</p>
+                        
+                        <!-- Button (Optional) -->
+                        <a wire:navigate href="{{ route('frontend.home') }}" class="mt-6 inline-block px-6 py-2 text-accent-contrast bg-accent rounded-lg hover:bg-accent-hover">
+                           {{ __trans('Shop Now') }}
+                        </a>
+                      </div>      
+                  @endif
+
                   @foreach($wishlist_products as $product)
                   <div class="flex w-full items-start space-x-4 border-b border-gray-200 py-5 first:pt-0 last:border-0 last:pb-0 rtl:space-x-reverse sm:space-x-5 xl:items-center">
                      <div class="relative flex h-16 w-16 shrink-0 items-center justify-center border border-gray-200 sm:h-[74px] sm:w-[74px]">
@@ -38,8 +54,15 @@
 
                            <div class="flex items-center space-x-6 rtl:space-x-reverse sm:justify-end">
                               
+                              <div>
+                                 <button wire:click="addToCart({{ $product->product_id }},{{ $product->product_variation_id ?? null }})" class="whitespace-nowrap text-sm font-semibold text-accent hover:text-accent-hover hover:underline"><span>Add to Cart</span></button>
+                              </div>
+
+                              <span class="flex h-7 w-px border-r border-dashed border-gray-300"></span>
+
                               <button wire:click="removeFromWishlist({{ $product->product_id }},{{ $product->product_variation_id ?? null }})" class="whitespace-nowrap text-sm font-semibold text-red-500 hover:underline sm:mt-0">{{ __trans('Remove') }}</button>
                            </div>
+
                         </div>
                      </div>
                   </div>

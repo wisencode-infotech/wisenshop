@@ -28,6 +28,7 @@ return new class extends Migration
             $table->datetime('discount_end_date')->nullable();            // end date of the discount
 
             $table->char('public_visibility', 2)->default('1');
+            $table->char('is_home', 2)->default('1');
             $table->timestamps();
             $table->softDeletes();
         });

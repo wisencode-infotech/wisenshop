@@ -3,6 +3,7 @@
 namespace App\Livewire;
 
 use App\Models\User;
+use App\Models\UserRole;
 use Illuminate\Support\Facades\Hash;
 use Livewire\Component;
 use App\Helpers\CartHelper;
@@ -15,6 +16,12 @@ class Register extends Component
     public $phone_number;
     public $password;
     public $password_confirmation;
+    public $referral_code; 
+
+    public function mount()
+    {
+        $this->referral_code = request()->query('referral_code');
+    }
 
     // Handle registration form submission
     public function submit()
@@ -33,6 +40,9 @@ class Register extends Component
             'email' => $this->email,
             'phone' => $this->phone_number,
             'password' => Hash::make($this->password),
+            'user_role_id' => UserRole::where('role', 'buyer')->first()->id,
+            'referral_code' => $this->referral_code,
+            'currency_id' => __userCurrency()->id
         ]);
 
         // Automatically log in the user after registration

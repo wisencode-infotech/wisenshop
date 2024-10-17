@@ -23,11 +23,13 @@
                         </div>
                     </div>
                     <!-- end col -->
+                    @if(__currentUserRole() == 'admin')
                     <div class="col-sm-auto">
                         <div class="text-sm-end">
                             <a href="{{ route('backend.product.create') }}" class="btn btn-success btn-rounded" id="addProject-btn"><i class="mdi mdi-plus me-1"></i> Add New</a>
                         </div>
                     </div>
+                    @endif
                     <!-- end col -->
                 </div>
                 <!-- end row -->
@@ -42,6 +44,7 @@
                                     <th scope="col">Price</th>
                                     <th scope="col">Status</th>
                                     <th scope="col">Public Visibility</th>
+                                    <th scope="col">For Home</th>
                                     <th scope="col">Action</th>
                                 </tr>
                             </thead>

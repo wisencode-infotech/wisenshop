@@ -1,4 +1,4 @@
-<nav class="visible fixed bottom-0 z-10 flex h-12 w-full justify-between bg-light py-1.5 px-2 shadow-400 ltr:left-0 rtl:right-0 md:h-14 lg:hidden">
+<nav class="visible fixed bottom-0 z-10 flex h-12 w-full justify-between bg-light py-1.5 px-2 shadow-400 ltr:left-0 rtl:right-0 md:h-14 xl:hidden">
    <button class="mobile-pages-drawer-btn mobile-bottom-menu flex h-full items-center justify-center p-2 focus:text-accent focus:outline-0" tabindex="0">
       <span class="sr-only">{{ __trans('Burger Menu') }}</span>
       <svg width="25.567" height="18" viewBox="0 0 25.567 18" class="false">

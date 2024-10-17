@@ -43,45 +43,33 @@ class UserService
 
         // Deduct credit if status is updated from 4 to non-4.
         if ($order->status == 4 && $latest_status != 4) {
-            $this->adjustCredit($user, -$commission_amount);
-
-            $data = [
-                'title' => $commission_amount.' deducted from your credit score.',
-                'message' => $commission_amount.' deducted from your credit score. Order #' .$order->id. ' is '.$status,
-                'user_id' => $user->id,
-                'is_global' => false,
-                'type' => 'credit',
-                'url' => '',
-                'meta_data' => [
-                    'order_id' => $order->id
-                ],
-                'is_read' => false
-            ];
-
-            __addNotification($data);
-
+            $this->handleCreditChange($user, -$commission_amount, $order, $status, 'deducted');
         }
 
         // Add credit if status is updated to 4.
         if ($latest_status == 4) {
-
-            $data = [
-                'title' => $commission_amount.' added to your credit score.',
-                'message' => $commission_amount.' added to your credit score. Order #' .$order->id. ' is '.$status,
-                'user_id' => $user->id,
-                'is_global' => false,
-                'type' => 'credit',
-                'url' => '',
-                'meta_data' => [
-                    'order_id' => $order->id
-                ],
-                'is_read' => false
-            ];
-
-            __addNotification($data);
-
-            $this->adjustCredit($user, $commission_amount);
+            $this->handleCreditChange($user, $commission_amount, $order, $status, 'added');
         }
+    }
+
+    private function handleCreditChange(User $user, float $amount, Order $order, string $status, string $action): void
+    {
+        $this->adjustCredit($user, $amount);
+
+        $notificationData = [
+            'title' => abs($amount) . ' ' . $action . ' to your credit score.',
+            'message' => abs($amount) . ' ' . $action . ' to your credit score. Order #' . $order->id . ' is ' . $status,
+            'user_id' => $user->id,
+            'is_global' => false,
+            'type' => 'credit',
+            'url' => '',
+            'meta_data' => [
+                'order_id' => $order->id
+            ],
+            'is_read' => false
+        ];
+
+        __addNotification($notificationData);
     }
 
     /**

@@ -74,7 +74,7 @@ class QuantitySelector extends Component
 
     public function decrement()
     {
-        if ($this->quantity > 0) {
+        if ($this->quantity > 0 || true) {
             // $this->quantity--;
 
             CartHelper::saveQuantity($this->product_id, $this->product_variation_id, $this->quantity);

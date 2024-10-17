@@ -25,7 +25,7 @@
                                 <div class="w-full h-20 flex items-center justify-center">
                                    <img src="{{ $category->image_url }}" class="h-20"  />
                                </div>
-                               <span class="text-sm font-semibold text-heading text-center px-2.5 block">{{ \Str::limit($category->name, 18) }}</span>
+                               <span class="text-sm font-semibold text-heading text-center pt-4 px-2.5 block">{{ \Str::limit($category->name, 18) }}</span>
                            </div>
 
                         @endforeach

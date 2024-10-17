@@ -45,7 +45,7 @@ class ContactPage extends Component
         
         $this->reset();
 
-        session()->flash('message', 'Your message has been sent successfully.');
+        $this->dispatch('notify', 'success', __trans('Your message has been sent successfully.'));
     }
 
     public function render()

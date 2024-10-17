@@ -32,11 +32,15 @@ class WishlistButton extends Component
 
             WishlistHelper::removeWishlist($this->product_id, $this->product_variation_id);
             $this->in_wish_list = false;
+
+            $this->dispatch('notify', 'error', __trans('Item removed from the wishlist'));
             
         } else {
 
             WishlistHelper::addWishlist($this->product_id, $this->product_variation_id);
             $this->in_wish_list = true;
+
+            $this->dispatch('notify', 'success', __trans('Item added to the wishlist'));
         }
 
         $wishlist = WishlistHelper::items();

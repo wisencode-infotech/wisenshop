@@ -42,7 +42,7 @@ class ResetPassword extends Component
         );
 
         if ($status === Password::PASSWORD_RESET) {
-            session()->flash('message', __('Your password has been reset successfully!'));
+            $this->dispatch('notify', 'success', __trans('Your password has been reset successfully!'));
             return redirect()->route('frontend.login'); // Redirect to login after successful reset
         } else {
             throw ValidationException::withMessages(['email' => __('Unable to reset password.')]);

@@ -22,3 +22,4 @@ composer.lock
 /.zed
 /public/assets/frontend/css/mix.css
 /public/assets/frontend/js/mix.js
+/public/mix-manifest.json

@@ -19,13 +19,13 @@ class OrderAddress extends Model
     // Define the relationship to BillingAddress
     public function billingAddress(): BelongsTo
     {
-        return $this->belongsTo(BillingAddress::class, 'billing_address_id');
+        return $this->belongsTo(BillingAddress::class, 'billing_address_id')->withTrashed();
     }
 
     // Define the relationship to ShippingAddress
     public function shippingAddress(): BelongsTo
     {
-        return $this->belongsTo(ShippingAddress::class, 'shipping_address_id');
+        return $this->belongsTo(ShippingAddress::class, 'shipping_address_id')->withTrashed();
     }
 
     // Define the relationship to Order

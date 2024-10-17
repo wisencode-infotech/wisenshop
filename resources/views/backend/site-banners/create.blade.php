@@ -27,7 +27,7 @@
                     <!-- Name Field -->
                     <div class="form-group mb-3">
                         <label for="title" class="form-label">Site Banner Title</label>
-                        <input type="text" name="title" class="form-control @error('title') is-invalid @enderror" value="{{ old('title') }}" required>
+                        <input type="text" name="title" class="form-control @error('title') is-invalid @enderror" value="{{ old('title') }}">
                         @error('title')
                         <span class="invalid-feedback" role="alert">
                             <strong>{{ $message }}</strong>

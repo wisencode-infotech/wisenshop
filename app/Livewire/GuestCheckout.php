@@ -3,6 +3,7 @@
 namespace App\Livewire;
 
 use App\Models\User;
+use App\Models\UserRole;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Str;
 use Livewire\Component;
@@ -42,6 +43,8 @@ class GuestCheckout extends Component
             'email' => $this->email,
             'phone' => $this->phone_number,
             'password' => Hash::make($this->password),
+            'user_role_id' => UserRole::where('role', 'buyer')->first()->id,
+            'currency_id' => __userCurrency()->id
         ]);
 
         // Automatically log in the user after registration

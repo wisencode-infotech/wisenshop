@@ -52,7 +52,7 @@ class SiteBannerController extends Controller
     {
         // Validate the request data
         $request->validate([
-            'title' => 'required|string|max:255',
+            'title' => 'nullable|max:255',
             'image' => 'nullable|image|mimes:jpeg,png,jpg,gif,svg,webp|max:2048', // Max 2MB
         ]);
 
@@ -74,7 +74,7 @@ class SiteBannerController extends Controller
 
         // Create a new site banner in the database
         $site_banner = SiteBanner::create([
-            'title' => $request->title,
+            'title' => $request->title ?? '',
             'image_path' => $imagePath,
             'description' => !empty($request->description) ? $request->description : null,
         ]);
@@ -106,13 +106,13 @@ class SiteBannerController extends Controller
     {
         // Validate the request data
         $request->validate([
-            'title' => 'required|string|max:255' . $site_banner->id,
+            'title' => 'nullable|string|max:255' . $site_banner->id,
             'description' => 'nullable|string',
             'image' => 'nullable|image|mimes:jpeg,png,jpg,gif,svg,webp|max:2048', // Max 2MB
         ]);
 
         $data = [
-            'title' => $request->title,
+            'title' => $request->title ?? '',
             'description' => $request->description
         ];
 

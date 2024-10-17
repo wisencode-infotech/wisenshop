@@ -24,7 +24,7 @@ class ForgotPassword extends Component
         $user = User::where('email', $this->email)->first();
 
         if (!$user) {
-            session()->flash('error', __('No user found with that email.'));
+            $this->dispatch('notify', 'error', __trans('No user found with that email.'));
             return;
         }
 
@@ -34,10 +34,10 @@ class ForgotPassword extends Component
         // Send the password reset email using the custom notification
         try {
             $user->notify(new CustomResetPasswordNotification($token)); // Use your custom notification
-            session()->flash('status', __('A password reset link has been sent to your email.'));
+            $this->dispatch('notify', 'success', __trans('A password reset link has been sent to your email.'));
         } catch (\Exception $e) {
-            dd($e->getMessage());
-            session()->flash('error', __('There was an error sending the reset link. Please try again.'));
+            
+            $this->dispatch('notify', 'error', __trans('There was an error sending the reset link. Please try again.'));
         }
 
         // Clear the email input after submission

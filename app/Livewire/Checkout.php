@@ -119,12 +119,16 @@ class Checkout extends Component
 
     public function loadAddresses()
     {
+        $this->selected_shipping_address_id = null;
+        $this->selected_billing_address_id = null;
+        
         $this->shipping_addresses = ShippingAddress::where('user_id', Auth::user()->id)->get();
         $this->billing_addresses = BillingAddress::where('user_id', Auth::user()->id)->get();
         
         if ($this->shipping_addresses->isNotEmpty() && count($this->shipping_addresses) == 1) {
             $this->selected_shipping_address_id = $this->shipping_addresses->first()->id;
         }
+        
     }
 
     public function placeOrder()
@@ -185,7 +189,7 @@ class Checkout extends Component
                 // Clear the cart after successful order placement
                 CartHelper::clearDatabaseCart();
 
-                session()->flash('message', 'Order placed successfully!');
+                $this->dispatch('notify', 'success', __trans('Order placed successfully!'));
 
                 return redirect()->intended('/thank-you/'.$order_id);
             }

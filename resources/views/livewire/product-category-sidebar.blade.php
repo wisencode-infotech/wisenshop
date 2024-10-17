@@ -12,8 +12,8 @@
 
                     <div x-data="{ selectedCategoryIds: @entangle('selectedCategoryIds') }" class="grid grid-cols-2 gap-4">
                         @foreach ($product_categories as $category)
-                            <div class="relative text-center rounded flex items-end overflow-hidden cursor-pointer h-40 product_category"
-                                role="button" :class="{ 'active': selectedCategoryIds.includes({{ $category->id }}) }"
+
+                            <div class="text-center rounded bg-light py-4 flex flex-col items-center justify-start relative overflow-hidden cursor-pointer product_category"  role="button" :class="{ 'active': selectedCategoryIds.includes({{ $category->id }}) }"
                                 x-on:click="
                                     if (selectedCategoryIds.includes({{ $category->id }})) {
                                         selectedCategoryIds = selectedCategoryIds.filter(id => id !== {{ $category->id }}); // Deselect category
@@ -22,18 +22,12 @@
                                     }
                                     $dispatch('category-selected', { category_id: selectedCategoryIds })
                                 ">
-                                <!-- Full Width and Height Image -->
-                                <img src="{{ $category->image_url }}"
-                                    class="absolute inset-0 w-full h-full object-cover" />
+                                <div class="w-full h-20 flex items-center justify-center">
+                                   <img src="{{ $category->image_url }}" class="h-20"  />
+                               </div>
+                               <span class="text-sm font-semibold text-heading text-center pt-4 px-2.5 block">{{ \Str::limit($category->name, 18) }}</span>
+                           </div>
 
-                                <!-- Overlay for Title -->
-                                <div class="absolute inset-0 flex items-end justify-center">
-                                    <span
-                                        class="text-sm md:text-md font-semibold text-accent-contrast text-center block bg-accent bg-opacity-40 w-full">
-                                        {{ \Str::limit($category->name, 18) }}
-                                    </span>
-                                </div>
-                            </div>
                         @endforeach
                     </div>
 

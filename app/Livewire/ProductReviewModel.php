@@ -57,7 +57,7 @@ class ProductReviewModel extends Component
         $this->close();
 
         // Optionally, send a message to the frontend
-        session()->flash('message', 'Review submitted successfully.');
+        $this->dispatch('notify', 'success', __trans('Review submitted successfully.'));
     }
 
     public function render()

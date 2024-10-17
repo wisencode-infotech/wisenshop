@@ -83,7 +83,7 @@ class AddressModal extends Component
 
         $this->closeModal(); // Close the modal after saving
 
-        session()->flash('message', 'Address saved successfully!');
+        $this->dispatch('notify', 'success', __trans('Address saved successfully!'));
     }
 
     
@@ -108,7 +108,7 @@ class AddressModal extends Component
 
         $this->dispatch('addressSaved');
         
-        session()->flash('message', 'Address deleted successfully!');
+        $this->dispatch('notify', 'error', __trans('Billing Address deleted successfully!'));
     }
 
     public function editShippingAddress($address_id){
@@ -131,7 +131,7 @@ class AddressModal extends Component
 
         $this->dispatch('addressSaved');
 
-        session()->flash('message', 'Address deleted successfully!');
+        $this->dispatch('notify', 'error', __trans('Shipping Address deleted successfully!'));
     }
 
     

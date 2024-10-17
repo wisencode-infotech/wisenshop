@@ -11,10 +11,12 @@
                                  srcset="{{ $banner->image_url  }}" 
                                  src="{{ $banner->image_url  }}" style="color: transparent;">
                             
-                            <div class="text-overlay">
-                                <h2 class="banner-title">{{ $banner->title }}</h2>
-                                <p class="banner-description">{{ $banner->description }}</p>
-                            </div>
+                            @if (!empty($banner->title) || !empty($banner->description))
+                                <div class="text-overlay">
+                                    <h2 class="banner-title">{{ $banner->title }}</h2>
+                                    <p class="banner-description">{{ $banner->description }}</p>
+                                </div>
+                            @endif
                         </div>
                     </div>
 

@@ -50,19 +50,19 @@
     color: white; /* Text color */
     text-align: center; /* Align text in the center */
     padding: 10px; /* Optional: Add padding for better readability */
-    background-color: rgba(0, 0, 0, 0.5); /* Optional: Transparent background for better contrast */
+    background-color: rgba(0, 0, 0, 0.2); /* Optional: Transparent background for better contrast */
     z-index: 1; /* Ensure the text is above the image */
+    width: 95%;
+    min-height: 150px;
 }
 
 .banner-title {
     font-size: 1.5rem; /* Adjust font size as needed */
-    margin: 0.5rem 0;
     text-align: left; /* Center the title text */
 }
 
 .banner-description {
     font-size: 1rem; /* Adjust font size as needed */
-    margin: 0.5rem 0;
     text-align: left; /* Center the description text */
 }
 

@@ -74,7 +74,7 @@ class SiteBannerController extends Controller
 
         // Create a new site banner in the database
         $site_banner = SiteBanner::create([
-            'title' => $request->title,
+            'title' => $request->title ?? '',
             'image_path' => $imagePath,
             'description' => !empty($request->description) ? $request->description : null,
         ]);
@@ -112,7 +112,7 @@ class SiteBannerController extends Controller
         ]);
 
         $data = [
-            'title' => $request->title,
+            'title' => $request->title ?? '',
             'description' => $request->description
         ];
 

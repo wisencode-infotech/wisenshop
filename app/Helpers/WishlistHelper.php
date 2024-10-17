@@ -125,6 +125,9 @@ class WishlistHelper
 
         foreach ($wishlist as $wishlist_items) {
 
+            if (empty($wishlist_items['product_id']))
+                continue;
+
             $wishlist_product_id = $wishlist_items['product_id'];
             $wishlist_product_variation_id = $wishlist_items['product_variation_id'] ?? null;
 

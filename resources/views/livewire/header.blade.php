@@ -26,7 +26,7 @@
                 </a>
             </div>
 
-            <div class="menuItem group relative mx-3 cursor-pointer py-3 xl:mx-4 rtl:right-50 rtl:space-x-reverse block lg:hidden absolute">
+            <div class="menuItem group relative mx-2 cursor-pointer py-3 xl:mx-4 rtl:right-50 rtl:space-x-reverse block lg:hidden absolute">
                 <div class="flex items-center gap-2 group-hover:text-accent">
                     <span class="text-brand-dark group-hover:text-brand relative inline-flex items-center py-2 font-normal rtl:left-0">
                         {{ __userCurrencyCode() }}
@@ -46,7 +46,7 @@
                 </ul>
             </div>
 
-            <div class="menuItem group relative mx-3 cursor-pointer py-3 xl:mx-4 rtl:right-50 rtl:space-x-reverse block lg:hidden absolute">
+            <div class="menuItem group relative mx-2 cursor-pointer py-3 xl:mx-4 rtl:right-50 rtl:space-x-reverse block lg:hidden absolute">
                 <div class="flex items-center gap-2 group-hover:text-accent">
                     <span class="text-brand-dark group-hover:text-brand relative inline-flex items-center py-2 font-normal rtl:left-0">
                         {{ strtoupper(app()->currentLocale()) }}
@@ -93,7 +93,7 @@
                </button>
             </div>
 
-            <div class="flex shrink-0 items-center space-x-7 rtl:space-x-reverse 2xl:space-x-10">
+            <div class="flex shrink-0 items-center space-x-2 rtl:space-x-reverse 2xl:space-x-10">
 
 
                 @if(request()->routeIs('frontend.home') || request()->routeIs('livewire.update'))

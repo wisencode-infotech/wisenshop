@@ -1,10 +1,10 @@
 <div class="lg:inline-flex">
     <div class="relative inline-block" data-headlessui-state="open">
-        <button class="relative inline-flex border items-center justify-center rounded-full bg-light text-accent transition duration-300 ease-in-out hover:bg-accent-hover focus:outline-none hover:text-white focus:ring-2 focus:ring-accent-700 h-12 w-12 notification_menu_btn">
+        <button class="relative inline-flex border items-center justify-center rounded-full bg-light text-accent transition duration-300 ease-in-out hover:bg-accent-hover focus:outline-none hover:text-white focus:ring-2 focus:ring-accent-700 h-10 w-10 notification_menu_btn">
             <i class="fa fa-bell text-lg"></i>
             <span class="sr-only">{{ __trans('Notification') }}</span>
             <!-- Badge for unread notification count -->
-            <span class="absolute top-0 right-0 inline-flex items-center justify-center w-5 h-5 text-xs font-bold text-white bg-red-500 rounded-full">
+            <span class="absolute -top-2 right-0 inline-flex items-center justify-center w-5 h-5 font-bold text-white bg-red-500 rounded-full text-[10px]">
                 {{ $total_unread_notification }}
             </span>
         </button>

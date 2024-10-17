@@ -23,17 +23,35 @@
 }
 
 /*custom css*/
-.banner-slide-content {
-    background-size: cover; /* Ensures the background image covers the entire slide */
-    background-position: center; /* Centers the background image */
-    color: white; /* Change this based on your background */
-    padding: 20px; /* Adjust padding as needed */
-    height: 200px; /* Adjust height as needed */
+/*.banner-slide-content {
+    background-size: cover;
+    background-position: center;
+    color: white;
+    padding: 20px;
+    height: 200px;
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    position: relative; /* Ensures the content is positioned correctly */
+    position: relative;
+}*/
+
+.banner-slide-content {
+    position: relative; /* Ensures text overlays the image */
+    width: 100%;
+    height: auto;
+}
+
+.text-overlay {
+    position: absolute;
+    top: 50%; /* Centers the text vertically */
+    left: 50%; /* Centers the text horizontally */
+    transform: translate(-50%, -50%); /* Adjusts the positioning to be fully centered */
+    color: white; /* Text color */
+    text-align: center; /* Align text in the center */
+    padding: 10px; /* Optional: Add padding for better readability */
+    background-color: rgba(0, 0, 0, 0.5); /* Optional: Transparent background for better contrast */
+    z-index: 1; /* Ensure the text is above the image */
 }
 
 .banner-title {

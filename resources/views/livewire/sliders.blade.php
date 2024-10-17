@@ -4,12 +4,26 @@
             <div class="swiper mySwiper">
                 <div class="swiper-wrapper">
                     @foreach($banners as $banner_key => $banner)
-                    <div class="swiper-slide">
+                   <!--  <div class="swiper-slide">
                         <div class="banner-slide-content" style="background-image: url({{ $banner->image_url  }});">
                             <h2 class="banner-title">{{ $banner->title }}</h2>
                             <p class="banner-description">{{ $banner->description }}</p>
                         </div>
+                    </div> -->
+
+                    <div class="swiper-slide" style="width: 445.75px; margin-right: 24px;">
+                        <div class="banner-slide-content">
+                            <img alt="902" loading="lazy" width="580" height="270" decoding="async" data-nimg="1" class="h-auto w-full" 
+                                 srcset="{{ $banner->image_url  }}" 
+                                 src="{{ $banner->image_url  }}" style="color: transparent;">
+                            
+                            <div class="text-overlay">
+                                <h2 class="banner-title">{{ $banner->title }}</h2>
+                                <p class="banner-description">{{ $banner->description }}</p>
+                            </div>
+                        </div>
                     </div>
+
                     @endforeach
                 </div>
             </div>

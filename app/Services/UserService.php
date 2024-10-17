@@ -43,12 +43,12 @@ class UserService
 
         // Deduct credit if status is updated from 4 to non-4.
         if ($order->status == 4 && $latest_status != 4) {
-            $this->handleCreditChange($user, -$commission_amount, $order, $status, 'deducted from ');
+            $this->handleCreditChange($user, -$commission_amount, $order, $status, 'deducted from');
         }
 
         // Add credit if status is updated to 4.
         if ($latest_status == 4) {
-            $this->handleCreditChange($user, $commission_amount, $order, $status, 'added to ');
+            $this->handleCreditChange($user, $commission_amount, $order, $status, 'added to');
         }
     }
 

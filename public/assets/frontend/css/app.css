@@ -163,6 +163,10 @@ button.reset_filter_btn:hover {
     min-height: 32px;
 }
 
+.grid-cols-\[repeat\(auto-fill\2c minmax\(300px\2c 1fr\)\)\] {
+    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+}
+
 @media (max-width: 768px) {
     .absolute-right-minus-21px {
         right: -21px;

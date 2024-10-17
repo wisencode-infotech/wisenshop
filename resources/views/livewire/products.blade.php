@@ -11,7 +11,7 @@
 
     @else
 
-        <div class="grid grid-cols-[repeat(auto-fill,minmax(250px,1fr))] gap-3">
+        <div class="grid grid-cols-[repeat(auto-fill,minmax(300px,1fr))] gap-3">
             @foreach ($products as $product)
                 <article
                     class="product-card cart-type-helium h-full overflow-hidden rounded border border-border-200 bg-light transition-shadow duration-200 hover:shadow-sm">

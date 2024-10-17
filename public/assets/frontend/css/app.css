@@ -159,6 +159,10 @@ button.reset_filter_btn:hover {
     max-width: 345px;
 }
 
+.min-h-\[32px\] {
+    min-height: 32px;
+}
+
 @media (max-width: 768px) {
     .absolute-right-minus-21px {
         right: -21px;

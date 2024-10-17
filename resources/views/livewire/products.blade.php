@@ -40,7 +40,7 @@
 
                         <span class="font-semibold text-muted text-sm truncate">{{ $product->category->name }}</span>
 
-                        <p class="text-xs text-muted pr-9">{{ \Str::limit($product->short_description, 70) }}</p>
+                        <p class="text-xs text-muted pr-9 min-h-[32px]">{{ \Str::limit($product->short_description, 70) }}</p>
                         <div class="relative flex items-center justify-between mt-7 min-h-6 md:mt-8">
 
                             <div class="flex overflow-hidden order-5 sm:order-4 w-9 sm:w-24 h-24 sm:h-10 bg-accent text-light rounded-full flex-col-reverse sm:flex-row absolute sm:relative bottom-0 sm:bottom-auto ltr:right-0 rtl:left-0 ltr:sm:right-auto ltr:sm:left-auto">

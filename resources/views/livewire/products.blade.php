@@ -4,7 +4,7 @@
 
         <div class="flex flex-col items-center w-7/12 mx-auto">
             <div class="w-full h-full flex items-center justify-center">
-                <img alt="{{ __trans('Sorry, No Product Found :(') }}" loading="lazy" width="200" height="153" decoding="async" data-nimg="1" class="object-contain" src="{{ asset('assets/frontend/img/no-result.png') }}" style="color: transparent;">
+                <img alt="{{ __trans('Sorry, No Product Found :(') }}" loading="lazy" width="200" height="153" decoding="async" data-nimg="1" class="object-contain" src="{{ asset('assets/frontend/img/no-result.png') }}" srcset="{{ $product->display_image_url }}" style="color: transparent;">
             </div>
             <h3 class="w-full text-center text-xl font-semibold text-body my-7">{{ __trans('Sorry, No product found :(') }}</h3>
         </div>
@@ -23,10 +23,10 @@
                             class="block object-contain product-image"
                             style="position:absolute;height:100%;width:100%;left:0;top:0;right:0;bottom:0;color:transparent"
                             wire:navigate href="{{ route('frontend.product-detail', ['product_slug' => $product->slug]) }}"
-                            sizes="(max-width: 768px) 100vw" src="{{ $product->display_image_url }}">
+                            sizes="(max-width: 768px) 100vw" src="{{ $product->display_image_url }}" srcset="{{ $product->display_image_url }}">
 
                         <div class="absolute top-0 left-0 py-1 px-2">
-                            @livewire('wishlist-button', ['product_id' => $product->id, key(uniqid())])
+                            @livewire('wishlist-button', ['product_id' => $product->id, key($product->id)])
                         </div>
 
                     </div>
@@ -44,19 +44,19 @@
                         <div class="relative flex items-center justify-between mt-7 min-h-6 md:mt-8">
 
                             <div class="flex overflow-hidden order-5 sm:order-4 w-9 sm:w-24 h-24 sm:h-10 bg-accent text-light rounded-full flex-col-reverse sm:flex-row absolute sm:relative bottom-0 sm:bottom-auto ltr:right-0 rtl:left-0 ltr:sm:right-auto ltr:sm:left-auto">
-                                @livewire('quantity-selector', ['product_id' => $product->id], key('quantity-selector-' . uniqid()))
-                                @livewire('product-stock', ['product_id' => $product->id, 'layout' => 'product-list'], key('product-stock-' . uniqid()))
+                                @livewire('quantity-selector', ['product_id' => $product->id], key('quantity-selector-' . $product->id))
+                                @livewire('product-stock', ['product_id' => $product->id, 'layout' => 'product-list'], key('product-stock-' . $product->id))
                             </div>
 
                             <div class="relative">
                                 <span class="text-sm font-semibold text-accent md:text-base">
-                                    @livewire('product-price', ['product_id' => $product->id], key('product-price-' . uniqid()))
+                                    @livewire('product-price', ['product_id' => $product->id], key('product-price-' . $product->id))
                                 </span>
                             </div>
 
                             @if ($product->variations()->count() > 0)
                                 <div class="flex">
-                                    @livewire('product-variation', ['product_id' => $product->id, 'layout' => 'products-list'], key('product-variation-' . uniqid()))
+                                    @livewire('product-variation', ['product_id' => $product->id, 'layout' => 'products-list'], key('product-variation-' . $product->id))
                                 </div>
                             @endif
                         </div>
@@ -67,20 +67,15 @@
         </div>
 
         @if ($products->hasMorePages())
-            <div class="flex justify-center mt-8 mb-4 sm:mb-6 lg:mb-2 lg:mt-12">
-                <!-- Default Button Text -->
-                <button wire:click="loadMore" data-variant="normal"
-                    class="inline-flex items-center justify-center shrink-0 font-semibold leading-none rounded outline-none transition duration-300 ease-in-out focus:outline-0 focus:shadow focus:ring-1 focus:ring-accent-700 bg-accent text-light border border-transparent hover:bg-accent-hover px-5 py-0 h-12 text-sm font-semibold h-11 md:text-base">
-
-                    <!-- Show "Load More" when not loading -->
+            <div class="flex justify-center mt-8 mb-4">
+                <button wire:click="loadMore" 
+                        wire:loading.attr="disabled" 
+                        class="px-5 py-3 bg-accent text-light rounded hover:bg-accent-hover transition">
                     <span wire:loading.remove>{{ __trans('Load More') }}</span>
-
-                    <!-- Show "Load More..." while loading -->
-                    <span wire:loading wire:target="loadMore">{{ __trans('Loading...') }}</span>
+                    <span wire:loading>{{ __trans('Loading...') }}</span>
                 </button>
             </div>
         @endif
-
         
     @endif
 </div>

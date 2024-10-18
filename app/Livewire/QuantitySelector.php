@@ -63,6 +63,7 @@ class QuantitySelector extends Component
 
         if ($this->quantity == 1) {
             $this->dispatch('itemAdded');
+            $this->dispatch('notify', 'success', __trans('Item added to the cart'));
         }
 
         $this->dispatch('quantityUpdated', ['product_id' => $this->product_id, 'product_variation_id' => $this->product_variation_id, 'quantity' => $this->quantity]);
@@ -81,6 +82,7 @@ class QuantitySelector extends Component
 
             if ($this->quantity == 0) {
                 $this->dispatch('itemRemoved');
+                $this->dispatch('notify', 'success', __trans('Item removed from the cart'));
             }
 
             $this->dispatch('quantityUpdated', ['product_id' => $this->product_id, 'product_variation_id' => $this->product_variation_id, 'quantity' => $this->quantity]);

@@ -44,7 +44,7 @@
                                     <div class="loader"></div>
                                 </div>
 
-                                 @livewire('quantity-selector', ['product_id' => $item['product_id'], 'product_variation_id' => $item['product_variation_id'], 'layout' => 'cart', key(uniqid())])
+                                 @livewire('quantity-selector', ['product_id' => $item['product_id'], 'product_variation_id' => $item['product_variation_id'], 'layout' => 'cart', key($item['product_id'] . '-' . $item['product_variation_id'])])
                                  
                                  <div class="relative mx-4 flex h-10 w-10 shrink-0 items-center justify-center overflow-hidden bg-gray-100 sm:h-16 sm:w-16"><img alt="Apples" loading="lazy" decoding="async" data-nimg="fill" class="object-contain" sizes="(max-width: 768px) 100vw" srcset="{{ $item['product_picture'] }}" src="{{ $item['product_picture'] }}" style="position: absolute; height: 100%; width: 100%; inset: 0px; color: transparent;"></div>
                                  <div>

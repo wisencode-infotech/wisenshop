@@ -26,7 +26,7 @@
                             sizes="(max-width: 768px) 100vw" src="{{ $product->display_image_url }}" srcset="{{ $product->display_image_url }}">
 
                         <div class="absolute top-0 left-0 py-1 px-2">
-                            @livewire('wishlist-button', ['product_id' => $product->id, key($product->id)])
+                            @livewire('wishlist-button', ['product_id' => $product->id, key(uniqid())])
                         </div>
 
                     </div>
@@ -44,19 +44,19 @@
                         <div class="relative flex items-center justify-between mt-7 min-h-6 md:mt-8">
 
                             <div class="flex overflow-hidden order-5 sm:order-4 w-9 sm:w-24 h-24 sm:h-10 bg-accent text-light rounded-full flex-col-reverse sm:flex-row absolute sm:relative bottom-0 sm:bottom-auto ltr:right-0 rtl:left-0 ltr:sm:right-auto ltr:sm:left-auto">
-                                @livewire('quantity-selector', ['product_id' => $product->id], key('quantity-selector-' . $product->id))
-                                @livewire('product-stock', ['product_id' => $product->id, 'layout' => 'product-list'], key('product-stock-' . $product->id))
+                                @livewire('quantity-selector', ['product_id' => $product->id], key('quantity-selector-' . uniqid()))
+                                @livewire('product-stock', ['product_id' => $product->id, 'layout' => 'product-list'], key('product-stock-' . uniqid()))
                             </div>
 
                             <div class="relative">
                                 <span class="text-sm font-semibold text-accent md:text-base">
-                                    @livewire('product-price', ['product_id' => $product->id], key('product-price-' . $product->id))
+                                    @livewire('product-price', ['product_id' => $product->id], key('product-price-' . uniqid()))
                                 </span>
                             </div>
 
                             @if ($product->variations()->count() > 0)
                                 <div class="flex">
-                                    @livewire('product-variation', ['product_id' => $product->id, 'layout' => 'products-list'], key('product-variation-' . $product->id))
+                                    @livewire('product-variation', ['product_id' => $product->id, 'layout' => 'products-list'], key('product-variation-' . uniqid()))
                                 </div>
                             @endif
                         </div>

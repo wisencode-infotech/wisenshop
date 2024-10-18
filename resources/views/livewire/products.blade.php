@@ -11,7 +11,18 @@
 
     @else
 
-        <div class="grid grid-cols-[repeat(auto-fill,minmax(300px,1fr))] gap-3">
+        <div wire:loading wire:target="setCategory" class="grid grid-cols-4 gap-4">
+            @foreach(range(1, 15) as $index) <!-- Create multiple skeleton loaders for better UX -->
+                <div class="animate-pulse">
+                    <div class="h-40 bg-gray-200 rounded"></div>
+                    <div class="mt-2 h-4 bg-gray-200 rounded"></div>
+                    <div class="mt-1 h-4 bg-gray-200 rounded"></div>
+                </div>
+            @endforeach
+        </div>
+
+        
+        <div wire:loading.remove wire:target="setCategory" class="grid grid-cols-[repeat(auto-fill,minmax(300px,1fr))] gap-3">
             @foreach ($products as $product)
                 <article
                     class="product-card cart-type-helium h-full overflow-hidden rounded border border-border-200 bg-light transition-shadow duration-200 hover:shadow-sm">
@@ -73,7 +84,7 @@
                     class="inline-flex items-center justify-center shrink-0 font-semibold leading-none rounded outline-none transition duration-300 ease-in-out focus:outline-0 focus:shadow focus:ring-1 focus:ring-accent-700 bg-accent text-light border border-transparent hover:bg-accent-hover px-5 py-0 h-12 text-sm font-semibold h-11 md:text-base">
 
                     <!-- Show "Load More" when not loading -->
-                    <span wire:loading.remove>{{ __trans('Load More') }}</span>
+                    <span wire:loading.remove wire:target="loadMore">{{ __trans('Load More') }}</span>
 
                     <!-- Show "Load More..." while loading -->
                     <span wire:loading wire:target="loadMore">{{ __trans('Loading...') }}</span>

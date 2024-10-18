@@ -8,7 +8,13 @@
 
     <link rel="icon" href="{{  asset(__setting('fav_logo')) }}" type="image/png"> 
 
-    @include('components.layouts.site-customizer')
+    @php
+        $site_customizer = Cache::remember('site_customizer', 60, function () {
+            return view('components.layouts.site-customizer')->render();
+        });
+    @endphp
+
+    {!! $site_customizer !!}
 
     <link rel="stylesheet" href="{{ mix('assets/frontend/css/mix.css') }}">
 
@@ -27,13 +33,11 @@
                         {{ $slot }}
                     </div>
 
-                    <div wire:ignore>
-                        @livewire('mobile-navbar')
-                    </div>
+                    @livewire('mobile-navbar', [], key('mobile-navbar'))
 
                     <div wire:ignore>
                         @if (!request()->routeIs('frontend.home'))
-                            @livewire('footer')
+                            @livewire('footer', [], key('footer'))
                         @endif
                     </div>
                 </div>
@@ -41,16 +45,10 @@
         </div>
     </div>
 
-    
-    <div wire:ignore>
-        @livewire('mobile-header-filter')
-    </div>
-
-    <div wire:ignore>
-        @livewire('notification-toast')
-    </div>
-
     @livewireScripts
+
+    @livewire('mobile-header-filter', [], key('mobile-header-filter'))
+    @livewire('notification-toast', [], key('notification-toast'))
 
     <script>
         
@@ -63,16 +61,18 @@
 
     @yield('scripts')
 
-    <script src="https://kit.fontawesome.com/76125ef05e.js" crossorigin="anonymous"></script>
+    <script src="https://kit.fontawesome.com/76125ef05e.js" crossorigin="anonymous" defer></script>
 
     <script>
-        toastr.options = {
-            "closeButton": true,
-            "progressBar": true,
-            "positionClass": "toast-top-center",
-            "timeOut": "5000",
-            "extendedTimeOut": "1000",
-        };
+        document.addEventListener('DOMContentLoaded', function () {
+            toastr.options = {
+                closeButton: true,
+                progressBar: true,
+                positionClass: "toast-top-center",
+                timeOut: 5000,
+                extendedTimeOut: 1000,
+            };
+        });
     </script>
 
 </body>

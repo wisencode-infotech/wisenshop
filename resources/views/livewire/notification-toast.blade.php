@@ -1,28 +1,22 @@
-<div>
-    <script>
-        document.addEventListener('DOMContentLoaded', function () {
-            // Listen for the Livewire event and trigger toastr notification
-            window.addEventListener('showNotification', event => {
-                var detail = event.detail[0] ?? event.detail;
-                let type = detail.type || 'info'; // Default to 'info' type
-                let message = detail.message || 'Notification triggered';
+<div wire:ignore>
+    <script type="text/javascript">
+        // Use Livewire's lifecycle event to listen for the browser event
+        Livewire.on('showNotification', detail => {
+            var detail = event.detail[0] ?? event.detail;
+            const type = detail.type || 'info'; // Default to 'info' type
+            const message = detail.message || 'Notification triggered';
 
-                // Display toastr notification
-                if (typeof toastr !== 'undefined') {
-
-                    toastr.options = {
-                        "positionClass": "toast-bottom-center", // Position the toastr at the bottom center
-                        "timeOut": "5000", 
-                        "closeButton": true,
-                        "progressBar": true,
-                        // "timeOut": 0, 
-                    };
-
-                    toastr[type](message);
-                } else {
-                    alert(message); // Fallback to alert if toastr is not available
-                }
-            });
+            if (typeof toastr !== 'undefined') {
+                toastr.options = {
+                    positionClass: "toast-bottom-center",
+                    timeOut: 5000,
+                    closeButton: true,
+                    progressBar: true,
+                };
+                toastr[type](message); // Show the toast
+            } else {
+                alert(message); // Fallback to alert if toastr is not available
+            }
         });
     </script>
 </div>

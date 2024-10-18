@@ -80,13 +80,9 @@
         @if ($products->hasMorePages())
             <div class="flex justify-center mt-8 mb-4 sm:mb-6 lg:mb-2 lg:mt-12">
                 <!-- Default Button Text -->
-                <button wire:click="loadMore" data-variant="normal"
-                    class="inline-flex items-center justify-center shrink-0 font-semibold leading-none rounded outline-none transition duration-300 ease-in-out focus:outline-0 focus:shadow focus:ring-1 focus:ring-accent-700 bg-accent text-light border border-transparent hover:bg-accent-hover px-5 py-0 h-12 text-sm font-semibold h-11 md:text-base">
-
-                    <!-- Show "Load More" when not loading -->
+                <button wire:click="loadMore" wire:loading.attr="disabled"  data-variant="normal"
+                    class="px-5 py-3 bg-accent text-light rounded hover:bg-accent-hover transition">
                     <span wire:loading.remove wire:target="loadMore">{{ __trans('Load More') }}</span>
-
-                    <!-- Show "Load More..." while loading -->
                     <span wire:loading wire:target="loadMore">{{ __trans('Loading...') }}</span>
                 </button>
             </div>

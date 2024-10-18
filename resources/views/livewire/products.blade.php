@@ -4,7 +4,7 @@
 
         <div class="flex flex-col items-center w-7/12 mx-auto">
             <div class="w-full h-full flex items-center justify-center">
-                <img alt="{{ __trans('Sorry, No Product Found :(') }}" loading="lazy" width="200" height="153" decoding="async" data-nimg="1" class="object-contain" src="{{ asset('assets/frontend/img/no-result.png') }}" srcset="{{ $product->display_image_url }}" style="color: transparent;">
+                <img alt="{{ __trans('Sorry, No Product Found :(') }}" loading="lazy" width="200" height="153" decoding="async" data-nimg="1" class="object-contain" src="{{ asset('assets/frontend/img/no-result.png') }}" srcset="{{ asset('assets/frontend/img/no-result.png') }}" style="color: transparent;">
             </div>
             <h3 class="w-full text-center text-xl font-semibold text-body my-7">{{ __trans('Sorry, No product found :(') }}</h3>
         </div>

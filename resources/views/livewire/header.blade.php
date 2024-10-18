@@ -12,21 +12,31 @@
                         class="h-0.5 w-3/4 rounded bg-gray-600 transition-all group-hover:w-full"></span>
                 </div>
             </button>
-            <div
-                class="flex shrink-0 grow-0 basis-auto flex-wrap items-center ltr:mr-auto rtl:ml-auto lg:w-auto lg:flex-nowrap">
-                <a class="inline-flex py-3 mx-auto lg:mx-0" wire:navigate href="{{ route('frontend.home') }}"><span
-                        class="relative h-[2.125rem] w-32 overflow-hidden md:w-[8.625rem]">
+            <div class="hide-on-mobile flex shrink-0 grow-0 basis-auto flex-wrap items-center ltr:mr-auto rtl:ml-auto lg:w-auto lg:flex-nowrap">
+                <a class="inline-flex py-3 mx-auto lg:mx-0" style="margin-bottom: 5px;" wire:navigate href="{{ route('frontend.contact-us') }}">
+                    <span
+                        class="relative h-[2.125rem] w-10 overflow-hidden md:w-[2.625rem]">
                         <img
-                            alt="Pickbazar" loading="eager" decoding="async" data-nimg="fill"
-                            class="object-contain"
-                            style="position:absolute;height:100%;width:100%;left:0;top:0;right:0;bottom:0;color:transparent"
-                            sizes="(max-width: 768px) 100vw"
-                            src="{{  asset(__setting('header_logo')) }}">
-                        </span>
+                        alt="Pickbazar" loading="eager" decoding="async" data-nimg="fill"
+                        class="object-contain"
+                        style="position:absolute;height:100%;width:100%;left:0;top:0;right:0;bottom:0;color:transparent"
+                        src="{{  asset('assets/frontend/img/WhatsApp_icon.png.webp') }}">
+                       
+                    </span>
+                    <span class="mt-1"> Contact</span>
                 </a>
             </div>
 
-            <div class="menuItem group relative mx-2 cursor-pointer py-3 xl:mx-4 rtl:right-50 rtl:space-x-reverse block lg:hidden absolute text-sm">
+            
+            <div class="flex text-center mx-auto"> <!-- Centered content -->
+                <a class="inline-flex mx-auto lg:mx-0 custom-mr-50" wire:navigate href="{{ route('frontend.home') }}">
+                    <span class="relative h-[2.125rem] w-32 overflow-hidden md:w-[8.625rem]">
+                        <img alt="Pickbazar" loading="eager"   style="position:absolute;height:100%;width:100%;left:0;top:0;right:0;bottom:0;color:transparent" decoding="async" class="object-contain" src="{{  asset(__setting('header_logo')) }}">
+                    </span>
+                </a>
+            </div>
+
+            <div class="hidden menuItem group relative mx-2 cursor-pointer py-3 xl:mx-4 rtl:right-50 rtl:space-x-reverse block lg:hidden absolute text-sm">
                 <div class="flex items-center gap-2 group-hover:text-accent">
                     <span class="text-brand-dark group-hover:text-brand relative inline-flex items-center py-2 font-normal rtl:left-0">
                         {{ __userCurrencyCode() }}
@@ -67,7 +77,7 @@
             </div>
 
             <div class="top-product-search-bar hidden absolute top-0 z-20 flex h-full w-full items-center justify-center space-x-4 border-b-accent-300 bg-light px-5 py-1.5 backdrop-blur ltr:left-0 rtl:right-0 rtl:space-x-reverse lg:border lg:bg-opacity-30">
-               <form wire:submit.prevent="applyFilters" class="w-full lg:max-w-3xl">
+               <!-- <form wire:submit.prevent="applyFilters" class="w-full lg:max-w-3xl">
                     <div class="relative flex rounded md:rounded-lg h-11 md:h-12">
                         <label for="grocery-search-header" class="sr-only">{{ __trans('Search your products from here') }}</label>
                         
@@ -84,30 +94,28 @@
                             </svg>
                         </button>
                     </div>
-                </form>
+                </form> -->
 
-               <button data-variant="custom" class="remove-search-filter inline-flex items-center justify-center shrink-0 font-semibold leading-none rounded outline-none transition duration-300 ease-in-out focus:outline-0 focus:shadow focus:ring-1 focus:ring-accent-700 px-5 py-0 h-12 hidden border border-accent-400 bg-gray-100 !px-4 text-accent lg:inline-flex">
+              <!--  <button data-variant="custom" class="remove-search-filter inline-flex items-center justify-center shrink-0 font-semibold leading-none rounded outline-none transition duration-300 ease-in-out focus:outline-0 focus:shadow focus:ring-1 focus:ring-accent-700 px-5 py-0 h-12 hidden border border-accent-400 bg-gray-100 !px-4 text-accent lg:inline-flex">
                   <svg class="h-5 w-5" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor">
                      <path fill-rule="evenodd" d="M4.293 4.293a1 1 0 011.414 0L10 8.586l4.293-4.293a1 1 0 111.414 1.414L11.414 10l4.293 4.293a1 1 0 01-1.414 1.414L10 11.414l-4.293 4.293a1 1 0 01-1.414-1.414L8.586 10 4.293 5.707a1 1 0 010-1.414z" clip-rule="evenodd"></path>
                   </svg>
-               </button>
+               </button> -->
             </div>
 
             <div class="flex shrink-0 items-center space-x-2 rtl:space-x-reverse 2xl:space-x-10">
 
 
                 @if(request()->routeIs('frontend.home') || request()->routeIs('livewire.update'))
-                <button data-variant="custom" class="top-product-search-btn inline-flex items-center justify-center shrink-0 font-semibold leading-none rounded outline-none transition duration-300 ease-in-out focus:outline-0 focus:shadow focus:ring-1 focus:ring-accent-700 px-5 py-0 h-12 hidden h-[38px] w-[38px] items-center  gap-2 rounded-full border border-border-200 bg-light !p-1 text-sm !font-normal focus:!shadow-none focus:!ring-0 md:text-base lg:!flex">
+                <!-- <button data-variant="custom" class="top-product-search-btn inline-flex items-center justify-center shrink-0 font-semibold leading-none rounded outline-none transition duration-300 ease-in-out focus:outline-0 focus:shadow focus:ring-1 focus:ring-accent-700 px-5 py-0 h-12 hidden h-[38px] w-[38px] items-center  gap-2 rounded-full border border-border-200 bg-light !p-1 text-sm !font-normal focus:!shadow-none focus:!ring-0 md:text-base lg:!flex">
                    <i class="fa fa-search"></i>
-                </button>
+                </button> -->
                 @endif
 
                 <ul
                     class="hidden shrink-0 items-center space-x-7 rtl:space-x-reverse xl:flex 2xl:space-x-10">
-                    <li><a wire:navigate href="{{ route('frontend.home') }}" class="flex items-center font-normal text-heading no-underline transition duration-200 hover:text-accent focus:text-accent">{{ __trans('Shop') }}</a></li>
-                    <li><a wire:navigate href="{{ route('frontend.contact-us') }}" class="flex items-center font-normal text-heading no-underline transition duration-200 hover:text-accent focus:text-accent">{{ __trans('Contact') }}</a></li>
 
-                    <li class="menuItem group relative mx-3 cursor-pointer py-3 xl:mx-4">
+                    <li class="hidden menuItem group relative mx-3 cursor-pointer py-3 xl:mx-4">
                        <div class="flex items-center gap-2 group-hover:text-accent">
                           <span class="text-brand-dark group-hover:text-brand relative inline-flex items-center py-2 font-normal rtl:left-0"> {{ __userCurrencyCode() }}</span>
                           <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 12 7.2" width="12" height="7.2" class="mt-1">
@@ -176,6 +184,13 @@
                     <a wire:navigate href="{{ route('frontend.login') }}"
                         class="hidden h-9 shrink-0 items-center justify-center rounded border border-transparent bg-accent px-3 py-0 text-sm font-semibold leading-none text-light outline-none transition duration-300 ease-in-out hover:bg-accent-hover focus:shadow focus:outline-none focus:ring-1 focus:ring-accent-700 sm:inline-flex">{{ __trans('Login') }}</a>
                 </div>
+
+                <div class="flex items-center rtl:space-x-reverse">
+                    <div class="hidden lg:inline-flex"></div>
+                    <a wire:navigate href="{{ route('frontend.register') }}"
+                        class="hidden h-9 shrink-0 items-center justify-center rounded border border-transparent bg-accent px-3 py-0 text-sm font-semibold leading-none text-light outline-none transition duration-300 ease-in-out hover:bg-accent-hover focus:shadow focus:outline-none focus:ring-1 focus:ring-accent-700 sm:inline-flex">{{ __trans('Register') }}</a>
+                </div>
+
                  @endif
             </div>
         </div>

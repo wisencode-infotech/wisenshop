@@ -169,6 +169,10 @@ button.reset_filter_btn:hover {
     margin-left: 5%;
 }
 
+.custom-mr-50{
+    margin-right: 50px;
+}
+
 .border-1 {
     border-width: 1px;
 }
@@ -181,6 +185,8 @@ button.reset_filter_btn:hover {
     min-height: 32px;
 }
 
+
+
 .grid-cols-\[repeat\(auto-fill\2c minmax\(300px\2c 1fr\)\)\] {
     grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
 }
@@ -188,6 +194,10 @@ button.reset_filter_btn:hover {
 @media (max-width: 768px) {
     .absolute-right-minus-21px {
         right: -21px;
+    }
+
+    .hide-on-mobile{
+        display: none;
     }
 }
 

@@ -1,7 +1,13 @@
 @section('title', 'Home')
 <div>
     <livewire:sliders />
+
+    <livewire:product-search-bar />
+
+    <livewire:subcategory />
+
     <livewire:mobile-topbar-filters />
+
     <div class="flex border-t border-solid border-border-200 border-opacity-70">
         <livewire:product-category-sidebar :default_categories="$default_categories" />
         <livewire:products lazy :category_id="$default_categories" />

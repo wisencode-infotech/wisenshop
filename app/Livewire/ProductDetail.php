@@ -17,6 +17,11 @@ class ProductDetail extends Component
             abort(404);
     }
 
+    public function placeholder()
+    {
+        return view('livewire.skeleton-detail-page-loader');
+    }
+
     public function render()
     {
         return view('livewire.product-detail', [

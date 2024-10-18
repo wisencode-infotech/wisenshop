@@ -10,19 +10,8 @@
         </div>
 
     @else
-
-        <div wire:loading wire:target="setCategory" class="grid grid-cols-4 gap-4">
-            @foreach(range(1, 15) as $index) <!-- Create multiple skeleton loaders for better UX -->
-                <div class="animate-pulse">
-                    <div class="h-40 bg-gray-200 rounded"></div>
-                    <div class="mt-2 h-4 bg-gray-200 rounded"></div>
-                    <div class="mt-1 h-4 bg-gray-200 rounded"></div>
-                </div>
-            @endforeach
-        </div>
-
         
-        <div wire:loading.remove wire:target="setCategory" class="grid grid-cols-[repeat(auto-fill,minmax(300px,1fr))] gap-3">
+        <div class="grid grid-cols-[repeat(auto-fill,minmax(300px,1fr))] gap-3">
             @foreach ($products as $product)
                 <article
                     class="product-card cart-type-helium h-full overflow-hidden rounded border border-border-200 bg-light transition-shadow duration-200 hover:shadow-sm">
@@ -55,7 +44,9 @@
                         <div class="relative flex items-center justify-between mt-7 min-h-6 md:mt-8">
 
                             <div class="flex overflow-hidden order-5 sm:order-4 w-9 sm:w-24 h-24 sm:h-10 bg-accent text-light rounded-full flex-col-reverse sm:flex-row absolute sm:relative bottom-0 sm:bottom-auto ltr:right-0 rtl:left-0 ltr:sm:right-auto ltr:sm:left-auto">
-                                @livewire('quantity-selector', ['product_id' => $product->id], key('quantity-selector-' . uniqid()))
+                                
+                                <livewire:quantity-selector :product_id="$product->id" :key="'quantity-selector-' . uniqid()" />
+
                                 @livewire('product-stock', ['product_id' => $product->id, 'layout' => 'product-list'], key('product-stock-' . uniqid()))
                             </div>
 

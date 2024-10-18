@@ -85,6 +85,13 @@ class Products extends Component
         $this->resetPage();
     }
 
+    public function placeholder()
+    {
+        return view('livewire.skeleton-loader', [
+            'skeletons' => range(1, 15) // Pass the skeleton count to the view
+        ]);
+    }
+
     /**
      * Render the component.
      * @return \Illuminate\View\View

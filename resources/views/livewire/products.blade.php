@@ -10,8 +10,20 @@
         </div>
 
     @else
+
+        <!-- Loading Skeleton -->
+        <div wire:loading wire:target="setCategory" class="grid grid-cols-4 gap-4">
+            @foreach (range(1, 12) as $index)
+                <div class="animate-pulse">
+                    <div class="h-40 bg-gray-200 rounded"></div>
+                    <div class="mt-2 h-4 bg-gray-200 rounded"></div>
+                    <div class="mt-1 h-4 bg-gray-200 rounded"></div>
+                </div>
+            @endforeach
+        </div>
+
         
-        <div class="grid grid-cols-[repeat(auto-fill,minmax(300px,1fr))] gap-3">
+        <div wire:loading.remove wire:target="setCategory" class="grid grid-cols-[repeat(auto-fill,minmax(300px,1fr))] gap-3">
             @foreach ($products as $product)
                 <article
                     class="product-card cart-type-helium h-full overflow-hidden rounded border border-border-200 bg-light transition-shadow duration-200 hover:shadow-sm">

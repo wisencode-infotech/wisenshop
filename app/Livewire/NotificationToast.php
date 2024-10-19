@@ -26,6 +26,8 @@ class NotificationToast extends Component
 
         // Dispatch a browser event to show the notification
         $this->dispatch('showNotification', ['type' => $type, 'message' => $message]);
+
+        $this->skipRender();
     }
 
     public function render()

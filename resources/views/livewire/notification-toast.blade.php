@@ -9,9 +9,12 @@
             if (typeof toastr !== 'undefined') {
                 toastr.options = {
                     positionClass: "toast-bottom-center",
-                    timeOut: 5000,
+                    timeOut: 10000,
                     closeButton: true,
                     progressBar: true,
+                    onclick: function() {
+                        toastr.clear(); // Clear the toast on click
+                    }
                 };
                 toastr[type](message); // Show the toast
             } else {

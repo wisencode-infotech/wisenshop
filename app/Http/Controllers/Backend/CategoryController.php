@@ -16,7 +16,6 @@ class CategoryController extends Controller
      */
     public function index(Request $request)
     {
-
         if ($request->ajax()) {
             $data = Category::latest()->get();
             return Datatables::of($data)
@@ -46,8 +45,9 @@ class CategoryController extends Controller
      */
     public function create()
     {
-        $categories = Category::all();
-        return view('backend.categories.create', compact('categories')); // Return the create view
+        $parent_categories = Category::main()->pluck('name', 'id');
+
+        return view('backend.categories.create', compact('parent_categories')); // Return the create view
     }
 
     /**
@@ -109,8 +109,9 @@ class CategoryController extends Controller
      */
     public function edit(Category $category)
     {
-        $categories = Category::all();
-        return view('backend.categories.edit', compact('category','categories')); // Return the edit view
+        $parent_categories = Category::main()->pluck('name', 'id');
+
+        return view('backend.categories.edit', compact('category', 'parent_categories')); // Return the edit view
     }
 
     /**

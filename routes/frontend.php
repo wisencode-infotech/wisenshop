@@ -29,8 +29,6 @@ use App\Livewire\ThankYouPage;
 use App\Livewire\NotificationList;
 use App\Livewire\Credit;
 
-
-
 // Homepage
 Route::get('/', HomePage::class)->name('home');
 

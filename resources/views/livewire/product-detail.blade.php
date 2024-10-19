@@ -1,4 +1,7 @@
-@section('title', 'Product Details')
+@section('title', $product->name)
+
+@include('partials.page-meta')
+
 <div>
    <div class="min-h-full text-center md:p-5"> 
          <div class="min-w-content relative inline-block max-w-full align-middle transition-all ltr:text-left rtl:text-right opacity-100 scale-100" id="headlessui-dialog-panel-:r1:" data-headlessui-state="open">

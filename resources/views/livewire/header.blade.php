@@ -123,7 +123,7 @@
 
                 @if (auth()->check())
 
-                @livewire('notification-icon') 
+                @livewire('notification-icon', ['context' => 'header']) 
                 
                 <div class="lg:inline-flex">
                    <div class="relative inline-block ltr:text-left rtl:text-right" data-headlessui-state="open">

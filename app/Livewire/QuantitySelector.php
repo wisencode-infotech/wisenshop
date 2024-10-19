@@ -82,7 +82,7 @@ class QuantitySelector extends Component
 
             if ($this->quantity == 0) {
                 $this->dispatch('itemRemoved');
-                $this->dispatch('notify', 'success', __trans('Item removed from the cart'));
+                $this->dispatch('notify', 'error', __trans('Item removed from the cart'));
             }
 
             $this->dispatch('quantityUpdated', ['product_id' => $this->product_id, 'product_variation_id' => $this->product_variation_id, 'quantity' => $this->quantity]);

@@ -29,9 +29,4 @@ class NotificationToast extends Component
 
         $this->skipRender();
     }
-
-    public function render()
-    {
-        return view('livewire.notification-toast');
-    }
 }

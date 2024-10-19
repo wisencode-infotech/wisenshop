@@ -13,13 +13,9 @@
 
         <!-- Loading Skeleton -->
         <div wire:loading wire:target="setCategory" class="grid grid-cols-4 gap-4">
-            @foreach (range(1, 12) as $index)
-                <div class="animate-pulse">
-                    <div class="h-40 bg-gray-200 rounded"></div>
-                    <div class="mt-2 h-4 bg-gray-200 rounded"></div>
-                    <div class="mt-1 h-4 bg-gray-200 rounded"></div>
-                </div>
-            @endforeach
+           @include('livewire.skeleton-loader', [
+                'skeletons' => range(1, 15) // Pass the skeleton count to the view
+            ])
         </div>
 
         <div wire:loading.delay class="opacity-50 w-full"> 

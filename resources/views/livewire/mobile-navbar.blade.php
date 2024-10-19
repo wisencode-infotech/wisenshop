@@ -10,10 +10,10 @@
       </svg>
    </button>
    @if (request()->routeIs('frontend.home'))
-   <button class="mobile-bottom-menu top-product-search-btn flex h-full items-center justify-center p-2 focus:text-accent focus:outline-0" tabindex="0">
+   <!-- <button class="mobile-bottom-menu top-product-search-btn flex h-full items-center justify-center p-2 focus:text-accent focus:outline-0" tabindex="0">
       <span class="sr-only">{{ __trans('Search') }}</span>
       <i class="fa fa-search"></i>
-   </button>
+   </button> -->
    @endif
    <button wire:navigate href="{{ route('frontend.home') }}" class="mobile-bottom-menu flex h-full items-center justify-center p-2 {{ Request::routeIs('frontend.home') ? 'text-accent' : '' }} focus:text-accent focus:outline-0" tabindex="0">
       <span class="sr-only">{{ __trans('Home') }}</span>

@@ -1,4 +1,4 @@
-<div class="lg:inline-flex">
+<div class="hide-on-mobile lg:inline-flex">
     <div class="relative inline-block" data-headlessui-state="open">
         <button class="relative inline-flex border items-center justify-center rounded-full bg-light text-accent transition duration-300 ease-in-out hover:bg-accent-hover focus:outline-none hover:text-white focus:ring-2 focus:ring-accent-700 h-10 w-10 notification_menu_btn">
             <i class="fa fa-bell text-lg"></i>

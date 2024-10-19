@@ -43,7 +43,7 @@ class SettingController extends Controller
 
             if ($request->hasFile('settings.' . $key)) {
                 $file = $request->file('settings.' . $key);
-                $filename = Str::random(10) . '.' . $file->getClientOriginalExtension(); // Create a unique filename
+                $filename = $key . '.' . $file->getClientOriginalExtension();
                 $file->move(public_path('assets/frontend/img'), $filename); // Move the file to the desired location
 
                 $value = 'assets/frontend/img/' . $filename; // Set the value to the public path

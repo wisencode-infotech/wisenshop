@@ -9,12 +9,6 @@
          </g>
       </svg>
    </button>
-   @if (request()->routeIs('frontend.home'))
-   <button class="mobile-bottom-menu top-product-search-btn flex h-full items-center justify-center p-2 focus:text-accent focus:outline-0" tabindex="0">
-      <span class="sr-only">{{ __trans('Search') }}</span>
-      <i class="fa fa-search"></i>
-   </button>
-   @endif
    <button wire:navigate href="{{ route('frontend.home') }}" class="mobile-bottom-menu flex h-full items-center justify-center p-2 {{ Request::routeIs('frontend.home') ? 'text-accent' : '' }} focus:text-accent focus:outline-0" tabindex="0">
       <span class="sr-only">{{ __trans('Home') }}</span>
       <i class="fa fa-home"></i>
@@ -24,7 +18,10 @@
       <i class="fa fa-shopping-cart"></i>
       <span class="absolute top-0 mt-0.5 rounded-full bg-accent py-1 px-1.5 text-10px font-semibold leading-none text-light ltr:right-0 ltr:-mr-0.5 rtl:left-0 rtl:-ml-0.5">{{ $cart_items_count }}</span>
    </button>
+
    @if (auth()->check())
+      @livewire('notification-icon', ['context' => 'footer']) 
+
       <button wire:navigate href="{{ route('frontend.logout') }}" class="mobile-bottom-menu flex h-full items-center justify-center p-2 focus:text-accent focus:outline-0" tabindex="0">
          <span class="sr-only">{{ __trans('Logout') }}</span>
          <i class="fa fa-sign-out"></i>

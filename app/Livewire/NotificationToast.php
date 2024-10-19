@@ -26,10 +26,7 @@ class NotificationToast extends Component
 
         // Dispatch a browser event to show the notification
         $this->dispatch('showNotification', ['type' => $type, 'message' => $message]);
-    }
 
-    public function render()
-    {
-        return view('livewire.notification-toast');
+        $this->skipRender();
     }
 }

@@ -32,7 +32,7 @@ class ProductDetail extends Component
 
         $this->meta['keywords'] = $this->product->name ?? '';
         $this->meta['description'] = $this->product->description ?? '';
-        // $this->meta['og:image'] = $image ?? '';
+        $this->meta['og:image'] = $image ?? '';
     }
 
     public function render()

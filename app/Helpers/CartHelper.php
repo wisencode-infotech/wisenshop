@@ -80,7 +80,7 @@ class CartHelper
 
                 $product = $db_cart_item->product;
 
-                $product_variation = ($is_product_variant) ? ProductVariation::where('id', $db_cart_item->product_variation_id)->select('name', 'price')->first() : null;
+                $product_variation = ($is_product_variant) ? ProductVariation::withTrashed()->where('id', $db_cart_item->product_variation_id)->select('name', 'price')->first() : null;
 
                 $price = ($is_product_variant) ? ($product_variation->priceWithCurrency() ?? 0) : ($product->priceWithCurrency() ?? 0);
 

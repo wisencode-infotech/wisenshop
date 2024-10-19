@@ -23,7 +23,7 @@
                         src="{{  asset('assets/frontend/img/contact-us.png') }}">
                        
                     </span>
-                    <span class="mt-2 mx-2 text-sm font-bold"> Contact</span>
+                    <span class="mt-2 mx-2 text-sm font-bold"> {{ __trans('Contact') }}</span>
                 </a>
             </div>
 

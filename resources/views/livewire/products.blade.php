@@ -12,20 +12,13 @@
     @else
 
         <!-- Loading Skeleton -->
-        <div wire:loading wire:target="setCategory" class="grid grid-cols-4 gap-4">
-           @include('livewire.skeleton-loader', [
-                'skeletons' => range(1, 15) // Pass the skeleton count to the view
-            ])
-        </div>
-
         <div wire:loading.delay class="opacity-50 w-full"> 
             @include('livewire.skeleton-loader', [
                 'skeletons' => range(1, 15) // Pass the skeleton count to the view
             ])
         </div>
-
         
-        <div wire:loading.remove wire:target="setCategory" class="grid grid-cols-[repeat(auto-fill,minmax(300px,1fr))] gap-3">
+        <div wire:loading.remove class="grid grid-cols-[repeat(auto-fill,minmax(300px,1fr))] gap-3">
             @foreach ($products as $product)
                 <article
                     class="product-card cart-type-helium h-full overflow-hidden rounded border border-border-200 bg-light transition-shadow duration-200 hover:shadow-sm">

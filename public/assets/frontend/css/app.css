@@ -270,3 +270,9 @@ button.reset_filter_btn:hover {
     }
 }
 /*End Toaster css*/
+
+.bg-product-rating {
+    background-color: #FDBC4B;
+    border-color: #f4ad32;
+    color: #ffffff;
+}

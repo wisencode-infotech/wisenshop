@@ -43,25 +43,24 @@
                                     stroke-width="2"
                                     stroke-linecap="round"
                                     stroke-linejoin="round"
-                                    class="h-10 w-10"
+                                    class="h-12 w-12"
                                 >
-                                    <circle cx="12" cy="12" r="10" stroke="currentColor" stroke-width="3" fill="none" />
-                                    <path d="M15 12H9m0 0l4-4m-4 4l4 4" />
+                                    <path d="M15 18l-6-6 6-6" />
                                 </svg>
                                 </div>
                                 <span class="text-sm font-semibold text-heading text-center pt-4 px-2.5 block">{{ __trans('back') }}</span>
                             </div>
                             @foreach ($subcategories as $subcategory)
                                 <div class="text-center rounded bg-light py-4 flex flex-col items-center justify-start relative overflow-hidden cursor-pointer product_category" role="button"
+                                    :class="{ 'active': selectedCategoryId === {{ $subcategory->id }} }"
                                     x-on:click="
                                         selectedCategoryId = {{ $subcategory->id }};
-                                        $wire.set('selectedCategoryId', selectedCategoryId); // Use Livewire's set method
                                         $dispatch('category-selected', { category_id: selectedCategoryId })
                                     ">
                                     <div class="w-full h-20 flex items-center justify-center">
                                         <img src="{{ $subcategory->image_url }}" class="h-20" />
                                     </div>
-                                    <span class="text-sm font-semibold text-heading text-center pt-4 px-2.5 block">{{ $subcategory->id }} {{ \Str::limit($subcategory->name, 18) }}</span>
+                                    <span class="text-sm font-semibold text-heading text-center pt-4 px-2.5 block">{{ \Str::limit($subcategory->name, 18) }}</span>
                                 </div>
                             @endforeach
                         </div>

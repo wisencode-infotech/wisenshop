@@ -29,7 +29,7 @@ class ProductCategorySidebar extends Component
         // Fetch subcategories if a category is selected
         if ($categoryId) {
             $this->subcategories = Category::where('parent_id', $categoryId)->get();
-            $this->showSubcategories = !empty($this->subcategories); // Show subcategories if available
+            $this->showSubcategories = !empty($this->subcategories) && $this->subcategories->count(); // Show subcategories if available
         }
     }
 

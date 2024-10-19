@@ -1,5 +1,24 @@
 @section('title', 'Product Details')
-<div>
+<div x-data="{ initializeProductImageSlider() { 
+        var productGalleryThumbs = new Swiper('#productGalleryThumbs', {
+            spaceBetween: 20,
+            slidesPerView: 4,
+            freeMode: true,
+            watchSlidesVisibility: true,
+            watchSlidesProgress: true,
+         });
+
+         var productGallery = new Swiper('#productGallery', {
+            spaceBetween: 10,
+            thumbs: {
+            swiper: productGalleryThumbs,
+            },
+            navigation: {
+            nextEl: '.product-gallery-next',
+            prevEl: '.product-gallery-prev',
+            },
+         });
+    } }" x-init="initializeProductImageSlider()">
    <div class="min-h-full text-center md:p-5"> 
          <div class="min-w-content relative inline-block max-w-full align-middle transition-all ltr:text-left rtl:text-right opacity-100 scale-100" id="headlessui-dialog-panel-:r1:" data-headlessui-state="open">
            <article class="relative z-[51] w-full max-w-6xl bg-light md:rounded-xl xl:min-w-[1152px]">
@@ -198,33 +217,10 @@
 
                <div class="p-5 md:pb-10 lg:p-14 xl:p-16">
                   <h2 class="mb-6 text-lg font-semibold tracking-tight text-heading">{{ __trans('Related Products') }}</h2>
-                 <livewire:products :category_id="$product->category_id" :exclude_product_ids="[$product->id]" />
+                 <livewire:products :category_id="$product->category_id" :exclude_product_ids="[$product->id]" :from_page="'product_detail'" />
                </div>
             </article>
             
          </div>
       </div>
 </div>
-
-@section('scripts')
-<script type="text/javascript">
-    var productGalleryThumbs = new Swiper('#productGalleryThumbs', {
-      spaceBetween: 20,
-      slidesPerView: 4,
-      freeMode: true,
-      watchSlidesVisibility: true,
-      watchSlidesProgress: true,
-    });
-
-    var productGallery = new Swiper('#productGallery', {
-      spaceBetween: 10,
-      thumbs: {
-        swiper: productGalleryThumbs,
-      },
-      navigation: {
-        nextEl: '.product-gallery-next',
-        prevEl: '.product-gallery-prev',
-      },
-    });
-</script>
-@endsection

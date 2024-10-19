@@ -21,6 +21,10 @@ class CategoryController extends Controller
             $data = Category::latest()->get();
             return Datatables::of($data)
                 ->addIndexColumn() // Adds the row index
+                ->addColumn('name', function($row) {
+                    $parentName = $row->parent ? $row->parent->name : '';
+                    return $row->name . '<br>' . '<span style="font-size: 11px;color: blueviolet;">' . $parentName . '</span>';
+                })
                 ->addColumn('image', function($row) {
                     return $row->image_url;
                 })
@@ -29,7 +33,7 @@ class CategoryController extends Controller
                     $btn .= ' <button class="btn btn-danger btn-sm delete" data-id="'.$row->id.'">Delete</button>';
                     return $btn;
                 })
-                ->rawColumns(['action', 'image'])
+                ->rawColumns(['name', 'action', 'image'])
                 ->make(true);
         }
 
@@ -85,6 +89,7 @@ class CategoryController extends Controller
             'image_path' => $imagePath,
             'order' => $request->order,
             'description' => !empty($request->description) ? $request->description : null,
+            'parent_id' => $request->parent_id ?? NULL,
         ]);
 
         return redirect()->route('backend.category.index')

@@ -168,8 +168,8 @@ button.reset_filter_btn:hover {
     float: right;
 }
 
-.width-24{
-    width: 24%;
+.width-26{
+    min-width: 26%;
 }
 
 .grid-cols-\[repeat\(auto-fill\2c minmax\(300px\2c 1fr\)\)\] {
@@ -187,6 +187,10 @@ button.reset_filter_btn:hover {
 
     .contact-image-for-mobile{
         width: 1.5rem !important;
+    }
+
+    .mobile-width-15{
+        min-width: 15%;
     }
 
 }

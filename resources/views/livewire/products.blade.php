@@ -12,7 +12,7 @@
     @else
 
         <!-- Loading Skeleton -->
-        <div wire:loading.delay class="w-full"> 
+        <div wire:loading class="w-full"> 
             @include('livewire.skeleton-loader', [
                 'skeletons' => range(1, 15) // Pass the skeleton count to the view
             ])

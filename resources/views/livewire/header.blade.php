@@ -15,12 +15,9 @@
             <div class="flex shrink-0 grow-0 basis-auto flex-wrap items-center ltr:mr-auto rtl:ml-auto lg:w-auto lg:flex-nowrap">
                 <a class="inline-flex py-3 mx-auto lg:mx-0" style="margin-bottom: 5px;" wire:navigate href="{{ route('frontend.contact-us') }}">
                     <span
-                        class="relative contact-image-for-mobile h-[2.125rem] w-10 overflow-hidden md:w-[2.625rem]">
-                        <img
-                        alt="{{ config('app.title') }}" loading="eager" decoding="async" data-nimg="fill"
-                        class="object-contain"
-                        style="position:absolute;height:100%;width:100%;left:0;top:0;right:0;bottom:0;color:transparent;"
-                        src="{{  asset('assets/frontend/img/contact-us.png') }}">
+                        class="relative contact-image-for-mobile h-[2.125rem] w-5 overflow-hidden md:w-[2.625rem]">
+                        
+                        <i class="fa fa-phone text-accent" style="position:absolute;height:100%;width:100%;left:0;top:0;right:0;bottom:0;display:flex;align-items:center;"></i>
                        
                     </span>
                     <span class="mt-2 mx-2 text-sm font-bold"> {{ __trans('Contact') }}</span>

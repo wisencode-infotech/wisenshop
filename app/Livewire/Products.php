@@ -21,6 +21,7 @@ class Products extends Component
     public $maxPrice = null;
     public $exclude_product_ids = [];
     public $default_home_sorting_method;
+    public $from_page;
 
     // Pagination theme - adjust as per your CSS framework
     protected $paginationTheme = 'bootstrap'; // or 'tailwind'
@@ -33,7 +34,7 @@ class Products extends Component
      * @param int|null $category_id
      * @param int $per_page
      */
-    public function mount($category_id = null, $per_page = 12, $exclude_product_ids = [])
+    public function mount($category_id = null, $per_page = 12, $exclude_product_ids = [], $from_page = null)
     {
         // if (!empty($category_id) && !is_array($category_id))
         //     $category_id = [$category_id];
@@ -43,6 +44,7 @@ class Products extends Component
         $this->paginate_count = $per_page;
         $this->exclude_product_ids = $exclude_product_ids;
         $this->default_home_sorting_method = (!empty(__homeSetting('default_home_sorting_method'))) ? __homeSetting('default_home_sorting_method') : 'default';
+        $this->from_page = $from_page; 
     }
 
     public function applyFilters($filters)

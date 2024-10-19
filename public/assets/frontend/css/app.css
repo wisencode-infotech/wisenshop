@@ -68,6 +68,7 @@
 
 .product_category {
     border-width: 1px !important;
+    border-color: #ffffff;
 }
 
 .product_category:hover {

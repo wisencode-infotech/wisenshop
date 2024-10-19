@@ -198,7 +198,7 @@
 
                <div class="p-5 md:pb-10 lg:p-14 xl:p-16">
                   <h2 class="mb-6 text-lg font-semibold tracking-tight text-heading">{{ __trans('Related Products') }}</h2>
-                 <livewire:products :category_id="$product->category_id" :exclude_product_ids="[$product->id]" :from_page="'product_detail'" />
+                 <livewire:products :category_id="$product->category_id" :exclude_product_ids="[$product->id]" />
                </div>
             </article>
             

@@ -2,6 +2,7 @@
 
 use App\Helpers\CartHelper;
 use App\Helpers\WishlistHelper;
+use App\Http\Controllers\ErrorController;
 use App\Http\Controllers\PaymentProcessController;
 use Illuminate\Support\Facades\Route;
 use App\Livewire\ContactPage;
@@ -36,7 +37,7 @@ Route::get('/', HomePage::class)->name('home');
 // Contact Us
 Route::get('/contact-us', ContactPage::class)->name('contact-us');
 
-Route::get('/product-detail/{product_slug}', ProductDetail::class)->name('product-detail')->lazy();
+Route::get('/product/{product_slug}', ProductDetail::class)->name('product-detail')->lazy();
 
 Route::get('/cart', CartPage::class)->name('cart');
 Route::get('/my-wishlist', MyWishlist::class)->name('my-wishlist');
@@ -121,6 +122,8 @@ Route::post('/sync-session-preferences', function (Request $request) {
 
 Route::get('/payment-process/{order}', [PaymentProcessController::class, 'index'])->name('payment-process');
 Route::post('/coinpayments/callback', [PaymentProcessController::class, 'coinpayments_callback'])->name('coinpayments.callback');
+
+Route::get('/error/{code}', [ErrorController::class, 'index'])->name('error');
 
 Livewire::setScriptRoute(function ($handle) {
     return Route::get(url('/') . '/livewire/livewire.js', $handle);

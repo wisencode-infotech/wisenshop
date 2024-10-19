@@ -6,9 +6,7 @@ use Livewire\Component;
 
 class HomePage extends Component
 {
-    
     public $default_categories;
-   
 
     public function mount() 
     {

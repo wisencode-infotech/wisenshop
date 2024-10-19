@@ -10,13 +10,15 @@ class NotificationIcon extends Component
 {
     public $notifications;
     public $total_unread_notification;
+    public $context;
 
     protected $listeners = ['refreshNotificationIcon' => 'refreshNotifications'];
 
-    public function mount()
+    public function mount($context = 'header')
     {
         $this->loadNotifications();
         $this->updateUnreadCount();
+        $this->context = $context;
     }
 
     public function loadNotifications()
@@ -49,7 +51,8 @@ class NotificationIcon extends Component
     {
         return view('livewire.notification-icon', [
             'notifications' => $this->notifications,
-            'total_unread_notification' => $this->total_unread_notification
+            'total_unread_notification' => $this->total_unread_notification,
+            'context' => $this->context,
         ]);
     }
 }

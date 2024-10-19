@@ -199,6 +199,11 @@ button.reset_filter_btn:hover {
     .hide-on-mobile{
         display: none;
     }
+
+    .contact-image-for-mobile{
+        width: 1.5rem !important;
+    }
+
 }
 
 /*End custom css*/

@@ -8,6 +8,13 @@ class ProductSearchBar extends Component
 {
     public $search = '';
 
+    public function updatedSearch()
+    {
+        $this->dispatch('filterProducts', [
+            'search' => $this->search,
+        ]);
+    }
+
     public function applyFilters()
     {
         $this->dispatch('filterProducts', [

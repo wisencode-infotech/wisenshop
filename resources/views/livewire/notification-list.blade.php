@@ -5,7 +5,7 @@
         @livewire('user-sidebar') <!-- Sidebar component for user navigation -->
         
         <div class="w-full overflow-hidden lg:flex">
-            <div class="p-5 md:p-8 bg-light shadow rounded w-full shadow-none sm:shadow">
+            <div class="md:p-8 bg-light shadow rounded w-full shadow-none sm:shadow">
                 <div class="flex w-full flex-col">
                     <!-- Page Title -->
                     <div class="mb-8 flex items-center justify-center sm:mb-10">

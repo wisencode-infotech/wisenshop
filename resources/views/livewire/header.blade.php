@@ -29,7 +29,7 @@
 
             
             <div class="flex text-center mx-auto"> <!-- Centered content -->
-                <a class="inline-flex mx-auto lg:mx-0 custom-mr-50" wire:navigate href="{{ route('frontend.home') }}">
+                <a class="inline-flex mx-auto lg:mx-0" wire:navigate href="{{ route('frontend.home') }}">
                     <span class="relative h-[2.125rem] w-32 overflow-hidden md:w-[8.625rem]">
                         <img alt="{{ config('app.title') }}" loading="eager"   style="position:absolute;height:100%;width:100%;left:0;top:0;right:0;bottom:0;color:transparent" decoding="async" class="object-contain" src="{{  asset(__setting('header_logo')) }}">
                     </span>
@@ -76,10 +76,14 @@
                 </ul>
             </div>
 
-            <div class="flex shrink-0 items-center space-x-2 rtl:space-x-reverse 2xl:space-x-10">
+            <div class="flex shrink-0 items-center space-x-2 rtl:space-x-reverse 2xl:space-x-10 mobile-width-15 width-26">
                
                 <ul
                     class="hidden shrink-0 items-center space-x-7 rtl:space-x-reverse xl:flex 2xl:space-x-10">
+
+                    @if (auth()->check())
+                        <li class="mx-4" style="visibility: hidden;"><span class="flex w-20"></span></li>
+                    @endif
 
                     <li class="hidden menuItem group relative mx-3 cursor-pointer py-3 xl:mx-4">
                        <div class="flex items-center gap-2 group-hover:text-accent">

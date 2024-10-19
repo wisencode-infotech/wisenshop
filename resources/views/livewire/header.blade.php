@@ -19,11 +19,11 @@
                         <img
                         alt="{{ config('app.title') }}" loading="eager" decoding="async" data-nimg="fill"
                         class="object-contain"
-                        style="position:absolute;height:100%;width:100%;left:0;top:0;right:0;bottom:0;color:transparent"
+                        style="position:absolute;height:100%;width:100%;left:0;top:0;right:0;bottom:0;color:transparent;"
                         src="{{  asset('assets/frontend/img/contact-us.png') }}">
                        
                     </span>
-                    <span class="mt-1"> Contact</span>
+                    <span class="mt-2 mx-2 text-sm font-bold"> Contact</span>
                 </a>
             </div>
 

@@ -1,4 +1,7 @@
-@section('title', 'Product Details')
+@section('title', $product->name)
+
+@include('partials.page-meta')
+
 <div x-data="{ initializeProductImageSlider() { 
         var productGalleryThumbs = new Swiper('#productGalleryThumbs', {
             spaceBetween: 20,

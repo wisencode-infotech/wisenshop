@@ -3,6 +3,9 @@
         <div class="reviews-list">
             @foreach ($reviews as $review)
                 <div class="review-item flex items-start space-x-4 mb-4 mt-4">
+                    @if (!$review->user)
+                        @php continue; @endphp
+                    @endif
                     <div class="review-user-image">
                         <!-- Display user profile image (fallback to default image if not available) -->
                         <img src="{{ $review->user->profile_image_url }}" alt="{{ $review->user->name }}" title="{{ $review->user->name }}" class="w-12 h-12 rounded-full object-cover">

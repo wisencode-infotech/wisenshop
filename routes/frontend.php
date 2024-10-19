@@ -101,8 +101,6 @@ Route::post('/sync-session-preferences', function (Request $request) {
     $stored_shopping_cart = CartHelper::items();
     $stored_wishlist = WishlistHelper::items();
 
-    
-
     if (!empty($cart) && empty($stored_shopping_cart)) {
         Session::put('cart', $cart ?? []);
         $cart_updated = true;

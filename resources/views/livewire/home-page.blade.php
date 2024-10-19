@@ -16,13 +16,6 @@
 @section('scripts')
 
  <script>
-    // products load js
-    window.onscroll = function() {
-        if ((window.innerHeight + window.scrollY) >= document.body.offsetHeight) {
-
-        }
-    };
-
     // sliders component js
     var swiper = new Swiper(".mySwiper", {
         cssMode: true,

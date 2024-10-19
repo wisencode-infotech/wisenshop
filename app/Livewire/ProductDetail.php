@@ -14,7 +14,7 @@ class ProductDetail extends Component
         $this->product = Product::authenticated()->where('slug', $product_slug)->first();
 
         if (!$this->product)
-            abort(404);
+            return redirect()->route('frontend.error', [ 401 ]); // Redirect to your 404 route.
     }
 
     public function placeholder()

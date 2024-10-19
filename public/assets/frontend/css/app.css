@@ -3,38 +3,16 @@
     border: 4px solid rgba(0, 0, 0, 0.1);
     border-radius: 50%;
     border-top: 4px solid rgb(var(--color-accent));
-    width: 24px;
-    height: 24px;
+    width: 48px; /* Increased size for visibility */
+    height: 48px;
     animation: spin 1s linear infinite;
 }
 
+/* Keyframes for rotating animation */
 @keyframes spin {
     0% { transform: rotate(0deg); }
     100% { transform: rotate(360deg); }
 }
-
-/* To handle the overlay */
-.wire-loading {
-    display: none;
-}
-
-.wire-loading.flex {
-    display: flex;
-}
-
-/*custom css*/
-/*.banner-slide-content {
-    background-size: cover;
-    background-position: center;
-    color: white;
-    padding: 20px;
-    height: 200px;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    position: relative;
-}*/
 
 .banner-slide-content {
     position: relative; /* Ensures text overlays the image */
@@ -68,6 +46,7 @@
 
 .product_category {
     border-width: 1px !important;
+    border-color: #ffffff;
 }
 
 .product_category:hover {

@@ -12,7 +12,7 @@
     @else
 
         <!-- Loading Skeleton -->
-        <div wire:loading.delay class="opacity-50 w-full"> 
+        <div wire:loading.delay class="w-full"> 
             @include('livewire.skeleton-loader', [
                 'skeletons' => range(1, 15) // Pass the skeleton count to the view
             ])
@@ -21,7 +21,7 @@
         <div wire:loading.remove class="grid grid-cols-[repeat(auto-fill,minmax(300px,1fr))] gap-3">
             @foreach ($products as $product)
                 <article
-                    class="product-card cart-type-helium h-full overflow-hidden rounded border border-border-200 bg-light transition-shadow duration-200 hover:shadow-sm">
+                    class="product-card cart-type-helium h-full overflow-hidden rounded-lg bg-light transition-shadow duration-200 shadow-sm @if(isset($from_page) && $from_page == 'product_detail') {{ $from_page }} border border-200 @endif">
                     <div class="cursor-pointer relative flex h-48 w-auto items-center justify-center sm:h-64">
                         
                         <span class="sr-only">{{ __trans('Product') }} {{ __trans('Image') }}</span>

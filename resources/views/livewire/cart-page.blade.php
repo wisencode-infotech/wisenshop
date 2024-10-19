@@ -40,7 +40,7 @@
                            @foreach($cart as $cart_key => $item)
                               <div class="flex items-center border-b border-solid border-border-200 border-opacity-75 px-4 py-4 text-sm sm:px-6" style="opacity: 1;">
 
-                                 <div wire:loading.flex class="absolute inset-0 z-10 flex items-center justify-center bg-accent bg-opacity-10">
+                                 <div wire:loading.flex class="fixed inset-0 z-10 flex items-center justify-center bg-accent-400 bg-opacity-10">
                                     <div class="loader"></div>
                                 </div>
 

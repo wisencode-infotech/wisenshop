@@ -8,13 +8,13 @@
             </div>
             <div data-overlayscrollbars-contents="" data-overlayscrollbars-viewport="scrollbarHidden"
                 style="margin-right: 0px; margin-bottom: 0px; margin-left: 0px; top: 0px; right: auto; left: 0px; width: calc(100% + 0px); padding: 0px; overflow-y: scroll;">
-                <div class="p-5">
+                <div class="py-6 px-4">
 
                 <div x-data="{ selectedCategoryId: @entangle('selectedCategoryId'), showSubcategories: @entangle('showSubcategories') }">
                     <!-- Parent Categories -->
                     <div x-show="!showSubcategories" class="grid grid-cols-2 gap-4">
                         @foreach ($product_categories as $category)
-                            <div class="text-center rounded bg-light py-4 flex flex-col items-center justify-start relative overflow-hidden cursor-pointer product_category" role="button"
+                            <div class="text-center rounded-lg bg-light py-4 flex flex-col items-center justify-start relative overflow-hidden cursor-pointer product_category shadow-sm" role="button"
                                 :class="{ 'active': selectedCategoryId === {{ $category->id }} }"
                                 x-on:click="
                                     selectedCategoryId = {{ $category->id }};
@@ -30,9 +30,9 @@
                     </div>
 
                     <!-- Subcategories -->
-                    <div x-show="showSubcategories" class="mt-4">
-                        <div class="grid grid-cols-2 gap-4 mt-2">
-                            <div class="text-center rounded bg-light py-4 flex flex-col items-center justify-start relative overflow-hidden cursor-pointer product_category" role="button"
+                    <div x-show="showSubcategories">
+                        <div class="grid grid-cols-2 gap-4">
+                            <div class="text-center rounded-lg bg-light py-4 flex flex-col items-center justify-start relative overflow-hidden cursor-pointer product_category shadow-sm" role="button"
                                 x-on:click="showSubcategories = false; selectedCategoryId = selectedCategoryId; $wire.goBack();">
                                 <div class="w-full h-20 flex items-center justify-center">
                                 <svg

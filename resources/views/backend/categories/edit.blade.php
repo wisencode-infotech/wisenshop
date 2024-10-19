@@ -42,6 +42,23 @@
                         <input type="text" name="slug" class="form-control" value="{{ $category->slug }}" readonly>
                     </div>
 
+                    <div class="form-group mb-3">
+                        <label for="parent_id" class="form-label">Parent Category</label>
+                        <select name="parent_id" class="form-select @error('parent_id') is-invalid @enderror">
+                            <option value="">Select Category</option>
+                            @foreach($categories as $cat)
+                            <option value="{{ $cat->id }}"
+                                {{ $cat->id == old('parent_id', $category->parent_id) ? 'selected' : '' }}>
+                                {{ $cat->name }}
+                            </option>
+                            @endforeach
+                        </select>
+                        @error('parent_id')
+                        <span class="invalid-feedback">{{ $message }}</span>
+                        @enderror
+                    </div>
+
+
                     <!-- Description Field -->
                     <div class="form-group mb-3">
                         <label for="description" class="form-label">Description</label>

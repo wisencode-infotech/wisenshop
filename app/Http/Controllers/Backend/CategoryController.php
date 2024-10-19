@@ -42,7 +42,8 @@ class CategoryController extends Controller
      */
     public function create()
     {
-        return view('backend.categories.create'); // Return the create view
+        $categories = Category::all();
+        return view('backend.categories.create', compact('categories')); // Return the create view
     }
 
     /**
@@ -103,7 +104,8 @@ class CategoryController extends Controller
      */
     public function edit(Category $category)
     {
-        return view('backend.categories.edit', compact('category')); // Return the edit view
+        $categories = Category::all();
+        return view('backend.categories.edit', compact('category','categories')); // Return the edit view
     }
 
     /**
@@ -122,6 +124,7 @@ class CategoryController extends Controller
             'name' => $request->name,
             'description' => $request->description,
             'order' => $request->order,
+            'parent_id' => $request->parent_id ?? NULL,
         ];
 
          // Handle image upload if a new image is provided
@@ -137,10 +140,8 @@ class CategoryController extends Controller
                 $data['image_path'] = $imagePath;
             }
         }
-
         // Update the category data
         $category->update($data);
-
         return redirect()->route('backend.category.index')
                          ->with('success', 'Category updated successfully.');
     }

@@ -13,7 +13,7 @@ class Category extends Model
 {
     use HasFactory, SoftDeletes;
 
-    protected $fillable = ['name', 'slug', 'description', 'image_path', 'order'];
+    protected $fillable = ['name', 'slug', 'parent_id', 'description', 'image_path', 'order'];
 
     // Define a placeholder URL
     public static $placeholder_url = 'https://placehold.co/158X100/FFF/000';

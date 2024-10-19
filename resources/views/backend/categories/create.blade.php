@@ -35,6 +35,21 @@
                         @enderror
                     </div>
 
+                    <div class="mb-3 form-group">
+                        <label for="parent_id" class="form-label">Category</label>
+                        <select name="parent_id" class="form-select @error('parent_id') is-invalid @enderror">
+                            <option value="">Select Category</option>
+                            @foreach($categories as $cat)
+                                <option value="{{ $cat->id }}" {{ old('parent_id') == $cat->id ? 'selected' : '' }}>
+                                    {{ $cat->name }}
+                                </option>
+                            @endforeach
+                        </select>
+                        @error('parent_id')
+                            <span class="invalid-feedback">{{ $message }}</span>
+                        @enderror
+                    </div>
+
                     <!-- description Field -->
                     <div class="form-group mb-3">
                         <label for="name" class="form-label">Category Description</label>

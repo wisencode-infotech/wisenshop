@@ -11,7 +11,7 @@ class HomePageSettingsController extends Controller
 {
     public function index()
     {
-        $categories = Category::all();
+        $categories = Category::whereNUll('parent_id')->get();
 
         $display_specific_categories_on_page_load = __homeSetting('display_specific_categories_on_page_load', true);
 
@@ -27,10 +27,10 @@ class HomePageSettingsController extends Controller
 
         $display_specific_categories_on_page_load = $request->display_specific_categories_on_page_load;
 
-        if (!empty($display_specific_categories_on_page_load))
-            $display_specific_categories_on_page_load = array_map('intval', $display_specific_categories_on_page_load);
+        // if (!empty($display_specific_categories_on_page_load))
+        //     $display_specific_categories_on_page_load = array_map('intval', $display_specific_categories_on_page_load);
 
-        $display_specific_categories_on_page_load = !empty($display_specific_categories_on_page_load) ? json_encode($display_specific_categories_on_page_load) : null;
+        $display_specific_categories_on_page_load = !empty($display_specific_categories_on_page_load) ? $display_specific_categories_on_page_load : null;
 
         $this->saveSettings('display_specific_categories_on_page_load', $display_specific_categories_on_page_load);
 

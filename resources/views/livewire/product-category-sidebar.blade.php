@@ -10,26 +10,63 @@
                 style="margin-right: 0px; margin-bottom: 0px; margin-left: 0px; top: 0px; right: auto; left: 0px; width: calc(100% + 0px); padding: 0px; overflow-y: scroll;">
                 <div class="p-5">
 
-                    <div x-data="{ selectedCategoryIds: @entangle('selectedCategoryIds') }" class="grid grid-cols-2 gap-4">
+                <div x-data="{ selectedCategoryId: @entangle('selectedCategoryId'), showSubcategories: @entangle('showSubcategories') }">
+                    <!-- Parent Categories -->
+                    <div x-show="!showSubcategories" class="grid grid-cols-2 gap-4">
                         @foreach ($product_categories as $category)
-
-                            <div class="text-center rounded bg-light py-4 flex flex-col items-center justify-start relative overflow-hidden cursor-pointer product_category"  role="button" :class="{ 'active': selectedCategoryIds.includes({{ $category->id }}) }"
+                            <div class="text-center rounded bg-light py-4 flex flex-col items-center justify-start relative overflow-hidden cursor-pointer product_category" role="button"
+                                :class="{ 'active': selectedCategoryId === {{ $category->id }} }"
                                 x-on:click="
-                                    if (selectedCategoryIds.includes({{ $category->id }})) {
-                                        selectedCategoryIds = selectedCategoryIds.filter(id => id !== {{ $category->id }}); // Deselect category
-                                    } else {
-                                        selectedCategoryIds.push({{ $category->id }}); // Select category
-                                    }
-                                    $dispatch('category-selected', { category_id: selectedCategoryIds })
+                                    selectedCategoryId = {{ $category->id }};
+                                    $wire.set('selectedCategoryId', selectedCategoryId); // Use Livewire's set method
+                                    $dispatch('category-selected', { category_id: selectedCategoryId })
                                 ">
                                 <div class="w-full h-20 flex items-center justify-center">
-                                   <img src="{{ $category->image_url }}" class="h-20"  />
-                               </div>
-                               <span class="text-sm font-semibold text-heading text-center pt-4 px-2.5 block">{{ \Str::limit($category->name, 18) }}</span>
-                           </div>
-
+                                    <img src="{{ $category->image_url }}" class="h-20" />
+                                </div>
+                                <span class="text-sm font-semibold text-heading text-center pt-4 px-2.5 block">{{ \Str::limit($category->name, 18) }}</span>
+                            </div>
                         @endforeach
                     </div>
+
+                    <!-- Subcategories -->
+                    <div x-show="showSubcategories" class="mt-4">
+                        <div class="grid grid-cols-2 gap-4 mt-2">
+                            <div class="text-center rounded bg-light py-4 flex flex-col items-center justify-start relative overflow-hidden cursor-pointer product_category" role="button"
+                                x-on:click="showSubcategories = false; selectedCategoryId = selectedCategoryId; $wire.goBack();">
+                                <div class="w-full h-20 flex items-center justify-center">
+                                <svg
+                                    xmlns="http://www.w3.org/2000/svg"
+                                    viewBox="0 0 24 24"
+                                    fill="none"
+                                    stroke="currentColor"
+                                    stroke-width="2"
+                                    stroke-linecap="round"
+                                    stroke-linejoin="round"
+                                    class="h-12 w-12"
+                                >
+                                    <path d="M15 18l-6-6 6-6" />
+                                </svg>
+                                </div>
+                                <span class="text-sm font-semibold text-heading text-center pt-4 px-2.5 block">{{ __trans('back') }}</span>
+                            </div>
+                            @foreach ($subcategories as $subcategory)
+                                <div class="text-center rounded bg-light py-4 flex flex-col items-center justify-start relative overflow-hidden cursor-pointer product_category" role="button"
+                                    :class="{ 'active': selectedCategoryId === {{ $subcategory->id }} }"
+                                    x-on:click="
+                                        selectedCategoryId = {{ $subcategory->id }};
+                                        $dispatch('category-selected', { category_id: selectedCategoryId })
+                                    ">
+                                    <div class="w-full h-20 flex items-center justify-center">
+                                        <img src="{{ $subcategory->image_url }}" class="h-20" />
+                                    </div>
+                                    <span class="text-sm font-semibold text-heading text-center pt-4 px-2.5 block">{{ \Str::limit($subcategory->name, 18) }}</span>
+                                </div>
+                            @endforeach
+                        </div>
+                    </div>
+                </div>
+
 
                 </div>
             </div>

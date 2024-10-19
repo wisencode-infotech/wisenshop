@@ -34,7 +34,7 @@
                         <div class="col-md-12">
                             @foreach ($categories as $category)
                                 <div class="form-check form-switch form-switch-lg mb-3" dir="ltr">
-                                    <input class="form-check-input" type="checkbox" name="display_specific_categories_on_page_load[]" value="{{ $category->id }}" id="category_{{ $category->id }}" {{ !empty($display_specific_categories_on_page_load) && in_array($category->id, $display_specific_categories_on_page_load) ? 'checked' : '' }}>
+                                    <input class="form-check-input" type="checkbox" name="display_specific_categories_on_page_load" value="{{ $category->id }}" id="category_{{ $category->id }}" {{ !empty($display_specific_categories_on_page_load) && $category->id == $display_specific_categories_on_page_load ? 'checked' : '' }}>
                                     <label class="form-check-label" for="category_{{ $category->id }}">{{ $category->name }}</label>
                                 </div>
                             @endforeach
@@ -114,4 +114,17 @@
     </div>
 </div>
 
+@endsection
+
+
+@section('scripts')
+<script>
+    $(document).ready(function() {
+        $('input[name="display_specific_categories_on_page_load"]').change(function() {
+            if ($(this).is(':checked')) {
+                $('input[name="display_specific_categories_on_page_load"]').not(this).prop('checked', false);
+            }
+        });
+    });
+</script>
 @endsection

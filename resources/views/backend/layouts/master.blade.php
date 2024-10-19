@@ -47,6 +47,9 @@
 
     <!-- JAVASCRIPT -->
     @include('backend.layouts.vendor-scripts')
+
+    @yield('scripts')
+
 </body>
 
 </html>

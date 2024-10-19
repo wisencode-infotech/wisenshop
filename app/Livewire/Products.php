@@ -35,8 +35,8 @@ class Products extends Component
      */
     public function mount($category_id = null, $per_page = 12, $exclude_product_ids = [])
     {
-        if (!empty($category_id) && !is_array($category_id))
-            $category_id = [$category_id];
+        // if (!empty($category_id) && !is_array($category_id))
+        //     $category_id = [$category_id];
 
         $this->category_id = $category_id ?? null;
         $this->per_page = $per_page;
@@ -106,7 +106,7 @@ class Products extends Component
 
         // Filter by category if a category_id is set
         if ($this->category_id) {
-            $query->whereIn('category_id', $this->category_id);
+            $query->whereIn('category_id', [$this->category_id]);
         }
 
         // Search filter

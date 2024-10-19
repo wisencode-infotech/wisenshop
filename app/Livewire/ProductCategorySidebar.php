@@ -8,17 +8,36 @@ use App\Models\Category;
 class ProductCategorySidebar extends Component
 {
     public $product_categories;
-    public $selectedCategoryIds = [];
+    public $selectedCategoryId = null;
+    public $subcategories = [];
+    public $filter = ''; // For filtering subcategories
+    public $showSubcategories = false; // Track whether to show subcategories
 
     public function mount($default_categories = null)
     {
-        $this->product_categories = Category::all();
+        $this->product_categories = Category::whereNull('parent_id')->get();
         
         if (request()->get('catid')) {
-            $this->selectedCategoryIds = [(int) request()->get('catid')];
-        } else if( !empty($default_categories) ) {
-            $this->selectedCategoryIds = $default_categories;
+            $this->selectedCategoryId = (int) request()->get('catid');
+        } elseif (!empty($default_categories)) {
+            $this->selectedCategoryId = $default_categories;
         }
+    }
+
+    public function updatedSelectedCategoryId($categoryId)
+    {
+        // Fetch subcategories if a category is selected
+        if ($categoryId) {
+            $this->subcategories = Category::where('parent_id', $categoryId)->get();
+            $this->showSubcategories = !empty($this->subcategories); // Show subcategories if available
+        }
+    }
+
+    public function goBack()
+    {
+        $this->showSubcategories = false; // Hide subcategories
+        $this->selectedCategoryId = $this->selectedCategoryId; // Reset selected category
+        $this->subcategories = []; // Clear subcategories
     }
 
     public function render()
@@ -27,8 +46,10 @@ class ProductCategorySidebar extends Component
 
         return view('livewire.product-category-sidebar', [
             'product_categories' => $this->product_categories,
-            'selectedCategoryIds' => $this->selectedCategoryIds, 
+            'selectedCategoryId' => $this->selectedCategoryId, 
+            'subcategories' => $this->subcategories, // Pass filtered subcategories
             'banner_settings' => $banner_settings, 
+            'showSubcategories' => $this->showSubcategories, // Track visibility of subcategories
         ]);
     }
 }

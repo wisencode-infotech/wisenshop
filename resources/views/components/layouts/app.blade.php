@@ -24,7 +24,7 @@
 
     <div id="__next">
         <div dir="ltr">
-            <main class="Pickbazar-version-undefined">   
+            <main class="{{ config('app.title') }}-version-undefined">   
                 <div class="flex min-h-screen flex-col bg-gray-100 transition-colors duration-150">  
                     @livewire('header')
                     

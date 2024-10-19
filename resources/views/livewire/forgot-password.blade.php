@@ -6,7 +6,7 @@
             <div class="mb-2 flex justify-center">
                 <a class="inline-flex items-center gap-3" href="/">
                     <span class="relative overflow-hidden" style="width: 138px; height: 34px;">
-                        <img alt="Pickbazar" loading="eager" decoding="async" data-nimg="fill" class="object-contain" sizes="(max-width: 768px) 100vw" srcset="{{ asset(__setting('header_logo')) }}" src="{{ asset(__setting('header_logo')) }}" style="position: absolute; height: 100%; width: 100%; inset: 0px; color: transparent;">
+                        <img alt="{{ config('app.title') }}" loading="eager" decoding="async" data-nimg="fill" class="object-contain" sizes="(max-width: 768px) 100vw" srcset="{{ asset(__setting('header_logo')) }}" src="{{ asset(__setting('header_logo')) }}" style="position: absolute; height: 100%; width: 100%; inset: 0px; color: transparent;">
                     </span>
                 </a>
             </div>

@@ -265,6 +265,10 @@ button.reset_filter_btn:hover {
     background-position: 16px center;
 }
 
+.z-0 {
+    z-index: 0 !important;
+}
+
 /* Responsive behavior */
 @media (max-width: 480px) {
     #toast-container > .toast {

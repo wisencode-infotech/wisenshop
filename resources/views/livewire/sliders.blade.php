@@ -1,7 +1,7 @@
 <div>
     <div class="border-t border-border-200 bg-light px-5 py-5 md:p-8 lg:px-6">
         <div class="swiper-container relative">
-            <div class="swiper mySwiper">
+            <div class="swiper mySwiper z-0">
                 <div class="swiper-wrapper">
                     @foreach($banners as $banner_key => $banner)
 

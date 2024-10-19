@@ -2,10 +2,6 @@
 <div>
     <livewire:sliders />
 
-    <livewire:product-search-bar />
-
-    <livewire:subcategory />
-
     <livewire:mobile-topbar-filters />
 
     <div class="flex border-t border-solid border-border-200 border-opacity-70">

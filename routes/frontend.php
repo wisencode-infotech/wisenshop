@@ -35,7 +35,7 @@ Route::get('/', HomePage::class)->name('home');
 // Contact Us
 Route::get('/contact-us', ContactPage::class)->name('contact-us');
 
-Route::get('/product/{product_slug}', ProductDetail::class)->name('product-detail')->lazy();
+Route::get('/product/{product_slug}', ProductDetail::class)->name('product-detail');
 
 Route::get('/cart', CartPage::class)->name('cart');
 Route::get('/my-wishlist', MyWishlist::class)->name('my-wishlist');

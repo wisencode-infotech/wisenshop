@@ -21,11 +21,6 @@ class ProductDetail extends Component
         $this->setMeta();
     }
 
-    public function placeholder()
-    {
-        return view('livewire.skeleton-detail-page-loader');
-    }
-
     public function setMeta()
     {
         $image = $this->product->display_image_url;

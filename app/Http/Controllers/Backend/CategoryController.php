@@ -109,7 +109,7 @@ class CategoryController extends Controller
      */
     public function edit(Category $category)
     {
-        $parent_categories = Category::main()->pluck('name', 'id');
+        $parent_categories = Category::main()->where('id', '<>', $category->id)->pluck('name', 'id');
 
         return view('backend.categories.edit', compact('category', 'parent_categories')); // Return the edit view
     }

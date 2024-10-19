@@ -82,11 +82,7 @@
                     class="hidden shrink-0 items-center space-x-7 rtl:space-x-reverse xl:flex 2xl:space-x-10">
 
                     @if (auth()->check())
-                    <li class="menuItem group relative mx-3 cursor-pointer py-3 xl:mx-4" style="visibility: hidden;">
-                       <div class="flex items-center gap-2 group-hover:text-accent">
-                          <span class="w-20"></span>
-                       </div>
-                    </li>
+                        <li class="mx-4" style="visibility: hidden;"><span class="flex w-20"></span></li>
                     @endif
 
                     <li class="hidden menuItem group relative mx-3 cursor-pointer py-3 xl:mx-4">

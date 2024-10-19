@@ -31,6 +31,9 @@ class ProductCategorySidebar extends Component
             $this->subcategories = Category::where('parent_id', $categoryId)->get();
             $this->showSubcategories = !empty($this->subcategories) && $this->subcategories->count(); // Show subcategories if available
         }
+
+        $this->dispatch('filter_category_updated_event');
+
     }
 
     public function goBack()

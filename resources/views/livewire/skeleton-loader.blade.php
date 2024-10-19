@@ -1,4 +1,4 @@
-<div class="w-full pb-20 @if(isset($apply_top_margin) && $apply_top_margin == true) pt-4 lg:py-6 @endif px-4 xl:px-0">
+<div class="w-full pb-20 @if(isset($apply_top_margin) && $apply_top_margin == true) pt-4 lg:py-6 @endif xl:px-0">
     <div class="grid grid-cols-[repeat(auto-fill,minmax(300px,1fr))] gap-4">
         @foreach($skeletons as $index)
             <div class="p-4 bg-white shadow-lg rounded-lg animate-pulse">

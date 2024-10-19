@@ -66,4 +66,18 @@ document.addEventListener('livewire:init', () => {
         localStorage.setItem('wishlist', JSON.stringify(data));
     });
 
+    Livewire.on('filter_category_updated_event', (event) => {
+        const section = document.getElementById('products-search-section');
+    
+        if (section) {
+            const rect = section.getBoundingClientRect();
+            const isVisible = rect.top >= 0 && rect.bottom <= window.innerHeight;
+    
+            // Scroll only if the section is not fully visible
+            if (!isVisible) {
+                section.scrollIntoView({ behavior: 'smooth' });
+            }
+        }
+    });
+
  });

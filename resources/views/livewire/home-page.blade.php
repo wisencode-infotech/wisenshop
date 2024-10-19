@@ -4,7 +4,9 @@
 
     <livewire:mobile-topbar-filters />
 
-    <livewire:product-search-bar />
+    <div id="products-search-section">
+        <livewire:product-search-bar />
+    </div>
 
     <div class="flex border-t border-solid border-border-200 border-opacity-70">
         <livewire:product-category-sidebar :default_categories="$default_categories" />

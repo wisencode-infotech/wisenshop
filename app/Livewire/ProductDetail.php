@@ -16,7 +16,7 @@ class ProductDetail extends Component
         $this->product = Product::authenticated()->where('slug', $product_slug)->first();
 
         if (!$this->product)
-            return redirect()->route('frontend.error', [ 401 ]); // Redirect to your 404 route.
+            abort(404);
 
         $this->setMeta();
     }

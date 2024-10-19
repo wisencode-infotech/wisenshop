@@ -121,8 +121,6 @@ Route::post('/sync-session-preferences', function (Request $request) {
 Route::get('/payment-process/{order}', [PaymentProcessController::class, 'index'])->name('payment-process');
 Route::post('/coinpayments/callback', [PaymentProcessController::class, 'coinpayments_callback'])->name('coinpayments.callback');
 
-Route::get('/error/{code}', [ErrorController::class, 'index'])->name('error');
-
 Livewire::setScriptRoute(function ($handle) {
     return Route::get(url('/') . '/livewire/livewire.js', $handle);
 });

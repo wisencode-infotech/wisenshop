@@ -98,14 +98,23 @@
                               </div>
                            </div>
                            <div class="mt-2 flex items-center justify-between">
-                              <div class="inline-flex shrink-0 items-center rounded border border-accent bg-accent px-3 py-1 text-sm text-accent-contrast">
-                                 <i class="fa fa-star"></i>
-                                 @if (($prouct_avg_rating = $product->average_rating) > 0)
-                                    {{ $prouct_avg_rating }}
-                                 @endif
-                                 <span class="ms-1">({{ $product->total_reviews . ' ' . __trans('Reviews') }})</span>
+                              <div class="inline-flex shrink-0 items-center rounded border bg-product-rating px-3 py-1 text-sm">
+                                  @if ($product->average_rating > 0)
+                                      @php
+                                          $product_rating = round($product->average_rating);
+                                      @endphp
+
+                                      @for ($i = 0; $i < $product_rating; $i++)
+                                          <i class="fa fa-star"></i>
+                                      @endfor
+                          
+                                      @for ($i = $product_rating; $i < 5; $i++)
+                                          <i class="fa fa-star-o"></i>
+                                      @endfor
+                                  @endif
+                                  <span class="ms-1">({{ $product->total_reviews . ' ' . __trans('Reviews') }})</span>
                               </div>
-                           </div>
+                          </div>
                            <div class="mt-3 text-sm leading-7 text-body md:mt-4 react-editor-description">
                               <div>{!! $product->short_description !!}</div>
                               {{-- <br><span><button class="mt-1 inline-block font-bold text-accent ">Read more</button></span> --}}
@@ -160,15 +169,15 @@
                   <h2 class="mb-7 text-lg font-semibold tracking-tight text-heading">{{ __trans('Ratings & Reviews of') }} {{ $product->name }}</h2>
                   <div class="flex w-full flex-col divide-y divide-gray-200 divide-opacity-70 sm:flex-row sm:items-center sm:space-x-8 sm:divide-y-0 sm:divide-x rtl:sm:space-x-reverse rtl:sm:divide-x-reverse">
                      <div class="w-full pb-4 sm:w-auto sm:pb-0">
-                        <span class="inline-flex shrink-0 items-center rounded-full bg-accent text-white px-6 py-2 text-3xl font-semibold mb-4">
-                          {{ $prouct_avg_rating }}
+                        <span class="inline-flex shrink-0 items-center rounded-full bg-product-rating px-6 py-2 text-3xl font-semibold mb-4">
+                          {{ $product_rating }}
                            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 25.056 24" class="h-6 w-6 ltr:ml-2 rtl:mr-2">
                               <g data-name="Group 36413" fill="currentColor">
                                  <path id="Path_22667" data-name="Path 22667" d="M19.474,34.679l-6.946-4.346L5.583,34.679a.734.734,0,0,1-1.1-.8L6.469,25.93.263,20.668a.735.735,0,0,1,.421-1.3l8.1-.566,3.064-7.6a.765.765,0,0,1,1.362,0l3.064,7.6,8.1.566a.735.735,0,0,1,.421,1.3L18.588,25.93l1.987,7.949a.734.734,0,0,1-1.1.8Z" transform="translate(0 -10.792)"></path>
                               </g>
                            </svg>
                         </span>
-                        <p class="text-base text-gray-400"><span>{{ $product->total_reviews }} {{ __trans('ratings') }}</span></p>
+                        <p class="text-sm text-white bg-gray-400 rounded text-center"><span>{{ $product->total_reviews }} {{ __trans('ratings') }}</span></p>
                      </div>
 
                      <div class="w-full space-y-3 py-0.5 pt-4 sm:w-auto sm:pt-0 ltr:sm:pl-8 rtl:sm:pr-8">

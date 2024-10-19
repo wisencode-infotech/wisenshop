@@ -36,12 +36,12 @@
                     </div>
 
                     <div class="mb-3 form-group">
-                        <label for="parent_id" class="form-label">Category</label>
+                        <label for="parent_id" class="form-label">Parent Category</label>
                         <select name="parent_id" class="form-select @error('parent_id') is-invalid @enderror">
-                            <option value="">Select Category</option>
-                            @foreach($categories as $cat)
-                                <option value="{{ $cat->id }}" {{ old('parent_id') == $cat->id ? 'selected' : '' }}>
-                                    {{ $cat->name }}
+                            <option value="">Select Parent Category</option>
+                            @foreach($parent_categories as $parent_category_id => $parent_category_name)
+                                <option value="{{ $parent_category_id }}" {{ old('parent_id') == $parent_category_id ? 'selected' : '' }}>
+                                    {{ $parent_category_name }}
                                 </option>
                             @endforeach
                         </select>
@@ -74,7 +74,7 @@
 
                     <div class="form-group mb-3">
                         <label for="order" class="form-label">Sorting Order</label>
-                        <input type="text" name="order" class="form-control @error('order') is-invalid @enderror" value="{{ old('order') }}" required>
+                        <input type="text" name="order" class="form-control @error('order') is-invalid @enderror" value="{{ old('order', 0) }}" required>
                         @error('order')
                         <span class="invalid-feedback" role="alert">
                             <strong>{{ $message }}</strong>

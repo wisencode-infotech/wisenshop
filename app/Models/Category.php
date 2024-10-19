@@ -8,6 +8,7 @@ use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Database\Eloquent\SoftDeletes;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Database\Eloquent\Builder; 
+use Illuminate\Database\Eloquent\Relations\BelongsTo;
 
 class Category extends Model
 {
@@ -42,5 +43,15 @@ class Category extends Model
         static::addGlobalScope('order', function (Builder $builder) {
             $builder->orderBy('order', 'asc');
         });
+    }
+
+    public function parent(): BelongsTo
+    {
+        return $this->belongsTo(Category::class, 'parent_id');
+    }
+
+    public function scopeMain(Builder $query): Builder
+    {
+        return $query->whereNull('parent_id');
     }
 }

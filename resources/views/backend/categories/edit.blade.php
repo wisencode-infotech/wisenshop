@@ -45,12 +45,12 @@
                     <div class="form-group mb-3">
                         <label for="parent_id" class="form-label">Parent Category</label>
                         <select name="parent_id" class="form-select @error('parent_id') is-invalid @enderror">
-                            <option value="">Select Category</option>
-                            @foreach($categories as $cat)
-                            <option value="{{ $cat->id }}"
-                                {{ $cat->id == old('parent_id', $category->parent_id) ? 'selected' : '' }}>
-                                {{ $cat->name }}
-                            </option>
+                            <option value="">Select Parent Category</option>
+                            @foreach($parent_categories as $parent_category_id => $parent_category_name)
+                                <option value="{{ $parent_category_id }}"
+                                    {{ $parent_category_id == old('parent_id', $parent_category_id) ? 'selected' : '' }}>
+                                    {{ $parent_category_name }}
+                                </option>
                             @endforeach
                         </select>
                         @error('parent_id')

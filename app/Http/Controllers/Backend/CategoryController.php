@@ -16,11 +16,14 @@ class CategoryController extends Controller
      */
     public function index(Request $request)
     {
-
         if ($request->ajax()) {
             $data = Category::latest()->get();
             return Datatables::of($data)
                 ->addIndexColumn() // Adds the row index
+                ->addColumn('name', function($row) {
+                    $parentName = $row->parent ? $row->parent->name : '';
+                    return $row->name . '<br>' . '<span style="font-size: 11px;color: blueviolet;">' . $parentName . '</span>';
+                })
                 ->addColumn('image', function($row) {
                     return $row->image_url;
                 })
@@ -29,7 +32,7 @@ class CategoryController extends Controller
                     $btn .= ' <button class="btn btn-danger btn-sm delete" data-id="'.$row->id.'">Delete</button>';
                     return $btn;
                 })
-                ->rawColumns(['action', 'image'])
+                ->rawColumns(['name', 'action', 'image'])
                 ->make(true);
         }
 
@@ -42,8 +45,9 @@ class CategoryController extends Controller
      */
     public function create()
     {
-        $categories = Category::all();
-        return view('backend.categories.create', compact('categories')); // Return the create view
+        $parent_categories = Category::main()->pluck('name', 'id');
+
+        return view('backend.categories.create', compact('parent_categories')); // Return the create view
     }
 
     /**
@@ -85,6 +89,7 @@ class CategoryController extends Controller
             'image_path' => $imagePath,
             'order' => $request->order,
             'description' => !empty($request->description) ? $request->description : null,
+            'parent_id' => $request->parent_id ?? NULL,
         ]);
 
         return redirect()->route('backend.category.index')
@@ -104,8 +109,9 @@ class CategoryController extends Controller
      */
     public function edit(Category $category)
     {
-        $categories = Category::all();
-        return view('backend.categories.edit', compact('category','categories')); // Return the edit view
+        $parent_categories = Category::main()->pluck('name', 'id');
+
+        return view('backend.categories.edit', compact('category', 'parent_categories')); // Return the edit view
     }
 
     /**

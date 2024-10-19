@@ -22,6 +22,12 @@
             @endforeach
         </div>
 
+        <div wire:loading.delay class="opacity-50 w-full"> 
+            @include('livewire.skeleton-loader', [
+                'skeletons' => range(1, 15) // Pass the skeleton count to the view
+            ])
+        </div>
+
         
         <div wire:loading.remove wire:target="setCategory" class="grid grid-cols-[repeat(auto-fill,minmax(300px,1fr))] gap-3">
             @foreach ($products as $product)

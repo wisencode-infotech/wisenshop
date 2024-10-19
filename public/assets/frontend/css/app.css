@@ -185,7 +185,9 @@ button.reset_filter_btn:hover {
     min-height: 32px;
 }
 
-
+.float-right{
+    float: right;
+}
 
 .grid-cols-\[repeat\(auto-fill\2c minmax\(300px\2c 1fr\)\)\] {
     grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));

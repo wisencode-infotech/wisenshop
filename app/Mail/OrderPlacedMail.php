@@ -30,8 +30,9 @@ class OrderPlacedMail extends Mailable
     {
         $subject = __trans('Your Order Has Been Placed');
         
-        if ( __setting('site_title') )
-            $subject .= ' ' . $subject;
+        if ( __setting('site_title') ){
+            $subject = __setting('site_title').' - ' . $subject;
+        }
 
         return new Envelope(
             subject: $subject,

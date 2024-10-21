@@ -20,7 +20,7 @@
                         <i class="fa fa-phone text-accent" style="position:absolute;height:100%;width:100%;left:0;top:0;right:0;bottom:0;display:flex;align-items:center;"></i>
                        
                     </span>
-                    <span class="mt-2 mx-2 text-sm font-bold"> {{ __trans('Contact') }}</span>
+                    <span class="mt-2 mx-1 text-sm font-normal"> {{ __trans('Contact') }}</span>
                 </a>
             </div>
 

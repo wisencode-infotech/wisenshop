@@ -11,16 +11,19 @@ class ProductCartButton extends Component
     public $itemCount = 0; // Track item count
     public $totalPrice = 0; // Track total price
 
+    protected $listeners = ['itemAdded', 'itemRemoved', 'quantityUpdated' => 'updateCart'];
+
     public function mount()
     {
-        $cart = CartHelper::items();
-
-        $this->totalPrice = CartHelper::total();
-
-        $this->itemCount = count($cart);
+        $this->updateCart();
     }
 
-    protected $listeners = ['itemAdded', 'itemRemoved', 'quantityUpdated' => 'updateCartQuantity'];
+    public function updateCart()
+    {
+        $cart = CartHelper::items();
+        $this->itemCount = count($cart);
+        $this->totalPrice = CartHelper::total(); // Update total price
+    }
 
     public function itemAdded()
     {
@@ -33,15 +36,6 @@ class ProductCartButton extends Component
     {
         if ($this->itemCount > 0)
             $this->itemCount--;
-
-        $this->totalPrice = CartHelper::total();
-    }
-
-    public function updateCartQuantity()
-    {
-        $cart = CartHelper::items();
-
-        $this->itemCount = count($cart);
 
         $this->totalPrice = CartHelper::total();
     }

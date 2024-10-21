@@ -34,6 +34,8 @@ class HomePageSettingsController extends Controller
 
         $this->saveSettings('display_specific_categories_on_page_load', $display_specific_categories_on_page_load);
 
+        __updateHomeSetting('display_specific_categories_on_page_load', $display_specific_categories_on_page_load);
+
         return redirect()->back()->with('success', 'saved settings');
     }
 
@@ -64,6 +66,8 @@ class HomePageSettingsController extends Controller
         // Save the banner settings as JSON in the database
         $this->saveSettings('banner_settings', json_encode($bannerSettings));
 
+        __updateHomeSetting('banner_settings', json_encode($bannerSettings));
+
         return redirect()->back()->with('success', 'Banner settings saved successfully');
     }
 
@@ -77,6 +81,8 @@ class HomePageSettingsController extends Controller
         ]);
 
         $this->saveSettings('default_home_sorting_method', $request->default_home_sorting_method);
+
+        __updateHomeSetting('default_home_sorting_method', $request->default_home_sorting_method);
 
         return redirect()->back()->with('success', 'Sorting settings saved successfully');
     }

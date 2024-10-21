@@ -79,6 +79,8 @@ class SiteBannerController extends Controller
             'description' => !empty($request->description) ? $request->description : null,
         ]);
 
+        __updateCache('site_banners');
+
         return redirect()->route('backend.site-banner.index')
                          ->with('success', 'Site Bannner created successfully.');
     }
@@ -133,6 +135,8 @@ class SiteBannerController extends Controller
         // Update the site banner data
         $site_banner->update($data);
 
+        __updateCache('site_banners');
+
         return redirect()->route('backend.site-banner.index')
                          ->with('success', 'Site Bannner updated successfully.');
     }
@@ -145,6 +149,9 @@ class SiteBannerController extends Controller
         $site_banner = SiteBanner::find($id);
         if ($site_banner) {
             $site_banner->delete();
+
+            __updateCache('site_banners');
+
             return response()->json(['success' => 'Site Bannner deleted successfully.']);
         }
         return response()->json(['error' => 'Site Bannner not found.'], 404);

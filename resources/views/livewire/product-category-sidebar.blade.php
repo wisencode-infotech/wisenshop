@@ -22,7 +22,7 @@
                                     $dispatch('category-selected', { category_id: selectedCategoryId })
                                 ">
                                 <div class="w-full h-20 flex items-center justify-center">
-                                    <img src="{{ $category->image_url }}" class="h-20" />
+                                    <img src="{{ $category->image_url }}" alt="{{ $category->name }}" class="h-20" />
                                 </div>
                                 <span class="text-sm font-semibold text-heading text-center pt-4 px-2.5 block">{{ \Str::limit($category->name, 18) }}</span>
                             </div>
@@ -111,12 +111,5 @@
             </div>
         </div>
     </a>
-    
     @endif
-
-    <!-- <button
-        class="products-filter fixed top-1/2 z-40 -mt-5 hidden flex-col items-center justify-center rounded bg-accent p-3 pt-3.5 text-sm font-semibold text-light shadow-900 transition-colors duration-200 focus:outline-0 ltr:left-0 rtl:rounded-tr-none rtl:rounded-br-none ltr:rug-0 ltr:rounded-tl-none ltr:rounded-bl-none lg:flex bg-opacity-80">
-        <i class="fa fa-filter"></i>
-    </button> -->
-
 </div>

@@ -4,6 +4,7 @@ namespace App\Livewire;
 
 use Livewire\Component;
 use App\Models\Category;
+use Illuminate\Support\Facades\Cache;
 
 class MobileTopbarFilters extends Component
 {
@@ -11,7 +12,14 @@ class MobileTopbarFilters extends Component
 
     public function mount()
     {
-        $this->product_categories = Category::all();
+        $this->product_categories = $this->getCategory();
+    }
+
+    public function getCategory()
+    {
+        return Cache::rememberForever('all_categories', function () {
+            return Category::all();
+        });
     }
 
     public function render()

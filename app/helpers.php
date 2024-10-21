@@ -10,6 +10,8 @@ use App\Models\Product;
 use App\Models\ProductVariation;
 use App\Models\FranchiseProductAvailability;
 use App\Models\User;
+use App\Models\SiteBanner;
+use App\Models\Category;
 use Illuminate\Support\Facades\Cache;
 use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Facades\Auth;
@@ -235,17 +237,67 @@ if (!function_exists('__homeSetting'))
 {
     function __homeSetting($key, $decode = false) 
     {
-        $setting = HomePageSetting::where('meta_key', $key)->first();
+        // Define cache key based on the home setting key
+        $cacheKey = "home_settings.{$key}";
 
-        if (!empty($setting)) {
+        // Try to retrieve the setting value from cache
+        return Cache::rememberForever($cacheKey, function() use ($key, $decode) {
+            $setting = HomePageSetting::where('meta_key', $key)->first();
 
-            if($decode == true && !empty($setting->meta_value))
-                return json_decode($setting->meta_value, TRUE);
+            if (!empty($setting)) {
+                if($decode == true && !empty($setting->meta_value))
+                    return json_decode($setting->meta_value, TRUE);
 
-            return $setting->meta_value;
-        }
+                return $setting->meta_value;
+            }
 
-        return '';
+            return ''; // Return an empty string if not found
+        });
+    }
+}
+
+if (!function_exists('__updateHomeSetting')) 
+{
+    function __updateHomeSetting($key, $decode)
+    {
+        $cache_key = "home_settings.{$key}";
+        
+        Cache::forget($cache_key);
+
+        return Cache::rememberForever($cache_key, function() use ($key, $decode) {
+            $setting = HomePageSetting::where('meta_key', $key)->first();
+             
+            if (!empty($setting)) {
+                if($decode == true && !empty($setting->meta_value))
+                    return json_decode($setting->meta_value, TRUE);
+
+                return $setting->meta_value;
+            }
+
+            return ''; // Return an empty string if not found
+        });
+    }
+}
+
+if (!function_exists('__updateCache')) 
+{
+    function __updateCache($key)
+    {
+        $cache_key = $key;
+        
+        Cache::forget($cache_key);
+
+        return Cache::rememberForever($cache_key, function() use ($key) {
+
+            if ($key == 'site_banners') {
+                return SiteBanner::all();
+            } else if($key == 'all_categories') {
+                return Category::all();
+            } else if($key == 'main_categories') {
+                return Category::whereNull('parent_id')->get();
+            } 
+
+        });
     }
 }
 

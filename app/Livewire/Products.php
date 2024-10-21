@@ -123,16 +123,17 @@ class Products extends Component
         if ($this->maxPrice) {
             $query->where('price', '<=', $this->maxPrice);
         }
-
-        // Sort products by name
         
-
-        if ($this->default_home_sorting_method == 'default') {
-            $query->orderBy('name', $this->sort);    
-        } else if ($this->default_home_sorting_method == 'random') {
-            $query->orderByRaw('RAND()');
-        }else if ($this->default_home_sorting_method == 'custom') {
-            $query->where('is_home', 1);
+        switch ($this->default_home_sorting_method) {
+            case 'random':
+                $query->inRandomOrder();
+                break;
+            case 'custom':
+                $query->where('is_home', 1);
+                break;
+            default:
+                $query->orderBy('name', $this->sort);
+                break;
         }
 
         // Exclude specific product_ids

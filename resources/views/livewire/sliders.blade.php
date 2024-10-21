@@ -1,4 +1,36 @@
-<div>
+<div x-data="{ initializeMainSwiper() {
+        
+        var swiper = new Swiper('.mySwiper', {
+            cssMode: true,
+            navigation: {
+                nextEl: '.swiper-container .next',
+                prevEl: '.swiper-container .prev',
+            },
+            pagination: {
+                el: '.swiper-pagination',
+                clickable: true,
+            },
+            mousewheel: true,
+            keyboard: true,
+            slidesPerView: 1,
+            spaceBetween: 10,
+            breakpoints: {
+                640: {
+                    slidesPerView: 1,
+                    spaceBetween: 10,
+                },
+                768: {
+                    slidesPerView: 2,
+                    spaceBetween: 20,
+                },
+                1024: {
+                    slidesPerView: 4,
+                    spaceBetween: 30,
+                },
+            },
+        });
+    }
+}" x-init="initializeMainSwiper()">
     <div class="border-t border-border-200 bg-light px-5 py-5 md:p-8 lg:px-6">
         <div class="swiper-container relative">
             <div class="swiper mySwiper z-0">

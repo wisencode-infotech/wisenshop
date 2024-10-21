@@ -15,7 +15,9 @@ class ProductCategorySidebar extends Component
 
     public function mount($default_categories = null)
     {
-        $this->product_categories = Category::whereNull('parent_id')->get();
+        $this->product_categories = cache()->rememberForever('main_categories', function() {
+            return Category::whereNull('parent_id')->get();
+        });
         
         if (request()->get('catid')) {
             $this->selectedCategoryId = (int) request()->get('catid');
@@ -28,7 +30,12 @@ class ProductCategorySidebar extends Component
     {
         // Fetch subcategories if a category is selected
         if ($categoryId) {
-            $this->subcategories = Category::where('parent_id', $categoryId)->get();
+            // $this->subcategories = Category::where('parent_id', $categoryId)->get();
+
+            $this->subcategories = cache()->rememberForever("subcategories_{$categoryId}", function() use ($categoryId) {
+                return Category::where('parent_id', $categoryId)->get();
+            });
+
             $this->showSubcategories = !empty($this->subcategories) && $this->subcategories->count(); // Show subcategories if available
         }
 

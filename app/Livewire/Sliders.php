@@ -4,6 +4,7 @@ namespace App\Livewire;
 
 use Livewire\Component;
 use App\Models\SiteBanner;
+use Illuminate\Support\Facades\Cache;
 
 class Sliders extends Component
 {
@@ -11,7 +12,19 @@ class Sliders extends Component
 
     public function mount()
     {
-        $this->banners = SiteBanner::all();
+        $this->banners = $this->getBanners();
+    }
+
+    public function getBanners()
+    {
+        return Cache::rememberForever('site_banners', function () {
+            return SiteBanner::all();
+        });
+    }
+
+    public function placeholder()
+    {
+        return view('livewire.slider-skeleton');
     }
 
     public function render()

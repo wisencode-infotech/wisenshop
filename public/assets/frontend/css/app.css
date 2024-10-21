@@ -193,6 +193,10 @@ button.reset_filter_btn:hover {
         min-width: 15%;
     }
 
+    .mobile-width-0{
+        min-width: 0%;   
+    }
+
 }
 
 /*End custom css*/
@@ -276,3 +280,8 @@ button.reset_filter_btn:hover {
     border-color: #f4ad32;
     color: #ffffff;
 }
+
+.auth-language-margin {
+    margin-left: 50px;
+}
+

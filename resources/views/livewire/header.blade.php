@@ -53,7 +53,7 @@
                 </ul>
             </div>
 
-            <div class="menuItem group relative mx-2 cursor-pointer py-3 xl:mx-4 rtl:right-50 rtl:space-x-reverse block lg:hidden absolute text-sm">
+            <div class="menuItem group relative mx-2 cursor-pointer py-3 xl:mx-4 rtl:right-50 rtl:space-x-reverse block lg:hidden absolute text-sm {{ !auth()->check() ? 'auth-language-margin' : '' }}">
                 <div class="flex items-center gap-2 group-hover:text-accent">
                     <span class="text-brand-dark group-hover:text-brand relative inline-flex items-center py-2 font-normal rtl:left-0">
                         {{ strtoupper(app()->currentLocale()) }}
@@ -73,7 +73,7 @@
                 </ul>
             </div>
 
-            <div class="flex shrink-0 items-center space-x-2 rtl:space-x-reverse 2xl:space-x-10 mobile-width-15 width-26">
+            <div class="flex shrink-0 items-center space-x-2 rtl:space-x-reverse 2xl:space-x-10 {{ !auth()->check() ? 'mobile-width-0' : '' }} mobile-width-15 width-26">
                
                 <ul
                     class="hidden shrink-0 items-center space-x-7 rtl:space-x-reverse xl:flex 2xl:space-x-10">

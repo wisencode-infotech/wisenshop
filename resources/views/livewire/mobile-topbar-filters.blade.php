@@ -3,7 +3,7 @@
    <div class="relative inline-block ltr:text-left rtl:text-right" data-headlessui-state="">
       <button class="mobile-category-dropdown-btn flex h-11 shrink-0 items-center text-sm font-semibold text-heading focus:outline-0 md:text-[15px] xl:px-4 rounded border-border-200 bg-light xl:min-w-150 xl:border xl:text-accent" id="headlessui-menu-button-:Rpp4m:" type="button" aria-haspopup="menu" aria-expanded="false" data-headlessui-state="">
          <span class="flex h-5 w-5 items-center justify-center ltr:mr-2 rtl:ml-2">
-            <img class="category-image-selected" src="" style="height:20px:width:20px"  />
+            <img class="category-image-selected" alt="category-images" src="{{ asset('assets/frontend/img/category.png') }}" style="height:20px:width:20px"  />
          </span>
          <span class="whitespace-nowrap selected-category-name">{{ __trans('All') }}</span>
          <span class="flex pt-1 ltr:ml-auto ltr:pl-2.5 rtl:mr-auto rtl:pr-2.5">
@@ -20,7 +20,7 @@
             <div data-overlayscrollbars-contents="" role="none" data-overlayscrollbars-viewport="scrollbarHidden" style="margin-right: 0px; margin-bottom: 0px; margin-left: 0px; top: 0px; right: auto; left: 0px; width: calc(100% + 0px); padding: 0px; overflow-y: scroll;">
                @foreach($product_categories as $category)
                <div id="headlessui-menu-item-:r2a:" role="custom-menuitem" tabindex="-1" data-headlessui-state="">
-                  <a class="flex w-full items-center space-x-4 px-5 py-2.5 text-sm font-semibold capitalize transition duration-200 hover:text-accent focus:outline-0 focus-visible:outline-0 rtl:space-x-reverse text-body-dark" x-on:click="$dispatch('category-selected', { category_id: [{{ $category->id }}] })">
+                  <a href="javascript:void(0);" class="flex w-full items-center space-x-4 px-5 py-2.5 text-sm font-semibold capitalize transition duration-200 hover:text-accent focus:outline-0 focus-visible:outline-0 rtl:space-x-reverse text-body-dark" x-on:click="$dispatch('category-selected', { category_id: [{{ $category->id }}] })">
                      <span class="flex h-5 w-5 items-center justify-center">
                         <img src="{{ $category->image_url }}" style="height:20px:width:20px"  />
                      </span>

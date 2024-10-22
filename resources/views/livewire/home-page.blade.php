@@ -27,7 +27,7 @@
         });
 
         // Add click event listener to each category item
-        $('[role="custom-menuitem"] a').on('click', function () {
+        $('[role="custom-menuitem"] span').on('click', function () {
             // Get the image URL and name of the selected category
             const categoryImage = $(this).find('img').attr('src');
             const categoryName = $(this).find('.category-name').text();

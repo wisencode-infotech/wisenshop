@@ -2,9 +2,6 @@
 
 <div>
     <div class="mx-auto flex w-full max-w-lg flex-col px-4 py-8 pb-16 md:flex-row md:pb-8 xl:py-10 xl:px-6 xl:pb-10 2xl:px-10">
-
-        
-
         <div class="order-1 mb-6 w-full rounded-lg bg-light p-4 md:order-2 md:mb-0 md:p-6 ltr:md:ml-6 rtl:md:mr-6 ltr:lg:ml-8 rtl:lg:mr-8">
 
             <div class="flex items-center mb-6">
@@ -18,7 +15,6 @@
                 </div>
             </div>
 
-            <!-- <h1 class="mb-5 font-body text-lg font-bold text-heading md:text-xl">{{ __trans('Login') }}</h1> -->
             <form wire:submit.prevent="authenticate">
                 <div class="grid grid-cols-1 gap-4">
                     <div>
@@ -37,7 +33,6 @@
                     </div>
                 </div>
                 
-                <!-- Password Input -->
                 <div class="mt-4 grid grid-cols-1 gap-4">
                     <div>
 
@@ -58,7 +53,6 @@
                     </div>
                 </div>
     
-                <!-- Submit Button -->
                 <div class="text-center mt-6">
                     <button 
                         type="submit" 
@@ -69,7 +63,6 @@
                         <span wire:loading wire:target="authenticate">{{ __trans('Loading...') }}</span>
                     </button>
                 </div>
-
             </form>
 
 

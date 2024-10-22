@@ -14,12 +14,9 @@
                      <div class="flex flex-col items-center justify-center h-64 bg-white mt-4">
                         
                        <i class="fa fa-heart text-muted text-xl"></i>
-                      
-                        <!-- Text -->
                         <p class="mt-4 text-lg font-semibold text-gray-700">{{ __trans('Your wishlist is empty') }}</p>
                         <p class="mt-1 text-sm text-gray-500">{{ __trans('Browse our products and add them to your wishlist') }}</p>
-                        
-                        <!-- Button (Optional) -->
+
                         <a wire:navigate href="{{ route('frontend.home') }}" class="mt-6 inline-block px-6 py-2 text-accent-contrast bg-accent rounded-lg hover:bg-accent-hover">
                            {{ __trans('Shop Now') }}
                         </a>

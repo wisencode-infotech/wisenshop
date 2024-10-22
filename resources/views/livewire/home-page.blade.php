@@ -28,15 +28,11 @@
 
         // Add click event listener to each category item
         $('[role="custom-menuitem"] span').on('click', function () {
-            // Get the image URL and name of the selected category
             const categoryImage = $(this).find('img').attr('src');
             const categoryName = $(this).find('.category-name').text();
 
-            // Update the selected category image and name
             $('.category-image-selected').attr('src', categoryImage);
             $('.selected-category-name').text(categoryName);
-
-            // Hide the dropdown
             $('.mobile-category-dropdown').addClass('hidden');
         });
     }

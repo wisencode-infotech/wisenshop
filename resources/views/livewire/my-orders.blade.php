@@ -18,15 +18,12 @@
                                 <div class="relative z-[51] w-full max-w-6xl bg-light">
                                     <div
                                         class="flex flex-col h-full pb-8 pt-8 items-center justify-center h-64 bg-white mt-4 md:border-border-200">
-                                        <!-- Icon (Shopping Cart) -->
+                                        
                                         <i class="fa fa-frown fa-3x text-muted text-xl"></i>
 
-                                        <!-- Text -->
                                         <p class="mt-4 text-lg font-semibold text-gray-700">{{ __trans('Sorry, No orders found') }}
                                         </p>
 
-
-                                        <!-- Button (Optional) -->
                                         <a wire:navigate href="{{ route('frontend.home') }}"
                                             class="mt-6 inline-block px-6 py-2 text-accent-contrast bg-accent rounded-lg hover:bg-accent-hover">
                                             {{ __trans('Shop Now') }}

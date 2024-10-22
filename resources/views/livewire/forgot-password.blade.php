@@ -33,7 +33,6 @@
                     </div>
                 </div>
 
-                <!-- Success/Error Message -->
                 @if (session()->has('status'))
                     <div class="text-green-600 text-sm mt-2">{{ session('status') }}</div>
                 @endif
@@ -41,7 +40,6 @@
                     <div class="text-red-600 text-sm mt-2">{{ session('error') }}</div>
                 @endif
 
-                <!-- Submit Button -->
                 <div class="text-center mt-6">
                     <button type="submit" wire:loading.attr="disabled"  
                         wire:target="submit" class="inline-flex items-center justify-center flex-shrink-0 font-semibold leading-none rounded outline-none transition duration-300 ease-in-out focus:outline-none focus:shadow focus:ring-1 focus:ring-accent-700 bg-accent text-light border border-transparent hover:bg-accent-hover px-5 py-0 h-12 w-full uppercase">

@@ -36,9 +36,6 @@ class Products extends Component
      */
     public function mount($category_id = null, $per_page = 12, $exclude_product_ids = [], $from_page = null)
     {
-        // if (!empty($category_id) && !is_array($category_id))
-        //     $category_id = [$category_id];
-
         $this->category_id = $category_id ?? null;
         $this->per_page = $per_page;
         $this->paginate_count = $per_page;

@@ -126,11 +126,6 @@
                                         <div class="relative flex h-16 w-16 shrink-0 overflow-hidden rounded"><img alt="{{ $product->name }}" loading="lazy" decoding="async" data-nimg="fill" class="h-full w-full object-cover" sizes="(max-width: 768px) 100vw" srcset="{{ $product->display_image_url }}" src="{{ $product->display_image_url }}" style="position: absolute; height: 100%; width: 100%; inset: 0px; color: transparent;"></div>
                                         <div class="flex flex-col overflow-hidden ltr:ml-4 rtl:mr-4">
                                             <div class="mb-1 flex space-x-1 rtl:space-x-reverse"><a class="inline-block overflow-hidden truncate text-sm text-body transition-colors hover:text-accent hover:underline" href="{{ route('frontend.product-detail', ['product_slug' => $product->slug]) }}">{{ $product->name }}</a>
-
-                                            <!-- <span class="inline-block overflow-hidden truncate text-sm text-body">x</span> -->
-
-                                            <!-- <span class="inline-block overflow-hidden truncate text-sm font-semibold text-heading">1lb</span> -->
-
                                             </div><span class="mb-1 inline-block overflow-hidden truncate text-sm font-semibold text-accent">{{ $order_data->currency->symbol }}{{ $price }}</span>
                                         </div>
                                     </div>

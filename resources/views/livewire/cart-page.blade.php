@@ -6,10 +6,9 @@
         <div class="w-full overflow-hidden lg:flex">
             <div class="md:p-8 bg-light shadow rounded w-full shadow-none sm:shadow">
                 <div class="flex w-full flex-col">
-                  <div class="mb-8 flex items-center justify-center sm:mb-10">
+                        <div class="mb-8 flex items-center justify-center sm:mb-10">
                            <h1 class="text-center text-lg font-semibold text-heading sm:text-xl">{{ __trans('Cart') }}</h1>
                        </div>
-
 
                         @if (count($cart) > 0)
                            <header class="top-0 z-10 flex items-center justify-between border-b border-border-200 border-opacity-75 bg-light px-6 py-4">
@@ -55,7 +54,6 @@
                                        @endif
                                     </h3>
                                     <p class="my-2.5 font-semibold text-accent">{{ __userCurrencySymbol() }} {{ $item['product_price'] }}</p>
-                                    <!-- <span class="text-xs text-body">{{ $item['quantity'] }} X 1lb</span> -->
                                  </div>
                                  <span class="font-bold text-heading ltr:ml-auto rtl:mr-auto">{{ __userCurrencySymbol() }} {{ $item['product_price'] *  $item['quantity']}}</span>
                                  <button  x-on:click="$dispatch('remove-cart-product', { product_id: {{ $item['product_id'] }}, product_variation_id: {{ $item['product_variation_id'] ?? 0 }} }) " class="flex h-7 w-7 shrink-0 items-center justify-center rounded-full text-muted transition-all duration-200 hover:bg-gray-100 hover:text-red-600 focus:bg-gray-100 focus:text-red-600 focus:outline-0 ltr:ml-3 ltr:-mr-2 rtl:mr-3 rtl:-ml-2">
@@ -74,14 +72,10 @@
                         </div>
                         @else
                         <div class="flex flex-col items-center justify-center h-64 bg-white mt-4">
-                           <!-- Icon (Shopping Cart) -->
                           <i class="fa fa-shopping-cart text-muted text-xl"></i>
                          
-                           <!-- Text -->
                            <p class="mt-4 text-lg font-semibold text-gray-700">{{ __trans('Your cart is empty') }}</p>
                            <p class="mt-1 text-sm text-gray-500">{{ __trans('Browse our products and add them to your cart') }}</p>
-                           
-                           <!-- Button (Optional) -->
                            <a wire:navigate href="{{ route('frontend.home') }}" class="mt-6 inline-block px-6 py-2 text-accent-contrast bg-accent rounded-lg hover:bg-accent-hover">
                               {{ __trans('Shop Now') }}
                            </a>

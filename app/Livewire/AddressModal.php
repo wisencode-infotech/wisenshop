@@ -8,7 +8,7 @@ use App\Models\BillingAddress;
 
 class AddressModal extends Component
 {
-    public $id; // For hidden input
+    public $id;
     public $is_modal_open = false;
     public $address_type = 'billing'; // Default type
     public $address, $city, $state, $postal_code, $country;
@@ -51,7 +51,7 @@ class AddressModal extends Component
         $this->validate(); // Validate the form data
 
         $data = [
-            'user_id' => auth()->id(), // Assuming the user is logged in
+            'user_id' => auth()->id(),
             'address' => $this->address,
             'city' => $this->city,
             'state' => $this->state,
@@ -60,8 +60,6 @@ class AddressModal extends Component
         ];
 
         if ($this->id) {
-
-            // dd($this->address_type);
             
             if ($this->address_type === 'shipping') {
                 $shippingAddress = ShippingAddress::find($this->id);
@@ -70,6 +68,7 @@ class AddressModal extends Component
                 $billingAddress = BillingAddress::find($this->id);
                 $billingAddress->update($data);
             }
+            
         } else {
             
             if ($this->address_type === 'shipping') {

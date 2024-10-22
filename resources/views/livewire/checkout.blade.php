@@ -1,8 +1,6 @@
 @section('title', __trans('Checkout'))
 
 <div class="bg-gray-100 px-4 py-8 lg:py-10 lg:px-8 xl:py-14 xl:px-16 2xl:px-20">
-
-
    <div class="m-auto flex w-full max-w-5xl flex-col items-center rtl:space-x-reverse lg:flex-row lg:items-start lg:space-x-8">
       <div wire:loading.flex wire:target="placeOrder" class="absolute inset-0 z-10 flex items-center justify-center bg-accent bg-opacity-10">
          <div class="loader"></div>
@@ -54,8 +52,7 @@
                    @foreach($shipping_addresses as $shipping_address)  
                      <div id="headlessui-radiogroup-option-:re:" role="radio" aria-checked="false" tabindex="0" data-headlessui-state="">
                         <div wire:click="selectShippingAddress({{ $shipping_address->id }})" class="group relative cursor-pointer rounded border p-4 hover:border-accent border-transparent bg-gray-100 shipping_address_container {{ $selected_shipping_address_id === $shipping_address->id ? 'active' : '' }}">
-                           <!-- border-accent shadow-sm -->
-                           <!-- border-transparent bg-gray-100 -->
+                           
                            <p class="mb-3 text-sm font-semibold capitalize text-heading">{{ __trans('Shipping') }}</p>
                            <p class="text-sm text-sub-heading">{{ $shipping_address->address }}, {{ $shipping_address->city }}, {{ $shipping_address->state }} {{ $shipping_address->postal_code }}, {{ $shipping_address->country }}</p>
                            <div class="absolute top-4 flex space-x-2 opacity-0 group-hover:opacity-100 ltr:right-4 rtl:left-4 rtl:space-x-reverse">
@@ -247,9 +244,6 @@
                 </span>
             </button>
             @endif
-            <!-- <div class="mt-3">
-               <p class="my-2 text-sm ltr:text-left rtl:text-right text-red-500">Please select and fill all the fields and place your order</p>
-            </div> -->
          </div>
       </div>
    </div>

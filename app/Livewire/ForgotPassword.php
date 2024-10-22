@@ -13,7 +13,6 @@ class ForgotPassword extends Component
 {
     public $email;
 
-    // Handle the form submission
     public function submit()
     {
         $this->validate([

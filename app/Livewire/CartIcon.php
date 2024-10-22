@@ -8,34 +8,31 @@ use Livewire\Component;
 
 class CartIcon extends Component
 {
-    public $itemCount = 0; // Track the number of items in the cart
+    public $itemCount = 0;
 
     protected $listeners = ['itemAdded', 'itemRemoved', 'quantityUpdated' => 'updateCartQuantity'];
 
     public function mount()
     {
-        $cart = CartHelper::items();
-
-        $this->itemCount = count($cart);
+        $this->updateCartQuantity();
     }
 
     public function itemAdded()
     {
-        $this->itemCount++; // Increment the item count when an item is added
+        $this->itemCount++;
     }
 
     public function itemRemoved()
     {
         if ($this->itemCount > 0) {
-            $this->itemCount--; // Decrement the item count when an item is removed
+            $this->itemCount--;
         }
     }
 
     public function updateCartQuantity()
-    {
-        $cart = CartHelper::items();
+    {   
+        $this->itemCount = CartHelper::itemCount();
         
-        $this->itemCount = count($cart);
     }
 
     public function render()

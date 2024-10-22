@@ -128,6 +128,16 @@ class CartHelper
         }
     }
 
+    public static function itemCount()
+    {
+        if (self::disk() === 'database') {
+            return Cart::where('user_id', Auth::id())->count(); // Just count the distinct rows (each row is a unique item)
+        } else {
+            $cart = Session::get('cart', []);
+            return count($cart);
+        }
+    }
+
     public static function removeItem($product_id, $product_variation_id)
     {
         self::saveQuantity($product_id, $product_variation_id, 0);

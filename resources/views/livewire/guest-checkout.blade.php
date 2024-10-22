@@ -73,9 +73,7 @@
                         @error('phone_number') <span class="text-red-500 text-xs mt-1">{{ $message }}</span> @enderror
                     </div>
                 </div>
-
-    
-                <!-- Submit Button -->
+                
                 <div class="text-center mt-6">
                     <button type="submit" wire:loading.attr="disabled" wire:target="submit" class="inline-flex items-center justify-center shrink-0 font-semibold leading-none rounded outline-none transition duration-300 ease-in-out focus:outline-0 focus:shadow focus:ring-1 focus:ring-accent-700 bg-accent text-light border border-transparent hover:bg-accent-hover px-5 py-4 text-sm font-bold uppercase">
                         <span wire:loading.remove>{{ __trans('Proceed') }}</span>

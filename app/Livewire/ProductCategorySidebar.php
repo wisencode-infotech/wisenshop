@@ -30,7 +30,6 @@ class ProductCategorySidebar extends Component
     {
         // Fetch subcategories if a category is selected
         if ($categoryId) {
-            // $this->subcategories = Category::where('parent_id', $categoryId)->get();
 
             $this->subcategories = cache()->rememberForever("subcategories_{$categoryId}", function() use ($categoryId) {
                 return Category::where('parent_id', $categoryId)->get();

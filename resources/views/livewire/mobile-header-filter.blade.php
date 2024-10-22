@@ -53,7 +53,7 @@
                                                      <div class="px-5">
 
                                                          <h2 class="text-lg font-bold mb-4">{{ __trans('Filter Products') }}</h2>
-                                                         <form  wire:submit.prevent="applyFilters"> <!-- Prevent default form submission -->
+                                                         <form  wire:submit.prevent="applyFilters">
                                                               <!-- Search Bar -->
                                                               <div class="mb-4">
                                                                   <label for="search" class="block text-sm font-medium text-gray-700">{{ __trans('Search Products') }}</label>
@@ -97,13 +97,8 @@
                                                                           class="float-right inline-flex items-center justify-center shrink-0 font-semibold leading-none rounded outline-none transition duration-300 ease-in-out focus:outline-0 focus:shadow focus:ring-1 focus:ring-accent-700 bg-accent text-light border border-transparent hover:bg-accent-hover px-5 py-0 h-12 text-sm font-semibold h-11 md:text-base">
                                                                       {{ __trans('Apply Filters') }}
                                                                   </button>
-
-                                                                  
                                                               </div>
                                                          </form>
-
-
-
                                                      </div>
                                                   </div>
                                                </aside>

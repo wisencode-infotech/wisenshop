@@ -18,7 +18,7 @@ class Profile extends Component
     public $password;
     public $password_confirmation;
     public $profile_image;
-    public $temp_image_url; 
+    public $profile_main_image;
 
     // Mount the current user's data
     public function mount()
@@ -28,16 +28,7 @@ class Profile extends Component
         $this->name = $user->name;
         $this->email = $user->email;
         $this->phone_number = $user->phone;
-        $this->profile_image = $user->profile_image_url;
-        $this->temp_image_url = null;
-    }
-
-    public function updatedProfileImage()
-    {
-        // Generate temporary URL for the new image
-        if ($this->profile_image) {
-            $this->temp_image_url = $this->profile_image->temporaryUrl();
-        }
+        $this->profile_main_image = $user->profile_image_url;
     }
 
     public function submit()
@@ -64,7 +55,6 @@ class Profile extends Component
         if ($this->profile_image && !is_string($this->profile_image)) {
             $path = $this->profile_image->store('profile_images', 'public');
             $user->profile_image = $path;
-            $this->temp_image_url = null;
         }
 
         $user->save();
@@ -76,8 +66,6 @@ class Profile extends Component
 
     public function render()
     {
-        return view('livewire.profile', [
-            'temp_image_url' => $this->temp_image_url
-        ]);
+        return view('livewire.profile');
     }
 }

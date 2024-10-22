@@ -3,7 +3,7 @@
    <div class="relative inline-block ltr:text-left rtl:text-right" data-headlessui-state="">
       <button class="mobile-category-dropdown-btn flex h-11 shrink-0 items-center text-sm font-semibold text-heading focus:outline-0 md:text-[15px] xl:px-4 rounded border-border-200 bg-light xl:min-w-150 xl:border xl:text-accent" id="headlessui-menu-button-:Rpp4m:" type="button" aria-haspopup="menu" aria-expanded="false" data-headlessui-state="">
          <span class="flex h-5 w-5 items-center justify-center ltr:mr-2 rtl:ml-2">
-            <img class="category-image-selected" alt="category-images" src="{{ asset('assets/frontend/img/category.png') }}" style="height:20px:width:20px"  />
+            <img class="category-image-selected" alt="category-images" src="{{ asset('assets/frontend/img/category.png') }}" />
          </span>
          <span class="whitespace-nowrap selected-category-name">{{ __trans('All') }}</span>
          <span class="flex pt-1 ltr:ml-auto ltr:pl-2.5 rtl:mr-auto rtl:pr-2.5">

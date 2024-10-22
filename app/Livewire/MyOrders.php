@@ -11,7 +11,7 @@ class MyOrders extends Component
 {
     use WithPagination;
 
-    public $paginate_count = 5;
+    public $paginate_count = 2;
     protected $paginationTheme = 'bootstrap';
     public $order_data;
     public $selected_order_id;
@@ -22,7 +22,7 @@ class MyOrders extends Component
                             ->orderBy('id', 'desc')
                             ->first();
 
-        if(!empty($this->order_data))                            {
+        if (!empty($this->order_data)) {
             $this->selected_order_id = $this->order_data->id;                              
         }
     }
@@ -36,6 +36,7 @@ class MyOrders extends Component
     {
         $this->selected_order_id = $order_id;
         $this->dispatch('dispatchOrderData', $order_id);
+        $this->skipRender();
     }
 
     public function render()
@@ -44,8 +45,7 @@ class MyOrders extends Component
                        ->paginate($this->paginate_count);
 
         return view('livewire.my-orders', [
-            'orders' => $orders,
-            'order_data' => $this->order_data
+            'orders' => $orders
         ]);
     }
 }

@@ -11,6 +11,7 @@ use App\Models\OrderItem;
 use App\Models\Payment;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Session;
+use Illuminate\Support\Facades\Cache;
 
 class CartHelper
 {
@@ -58,6 +59,8 @@ class CartHelper
 
             Session::put('cart', $cart);
         }
+
+        Cache::forget(Auth::check() ? 'cart_total_' . Auth::id() : 'cart_total_guest_' . session()->getId());
     }
 
     public static function items()
@@ -132,15 +135,14 @@ class CartHelper
 
     public static function total()
     {
-        $cart_items = self::items();
+        $cache_key = Auth::check() ? 'cart_total_' . Auth::id() : 'cart_total_guest_' . session()->getId();
 
-        $total = 0;
-
-        foreach ($cart_items as $item) {
-            $total += ($item['quantity'] ?? 0) * ($item['product_price'] ?? 0);
-        }
-
-        return $total;
+        return cache()->rememberForever($cache_key, function() {
+            $cart_items = self::items();
+            return array_reduce($cart_items, function($total, $item) {
+                return $total + (($item['quantity'] ?? 0) * ($item['product_price'] ?? 0));
+            }, 0);
+        });
     }
 
     public static function syncToDatabse($user_id = null)
@@ -214,6 +216,8 @@ class CartHelper
 
         // Remove cart items for the user from the database
         Cart::where('user_id', $user_id)->delete();
+
+        Cache::forget('cart_total_' . $user_id);
     }
 
     public static function createOrder($data = [])

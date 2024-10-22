@@ -12,49 +12,37 @@ class CartPage extends Component
 
     public $total_price = 0;
 
+    protected $listeners = ['quantityUpdated' => 'updateCartQuantity', 'remove-cart-product' => 'removeCartProduct'];
+
     public function mount()
     {
-        $this->cart_items = CartHelper::items();
+        $this->loadCart();
+    }
 
+    public function loadCart()
+    {
+        $this->cart_items = CartHelper::items();
         $this->total_price = CartHelper::total();
     }
 
-    protected $listeners = ['quantityUpdated' => 'updateCartQuantity', 'remove-cart-product' => 'removeCartProduct'];
-
     public function updateCartQuantity($data = [])
     {
-        $this->cart_items = CartHelper::items();
-
-        $this->total_price = CartHelper::total();
+        $this->loadCart();
     }
 
     public function removeCartProduct($product_id, $product_variation_id = null)
     {
         CartHelper::removeItem($product_id, (!empty($product_variation_id) ? $product_variation_id : null));
 
-        $this->cart_items = CartHelper::items();
-
-        $this->total_price = CartHelper::total();
+        $this->loadCart();
 
         $this->dispatch('itemRemoved');
 
         $this->dispatch('shoppingCartUpdated');
     }
 
-    public function handleCheckout()
-    {
-        if (Auth::check()) {
-            // If the user is logged in, redirect to the checkout page
-            return redirect()->intended('/checkout');
-        } else {
-            // If the user is not logged in, redirect to guest checkout form
-            return redirect()->intended('/guest-checkout');
-        }
-    }
-
     public function render()
     {
-        // dd($this->cart_items);
         return view('livewire.cart-page', [
             'cart' => $this->cart_items
         ]);

@@ -70,6 +70,8 @@ class Profile extends Component
         $user->save();
 
         $this->dispatch('notify', 'success', __trans('Profile updated successfully!'));
+
+        $this->skipRender();
     }
 
     public function render()

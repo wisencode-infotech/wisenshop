@@ -87,7 +87,7 @@ class Products extends Component
     public function placeholder()
     {
         return view('livewire.skeleton-loader', [
-            'skeletons' => range(1, 15),
+            'skeletons' => range(1, 10),
             'apply_top_margin' => true
         ]);
     }

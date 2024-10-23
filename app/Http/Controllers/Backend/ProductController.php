@@ -100,7 +100,7 @@ class ProductController extends Controller
     public function create()
     {
         $units = ProductUnit::all();
-        $categories = Category::all();
+        $categories = Category::where('parent_id','!=', null)->get();
         return view('backend.products.create', compact('units', 'categories')); // Return the create view
     }
 
@@ -167,7 +167,7 @@ class ProductController extends Controller
         $product = Product::where('id', $id)->first();
         
         $units = ProductUnit::all();
-        $categories = Category::all();
+        $categories = Category::where('parent_id','!=', null)->get();
         return view('backend.products.edit', compact('product', 'units', 'categories')); // Return the edit view
     }
 

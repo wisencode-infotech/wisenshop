@@ -18,6 +18,16 @@
                <div class="os-size-observer-listener ltr"></div>
             </div>
             <div data-overlayscrollbars-contents="" role="none" data-overlayscrollbars-viewport="scrollbarHidden" style="margin-right: 0px; margin-bottom: 0px; margin-left: 0px; top: 0px; right: auto; left: 0px; width: calc(100% + 0px); padding: 0px; overflow-y: scroll;">
+
+               <div id="headlessui-menu-item-:r2a:" role="custom-menuitem" tabindex="-1" data-headlessui-state="">
+                  <span role="button" tabindex="0" class="flex w-full items-center space-x-4 px-5 py-2.5 text-sm font-semibold capitalize transition duration-200 hover:text-accent focus:outline-0 focus-visible:outline-0 rtl:space-x-reverse text-body-dark" x-on:click="$dispatch('category-selected', { category_id: [] })">
+                     <span class="flex h-5 w-5 items-center justify-center">
+                        <img src="{{ asset('assets/frontend/img/category.png') }}" style="height:20px:width:20px"  />
+                     </span>
+                     <span class="category-name">{{ __trans('All') }}</span>
+                  </span>
+               </div>
+
                @foreach($product_categories as $category)
                <div id="headlessui-menu-item-:r2a:" role="custom-menuitem" tabindex="-1" data-headlessui-state="">
                   <span role="button" tabindex="0" class="flex w-full items-center space-x-4 px-5 py-2.5 text-sm font-semibold capitalize transition duration-200 hover:text-accent focus:outline-0 focus-visible:outline-0 rtl:space-x-reverse text-body-dark" x-on:click="$dispatch('category-selected', { category_id: [{{ $category->id }}] })">

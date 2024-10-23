@@ -1,5 +1,5 @@
 @extends('errors::minimal')
 
-@section('title', __('Unauthorized'))
+@section('title', __trans('Unauthorized'))
 @section('code', '401')
-@section('message', __('Unauthorized'))
+@section('message', __trans('Unauthorized'))

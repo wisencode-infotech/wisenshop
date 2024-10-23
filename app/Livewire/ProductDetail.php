@@ -16,7 +16,7 @@ class ProductDetail extends Component
         $this->product = Product::authenticated()->where('slug', $product_slug)->first();
 
         if (!$this->product)
-            abort(404);
+            abort(404, "product_not_found");
 
         $this->setMeta();
     }

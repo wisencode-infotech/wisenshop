@@ -6,7 +6,7 @@
          <span class="absolute top-0 mt-0.5 rounded-full bg-accent py-1 px-1.5 text-10px font-semibold leading-none text-light ltr:right-0 ltr:-mr-0.5 rtl:left-0 rtl:-ml-0.5">{{ $total_unread_notification }}</span>
     </button>
     @else
-    <div class="hide-on-mobile lg:inline-flex">
+    <div class="hide-on-mobile lg:inline-flex ml-3">
         <div class="relative inline-block" data-headlessui-state="open">
             <button class="relative inline-flex border items-center justify-center rounded-full bg-light text-accent transition duration-300 ease-in-out hover:bg-accent-hover focus:outline-none hover:text-white focus:ring-2 focus:ring-accent-700 h-10 w-10 notification_menu_btn">
                 <i class="fa fa-bell text-lg"></i>

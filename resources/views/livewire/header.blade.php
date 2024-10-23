@@ -1,4 +1,4 @@
-<header id="site-header" class="site-header-with-search top-0 z-50 w-full transition-all sticky border-b border-border-200 shadow-sm lg:h-22 is-scrolling" style="padding: 1.2rem;">
+<header id="site-header" class="site-header-with-search top-0 z-50 w-full transition-all sticky border-b border-border-200 shadow-sm lg:h-22 is-scrolling header-section">
     <div class="fixed inset-0 -z-10 h-[100vh] w-full bg-black/50 hidden"></div>
     <div class="grid w-full grid-cols-3 gap-2">
         

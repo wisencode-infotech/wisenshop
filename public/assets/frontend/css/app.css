@@ -176,7 +176,15 @@ button.reset_filter_btn:hover {
     grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
 }
 
+.header-section{
+    padding: 1.2rem;
+}
+
 @media (max-width: 768px) {
+    .header-section{
+        padding: 0.8rem;
+    }
+
     .absolute-right-minus-21px {
         right: -21px;
     }

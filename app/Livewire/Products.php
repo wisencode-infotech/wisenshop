@@ -13,8 +13,8 @@ class Products extends Component
 
     // Declare properties
     public $category_id = null;
-    public $paginate_count = 12;
-    public $per_page = 12;
+    public $paginate_count = 15;
+    public $per_page = 15;
     public $search = '';
     public $sort = 'asc'; // default sorting
     public $minPrice = null;
@@ -34,7 +34,7 @@ class Products extends Component
      * @param int|null $category_id
      * @param int $per_page
      */
-    public function mount($category_id = null, $per_page = 12, $exclude_product_ids = [], $from_page = null)
+    public function mount($category_id = null, $per_page = 15, $exclude_product_ids = [], $from_page = null)
     {
         $this->category_id = $category_id ?? null;
         $this->per_page = $per_page;

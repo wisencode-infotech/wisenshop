@@ -6,7 +6,7 @@
                     class="flex overflow-hidden flex-col-reverse items-center w-8 h-24 bg-accent text-heading rounded-full text-accent-contrast">
 
                     <!-- Decrement button -->
-                    <button @click="
+                    <button @click.prevent="
                                 if (quantity > 0) {
                                     quantity--; 
                                     clearTimeout(debounceTimeout); // Clear previous timeout
@@ -24,7 +24,7 @@
                     </div>
 
                     <!-- Increment button -->
-                    <button @click="
+                    <button @click.prevent="
                                 quantity++; 
                                 clearTimeout(debounceTimeout); // Clear previous timeout
                                 debounceTimeout = setTimeout(() => {
@@ -45,7 +45,7 @@
                         class="overflow-hidden w-full h-14 rounded text-light bg-accent inline-flex justify-between text-accent-contrast">
 
                         <!-- Decrement button -->
-                        <button @click="
+                        <button @click.prevent="
                                     if (quantity > 0) {
                                         quantity--; 
                                         clearTimeout(debounceTimeout); // Clear previous timeout
@@ -63,7 +63,7 @@
                         </div>
 
                         <!-- Increment button -->
-                        <button @click="
+                        <button @click.prevent="
                                     quantity++; 
                                     clearTimeout(debounceTimeout); // Clear previous timeout
                                     debounceTimeout = setTimeout(() => {
@@ -84,7 +84,7 @@
                     class="flex overflow-hidden order-5 sm:order-4 w-9 sm:w-24 h-24 sm:h-10 bg-accent text-light rounded-full flex-col-reverse sm:flex-row absolute sm:relative bottom-0 sm:bottom-auto ltr:right-0 rtl:left-0 ltr:sm:right-auto ltr:sm:left-auto text-accent-contrast">
 
                     <!-- Decrement button -->
-                    <button @click="
+                    <button @click.prevent="
                                 if (quantity > 0) {
                                     quantity--; 
                                     clearTimeout(debounceTimeout); // Clear previous timeout
@@ -102,7 +102,7 @@
                     </div>
 
                     <!-- Increment button -->
-                    <button @click="
+                    <button @click.prevent="
                                 quantity++; 
                                 clearTimeout(debounceTimeout); // Clear previous timeout
                                 debounceTimeout = setTimeout(() => {

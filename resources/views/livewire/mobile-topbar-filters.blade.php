@@ -17,10 +17,10 @@
             <div class="os-size-observer">
                <div class="os-size-observer-listener ltr"></div>
             </div>
-            <div data-overlayscrollbars-contents="" role="none" data-overlayscrollbars-viewport="scrollbarHidden" style="margin-right: 0px; margin-bottom: 0px; margin-left: 0px; top: 0px; right: auto; left: 0px; width: calc(100% + 0px); padding: 0px; overflow-y: scroll;">
+            <div x-data="{ selectedCategoryId: @entangle('selected_category_id').defer }" @category-selected.window="selectedCategoryId = $event.detail.category_id[0]" data-overlayscrollbars-contents="" role="none" data-overlayscrollbars-viewport="scrollbarHidden" style="margin-right: 0px; margin-bottom: 0px; margin-left: 0px; top: 0px; right: auto; left: 0px; width: calc(100% + 0px); padding: 0px; overflow-y: scroll;">
 
                <div id="headlessui-menu-item-:r2a:" role="custom-menuitem" tabindex="-1" data-headlessui-state="">
-                  <span role="button" tabindex="0" class="flex w-full items-center space-x-4 px-5 py-2.5 text-sm font-semibold capitalize transition duration-200 hover:text-accent focus:outline-0 focus-visible:outline-0 rtl:space-x-reverse text-body-dark" x-on:click="$dispatch('category-selected', { category_id: [] })">
+                  <span role="button" tabindex="0" class="flex w-full items-center space-x-4 px-5 py-2.5 text-sm font-semibold capitalize transition duration-200 hover:text-accent focus:outline-0 focus-visible:outline-0 rtl:space-x-reverse text-body-dark" x-on:click="$dispatch('category-selected', { category_id: [] })" wire:click="selectCategory()">
                      <span class="flex h-5 w-5 items-center justify-center">
                         <img src="{{ asset('assets/frontend/img/category.png') }}" style="height:20px:width:20px"  />
                      </span>
@@ -30,7 +30,13 @@
 
                @foreach($product_categories as $category)
                 <div wire:key="product-category-{{ $category->id }}" id="headlessui-menu-item-{{ $category->id }}" role="custom-menuitem" tabindex="-1" data-headlessui-state="">
-                    <span role="button" tabindex="0" class="flex w-full items-center space-x-4 px-5 py-2.5 text-sm font-semibold capitalize transition duration-200 hover:text-accent focus:outline-0 focus-visible:outline-0 rtl:space-x-reverse text-body-dark" x-on:click="$dispatch('category-selected', { category_id: [{{ $category->id }}] })">
+                    <span role="button" tabindex="0" class="flex w-full items-center space-x-4 px-5 py-2.5 text-sm font-semibold capitalize transition duration-200 hover:text-accent focus:outline-0 focus-visible:outline-0 rtl:space-x-reverse"
+                     :class="{
+                         'text-accent': selectedCategoryId == {{ $category->id }},
+                         'text-body-dark': selectedCategoryId != {{ $category->id }}
+                     }"
+                     x-on:click="$dispatch('category-selected', { category_id: [{{ $category->id }}] })"
+                     wire:click="selectCategory({{ $category->id }})">
                         <span class="flex h-5 w-5 items-center justify-center">
                             <img src="{{ $category->image_url }}" style="height:20px; width:20px;" />
                         </span>
@@ -41,7 +47,12 @@
                         <div style="margin-left: 15%;">
                             @foreach($category->subcategories as $subcategory)
                                 <div wire:key="product-subcategory-{{ $subcategory->id }}" id="headlessui-menu-item-{{ $subcategory->id }}" role="custom-menuitem" tabindex="-1" data-headlessui-state="">
-                                    <span role="button" tabindex="0" class="flex w-full items-center space-x-4 px-5 py-2.5 text-sm font-semibold capitalize transition duration-200 hover:text-accent focus:outline-0 focus-visible:outline-0 rtl:space-x-reverse text-body-dark" x-on:click="$dispatch('category-selected', { category_id: [{{ $subcategory->id }}] })">
+                                    <span role="button" tabindex="0" class="flex w-full items-center space-x-4 px-5 py-2.5 text-sm font-semibold capitalize transition duration-200 hover:text-accent focus:outline-0 focus-visible:outline-0 rtl:space-x-reverse"
+                                     :class="{
+                                           'text-accent': selectedCategoryId == {{ $subcategory->id }},
+                                           'text-body-dark': selectedCategoryId != {{ $subcategory->id }}
+                                       }"
+                                     x-on:click="$dispatch('category-selected', { category_id: [{{ $subcategory->id }}] })" wire:click="selectCategory({{ $subcategory->id }})">
                                         <span class="flex h-5 w-5 items-center justify-center">
                                             <img src="{{ $subcategory->image_url }}" style="height:20px; width:20px;" />
                                         </span>

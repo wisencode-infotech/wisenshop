@@ -9,10 +9,23 @@ use Illuminate\Support\Facades\Cache;
 class MobileTopbarFilters extends Component
 {
     public $product_categories;
+    public $selected_category_id;
 
     public function mount()
     {
         $this->product_categories = $this->getCategory();
+        $this->selected_category_id = null;
+    }
+
+    public function selectCategory($category_id = null)
+    {
+        if (empty($category_id)) {
+            $this->selected_category_id = null;
+        } else {
+            $this->selected_category_id = $category_id;
+        }
+
+        $this->skipRender();
     }
 
     public function getCategory()

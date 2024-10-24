@@ -14,7 +14,7 @@
                     <!-- Parent Categories -->
                     <div x-show="!showSubcategories" class="grid grid-cols-2 gap-4">
                         @foreach ($product_categories as $category)
-                            <div class="text-center rounded-lg bg-light py-4 flex flex-col items-center justify-start relative overflow-hidden cursor-pointer product_category shadow-sm" role="button"
+                            <div  wire:key="category-{{ $category->id }}" class="text-center rounded-lg bg-light py-4 flex flex-col items-center justify-start relative overflow-hidden cursor-pointer product_category shadow-sm" role="button"
                                 :class="{ 'active': selectedCategoryId === {{ $category->id }} }"
                                 x-on:click="
                                     selectedCategoryId = {{ $category->id }};
@@ -51,7 +51,7 @@
                                 <span class="text-sm font-semibold text-heading text-center pt-4 px-2.5 block">{{ __trans('back') }}</span>
                             </div>
                             @foreach ($subcategories as $subcategory)
-                                <div class="text-center rounded bg-light py-4 flex flex-col items-center justify-start relative overflow-hidden cursor-pointer product_category" role="button"
+                                <div wire:key="category-{{ $subcategory->id }}" class="text-center rounded bg-light py-4 flex flex-col items-center justify-start relative overflow-hidden cursor-pointer product_category" role="button"
                                     :class="{ 'active': selectedCategoryId === {{ $subcategory->id }} }"
                                     x-on:click="
                                         selectedCategoryId = {{ $subcategory->id }};

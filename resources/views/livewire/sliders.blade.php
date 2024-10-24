@@ -37,7 +37,7 @@
                 <div class="swiper-wrapper">
                     @foreach($banners as $banner_key => $banner)
 
-                    <div class="swiper-slide" style="width: 445.75px; margin-right: 24px;">
+                    <div wire:key="banner-{{ $banner->id }}" class="swiper-slide" style="width: 445.75px; margin-right: 24px;">
                         <div class="banner-slide-content">
                             <img alt="902" loading="lazy" width="445" height="205" decoding="async" data-nimg="1" class="h-auto w-full" 
                                  srcset="{{ $banner->image_url  }}" 

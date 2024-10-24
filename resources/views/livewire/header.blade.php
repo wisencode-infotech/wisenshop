@@ -30,7 +30,7 @@
                        </div>
                        <ul class="shadow-dropDown invisible absolute top-full z-30 w-[150px] rounded-md bg-light py-4 opacity-0 shadow transition-all duration-300 group-hover:visible group-hover:opacity-100 right-0 xl:w-[150px]">
                            @foreach(__currencies() as $currency)
-                                <li class="menu-child-item font-chivo hover:filter-green group py-[10px] px-[22px] transition-all duration-200 hover:pl-[ 25px] hover:opacity-100">
+                                <li wire:key="currency-{{ $currency->id }}" class="menu-child-item font-chivo hover:filter-green group py-[10px] px-[22px] transition-all duration-200 hover:pl-[ 25px] hover:opacity-100">
                                     <a class="flex items-center font-normal text-heading no-underline transition duration-200 hover:text-accent focus:text-accent" href="{{ route('frontend.change.currency', $currency->code) }}">
                                         {{ ucfirst($currency->code) }} ({{ ucfirst($currency->symbol) }})
                                     </a>
@@ -48,7 +48,7 @@
                        </div>
                        <ul class="shadow-dropDown invisible absolute top-full z-30 rounded-md bg-light py-4 opacity-0 shadow transition-all duration-300 group-hover:visible group-hover:opacity-100 right-0">
                            @foreach(__languages() as $language)
-                                <li class="menu-child-item font-chivo hover:filter-green group py-[10px] px-[22px] transition-all duration-200 hover:pl-[ 25px] hover:opacity-100">
+                                <li wire:key="language-{{ $language->id }}"  class="menu-child-item font-chivo hover:filter-green group py-[10px] px-[22px] transition-all duration-200 hover:pl-[ 25px] hover:opacity-100">
                                     <a class="flex items-center font-normal text-heading no-underline transition duration-200 hover:text-accent focus:text-accent" href="{{ route('frontend.change.locale', $language->code) }}">
                                         {{ ucfirst($language->name) }}
                                     </a>

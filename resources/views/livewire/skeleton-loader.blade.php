@@ -1,7 +1,7 @@
 <div class="w-full pb-20 @if(isset($apply_top_margin) && $apply_top_margin == true) pt-4 lg:py-6 @endif xl:px-0">
     <div class="grid grid-cols-[repeat(auto-fill,minmax(250px,1fr))] gap-4">
         @foreach($skeletons as $index)
-            <div class="p-4 bg-white shadow-lg rounded-lg animate-pulse">
+            <div wire:key="skeleton-{{ $index }}" class="p-4 bg-white shadow-lg rounded-lg animate-pulse">
                 <!-- Heart Icon -->
                 <div class="flex justify-start mb-2">
                     <div class="h-6 w-6 bg-gray-200 rounded-full"></div>

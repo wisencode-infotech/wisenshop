@@ -29,7 +29,7 @@
                </div>
 
                @foreach($product_categories as $category)
-                <div id="headlessui-menu-item-{{ $category->id }}" role="custom-menuitem" tabindex="-1" data-headlessui-state="">
+                <div wire:key="product-category-{{ $category->id }}" id="headlessui-menu-item-{{ $category->id }}" role="custom-menuitem" tabindex="-1" data-headlessui-state="">
                     <span role="button" tabindex="0" class="flex w-full items-center space-x-4 px-5 py-2.5 text-sm font-semibold capitalize transition duration-200 hover:text-accent focus:outline-0 focus-visible:outline-0 rtl:space-x-reverse text-body-dark" x-on:click="$dispatch('category-selected', { category_id: [{{ $category->id }}] })">
                         <span class="flex h-5 w-5 items-center justify-center">
                             <img src="{{ $category->image_url }}" style="height:20px; width:20px;" />
@@ -40,7 +40,7 @@
                     @if($category->subcategories && count($category->subcategories) > 0)
                         <div style="margin-left: 15%;">
                             @foreach($category->subcategories as $subcategory)
-                                <div id="headlessui-menu-item-{{ $subcategory->id }}" role="custom-menuitem" tabindex="-1" data-headlessui-state="">
+                                <div wire:key="product-subcategory-{{ $subcategory->id }}" id="headlessui-menu-item-{{ $subcategory->id }}" role="custom-menuitem" tabindex="-1" data-headlessui-state="">
                                     <span role="button" tabindex="0" class="flex w-full items-center space-x-4 px-5 py-2.5 text-sm font-semibold capitalize transition duration-200 hover:text-accent focus:outline-0 focus-visible:outline-0 rtl:space-x-reverse text-body-dark" x-on:click="$dispatch('category-selected', { category_id: [{{ $subcategory->id }}] })">
                                         <span class="flex h-5 w-5 items-center justify-center">
                                             <img src="{{ $subcategory->image_url }}" style="height:20px; width:20px;" />

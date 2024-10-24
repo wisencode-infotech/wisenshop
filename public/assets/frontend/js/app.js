@@ -70,3 +70,26 @@ $('.profile_menu_btn').on('click', function () {
 $('.notification_menu_btn').on('click', function () {
   $('.notification_menu_section').toggleClass('hidden');
 });
+
+$('#grocery-search-header').on('focus', function() {
+  var scrollValue;
+
+  if (window.innerWidth <= 380) {  
+    scrollValue = 200;  
+  }else if (window.innerWidth <= 576) { 
+    scrollValue = 220;  
+  } else if (window.innerWidth <= 768) { 
+    scrollValue = 220; 
+  } else if (window.innerWidth <= 992) { 
+    scrollValue = 220; 
+  }else if (window.innerWidth <= 1039) { 
+    scrollValue = 190;  
+  } else if (window.innerWidth <= 1200) { 
+    scrollValue = 220; 
+  } else { 
+    scrollValue = 220;
+  }
+
+  console.log(window.innerWidth);
+  $('html, body').animate({ scrollTop: scrollValue }, 500);
+});

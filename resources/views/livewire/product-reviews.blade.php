@@ -48,9 +48,17 @@
             @endforeach
         </div>
 
-        <div class="pagination-links mt-4">
-            {{ $reviews->links() }}
-        </div>
+        @if ($reviews->hasMorePages())
+            <div class="flex justify-center mt-8 mb-4 sm:mb-6 lg:mb-2 lg:mt-12">
+                <!-- Default Button Text -->
+                <button wire:click="loadMore" wire:loading.attr="disabled"  data-variant="normal"
+                    class="px-5 py-3 bg-accent text-light rounded hover:bg-accent-hover transition">
+                    <span wire:loading.remove wire:target="loadMore">{{ __trans('Load More') }}</span>
+                    <span wire:loading wire:target="loadMore">{{ __trans('Loading...') }}</span>
+                </button>
+            </div>
+        @endif
+
     @else
         <p>{{ __trans('No reviews available for this product') }}</p>
     @endif

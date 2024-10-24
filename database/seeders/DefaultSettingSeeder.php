@@ -43,10 +43,10 @@ class DefaultSettingSeeder extends Seeder
 
         // Logos settings
         $logos_settings = [
-            'header_logo' => 'assets/frontend/img/logo.png',
-            'footer_logo' => 'assets/frontend/img/logo.png',
-            'fav_logo' => 'assets/frontend/img/logo.png',
-            'email_header_logo' => 'assets/frontend/img/logo.png',
+            'header_logo' => 'assets/frontend/img/header_logo.png',
+            'footer_logo' => 'assets/frontend/img/header_logo.png',
+            'fav_logo' => 'assets/frontend/img/header_logo.png',
+            'email_header_logo' => 'assets/frontend/img/header_logo.png',
         ];
 
         $setting_sort_number = 1;

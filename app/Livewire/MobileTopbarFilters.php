@@ -18,7 +18,7 @@ class MobileTopbarFilters extends Component
     public function getCategory()
     {
         return Cache::rememberForever('all_categories', function () {
-            return Category::all();
+            return Category::where('parent_id', null)->get();
         });
     }
 

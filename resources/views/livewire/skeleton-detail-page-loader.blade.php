@@ -33,7 +33,7 @@
             <div class="animate-pulse mb-6">
                 <div class="h-4 sm:h-6 bg-gray-200 rounded w-full mb-3"></div>
                 <div class="h-4 sm:h-6 bg-gray-200 rounded w-5/6 mb-2"></div>
-                <div class="h-4 sm:h-6 bg-gray-200 rounded w-4/5"></div>
+                <div class="h-4 sm:h-6 bg-gray-200 rounded w-4/5 mb-2"></div>
                 <div class="h-4 sm:h-6 bg-gray-200 rounded w-3/4 mb-2"></div>
                 <div class="h-4 sm:h-6 bg-gray-200 rounded w-4/5"></div>
             </div>

@@ -12,7 +12,7 @@
             </svg>
          </span>
       </button>
-      <div class="mobile-category-dropdown hidden absolute mt-2 h-56 max-h-56 min-h-40 w-48 overflow-hidden rounded bg-light py-2 shadow-700 focus:outline-none focus-visible:outline-0 sm:max-h-72 lg:h-72 2xl:h-auto 2xl:max-h-screen ltr:left-0 ltr:origin-top-right rtl:left-0 rtl:origin-top-left ltr:xl:right-auto ltr:xl:left-0 ltr:xl:origin-top-left rtl:xl:left-auto rtl:xl:left-0 rtl:xl:origin-top-right transform opacity-100 scale-100" aria-labelledby="headlessui-menu-button-:Rpp4m:" id="headlessui-menu-items-:r29:" role="menu" tabindex="0">
+      <div class="mobile-category-dropdown hidden absolute mt-2 h-56 max-h-56 min-h-40 w-56 overflow-hidden rounded bg-light py-2 shadow-700 focus:outline-none focus-visible:outline-0 sm:max-h-72 lg:h-72 2xl:h-auto 2xl:max-h-screen ltr:left-0 ltr:origin-top-right rtl:left-0 rtl:origin-top-left ltr:xl:right-auto ltr:xl:left-0 ltr:xl:origin-top-left rtl:xl:left-auto rtl:xl:left-0 rtl:xl:origin-top-right transform opacity-100 scale-100" aria-labelledby="headlessui-menu-button-:Rpp4m:" id="headlessui-menu-items-:r29:" role="menu" tabindex="0">
          <div data-overlayscrollbars-initialize="" class="os-theme-thin-dark h-full w-full" role="none" data-overlayscrollbars="host">
             <div class="os-size-observer">
                <div class="os-size-observer-listener ltr"></div>
@@ -29,15 +29,30 @@
                </div>
 
                @foreach($product_categories as $category)
-               <div id="headlessui-menu-item-:r2a:" role="custom-menuitem" tabindex="-1" data-headlessui-state="">
-                  <span role="button" tabindex="0" class="flex w-full items-center space-x-4 px-5 py-2.5 text-sm font-semibold capitalize transition duration-200 hover:text-accent focus:outline-0 focus-visible:outline-0 rtl:space-x-reverse text-body-dark" x-on:click="$dispatch('category-selected', { category_id: [{{ $category->id }}] })">
-                     <span class="flex h-5 w-5 items-center justify-center">
-                        <img src="{{ $category->image_url }}" style="height:20px:width:20px"  />
-                     </span>
-                     <span class="category-name">{{ $category->name }}</span>
-                  </span>
-               </div>
-               @endforeach
+                <div id="headlessui-menu-item-{{ $category->id }}" role="custom-menuitem" tabindex="-1" data-headlessui-state="">
+                    <span role="button" tabindex="0" class="flex w-full items-center space-x-4 px-5 py-2.5 text-sm font-semibold capitalize transition duration-200 hover:text-accent focus:outline-0 focus-visible:outline-0 rtl:space-x-reverse text-body-dark" x-on:click="$dispatch('category-selected', { category_id: [{{ $category->id }}] })">
+                        <span class="flex h-5 w-5 items-center justify-center">
+                            <img src="{{ $category->image_url }}" style="height:20px; width:20px;" />
+                        </span>
+                        <span class="category-name">{{ $category->name }}</span>
+                    </span>
+
+                    @if($category->subcategories && count($category->subcategories) > 0)
+                        <div style="margin-left: 15%;">
+                            @foreach($category->subcategories as $subcategory)
+                                <div id="headlessui-menu-item-{{ $subcategory->id }}" role="custom-menuitem" tabindex="-1" data-headlessui-state="">
+                                    <span role="button" tabindex="0" class="flex w-full items-center space-x-4 px-5 py-2.5 text-sm font-semibold capitalize transition duration-200 hover:text-accent focus:outline-0 focus-visible:outline-0 rtl:space-x-reverse text-body-dark" x-on:click="$dispatch('category-selected', { category_id: [{{ $subcategory->id }}] })">
+                                        <span class="flex h-5 w-5 items-center justify-center">
+                                            <img src="{{ $subcategory->image_url }}" style="height:20px; width:20px;" />
+                                        </span>
+                                        <span class="category-name">{{ $subcategory->name }}</span>
+                                    </span>
+                                </div>
+                            @endforeach
+                        </div>
+                    @endif
+                </div>
+            @endforeach
             </div>
             <div class="os-scrollbar os-scrollbar-horizontal os-theme-dark os-scrollbar-auto-hide os-scrollbar-handle-interactive os-scrollbar-cornerless os-scrollbar-unusable">
                <div class="os-scrollbar-track">

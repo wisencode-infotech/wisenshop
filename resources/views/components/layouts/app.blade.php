@@ -28,7 +28,7 @@
         <div dir="ltr">
             <main class="{{ config('app.title') }}-version-undefined">   
                 <div class="flex min-h-screen flex-col bg-gray-100 transition-colors duration-150">  
-                    @livewire('header')
+                    @livewire('header', [], key('header'))
                     
                     <!-- Page Content -->
                     <div class="min-h-screen">

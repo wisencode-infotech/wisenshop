@@ -29,7 +29,7 @@ class MyOrders extends Component
 
     public function loadMore()
     {
-        $this->paginate_count += 5; // Load 10 more orders
+        $this->paginate_count += 5;
     }
 
     public function showOrder($order_id) 

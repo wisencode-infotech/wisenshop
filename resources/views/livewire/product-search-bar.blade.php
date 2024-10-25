@@ -13,9 +13,11 @@
                                    class="search item-center flex h-full w-full appearance-none overflow-hidden truncate rounded-lg text-sm text-heading placeholder-gray-500 transition duration-300 ease-in-out focus:outline-0 focus:ring-0 search-minimal bg-gray-100 ltr:pl-10 rtl:pr-10 ltr:pr-4 rtl:pl-4 ltr:md:pl-14 rtl:md:pr-14 border border-transparent focus:border-accent focus:bg-light" 
                                    name="search" 
                                    placeholder="{{ __trans('Search your products from here') }}" 
-                                   wire:model.live.debounce.250ms="search">
+                                   wire:model.live.debounce.250ms="search"
+                                   wire:focus="$set('isFocused', true)"
+                                   wire:blur="$set('isFocused', false)">
 
-                            @if($search)
+                             @if($search || $isFocused)
                                 <button type="button" wire:click="clearSearch" class="absolute flex h-full w-10 items-center justify-center text-body transition-colors duration-200 hover:text-accent-hover focus:text-accent-hover focus:outline-0 ltr:right-0 rtl:left-0 md:w-14">
                                     <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4" viewBox="0 0 20 20" fill="currentColor">
                                         <path fill-rule="evenodd" d="M10 9l-6 6 1 1 6-6 6 6 1-1-6-6 6-6-1-1-6 6-6-6-1 1 6 6z" clip-rule="evenodd" />

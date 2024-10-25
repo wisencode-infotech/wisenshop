@@ -32,7 +32,7 @@
                                 </div>
                                 @else
                                     @foreach ($orders as $order)
-                                    <div  wire:click="showOrder({{ $order->id }})"  @click="selected_order_id = {{ $order->id }}"  role="button" class="mb-4 flex w-full shrink-0 cursor-pointer flex-col overflow-hidden rounded border-1 border-transparent bg-gray-100 last:mb-0"  :class="selected_order_id === {{ $order->id }} ? '!border-accent' : ''"  wire:key="{{ uniqid() }}">
+                                    <div  wire:click="showOrder({{ $order->id }})"  @click="selected_order_id = {{ $order->id }}"  role="button" class="mb-4 flex w-full shrink-0 cursor-pointer flex-col overflow-hidden rounded border-1 border-transparent bg-gray-100 last:mb-0"  :class="selected_order_id === {{ $order->id }} ? '!border-accent' : ''"  wire:key="order-{{ $order->id }}">
                                         <div class="flex items-center justify-between border-b border-border-200 py-3 px-5 md:px-3 lg:px-5 "><span class="flex shrink-0 text-sm font-bold text-heading ltr:mr-4 rtl:ml-4 lg:text-base">Order<span class="font-normal">#{{ $order->id }}</span></span><span class="max-w-full truncate whitespace-nowrap rounded bg-status-processing bg-opacity-[.15] text-status-processing px-3 py-2 text-sm" title="Order Processing">{{ config('general.order_statuses.' . $order->status) }}</span></div>
                                         <div class="flex flex-col p-5 md:p-3 lg:px-4 lg:py-5">
                                             <p class="mb-4 flex w-full items-center justify-between text-sm text-heading last:mb-0"><span class="w-24 shrink-0 overflow-hidden">Order Date</span><span class="ltr:mr-auto rtl:ml-auto">:</span><span class="ltr:ml-1 rtl:mr-1">{{ $order->created_at->format('M d, Y h:i A') }}</span></p>
@@ -46,7 +46,7 @@
                                     <div class="mt-8 flex justify-center lg:mt-12">
                                         <button wire:click="loadMore" data-variant="normal" class="inline-flex items-center justify-center shrink-0 font-semibold leading-none rounded outline-none transition duration-300 ease-in-out focus:outline-0 focus:shadow focus:ring-1 focus:ring-accent-700 bg-accent text-light border border-transparent hover:bg-accent-hover px-5 py-0 h-12 h-11 text-sm font-semibold md:text-base">
                                             <!-- Show "Load More" when not loading -->
-                                            <span wire:loading.remove>{{ __trans('Load More') }}</span>
+                                            <span wire:loading.remove wire:target="loadMore">{{ __trans('Load More') }}</span>
                                             <!-- Show "Load More..." while loading -->
                                             <span wire:loading wire:target="loadMore">{{ __trans('Loading...') }}</span>
                                         </button>

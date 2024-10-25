@@ -7,6 +7,7 @@ use Livewire\Component;
 class ProductSearchBar extends Component
 {
     public $search = '';
+    public $isFocused = false;
 
     public function clearSearch()
     {

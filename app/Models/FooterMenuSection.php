@@ -15,6 +15,6 @@ class FooterMenuSection extends Model
 
     public function menuItems(): HasMany
     {
-        return $this->hasMany(FooterMenuSectionItem::class);
+        return $this->hasMany(FooterMenuSectionItem::class)->where('status',1);
     }
 }

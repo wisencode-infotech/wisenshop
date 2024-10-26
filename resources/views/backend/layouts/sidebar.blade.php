@@ -173,12 +173,25 @@
                         <span key="t-calendar">Settings</span>
                     </a>
                 </li>
-
                 
                 <li>
                     <a href="{{ route('backend.home-settings.index') }}" class="waves-effect">
                         <i class="bx bx-cog"></i>
                         <span key="t-calendar">Home Page Settings</span>
+                    </a>
+                </li>
+
+                <li>
+                    <a href="{{ route('backend.footer-menu-sections.index') }}" class="waves-effect">
+                        <i class="bx bx-cog"></i>
+                        <span key="t-calendar">Footer Menu Section</span>
+                    </a>
+                </li>
+
+                <li>
+                    <a href="{{ route('backend.footer-menu-section-item.index') }}" class="waves-effect">
+                        <i class="bx bx-cog"></i>
+                        <span key="t-calendar">Footer Menu Items Section</span>
                     </a>
                 </li>
                 @endif

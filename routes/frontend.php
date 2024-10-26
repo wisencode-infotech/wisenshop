@@ -28,6 +28,7 @@ use App\Livewire\MyWishlist;
 use App\Livewire\ThankYouPage;
 use App\Livewire\NotificationList;
 use App\Livewire\Credit;
+use App\Livewire\PageDetail;
 
 // Homepage
 Route::get('/', HomePage::class)->name('home');
@@ -36,6 +37,8 @@ Route::get('/', HomePage::class)->name('home');
 Route::get('/contact-us', ContactPage::class)->name('contact-us');
 
 Route::get('/product/{product_slug}', ProductDetail::class)->name('product-detail');
+
+Route::get('/page/{page_slug}', PageDetail::class)->name('page-detail');
 
 Route::get('/cart', CartPage::class)->name('cart');
 Route::get('/my-wishlist', MyWishlist::class)->name('my-wishlist');

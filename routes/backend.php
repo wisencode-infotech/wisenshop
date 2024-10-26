@@ -20,6 +20,10 @@ use App\Http\Controllers\Backend\UserController;
 use App\Http\Controllers\Backend\FranchiseProductController;
 use App\Http\Controllers\Backend\MyReferralController;
 use App\Http\Controllers\Backend\PayoutController;
+use App\Http\Controllers\Backend\FooterMenuSectionController;
+use App\Http\Controllers\Backend\FooterMenuSectionItemController;
+
+
 
 Auth::routes();
 
@@ -49,6 +53,9 @@ Route::middleware(['auth', 'check.role:admin'])->group(function () {
     Route::resource('inquiry', InquiryController::class);
 
     Route::resource('users', UserController::class);
+
+    Route::resource('footer-menu-sections', FooterMenuSectionController::class);
+    Route::resource('footer-menu-section-item', FooterMenuSectionItemController::class);
 
 
     // Corrected route for changing the read status of notifications.

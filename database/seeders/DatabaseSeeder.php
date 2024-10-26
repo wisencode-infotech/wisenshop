@@ -30,5 +30,11 @@ class DatabaseSeeder extends Seeder
 
         // ShippingMethod seeder
         (new ShippingMethodSeeder())->run();
+
+         // FooterMenuSectionSeeder seeder
+        (new FooterMenuSectionSeeder())->run();
+
+         // FooterMenuSectionItemSeeder seeder
+        (new FooterMenuSectionItemSeeder())->run();
     }
 }

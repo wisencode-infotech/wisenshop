@@ -3,6 +3,8 @@
 namespace App\Livewire;
 
 use Livewire\Component;
+use App\Models\FooterMenuSection;
+use Illuminate\Support\Facades\Cache;
 
 class Footer extends Component
 {
@@ -10,6 +12,12 @@ class Footer extends Component
 
     public function render()
     {
-        return view('livewire.footer');
+        $menu_sections = Cache::rememberForever('footer_menu_sections', function () {
+            return FooterMenuSection::all();
+        });
+
+        return view('livewire.footer', [
+            'menu_sections' => $menu_sections
+        ]);
     }
 }

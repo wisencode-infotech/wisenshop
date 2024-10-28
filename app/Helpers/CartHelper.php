@@ -145,14 +145,24 @@ class CartHelper
 
     public static function total()
     {
-        $cache_key = Auth::check() ? 'cart_total_' . Auth::id() : 'cart_total_guest_' . session()->getId();
+        if (self::disk() === 'database') {
 
-        return cache()->rememberForever($cache_key, function() {
+            $cache_key = Auth::check() ? 'cart_total_' . Auth::id() : 'cart_total_guest_' . session()->getId();
+
+            return cache()->rememberForever($cache_key, function() {
+                $cart_items = self::items();
+                return array_reduce($cart_items, function($total, $item) {
+                    return $total + (($item['quantity'] ?? 0) * ($item['product_price'] ?? 0));
+                }, 0);
+            });
+
+        }else{
+
             $cart_items = self::items();
             return array_reduce($cart_items, function($total, $item) {
                 return $total + (($item['quantity'] ?? 0) * ($item['product_price'] ?? 0));
             }, 0);
-        });
+        }
     }
 
     public static function syncToDatabse($user_id = null)

@@ -105,7 +105,6 @@ Route::post('/sync-session-preferences', function (Request $request) {
 
     if (!empty($cart) && empty($stored_shopping_cart)) {
         Session::put('cart', $cart ?? []);
-        Cache::forget(Auth::check() ? 'cart_total_' . Auth::id() : 'cart_total_guest_' . session()->getId());
         $cart_updated = true;
     }
 

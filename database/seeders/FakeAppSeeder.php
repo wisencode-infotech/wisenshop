@@ -124,6 +124,18 @@ class FakeAppSeeder extends Seeder
                 'is_default' => true
             ],
             [
+                'name' => 'MONEI',
+                'description' => 'Many of Southern Europe’s most successful brands trust MONEI',
+                'logo_url' => 'https://assets.monei.com/images/logo.svg',
+                'is_default' => false
+            ],
+            [
+                'name' => 'Viva.com',
+                'description' => 'Powering payments on 1165+ devices, in 24 European markets.',
+                'logo_url' => 'https://accounts.vivapayments.com/img/viva-com-logo-circle.c703f32b.svg',
+                'is_default' => false
+            ],
+            [
                 'name' => 'Cash on Delivery',
                 'description' => 'Pay on Delivery',
                 'logo_url' => 'https://img.freepik.com/premium-vector/cash-delivery_569841-175.jpg?w=826',

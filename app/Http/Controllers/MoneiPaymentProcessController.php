@@ -23,8 +23,8 @@ class MoneiPaymentProcessController extends Controller
                 'description' => 'Order #'.$order->id,
                 'callbackUrl' => route('frontend.moneipayments.callback'),
                 'completeUrl' => route('frontend.thank-you', [ $order ]),
-                'failUrl' => route('frontend.home', [ 'status' => 'failed' ]),
-                'cancelUrl' => route('frontend.home', [ 'status' => 'cancel' ]),
+                'failUrl' => route('frontend.payment-error', [ 'status' => 'failed' ]),
+                'cancelUrl' => route('frontend.payment-error', [ 'status' => 'cancel' ]),
                 'sessionId' => session()->id(),
                 'generatePaymentToken' => true,
                 'customer' => [
@@ -56,7 +56,6 @@ class MoneiPaymentProcessController extends Controller
 
             if (isset($payment['status']) && $payment['status'] !== 'success') {
                 Log::error('Monei API response status not OK: ' . $payment['status']);
-                // dd('Monei API response status not OK: ' . $payment['status']);
             }
 
             return $payment;
@@ -70,7 +69,6 @@ class MoneiPaymentProcessController extends Controller
             return null;
 
         } catch (\Exception $e) {
-            // dd('General error in Monei API call: ' . $e->getMessage());
             Log::error('General error in Monei API call: ' . $e->getMessage());
             return null;
         }
@@ -78,28 +76,38 @@ class MoneiPaymentProcessController extends Controller
 
     public function callback(Request $request)
     {
-        // Handle the Monei payment response
-        $order_id = $request->input('order_id');
-        // $status = $request->input('status');
-        $event_type = $request->input('event_type');
-        $transaction_id = $request->input('transaction_id');
+        $payload = json_decode(file_get_contents('php://input'), true);
 
-        // Load the order and update status based on the payment status
-        $order = Order::find($order_id);
-        $order_service = new OrderService();
-        $order_service->setRecord($order);
+        $orderId = $payload['orderId'] ?? null;
+        $status = $payload['status'] ?? null;
+        $transactionId = $payload['id'] ?? null;
 
-        if ($event_type === 'account_invoice.paid') {
-            $order_service->updateStatus(2); // Update to paid
-            $order_service->saveOrderTransaction($request->input('transaction_id'), 'PAID');
-        } else {
-            $order_service->updateStatus(5); // Update to failed
-            $order_service->saveOrderTransaction($request->input('transaction_id'), 'CANCELLED');
+        if (!$orderId || !$status) {
+            Log::error('Monei callback missing required order ID or status');
+            return response()->json(['message' => 'Invalid callback data'], 400);
         }
 
-        // Clear the cart after successful order placement
-        CartHelper::clearDatabaseCart($order->user_id);
-        
-        return response()->json(['message' => 'Callback handled'], 200);
+        $order = Order::find($orderId);
+        if (!$order) {
+            Log::error('Order not found for callback', ['orderId' => $orderId]);
+            return response()->json(['message' => 'Order not found'], 404);
+        }
+
+        // Initialize the order service
+        $orderService = new OrderService();
+        $orderService->setRecord($order);
+
+        // Update order status based on callback status
+        if ($status === 'SUCCEEDED') {
+            $orderService->updateStatus(2); // Update status to "Paid"
+            $orderService->saveOrderTransaction($transactionId, 'PAID');
+            // Clear the cart after successful payment
+            CartHelper::clearDatabaseCart($order->user_id);
+        } else {
+            $orderService->updateStatus(5); // Update status to "Failed"
+            $orderService->saveOrderTransaction($transactionId, 'FAILED');
+        }
+
+        return response()->json(['message' => 'Callback handled successfully'], 200);
     }
 }

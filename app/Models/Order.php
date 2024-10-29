@@ -48,6 +48,11 @@ class Order extends Model
         return $this->hasOne(Payment::class);
     }
 
+    public function transactions(): HasMany
+    {
+        return $this->hasMany(Transaction::class);
+    }
+
     public function address(): HasOne
     {
         return $this->hasOne(OrderAddress::class);

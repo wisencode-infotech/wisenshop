@@ -27,6 +27,17 @@
             </div>
         </div>
     </div>
+
+    @if(!empty($order_data->transactions))
+    <div class="relative mx-5 mb-6 overflow-hidden rounded">
+        @foreach($order_data->transactions as $transaction)
+            <div>
+                {{ __trans('Transaction ID') }} : <span class="text-base font-bold"> {{ $transaction->transaction_id }}</span>
+            </div>
+        @endforeach
+    </div>
+    @endif
+
     <div class="flex flex-col border-b border-border-200 sm:flex-row">
         <div class="flex w-full flex-col border-b border-border-200 px-5 py-4 sm:border-b-0 ltr:sm:border-r rtl:sm:border-l md:w-3/5">
 

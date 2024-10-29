@@ -1,0 +1,28 @@
+<?php
+
+namespace App\Livewire;
+
+use Livewire\Component;
+
+class PaymentErrorPage extends Component
+{
+    public $status;
+    public $orderId;
+    public $message;
+
+    public function mount()
+    {
+        $this->status = request()->query('status');
+        $this->orderId = request()->query('orderId');
+        $this->message = request()->query('message');
+    }
+
+    public function render()
+    {
+        return view('livewire.payment-error-page', [
+            'status' => $this->status,
+            'orderId' => $this->orderId,
+            'message' => $this->message,
+        ]);
+    }
+}

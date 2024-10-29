@@ -31,6 +31,8 @@ use App\Livewire\ThankYouPage;
 use App\Livewire\NotificationList;
 use App\Livewire\Credit;
 use App\Livewire\PageDetail;
+use App\Livewire\PaymentErrorPage;
+
 
 // Homepage
 Route::get('/', HomePage::class)->name('home');
@@ -63,6 +65,8 @@ Route::middleware(RedirectIfNotLoggedIn::class)->group(function () {
     Route::get('/thank-you/{order_id}', ThankYouPage::class)->name('thank-you');
     Route::get('/notifications', NotificationList::class)->name('notifications.index');
 });
+
+Route::get('/payment-error', PaymentErrorPage::class)->name('payment-error');
 
 Route::prefix('orders')->name('orders.')->group(function () {
     Route::prefix('{order}')->group(function () {

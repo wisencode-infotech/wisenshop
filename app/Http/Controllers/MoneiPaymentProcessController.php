@@ -14,21 +14,34 @@ class MoneiPaymentProcessController extends Controller
     public function index(Order $order)
     {
         try {
+            $user = $order->user;
+
             $monei_data = [
                 'amount' => $order->total_price * 100, // Amount in cents
                 'currency' => $order->currency->code,
-                'orderId' => (string)$order->id,
-                'description' => 'Order #'.$order->id
+                'orderId' => (string) $order->id,
+                'description' => 'Order #'.$order->id,
+                'callbackUrl' => route('frontend.moneipayments.callback'),
+                'completeUrl' => route('frontend.thank-you', [ $order ]),
+                'failUrl' => route('frontend.home', [ 'status' => 'failed' ]),
+                'cancelUrl' => route('frontend.home', [ 'status' => 'cancel' ]),
+                'sessionId' => session()->id(),
+                'generatePaymentToken' => true,
+                'customer' => [
+                    'email' => $user->email ?? '',
+                    'name' => $user->name ?? '',
+                    'phone' => $user->phone ?? ''
+                ]
             ];
 
             $monei_response = $this->createMoneiPayment($monei_data);
 
-            // dd($monei_response);
-            if ($monei_response && isset($monei_response['url'])) {
-                return redirect($monei_response['url']); // Redirect to Monei payment page
+            if (!empty($redirect_url = $monei_response['next_action']->getRedirectUrl())) {
+                return redirect($redirect_url); // Redirect to Monei payment page
             } else {
-                return redirect()->route('frontend.home')->with('error', __('Something went wrong'));
+                return redirect()->route('frontend.home')->with('error', __('Something went wrong'));   
             }
+
         } catch (\Exception $e) {
             return redirect()->route('frontend.home')->with('error', $e->getMessage());
         }
@@ -37,7 +50,7 @@ class MoneiPaymentProcessController extends Controller
     private function createMoneiPayment($data)
     {
         try {
-            $monei = new MoneiClient(env('MONEI_API_KEY'));
+            $monei = new MoneiClient('pk_test_8ac935c2a1083f011d458c63cbc348cd');
 
             $payment = $monei->payments->create($data);
 

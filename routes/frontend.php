@@ -127,7 +127,7 @@ Route::get('/payment-process/{order}', [PaymentProcessController::class, 'index'
 Route::post('/coinpayments/callback', [PaymentProcessController::class, 'coinpayments_callback'])->name('coinpayments.callback');
 
 Route::get('/monei-payment-process/{order}', [MoneiPaymentProcessController::class, 'index'])->name('monei-payment-process');
-Route::post('/moneipayments/callback', [MoneiPaymentProcessController::class, 'callback'])->name('moneipayments.callback');
+Route::any('/moneipayments/callback', [MoneiPaymentProcessController::class, 'callback'])->name('moneipayments.callback');
 
 
 Route::get('/viva-payment-process/{order}', [VivaPaymentProcessController::class, 'index'])->name('viva-payment-process');

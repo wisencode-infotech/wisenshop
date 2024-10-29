@@ -29,10 +29,10 @@
     </div>
 
     @if(!empty($order_data->transactions))
-    <div class="relative mx-5 mb-6 overflow-hidden rounded">
+    <div class="relative mx-5 mb-6 overflow-hidden rounded text-muted text-sm">
         @foreach($order_data->transactions as $transaction)
             <div>
-                {{ __trans('Transaction ID') }} : <span class="text-base font-bold"> {{ $transaction->transaction_id }}</span>
+                {{ __trans('Txn.') }} : <span> #{{ $transaction->transaction_id }}</span>
             </div>
         @endforeach
     </div>

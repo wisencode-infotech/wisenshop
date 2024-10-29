@@ -3,9 +3,7 @@
 use App\Helpers\CartHelper;
 use App\Helpers\WishlistHelper;
 use App\Http\Controllers\ErrorController;
-use App\Http\Controllers\PaymentProcessController;
-use App\Http\Controllers\MoneiPaymentProcessController;
-use App\Http\Controllers\VivaPaymentProcessController;
+use App\Http\Controllers\PaymentController;
 use Illuminate\Support\Facades\Route;
 use App\Livewire\ContactPage;
 use App\Livewire\HomePage;
@@ -127,16 +125,11 @@ Route::post('/sync-session-preferences', function (Request $request) {
     ]);
 })->name('sync-session-preferences');
 
-Route::get('/payment-process/{order}', [PaymentProcessController::class, 'index'])->name('payment-process');
-Route::post('/coinpayments/callback', [PaymentProcessController::class, 'coinpayments_callback'])->name('coinpayments.callback');
 
-Route::get('/monei-payment-process/{order}', [MoneiPaymentProcessController::class, 'index'])->name('monei-payment-process');
-Route::any('/moneipayments/callback', [MoneiPaymentProcessController::class, 'callback'])->name('moneipayments.callback');
-
-
-Route::get('/viva-payment-process/{order}', [VivaPaymentProcessController::class, 'index'])->name('viva-payment-process');
-Route::post('/vivapayments/callback', [VivaPaymentProcessController::class, 'callback'])->name('vivapayments.callback');
-
+Route::prefix('payment')->group(function () {
+    Route::get('/process/{order}/{method}', [PaymentController::class, 'process'])->name('payment.process');
+    Route::any('/callback/{method}', [PaymentController::class, 'callback'])->name('payment.callback');
+});
 
 Livewire::setScriptRoute(function ($handle) {
     return Route::get(url('/') . '/livewire/livewire.js', $handle);

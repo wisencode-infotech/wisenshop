@@ -45,12 +45,12 @@ Route::get('/page/{page_slug}', PageDetail::class)->name('page-detail');
 Route::get('/cart', CartPage::class)->name('cart');
 Route::get('/my-wishlist', MyWishlist::class)->name('my-wishlist');
 
-Route::get('login', Login::class)->name('login');
-Route::post('login', [Login::class, 'authenticate'])->name('authenticate');
-Route::get('logout', [Logout::class, 'logout'])->name('logout');
+Route::get('/login', Login::class)->name('login');
+Route::post('/login', [Login::class, 'authenticate'])->name('authenticate');
+Route::get('/logout', [Logout::class, 'logout'])->name('logout');
 
-Route::get('register', Register::class)->name('register');
-Route::get('forgot-password', ForgotPassword::class)->name('forgot-password');
+Route::get('/register', Register::class)->name('register');
+Route::get('/forgot-password', ForgotPassword::class)->name('forgot-password');
 Route::get('/reset-password/{token}', ResetPassword::class)->name('password.reset');
 
 Route::get('/guest-checkout', GuestCheckout::class)->name('guest.checkout');
@@ -66,7 +66,7 @@ Route::middleware(RedirectIfNotLoggedIn::class)->group(function () {
 
 Route::prefix('orders')->name('orders.')->group(function () {
     Route::prefix('{order}')->group(function () {
-        Route::get('details', OrderDetails::class)->name('details');
+        Route::get('/details', OrderDetails::class)->name('details');
     });
 });
 

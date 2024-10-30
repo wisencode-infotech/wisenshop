@@ -37,8 +37,8 @@ class MoneiPaymentService
             'description' => 'Order #' . $order->id,
             'callbackUrl' => route('frontend.payment.callback', ['method' => 'monei']),
             'completeUrl' => route('frontend.thank-you', [$order]),
-            'failUrl' => route('frontend.payment-error', ['status' => 'failed']),
-            'cancelUrl' => route('frontend.payment-error', ['status' => 'cancel']),
+            'failUrl' => route('frontend.payment.error', ['status' => 'failed']),
+            'cancelUrl' => route('frontend.payment.error', ['status' => 'cancel']),
             'sessionId' => session()->id(),
             'generatePaymentToken' => true,
             'customer' => [

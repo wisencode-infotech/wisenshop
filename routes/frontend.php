@@ -64,8 +64,6 @@ Route::middleware(RedirectIfNotLoggedIn::class)->group(function () {
     Route::get('/notifications', NotificationList::class)->name('notifications.index');
 });
 
-Route::get('/payment-error', PaymentErrorPage::class)->name('payment-error');
-
 Route::prefix('orders')->name('orders.')->group(function () {
     Route::prefix('{order}')->group(function () {
         Route::get('details', OrderDetails::class)->name('details');
@@ -84,7 +82,6 @@ Route::get('/currency/{currency}', function (string $currency) {
     
     return redirect()->back();
 })->name('change.currency');
-
 
 Route::get('/fetch-session-preferences', function () {
     return response()->json([
@@ -125,10 +122,11 @@ Route::post('/sync-session-preferences', function (Request $request) {
     ]);
 })->name('sync-session-preferences');
 
-
 Route::prefix('payment')->group(function () {
     Route::get('/process/{order}/{method}', [PaymentController::class, 'process'])->name('payment.process');
     Route::any('/callback/{method}', [PaymentController::class, 'callback'])->name('payment.callback');
+
+    Route::get('/error', PaymentErrorPage::class)->name('error');
 });
 
 Livewire::setScriptRoute(function ($handle) {

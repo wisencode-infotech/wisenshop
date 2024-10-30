@@ -48,7 +48,7 @@ class VivaPaymentService
                 'sourceCode' => 8206,
                 'merchantTrns' => $order->id,
                 'redirectUrl' => route('frontend.thank-you', [$order]),
-                'cancelUrl' => route('frontend.payment-error', ['status' => 'cancel']),
+                'cancelUrl' => route('frontend.payment.error', ['status' => 'cancel']),
                 'orderDescription' => 'Purchase of items in Order #' . $order->id,
             ];
 

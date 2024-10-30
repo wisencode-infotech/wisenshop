@@ -2,6 +2,7 @@
 
 namespace App\Services;
 
+use App\Helpers\CartHelper;
 use GuzzleHttp\Client;
 use GuzzleHttp\Exception\RequestException;
 use Illuminate\Support\Facades\Log;
@@ -31,12 +32,13 @@ class VivaPaymentService
             return redirect($orderData['payment_url']);
         }
 
-        return redirect()->route('frontend.home')->with('error', __('Something went wrong with Viva payment'));
+        return redirect()->route('frontend.payment.error')->with('error', __trans('Something went wrong with Viva payment'))->with('order', $order);
     }
 
     public function createOrder($order)
     {
         try {
+
             $payload = [
                 'amount' => $order->total_price * 100, // in cents
                 'customerTrns' => 'Order #' . $order->id,
@@ -48,10 +50,10 @@ class VivaPaymentService
                 'sourceCode' => 8206,
                 'merchantTrns' => $order->id,
                 'redirectUrl' => route('frontend.thank-you', [$order]),
+                // 'successUrl' => route('frontend.thank-you', [$order]),
                 'cancelUrl' => route('frontend.payment.error', ['status' => 'cancel']),
                 'orderDescription' => 'Purchase of items in Order #' . $order->id,
             ];
-
 
             $response = $this->client->post('/api/orders', [
                 'json' => $payload,
@@ -62,7 +64,7 @@ class VivaPaymentService
             ]);
 
             $responseData = json_decode($response->getBody(), true);
-
+            
             if (!empty($responseData['OrderCode'])) {
                 $responseData['payment_url'] = 'https://demo.vivapayments.com/web/checkout?ref='.$responseData['OrderCode'];
             }
@@ -70,9 +72,8 @@ class VivaPaymentService
             return $responseData;
 
         } catch (RequestException $e) {
-            dd($e->getMessage());
-            Log::error('Viva Order Creation Error: ' . $e->getMessage());
-            throw new \Exception(__('Order creation failed. Please try again.'));
+            
+            return redirect()->route('frontend.payment.error')->with('error', 'Viva Order Creation Error: ' . $e->getMessage())->with('order', $order);
         }
     }
 
@@ -82,7 +83,7 @@ class VivaPaymentService
         Log::info('Viva Callback Data: ', $request->all());
 
         // Extract relevant data from the callback
-        $orderCode = $request->input('OrderCode');
+        $orderCode = $request->input('orderCode');
         $status = $request->input('Status'); // Check for payment status
         $orderId = $request->input('MerchantTrns'); // Your order identifier
 
@@ -98,23 +99,23 @@ class VivaPaymentService
             return response()->json(['message' => 'Order not found'], 404);
         }
 
-        $this->updateOrderStatus($order, $status, $transactionId);
+        $this->updateOrderStatus($order, $status, $orderCode);
 
         return response()->json(['status' => 'success']);
     }
 
-    private function updateOrderStatus(Order $order, $status, $transactionId)
+    private function updateOrderStatus(Order $order, $status, $orderCode)
     {
         $orderService = new OrderService(); // Ensure you have this service defined
         $orderService->setRecord($order); // Assuming this sets the current order for updates
 
         if ($status === 'SUCCEEDED') {
             $orderService->updateStatus(2); // Update status to "Paid"
-            $orderService->saveOrderTransaction($transactionId, 'PAID');
+            $orderService->saveOrderTransaction($orderCode, 'PAID');
             CartHelper::clearDatabaseCart($order->user_id); // Assuming this clears the user's cart
         } else {
             $orderService->updateStatus(5); // Update status to "Failed"
-            $orderService->saveOrderTransaction($transactionId, 'FAILED');
+            $orderService->saveOrderTransaction($orderCode, 'FAILED');
         }
     }
 }

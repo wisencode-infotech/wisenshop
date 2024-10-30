@@ -30,6 +30,8 @@ use App\Livewire\NotificationList;
 use App\Livewire\Credit;
 use App\Livewire\PageDetail;
 use App\Livewire\PaymentErrorPage;
+use App\Livewire\PaymentSuccessPage;
+
 
 
 // Homepage
@@ -126,7 +128,8 @@ Route::prefix('payment')->group(function () {
     Route::get('/process/{order}/{method}', [PaymentController::class, 'process'])->name('payment.process');
     Route::any('/callback/{method}', [PaymentController::class, 'callback'])->name('payment.callback');
 
-    Route::get('/error', PaymentErrorPage::class)->name('error');
+    Route::get('/error', PaymentErrorPage::class)->name('payment.error');
+    Route::get('/success', PaymentSuccessPage::class)->name('payment.success');
 });
 
 Livewire::setScriptRoute(function ($handle) {

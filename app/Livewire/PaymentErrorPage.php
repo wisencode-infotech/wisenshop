@@ -12,9 +12,9 @@ class PaymentErrorPage extends Component
 
     public function mount()
     {
-        $this->status = request()->query('status');
-        $this->orderId = request()->query('orderId');
-        $this->message = request()->query('message');
+        $this->status = request()->query('status') ?? 'FAILED';
+        $this->orderId = request()->query('orderId') ?? (session('order') ? session('order')->id : '');
+        $this->message = request()->query('message') ?? session('error', __trans('An error occurred while processing your payment.'));
     }
 
     public function render()

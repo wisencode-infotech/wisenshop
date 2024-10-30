@@ -15,10 +15,12 @@
                <span class="font-medium text-sm text-gray-800">{{ __trans('Status') }}:</span>
                <span class="text-sm">{{ $status }}</span>
             </div>
-            <div class="flex items-center gap-2">
-               <span class="font-medium text-sm text-gray-800">{{ __trans('Order') }} #:</span>
-               <span class="text-sm">{{ $orderId }}</span>
-            </div>
+            @if (!empty($orderId))
+               <div class="flex items-center gap-2">
+                  <span class="font-medium text-sm text-gray-800">{{ __trans('Order') }} #:</span>
+                  <span class="text-sm">{{ $orderId }}</span>
+               </div>
+            @endif
          </div>
 
          @if (!empty($message))

@@ -25,7 +25,7 @@ class CoinPaymentsService
 
         return isset($transaction['result']['checkout_url'])
             ? redirect($transaction['result']['checkout_url'])
-            : redirect()->route('frontend.home')->with('error', __('Something went wrong with CoinPayments'));
+            : redirect()->route('frontend.payment.error')->with('error', __trans('Something went wrong with CoinPayments'))->with('order', $order);
     }
 
     public function handleCallback(Request $request)
@@ -65,8 +65,8 @@ class CoinPaymentsService
             'buyer_name' => $order->customer->name ?? 'Guest',
             'custom' => (string) $order->id,
             'ipn_url' => route("frontend.payment.callback", ['method' => 'coinpayments']),
-            'success_url' => route('frontend.home') . '?payment_status=completed',
-            'cancel_url' => route('frontend.home') . '?payment_status=cancelled',
+            'success_url' => route('frontend.payment.success', ['orderId' => $order->id]),
+            'cancel_url' => route('frontend.payment.error') . '?payment_status=cancelled',
         ];
     }
 

@@ -29,16 +29,16 @@ class PaymentController extends Controller
     public function process(Order $order, $method)
     {
         try {
-
             return match ($method) {
                 'coinpayments' => $this->coinPaymentsService->processPayment($order),
                 'monei' => $this->moneiPaymentService->processPayment($order),
                 'viva' => $this->vivaPaymentService->processVivaPayment($order),
-                default => redirect()->route('frontend.home')->with('error', __('Invalid payment method')),
+                default => redirect()->route('frontend.home')->with('error', __trans('Invalid payment method')),
             };
 
         } catch (\Exception $e) {
-            return redirect()->route('frontend.home')->with('error', $e->getMessage());
+
+            return redirect()->route('frontend.payment.error')->with('error', __trans('Payment processing failed.'))->with('order', $order);
         }
     }
 
@@ -50,7 +50,7 @@ class PaymentController extends Controller
             'coinpayments' => $this->coinPaymentsService->handleCallback($request),
             'monei' => $this->moneiPaymentService->handleCallback($request),
             'viva' => $this->vivaPaymentService->handleVivaCallback($request->all()),
-            default => abort(404, 'Payment method not found'),
+            default => abort(404, __trans('Payment method not found')),
         };
     }
 }

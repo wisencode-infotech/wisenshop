@@ -78,7 +78,14 @@
 
                 <div class="text-center mt-8">
                     <button type="submit"
-                        class="px-6 py-3 bg-accent text-light rounded font-bold uppercase">Send Message</button>
+                        class="px-6 py-3 bg-accent text-light rounded font-bold uppercase">
+                        <span wire:loading.remove >
+                            {{ __trans('Send Message') }}
+                        </span>
+                        <span wire:loading>
+                            {{ __trans('Sending...') }}
+                        </span>
+                    </button>
                 </div>
             </form>
         </div>

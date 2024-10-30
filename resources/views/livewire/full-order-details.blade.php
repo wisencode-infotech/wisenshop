@@ -150,8 +150,8 @@
 
                                 
                                 <td class="rc-table-cell" style="text-align: right;">
-                                    @if($order_data->status == 4)
-                                    <button  wire:click="$dispatch('openReviewModal', { product_id: {{ $product->id }} })" class="cursor-pointer text-sm font-semibold text-body transition-colors hover:text-accent">Write a review</button>
+                                    @if($can_write_review)
+                                    <button wire:click="$dispatch('openReviewModal', { product_id: {{ $product->id }} })" class="cursor-pointer text-sm font-semibold text-body transition-colors hover:text-accent">Write a review</button>
                                     @endif
                                 </td>
                             </tr>

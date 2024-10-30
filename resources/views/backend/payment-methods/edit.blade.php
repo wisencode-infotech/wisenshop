@@ -27,7 +27,7 @@
 
                     <!-- Logo URL Field -->
                     <div class="form-group mb-3">
-                        <label for="logo_url" class="form-label">Name</label>
+                        <label for="logo_url" class="form-label">Image URL</label>
                         <input type="url" name="logo_url" class="form-control @error('logo_url') is-invalid @enderror" value="{{ old('logo_url', $payment_method->logo_url) }}" required>
                         @error('logo_url')
                             <span class="invalid-feedback" role="alert">
@@ -69,6 +69,20 @@
                         @enderror
                     </div>
 
+                    <div class="form-group mb-3">
+                        <label class="form-label">Meta Information</label>
+                        <div id="meta-info-container">
+                            @foreach($payment_method->meta_info ?? [] as $key => $value)
+                                <div class="d-flex mb-2 meta-info-row">
+                                    <input type="text" name="meta_info[{{ $loop->index }}][key]" value="{{ $key }}" class="form-control me-2" placeholder="Key" required>
+                                    <input type="text" name="meta_info[{{ $loop->index }}][value]" value="{{ $value }}" class="form-control me-2" placeholder="Value" required>
+                                    <button type="button" class="btn btn-danger btn-remove-row">Remove</button>
+                                </div>
+                            @endforeach
+                        </div>
+                        <button type="button" class="btn btn-secondary mt-2" id="btn-add-meta-info">Add</button>
+                    </div>
+
                     <!-- Submit Button -->
                     <div class="form-group text-end">
                         <button type="submit" class="btn btn-primary btn-rounded">Update Payment Method</button>
@@ -81,4 +95,53 @@
 
 @endsection
 @section('script')
+<script>
+    document.addEventListener('DOMContentLoaded', function () {
+        let metaInfoContainer = document.getElementById('meta-info-container');
+        let addMetaInfoButton = document.getElementById('btn-add-meta-info');
+
+        // Function to add a new key-value input row
+        function addMetaInfoRow(key = '', value = '') {
+            let index = metaInfoContainer.children.length;
+            let row = document.createElement('div');
+            row.classList.add('d-flex', 'mb-2', 'meta-info-row');
+
+            row.innerHTML = `
+                <input type="text" name="meta_info[${index}][key]" value="${key}" class="form-control me-2" placeholder="Key" required>
+                <input type="text" name="meta_info[${index}][value]" value="${value}" class="form-control me-2" placeholder="Value" required>
+                <button type="button" class="btn btn-danger btn-remove-row">Remove</button>
+            `;
+
+            // Add event listener to remove button
+            row.querySelector('.btn-remove-row').addEventListener('click', function () {
+                row.remove();
+                updateMetaInfoIndexes();
+            });
+
+            metaInfoContainer.appendChild(row);
+        }
+
+        // Function to update indexes after removing rows
+        function updateMetaInfoIndexes() {
+            Array.from(metaInfoContainer.children).forEach((row, index) => {
+                row.querySelectorAll('input').forEach(input => {
+                    input.name = input.name.replace(/\d+/, index);
+                });
+            });
+        }
+
+        // Add event listener to add button
+        addMetaInfoButton.addEventListener('click', function () {
+            addMetaInfoRow();
+        });
+
+        // Add remove button functionality for existing rows
+        document.querySelectorAll('.btn-remove-row').forEach(button => {
+            button.addEventListener('click', function () {
+                button.closest('.meta-info-row').remove();
+                updateMetaInfoIndexes();
+            });
+        });
+    });
+</script>
 @endsection

@@ -4,6 +4,7 @@ namespace App\Services;
 
 use App\Helpers\CartHelper;
 use App\Models\Order;
+use App\Models\PaymentMethod;
 use CoinpaymentsAPI;
 use Exception;
 use Illuminate\Http\Request;
@@ -13,9 +14,12 @@ class CoinPaymentsService
 {
     protected CoinpaymentsAPI $api;
 
+    protected $payments_method_detail;
+
     public function __construct()
     {
-        $this->api = new CoinpaymentsAPI(env('COINPAYMENTS_API_SECRET'), env('COINPAYMENTS_API_KEY'), 'json');
+        $this->payments_method_detail = PaymentMethod::where('name','CoinPayments')->first();
+        $this->api = new CoinpaymentsAPI($this->payments_method_detail->meta_info->api_secret, $this->payments_method_detail->meta_info->api_key, 'json');
     }
 
     public function processPayment(Order $order)
@@ -72,8 +76,8 @@ class CoinPaymentsService
 
     private function isValidCallback(Request $request): bool
     {
-        $ipn_secret = env('COINPAYMENTS_IPN_SECRET');
-        $merchant_id = env('COINPAYMENTS_MERCHANT_ID');
+        $ipn_secret = $this->payments_method_detail->meta_info->ipn_secret;
+        $merchant_id = $this->payments_method_detail->meta_info->merchant_id;
 
         return $request->header('HMAC') === hash_hmac('sha512', $request->getContent(), $ipn_secret)
             && $request->input('merchant') === $merchant_id;
@@ -81,17 +85,20 @@ class CoinPaymentsService
 
     private function updateOrderStatus(Order $order, int $status, string $transactionId): void
     {
+        $orderService = new orderService(); // Ensure you have this service defined
+        $orderService->setRecord($order); 
+
         switch ($status) {
             case $status >= 100:
-                $this->orderService->updateStatus(2); // Mark as paid
-                $this->orderService->saveOrderTransaction($transactionId, 'PAID');
+                $orderService->updateStatus(2); // Mark as paid
+                $orderService->saveOrderTransaction($transactionId, 'PAID');
                 break;
             case $status < 0:
-                $this->orderService->updateStatus(5); // Mark as cancelled
-                $this->orderService->saveOrderTransaction($transactionId, 'CANCELLED');
+                $orderService->updateStatus(5); // Mark as cancelled
+                $orderService->saveOrderTransaction($transactionId, 'CANCELLED');
                 break;
             default:
-                $this->orderService->saveOrderTransaction($transactionId, 'UNPAID');
+                $orderService->saveOrderTransaction($transactionId, 'UNPAID');
                 break;
         }
     }

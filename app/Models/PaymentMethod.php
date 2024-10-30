@@ -14,6 +14,12 @@ class PaymentMethod extends Model
         'name',
         'logo_url',
         'description',
+        'meta_info',
         'is_default'
     ];
+
+    public function getMetaInfoAttribute($value)
+    {
+        return json_decode($value); // Decode to an object
+    }
 }

@@ -2,16 +2,20 @@
 
 namespace App\Services;
 
+use App\Helpers\CartHelper;
+use App\Models\Order;
+use App\Models\PaymentMethod;
 use Illuminate\Support\Facades\Log;
 
 class MoneiPaymentService
 {
     protected $moneiClient;
+    protected $payments_method_detail;
 
     public function __construct()
     {
-        // Initialize the Monei client with your API key
-        $this->moneiClient = new \Monei\MoneiClient('pk_test_8ac935c2a1083f011d458c63cbc348cd');
+        $this->payments_method_detail = PaymentMethod::where('name','MONEI')->first();
+        $this->moneiClient = new \Monei\MoneiClient($this->payments_method_detail->meta_info->api_key);
     }
 
     public function processPayment($order)
@@ -36,7 +40,6 @@ class MoneiPaymentService
             'orderId' => (string)$order->id,
             'description' => 'Order #' . $order->id,
             'callbackUrl' => route('frontend.payment.callback', ['method' => 'monei']),
-            // 'completeUrl' => route('frontend.thank-you', [$order]),
             'completeUrl' => route('frontend.payment.success'),
             'failUrl' => route('frontend.payment.error', ['status' => 'failed']),
             'cancelUrl' => route('frontend.payment.error', ['status' => 'cancel']),

@@ -16,6 +16,7 @@ return new class extends Migration
             $table->string('name');
             $table->text('description')->nullable();
             $table->string('logo_url')->nullable();
+            $table->text('meta_info')->nullable();
             $table->boolean('is_default')->default(false)->nullable();
             $table->timestamps();
             $table->softDeletes();

@@ -121,18 +121,33 @@ class FakeAppSeeder extends Seeder
                 'name' => 'CoinPayments',
                 'description' => 'Secure & Trusted Crypto Payment Gateway',
                 'logo_url' => 'https://www.coinpayments.net/2024.03/img/cps-since.svg',
+                'meta_info' => json_encode([
+                    'api_key' => 'fb58d098cc1366d259c0b5915b96ca504d321dd33b50f20aa21d2eaef5cb09a8',
+                    'api_secret' => 'aD3e01b71FEe0A5aE3bc6ea7986Bbb92615a72559deb31A54AF9DDe10bB0215D',
+                    'merchant_id' => '9d81f9674e78b18001ac150c3fe1da30',
+                    'ipn_secret' => 'aD3e01b71FEe0A5aE3bc6ea7986Bbb92615a72559deb31A54AF9DDe10bB0215D786'
+                ]),
                 'is_default' => true
             ],
             [
                 'name' => 'MONEI',
                 'description' => 'Many of Southern Europe’s most successful brands trust MONEI',
                 'logo_url' => 'https://assets.monei.com/images/logo.svg',
+                'meta_info' => json_encode([
+                    'api_key' => 'pk_test_8ac935c2a1083f011d458c63cbc348cd'
+                ]),
                 'is_default' => false
             ],
             [
                 'name' => 'Viva.com',
                 'description' => 'Powering payments on 1165+ devices, in 24 European markets.',
                 'logo_url' => 'https://accounts.vivapayments.com/img/viva-com-logo-circle.c703f32b.svg',
+                'meta_info' => json_encode([
+                    'api_key' => '8d2c8852-4424-41cf-bd39-38ef3a879da8',
+                    'merchant_id' => '8d2c8852-4424-41cf-bd39-38ef3a879da9',
+                    'api_url' => 'https://demo.vivapayments.com/api/orders',
+                    'checkout_url' => 'https://demo.vivapayments.com/web/checkout',
+                ]),
                 'is_default' => false
             ],
             [

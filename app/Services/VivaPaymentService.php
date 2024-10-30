@@ -7,21 +7,19 @@ use GuzzleHttp\Client;
 use GuzzleHttp\Exception\RequestException;
 use Illuminate\Support\Facades\Log;
 use App\Models\Order;
+use App\Models\PaymentMethod;
 
 class VivaPaymentService
 {
     private $client;
-    private $baseUrl;
     private $bearerToken;
+    protected $payments_method_detail;
 
     public function __construct()
     {
-        $this->baseUrl = 'https://demo.vivapayments.com';
-        $merchantId = '8d2c8852-4424-41cf-bd39-38ef3a879da9';
-        $apiKey = '8d2c8852-4424-41cf-bd39-38ef3a879da8';
-
-        $this->bearerToken = base64_encode("{$merchantId}:{$apiKey}");
-        $this->client = new Client(['base_uri' => $this->baseUrl]);
+        $this->payments_method_detail = PaymentMethod::where('name','Viva.com')->first();
+        $this->bearerToken = base64_encode("{$this->payments_method_detail->meta_info->merchant_id}:{$this->payments_method_detail->meta_info->api_key}");
+        $this->client = new Client();
     }
 
     public function processVivaPayment(Order $order)
@@ -50,12 +48,11 @@ class VivaPaymentService
                 'sourceCode' => 8206,
                 'merchantTrns' => $order->id,
                 'redirectUrl' => route('frontend.thank-you', [$order]),
-                // 'successUrl' => route('frontend.thank-you', [$order]),
                 'cancelUrl' => route('frontend.payment.error', ['status' => 'cancel']),
                 'orderDescription' => 'Purchase of items in Order #' . $order->id,
             ];
 
-            $response = $this->client->post('/api/orders', [
+            $response = $this->client->post($this->payments_method_detail->meta_info->api_url, [
                 'json' => $payload,
                 'headers' => [
                     'Authorization' => 'Basic ' . $this->bearerToken,
@@ -66,7 +63,7 @@ class VivaPaymentService
             $responseData = json_decode($response->getBody(), true);
             
             if (!empty($responseData['OrderCode'])) {
-                $responseData['payment_url'] = 'https://demo.vivapayments.com/web/checkout?ref='.$responseData['OrderCode'];
+                $responseData['payment_url'] = $this->payments_method_detail->meta_info->checkout_url.'?ref='.$responseData['OrderCode'];
             }
 
             return $responseData;

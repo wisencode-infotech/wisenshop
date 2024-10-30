@@ -65,11 +65,20 @@ class PaymentMethodController extends Controller
             'name' => 'required|string|max:100',
         ]);
 
+        $metaInfoData = [];
+        if ($request->has('meta_info')) {
+            foreach ($request->meta_info as $item) {
+                $metaInfoData[$item['key']] = $item['value'];
+            }
+        }
+        $metaInfoJson = json_encode($metaInfoData);
+
         // Create a new payment method in the database
         $payment_method = PaymentMethod::create([
             'logo_url' => $request->logo_url,
             'name' => $request->name,
             'description' => $request->description,
+            'meta_info' => $metaInfoJson,
             'is_default' => $request->has('is_default') ? true : false
         ]);
 
@@ -107,10 +116,20 @@ class PaymentMethodController extends Controller
             'name' => 'required|string|max:100',
         ]);
 
+        $metaInfo = [];
+        if ($request->has('meta_info')) {
+            foreach ($request->meta_info as $meta) {
+                if (!empty($meta['key']) && !empty($meta['value'])) {
+                    $metaInfo[$meta['key']] = $meta['value'];
+                }
+            }
+        }
+
         $data = [
             'logo_url' => $request->logo_url,
             'name' => $request->name,
             'description' => $request->description,
+            'meta_info' => json_encode($metaInfo),
             'is_default' => $request->has('is_default') ? true : false
         ];
 

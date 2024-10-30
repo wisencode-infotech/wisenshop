@@ -26,7 +26,7 @@
 
                     <!-- Logo URL Field -->
                     <div class="form-group mb-3">
-                        <label for="logo_url" class="form-label">Name</label>
+                        <label for="logo_url" class="form-label">Image URL</label>
                         <input type="url" name="logo_url" class="form-control @error('logo_url') is-invalid @enderror" value="{{ old('logo_url') }}" required>
                         @error('logo_url')
                             <span class="invalid-feedback" role="alert">
@@ -57,6 +57,13 @@
                         @enderror
                     </div>
 
+                    <div class="form-group mb-3">
+                        <label for="meta_info" class="form-label">Meta Info</label>
+                        <div id="meta-info-container">
+                        </div>
+                        <button type="button" class="btn btn-secondary btn-sm" onclick="addMetaField()">Add</button>
+                    </div>
+
                     <!-- is_default Field -->
                     <div class="form-group mb-3">
                         <input type="checkbox" name="is_default" id="is_default" class="form-check-inline @error('is_default') is-invalid @enderror" {{ old('is_default' == 1) ? 'checked' : '' }}>
@@ -80,4 +87,24 @@
 
 @endsection
 @section('script')
+<script>
+    function addMetaField() {
+        const container = document.getElementById('meta-info-container');
+        const index = container.children.length;
+
+        const div = document.createElement('div');
+        div.classList.add('d-flex', 'mb-2');
+        div.innerHTML = `
+            <input type="text" name="meta_info[${index}][key]" placeholder="Key" class="form-control me-2" required>
+            <input type="text" name="meta_info[${index}][value]" placeholder="Value" class="form-control me-2" required>
+            <button type="button" class="btn btn-danger btn-sm" onclick="removeMetaField(this)">Remove</button>
+        `;
+
+        container.appendChild(div);
+    }
+
+    function removeMetaField(button) {
+        button.parentElement.remove();
+    }
+</script>
 @endsection

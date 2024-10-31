@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use App\Models\FooterMenuSectionItem;
 use App\Models\FooterMenuSection;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Cache;
 use Yajra\DataTables\Facades\DataTables;
 use Illuminate\Support\Str;
 
@@ -90,7 +91,7 @@ class FooterMenuSectionItemController extends Controller
         return view('backend.footer-menu-section-items.edit', compact('footer_menu_section_item', 'footerMenuSections'));
     }
 
-    public function update(Request $request, FooterMenuSectionItem $footerMenuSectionItem)
+    public function update(Request $request, FooterMenuSectionItem $footer_menu_section_item)
     {
         $request->validate([
             'name' => 'required|string',
@@ -99,7 +100,7 @@ class FooterMenuSectionItemController extends Controller
             'is_system_built' => 'required|boolean',
             'status' => 'required|boolean',
             'url' => 'required_if:is_external,1|nullable',
-            'slug' => 'required_if:is_external,0|unique:footer_menu_section_items,slug,' . $footerMenuSectionItem->id,
+            'slug' => 'required_if:is_external,0|unique:footer_menu_section_items,slug,' . $footer_menu_section_item->id,
             // 'content' => 'required_if:is_external,0|nullable|string|required_if:is_system_built,0',
         ], [
             'name.required' => 'The name field is required.',
@@ -114,7 +115,7 @@ class FooterMenuSectionItemController extends Controller
             // 'content.required_if' => 'Content is required when the item is not external and not system built.',
         ]);
 
-        $footerMenuSectionItem->update([
+        $footer_menu_section_item->update([
             'name' => $request->name,
             'url' => $request->is_external == 1 ? $request->url : null,
             'slug' => $request->is_external == 0 ? $request->slug : null,
@@ -124,6 +125,10 @@ class FooterMenuSectionItemController extends Controller
             'content' => $request->content,
             'status' => $request->status
         ]);
+
+        $cache_key = 'page_content_' . $footer_menu_section_item->slug;
+
+        Cache::forget($cache_key);
 
         return redirect()->route('backend.footer-menu-section-item.index')
                          ->with('success', 'Item updated successfully.');

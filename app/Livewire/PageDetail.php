@@ -4,7 +4,7 @@ namespace App\Livewire;
 
 use Livewire\Component;
 use App\Models\FooterMenuSectionItem;
-use Illuminate\Support\Str;
+use Illuminate\Support\Facades\Cache;
 
 class PageDetail extends Component
 {
@@ -19,8 +19,14 @@ class PageDetail extends Component
 
     public function loadPageContent()
     {
-        $this->page_content = FooterMenuSectionItem::where('slug', $this->page_slug)->first();
-        
+        $cache_key = 'page_content_' . $this->page_slug;
+
+        $this->page_content = Cache::remember($cache_key, now()->addMinutes(30), function () {
+            return FooterMenuSectionItem::select('name', 'content') // Only fetch required columns
+                ->where('slug', $this->page_slug)
+                ->first();
+        });
+
         if (!$this->page_content) {
             abort(404, 'Page not found');
         }
@@ -28,6 +34,6 @@ class PageDetail extends Component
 
     public function render()
     {
-        return view('livewire.page-detail');
+        return view('livewire.page-detail', ['page_content' => $this->page_content]);
     }
 }

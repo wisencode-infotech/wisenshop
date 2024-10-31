@@ -293,3 +293,6 @@ button.reset_filter_btn:hover {
     margin-left: 50px;
 }
 
+#nprogress .bar {
+    background-color: red !important;
+}

@@ -57,7 +57,6 @@
     --h3: 1.5rem;
     --h4: 1.25rem;
     --h5: 1.125rem;
-    --h6: 1rem;
-    --livewire-progress-bar-color: red;
+    --h6: 1rem
 }
 </style>

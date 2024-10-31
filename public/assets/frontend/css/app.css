@@ -293,7 +293,3 @@ button.reset_filter_btn:hover {
     margin-left: 50px;
 }
 
-.livewire-progress-bar {
-    background-color: #ff6347; /* Your custom color */
-    height: 3px;
-}

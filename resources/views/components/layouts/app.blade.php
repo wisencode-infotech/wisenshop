@@ -10,13 +10,9 @@
 
     <link rel="icon" href="{{  asset(__setting('fav_logo')) }}" type="image/png"> 
 
-    @php
-        $site_customizer = Cache::remember('site_customizer', 60, function () {
-            return view('components.layouts.site-customizer')->render();
-        });
-    @endphp
-
-    {!! $site_customizer !!}
+    {!! Cache::rememberForever('site_customizer', function () {
+        return view('components.layouts.site-customizer')->render();
+    }) !!}
 
     <link rel="stylesheet" href="{{ mix('assets/frontend/css/mix.css') }}">
 

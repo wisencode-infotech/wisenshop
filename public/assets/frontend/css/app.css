@@ -294,5 +294,5 @@ button.reset_filter_btn:hover {
 }
 
 #nprogress .bar {
-    background-color: red !important;
+    background-color: var(--color-accent) !important;
 }

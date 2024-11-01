@@ -99,27 +99,22 @@ class Products extends Component
     public function render()
     {
         // Start building the query for products
-        $query = Product::query();
-
-        $query->where('public_visibility', 1);
+        $query = Product::with(['category', 'variations'])
+            ->where('public_visibility', 1);
 
         // Filter by category if a category_id is set
-        if ($this->category_id) {
-            $query->whereIn('category_id', [$this->category_id]);
-        }
+        $query->when($this->category_id, function ($q) {
+            $q->whereIn('category_id', [$this->category_id]);
+        });
 
         // Search filter
-        if ($this->search) {
-            $query->where('name', 'like', '%' . $this->search . '%');
-        }
+        $query->when($this->search, function ($q) {
+            $q->where('name', 'like', '%' . $this->search . '%');
+        });
 
         // Price range filter
-        if ($this->minPrice) {
-            $query->where('price', '>=', $this->minPrice);
-        }
-        if ($this->maxPrice) {
-            $query->where('price', '<=', $this->maxPrice);
-        }
+        $query->when($this->minPrice, fn($q) => $q->where('price', '>=', $this->minPrice))
+            ->when($this->maxPrice, fn($q) => $q->where('price', '<=', $this->maxPrice));
         
         switch ($this->default_home_sorting_method) {
             case 'random':

@@ -4,12 +4,13 @@ namespace App\Livewire;
 
 use Livewire\Component;
 use App\Models\Category;
+use Illuminate\Database\Eloquent\Collection;
 
 class ProductCategorySidebar extends Component
 {
     public $product_categories;
     public $selectedCategoryId = null;
-    public $subcategories;
+    public $subcategories = [];
     public $filter = ''; // For filtering subcategories
     public $showSubcategories = false; // Track whether to show subcategories
 
@@ -35,7 +36,7 @@ class ProductCategorySidebar extends Component
                 return Category::where('parent_id', $categoryId)->get();
             });
 
-            $this->showSubcategories = !empty($this->subcategories) && $this->subcategories->count(); // Show subcategories if available
+            $this->showSubcategories = !empty($this->subcategories) && ($this->subcategories instanceof Collection && $this->subcategories->count() > 0); // Show subcategories if available
         }
 
         $this->dispatch('filter_category_updated_event');

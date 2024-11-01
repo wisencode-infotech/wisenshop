@@ -14,6 +14,7 @@
             keyboard: true,
             slidesPerView: 1,
             spaceBetween: 10,
+            lazy: true,
             breakpoints: {
                 640: {
                     slidesPerView: 1,
@@ -40,8 +41,9 @@
                     <div wire:key="banner-{{ $banner->id }}" class="swiper-slide" style="width: 445.75px; margin-right: 24px;">
                         <div class="banner-slide-content">
                             <img alt="902" loading="lazy" width="445" height="205" decoding="async" data-nimg="1" class="h-auto w-full" 
-                                 srcset="{{ $banner->image_url  }}" 
-                                 src="{{ $banner->image_url  }}" style="color: transparent;">
+                                decoding="async" data-src="{{ $banner->image_url }}"
+                                srcset="{{ $banner->image_url  }}"
+                                style="color: transparent;">
                             
                             @if (!empty($banner->title) || !empty($banner->description))
                                 <div class="text-overlay">

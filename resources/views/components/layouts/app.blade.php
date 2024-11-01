@@ -10,7 +10,7 @@
 
     <link rel="icon" href="{{  asset(__setting('fav_logo')) }}" type="image/png"> 
 
-    {!! Cache::rememberForever('site_customizer', function () {
+    {!! Cache::rememberForever('site-customizer', function () {
         return view('components.layouts.site-customizer')->render();
     }) !!}
 

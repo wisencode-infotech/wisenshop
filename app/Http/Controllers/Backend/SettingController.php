@@ -7,6 +7,7 @@ use App\Models\Setting;
 use App\Models\Currency;
 use App\Models\SettingGroup;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Cache;
 use Illuminate\Support\Str;
 
 class SettingController extends Controller
@@ -73,6 +74,8 @@ class SettingController extends Controller
             }
             
         }
+
+        Cache::clear('site-customizer');
 
         return redirect()->route('backend.settings.index')->with('success', 'Settings updated successfully.');
     }

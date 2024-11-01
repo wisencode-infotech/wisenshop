@@ -13,7 +13,10 @@ class ProductDetail extends Component
 
     public function mount($product_slug)
     {
-        $this->product = Product::authenticated()->where('slug', $product_slug)->first();
+        $this->product = Product::authenticated()
+            ->with(['category', 'images']) // Add any related models here to eager load
+            ->where('slug', $product_slug)
+            ->first();
 
         if (!$this->product)
             abort(404, "product_not_found");

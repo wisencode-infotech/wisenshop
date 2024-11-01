@@ -52,20 +52,20 @@
 
                             <div class="flex overflow-hidden order-5 sm:order-4 w-9 sm:w-24 h-24 sm:h-10 bg-accent text-light rounded-full flex-col-reverse sm:flex-row absolute sm:relative bottom-0 sm:bottom-auto ltr:right-0 rtl:left-0 ltr:sm:right-auto ltr:sm:left-auto">
                                 
-                                <livewire:quantity-selector :product_id="$product->id" :key="'quantity-selector-' . $product->id" />
+                                <livewire:quantity-selector :product_id="$product->id" :key="'quantity-selector-' . $product->id" lazy />
 
-                                @livewire('product-stock', ['product_id' => $product->id, 'layout' => 'product-list'], key('product-stock-' . $product->id))
+                                @livewire('product-stock', ['product_id' => $product->id, 'layout' => 'product-list'], key('product-stock-' . $product->id), ['lazy' => true])
                             </div>
 
                             <div class="relative">
                                 <span class="text-sm font-semibold text-accent md:text-base">
-                                    @livewire('product-price', ['product_id' => $product->id], key('product-price-' . $product->id))
+                                    @livewire('product-price', ['product_id' => $product->id], key('product-price-' . $product->id), ['lazy' => true])
                                 </span>
                             </div>
 
                             @if ($product->variations()->count() > 0)
                                 <div class="flex">
-                                    @livewire('product-variation', ['product_id' => $product->id, 'layout' => 'products-list'], key('product-variation-' . $product->id))
+                                    @livewire('product-variation', ['product_id' => $product->id, 'layout' => 'products-list'], key('product-variation-' . $product->id), ['lazy' => true])
                                 </div>
                             @endif
                         </div>

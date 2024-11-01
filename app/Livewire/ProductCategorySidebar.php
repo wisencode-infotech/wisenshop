@@ -9,13 +9,13 @@ class ProductCategorySidebar extends Component
 {
     public $product_categories;
     public $selectedCategoryId = null;
-    public $subcategories = [];
+    public $subcategories;
     public $filter = ''; // For filtering subcategories
     public $showSubcategories = false; // Track whether to show subcategories
 
     public function mount($default_categories = null)
     {
-        $this->product_categories = cache()->rememberForever('main_categories', function() {
+        $this->product_categories = cache()->rememberForever('main-categories', function() {
             return Category::whereNull('parent_id')->get();
         });
         

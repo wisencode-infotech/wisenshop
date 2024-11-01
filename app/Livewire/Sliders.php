@@ -17,7 +17,7 @@ class Sliders extends Component
 
     public function getBanners()
     {
-        return Cache::rememberForever('site_banners', function () {
+        return Cache::rememberForever('site-banners', function () {
             return SiteBanner::all();
         });
     }

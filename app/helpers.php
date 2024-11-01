@@ -289,11 +289,11 @@ if (!function_exists('__updateCache'))
 
         return Cache::rememberForever($cache_key, function() use ($key) {
 
-            if ($key == 'site_banners') {
+            if ($key == 'site-banners') {
                 return SiteBanner::all();
-            } else if($key == 'all_categories') {
+            } else if($key == 'all-categories') {
                 return Category::all();
-            } else if($key == 'main_categories') {
+            } else if($key == 'main-categories') {
                 return Category::whereNull('parent_id')->get();
             } 
 
@@ -411,5 +411,13 @@ if (!function_exists('notification'))
     function notification()
     {
         return new Notification();
+    }
+}
+
+if (!function_exists('__clearCache')) 
+{
+    function __clearCache($cache_key)
+    {   
+        Cache::forget($cache_key);
     }
 }

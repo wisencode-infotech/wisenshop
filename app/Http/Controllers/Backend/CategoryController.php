@@ -92,8 +92,8 @@ class CategoryController extends Controller
             'parent_id' => $request->parent_id ?? NULL,
         ]);
 
-        __updateCache('all_categories');
-        __updateCache('main_categories');
+        __clearCache('all-categories');
+        __clearCache('main-categories');
 
         return redirect()->route('backend.category.index')
                          ->with('success', 'Category created successfully.');
@@ -152,8 +152,8 @@ class CategoryController extends Controller
         // Update the category data
         $category->update($data);
 
-        __updateCache('all_categories');
-        __updateCache('main_categories');
+        __clearCache('all-categories');
+        __clearCache('main-categories');
 
         return redirect()->route('backend.category.index')
                          ->with('success', 'Category updated successfully.');
@@ -167,8 +167,8 @@ class CategoryController extends Controller
         $category = Category::find($id);
         if ($category) {
             $category->delete();
-            __updateCache('all_categories');
-            __updateCache('main_categories');
+            __clearCache('all-categories');
+            __clearCache('main-categories');
             return response()->json(['success' => 'Category deleted successfully.']);
         }
         return response()->json(['error' => 'Category not found.'], 404);

@@ -9,26 +9,21 @@ use Illuminate\Support\Facades\Cache;
 class MobileTopbarFilters extends Component
 {
     public $product_categories;
-    public $selected_category_id;
+    public $selected_category_id = null;
 
     public function mount()
     {
-        $this->product_categories = $this->getCategory();
-        $this->selected_category_id = null;
+        $this->product_categories = $this->getCategories();
     }
 
     public function selectCategory($category_id = null)
     {
-        if (empty($category_id)) {
-            $this->selected_category_id = null;
-        } else {
-            $this->selected_category_id = $category_id;
-        }
+        $this->selected_category_id = $category_id;
 
         $this->skipRender();
     }
 
-    public function getCategory()
+    public function getCategories()
     {
         return Cache::rememberForever('all-categories', function () {
             return Category::where('parent_id', null)->get();
@@ -37,8 +32,6 @@ class MobileTopbarFilters extends Component
 
     public function render()
     {
-        return view('livewire.mobile-topbar-filters', [
-            'product_categories' => $this->product_categories,
-        ]);
+        return view('livewire.mobile-topbar-filters');
     }
 }

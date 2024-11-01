@@ -1,7 +1,6 @@
 function initializeCategoryDropdown() {
     // Toggle dropdown visibility on button click
     $('.mobile-category-dropdown-btn').on('click', function () {
-        console.log(1);
         $('.mobile-category-dropdown').toggleClass('hidden');
     });
 

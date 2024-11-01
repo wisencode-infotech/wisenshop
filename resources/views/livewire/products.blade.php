@@ -26,7 +26,11 @@
                         
                         <span class="sr-only">{{ __trans('Product') }} {{ __trans('Image') }}</span>
 
-                        
+                        <img alt="{{ $product->title }}" loading="lazy" decoding="async" data-nimg="fill"
+                            class="block object-contain product-image"
+                            style="position:absolute;height:100%;width:100%;left:0;top:0;right:0;bottom:0;color:transparent"
+                            wire:navigate href="{{ route('frontend.product-detail', ['product_slug' => $product->slug]) }}"
+                            sizes="(max-width: 768px) 100vw" src="{{ $product->display_image_url }}">
 
                         <div class="absolute top-0 left-0 py-1 px-2">
                             @livewire('wishlist-button', ['product_id' => $product->id, key($product->id)])

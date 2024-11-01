@@ -12,7 +12,7 @@ class Footer extends Component
 
     public function render()
     {
-        $menu_sections = Cache::rememberForever('footer_menu_sections', function () {
+        $menu_sections = Cache::rememberForever('footer-menu-sections', function () {
             return FooterMenuSection::all();
         });
 

@@ -39,7 +39,7 @@ class FooterMenuSectionController extends Controller
 
         FooterMenuSection::create(['name' => $request->name]);
 
-        Cache::forget('footer_menu_sections');
+        Cache::forget('footer-menu-sections');
 
         return redirect()->route('backend.footer-menu-sections.index')
                          ->with('success', 'Footer Menu Section created successfully.');
@@ -54,7 +54,7 @@ class FooterMenuSectionController extends Controller
     {
         $request->validate(['name' => 'required|string|max:255']);
 
-        Cache::forget('footer_menu_sections');
+        Cache::forget('footer-menu-sections');
 
         $footerMenuSection->update(['name' => $request->name]);
         return redirect()->route('backend.footer-menu-sections.index')
@@ -70,7 +70,7 @@ class FooterMenuSectionController extends Controller
             
             $footerMenuSection->delete();
 
-            Cache::forget('footer_menu_sections');
+            Cache::forget('footer-menu-sections');
 
             return response()->json(['success' => 'Footer Menu Section deleted successfully.']);
         }

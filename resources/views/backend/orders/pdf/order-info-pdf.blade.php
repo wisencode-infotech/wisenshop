@@ -39,16 +39,14 @@
 
 <body>
     <div class="logo">
-        <img src="{{ public_path('assets/frontend/img/header_logo.png') }}" alt="Logo" height="80">
+        <img src="{{ public_path('assets/frontend/img/header_logo.png') }}" alt="Logo">
     </div>
-    <div class="title">Orders</div>
-
-    @foreach ($orders as $order)
+    <div class="title">Order #{{ $order->order_number }}</div>
 
     @php 
-        $currency = $order->currency; 
-        $extraInformation = json_decode($order->extra_information, true);
-    @endphp
+            $currency = $order->currency; 
+            $extraInformation = json_decode($order->extra_information, true);
+        @endphp
 
         <div style="border:2px solid black;margin:20px 0;page-break-inside: avoid;">
             <table class="table">
@@ -164,6 +162,6 @@
                 </tfoot>
             </table>
         </div>
-    @endforeach
+
 </body>
 </html>

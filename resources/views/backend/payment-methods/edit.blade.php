@@ -70,7 +70,7 @@
                     </div>
 
                     <div class="form-group mb-3">
-                        <label class="form-label">Meta Information</label>
+                        <label class="form-label">Integration Additional Information (Ex. - API Key, Secret, Access Token, etc...)</label>
                         <div id="meta-info-container">
                             @foreach($payment_method->meta_info ?? [] as $key => $value)
                                 <div class="d-flex mb-2 meta-info-row">
@@ -80,7 +80,7 @@
                                 </div>
                             @endforeach
                         </div>
-                        <button type="button" class="btn btn-secondary mt-2" id="btn-add-meta-info">Add</button>
+                        <button type="button" class="btn btn-secondary mt-2" id="btn-add-meta-info">Add Additional Information Key/Pair</button>
                     </div>
 
                     <!-- Submit Button -->

@@ -77,7 +77,6 @@
                     <address>
                         <strong>Payment Method</strong><br>
                         {{ $order->payment->details->name }}<br>
-                        {{ $order->payment->details->description }}
                     </address>
                     @endif
 
@@ -148,6 +147,10 @@
                     <div class="d-print-none">
                         <div class="float-end">
                             <a href="javascript:window.print()" class="btn btn-success waves-effect waves-light me-1"><i class="fa fa-print"></i></a>
+                        </div>
+
+                        <div class="float-end">
+                            <a href="{{ route('backend.order.download-pdf', $order->id) }}" class="btn btn-danger waves-effect waves-light me-1"><i class="fa fa-download"></i></a>
                         </div>
                     </div>
                 </div>

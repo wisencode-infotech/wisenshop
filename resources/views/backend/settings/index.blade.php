@@ -22,6 +22,8 @@
 
                         @foreach ($setting_groups as $setting_group_id => $setting_group_title)
 
+                        <h2 class="mt-5 mb-3">{{ Str::of($setting_group_title)->replace('-', ' ')->title() }}</h2>
+
                             @if ($setting_group_title === 'logos')
                                 @foreach ($settings->where('setting_group_id', $setting_group_id) as $setting)
                                         <div class="form-group mb-3">

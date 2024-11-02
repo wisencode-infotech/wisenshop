@@ -16,30 +16,52 @@ class DefaultSettingSeeder extends Seeder
         SettingGroup::insert([
             [
                 'title' => 'logos',
-                'sequence' => 1,
-                'created_at' => date('Y-m-d H:i:s')
-            ],
-            [
-                'title' => 'contact-correspondence',
                 'sequence' => 2,
                 'created_at' => date('Y-m-d H:i:s')
             ],
             [
-                'title' => 'social-media',
+                'title' => 'contact-correspondence',
                 'sequence' => 3,
                 'created_at' => date('Y-m-d H:i:s')
             ],
             [
-                'title' => 'site-colors',
+                'title' => 'social-media',
                 'sequence' => 4,
                 'created_at' => date('Y-m-d H:i:s')
             ],
             [
-                'title' => 'general',
+                'title' => 'site-colors',
                 'sequence' => 5,
+                'created_at' => date('Y-m-d H:i:s')
+            ],
+            [
+                'title' => 'general',
+                'sequence' => 6,
+                'created_at' => date('Y-m-d H:i:s')
+            ],
+            [
+                'title' => 'order',
+                'sequence' => 1,
                 'created_at' => date('Y-m-d H:i:s')
             ]
         ]);
+
+        // Order settings
+        $order_settings = [
+            'order_number_prefix' => '0000'
+        ];
+
+        $setting_sort_number = 1;
+
+        foreach ($order_settings as $key => $value) {
+            Setting::updateOrCreate([
+                'key' => $key,
+            ], [
+                'value' => $value,
+                'setting_group_id' => 6,
+                'sort_number' => $setting_sort_number++
+            ]);
+        }
 
         // Logos settings
         $logos_settings = [

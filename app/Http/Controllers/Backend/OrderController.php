@@ -88,6 +88,19 @@ class OrderController extends Controller
         return view('backend.orders.show', compact('order', 'status', 'status_color', 'extra_information', 'all_statuses'));
     }
 
+    public function downloadPdf(Order $order)
+    { 
+        $export_name = $order->order_number.'.pdf';
+
+        $pdf = PDF::loadView('backend.orders.pdf.order-info-pdf', [
+            'order' => $order
+        ]);
+
+        // Return the generated PDF in the browser
+        return $pdf->stream($export_name);
+
+    }
+
     public function updateStatus(Order $order)
     {
         $this->order_service->setRecord($order);

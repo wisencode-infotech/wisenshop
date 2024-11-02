@@ -72,6 +72,8 @@ Route::middleware(['auth', 'check.role:admin'])->group(function () {
     Route::group(['prefix' => 'order', 'as' => 'order.'], function () {
         Route::post('status/{order}', [OrderController::class, 'updateStatus'])->name('update.status');
         Route::post('change-status', [OrderController::class, 'changeStatus'])->name('change.status');
+        Route::get('download-pdf/{order}', [OrderController::class, 'downloadPdf'])->name('download-pdf');
+        
 
         Route::group(['prefix' => 'bulk', 'as' => 'bulk.'], function () {
             Route::post('export', [OrderController::class, 'bulkExport'])->name('export');

@@ -2,6 +2,7 @@
 
 namespace App\Services;
 
+use App\Jobs\SendOrderPlacedEmailJob;
 use App\Mail\OrderPlacedMail;
 use App\Mail\OrderStatusChangedMail;
 use App\Models\Transaction;
@@ -9,6 +10,7 @@ use App\Models\User;
 use Illuminate\Support\Facades\Mail;
 use App\Services\ProductService;
 use Illuminate\Support\Facades\Auth;
+use PDF;
 
 class OrderService
 {
@@ -60,8 +62,10 @@ class OrderService
     protected function sendOrderPlacedEmail()
     {
         // Send order placed email to the customer
-        if ( !empty($this->order->customer) )
-            Mail::to($this->order->customer_contact_email)->queue(new OrderPlacedMail($this->order));
+        if ( !empty($this->order->customer) ){
+            SendOrderPlacedEmailJob::dispatch($this->order);
+        }
+            
     }
 
     protected function sendStatusChangedEmail()

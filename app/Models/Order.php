@@ -9,16 +9,40 @@ use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Database\Eloquent\Relations\BelongsToMany;
 use Illuminate\Database\Eloquent\SoftDeletes;
 use Illuminate\Database\Eloquent\Relations\HasOne;
+use Illuminate\Support\Str;
 
 class Order extends Model
 {
     use HasFactory, SoftDeletes;
 
     protected $fillable = [
+        'order_number',
         'user_id',
         'status',
         'total_price'
     ];
+
+    protected static function boot()
+    {
+        parent::boot();
+
+        static::creating(function ($order) {
+            $prefix = __setting('order_number_prefix') ?? 'ORD-';
+
+            do {
+                $latestOrder = self::latest('id')->first();
+                $nextId = $latestOrder ? $latestOrder->id + 1 : 1;
+                $orderNumber = $prefix . $nextId;
+
+                if (self::where('order_number', $orderNumber)->exists()) {
+                    $orderNumber .= '-' . Str::random(4);
+                }
+
+                $order->order_number = $orderNumber;
+
+            } while (self::where('order_number', $order->order_number)->exists());
+        });
+    }
 
     // Relationships
     public function user(): BelongsTo

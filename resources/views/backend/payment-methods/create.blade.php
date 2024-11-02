@@ -58,10 +58,10 @@
                     </div>
 
                     <div class="form-group mb-3">
-                        <label for="meta_info" class="form-label">Meta Info</label>
+                        <label for="meta_info" class="form-label">Integration Additional Information (Ex. - API Key, Secret, Access Token, etc...)</label>
                         <div id="meta-info-container">
                         </div>
-                        <button type="button" class="btn btn-secondary btn-sm" onclick="addMetaField()">Add</button>
+                        <button type="button" class="btn btn-secondary btn-sm" onclick="addMetaField()">Add Additional Information Key/Pair</button>
                     </div>
 
                     <!-- is_default Field -->

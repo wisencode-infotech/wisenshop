@@ -12,7 +12,7 @@
         <livewire:product-category-sidebar :default_categories="$default_categories" />
         <livewire:products lazy :category_id="$default_categories" />
     </div>
-    <livewire:product-cart-button lazy />
+    <livewire:product-cart-button />
 </div>
 
 @section('scripts')

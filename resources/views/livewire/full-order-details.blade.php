@@ -1,7 +1,7 @@
 <div class="flex w-full flex-col border border-border-200 bg-white">
     @if($order_data)
     <div class="flex flex-col items-center p-5 md:flex-row md:justify-between">
-        <h2 class="mb-2 flex text-sm font-semibold text-heading md:text-lg">Order Details <span class="px-2">-</span> {{ $order_data->id }}</h2>
+        <h2 class="mb-2 flex text-sm font-semibold text-heading md:text-lg">Order Details <span class="px-2">-</span> {{ $order_data->order_number ?? $order_data->id }}</h2>
         <div class="flex items-center">
             @if (Route::currentRouteName() !== 'frontend.orders.details')
             <a class="flex items-center text-sm font-semibold text-accent no-underline transition duration-200 hover:text-accent-hover focus:text-accent-hover" wire:navigate href="{{ route('frontend.orders.details', $order_data->id) }}">

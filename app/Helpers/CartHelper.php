@@ -280,7 +280,7 @@ class CartHelper
             'order_id' => $order->id,
             'payment_method_id' => $data['payment_method_id'],
             'amount' => $data['total_price'],
-            'status' => 'completed', // Change as per your payment status logic
+            'status' => 'pending', // Change as per your payment status logic
         ]);
 
         // Clear the cart after successful order placement

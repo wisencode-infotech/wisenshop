@@ -92,10 +92,12 @@ class CoinPaymentsService
             case $status >= 100:
                 $orderService->updateStatus(2); // Mark as paid
                 $orderService->saveOrderTransaction($transactionId, 'PAID');
+                $orderService->updatePaymentStatus('completed');
                 break;
             case $status < 0:
                 $orderService->updateStatus(5); // Mark as cancelled
                 $orderService->saveOrderTransaction($transactionId, 'CANCELLED');
+                $orderService->updatePaymentStatus('failed');
                 break;
             default:
                 $orderService->saveOrderTransaction($transactionId, 'UNPAID');

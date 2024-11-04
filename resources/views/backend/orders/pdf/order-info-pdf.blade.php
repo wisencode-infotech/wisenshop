@@ -1,167 +1,206 @@
 <!DOCTYPE html>
-<html>
-
+<html lang="en">
 <head>
-    <meta charset="utf-8">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Order Details</title>
     <style>
         body {
-            font-family: DejaVu Sans, sans-serif;
-            font-size: 12px;
+            font-family: Arial, sans-serif;
+            color: #333;
         }
-
-        .title {
-            text-align: left;
-            margin-bottom: 20px;
+        .container {
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 20px;
+            border: 1px solid #ddd;
         }
-
-        .logo {
+        .header, .footer {
             text-align: center;
-            margin-bottom: 10px;
+            padding: 10px 0;
         }
-
-        .table {
+        .logo {
+            float: left;
+            vertical-align: middle;
+        }
+        .status {
+            float: right;
+            padding: 5px 10px;
+            background-color: #f0f0f0;
+            border-radius: 5px;
+        }
+        .clear {
+            clear: both;
+        }
+        .summary {
+            margin-top: 20px;
+        }
+        .details {
+            padding: 10px;
+            border-top: 1px solid #ddd;
+            /* border-bottom: 1px solid #ddd; */
+            overflow: hidden;
+        }
+        .details-left {
+            float: left;
+            width: 48%;
+        }
+        .details-right {
+            float: right;
+            width: 48%;
+            text-align: right;
+        }
+        .summary-table {
             width: 100%;
             border-collapse: collapse;
+            margin-top: 10px;
+        }
+        .summary-table th {
+            padding: 10px;
+            font-size: 14px;
+            text-align: center;
         }
 
-        .table th,
-        .table td {
-            border: 1px solid #ddd;
-            padding: 8px;
+        .summary-table td {
+            padding: 10px;
+            font-size: 14px;
+            border-top: 1px solid #ddd;
+            text-align: center;
         }
 
-        .table th {
-            background-color: #f4f4f4;
-            text-align: left;
+        .total-row {
+            font-weight: bold;
         }
     </style>
 </head>
-
 <body>
-    <div class="logo">
-        <img src="{{ public_path('assets/frontend/img/header_logo.png') }}" alt="Logo">
-    </div>
-    <div class="title">Order #{{ $order->order_number }}</div>
+    <div class="container">
+        <!-- Header Section -->
+        <div class="header">
+            <div class="logo">
+                <img src="{{ public_path('assets/frontend/img/header_logo.png') }}" alt="PuriCBD" width="100">
+            </div>
+            <div class="status">
 
-    @php 
+            @php
+                $order_statuses_color = [
+                    1 => '#ffa500',  // Warning
+                    2 => '#28a745',  // Success
+                    3 => '#17a2b8',  // Info
+                    4 => '#007bff',  // Primary
+                    5 => '#dc3545',  // Danger
+                    6 => '#6c757d'   // Secondary
+                ];
+
+                $status_color = $order_statuses_color[$order->status] ?? '#000000';
+            @endphp
+
+                Order #{{ $order->order_number ?? $order->id }} - <span style="color: {{ $status_color }}">{{ config('general.order_statuses.' . $order->status) }}</span>
+            </div>
+            <div class="clear"></div>
+        </div>
+
+        @php 
             $currency = $order->currency; 
-            $extraInformation = json_decode($order->extra_information, true);
+            $extra_information = json_decode($order->extra_information, true);
         @endphp
 
-        <div style="border:2px solid black;margin:20px 0;page-break-inside: avoid;">
-            <table class="table">
-                <tbody>
-                    <tr>
-                        <td><strong>Order ID:</strong></td>
-                        <td>{{ $order->id }}</td>
-                    </tr>
-                    <tr>
-                        <td><strong>Username:</strong></td>
-                        <td>{{ $order->user->name ?? 'N/A' }}</td>
-                    </tr>
-
-                    @if(!empty($order->payment->details))
-                    <tr>
-                        <td><strong>Payment Method:</strong></td>
-                        <td>
-                            {{ $order->payment->details->name }}
-                        </td>
-                    </tr>
-                    @endif
-                    
+        <!-- Order Details Section -->
+        <div class="details" style="font-size: 12px;">
+            <div class="details-left">
 
                     @if(!empty($order->address->billing_address_id))
-                    <tr>
-                        <td><strong>Billing Address:</strong></td>
-                        <td> 
-                            {{ $order->address->billingAddress->address }}<br>
-                            {{ $order->address->billingAddress->city }}<br>
-                            {{ $order->address->billingAddress->state }},  {{ $order->address->billingAddress->postal_code }}<br>
-                            {{ $order->address->billingAddress->country }}
-                        </td>
-                    </tr>
+                    <span>
+                        <strong>Billed To:</strong><br>
+                        <p>{{ $order->user->name }}</p>
+                        <p>{{ $order->address->billingAddress->address }}</p>
+                        <p>{{ $order->address->billingAddress->city }}</p>
+                        <p>{{ $order->address->billingAddress->state }},  {{ $order->address->billingAddress->postal_code }}</p>
+                        <p>{{ $order->address->billingAddress->country }}</p>
+                    </span>
                     @endif
 
-                    @if(!empty($order->address->shipping_address_id))
-                    <tr>
-                        <td><strong>Shipping Address:</strong></td>
-                        <td> 
-                            {{ $order->address->shippingAddress->address }}<br>
-                            {{ $order->address->shippingAddress->city }}<br>
-                            {{ $order->address->shippingAddress->state }},  {{ $order->address->shippingAddress->postal_code }}<br>
-                            {{ $order->address->shippingAddress->country }}
-                        </td>
-                    </tr>
+                    @if(!empty($extra_information['customer_contact_email']))
+                    <p>{{ $extra_information['customer_contact_email'] ?? 'N/A' }}</p>
                     @endif
 
-                    <tr>
-                        <td><strong>Currency:</strong></td>
-                        <td>{{ $currency->code }}</td>
-                    </tr>
-
-                    @if(!empty($extraInformation['customer_contact_email']))
-                    <tr>
-                        <td><strong>Email:</strong></td>
-                        <td>{{ $extraInformation['customer_contact_email'] ?? 'N/A' }}</td>
-                    </tr>
+                    @if(!empty($extra_information['customer_contact_phone']))
+                    <p>{{ $extra_information['customer_contact_phone'] ?? 'N/A' }}</p>
                     @endif
 
-                    @if(!empty($extraInformation['customer_contact_phone']))
-                    <tr>
-                        <td><strong>Phone Number:</strong></td>
-                        <td>{{ $extraInformation['customer_contact_phone'] ?? 'N/A' }}</td>
-                    </tr>
+                    @if(!empty($extra_information['customer_additional_notes']))
+                    <p>Notes: {{ $extra_information['customer_additional_notes'] ?? 'N/A' }}</p>
                     @endif
 
-                    @if(!empty($extraInformation['customer_additional_notes']))
-                    <tr>
-                        <td><strong>Notes:</strong></td>
-                        <td>{{ $extraInformation['customer_additional_notes'] ?? 'N/A' }}</td>
-                    </tr>
+                    @if(!empty($order->payment->details))
+                    <span>
+                        <strong>Payment Method</strong><br>
+                        {{ $order->payment->details->name }}<br>
+                    </span>
                     @endif
 
-                </tbody>
-            </table>
+                  
+                    <span>
+                        <br><strong>Currency</strong><br>
+                        {{ $currency->code }}
+                    </span>
+            </div>
+            <div class="details-right">
+                @if(!empty($order->address->shipping_address_id))
+                <span class="mt-2 mt-sm-0">
+                    <strong>Shipped To:</strong><br>
+                    <p>{{ $order->address->shippingAddress->address }}</p>
+                    <p>{{ $order->address->shippingAddress->city }}</p>
+                    <p>{{ $order->address->shippingAddress->state }},  {{ $order->address->shippingAddress->postal_code }}<br></p>
+                    <p>{{ $order->address->shippingAddress->country }}</p>
+                </span>
+                @endif
+            </div>
+            <div class="clear"></div>
+        </div>
 
-            <table class="table mt-3">
+        <!-- Order Summary Section -->
+        <div class="summary">
+            <h5>Order Summary</h5>
+            <table class="summary-table">
                 <thead>
                     <tr>
-                        <th>Item Name</th>
-                        <th>Item Price</th>
-                        <th>Quantity</th>
-                        <th>Subtotal</th>
+                        <th style="text-align: left;">No.</th>
+                        <th style="text-align: left;">Item</th>
+                        <th style="text-align: right;">Price</th>
                     </tr>
                 </thead>
                 <tbody>
-                    @php $total = 0; @endphp
+                @php $subtotal = 0; $total = 0; @endphp
 
-                    @foreach ($order->products as $product)
-                        @php
-                            $quantity = $product->pivot->quantity;
-                            $price = $product->pivot->price;
-                        @endphp
+                @foreach($order->products as $index => $product)
 
-                        <!-- Loop through each product associated with the order -->
-                        <tr>
-                            <td>{{ $product->name ?? '' }}</td>
-                            <td>{{ $currency->symbol }}{{ number_format($price, 2) }}</td>
-                            <td>{{ $product->pivot->quantity }}</td> <!-- Use the pivot quantity -->
-                            <td>{{ $currency->symbol }}{{ number_format($price * $quantity, 2) }}</td>
-                            <!-- Calculate subtotal for each item -->
-                        </tr>
-                        @php 
-                            $total += $price * $quantity; 
-                        @endphp
-                    @endforeach
+                @php
+                    $price = $product->pivot->price;
+                    $quantity = $product->pivot->quantity;
+                @endphp
+
+                <tr>
+                    <td style="text-align: left;">{{ ++$index }}</td>
+                    <td style="text-align: left;">{{ $quantity .' X '. $product->name }}</td>
+                    <td style="text-align: right;">{{ $currency->symbol }}{{ $price * $quantity }}</td>
+                </tr>
+                @php $subtotal += $price * $quantity; @endphp
+                @php $total += $price * $quantity; @endphp
+                @endforeach
+                <tr class="total-row">
+                    <td colspan="2" class="text-end" style="text-align:right">Sub Total</td>
+                    <td style="text-align: right;">{{ $currency->symbol }}{{ number_format($subtotal, 2) }}</td>
+                </tr>
+                <tr class="total-row">
+                    <td colspan="2" style="text-align: right;" class="border-0 text-end">
+                        <strong>Total</strong>
+                    </td>
+                    <td style="text-align: right;"><h4 class="m-0">{{ $currency->symbol }} {{ number_format($total, 2) }}</h4></td>
+                </tr>
                 </tbody>
-                <tfoot>
-                    <tr>
-                        <td colspan="3" style="text-align: right;"><strong>Total:</strong></td>
-                        <td><strong>{{ $currency->symbol }}{{ number_format($total, 2) }}</strong></td>
-                    </tr>
-                </tfoot>
             </table>
         </div>
-
+    </div>
 </body>
 </html>

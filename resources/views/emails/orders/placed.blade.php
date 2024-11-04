@@ -1,5 +1,5 @@
 <x-mail::message>
-# Order Confirmation - Order #{{ $order->id }}
+# Order Confirmation - Order #{{ $order->order_number ?? $order->id }}
 
 Hello {{ $customer->name }},
 

@@ -54,8 +54,8 @@
             <table class="table">
                 <tbody>
                     <tr>
-                        <td><strong>Order ID:</strong></td>
-                        <td>{{ $order->id }}</td>
+                        <td><strong>Order:</strong></td>
+                        <td>{{ $order->order_number ?? $order->id }}</td>
                     </tr>
                     <tr>
                         <td><strong>Username:</strong></td>

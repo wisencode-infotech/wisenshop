@@ -17,7 +17,7 @@
         <div class="card-body">
             <div class="invoice-title">
                 <div class="float-end">
-                    <h4 class="float-end font-size-16">Order # {{ $order->id }}</h4>
+                    <h4 class="float-end font-size-16">Order # {{ $order->order_number ?? $order->id }}</h4>
                     <br>
 
                     <select class="form-control change_status form-control-sm" style="width: auto; margin-right: 5px;">

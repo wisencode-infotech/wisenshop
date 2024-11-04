@@ -109,10 +109,12 @@ class VivaPaymentService
         if ($status === 'SUCCEEDED') {
             $orderService->updateStatus(2); // Update status to "Paid"
             $orderService->saveOrderTransaction($orderCode, 'PAID');
+            $orderService->updatePaymentStatus('completed');
             CartHelper::clearDatabaseCart($order->user_id); // Assuming this clears the user's cart
         } else {
             $orderService->updateStatus(5); // Update status to "Failed"
             $orderService->saveOrderTransaction($orderCode, 'FAILED');
+            $orderService->updatePaymentStatus('failed');
         }
     }
 }

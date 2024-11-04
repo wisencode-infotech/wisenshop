@@ -103,9 +103,11 @@ class MoneiPaymentService
         if ($status === 'SUCCEEDED') {
             $orderService->updateStatus(2); // Update status to "Paid"
             $orderService->saveOrderTransaction($transactionId, 'PAID');
+            $orderService->updatePaymentStatus('completed');
             CartHelper::clearDatabaseCart($order->user_id);
         } else {
             $orderService->updateStatus(5); // Update status to "Failed"
+            $orderService->updatePaymentStatus('failed');
             $orderService->saveOrderTransaction($transactionId, 'FAILED');
         }
     }

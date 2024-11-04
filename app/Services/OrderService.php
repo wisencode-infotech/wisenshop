@@ -5,6 +5,7 @@ namespace App\Services;
 use App\Jobs\SendOrderPlacedEmailJob;
 use App\Mail\OrderPlacedMail;
 use App\Mail\OrderStatusChangedMail;
+use App\Models\Payment;
 use App\Models\Transaction;
 use App\Models\User;
 use Illuminate\Support\Facades\Mail;
@@ -43,7 +44,7 @@ class OrderService
 
         $data = [
             'title' => 'Order Placed',
-            'message' => 'Your order #' . $order->id . ' has been placed successfully.',
+            'message' => 'Your order #' . $order->order_number ?? $order->id . ' has been placed successfully.',
             'user_id' => $order->user->id,
             'is_global' => false,
             'type' => 'order',
@@ -88,5 +89,12 @@ class OrderService
     public function updateFranchiseCommision($status) 
     {    
         (new UserService($this->order->user))->handleUserCommission($this->order, $status);
+    }
+
+    public function updatePaymentStatus($status)
+    {
+        $payment = Payment::where('order_id', $this->order->id)->first();
+        $payment->status = $status;
+        $payment->save();
     }
 }

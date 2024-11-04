@@ -77,31 +77,35 @@ class Checkout extends Component
     public function copyShippingAddress()
     {
         if ($this->copy_to_billing && $this->selected_shipping_address_id) {
-            $shipping_address = ShippingAddress::find($this->selected_shipping_address_id);
-            if ($shipping_address) {
+            
+            $this->selected_billing_address_id = null;
+
+
+            // $shipping_address = ShippingAddress::find($this->selected_shipping_address_id);
+            // if ($shipping_address) {
                 
-                $billing_address = BillingAddress::where('shipping_address_id', $this->selected_shipping_address_id)->first();
+            //     $billing_address = BillingAddress::where('shipping_address_id', $this->selected_shipping_address_id)->first();
 
-                if(empty($billing_address))    {
-                    $billing_address = BillingAddress::create([
-                        'user_id' => auth()->id(),
-                        'shipping_address_id' => $shipping_address->id,
-                        'address' => $shipping_address->address,
-                        'city' => $shipping_address->city,
-                        'state' => $shipping_address->state,
-                        'postal_code' => $shipping_address->postal_code,
-                        'country' => $shipping_address->country,
-                    ]);
+            //     if(empty($billing_address))    {
+            //         $billing_address = BillingAddress::create([
+            //             'user_id' => auth()->id(),
+            //             'shipping_address_id' => $shipping_address->id,
+            //             'address' => $shipping_address->address,
+            //             'city' => $shipping_address->city,
+            //             'state' => $shipping_address->state,
+            //             'postal_code' => $shipping_address->postal_code,
+            //             'country' => $shipping_address->country,
+            //         ]);
 
-                    $this->selected_billing_address_id = $billing_address->id;
-                }
+            //         $this->selected_billing_address_id = $billing_address->id;
+            //     }
 
-                $this->selected_billing_address_id = $billing_address->id;
+            //     $this->selected_billing_address_id = $billing_address->id;
 
-                $this->copy_to_billing = false;
+            //     $this->copy_to_billing = false;
 
-                $this->billing_addresses = BillingAddress::where('user_id', auth()->id())->get();
-            }
+            //     $this->billing_addresses = BillingAddress::where('user_id', auth()->id())->get();
+            // }
         }
     }
 
@@ -162,6 +166,26 @@ class Checkout extends Component
         }
 
         if ( empty($stock_available) ) {
+
+            if ($this->copy_to_billing) {
+
+                $shipping_address = ShippingAddress::find($this->selected_shipping_address_id);
+
+                if ($shipping_address) {
+
+                    $billing_address = BillingAddress::create([
+                        'user_id' => auth()->id(),
+                        'address' => $shipping_address->address,
+                        'city' => $shipping_address->city,
+                        'state' => $shipping_address->state,
+                        'postal_code' => $shipping_address->postal_code,
+                        'country' => $shipping_address->country,
+                    ]);
+
+                    $this->selected_billing_address_id = $billing_address->id;
+                }
+            }
+
             $order_id = CartHelper::createOrder([
                 'shipping_address_id' => $this->selected_shipping_address_id,
                 'billing_address_id' => $this->selected_billing_address_id,

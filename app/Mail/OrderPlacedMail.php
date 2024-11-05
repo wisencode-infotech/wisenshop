@@ -45,7 +45,8 @@ class OrderPlacedMail extends Mailable
     public function content(): Content
     {
         return new Content(
-            markdown: 'emails.orders.placed',
+            // markdown: 'emails.orders.placed',
+            view: 'emails.orders.order-template',
             with: [
                 'order' => $this->order,
                 'customer' => $this->order->customer ?? ''

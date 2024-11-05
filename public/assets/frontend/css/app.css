@@ -152,6 +152,10 @@ button.reset_filter_btn:hover {
     margin-right: 50px;
 }
 
+.custom-min-h-50{
+    min-height: 50px;
+}
+
 .border-1 {
     border-width: 1px;
 }

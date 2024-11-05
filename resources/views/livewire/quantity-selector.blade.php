@@ -1,5 +1,6 @@
-<div x-data="{ quantity: @entangle('quantity'), stockAvailable: {{ json_encode($stock_available) }} }">
-    <template x-if="stockAvailable">
+<div x-data="{ quantity: @entangle('quantity'), stockAvailable: {{ json_encode($stock_available) }} }"> 
+    
+<template x-if="stockAvailable">
         <div>
             <template x-if="'{{ $layout }}' === 'cart'">
                 <div x-data="{ quantity: @entangle('quantity'), debounceTimeout: null }" 

@@ -25,10 +25,18 @@
         }
         .status {
             float: right;
+            /* padding: 5px 10px; */
+            /* background-color: #f0f0f0; */
+            /* border-radius: 5px; */
+        }
+
+        .order_number {
+            /* float: right; */
             padding: 5px 10px;
             background-color: #f0f0f0;
             border-radius: 5px;
         }
+
         .clear {
             clear: both;
         }
@@ -82,20 +90,25 @@
             </div>
             <div class="status">
 
-            @php
-                $order_statuses_color = [
-                    1 => '#ffa500',  // Warning
-                    2 => '#28a745',  // Success
-                    3 => '#17a2b8',  // Info
-                    4 => '#007bff',  // Primary
-                    5 => '#dc3545',  // Danger
-                    6 => '#6c757d'   // Secondary
-                ];
+                @php
+                    $order_statuses_color = [
+                        1 => '#ffa500',  // Warning
+                        2 => '#28a745',  // Success
+                        3 => '#17a2b8',  // Info
+                        4 => '#007bff',  // Primary
+                        5 => '#dc3545',  // Danger
+                        6 => '#6c757d'   // Secondary
+                    ];
 
-                $status_color = $order_statuses_color[$order->status] ?? '#000000';
-            @endphp
+                    $status_color = $order_statuses_color[$order->status] ?? '#000000';
+                @endphp
 
-                Order #{{ $order->order_number ?? $order->id }} - <span style="color: {{ $status_color }}">{{ config('general.order_statuses.' . $order->status) }}</span>
+                <span>
+                    <b class="order_number"> #{{ $order->order_number ?? $order->id }}</b>
+                    <b class="order_number" style="background-color: {{ $status_color }}">{{ config('general.order_statuses.' . $order->status) }}</b>
+                </span>
+
+                
             </div>
             <div class="clear"></div>
         </div>
@@ -110,7 +123,7 @@
             <div class="details-left">
 
                     @if(!empty($order->address->billing_address_id))
-                    <span>
+                    <span style="line-height: 0.6;">
                         <strong>Billed To:</strong><br>
                         <p>{{ $order->user->name }}</p>
                         <p>{{ $order->address->billingAddress->address }}</p>
@@ -147,7 +160,7 @@
             </div>
             <div class="details-right">
                 @if(!empty($order->address->shipping_address_id))
-                <span class="mt-2 mt-sm-0">
+                <span style="line-height: 0.6;" class="mt-2 mt-sm-0">
                     <strong>Shipped To:</strong><br>
                     <p>{{ $order->address->shippingAddress->address }}</p>
                     <p>{{ $order->address->shippingAddress->city }}</p>
@@ -182,13 +195,13 @@
 
                 <tr>
                     <td style="text-align: left;">{{ ++$index }}</td>
-                    <td style="text-align: left;">{{ $quantity .' X '. $product->name }}</td>
-                    <td style="text-align: right;">{{ $currency->symbol }}{{ $price * $quantity }}</td>
+                    <td style="text-align: left;font-weight:bold;font-size:12px;">{{ $quantity .' X '. $product->name }}</td>
+                    <td style="text-align: right;font-weight:bold;">{{ $currency->symbol }}{{ $price * $quantity }}</td>
                 </tr>
                 @php $subtotal += $price * $quantity; @endphp
                 @php $total += $price * $quantity; @endphp
                 @endforeach
-                <tr class="total-row">
+                <tr class="total-row" style="display: none;">
                     <td colspan="2" class="text-end" style="text-align:right">Sub Total</td>
                     <td style="text-align: right;">{{ $currency->symbol }}{{ number_format($subtotal, 2) }}</td>
                 </tr>

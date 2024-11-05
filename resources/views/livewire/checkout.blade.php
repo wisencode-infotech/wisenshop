@@ -2,9 +2,7 @@
 
 <div class="bg-gray-100 px-4 py-8 lg:py-10 lg:px-8 xl:py-14 xl:px-16 2xl:px-20">
    <div class="m-auto flex w-full max-w-5xl flex-col items-center rtl:space-x-reverse lg:flex-row lg:items-start lg:space-x-8">
-      <div wire:loading.flex wire:target="placeOrder" class="absolute inset-0 z-10 flex items-center justify-center bg-accent bg-opacity-10">
-         <div class="loader"></div>
-     </div>
+      
       <div class="w-full space-y-6 lg:max-w-2xl">
         <h3 class="text-2xl font-bold text-heading">{{ __trans('Checkout') }}</h3>
          <div class="bg-light p-5 shadow-700 md:p-8">
@@ -30,7 +28,14 @@
 
             @error('phone') <span class="text-red-500">{{ $message }}</span> @enderror
          </div>
+         <div wire:loading.flex wire:target.except="placeOrder, selectPaymentMethod" class="fixed inset-0 z-10 flex items-center justify-center bg-accent-400 bg-opacity-10">
+               <div class="loader"></div>
+         </div>
 
+         <div wire:loading.flex  wire:target="placeOrder" class="fixed inset-0 z-10 flex items-center justify-center bg-accent-400 bg-opacity-10">
+               <div class="loader"></div>
+         </div>
+         
          <div class="bg-light p-5 shadow-700 md:p-8">
             <div class="mb-5 flex items-center justify-between md:mb-8">
                <div class="flex items-center space-x-3 rtl:space-x-reverse md:space-x-4">
@@ -49,7 +54,7 @@
                <div class="grid grid-cols-1 gap-4 sm:grid-cols-2 md:grid-cols-3" role="none">
 
                @if(count($shipping_addresses) != 0)
-                   @foreach($shipping_addresses as $shipping_address)  
+                   @foreach($shipping_addresses as $shipping_address) 
                      <div id="headlessui-radiogroup-option-:re:" role="radio" aria-checked="false" tabindex="0" data-headlessui-state="">
                         <div wire:click="selectShippingAddress({{ $shipping_address->id }})" class="group relative cursor-pointer rounded border p-4 hover:border-accent border-transparent bg-gray-100 shipping_address_container {{ $selected_shipping_address_id === $shipping_address->id ? 'active' : '' }}">
                            
@@ -208,7 +213,7 @@
                <div id="headlessui-radiogroup-:rf:" role="radiogroup" aria-labelledby="headlessui-label-:rg:">
                   <label class="mb-5 block text-base font-semibold text-heading" id="headlessui-label-:rg:" role="none">{{ __trans('Choose Payment Method') }}</label>
                   <div class="mb-8 grid grid-cols-2 gap-4 md:grid-cols-2" role="none">
-
+                     
                     @foreach($payment_methods as $payment_method)
                      <div id="headlessui-radiogroup-option-:rh:" role="radio" aria-checked="false" tabindex="0" data-headlessui-state="">
                         <div wire:click="selectPaymentMethod({{ $payment_method->id }}, '{{ $payment_method->description }}')" class="payment_method_section relative flex h-full w-full cursor-pointer items-center justify-center rounded border border-gray-200 bg-light p-3 text-center {{ $selected_payment_method_id === $payment_method->id ? 'active' : '' }}"><span class="text-xs font-semibold text-heading">{{ $payment_method->name }}</span></div>

@@ -10,28 +10,24 @@
             <div class="mb-8">
                 <div class="flex justify-center">
                     <a class="inline-flex" wire:navigate href="{{ route('frontend.home') }}">
-                        <img
-                            alt="{{  asset(__setting('site_title')) }}" loading="eager" decoding="async" data-nimg="fill"
-                            class="object-contain"
-                            sizes="(max-width: 768px) 100vw"
-                            src="{{  asset(__setting('header_logo')) }}">
+                    <h1 class="text-center text-lg font-semibold text-heading sm:text-xl">{{ __trans('Profile') }}</h1>
                     </a>
                 </div>
             </div>
 
-            <h1 class="mb-5 font-body text-lg font-bold text-heading md:text-xl">{{ __trans('Profile') }}</h1>
+           
             <form wire:submit.prevent="submit">
 
                 <div class="mb-6">
                     <label for="profile_image" class="mb-2 block text-sm font-semibold leading-none text-body-dark">{{ __trans('Profile Image') }}</label>
                     <div class="flex items-center">
                         <!-- Profile Image Preview -->
-                        <div class="w-24 h-24 overflow-hidden border border-gray-300 mr-4">
+                        <div class="w-24 h-24 overflow-hidden mr-4">
 
                             @if (!empty($profile_image))
-                                <img src="{{ $profile_image->temporaryUrl() }}" alt="Profile Image" class="object-cover w-full h-full">
+                                <img src="{{ $profile_image->temporaryUrl() }}" alt="Profile Image" class="object-cover">
                             @else 
-                                <img src="{{ $profile_main_image }}" alt="Profile Image" class="object-cover w-full h-full">    
+                                <img src="{{ $profile_main_image }}" alt="Profile Image" class="object-cover">    
                             @endif
                             
                         </div><br>

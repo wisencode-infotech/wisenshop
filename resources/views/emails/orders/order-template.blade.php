@@ -304,7 +304,7 @@
                                 <tr>
                                  <td valign="top" align="center">
                                   <div class="pc-font-alt pc-w620-fontSize-14px pc-w620-lineHeight-140pc" style="line-height: 140%; letter-spacing: 0px; font-family: 'Poppins', Arial, Helvetica, sans-serif; font-size: 14px; font-weight: normal; font-variant-ligatures: normal; color: #001942; text-align: center; text-align-last: center;">
-                                   <div><span style="letter-spacing: 0px;">Great news! Your order is all set to hit the road. We&#39;re packing it up with care and it&#39;ll be on its way to you in no time.</span>
+                                   <div><span style="letter-spacing: 0px;">Great news! Your order <b>#{{ $order->order_number }}</b> is all set to hit the road. We&#39;re packing it up with care and it&#39;ll be on its way to you in no time.</span>
                                    </div>
                                   </div>
                                  </td>
@@ -331,7 +331,20 @@
                                 <![endif]-->
                                <!--[if !mso]><!-- -->
                                
-                               <a style="display: inline-block; box-sizing: border-box; border-radius: 500px 500px 500px 500px; background-color: #0067ff; padding: 14px 28px 14px 28px; font-family: 'Poppins', Arial, Helvetica, sans-serif; font-weight: 500; font-size: 17px; line-height: 24px; color: #ffffff; vertical-align: top; text-align: center; text-align-last: center; text-decoration: none; -webkit-text-size-adjust: none;"><span style="display: block;"><span>#{{ $order->order_number }}</span></span></a>
+                               @php
+                                    $order_statuses_color = [
+                                        1 => '#ffa500',  // Warning
+                                        2 => '#28a745',  // Success
+                                        3 => '#17a2b8',  // Info
+                                        4 => '#007bff',  // Primary
+                                        5 => '#dc3545',  // Danger
+                                        6 => '#6c757d'   // Secondary
+                                    ];
+
+                                    $status_color = $order_statuses_color[$order->status] ?? '#000000';
+                                @endphp
+
+                               <a style="display: inline-block; box-sizing: border-box; border-radius: 500px 500px 500px 500px; background-color: {{ $status_color }}; padding: 14px 28px 14px 28px; font-family: 'Poppins', Arial, Helvetica, sans-serif; font-weight: 500; font-size: 17px; line-height: 24px; color: #ffffff; vertical-align: top; text-align: center; text-align-last: center; text-decoration: none; -webkit-text-size-adjust: none;"><span style="display: block;"><span>{{ config('general.order_statuses.' . $order->status) }}</span></span></a>
                                <!--<![endif]-->
                               </th>
                              </tr>
@@ -383,36 +396,8 @@
                  </tr>
                 </table>
 
-                @php
-                    $order_statuses_color = [
-                        1 => '#ffa500',  // Warning
-                        2 => '#28a745',  // Success
-                        3 => '#17a2b8',  // Info
-                        4 => '#007bff',  // Primary
-                        5 => '#dc3545',  // Danger
-                        6 => '#6c757d'   // Secondary
-                    ];
-
-                    $status_color = $order_statuses_color[$order->status] ?? '#000000';
-                @endphp
-
-                <table width="100%" border="0" cellpadding="0" cellspacing="0" role="presentation">
-                 <tr>
-                  <td class="pc-w620-spacing-0-0-20-0" align="center" valign="top" style="padding: 0px 0px 30px 0px;">
-                   <table border="0" cellpadding="0" cellspacing="0" role="presentation" width="100%" style="border-collapse: separate; border-spacing: 0; margin-right: auto; margin-left: auto;">
-                    <tr>
-                     <td valign="top" class="pc-w620-padding-0-0-0-0" align="center">
-                      <div class="pc-font-alt pc-w620-fontSize-16px pc-w620-lineHeight-28" style="line-height: 140%; letter-spacing: 0px; font-family: 'Poppins', Arial, Helvetica, sans-serif; font-size: 14px; font-weight: normal; font-variant-ligatures: normal; color: #001942; text-align: center; text-align-last: center;">
-                       <div><span style="letter-spacing: 0px;color: {{ $status_color }}" style="letter-spacing: 0px;">{{ config('general.order_statuses.' . $order->status) }}</span>
-                       </div>
-                      </div>
-                     </td>
-                    </tr>
-                   </table>
-                  </td>
-                 </tr>
-                </table>
-                <table width="100%" border="0" cellpadding="0" cellspacing="0" role="presentation">
+                
+                <table style="margin-top:10px;" width="100%" border="0" cellpadding="0" cellspacing="0" role="presentation">
                  <tr>
                   <td style="padding: 0px 0px 4px 0px; ">
                    <table class="pc-w620-tableCollapsed-0" border="0" cellpadding="0" cellspacing="0" role="presentation" width="100%" bgcolor="#FFFFFF" style="border-collapse: separate; border-spacing: 0; width: 100%; background-color:#FFFFFF; border-radius: 10px 10px 10px 10px; overflow: hidden;">
@@ -519,7 +504,7 @@
                   </td>
                  </tr>
                 </table>
-                <table width="100%" border="0" cellpadding="0" cellspacing="0" role="presentation">
+                <table width="100%" border="0" cellpadding="0" cellspacing="0" role="presentation" style="display: none;">
                  <tr>
                   <td style="padding: 0px 0px 4px 0px; ">
                    <table class="pc-w620-tableCollapsed-0" border="0" cellpadding="0" cellspacing="0" role="presentation" width="100%" bgcolor="#ffffff" style="border-collapse: separate; border-spacing: 0; width: 100%; background-color:#ffffff; border-radius: 10px 10px 10px 10px; overflow: hidden;">

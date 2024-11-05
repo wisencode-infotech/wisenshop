@@ -24,6 +24,11 @@
                   @endif
 
                   @foreach($wishlist_products as $product)
+
+                  <div wire:loading.flex class="fixed inset-0 z-10 flex items-center justify-center bg-accent-400 bg-opacity-10">
+                     <div class="loader"></div>
+                  </div>
+
                   <div class="flex w-full items-start space-x-4 border-b border-gray-200 py-5 first:pt-0 last:border-0 last:pb-0 rtl:space-x-reverse sm:space-x-5 xl:items-center">
                      <div class="relative flex h-16 w-16 shrink-0 items-center justify-center border border-gray-200 sm:h-[74px] sm:w-[74px]">
                         <img alt="text" loading="lazy" decoding="async" data-nimg="fill" sizes="100vw" srcset="{{ $product->display_image_url }}" src="{{ $product->display_image_url }}" style="position: absolute; height: 100%; width: 100%; inset: 0px; color: transparent;"></div>

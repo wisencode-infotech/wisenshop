@@ -18,7 +18,7 @@
                                    wire:blur="$set('isFocused', false)">
 
                              @if($search || $isFocused)
-                                <button type="button" wire:click="clearSearch" class="absolute flex h-full w-10 items-center justify-center text-body transition-colors duration-200 hover:text-accent-hover focus:text-accent-hover focus:outline-0 ltr:right-0 rtl:left-0 md:w-14">
+                                <button type="button" wire:click="clearSearch" class="clear-search absolute flex h-full w-10 items-center justify-center text-body transition-colors duration-200 hover:text-accent-hover focus:text-accent-hover focus:outline-0 ltr:right-0 rtl:left-0 md:w-14">
                                     <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4" viewBox="0 0 20 20" fill="currentColor">
                                         <path fill-rule="evenodd" d="M10 9l-6 6 1 1 6-6 6 6 1-1-6-6 6-6-1-1-6 6-6-6-1 1 6 6z" clip-rule="evenodd" />
                                     </svg>

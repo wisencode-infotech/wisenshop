@@ -93,3 +93,25 @@ $('#grocery-search-header').on('focus', function() {
   console.log(window.innerWidth);
   $('html, body').animate({ scrollTop: scrollValue }, 500);
 });
+
+$(document).on('click', '.clear-search', function () {
+  $('#grocery-search-header').val('');
+});
+
+$(document).on('click', '.wishlist-button', function (e) {
+  e.preventDefault();
+  let inWishlist = $(this).data('in-wishlist') === 'true';
+
+  if (inWishlist) {
+      $(this).find('i').removeClass('fa-solid fa-heart text-accent-500')
+                       .addClass('fa-regular fa-heart');
+      $(this).removeClass('border-active').addClass('border-gray-300');
+  } else {
+      $(this).find('i').removeClass('fa-regular fa-heart')
+                       .addClass('fa-solid fa-heart text-accent-500');
+      $(this).removeClass('border-gray-300').addClass('border-active');
+  }
+  
+  $(this).data('in-wishlist', !inWishlist);
+});
+

@@ -52,7 +52,7 @@
 
                             <div class="flex overflow-hidden order-5 sm:order-4 w-9 sm:w-24 h-24 sm:h-10 bg-accent text-light rounded-full flex-col-reverse sm:flex-row absolute sm:relative bottom-0 sm:bottom-auto ltr:right-0 rtl:left-0 ltr:sm:right-auto ltr:sm:left-auto">
                                 
-                                <livewire:quantity-selector :product_id="$product->id" :key="'quantity-selector-' . $product->id" lazy />
+                                <livewire:quantity-selector :product_id="$product->id" :key="'quantity-selector-' . $product->id" />
 
                                 @livewire('product-stock', ['product_id' => $product->id, 'layout' => 'product-list'], key('product-stock-' . $product->id), ['lazy' => true])
                             </div>

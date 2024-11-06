@@ -107,8 +107,12 @@ button.reset_filter_btn:hover {
 }
 
 .product-list-out-of-stock-span {
-    height: 35px;
-    margin-top: 10px;
+    height: 100%;
+    text-align: center;
+    justify-content: center;
+    align-items: center;
+    display: flex;
+    /* margin-top: 10px; */
 }
 
 .reviews-list {
@@ -207,6 +211,14 @@ button.reset_filter_btn:hover {
 
     .mobile-width-0{
         min-width: 0%;   
+    }
+
+    .product-list-out-of-stock-span {
+        height: 100%;
+        margin-top: -96px;
+        line-height: 2.4;
+        writing-mode: vertical-rl;
+        font-size: 14px;
     }
 
 }

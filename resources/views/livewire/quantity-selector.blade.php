@@ -1,11 +1,11 @@
-<div x-data="{ quantity: @entangle('quantity'), stockAvailable: {{ json_encode($stock_available) }} }"> 
-    
+<div x-data="{ quantity: @entangle('quantity'), stockAvailable: @entangle('stock_available') }"> 
+
 <template x-if="stockAvailable">
         <div>
             <template x-if="'{{ $layout }}' === 'cart'">
                 <div x-data="{ quantity: @entangle('quantity'), debounceTimeout: null }" 
                     class="flex overflow-hidden flex-col-reverse items-center w-8 h-24 bg-accent text-heading rounded-full text-accent-contrast">
-
+                   
                     <!-- Decrement button -->
                     <button @click.prevent="
                                 if (quantity > 0) {
@@ -41,6 +41,7 @@
             </template>
 
             <template x-if="'{{ $layout }}' === 'large'">
+           
                 <div class="mb-3 w-full lg:mb-0 lg:max-w-[400px]">
                     <div x-data="{ quantity: @entangle('quantity'), debounceTimeout: null }" 
                         class="overflow-hidden w-full h-14 rounded text-light bg-accent inline-flex justify-between text-accent-contrast">
@@ -56,7 +57,7 @@
                                     }
                                 " 
                                 class="cursor-pointer p-2 transition-colors duration-200 hover:bg-accent-hover focus:outline-0 px-5">
-                            <i class="fa fa-minus"></i>
+                            <i class="fa fa-minus"></i> 
                         </button>
 
                         <div class="flex flex-1 items-center justify-center px-3 text-sm font-semibold">
@@ -126,11 +127,17 @@
                 </span>
             </template>
 
-            <template x-if="'{{ $layout }}' !== 'cart'">
-                <span class="absolute w-full d-flex align-items-center justify-content-center text-center text-accent-contrast text-xs font-semibold product-list-out-of-stock-span">
+            <template x-if="'{{ $layout }}' === 'slim'">
+                <span class="absolute w-full d-flex align-items-center justify-content-center text-center text-accent-contrast text-xs font-semibold bg-red-600 product-list-out-of-stock-span">
                     {{ __trans('Out of Stock') }}
                 </span>
             </template>
+
+            <!-- <template x-if="'{{ $layout }}' !== 'cart'">
+                <span class="absolute w-full d-flex align-items-center justify-content-center text-center text-accent-contrast text-xs font-semibold bg-red-600 product-list-out-of-stock-span">
+                    {{ __trans('Out of Stock') }}
+                </span>
+            </template> -->
         </div>
     </template>
 </div>

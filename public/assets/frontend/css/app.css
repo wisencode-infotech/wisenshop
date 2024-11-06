@@ -312,3 +312,8 @@ button.reset_filter_btn:hover {
 #nprogress .bar {
     background-color: var(--color-accent) !important;
 }
+
+.no-product-found-box {
+    border-radius:4px; 
+    width: fit-content;
+}

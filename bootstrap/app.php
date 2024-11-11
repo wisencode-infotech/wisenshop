@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Middleware\CheckInstallation;
 use App\Http\Middleware\SetLocale;
 use App\Http\Middleware\CheckRole;
 use Illuminate\Foundation\Application;
@@ -16,6 +17,7 @@ return Application::configure(basePath: dirname(__DIR__))
         commands: __DIR__.'/../routes/console.php',
         health: '/up',
         then: function () {
+            // Route::middleware(['web', 'locale', 'is_install'])
             Route::middleware(['web', 'locale'])
                 ->prefix('/')
                 ->name('frontend.')
@@ -35,6 +37,7 @@ return Application::configure(basePath: dirname(__DIR__))
     )
     ->withMiddleware(function (Middleware $middleware) {
         $middleware->alias([
+            // 'is_install' => CheckInstallation::class,
             'locale' => SetLocale::class,
             'check.role' => CheckRole::class,
             'abilities' => CheckAbilities::class,

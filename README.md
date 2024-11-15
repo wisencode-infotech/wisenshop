@@ -6,31 +6,31 @@
 
 Clone the repository to your local machine using the following command:
 
-```bash git clone https://github.com/wisencode-infotech/albertoshop.git```
+```git clone https://github.com/wisencode-infotech/albertoshop.git```
 
 ### 2. Navigate to Project Folder
 
 Change to your project directory:
 
-```bash cd /path-to-your-project-folder```
+```cd /path-to-your-project-folder```
 
 ### 3. Set Up Environment File
 
 Copy the `.env.example` file to `.env`:
 
-```bash cp .env.example .env```
+```cp .env.example .env```
 
 ### 4. Generate Application Key
 
 Generate the application key for your project:
 
-```bash php artisan key:generate```
+```php artisan key:generate```
 
 ### 5. Start the Development Server
 
 You can run the Laravel development server using:
 
-```bash php artisan serve```
+```php artisan serve```
 
 This will start your application at `http://127.0.0.1:8000` by default.
 
@@ -50,7 +50,7 @@ To install the script through the web interface:
 
 To install using the command line:
 
-```bash php artisan wisenshop:fresh-install```
+```php artisan wisenshop:fresh-install```
 
 **Note:**
 - The super admin username will be `admin@wisenshop.com`.
@@ -64,11 +64,11 @@ After installing, run the following commands to build your frontend assets.
 
 - For development:
 
-```bash npm run development```
+```npm run development```
 
 - For production:
 
-```bash npm run production```
+```npm run production```
 
 Choose the command based on your platform and environment.
 

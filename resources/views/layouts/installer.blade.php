@@ -14,6 +14,8 @@
     <link href="https://fonts.bunny.net/css?family=Nunito" rel="stylesheet">
 
     <link href="{{ asset('assets/installer/css/styles.css') }}" rel="stylesheet">
+
+    <link href="{{ asset('assets/frontend/css/toastr.min.css') }}" rel="stylesheet">
 </head>
 <body>
     <div id="app">
@@ -21,6 +23,10 @@
             @yield('content')
         </main>
     </div>
+
+    <script src="{{ asset('assets/frontend/js/jquery.min.js') }}"></script>
+
+    <script src="{{ asset('assets/frontend/js/toastr.min.js') }}"></script>
 
     @yield('scripts')
 

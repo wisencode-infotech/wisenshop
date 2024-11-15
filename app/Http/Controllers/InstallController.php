@@ -23,12 +23,17 @@ class InstallController extends Controller
     public function proceedStep1(Request $request)
     {
         $request->validate([
-            'APP_NAME' => 'required|string|max:255',
+            'APP_NAME' => 'required|max:255',
             'DB_HOST' => 'required',
-            'DB_PORT' => 'required',
             'DB_DATABASE' => 'required',
             'DB_USERNAME' => 'required',
             'DB_PASSWORD' => 'nullable|string',
+        ], [
+            'APP_NAME.required' => 'App name can not be empty',
+            'APP_NAME.max' => 'App name must be of maximum 255 characters',
+            'APP_NAME.DB_HOST' => 'Database host can not be empty',
+            'APP_NAME.DB_DATABASE' => 'Database name can not be empty',
+            'APP_NAME.DB_USERNAME' => 'Database username can not be empty'
         ]);
 
         // Attempt to establish a connection using the provided details
@@ -57,13 +62,18 @@ class InstallController extends Controller
                 'DB_PASSWORD' => $request->DB_PASSWORD ?? '',
             ]);
 
-            return redirect()->route('install.complete');
+            return response()->json([
+                'success' => true,
+                'redirect_url' => route('install.complete')
+            ]);
 
         } catch (\Exception $e) {
             // If the connection fails, log the error and redirect back
             Log::error('Database connection failed: ', ['exception' => $e]);
-            return back()->withErrors(['error' => $e->getMessage()])
-                        ->withInput();
+            return response()->json([
+                'success' => false,
+                'message' => $e->getMessage()
+            ]);
         }
     }
 
@@ -75,8 +85,14 @@ class InstallController extends Controller
     public function onComplete(Request $request)
     {
         $request->validate([
-            'APP_ADMIN_EMAIL' => 'required|string|max:70',
+            'APP_ADMIN_EMAIL' => 'required|max:70',
             'APP_ADMIN_PASSWORD' => 'required|min:8|max:15'
+        ], [
+            'APP_ADMIN_EMAIL.required' => 'Super admin email can not be empty',
+            'APP_ADMIN_EMAIL.max' => 'Super admin email must be of maximum 70 characters',
+            'APP_ADMIN_PASSWORD.requried' => 'Super admin password can not be empty',
+            'APP_ADMIN_PASSWORD.min' => 'Super admin password must be of minimum 8 characters',
+            'APP_ADMIN_PASSWORD.max' => 'Super admin password must be of maximum 15 characters',
         ]);
 
         Artisan::call('config:clear');
@@ -94,9 +110,16 @@ class InstallController extends Controller
 
             Storage::disk('local')->put('.installed', 'Installed on ' . now());
 
-            return redirect()->route('frontend.home')->with('success', 'Installation completed successfully!');
+            return response()->json([
+                'success' => true,
+                'message' => 'Installation completed successfully!',
+                'redirect_url' => route('frontend.home')
+            ]);
         } catch (\Exception $e) {
-            return redirect()->back()->withErrors(['error' => $e->getMessage()]);
+            return response()->json([
+                'success' => false,
+                'message' => $e->getMessage()
+            ]);
         }
     }
 

@@ -4,11 +4,8 @@
 
 @section('content')
     <div class="container">
-        @foreach ($errors->all() as $error)
-            <div class="alert alert-danger">{{ $error }}</div>
-        @endforeach
         <h1>Install your e-Commerce Shop</h1>
-        <form action="{{ route('install.step-1.proceed') }}" method="POST">
+        <form id="wisenshop-install-start-form" action="{{ route('install.step-1.proceed') }}" method="POST">
             @csrf
             <label for="APP_NAME">App Name</label>
             <input type="text" name="APP_NAME" id="APP_NAME" value="{{ old('APP_NAME') ?? 'WisenShop' }}" required>
@@ -17,7 +14,7 @@
             <input type="text" name="DB_HOST" id="DB_HOST" value="{{ old('DB_HOST') ?? 'localhost' }}" required>
             
             <label for="DB_PORT">Database Port</label>
-            <input type="text" name="DB_PORT" id="DB_PORT" value="{{ old('DB_PORT') ?? '3306' }}" required>
+            <input type="text" name="DB_PORT" id="DB_PORT" value="{{ old('DB_PORT') ?? '3306' }}">
             
             <label for="DB_DATABASE">Database Name</label>
             <input type="text" name="DB_DATABASE" id="DB_DATABASE" value="{{ old('DB_DATABASE') ?? 'alberto_shop' }}" required>

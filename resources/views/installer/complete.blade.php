@@ -4,16 +4,13 @@
 
 @section('content')
     <div class="container">
-        @foreach ($errors->all() as $error)
-            <div class="alert alert-danger">{{ $error }}</div>
-        @endforeach
 
         <h1 class="text-success">Database Configured!</h1>
         <p class="alert-info">We have configured your database settings.</p>
 
         <p class="text-grey text-sm italic">Note: After installation, some of the data/entries will be seeded as dummy in database which you can manage via backend panel.</p>
         
-        <form action="{{ route('install.on-complete') }}" method="POST">
+        <form id="wisenshop-install-complete-form" action="{{ route('install.on-complete') }}" method="POST">
             @csrf
 
             <label for="APP_ADMIN_EMAIL">Admin Username</label>

@@ -17,8 +17,7 @@ return Application::configure(basePath: dirname(__DIR__))
         commands: __DIR__.'/../routes/console.php',
         health: '/up',
         then: function () {
-            // Route::middleware(['web', 'locale', 'is_install'])
-            Route::middleware(['web', 'locale'])
+            Route::middleware(['web', 'locale', 'is_install'])
                 ->prefix('/')
                 ->name('frontend.')
                 ->group(base_path('routes/frontend.php'));
@@ -37,7 +36,7 @@ return Application::configure(basePath: dirname(__DIR__))
     )
     ->withMiddleware(function (Middleware $middleware) {
         $middleware->alias([
-            // 'is_install' => CheckInstallation::class,
+            'is_install' => CheckInstallation::class,
             'locale' => SetLocale::class,
             'check.role' => CheckRole::class,
             'abilities' => CheckAbilities::class,

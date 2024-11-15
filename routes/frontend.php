@@ -32,8 +32,6 @@ use App\Livewire\PageDetail;
 use App\Livewire\PaymentErrorPage;
 use App\Livewire\PaymentSuccessPage;
 
-
-
 // Homepage
 Route::get('/', HomePage::class)->name('home');
 

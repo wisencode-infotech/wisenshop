@@ -3,6 +3,7 @@
 namespace App\Console\Commands;
 
 use Illuminate\Console\Command;
+use Illuminate\Support\Facades\Storage;
 
 class FreshInstallWisenShop extends Command
 {
@@ -11,7 +12,7 @@ class FreshInstallWisenShop extends Command
      *
      * @var string
      */
-    protected $signature = 'wisenshop:fresh-install';
+    protected $signature = 'wisenshop:fresh-install {--force}';
 
     /**
      * The console command description.
@@ -28,9 +29,11 @@ class FreshInstallWisenShop extends Command
     public function handle()
     {
         // Ask for user confirmation before proceeding
-        if (!$this->confirm('This will refresh the database and seed it. Are you sure you want to continue?')) {
-            $this->info('Fresh install process cancelled.');
-            return Command::SUCCESS;
+        if (!$this->option('force')) {
+            if (!$this->confirm('This will refresh the database and seed it. Are you sure you want to continue?')) {
+                $this->info('Fresh install process cancelled.');
+                return Command::SUCCESS;
+            }
         }
 
         // Run the 'migrate:fresh --seed' command
@@ -46,6 +49,8 @@ class FreshInstallWisenShop extends Command
 
         // Final message after completion
         $this->info('FakeAppSeeder executed successfully.');
+
+        Storage::disk('local')->put('.installed', 'Installed on ' . now());
 
         return Command::SUCCESS;
     }

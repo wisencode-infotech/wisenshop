@@ -16,8 +16,12 @@ class CheckInstallation
      */
     public function handle(Request $request, Closure $next): Response
     {
-        if (!Storage::disk('local')->exists('.installed')) {
-            return redirect('/install');
+        $is_install_route = $request->is(['install', 'install/*']);
+
+        if ($is_install_route && Storage::disk('local')->exists('.installed')) {
+            return redirect()->to(route('frontend.home'));
+        } else if (!$is_install_route && !Storage::disk('local')->exists('.installed')) {
+            return redirect()->to(route('install.start'));
         }
 
         return $next($request);

@@ -50,8 +50,8 @@ class FakeAppSeeder extends Seeder
 
         User::create([
             'name' => 'Administrator',
-            'email' => 'admin@example.com',
-            'password' => Hash::make('cbd2024!#'),
+            'email' => 'admin@wisenshop.com',
+            'password' => Hash::make('wisenshop450#!'),
             'user_role_id' => 1
         ]);
 

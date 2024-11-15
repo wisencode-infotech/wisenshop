@@ -1,0 +1,86 @@
+body, h1 {
+    margin: 0;
+    font-family: 'Nunito';
+}
+body {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 100vh;
+    background: #f3f4f6;
+}
+.container {
+    max-width: 500px;
+    min-width: 500px;
+    width: 100%;
+    padding: 20px;
+    background: #fff;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    text-align: center;
+}
+h1 {
+    font-size: 22px;
+    color: #333;
+    margin-bottom: 16px;
+}
+label, .alert {
+    font-size: 14px;
+    color: #555;
+    display: block;
+    margin-bottom: 6px;
+    text-align: left;
+}
+input[type="text"], input[type="password"] {
+    width: 100%;
+    padding: 10px;
+    margin-bottom: 16px;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    box-sizing: border-box;
+}
+button {
+    width: 100%;
+    padding: 12px;
+    font-size: 16px;
+    color: #fff;
+    background: #656b94;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: background 0.3s;
+}
+
+button:hover { background: #2b2b4f; }
+
+.alert-danger { 
+    color: #f14949;
+    background-color: #f3f4f6;
+    padding: 5px;
+    border-radius: 4px;
+    font-weight: 600;
+ }
+
+ .alert-info { 
+    color: #091823;
+    background-color: #f3f4f6;
+    padding: 5px;
+    border-radius: 4px;
+    font-weight: 600;
+ }
+
+ .text-success {
+    color: rgb(48, 175, 73);
+ }
+
+ .text-grey {
+    color: #9a9a9a;
+ }
+
+ .text-sm {
+    font-size: 14px;
+ }
+
+ .italic {
+    font-style: italic;
+ }

@@ -60,7 +60,7 @@ This will start your application at `http://127.0.0.1:8000` by default.
     - The super admin username will be `admin@wisenshop.com`.
     - The super admin password will be `wisenshop450#!`.
 
-### 8. Build Frontend Assets using npm
+### 8. Build assets/resources using npm
 
 ```npm install```
 

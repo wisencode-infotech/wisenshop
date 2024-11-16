@@ -3,6 +3,7 @@
 namespace App\Console\Commands;
 
 use Illuminate\Console\Command;
+use Illuminate\Support\Facades\Artisan;
 use Illuminate\Support\Facades\File;
 use Illuminate\Support\Facades\Storage;
 
@@ -38,28 +39,32 @@ class FreshInstallWisenShop extends Command
         }
 
         // Run the 'migrate:fresh --seed' command
-        $this->info('Running migrate:fresh --seed...');
+        $this->showConsoleHeadingMessageCompact('Installation started. Please wait...', 'WisenShop', 'red');
         $this->call('migrate:fresh', ['--seed' => true]);
 
         // Log information after completing the first command
-        $this->info('Database migration and seeding completed.');
+        $this->infoAlignedCompact('Database migration and seeding completed.');
 
         // Run the 'db:seed --class=FakeAppSeeder' command
-        $this->info('Running db:seed with FakeAppSeeder...');
         $this->call('db:seed', ['--class' => 'FakeAppSeeder']);
 
-        // Final message after completion
-        $this->info('FakeAppSeeder executed successfully.');
+        // Display message after fake-seeder is executed
+        $this->infoAlignedCompact('FakeAppSeeder executed successfully.');
 
+        // Transferring assets & media
         $this->transferAssets();
 
         Storage::disk('local')->put('.installed', 'Installed on ' . now());
+
+        $this->clearCached();
 
         return Command::SUCCESS;
     }
 
     protected function transferAssets()
     {
+        $this->showConsoleHeadingMessage('Transferring assets & media');
+
         $app_default_logo_path = public_path('assets/frontend/img/static/media/wisenshop-logo.png');
 
         $app_latest_logo_path = public_path('assets/frontend/img/logo.png');
@@ -91,7 +96,38 @@ class FreshInstallWisenShop extends Command
             File::copy($app_default_logo_path, $app_latest_header_logo_path);
             File::copy($app_default_logo_path, $app_latest_footer_logo_path);
 
-            $this->info('Assets and media transferred successfully.');
+            $this->infoAligned('Assets and media transferred successfully.');
         }
+    }
+
+    protected function clearCached()
+    {
+        Artisan::call('config:clear');
+        Artisan::call('cache:clear');
+    }
+
+    protected function showConsoleHeadingMessage($message, $label = 'INFO', $bg_color = 'blue', $text_color = 'white', $compact = false)
+    {
+        $this->output->writeln('');
+        $this->output->writeln('  <bg=' . $bg_color . ';fg=' . $text_color . '> ' . $label . ' </> ' . $message);
+        if (!$compact)
+            $this->output->writeln('');
+    }
+
+    protected function showConsoleHeadingMessageCompact($message, $label = 'INFO', $bg_color = 'blue', $text_color = 'white')
+    {
+        $this->showConsoleHeadingMessage($message, $label, $bg_color, $text_color, true);
+    }
+
+    protected function infoAligned($message, $compact = false)
+    {
+        $this->info('  ' . $message);
+        if (!$compact)
+            $this->output->writeln('');
+    }
+
+    protected function infoAlignedCompact($message)
+    {
+        $this->info('  ' . $message, true);
     }
 }

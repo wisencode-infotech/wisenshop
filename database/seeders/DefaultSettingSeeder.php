@@ -110,7 +110,7 @@ class DefaultSettingSeeder extends Seeder
             'twitter_link' => 'https://twitter.com/example',
             'facebook_link' => 'https://facebook.com/example',
             'instagram_link' => 'https://instagram.com/example',
-            'copyright_link' => 'Copyright © Albertoshop. All rights reserved worldwide.',
+            'copyright_link' => 'Copyright © Wisenshop. All rights reserved worldwide.',
         ];
 
         $setting_sort_number = 1;
@@ -167,7 +167,7 @@ class DefaultSettingSeeder extends Seeder
 
         // General site setting seeder
         $general_site_settings = [
-            'site_title' => 'Albertoshop',
+            'site_title' => 'Wisenshop',
             'site_currency' => 'EUR',
             'affiliate_commission' => 2,
             'minimum_payout' => 0

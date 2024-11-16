@@ -1,4 +1,4 @@
-APP_NAME=albertoshop
+APP_NAME="WisenShop"
 APP_ENV=local
 APP_KEY=base64:a4ovxw6dTWsANjosU9DypxQX+o4EoTquhaNX4nOirxk=
 APP_DEBUG=true
@@ -22,7 +22,7 @@ LOG_LEVEL=debug
 DB_CONNECTION=mysql
 DB_HOST=localhost
 DB_PORT=3306
-DB_DATABASE=albertoshop
+DB_DATABASE="wisenshop_master"
 DB_USERNAME=root
 DB_PASSWORD=
 
@@ -73,6 +73,7 @@ MONEI_API_KEY=pk_test_8ac935c2a1083f011d458c63cbc348cd
 VIVA_API_KEY=viva_test_api_key_1234567890
 
 APP_AUTHOR_NAME="manknojiya121@gmail.com"
+APP_AUTHOR_COMPANY_NAME="Wisencode Infotech"
 APP_AUTHOR_SITE="https://wisencode.com"
 
 PARENT_APP_NAME="WisenShop"

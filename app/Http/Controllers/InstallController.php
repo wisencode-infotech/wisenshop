@@ -95,9 +95,6 @@ class InstallController extends Controller
             'APP_ADMIN_PASSWORD.max' => 'Super admin password must be of maximum 15 characters',
         ]);
 
-        Artisan::call('config:clear');
-        Artisan::call('cache:clear');
-
         try {
             Artisan::call('wisenshop:fresh-install', ['--force' => true]);
 

@@ -6,7 +6,7 @@
             </div>
             <div class="col-sm-6">
                 <div class="text-sm-end d-none d-sm-block">
-                    Design & Develop by Wisencode
+                    Design & Develop by <a href="{{ env('APP_AUTHOR_SITE', 'https://wisencode.com') }}">{{ env('APP_AUTHOR_COMPANY_NAME', 'Wisencode Infotech') }}</a>
                 </div>
             </div>
         </div>

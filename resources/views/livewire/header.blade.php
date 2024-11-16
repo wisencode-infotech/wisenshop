@@ -14,7 +14,7 @@
         
         <div class="flex justify-center" style="grid-column: 2 / 3;">
             <a class="inline-flex mx-auto lg:mx-0" wire:navigate href="{{ route('frontend.home') }}">
-                <img alt="{{ config('app.title') }}" loading="eager" decoding="async" class="object-contain" src="{{ asset(__setting('header_logo')) }}">
+                <img alt="{{ config('app.title') }}" loading="eager" decoding="async" class="object-contain app-logo-as-img" src="{{ asset(__setting('header_logo')) }}">
             </a>
         </div>
         

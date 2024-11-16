@@ -317,3 +317,7 @@ button.reset_filter_btn:hover {
     border-radius:4px; 
     width: fit-content;
 }
+
+.app-logo-as-img {
+    max-height: 40px !important;
+}

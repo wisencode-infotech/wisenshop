@@ -52,9 +52,9 @@
                                     <div class="mb-4 mb-md-5">
                                         <a href="{{ route('frontend.home') }}" class="d-block auth-logo">
                                             <img src="{{ URL::asset('/assets/frontend/img/header_logo.png') }}" alt="" 
-                                                class="auth-logo-dark">
+                                                class="auth-logo-dark app-logo-as-img">
                                             <img src="{{ URL::asset('/assets/frontend/img/header_logo.png') }}" alt="" 
-                                                class="auth-logo-light">
+                                                class="auth-logo-light app-logo-as-img">
                                         </a>
                                     </div>
                                     <div class="my-auto">
@@ -128,7 +128,7 @@
                                                 document.write(new Date().getFullYear())
 
                                             </script> {{ __setting('site_title') }}. Built <i class="mdi mdi-code text-danger"></i> by
-                                            <a href="https://wisencode.com">Wisencode</a></p>
+                                            <a href="{{ env('APP_AUTHOR_SITE', 'https://wisencode.com') }}">{{ env('APP_AUTHOR_COMPANY_NAME', 'Wisencode Infotech') }}</a></p>
                                     </div>
                                 </div>
 

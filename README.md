@@ -6,7 +6,7 @@
 
 Clone the repository to your local machine using the following command:
 
-```git clone https://github.com/wisencode-infotech/albertoshop.git```
+```git clone https://github.com/wisencode-infotech/wisenshop.git```
 
 ### 2. Navigate to Project Folder
 

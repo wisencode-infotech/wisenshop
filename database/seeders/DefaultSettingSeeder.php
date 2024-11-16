@@ -168,7 +168,9 @@ class DefaultSettingSeeder extends Seeder
         // General site setting seeder
         $general_site_settings = [
             'site_title' => 'Wisenshop',
-            'site_currency' => 'EUR'
+            'site_currency' => 'INR',
+            'activate_currencies_module' => true,
+            'activate_multilangual_module' => true
         ];
 
         $setting_sort_number = 1;

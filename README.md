@@ -2,19 +2,19 @@
 
 ## Installation Instructions
 
-### 1. Clone the Repository
+### 1. Clone the repository
 
 Clone the repository to your local machine using the following command:
 
 ```git clone https://github.com/wisencode-infotech/wisenshop.git```
 
-### 2. Navigate to Project Folder
+### 2. Navigate to the project directory
 
 Change to your project directory:
 
 ```cd /path-to-your-project-folder```
 
-### 3. Set Up Environment File
+### 3. Setup the environment file
 
 Copy the `.env.example` file to `.env`:
 
@@ -24,13 +24,13 @@ Copy the `.env.example` file to `.env`:
 
 ```composer install```
 
-### 5. Generate Application Key
+### 5. Generate application key
 
 Generate the application key for your project:
 
 ```php artisan key:generate```
 
-### 6. Start the Development Server
+### 6. Start deploying server if needed
 
 You can run the Laravel development server using:
 
@@ -38,7 +38,7 @@ You can run the Laravel development server using:
 
 This will start your application at `http://127.0.0.1:8000` by default.
 
-### 7. Installing script
+### 7. Installing the script
 
 - Two Ways to Install the Script
 

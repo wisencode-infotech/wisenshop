@@ -17,7 +17,7 @@
             <input type="text" name="DB_PORT" id="DB_PORT" value="{{ old('DB_PORT') ?? '3306' }}">
             
             <label for="DB_DATABASE">Database Name</label>
-            <input type="text" name="DB_DATABASE" id="DB_DATABASE" value="{{ old('DB_DATABASE') ?? 'alberto_shop' }}" required>
+            <input type="text" name="DB_DATABASE" id="DB_DATABASE" value="{{ old('DB_DATABASE') ?? 'wisenshop_master' }}" required>
             
             <label for="DB_USERNAME">Database Username</label>
             <input type="text" name="DB_USERNAME" id="DB_USERNAME" value="{{ old('DB_USERNAME') ?? 'root' }}" required>

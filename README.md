@@ -22,7 +22,7 @@ Copy the `.env.example` file to `.env`:
 
 ### 4. Install composer packages
 
-    ```composer install```
+```composer install```
 
 ### 5. Generate application key
 

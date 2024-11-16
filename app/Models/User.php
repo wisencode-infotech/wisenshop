@@ -97,7 +97,7 @@ class User extends Authenticatable
     public function getProfileImageURLAttribute()
     {
         if ($this->profile_image && Storage::disk('public')->exists($this->profile_image))
-            return Storage::disk('public')->url($this->profile_image); // Return the URL of the stored image
+            return Storage::url($this->profile_image);
 
         return 'https://avatar.iran.liara.run/username?username='.$this->name;
     }

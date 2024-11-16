@@ -3,6 +3,7 @@
 namespace App\Console\Commands;
 
 use Illuminate\Console\Command;
+use Illuminate\Support\Facades\File;
 use Illuminate\Support\Facades\Storage;
 
 class FreshInstallWisenShop extends Command
@@ -50,8 +51,47 @@ class FreshInstallWisenShop extends Command
         // Final message after completion
         $this->info('FakeAppSeeder executed successfully.');
 
+        $this->transferAssets();
+
         Storage::disk('local')->put('.installed', 'Installed on ' . now());
 
         return Command::SUCCESS;
+    }
+
+    protected function transferAssets()
+    {
+        $app_default_logo_path = public_path('assets/frontend/img/static/media/wisenshop-logo.png');
+
+        $app_latest_logo_path = public_path('assets/frontend/img/logo.png');
+        $app_latest_email_header_logo_path = public_path('assets/frontend/img/email_header_logo.png');
+        $app_latest_fav_logo_path = public_path('assets/frontend/img/fav_logo.png');
+        $app_latest_header_logo_path = public_path('assets/frontend/img/header_logo.png');
+        $app_latest_footer_logo_path = public_path('assets/frontend/img/footer_logo.png');
+
+        if (File::exists($app_default_logo_path)) {
+
+            if (File::exists($app_latest_logo_path))
+                File::delete($app_latest_logo_path);
+
+            if (File::exists($app_latest_email_header_logo_path))
+                File::delete($app_latest_email_header_logo_path);
+
+            if (File::exists($app_latest_fav_logo_path))
+                File::delete($app_latest_fav_logo_path);
+
+            if (File::exists($app_latest_header_logo_path))
+                File::delete($app_latest_header_logo_path);
+
+            if (File::exists($app_latest_footer_logo_path))
+                File::delete($app_latest_footer_logo_path);
+
+            File::copy($app_default_logo_path, $app_latest_logo_path);
+            File::copy($app_default_logo_path, $app_latest_email_header_logo_path);
+            File::copy($app_default_logo_path, $app_latest_fav_logo_path);
+            File::copy($app_default_logo_path, $app_latest_header_logo_path);
+            File::copy($app_default_logo_path, $app_latest_footer_logo_path);
+
+            $this->info('Assets and media transferred successfully.');
+        }
     }
 }

@@ -24,3 +24,8 @@ composer.lock
 /public/assets/frontend/js/mix.js
 /public/mix-manifest.json
 .DS_Store
+/public/assets/frontend/img/email_header_logo.png
+/public/assets/frontend/img/fav_logo.png
+/public/assets/frontend/img/footer_logo.png
+/public/assets/frontend/img/header_logo.png
+/public/assets/frontend/img/logo.png

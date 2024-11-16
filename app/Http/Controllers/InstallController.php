@@ -108,8 +108,6 @@ class InstallController extends Controller
 
             $admin_user->save();
 
-            Storage::disk('local')->put('.installed', 'Installed on ' . now());
-
             return response()->json([
                 'success' => true,
                 'message' => 'Installation completed successfully!',

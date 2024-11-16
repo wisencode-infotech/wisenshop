@@ -21,7 +21,7 @@
         <div class="flex justify-end" style="grid-column: 3 / 4;">
                 <ul class="shrink-0 items-center space-x-7 rtl:space-x-reverse xl:flex 2xl:space-x-10">
 
-                    <li class="hidden menuItem group relative mx-3 cursor-pointer">
+                    <li class="menuItem group relative mx-3 cursor-pointer">
                        <div class="flex items-center gap-2 group-hover:text-accent">
                           <span class="text-brand-dark group-hover:text-brand relative inline-flex items-center py-2 font-normal rtl:left-0"> {{ __userCurrencyCode() }}</span>
                           <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 12 7.2" width="12" height="7.2" class="mt-1">

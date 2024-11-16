@@ -20,13 +20,17 @@ Copy the `.env.example` file to `.env`:
 
 ```cp .env.example .env```
 
-### 4. Generate Application Key
+### 4. Install composer packages
+
+```composer install```
+
+### 5. Generate Application Key
 
 Generate the application key for your project:
 
 ```php artisan key:generate```
 
-### 5. Start the Development Server
+### 6. Start the Development Server
 
 You can run the Laravel development server using:
 

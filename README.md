@@ -62,7 +62,9 @@ To install using the command line:
 
 ---
 
-## Build Frontend Assets
+## Build Frontend Assets using npm
+
+```npm install```
 
 After installing, run the following commands to build your frontend assets.
 

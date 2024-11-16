@@ -4,21 +4,21 @@
 
 ### 1. Clone the repository
 
-    Clone the repository to your local machine using the following command:
-    
-    ```git clone https://github.com/wisencode-infotech/wisenshop.git```
+Clone the repository to your local machine using the following command:
+
+```git clone https://github.com/wisencode-infotech/wisenshop.git```
 
 ### 2. Navigate to the project directory
 
-    Change to your project directory:
-    
-    ```cd /path-to-your-project-folder```
+Change to your project directory:
+
+```cd /path-to-your-project-folder```
 
 ### 3. Setup the environment file
 
-    Copy the `.env.example` file to `.env`:
-    
-    ```cp .env.example .env```
+Copy the `.env.example` file to `.env`:
+
+```cp .env.example .env```
 
 ### 4. Install composer packages
 
@@ -26,17 +26,17 @@
 
 ### 5. Generate application key
 
-    Generate the application key for your project:
-    
-    ```php artisan key:generate```
+Generate the application key for your project:
+
+```php artisan key:generate```
 
 ### 6. Start deploying server if needed
 
-    You can run the Laravel development server using:
-    
-    ```php artisan serve```
-    
-    This will start your application at `http://127.0.0.1:8000` by default.
+You can run the Laravel development server using:
+
+```php artisan serve```
+
+This will start your application at `http://127.0.0.1:8000` by default.
 
 ### 7. Installing the script
 
@@ -62,19 +62,19 @@
 
 ### 8. Build Frontend Assets using npm
 
-    ```npm install```
-    
-    After installing, run the following commands to build your frontend assets.
-    
-    - For development:
-    
-    ```npm run development```
-    
-    - For production:
-    
-    ```npm run production```
-    
-    Choose the command based on your platform and environment.
+```npm install```
+
+After installing, run the following commands to build your frontend assets.
+
+- For development:
+
+```npm run development```
+
+- For production:
+
+```npm run production```
+
+Choose the command based on your platform and environment.
 
 ---
 

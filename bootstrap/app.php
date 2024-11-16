@@ -17,8 +17,7 @@ return Application::configure(basePath: dirname(__DIR__))
         commands: __DIR__.'/../routes/console.php',
         health: '/up',
         then: function () {
-            // Route::middleware(['web', 'locale', 'is_install'])
-            Route::middleware(['web', 'locale'])
+            Route::middleware(['web', 'locale', 'is_install'])
                 ->prefix('/')
                 ->name('frontend.')
                 ->group(base_path('routes/frontend.php'));

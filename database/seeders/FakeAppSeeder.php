@@ -116,7 +116,7 @@ class FakeAppSeeder extends Seeder
                 'name' => 'Cash on Delivery',
                 'description' => 'Pay on Delivery',
                 'logo_url' => 'https://img.freepik.com/premium-vector/cash-delivery_569841-175.jpg?w=826',
-                'is_default' => false
+                'is_default' => true
             ]
         ];
 

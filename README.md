@@ -76,10 +76,21 @@ After installing, run the following commands to build your frontend assets.
 
 Choose the command based on your platform and environment.
 
+###9. Projects assets accessibility settings
+
+```php artisan storage:link```
+
 ---
+
+### Additional Notes
 
 **Backend URL**
 
-Once the installation is complete, you can access the backend panel at:
+    Once the installation is complete, you can access the backend panel at:
 
-your-domain.com/backend
+    your-domain.com/backend
+
+**Email notifications**
+
+    > Email notifications are being set as queue (background jobs) so please setup supervisor or cron to execute the jobs at specific interval.
+    > For development, you can try php artisan queue:listen to execute the pending jobs

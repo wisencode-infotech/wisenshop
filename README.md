@@ -38,8 +38,6 @@ You can run the Laravel development server using:
 
 This will start your application at `http://127.0.0.1:8000` by default.
 
----
-
 ### 7. Installing script
 
 - Two Ways to Install the Script
@@ -62,9 +60,7 @@ To install using the command line:
 - The super admin username will be `admin@wisenshop.com`.
 - The super admin password will be `wisenshop450#!`.
 
----
-
-## Build Frontend Assets using npm
+### 8. Build Frontend Assets using npm
 
 ```npm install```
 

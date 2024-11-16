@@ -54,7 +54,24 @@ class FakeAppSeeder extends Seeder
 
         // Categories seeder
 
-        $categories = ['Cannabis Bulk Flowers', 'Cannabis Bulk Hash', 'Cannabis Bulk Isolate', 'Cannabis Bulk Distilate', 'Cannabis Bulk Terpenes', 'Cannabis Bulk Extracts'];
+        $categories = [
+            'Fruits & Vegetables',
+            'Dairy & Eggs',
+            'Meat & Poultry',
+            'Seafood',
+            'Bakery & Bread',
+            'Cereal & Breakfast Foods',
+            'Snacks & Sweets',
+            'Frozen Foods',
+            'Beverages',
+            'Pantry Staples (Rice, Pasta, Flour, etc.)',
+            'Spices & Seasonings',
+            'Canned & Packaged Goods',
+            'Personal Care & Hygiene',
+            'Cleaning Supplies',
+            'Baby Products',
+            'Health & Wellness',
+        ];
 
         foreach ($categories as $category) {
             Category::create([

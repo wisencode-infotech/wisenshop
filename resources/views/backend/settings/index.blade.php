@@ -71,24 +71,33 @@
                             @else
                                 @foreach ($settings->where('setting_group_id', $setting_group_id) as $setting)
                                         <div class="form-group mb-3">
-                                            <label for="{{ $setting->key }}"
-                                                class="form-label">{{ ucwords(str_replace('_', ' ', $setting->key)) }}</label>
-
-                                            @if ($setting->key === 'site_currency')
-                                                <select name="settings[{{ $setting->key }}]"
-                                                    class="form-select  @error('settings.' . $setting->key) is-invalid @enderror"
-                                                    required>
-                                                    @foreach ($currencies as $currency)
-                                                        <option value="{{ $currency->code }}"
-                                                            {{ $setting->value == $currency->code ? 'selected' : '' }}>
-                                                            {{ $currency->name }} ({{ $currency->symbol }})
-                                                        </option>
-                                                    @endforeach
-                                                </select>
+                                            @if (in_array($setting->key, ['activate_currencies_module', 'activate_multilangual_module']))
+                                                <div class="form-check">
+                                                    <input class="form-check-input" type="checkbox" id="{{ $setting->key }}" name="settings[{{ $setting->key }}]" @if ($setting->value == '1') ? checked @endif>
+                                                    <label for="{{ $setting->key }}"
+                                                        class="form-label">{{ ucwords(str_replace('_', ' ', $setting->key)) }}</label>
+                                                </div>
                                             @else
-                                                <input type="text" name="settings[{{ $setting->key }}]"
-                                                    class="form-control @error('settings.' . $setting->key) is-invalid @enderror"
-                                                    value="{{ $setting->value }}" required>
+                                                <label for="{{ $setting->key }}"
+                                                    class="form-label">{{ ucwords(str_replace('_', ' ', $setting->key)) }}</label>
+
+                                                @if ($setting->key === 'site_currency')
+                                                    <select name="settings[{{ $setting->key }}]"
+                                                        class="form-select  @error('settings.' . $setting->key) is-invalid @enderror"
+                                                        required>
+                                                        @foreach ($currencies as $currency)
+                                                            <option value="{{ $currency->code }}"
+                                                                {{ $setting->value == $currency->code ? 'selected' : '' }}>
+                                                                {{ $currency->name }} ({{ $currency->symbol }})
+                                                            </option>
+                                                        @endforeach
+                                                    </select>
+                                                @else
+                                                    <input type="text" name="settings[{{ $setting->key }}]"
+                                                        class="form-control @error('settings.' . $setting->key) is-invalid @enderror"
+                                                        value="{{ $setting->value }}" required>
+                                                @endif
+
                                             @endif
 
                                             @error('settings.' . $setting->key)

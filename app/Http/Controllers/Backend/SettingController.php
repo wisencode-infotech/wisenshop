@@ -50,7 +50,7 @@ class SettingController extends Controller
 
             } else {
 
-                if (!in_array($key, ['header_logo', 'footer_logo', 'fav_logo', 'email_header_logo'])) {
+                if (!in_array($key, ['header_logo', 'footer_logo', 'fav_logo', 'email_header_logo', 'activate_currencies_module', 'activate_multilangual_module'])) {
 
                     if (str_starts_with($key, 'color-')) {
                         $value = __convertHexToRgb($value);
@@ -61,11 +61,27 @@ class SettingController extends Controller
                         ['value' => $value]
                     );
 
-                    __updateSetting($key, $value);    
+                    __updateSetting($key, $value);
                 }
             }
             
         }
+
+        $activate_currencies_module = array_key_exists('activate_currencies_module', $request->settings) ? '1' : '0';
+        $activate_multilangual_module = array_key_exists('activate_multilangual_module', $request->settings) ? '1' : '0';
+
+        Setting::updateOrCreate(
+            ['key' => 'activate_currencies_module'],
+            ['value' => $activate_currencies_module]
+        );
+
+        Setting::updateOrCreate(
+            ['key' => 'activate_multilangual_module'],
+            ['value' => $activate_multilangual_module]
+        );
+
+        __updateSetting('activate_currencies_module', $activate_currencies_module);
+        __updateSetting('activate_multilangual_module', $activate_multilangual_module);
 
         Cache::clear('site-customizer');
 

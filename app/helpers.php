@@ -180,7 +180,7 @@ if (!function_exists('__userCurrencyCode'))
             }
         }
 
-        return session('user_currency_code', 'EUR');
+        return session('user_currency_code', env('APP_FALLBACK_CURRENCY', 'INR'));
     }
 }
 
@@ -228,7 +228,7 @@ if (!function_exists('__appCurrencySymbol'))
         if ( !empty($currency_info) ) 
             return $currency_info->symbol;
         else
-            return 'EUR';
+            return env('APP_FALLBACK_CURRENCY', 'INR');
     }
 }
 

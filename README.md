@@ -40,9 +40,11 @@ This will start your application at `http://127.0.0.1:8000` by default.
 
 ---
 
-## Two Ways to Install the Script
+### 7. Installing script
 
-### 1. Web Installer
+- Two Ways to Install the Script
+
+#### 1. Web Installer
 
 To install the script through the web interface:
 
@@ -50,7 +52,7 @@ To install the script through the web interface:
 - Add your server and database information.
 - Complete the installation process.
 
-### 2. CLI Installer (Command Line Interface)
+#### 2. CLI Installer (Command Line Interface)
 
 To install using the command line:
 

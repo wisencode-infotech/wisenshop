@@ -17,26 +17,19 @@ use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Backend\SettingController;
 use App\Http\Controllers\Backend\UserController;
-use App\Http\Controllers\Backend\FranchiseProductController;
 use App\Http\Controllers\Backend\MyReferralController;
-use App\Http\Controllers\Backend\PayoutController;
 use App\Http\Controllers\Backend\FooterMenuSectionController;
 use App\Http\Controllers\Backend\FooterMenuSectionItemController;
 
-
-
 Auth::routes();
 
-Route::middleware(['auth', 'check.role:admin,franchise'])->group(function () {
+Route::middleware(['auth', 'check.role:admin'])->group(function () {
     Route::get('/', [HomeController::class, 'root'])->name('home');
     Route::resource('product', ProductController::class);
-    Route::resource('payout', PayoutController::class);
-    Route::post('payout/{id}/approve', [PayoutController::class, 'approve'])->name('payout.approve');
     Route::resource('notification', NotificationController::class);
 });
 
-Route::middleware(['auth', 'check.role:franchise'])->group(function () {
-    Route::resource('franchise-product', FranchiseProductController::class);
+Route::middleware(['auth'])->group(function () {
     Route::get('my-referrals', [MyReferralController::class, 'index'])->name('my-referrals');
 });
 

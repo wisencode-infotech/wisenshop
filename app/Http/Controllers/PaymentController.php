@@ -2,54 +2,38 @@
 
 namespace App\Http\Controllers;
 
-use App\Helpers\CartHelper;
 use App\Models\Order;
 use Illuminate\Http\Request;
-use App\Services\CoinPaymentsService;
-use App\Services\MoneiPaymentService;
-use App\Services\VivaPaymentService;
-use App\Services\OrderService;
 use Illuminate\Support\Facades\Log;
 
 class PaymentController extends Controller
 {
-    protected $coinPaymentsService;
-    protected $moneiPaymentService;
-    protected $orderService;
-    protected $vivaPaymentService;
+    protected $newPaymentService;
 
-    public function __construct(CoinPaymentsService $coinPaymentsService, MoneiPaymentService $moneiPaymentService, OrderService $orderService, VivaPaymentService $vivaPaymentService)
+    public function __construct()
     {
-        $this->coinPaymentsService = $coinPaymentsService;
-        $this->moneiPaymentService = $moneiPaymentService;
-        $this->orderService = $orderService;
-        $this->vivaPaymentService = $vivaPaymentService;
+        // Define newPaymentService if needed
     }
 
     public function process(Order $order, $method)
     {
         try {
             return match ($method) {
-                'coinpayments' => $this->coinPaymentsService->processPayment($order),
-                'monei' => $this->moneiPaymentService->processPayment($order),
-                'viva' => $this->vivaPaymentService->processVivaPayment($order),
+                'new_payment_method' => $this->newPaymentService->processPayment($order),
                 default => redirect()->route('frontend.home')->with('error', __trans('Invalid payment method')),
             };
 
         } catch (\Exception $e) {
-
             return redirect()->route('frontend.payment.error')->with('error', __trans('Payment processing failed.'))->with('order', $order);
         }
     }
 
     public function callback(Request $request, $method)
     {
-        \Log::info("Payment callback received for method: $method", $request->all());
+        Log::info("Payment callback received for method: $method", $request->all());
 
         return match ($method) {
-            'coinpayments' => $this->coinPaymentsService->handleCallback($request),
-            'monei' => $this->moneiPaymentService->handleCallback($request),
-            'viva' => $this->vivaPaymentService->handleVivaCallback($request->all()),
+            'new_payment_method' => $this->newPaymentService->handleCallback($request),
             default => abort(404, __trans('Payment method not found')),
         };
     }

@@ -16,22 +16,6 @@
                     </a>
                 </li>
 
-                @if(__isFranchise())
-                <li>
-                    <a href="{{ route('backend.my-referrals') }}" class="waves-effect">
-                        <i class="bx bx-user"></i>
-                        <span key="t-calendar">My Referrals</span>
-                    </a>
-                </li>
-                @endif
-
-                <li>
-                    <a href="{{ route('backend.payout.index') }}" class="waves-effect">
-                        <i class="bx bx-money"></i>
-                        <span key="t-calendar">Payouts</span>
-                    </a>
-                </li>
-
                 @if(__currentUserRole() == 'admin')
 
                 <li>

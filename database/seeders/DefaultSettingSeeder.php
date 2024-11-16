@@ -168,9 +168,7 @@ class DefaultSettingSeeder extends Seeder
         // General site setting seeder
         $general_site_settings = [
             'site_title' => 'Wisenshop',
-            'site_currency' => 'EUR',
-            'affiliate_commission' => 2,
-            'minimum_payout' => 0
+            'site_currency' => 'EUR'
         ];
 
         $setting_sort_number = 1;

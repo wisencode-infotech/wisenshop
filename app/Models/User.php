@@ -27,15 +27,10 @@ class User extends Authenticatable
         'phone',
         'profile_image',
         'user_role_id',
-        'credit',
         'role',
-        'credit',
-        'iban',
         'affiliate_code',
         'referral_code',
         'address',
-        'commission',
-        'affiliate_earnings',
         'currency_id',
     ];
 

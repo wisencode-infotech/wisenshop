@@ -33,18 +33,12 @@ class Notification extends Model
     {
         $query = self::where('is_read', 0);
 
-        if (__isFranchise())
-            $query->where('user_id', Auth::id());
-
         return $query->count();
     }
 
     // Scopes
     public function scopeAuthenticated(Builder $query): Builder
     {
-        if (__isFranchise())
-            return $query->where('user_id', Auth::id());
-
         return $query;
     }
 }

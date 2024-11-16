@@ -24,8 +24,6 @@ class OrderService
 
     public function updateStatus($status)
     {
-        $this->updateFranchiseCommision($status);
-
         $this->order->status = $status;
 
         $this->order->save();
@@ -84,11 +82,6 @@ class OrderService
         $transaction->amount = $this->order->total_price;
         $transaction->status = $status;
         $transaction->save();
-    }
-
-    public function updateFranchiseCommision($status) 
-    {    
-        (new UserService($this->order->user))->handleUserCommission($this->order, $status);
     }
 
     public function updatePaymentStatus($status)

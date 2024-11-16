@@ -2,7 +2,6 @@
 
 use App\Helpers\CartHelper;
 use App\Helpers\WishlistHelper;
-use App\Http\Controllers\ErrorController;
 use App\Http\Controllers\PaymentController;
 use Illuminate\Support\Facades\Route;
 use App\Livewire\ContactPage;
@@ -17,7 +16,6 @@ use App\Livewire\CartPage;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Session;
 use Livewire\Livewire;
-use Illuminate\Support\Facades\Cache;
 use App\Livewire\GuestCheckout;
 use App\Livewire\Checkout;
 use App\Http\Middleware\RedirectIfNotLoggedIn;
@@ -27,7 +25,6 @@ use App\Livewire\Profile;
 use App\Livewire\MyWishlist;
 use App\Livewire\ThankYouPage;
 use App\Livewire\NotificationList;
-use App\Livewire\Credit;
 use App\Livewire\PageDetail;
 use App\Livewire\PaymentErrorPage;
 use App\Livewire\PaymentSuccessPage;
@@ -58,7 +55,6 @@ Route::get('/guest-checkout', GuestCheckout::class)->name('guest.checkout');
 Route::middleware(RedirectIfNotLoggedIn::class)->group(function () {
     Route::get('/profile', Profile::class)->name('profile');
     Route::get('/my-orders', MyOrders::class)->name('my-orders');
-    Route::get('/credit', Credit::class)->name('credit');
     Route::get('/checkout', Checkout::class)->name('checkout');
     Route::get('/thank-you/{order_id}', ThankYouPage::class)->name('thank-you');
     Route::get('/notifications', NotificationList::class)->name('notifications.index');

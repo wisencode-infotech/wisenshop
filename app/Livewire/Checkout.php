@@ -202,22 +202,12 @@ class Checkout extends Component
 
             $payment_method = $order?->payment?->details?->name ?? '';
 
-            if ($payment_method == 'MONEI') {  // Add this condition for Monei
+            if ($payment_method == 'NEW_PAYMENT_METHOD') {  // Add this condition for NEW_PAYMENT_METHOD
                 return redirect()->route('frontend.payment.process', [
                     'order' => $order->id, 
-                    'method' => 'monei'
+                    'method' => 'NEW_PAYMENT_METHOD'
                 ]);  
 
-            } else if ($payment_method == 'CoinPayments' ) {
-                return redirect()->route('frontend.payment.process', [
-                    'order' => $order->id, 
-                    'method' => 'coinpayments'
-                ]);  
-            } else if ($payment_method == 'Viva.com' ) {
-                return redirect()->route('frontend.payment.process', [
-                    'order' => $order->id, 
-                    'method' => 'viva'
-                ]);  
             } else {
                 $this->isPlacingOrder = false;
 

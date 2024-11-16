@@ -31,14 +31,6 @@
                     <i class="fa-regular fa-heart"></i> {{ __trans('My Wishlists') }}
                 </a>
             </li>
-
-            @if (auth()->check())
-            <li class="py-1">
-                <a class="block border-l-4 border-transparent py-2 px-10 font-semibold text-heading transition-colors hover:text-accent focus:text-accent {{ $current_route == 'frontend.credit' ? '!border-accent text-accent' : '' }}" wire:navigate href="{{ route('frontend.credit') }}">
-                    <i class="fa fa-dollar"></i> {{ __trans('Credit') }}
-                </a>
-            </li>
-            @endif
             
             <li class="py-1">
                 <a class="block border-l-4 border-transparent py-2 px-10 font-semibold text-heading transition-colors hover:text-accent focus:text-accent {{ $current_route == 'frontend.contact-us' ? '!border-accent text-accent' : '' }}" wire:navigate href="{{ route('frontend.contact-us') }}">

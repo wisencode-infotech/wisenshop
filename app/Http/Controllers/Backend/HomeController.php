@@ -47,15 +47,6 @@ class HomeController extends Controller
 
         $total_referral_users = 0;
 
-        if (__isFranchise()) {
-            
-            $user = Auth::user();
-
-            if(!empty($user->affiliate_code)){
-                $total_referral_users = User::where('referral_code', $user->affiliate_code)->count();
-            }
-        }
-
         return view('backend.index', compact('total_pending_orders','total_accepted_orders','total_shipped_orders','total_finalized_orders','total_cancelled_orders','total_return_orders', 'total_completed_orders_amount', 'total_referral_users'));
     }
 

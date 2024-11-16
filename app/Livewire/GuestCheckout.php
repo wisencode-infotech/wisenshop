@@ -43,7 +43,7 @@ class GuestCheckout extends Component
             'email' => $this->email,
             'phone' => $this->phone_number,
             'password' => Hash::make($this->password),
-            'user_role_id' => UserRole::where('role', 'buyer')->first()->id,
+            'user_role_id' => UserRole::where('role', 'customer')->first()->id,
             'currency_id' => __userCurrency()->id
         ]);
 

@@ -151,12 +151,6 @@
                 <div class="border-b border-border-200 border-opacity-70 px-5 py-4 lg:px-16 lg:py-14">
                     <h2 class="mb-4 text-lg font-semibold tracking-tight text-heading md:mb-6">{{ __trans('Description') }}</h2>
                     <p class="text-sm text-body react-editor-description">{!! $product->description !!}</p>
-
-
-                    <div>
-                        <livewire:franchise-product lazy :product_id="$product->id" />
-                    </div>
-
                 </div>
 
             </article>

@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Backend;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Models\User;
+use Illuminate\Support\Facades\Auth;
 use Yajra\DataTables\DataTables;
 
 class MyReferralController extends Controller
@@ -15,9 +16,10 @@ class MyReferralController extends Controller
 
             $data = [];
 
-            if(!empty(auth()->user()->affiliate_code)){
-                $data = User::where('referral_code', auth()->user()->affiliate_code)->get();
-            }
+            $user = Auth::user();
+
+            if (!empty($user->affiliate_code))
+                $data = User::where('referral_code', $user->affiliate_code)->get();
 
             return Datatables::of($data)
                 ->addIndexColumn() // Adds row index

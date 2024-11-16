@@ -25,10 +25,6 @@ class ProductController extends Controller
         if ($request->ajax()) {
             $data = Product::latest();
 
-            if (__isFranchise()) {
-                $data = $data->whereIn('public_visibility', [1, 0]);
-            }
-
             $data = $data->get();
 
             return Datatables::of($data)
@@ -83,8 +79,6 @@ class ProductController extends Controller
                         $btn = '<a href="'.route('backend.product.edit', $row->id).'" class="edit btn btn-primary btn-sm">Edit</a>';
 
                         $btn .= ' <button class="btn btn-danger btn-sm delete" data-id="'.$row->id.'">Delete</button>';
-                    } else {
-                        $btn = '<a href="'.route('backend.franchise-product.edit', $row->id).'" class="edit btn btn-primary btn-sm">Edit</a>';
                     }
                     
                     return $btn;

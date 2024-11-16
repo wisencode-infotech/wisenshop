@@ -32,10 +32,8 @@ class UserController extends Controller
                 })
                 ->addColumn('user_role_id', function($row) {
                     // Display the role with a badge
-                    if ($row->userRole->role == 'franchise') {
-                        return '<span class="badge rounded-pill badge-soft-primary font-size-12">Franchise</span>';
-                    } else if ($row->userRole->role == 'buyer') {
-                        return '<span class="badge rounded-pill badge-soft-info font-size-12">Buyer</span>';
+                    if ($row->userRole->role == 'customer') {
+                        return '<span class="badge rounded-pill badge-soft-info font-size-12">Customer</span>';
                     }
                 })
                 ->addColumn('action', function($row) {
@@ -67,11 +65,6 @@ class UserController extends Controller
             'phone' => 'required|nullable|string|max:15',
             'role' => 'required',
             'profile_image' => 'nullable|image|mimes:jpeg,png,webp,jpg,gif|max:2048',
-            'affiliate_code' => 'nullable|string|max:255',
-            'credit' => 'nullable|numeric',
-            'commission' => 'nullable|numeric',
-            'affiliate_earnings' => 'nullable|numeric',
-            'iban' => 'nullable|string|max:255',
             'referral_code' => 'nullable|string|max:255',
         ]);
 
@@ -91,11 +84,6 @@ class UserController extends Controller
             'address' => $request->address,
             'user_role_id' => $request->role,
             'profile_image' => $imagePath,
-            'affiliate_code' => $request->affiliate_code,
-            'credit' => $request->credit,
-            'commission' => $request->commission,
-            'affiliate_earnings' => $request->affiliate_earnings,
-            'iban' => $request->iban,
             'referral_code' => $request->referral_code,
             'status' => 1, // Default to active
         ]);
@@ -122,11 +110,6 @@ class UserController extends Controller
             'phone' => 'nullable|string|max:15',
             'role' => 'required',
             'profile_image' => 'nullable|image|mimes:jpeg,png,webp,jpg,gif|max:2048',
-            'affiliate_code' => 'nullable|string|max:255',
-            'credit' => 'nullable|numeric',
-            'commission' => 'nullable|numeric',
-            'affiliate_earnings' => 'nullable|numeric',
-            'iban' => 'nullable|string|max:255',
             'referral_code' => 'nullable|string|max:255',
         ]);
 
@@ -149,11 +132,6 @@ class UserController extends Controller
             'address' => $request->address,
             'user_role_id' => $request->role,
             'profile_image' => $imagePath,
-            'affiliate_code' => $request->affiliate_code,
-            'credit' => $request->credit,
-            'commission' => $request->commission,
-            'affiliate_earnings' => $request->affiliate_earnings,
-            'iban' => $request->iban,
             'referral_code' => $request->referral_code,
         ];
 

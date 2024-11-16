@@ -22,14 +22,7 @@ return new class extends Migration
 
             $table->foreignId('user_role_id')->constrained('user_roles');
 
-            // Specifically for franchise users and referral system
             $table->string('affiliate_code')->nullable();
-            $table->decimal('credit', 11, 2)->nullable();
-            $table->decimal('commission', 12, 2)->nullable()->default(2);
-            $table->decimal('affiliate_earnings', 12, 2)->nullable()->default(2);
-            $table->string('iban')->nullable();
-            // End of specifically for franchise users and referral system
-
             $table->string('referral_code')->nullable();
             $table->text('address')->nullable();
             $table->foreignId('currency_id')->nullable()->constrained('currencies')->onDelete('cascade');

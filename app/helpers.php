@@ -8,7 +8,6 @@ use App\Models\Language;
 use App\Models\Notification;
 use App\Models\Product;
 use App\Models\ProductVariation;
-use App\Models\FranchiseProductAvailability;
 use App\Models\User;
 use App\Models\SiteBanner;
 use App\Models\Category;
@@ -360,7 +359,7 @@ if (!function_exists('__currentUserRole'))
             return Auth::user()->userRole->role;
         }
 
-        return 'buyer';
+        return 'customer';
     }
 }
 
@@ -368,19 +367,7 @@ if (!function_exists('__productStock'))
 {
     function __productStock($product_id, $product_variation_id = null)
     {
-        if (__isFranchise()) {
-
-            $franchise_product = FranchiseProductAvailability::where('product_id', $product_id);
-
-            if (!empty($product_variation_id)) {
-                $franchise_product = $franchise_product->where('product_variation_id', $product_variation_id);
-            }
-
-            $franchise_product = $franchise_product->first();
-
-            return $franchise_product->quantity ?? 0;
-            
-        } elseif(!empty($product_variation_id)) {
+        if(!empty($product_variation_id)) {
             return ProductVariation::find($product_variation_id)->stock ?? 0;
         } else {
             return Product::find($product_id)->stock ?? 0;
@@ -395,14 +382,6 @@ if (!function_exists('__isAdmin'))
     function __isAdmin()
     {
         return __currentUserRole() === 'admin';
-    }
-}
-
-if (!function_exists('__isFranchise')) 
-{
-    function __isFranchise()
-    {
-        return __currentUserRole() === 'franchise';
     }
 }
 

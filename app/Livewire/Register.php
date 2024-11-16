@@ -8,6 +8,7 @@ use Illuminate\Support\Facades\Hash;
 use Livewire\Component;
 use App\Helpers\CartHelper;
 use App\Helpers\WishlistHelper;
+use Illuminate\Support\Facades\Auth;
 
 class Register extends Component
 {
@@ -40,7 +41,7 @@ class Register extends Component
             'email' => $this->email,
             'phone' => $this->phone_number,
             'password' => Hash::make($this->password),
-            'user_role_id' => UserRole::where('role', 'buyer')->first()->id,
+            'user_role_id' => UserRole::where('role', 'customer')->first()->id,
             'referral_code' => $this->referral_code,
             'currency_id' => __userCurrency()->id
         ]);
@@ -70,7 +71,7 @@ class Register extends Component
         }
 
         // Automatically log in the user after registration
-        auth()->login($user);
+        Auth::login($user);
 
         // Sync session cart to user
         CartHelper::syncToDatabse();

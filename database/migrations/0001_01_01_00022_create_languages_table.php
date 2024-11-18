@@ -13,9 +13,10 @@ return new class extends Migration
     {
         Schema::create('languages', function (Blueprint $table) {
             $table->id();
-            $table->string('code', 10); // Language code (e.g., 'en', 'es')
-            $table->string('name'); // Language name (e.g., 'English', 'Spanish')
-            $table->timestamps(); // Optional timestamps
+            $table->string('code', 10);
+            $table->string('name');
+            $table->boolean('is_active')->default(true)->nullable();
+            $table->timestamps();
             $table->softDeletes();
         });
     }

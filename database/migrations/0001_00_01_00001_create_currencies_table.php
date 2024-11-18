@@ -12,13 +12,13 @@ return new class extends Migration
     public function up(): void
     {
         Schema::create('currencies', function (Blueprint $table) {
-            $table->id(); // Auto-incrementing primary key
-            $table->string('name'); // Currency name (e.g., US Dollar)
-            $table->string('code', 3); // ISO 4217 currency code (e.g., USD)
-            $table->string('symbol', 10); // Currency symbol (e.g., $)
-            $table->decimal('exchange_rate', 15, 8)->default(1); // Exchange rate compared to base currency
-            $table->boolean('active')->default(true); // Status of currency
-            $table->timestamps(); // Created_at and updated_at columns
+            $table->id();
+            $table->string('name');
+            $table->string('code', 3);
+            $table->string('symbol', 10);
+            $table->decimal('exchange_rate', 15, 8)->default(1);
+            $table->boolean('active')->default(true)->nullable();
+            $table->timestamps();
             $table->softDeletes();
         });
     }

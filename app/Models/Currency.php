@@ -10,5 +10,16 @@ class Currency extends Model
 {
     use HasFactory, SoftDeletes;
 
-    protected $fillable = ['name', 'code', 'symbol', 'exchange_rate'];
+    protected $fillable = [
+        'name',
+        'code',
+        'symbol',
+        'exchange_rate',
+        'is_active'
+    ];
+
+    protected function scopeActive($query)
+    {
+        return $query->where('is_active', true);
+    }
 }

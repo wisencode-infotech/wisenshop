@@ -25,7 +25,7 @@
                     @csrf
                     @method('PUT')
 
-                    <!-- Name Field -->
+                    <!-- Code Field -->
                     <div class="form-group mb-3">
                         <label for="code" class="form-label">Language Code</label>
                         <input type="text" name="code" class="form-control @error('code') is-invalid @enderror" value="{{ old('code', $language->code) }}" required>
@@ -42,6 +42,17 @@
                         <label for="name" class="form-label">Language Name</label>
                         <input type="text" name="name" class="form-control @error('name') is-invalid @enderror" value="{{ old('name', $language->name) }}" required>
                         @error('name')
+                            <span class="invalid-feedback" role="alert">
+                                <strong>{{ $message }}</strong>
+                            </span>
+                        @enderror
+                    </div>
+
+                    <!-- is_active Field -->
+                    <div class="form-group mb-3">
+                        <input type="checkbox" name="is_active" id="is_active" class="form-check-inline @error('is_active') is-invalid @enderror" {{ old('is_active', $language->is_active == 1) ? 'checked' : '' }}>
+                        <label for="is_active" class="form-check-label">Is Active?</label>
+                        @error('is_active')
                             <span class="invalid-feedback" role="alert">
                                 <strong>{{ $message }}</strong>
                             </span>

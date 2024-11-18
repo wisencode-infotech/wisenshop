@@ -20,15 +20,23 @@ class LanguageController extends Controller
             $data = Language::latest()->get();
             return Datatables::of($data)
                 ->addIndexColumn() // Adds the row index
-                ->addColumn('image', function($row) {
-                    return $row->image_url;
+                ->addColumn('is_active', function($row) {
+                    if ($row->is_active == 1) {
+                        $badge_title = 'Yes';
+                        $badge_class = 'badge-soft-success';
+                    } else {
+                        $badge_title = 'No';
+                        $badge_class = 'badge-soft-danger';
+                    }
+
+                    return '<span class="badge rounded-pill font-size-12 ' . $badge_class . '">' .  $badge_title . '</span>';
                 })
                 ->addColumn('action', function($row) {
                     $btn = '<a href="'.route('backend.language.edit', $row->id).'" class="edit btn btn-primary btn-sm">Edit</a>';
                     $btn .= ' <button class="btn btn-danger btn-sm delete" data-id="'.$row->id.'">Delete</button>';
                     return $btn;
                 })
-                ->rawColumns(['action', 'image'])
+                ->rawColumns(['action', 'is_active'])
                 ->make(true);
         }
 
@@ -58,8 +66,11 @@ class LanguageController extends Controller
         // Create a new language in the database
         $language = Language::create([
             'code' => $request->code,
-            'name' => $request->name
+            'name' => $request->name,
+            'is_active' => $request->has('is_active') ? true : false
         ]);
+
+        __clearCache('app.languages');
 
         return redirect()->route('backend.language.index')
                          ->with('success', 'Language created successfully.');
@@ -94,11 +105,14 @@ class LanguageController extends Controller
 
         $data = [
             'code' => $request->code,
-            'name' => $request->name
+            'name' => $request->name,
+            'is_active' => $request->has('is_active') ? true : false
         ];
 
         // Update the language data
         $language->update($data);
+
+        __clearCache('app.languages');
 
         return redirect()->route('backend.language.index')
                          ->with('success', 'Language updated successfully.');
@@ -110,10 +124,15 @@ class LanguageController extends Controller
     public function destroy($id)
     {
         $language = Language::find($id);
+
         if ($language) {
             $language->delete();
+
+            __clearCache('app.languages');
+
             return response()->json(['success' => 'Language deleted successfully.']);
         }
+        
         return response()->json(['error' => 'Language not found.'], 404);
     }
 

@@ -39,6 +39,7 @@
                                     <th scope="col" style="width: 60px">#</th>
                                     <th scope="col">Code</th>
                                     <th scope="col">Name</th>
+                                    <th scope="col">Active?</th>
                                     <th scope="col">Action</th>
                                 </tr>
                             </thead>

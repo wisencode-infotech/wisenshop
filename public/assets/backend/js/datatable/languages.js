@@ -7,6 +7,7 @@ $(document).ready(function () {
             { data: 'DT_RowIndex', name: 'DT_RowIndex', orderable: false, searchable: false },
             { data: 'code', name: 'code' },
             { data: 'name', name: 'name' },
+            { data: 'is_active', name: 'is_active' },
             { 
                 data: 'action', 
                 name: 'action', 

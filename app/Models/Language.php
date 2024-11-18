@@ -10,5 +10,14 @@ class Language extends Model
 {
     use HasFactory, SoftDeletes;
 
-    protected $fillable = ['name', 'code'];
+    protected $fillable = [
+        'name',
+        'code',
+        'is_active'
+    ];
+
+    protected function scopeActive($query)
+    {
+        return $query->where('is_active', true);
+    }
 }

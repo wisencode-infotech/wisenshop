@@ -132,8 +132,8 @@ if (!function_exists('__languages'))
     {
         $cache_key = "app.languages";
 
-        return Cache::rememberForever($cache_key, function() { 
-            return Language::all();
+        return Cache::rememberForever($cache_key, function() {
+            return Language::active()->get();
         });
     }
 }
@@ -222,7 +222,7 @@ if (!function_exists('__currencies'))
         $cache_key = "app.currencies";
 
         return Cache::rememberForever($cache_key, function() { 
-            return Currency::all();
+            return Currency::active()->get();
         });
     }
 }
@@ -232,6 +232,7 @@ if (!function_exists('__appCurrencySymbol'))
     function __appCurrencySymbol()
     {
         $currency_info = __appCurrency();
+
         if ( !empty($currency_info) ) 
             return $currency_info->symbol;
         else

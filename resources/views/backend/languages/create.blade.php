@@ -24,7 +24,7 @@
                 <form method="POST" action="{{ route('backend.language.store') }}" enctype="multipart/form-data">
                     @csrf
 
-                    <!-- Name Field -->
+                    <!-- Code Field -->
                     <div class="form-group mb-3">
                         <label for="code" class="form-label">Language Code</label>
                         <input type="text" name="code" class="form-control @error('code') is-invalid @enderror" value="{{ old('code') }}" required>
@@ -43,6 +43,17 @@
                         <span class="invalid-feedback" role="alert">
                             <strong>{{ $message }}</strong>
                         </span>
+                        @enderror
+                    </div>
+
+                    <!-- is_active Field -->
+                    <div class="form-group mb-3">
+                        <input type="checkbox" name="is_active" id="is_active" class="form-check-inline @error('is_active') is-invalid @enderror" {{ old('is_active' == 1) ? 'checked' : '' }}>
+                        <label for="is_active" class="form-check-label">Is Active?</label>
+                        @error('is_active')
+                            <span class="invalid-feedback" role="alert">
+                                <strong>{{ $message }}</strong>
+                            </span>
                         @enderror
                     </div>
 

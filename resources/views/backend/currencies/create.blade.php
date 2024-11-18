@@ -35,7 +35,7 @@
                         @enderror
                     </div>
 
-                    <!-- Name Field -->
+                    <!-- Code Field -->
                     <div class="form-group mb-3">
                         <label for="code" class="form-label">Currency Code</label>
                         <input type="text" name="code" class="form-control @error('code') is-invalid @enderror" value="{{ old('code') }}" required>
@@ -46,7 +46,7 @@
                         @enderror
                     </div>
 
-                    <!-- Name Field -->
+                    <!-- Symbol Field -->
                     <div class="form-group mb-3">
                         <label for="symbol" class="form-label">Currency Symbol</label>
                         <input type="text" name="symbol" class="form-control @error('symbol') is-invalid @enderror" value="{{ old('symbol') }}" required>
@@ -57,6 +57,16 @@
                         @enderror
                     </div>
 
+                    <!-- is_active Field -->
+                    <div class="form-group mb-3">
+                        <input type="checkbox" name="is_active" id="is_active" class="form-check-inline @error('is_active') is-invalid @enderror" {{ old('is_active' == 1) ? 'checked' : '' }}>
+                        <label for="is_active" class="form-check-label">Is Active?</label>
+                        @error('is_active')
+                            <span class="invalid-feedback" role="alert">
+                                <strong>{{ $message }}</strong>
+                            </span>
+                        @enderror
+                    </div>
 
                     <!-- Submit Button -->
                     <div class="form-group text-end">

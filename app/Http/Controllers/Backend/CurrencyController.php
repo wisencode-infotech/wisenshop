@@ -30,12 +30,23 @@ class CurrencyController extends Controller
                 ->addColumn('symbol', function($row) {
                     return $row->symbol;
                 })
+                ->addColumn('is_active', function($row) {
+                    if ($row->is_active == 1) {
+                        $badge_title = 'Yes';
+                        $badge_class = 'badge-soft-success';
+                    } else {
+                        $badge_title = 'No';
+                        $badge_class = 'badge-soft-danger';
+                    }
+
+                    return '<span class="badge rounded-pill font-size-12 ' . $badge_class . '">' .  $badge_title . '</span>';
+                })
                 ->addColumn('action', function($row) {
                     $btn = '<a href="'.route('backend.currency.edit', $row->id).'" class="edit btn btn-primary btn-sm">Edit</a>';
                     $btn .= ' <button class="btn btn-danger btn-sm delete" data-id="'.$row->id.'">Delete</button>';
                     return $btn;
                 })
-                ->rawColumns(['action', 'code'])
+                ->rawColumns(['action', 'code', 'is_active'])
                 ->make(true);
         }
 
@@ -67,8 +78,11 @@ class CurrencyController extends Controller
         $currency = Currency::create([
             'name' => $request->name,
             'code' => $request->code,
-            'symbol' => $request->symbol
+            'symbol' => $request->symbol,
+            'is_active' => $request->has('is_active') ? true : false
         ]);
+
+        __clearCache('app.currencies');
 
         return redirect()->route('backend.currency.index')
                          ->with('success', 'Currency created successfully.');
@@ -105,11 +119,14 @@ class CurrencyController extends Controller
         $data = [
             'name' => $request->name,
             'code' => $request->code,
-            'symbol' => $request->symbol
+            'symbol' => $request->symbol,
+            'is_active' => $request->has('is_active') ? true : false
         ];
 
         // Update the currency data
         $currency->update($data);
+
+        __clearCache('app.currencies');
 
         return redirect()->route('backend.currency.index')
                          ->with('success', 'Currency updated successfully.');
@@ -121,10 +138,15 @@ class CurrencyController extends Controller
     public function destroy($id)
     {
         $currency = Currency::find($id);
+
         if ($currency) {
             $currency->delete();
+
+            __clearCache('app.currencies');
+            
             return response()->json(['success' => 'Currency deleted successfully.']);
         }
+
         return response()->json(['error' => 'Currency not found.'], 404);
     }
 

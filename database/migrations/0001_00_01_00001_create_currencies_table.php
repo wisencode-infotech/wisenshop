@@ -17,7 +17,7 @@ return new class extends Migration
             $table->string('code', 3);
             $table->string('symbol', 10);
             $table->decimal('exchange_rate', 15, 8)->default(1);
-            $table->boolean('active')->default(true)->nullable();
+            $table->boolean('is_active')->default(true)->nullable();
             $table->timestamps();
             $table->softDeletes();
         });

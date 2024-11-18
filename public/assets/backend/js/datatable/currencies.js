@@ -8,6 +8,7 @@ $(document).ready(function () {
             { data: 'name', name: 'name' },
             { data: 'code', name: 'code' },
             { data: 'symbol', name: 'symbol' },
+            { data: 'is_active', name: 'is_active' },
             { 
                 data: 'action', 
                 name: 'action', 

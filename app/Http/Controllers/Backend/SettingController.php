@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Backend;
 use App\Http\Controllers\Controller;
 use App\Models\Setting;
 use App\Models\Currency;
+use App\Models\Language;
 use App\Models\SettingGroup;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Cache;
@@ -18,9 +19,11 @@ class SettingController extends Controller
         
         $settings = Setting::get();
 
-        $currencies = Currency::all(); 
+        $currencies = Currency::all();
 
-        return view('backend.settings.index', compact('setting_groups', 'settings', 'currencies'));
+        $languages = Language::all();
+
+        return view('backend.settings.index', compact('setting_groups', 'settings', 'currencies', 'languages'));
     }
 
     public function update(Request $request)

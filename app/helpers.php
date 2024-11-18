@@ -20,13 +20,17 @@ if (!function_exists('__trans'))
 {
     function __trans($key, $locale = null, $group = null)
     {
-        $locale = $locale ?? app()->getLocale(); // Get the current locale if not passed
+        if (empty(trim($locale))) {
+            if (__setting('activate_multilangual_module') == '1')
+                $locale = $locale ?? app()->getLocale(); // Get the current locale if not passed
+            else
+                $locale = __setting('site_locale'); // Get the default site locale if multilangual_module is disabled
+        }
         
-        // dd($locale);
-        $cacheKey = "translation.{$locale}.{$group}.{$key}";
+        $cache_key = "translation.{$locale}.{$group}.{$key}";
 
         // Try to retrieve the translation from cache
-        return Cache::rememberForever($cacheKey, function () use ($key, $locale, $group) {
+        return Cache::rememberForever($cache_key, function () use ($key, $locale, $group) {
             $query = Translation::where('locale', $locale)->where('key', $key);
 
             if ($group) {
@@ -64,10 +68,10 @@ if (!function_exists('__setting'))
     function __setting($key, $default = null)
     {
         // Define cache key based on the setting key
-        $cacheKey = "settings.{$key}";
+        $cache_key = "settings.{$key}";
 
         // Try to retrieve the setting value from cache
-        return Cache::rememberForever($cacheKey, function () use ($key, $default) {
+        return Cache::rememberForever($cache_key, function () use ($key, $default) {
             // Query the setting from the database
             $setting = Setting::where('key', $key)->first();
 
@@ -171,6 +175,9 @@ if (!function_exists('__userCurrencyCode'))
 {
     function __userCurrencyCode()
     {
+        if (__setting('activate_currencies_module') != '1')
+            return env('APP_FALLBACK_CURRENCY', 'INR');
+        
         if (Auth::check()) {
 
             $user = Auth::user();
@@ -228,7 +235,7 @@ if (!function_exists('__appCurrencySymbol'))
         if ( !empty($currency_info) ) 
             return $currency_info->symbol;
         else
-            return env('APP_FALLBACK_CURRENCY', 'INR');
+            return env('APP_FALLBACK_CURRENCY_SYMBOL', '₹');
     }
 }
 
@@ -237,10 +244,10 @@ if (!function_exists('__homeSetting'))
     function __homeSetting($key, $decode = false) 
     {
         // Define cache key based on the home setting key
-        $cacheKey = "home_settings.{$key}";
+        $cache_key = "home_settings.{$key}";
 
         // Try to retrieve the setting value from cache
-        return Cache::rememberForever($cacheKey, function() use ($key, $decode) {
+        return Cache::rememberForever($cache_key, function() use ($key, $decode) {
             $setting = HomePageSetting::where('meta_key', $key)->first();
 
             if (!empty($setting)) {

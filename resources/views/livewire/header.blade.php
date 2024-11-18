@@ -21,41 +21,45 @@
         <div class="flex justify-end" style="grid-column: 3 / 4;">
                 <ul class="shrink-0 items-center space-x-7 rtl:space-x-reverse xl:flex 2xl:space-x-10">
 
-                    <li class="menuItem group relative mx-3 cursor-pointer">
-                       <div class="flex items-center gap-2 group-hover:text-accent">
-                          <span class="text-brand-dark group-hover:text-brand relative inline-flex items-center py-2 font-normal rtl:left-0"> {{ __userCurrencyCode() }}</span>
-                          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 12 7.2" width="12" height="7.2" class="mt-1">
-                             <path d="M6.002 5.03L10.539.265a.826.826 0 011.211 0 .94.94 0 010 1.275l-5.141 5.4a.827.827 0 01-1.183.026L.249 1.545a.937.937 0 010-1.275.826.826 0 011.211 0z" fill="currentColor"></path>
-                          </svg>
-                       </div>
-                       <ul class="shadow-dropDown invisible absolute top-full z-30 w-[150px] rounded-md bg-light py-4 opacity-0 shadow transition-all duration-300 group-hover:visible group-hover:opacity-100 right-0 xl:w-[150px]">
-                           @foreach(__currencies() as $currency)
-                                <li wire:key="currency-{{ $currency->id }}" class="menu-child-item font-chivo hover:filter-green group py-[10px] px-[22px] transition-all duration-200 hover:pl-[ 25px] hover:opacity-100">
-                                    <a class="flex items-center font-normal text-heading no-underline transition duration-200 hover:text-accent focus:text-accent" href="{{ route('frontend.change.currency', $currency->code) }}">
-                                        {{ ucfirst($currency->code) }} ({{ ucfirst($currency->symbol) }})
-                                    </a>
-                                </li>
-                            @endforeach
-                       </ul>
-                    </li>
+                    @if (__setting('activate_currencies_module') == '1')
+                        <li class="menuItem group relative mx-3 cursor-pointer">
+                            <div class="flex items-center gap-2 group-hover:text-accent">
+                                <span class="text-brand-dark group-hover:text-brand relative inline-flex items-center py-2 font-normal rtl:left-0"> {{ __userCurrencyCode() }}</span>
+                                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 12 7.2" width="12" height="7.2" class="mt-1">
+                                    <path d="M6.002 5.03L10.539.265a.826.826 0 011.211 0 .94.94 0 010 1.275l-5.141 5.4a.827.827 0 01-1.183.026L.249 1.545a.937.937 0 010-1.275.826.826 0 011.211 0z" fill="currentColor"></path>
+                                </svg>
+                            </div>
+                            <ul class="shadow-dropDown invisible absolute top-full z-30 w-[150px] rounded-md bg-light py-4 opacity-0 shadow transition-all duration-300 group-hover:visible group-hover:opacity-100 right-0 xl:w-[150px]">
+                                @foreach(__currencies() as $currency)
+                                        <li wire:key="currency-{{ $currency->id }}" class="menu-child-item font-chivo hover:filter-green group py-[10px] px-[22px] transition-all duration-200 hover:pl-[ 25px] hover:opacity-100">
+                                            <a class="flex items-center font-normal text-heading no-underline transition duration-200 hover:text-accent focus:text-accent" href="{{ route('frontend.change.currency', $currency->code) }}">
+                                                {{ ucfirst($currency->code) }} ({{ ucfirst($currency->symbol) }})
+                                            </a>
+                                        </li>
+                                    @endforeach
+                            </ul>
+                        </li>
+                    @endif
 
-                    <li class="menuItem group relative mx-3 cursor-pointer">
-                       <div class="flex items-center gap-2 group-hover:text-accent">
-                          <span class="text-brand-dark group-hover:text-brand relative inline-flex items-center py-2 font-normal rtl:left-0"> {{ strtoupper(app()->getLocale()) }}</span>
-                          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 12 7.2" width="12" height="7.2" class="mt-1">
-                             <path d="M6.002 5.03L10.539.265a.826.826 0 011.211 0 .94.94 0 010 1.275l-5.141 5.4a.827.827 0 01-1.183.026L.249 1.545a.937.937 0 010-1.275.826.826 0 011.211 0z" fill="currentColor"></path>
-                          </svg>
-                       </div>
-                       <ul class="shadow-dropDown invisible absolute top-full z-30 rounded-md bg-light py-4 opacity-0 shadow transition-all duration-300 group-hover:visible group-hover:opacity-100 right-0">
-                           @foreach(__languages() as $language)
-                                <li wire:key="language-{{ $language->id }}"  class="menu-child-item font-chivo hover:filter-green group py-[10px] px-[22px] transition-all duration-200 hover:pl-[ 25px] hover:opacity-100">
-                                    <a class="flex items-center font-normal text-heading no-underline transition duration-200 hover:text-accent focus:text-accent" href="{{ route('frontend.change.locale', $language->code) }}">
-                                        {{ ucfirst($language->name) }}
-                                    </a>
-                                </li>
-                            @endforeach
-                       </ul>
-                    </li>
+                    @if (__setting('activate_multilangual_module') == '1')
+                        <li class="menuItem group relative mx-3 cursor-pointer">
+                            <div class="flex items-center gap-2 group-hover:text-accent">
+                                <span class="text-brand-dark group-hover:text-brand relative inline-flex items-center py-2 font-normal rtl:left-0"> {{ strtoupper(app()->getLocale()) }}</span>
+                                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 12 7.2" width="12" height="7.2" class="mt-1">
+                                    <path d="M6.002 5.03L10.539.265a.826.826 0 011.211 0 .94.94 0 010 1.275l-5.141 5.4a.827.827 0 01-1.183.026L.249 1.545a.937.937 0 010-1.275.826.826 0 011.211 0z" fill="currentColor"></path>
+                                </svg>
+                            </div>
+                            <ul class="shadow-dropDown invisible absolute top-full z-30 rounded-md bg-light py-4 opacity-0 shadow transition-all duration-300 group-hover:visible group-hover:opacity-100 right-0">
+                                @foreach(__languages() as $language)
+                                        <li wire:key="language-{{ $language->id }}"  class="menu-child-item font-chivo hover:filter-green group py-[10px] px-[22px] transition-all duration-200 hover:pl-[ 25px] hover:opacity-100">
+                                            <a class="flex items-center font-normal text-heading no-underline transition duration-200 hover:text-accent focus:text-accent" href="{{ route('frontend.change.locale', $language->code) }}">
+                                                {{ ucfirst($language->name) }}
+                                            </a>
+                                        </li>
+                                    @endforeach
+                            </ul>
+                        </li>
+                    @endif
 
                     @livewire('cart-icon')
 

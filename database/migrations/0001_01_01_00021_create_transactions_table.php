@@ -16,7 +16,7 @@ return new class extends Migration
             $table->foreignId('order_id')->constrained('orders')->onDelete('cascade');
             $table->string('transaction_id')->unique();
             $table->decimal('amount', 8, 2);
-            $table->string('status'); // Example: success, failed
+            $table->string('status');
             $table->timestamps();
             $table->softDeletes();
         });

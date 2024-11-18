@@ -14,9 +14,9 @@ class CreateInquiryTable extends Migration
     public function up()
     {
         Schema::create('inquiry', function (Blueprint $table) {
-            $table->id(); // Auto-incrementing primary key
-            $table->text('data'); // Column to store the data
-            $table->timestamps(); // Automatically adds 'created_at' and 'updated_at'
+            $table->id();
+            $table->text('data');
+            $table->timestamps();
         });
     }
 

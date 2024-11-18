@@ -13,11 +13,11 @@ return new class extends Migration
     {
         Schema::create('shipping_methods', function (Blueprint $table) {
             $table->id();
-            $table->string('name'); // Name of the shipping method (e.g., Standard Shipping, Express Shipping)
-            $table->string('description')->nullable(); // Short description of the shipping method
-            $table->decimal('price', 10, 2); // Shipping cost
-            $table->string('delivery_time')->nullable(); // Estimated delivery time (e.g., 3-5 business days)
-            $table->boolean('is_active')->default(true); // Whether the shipping method is active
+            $table->string('name');
+            $table->string('description')->nullable();
+            $table->decimal('price', 10, 2);
+            $table->string('delivery_time')->nullable();
+            $table->boolean('is_active')->default(true);
             $table->timestamps();
             $table->softDeletes();
         });

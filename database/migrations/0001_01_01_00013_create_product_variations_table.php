@@ -11,9 +11,9 @@ class CreateProductVariationsTable extends Migration
         Schema::create('product_variations', function (Blueprint $table) {
             $table->id();
             $table->foreignId('product_id')->constrained('products')->onDelete('cascade');
-            $table->string('name'); // Example: Color, Size, Weight
-            $table->decimal('price', 10, 2)->nullable(); // Price for the variation
-            $table->integer('stock')->default(0); // Stock for the variation
+            $table->string('name');
+            $table->decimal('price', 10, 2)->nullable();
+            $table->integer('stock')->default(0);
             $table->timestamps();
             $table->softDeletes();
         });

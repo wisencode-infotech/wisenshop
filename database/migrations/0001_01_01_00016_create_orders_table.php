@@ -16,7 +16,7 @@ return new class extends Migration
             $table->string('order_number')->unique()->nullable();
             $table->foreignId('user_id')->constrained('users')->onDelete('cascade');
             $table->foreignId('currency_id')->constrained('currencies')->onDelete('cascade');
-            $table->string('status'); // Example: pending, shipped, delivered
+            $table->string('status');
             $table->decimal('total_price', 10, 2);
             $table->json('extra_information')->nullable();
             $table->timestamps();

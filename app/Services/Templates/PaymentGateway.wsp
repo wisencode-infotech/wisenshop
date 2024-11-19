@@ -1,0 +1,214 @@
+namespace App\Services\PaymentGateway;
+
+use App\Models\Order;
+use App\Models\PaymentMethod;
+use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Log;
+
+class {{PAYMENT_SERVICE_NAME}}
+{
+    protected $identifier = '{{payment_gateway_name}}'; // Use payment method name same as database
+
+    protected $payments_method_detail; // Holding the payment method details from database
+
+    protected $http_client; // Http client or any SDK object to proceed for the payment gateway, you can handle as per your need
+
+    /**
+     * Constructor for initializing the payment service class.
+     *
+     * This constructor performs the following tasks:
+     * - Retrieves the payment method details from the database based on the provided identifier.
+     * - Optionally initializes an HTTP client for interacting with the payment gateway using the API key 
+     *   retrieved from the payment method's metadata (commented out for now).
+     *
+     * Note: Ensure that the `$this->identifier` property is defined in the class before using this constructor.
+     * Note: Meta info for the payment details from the database can be retrieved like $this->payments_method_detail->meta_info->api_key,           
+     *       $this->payments_method_detail->meta_info->secret etc...
+     *
+     * @return void
+     */
+    public function __construct()
+    {
+        $this->payments_method_detail = PaymentMethod::where('name', $this->identifier)->first();
+
+        // $this->http_client = new PaymentGatewayAPI($this->payments_method_detail->meta_info->api_key);
+    }
+
+    /**
+     * Process a payment for the given order.
+     *
+     * This method handles the payment processing flow for an order. It performs the following steps:
+     * - Retrieves the associated user for the order.
+     * - Prepares the payment gateway data using the `prepareData` method.
+     * - Initiates the payment request via the `createPayment` method.
+     * - Redirects the user to the payment gateway's URL if available.
+     * - Redirects back to the homepage with an error message if the payment gateway fails to provide a redirect URL.
+     * 
+     * Note: This is sample usage workflow so please update the business logic and workflow according to your requirements.
+     * 
+     * @param Order $order The order object for which payment is to be processed.
+     * @return \Illuminate\Http\RedirectResponse A redirect response to the payment gateway or the homepage with an error.
+     */
+    public function processPayment($order)
+    {
+        $user = $order->user;
+
+        $payment_gateway_data = $this->prepareData($order, $user);
+
+        $response = $this->createPayment($payment_gateway_data);
+
+        if (!empty($redirectUrl = $response['redirect_url'])) {
+            return redirect($redirectUrl);
+        }
+
+        return redirect()->route('frontend.home')->with('error', __('Something went wrong with payment service'));
+    }
+
+    /**
+     * Prepare the data payload for initiating a payment request.
+     *
+     * This method constructs an array of payment-related data based on the provided 
+     * order and user details. The returned data is intended for use in an API call to 
+     * a payment gateway.
+     *
+     * The data includes:
+     * - Amount (converted to cents for compatibility with payment systems).
+     * - Currency code derived from the order details.
+     * - Order ID, description, and various URLs for payment callbacks and outcomes.
+     * - Customer details such as email, name, and phone number.
+     * - A session ID to track the transaction and a flag to indicate token generation.
+     * 
+     * Note: This is sample data so ensure to update accordingly and test it when needed.
+     * 
+     * @param Order $order The order object containing payment details such as total price and currency.
+     * @param User $user The user object containing customer information.
+     * @return array The prepared data payload for the payment request.
+     */
+    private function prepareData($order, $user)
+    {
+        return [
+            'amount' => $order->total_price,
+            'currency' => $order->currency->code,
+            'orderId' => (string)$order->id,
+            'description' => 'Order #' . $order->id,
+            'callbackUrl' => route('frontend.payment.callback', ['method' => $this->identifier]),
+            'completeUrl' => route('frontend.payment.success'),
+            'failUrl' => route('frontend.payment.error', ['status' => 'failed']),
+            'cancelUrl' => route('frontend.payment.error', ['status' => 'cancel']),
+            'sessionId' => session()->id(),
+            'generatePaymentToken' => true,
+            'customer' => [
+                'email' => $user->email ?? '',
+                'name' => $user->name ?? '',
+                'phone' => $user->phone ?? ''
+            ]
+        ];
+    }
+
+    /**
+     * Create a payment request using the payment service API.
+     *
+     * This method sends a payment creation request to the external payment service 
+     * (e.g., PayPal or Stripe API). It handles the following:
+     * - Tries to create a payment using the provided data.
+     * - Logs an error if the payment response status is not successful.
+     * - Catches any exceptions that occur during the API call and logs the error.
+     * - Returns an empty array in case of an error or exception.
+     *
+     * Note: The actual API request code is commented out. Ensure to uncomment and test it when needed.
+     *
+     * @param array $data Payment request data, including details such as amount, currency, etc.
+     * @return array The API response for the payment request or an empty array on error.
+     */
+    private function createPayment($data = [])
+    {
+        try {
+            /* $payment = $this->http_client->payments->create($data);
+
+            if ($payment['status'] !== 'success')
+                Log::error($this->identifier . ': API response status : ' . $payment['status']);
+
+            return $payment; */
+        } catch (\Exception $e) {
+            Log::error($this->identifier . ': Error in payment service API call: ' . $e->getMessage());
+            return [];
+        }
+    }
+
+    /**
+     * Handle incoming webhook requests for order updates.
+     *
+     * Note: Change the business logic based on your needs.
+     * 
+     * @param Illuminate\Http\Request $request The HTTP request object containing the callback payload.
+     * @return \Illuminate\Http\JsonResponse The JSON response indicating the processing result.
+     */
+    public function handleCallback(Request $request)
+    {
+        // Decode the JSON payload from the incoming callback request
+        $payload = json_decode($request->getContent(), true);
+
+        // Extract necessary fields from the payload
+        $order_id = $payload['order_id'] ?? null;
+        $status = $payload['status'] ?? null;
+        $transaction_id = $payload['transaction_id'] ?? null;
+
+        // Validate required fields
+        if (is_null($order_id) || is_null($status)) {
+            Log::error($this->identifier . ': callback missing required fields: order ID or status', ['payload' => $payload]);
+            return response()->json(['message' => 'Invalid callback data'], 400);
+        }
+
+        // Find the order by ID
+        $order = Order::find($order_id);
+
+        if (!$order) {
+            Log::error($this->identifier . ': Order not found for callback', ['orderId' => $order_id]);
+            return response()->json(['message' => 'Order not found'], 404);
+        }
+
+        try {
+            // Update the order status based on the webhook data
+            $this->updateOrderStatus($order, $status, [
+                'transaction_id' => $transaction_id
+            ]);
+
+            Log::info('Callback processed successfully', [
+                'orderId' => $order_id,
+                'status' => $status,
+                'transactionId' => $transaction_id
+            ]);
+
+            return response()->json(['message' => 'Callback handled successfully'], 200);
+        } catch (\Exception $e) {
+            // Handle any exceptions during processing
+            Log::error($this->identifier . ': Error processing callback', [
+                'orderId' => $order_id,
+                'status' => $status,
+                'transactionId' => $transaction_id,
+                'error' => $e->getMessage()
+            ]);
+
+            return response()->json(['message' => 'An error occurred while processing the callback'], 500);
+        }
+    }
+
+    /**
+     * Update the status of an order and apply additional attributes.
+     *
+     * This method updates the order's status and allows for additional attributes, such as 
+     * transaction details, to be stored alongside the update. Business logic related to 
+     * specific statuses can be implemented within this method.
+     * 
+     * Note: Change the business logic based on your needs.
+     *
+     * @param Order $order The order instance to update.
+     * @param string $status The new status to apply to the order.
+     * @param array $attributes Additional attributes to associate with the order update (e.g., transaction ID).
+     * @return void
+     */
+    private function updateOrderStatus(Order $order, $status, $attributes = [])
+    {
+        // Handle your transaction further
+    }
+}

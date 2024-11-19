@@ -3,6 +3,8 @@
 namespace App\Console\Commands;
 
 use App\Models\PaymentMethod;
+use Exception;
+use Illuminate\Support\Facades\File;
 
 class CreatePaymentMethod extends WisenShopCommand
 {
@@ -32,14 +34,56 @@ class CreatePaymentMethod extends WisenShopCommand
             return 1;
         }
 
+        if (PaymentMethod::where('name', $this->toSnakeCase($name))->exists()) {
+            $this->showConsoleHeadingError('['. $name . '] already exists in payment methods.');
+            return 1;
+        }
+
+        $payment_service_file_base_name = ucfirst($this->toCamelCase($name));
+
+        $payment_service_file_relative_path = 'App/Services/PaymentGateway/' . $payment_service_file_base_name . '.php';
+        $payment_service_file_absolute_path = app_path('Services/PaymentGateway/' . $payment_service_file_base_name . '.php');
+
+        if (File::exists($payment_service_file_absolute_path)) {
+            $this->showConsoleHeadingError('[' . $payment_service_file_relative_path . '] file already exists.');
+            return 1;
+        }
+        
+        // Load the service template content
+        $service_template_path = app_path('Services/Templates/PaymentGateway.wsp');
+
+        if (!file_exists($service_template_path)) {
+            $this->showConsoleHeadingError("The template file ['{$service_template_path}'] does not exist.");
+            return 1;
+        }
+        
+        $service_template_content = file_get_contents($service_template_path);
+
+        $service_file_content = '<?php' . PHP_EOL . PHP_EOL;
+
+        $service_file_content .= str_replace(
+            ['{{PAYMENT_SERVICE_NAME}}', '{{payment_gateway_name}}'],
+            [$payment_service_file_base_name, $this->toSnakeCase($name)],
+            $service_template_content
+        );
+
+        // Create the new payment gateway service file and update the content
+        try {
+            file_put_contents($payment_service_file_relative_path, $service_file_content);
+            $this->showConsoleHeadingInfo("The file [{$payment_service_file_relative_path}] has been created successfully.");
+        } catch (Exception $e) {
+            $this->showConsoleHeadingError("An error occurred while creating the payment gateway service file: {$e->getMessage()}");
+            return 1;
+        }
+
         PaymentMethod::insert([
-            'name' => 'Cash on Delivery',
+            'name' => $this->toSnakeCase($name),
             'description' => $this->option('description') ?? null,
             'logo_url' => null,
             'is_default' => ($this->option('is_default') && $this->option('is_default') == 'true') ? 1 : 0
         ]);
 
         // Display message after completion
-        $this->messageAlignedBig($name . ' is added as payment method.');
+        $this->messageAlignedBig('[' . $name . '] is added as payment method.');
     }
 }

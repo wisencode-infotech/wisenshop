@@ -100,5 +100,8 @@ class FreshInstallWisenShop extends WisenShopCommand
 
             $this->infoAlignedCompact('Assets and media transferred successfully.');
         }
+
+        // Empty dynamically generated files
+        $this->emptyDirectory(app_path('Services/PaymentGateway/'));
     }
 }

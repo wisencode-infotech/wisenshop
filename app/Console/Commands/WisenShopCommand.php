@@ -4,6 +4,8 @@ namespace App\Console\Commands;
 
 use Illuminate\Console\Command;
 use Illuminate\Support\Facades\Artisan;
+use Illuminate\Support\Facades\File;
+use Illuminate\Support\Str;
 
 abstract class WisenShopCommand extends Command
 {
@@ -98,5 +100,36 @@ abstract class WisenShopCommand extends Command
         $this->output->writeln('  <bg=' . $bg_color . ';fg=' . $text_color . '> ' . $content . ' </>');
         $this->output->writeln('  <bg=' . $bg_color . ';fg=' . $text_color . '> ' . $padding . ' </>'); // Bottom blank line with background
         $this->output->writeln(' ');
+    }
+
+    protected function errorAlignedBig($message, $label = 'ERROR')
+    {
+        $this->messageAlignedBig($message, $label, 'red', 'white');
+    }
+
+    protected function toCamelCase($string)
+    {
+        return Str::camel($string);
+    }
+
+    protected function toSnakeCase($string)
+    {
+        return Str::snake($string);
+    }
+
+    protected function toKebabCase($string)
+    {
+        return Str::kebab($string);
+    }
+
+    protected function emptyDirectory($directory)
+    {
+        if (File::isDirectory($directory)) {
+            $files = File::files($directory);
+
+            foreach ($files as $file) {
+                File::delete($file);
+            }
+        }
     }
 }

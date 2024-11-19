@@ -15,7 +15,7 @@ class Kernel extends ConsoleKernel
 
     protected function schedule(Schedule $schedule)
     {
-        $schedule->command('currency:update-exchange-rates')->cron('0 */9 * * *');
+        $schedule->command('wisenshop:update-currency-exchange-rates')->cron('0 */9 * * *');
     }
 
     protected function commands()

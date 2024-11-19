@@ -32,6 +32,16 @@ abstract class WisenShopCommand extends Command
         $this->showConsoleHeadingMessage('', $message, 'red');
     }
 
+    protected function showConsoleHeadingInfoCompact($message)
+    {
+        $this->showConsoleHeadingMessage('', $message, 'blue', 'white', true);
+    }
+
+    protected function showConsoleHeadingErrorCompact($message)
+    {
+        $this->showConsoleHeadingMessage('', $message, 'red', 'white', true);
+    }
+
     protected function showConsoleHeadingMessageCompact($message, $label = 'INFO', $bg_color = 'blue', $text_color = 'white')
     {
         $this->showConsoleHeadingMessage($message, $label, $bg_color, $text_color, true);

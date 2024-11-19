@@ -3,17 +3,16 @@
 namespace App\Console\Commands;
 
 use App\Models\Currency;
-use Illuminate\Console\Command;
 use Illuminate\Support\Facades\Http;
 
-class UpdateCurrencyRates extends Command
+class UpdateCurrencyRates extends WisenShopCommand
 {
     /**
      * The name and signature of the console command.
      *
      * @var string
      */
-    protected $signature = 'currency:update-exchange-rates';
+    protected $signature = 'wisenshop:update-currency-exchange-rates';
 
     /**
      * The console command description.
@@ -29,7 +28,7 @@ class UpdateCurrencyRates extends Command
     {
         $site_currency_code = __setting('site_currency');
         
-        $this->info('Fetching exchange rates... BASE CURRENCY : ' . $site_currency_code);
+        $this->messageAlignedBig('Fetching exchange rates... BASE CURRENCY : ' . $site_currency_code);
 
         // Fetch exchange rates from an external API
         $response = Http::get('https://api.exchangerate-api.com/v4/latest/' . ($site_currency_code ?? (env('APP_FALLBACK_CURRENCY', 'INR')))); // Replace with your API URL
@@ -47,15 +46,15 @@ class UpdateCurrencyRates extends Command
                 if (isset($rates[$currencyCode])) {
                     // Update the exchange rate in the database
                     $currencyRate->update(['exchange_rate' => $rates[$currencyCode]]);
-                    $this->info("Updated rate for {$currencyCode}: {$rates[$currencyCode]}");
+                    $this->showConsoleHeadingInfoCompact("{$currencyCode} rate updated: {$rates[$currencyCode]}");
                 } else {
-                    $this->warn("Rate for {$currencyCode} not found in the API response.");
+                    $this->showConsoleHeadingError("Rate for {$currencyCode} not found in the API response.");
                 }
             }
 
-            $this->info('Exchange rates updated successfully.');
+            $this->messageAlignedBig('Currency exchange rates updated successfully.');
         } else {
-            $this->error('Failed to fetch exchange rates. Response: ' . $response->body());
+            $this->showConsoleHeadingError('Failed to fetch exchange rates. Response: ' . $response->body());
         }
     }
 }

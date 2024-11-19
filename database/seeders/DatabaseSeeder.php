@@ -23,7 +23,7 @@ class DatabaseSeeder extends Seeder
         (new DefaultSettingSeeder())->run();
 
         // Update currency exchange rates based on site base currency
-        Artisan::call('currency:update-exchange-rates');
+        Artisan::call('wisenshop:update-currency-exchange-rates');
 
         // ProductUnit seeder
         (new ProductUnitSeeder())->run();

@@ -76,37 +76,8 @@ class Checkout extends Component
 
     public function copyShippingAddress()
     {
-        if ($this->copy_to_billing && $this->selected_shipping_address_id) {
-            
+        if ($this->copy_to_billing && $this->selected_shipping_address_id)
             $this->selected_billing_address_id = null;
-
-
-            // $shipping_address = ShippingAddress::find($this->selected_shipping_address_id);
-            // if ($shipping_address) {
-                
-            //     $billing_address = BillingAddress::where('shipping_address_id', $this->selected_shipping_address_id)->first();
-
-            //     if(empty($billing_address))    {
-            //         $billing_address = BillingAddress::create([
-            //             'user_id' => auth()->id(),
-            //             'shipping_address_id' => $shipping_address->id,
-            //             'address' => $shipping_address->address,
-            //             'city' => $shipping_address->city,
-            //             'state' => $shipping_address->state,
-            //             'postal_code' => $shipping_address->postal_code,
-            //             'country' => $shipping_address->country,
-            //         ]);
-
-            //         $this->selected_billing_address_id = $billing_address->id;
-            //     }
-
-            //     $this->selected_billing_address_id = $billing_address->id;
-
-            //     $this->copy_to_billing = false;
-
-            //     $this->billing_addresses = BillingAddress::where('user_id', auth()->id())->get();
-            // }
-        }
     }
 
     public function selectBillingAddress($address_id)
@@ -174,7 +145,7 @@ class Checkout extends Component
                 if ($shipping_address) {
 
                     $billing_address = BillingAddress::create([
-                        'user_id' => auth()->id(),
+                        'user_id' => Auth::user()->id,
                         'address' => $shipping_address->address,
                         'city' => $shipping_address->city,
                         'state' => $shipping_address->state,
@@ -202,12 +173,11 @@ class Checkout extends Component
 
             $payment_method = $order?->payment?->details?->name ?? '';
 
-            if ($payment_method == 'NEW_PAYMENT_METHOD') {  // Add this condition for NEW_PAYMENT_METHOD
+            if ($payment_method != 'Cash on Delivery') {
                 return redirect()->route('frontend.payment.process', [
                     'order' => $order->id, 
-                    'method' => 'NEW_PAYMENT_METHOD'
-                ]);  
-
+                    'method' => $payment_method
+                ]);
             } else {
                 $this->isPlacingOrder = false;
 
@@ -219,7 +189,7 @@ class Checkout extends Component
 
                 $this->dispatch('notify', 'success', __trans('Order placed successfully!'));
 
-                return redirect()->intended('/thank-you/'.$order_id);
+                return redirect()->intended('/thank-you/' . $order_id);
             }
         }
     }

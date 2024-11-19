@@ -57,9 +57,8 @@ class {{PAYMENT_SERVICE_NAME}}
 
         $response = $this->createPayment($payment_gateway_data);
 
-        if (!empty($redirectUrl = $response['redirect_url'])) {
-            return redirect($redirectUrl);
-        }
+        if (!empty($redirect_url = $response['redirect_url']))
+            return redirect($redirect_url);
 
         return redirect()->route('frontend.home')->with('error', __('Something went wrong with payment service'));
     }

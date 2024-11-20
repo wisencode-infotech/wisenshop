@@ -17,6 +17,8 @@
 
 @section('scripts')
 
-<script src="{{ asset('assets/frontend/js/mobile-category-filter.js') }}" defer></script>
+@if (file_exists('assets/frontend/js/default/mobile-category-filter.js'))
+    <script src="{{ asset('assets/frontend/js/default/mobile-category-filter.js') }}" defer></script>
+@endif
 
 @endsection

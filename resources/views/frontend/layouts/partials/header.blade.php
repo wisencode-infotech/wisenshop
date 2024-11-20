@@ -1,0 +1,1 @@
+@livewire('header', [], key('header'))

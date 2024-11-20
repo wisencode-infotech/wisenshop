@@ -1,0 +1,1 @@
+@livewire('mobile-header-filter', [], key('mobile-header-filter'))

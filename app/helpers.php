@@ -416,3 +416,11 @@ if (!function_exists('__clearCache'))
         Cache::forget($cache_key);
     }
 }
+
+if (!function_exists('__documentLocale')) 
+{
+    function __documentLocale()
+    {   
+        return str_replace('_', '-', (app()->getLocale() ?? env('APP_FALLBACK_LOCALE', 'en')));
+    }
+}

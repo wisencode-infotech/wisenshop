@@ -1,24 +1,14 @@
-const mix = require('laravel-mix');
+const fs = require('fs');
 
-// JavaScript Files
-mix.scripts([
-       'public/assets/frontend/js/default/jquery.min.js',
-       'public/assets/frontend/js/default/swiper-bundle.min.js',
-       'public/assets/frontend/js/default/axios.min.js',
-       'public/assets/frontend/js/default/preferences.js',
-       'public/assets/frontend/js/default/toastr.min.js',
-       'public/assets/frontend/js/default/app.js' // Ensure this is included last
-   ], 'public/assets/frontend/js/default/mix.js'); // Save combined JS here
+const app_active_theme = 'default';
 
-// CSS Files
-mix.styles([
-       'public/assets/frontend/css/default/main.css',
-       'public/assets/frontend/css/default/rc-style.css',
-       'public/assets/frontend/css/default/style.css',
-       'public/assets/frontend/css/default/app.css',
-       'public/assets/frontend/css/default/swiper.min.css',
-       'public/assets/frontend/css/default/toastr.min.css'
-   ], 'public/assets/frontend/css/default/mix.css'); // Save combined CSS here
+// Path to the theme's webpack file
+const theme_mix_file = `public/assets/frontend/js/${app_active_theme}/webpack.mix.js`;
 
-// Versioning for cache-busting (optional)
-mix.version();
+if (fs.existsSync(theme_mix_file)) {
+    console.warn(`Using webpack config for theme: [${app_active_theme}] from [${theme_mix_file}]`);
+    require(`./${theme_mix_file}`); // Dynamically require the theme's webpack file
+} else {
+    console.error(`Webpack file for theme [ ${app_active_theme} ] not found at [ ${theme_mix_file} ]`);
+    process.exit(1);
+}

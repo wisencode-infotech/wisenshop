@@ -14,7 +14,7 @@
         return view('frontend.layouts.site-customizer')->render();
     }) !!}
 
-    <link rel="stylesheet" href="{{ mix('assets/frontend/css/default/mix.css') }}">
+    <link rel="stylesheet" href="{{ mix('assets/frontend/css/' . __appActiveTheme() . '/mix.css') }}">
 
     @livewireStyles
 </head>
@@ -55,7 +55,7 @@
 
     </script>
 
-    <script src="{{ mix('assets/frontend/js/default/mix.js') }}"></script>
+    <script src="{{ mix('assets/frontend/js/' . __appActiveTheme() . '/mix.js') }}"></script>
 
     @yield('scripts')
 

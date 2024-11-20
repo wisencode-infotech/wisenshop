@@ -14,7 +14,9 @@ use App\Models\Category;
 use Illuminate\Support\Facades\Cache;
 use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\File;
 use Illuminate\Support\Facades\Session;
+use Illuminate\Support\Facades\View;
 
 if (!function_exists('__trans')) 
 {
@@ -422,5 +424,24 @@ if (!function_exists('__documentLocale'))
     function __documentLocale()
     {   
         return str_replace('_', '-', (app()->getLocale() ?? env('APP_FALLBACK_LOCALE', 'en')));
+    }
+}
+
+if (!function_exists('__includeThemeAssetPartials')) 
+{
+    function __includeThemeAssetPartials($position = 'head', $order = 'before', $with = [])
+    {   
+        if (__appThemeHasPartials($position, $order))
+            return view('frontend/layouts/themes/' . __appActiveTheme() . '/partials/' . $position . '/' . $order . '-mix', $with)->render();
+
+        return '';
+    }
+}
+
+if (!function_exists('__appThemeHasPartials')) 
+{
+    function __appThemeHasPartials($position = 'head', $order = 'before')
+    {   
+        return View::exists('frontend/layouts/themes/' . __appActiveTheme() . '/partials/' . $position . '/' . $order . '-mix');
     }
 }

@@ -14,7 +14,11 @@
         return view('frontend.layouts.site-customizer')->render();
     }) !!}
 
+    {!! __includeThemeAssetPartials('head', 'before') !!}
+
     <link rel="stylesheet" href="{{ mix('assets/frontend/css/' . __appActiveTheme() . '/mix.css') }}">
+
+    {!! __includeThemeAssetPartials('head', 'after') !!}
 
     @livewireStyles
 </head>
@@ -22,7 +26,7 @@
 
     <div id="__next">
         <div dir="ltr">
-            <main class="{{ config('app.title') }}-version-undefined">   
+            <main class="{{ config('app.title') }}-version-latest">   
                 <div class="flex min-h-screen flex-col bg-gray-100 transition-colors duration-150">
                     @include('frontend/layouts/partials/header')
                     
@@ -55,7 +59,11 @@
 
     </script>
 
+    {!! __includeThemeAssetPartials('after-body', 'before') !!}
+
     <script src="{{ mix('assets/frontend/js/' . __appActiveTheme() . '/mix.js') }}"></script>
+
+    {!! __includeThemeAssetPartials('after-body', 'after') !!}
 
     @yield('scripts')
 

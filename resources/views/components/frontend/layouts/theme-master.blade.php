@@ -1,1 +1,0 @@
-@include('components/frontend/layouts/themes/' . __appActiveTheme() . '/app')

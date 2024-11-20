@@ -1,0 +1,1 @@
+@include('frontend/layouts/themes/' . __appActiveTheme() . '/app')

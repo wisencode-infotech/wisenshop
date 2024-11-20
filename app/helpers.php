@@ -240,6 +240,14 @@ if (!function_exists('__appCurrencySymbol'))
     }
 }
 
+if (!function_exists('__appActiveTheme')) 
+{
+    function __appActiveTheme()
+    {
+        return __setting('site_theme', 'default');
+    }
+}
+
 if (!function_exists('__homeSetting')) 
 {
     function __homeSetting($key, $decode = false) 

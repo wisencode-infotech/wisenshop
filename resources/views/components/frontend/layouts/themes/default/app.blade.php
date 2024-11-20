@@ -11,7 +11,7 @@
     <link rel="icon" href="{{  asset(__setting('fav_logo')) }}" type="image/png"> 
 
     {!! Cache::rememberForever('site-customizer', function () {
-        return view('components.layouts.site-customizer')->render();
+        return view('components.frontend.layouts.site-customizer')->render();
     }) !!}
 
     <link rel="stylesheet" href="{{ mix('assets/frontend/css/mix.css') }}">

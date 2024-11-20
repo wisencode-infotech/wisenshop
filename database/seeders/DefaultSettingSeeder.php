@@ -170,6 +170,7 @@ class DefaultSettingSeeder extends Seeder
             'site_title' => 'Wisenshop',
             'site_currency' => 'INR',
             'site_locale' => 'EN',
+            'site_theme' => 'default',
             'activate_currencies_module' => true,
             'activate_multilangual_module' => true
         ];

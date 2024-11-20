@@ -38,7 +38,7 @@ return [
     |
     */
 
-    'layout' => 'components.layouts.app',
+    'layout' => 'components.frontend.layouts.theme-master',
 
     /*
     |---------------------------------------------------------------------------

@@ -36,5 +36,8 @@ class DatabaseSeeder extends Seeder
 
          // FooterMenuSectionItemSeeder seeder
         (new FooterMenuSectionItemSeeder())->run();
+
+        // Site themes seeder
+        (new SiteThemeSeeder())->run();
     }
 }

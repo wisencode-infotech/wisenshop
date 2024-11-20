@@ -25,6 +25,8 @@ class CurrencySeeder extends Seeder
             ['name' => 'Indian Rupee', 'code' => 'INR', 'symbol' => '₹', 'exchange_rate' => 73.58, 'is_active' => true]
         ];
 
-        Currency::insert($currencies);
+        foreach ($currencies as $currency) {
+            Currency::create($currency);
+        }
     }
 }

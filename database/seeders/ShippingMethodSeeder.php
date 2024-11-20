@@ -13,14 +13,12 @@ class ShippingMethodSeeder extends Seeder
      */
     public function run()
     {
-        ShippingMethod::insert([
-            [
-                'name' => 'Free Shipping',
-                'description' => 'Free shipping for orders over $50',
-                'price' => 0.00,
-                'delivery_time' => '5-7 business days',
-                'is_active' => true,
-            ]
+        ShippingMethod::create([
+            'name' => 'Free Shipping',
+            'description' => 'Free shipping for orders over $50',
+            'price' => 0.00,
+            'delivery_time' => '5-7 business days',
+            'is_active' => true,
         ]);
     }
 }

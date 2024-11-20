@@ -7,6 +7,7 @@ use App\Models\Setting;
 use App\Models\Currency;
 use App\Models\Language;
 use App\Models\SettingGroup;
+use App\Models\SiteTheme;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Cache;
 use Illuminate\Support\Str;
@@ -23,7 +24,9 @@ class SettingController extends Controller
 
         $languages = Language::all();
 
-        return view('backend.settings.index', compact('setting_groups', 'settings', 'currencies', 'languages'));
+        $site_themes = SiteTheme::all();
+
+        return view('backend.settings.index', compact('setting_groups', 'settings', 'currencies', 'languages', 'site_themes'));
     }
 
     public function update(Request $request)

@@ -103,6 +103,17 @@
                                                             </option>
                                                         @endforeach
                                                     </select>
+                                                @elseif ($setting->key === 'site_theme')
+                                                    <select name="settings[{{ $setting->key }}]"
+                                                        class="form-select  @error('settings.' . $setting->key) is-invalid @enderror"
+                                                        required>
+                                                        @foreach ($site_themes as $site_theme)
+                                                            <option value="{{ $site_theme->identifier }}"
+                                                                {{ $setting->value == $site_theme->identifier ? 'selected' : '' }}>
+                                                                {{ $site_theme->name }} {{ (!empty($site_theme->description)) ? ' [' . $site_theme->description . ']' : strtoupper($site_theme->identifier) }}
+                                                            </option>
+                                                        @endforeach
+                                                    </select>
                                                 @else
                                                     <input type="text" name="settings[{{ $setting->key }}]"
                                                         class="form-control @error('settings.' . $setting->key) is-invalid @enderror"

@@ -4,6 +4,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Api\ProductController;
 use App\Http\Controllers\Api\CategoryController;
 use App\Http\Controllers\Api\CartController;
+use App\Http\Controllers\Api\GetController;
 use App\Http\Controllers\Api\OrderController;
 use App\Http\Controllers\Api\UserController;
 use App\Http\Controllers\Api\ReviewController;
@@ -48,3 +49,10 @@ Route::middleware('auth:sanctum')->group(function () {
 Route::get('/product/{slug}', [ProductController::class, 'show']); // Product details
 Route::get('/category/{slug}', [CategoryController::class, 'show']); // Category page
 Route::get('/search', [ProductController::class, 'search']); // Search page
+
+// Get site attributes routes
+Route::prefix('get')->withoutMiddleware('auth:sanctum')->group(function () {
+    Route::prefix('settings')->group(function () {
+        Route::get('/{key}', [GetController::class, 'setting']); // Setting by meta key
+    });
+});

@@ -427,22 +427,25 @@ if (!function_exists('__documentLocale'))
     }
 }
 
-if (!function_exists('__includeThemeAssetPartials')) 
+if (!function_exists('__includeThemePartialView')) 
 {
-    function __includeThemeAssetPartials($position = 'head', $order = 'before', $with = [])
+    function __includeThemePartialView($directory = 'head', $file = 'before-mix', $with = [], $must_exists = false)
     {   
-        if (__appThemeHasPartials($position, $order))
-            return view('frontend/layouts/themes/' . __appActiveTheme() . '/partials/' . $position . '/' . $order . '-mix', $with)->render();
+        if (__appThemeHasPartialView($directory, $file))
+            return view('frontend/layouts/themes/' . __appActiveTheme() . '/partials/' . $directory . '/' . $file, $with)->render();
+
+        if ($must_exists)
+            throw new Exception('File [frontend/layouts/themes/' . __appActiveTheme() . '/partials/' . $directory . '/' . $file . '.blade.php] not found.');
 
         return '';
     }
 }
 
-if (!function_exists('__appThemeHasPartials')) 
+if (!function_exists('__appThemeHasPartialView')) 
 {
-    function __appThemeHasPartials($position = 'head', $order = 'before')
+    function __appThemeHasPartialView($directory = 'head', $file = 'before-mix')
     {   
-        return View::exists('frontend/layouts/themes/' . __appActiveTheme() . '/partials/' . $position . '/' . $order . '-mix');
+        return View::exists('frontend/layouts/themes/' . __appActiveTheme() . '/partials/' . $directory . '/' . $file);
     }
 }
 
@@ -451,5 +454,13 @@ if (!function_exists('__appLivewireView'))
     function __appLivewireView($view_name, $data = [])
     {
         return view('livewire.' . __appActiveTheme() . '.' . $view_name, $data);
+    }
+}
+
+if (!function_exists('__appLivewireViewInclude'))
+{
+    function __appLivewireViewInclude($view_name, $data = [])
+    {
+        return __appLivewireView($view_name, $data)->render();
     }
 }

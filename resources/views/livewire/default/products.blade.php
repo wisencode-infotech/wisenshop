@@ -13,9 +13,11 @@
 
         <!-- Loading Skeleton -->
         <div wire:loading wire:target.except="loadMore" class="w-full"> 
-            __appLivewireView('skeleton-loader', [
-                'skeletons' => range(1, 10) // Pass the skeleton count to the view
-            ])
+            {!! 
+                __appLivewireViewInclude('skeleton-loader', [
+                    'skeletons' => range(1, 10) // Pass the skeleton count to the view
+                ])
+            !!}
         </div>
         
         <div wire:loading.remove wire:target.except="loadMore" class="grid grid-cols-[repeat(auto-fill,minmax(250px,1fr))] gap-3">

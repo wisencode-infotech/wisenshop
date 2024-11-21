@@ -50,6 +50,6 @@ class WishlistButton extends Component
 
     public function render()
     {
-        return view('livewire.wishlist-button');
+        return __appLivewireView('wishlist-button');
     }
 }

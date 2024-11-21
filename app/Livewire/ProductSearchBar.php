@@ -34,6 +34,6 @@ class ProductSearchBar extends Component
 
     public function render()
     {
-        return view('livewire.product-search-bar');
+        return __appLivewireView('product-search-bar');
     }
 }

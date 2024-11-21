@@ -17,7 +17,7 @@ class PaymentSuccessPage extends Component
 
     public function render()
     {
-        return view('livewire.payment-success-page', [
+        return __appLivewireView('payment-success-page', [
             'transactionId' => $this->transactionId,
             'orderId' => $this->orderId,
         ]);

@@ -16,7 +16,7 @@ class Footer extends Component
             return FooterMenuSection::all();
         });
 
-        return view('livewire.footer', [
+        return __appLivewireView('footer', [
             'menu_sections' => $menu_sections
         ]);
     }

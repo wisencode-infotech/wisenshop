@@ -86,7 +86,7 @@ class Products extends Component
 
     public function placeholder()
     {
-        return view('livewire.skeleton-loader', [
+        return __appLivewireView('skeleton-loader', [
             'skeletons' => range(1, 10),
             'apply_top_margin' => true
         ]);
@@ -137,7 +137,7 @@ class Products extends Component
         $products = $query->paginate($this->paginate_count);
 
         // Return the view with the paginated products
-        return view('livewire.products', [
+        return __appLivewireView('products', [
             'products' => $products
         ]);
     }

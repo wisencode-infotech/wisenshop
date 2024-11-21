@@ -29,4 +29,9 @@ class NotificationToast extends Component
 
         $this->skipRender();
     }
+
+    public function render()
+    {
+        return '<div></div>';
+    }
 }

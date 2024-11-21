@@ -134,6 +134,6 @@ class RemindWhenStockAvailable extends Component
 
     public function render()
     {
-        return view('livewire.remind-when-stock-available');
+        return __appLivewireView('remind-when-stock-available');
     }
 }

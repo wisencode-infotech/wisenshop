@@ -35,7 +35,7 @@ class ProductReviews extends Component
             ->orderBy('created_at', 'desc')
             ->paginate($this->paginate_count); // Change the number per page as needed
 
-        return view('livewire.product-reviews', [
+        return __appLivewireView('product-reviews', [
             'reviews' => $reviews,
         ]);
     }

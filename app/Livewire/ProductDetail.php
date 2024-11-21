@@ -35,7 +35,7 @@ class ProductDetail extends Component
 
     public function render()
     {
-        return view('livewire.product-detail', [
+        return __appLivewireView('product-detail', [
             'product' => $this->product,
         ]);
     }

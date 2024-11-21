@@ -29,7 +29,7 @@ class ProductVariation extends Component
 
     public function render()
     {
-        return view('livewire.product-variation', [
+        return __appLivewireView('product-variation', [
             'variations' => $this->production_variations
         ]);
     }

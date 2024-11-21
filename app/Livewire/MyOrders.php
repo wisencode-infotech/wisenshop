@@ -44,7 +44,7 @@ class MyOrders extends Component
         $orders = Order::where('user_id', Auth::user()->id)->orderBy('id', 'desc')
                        ->paginate($this->paginate_count);
 
-        return view('livewire.my-orders', [
+        return __appLivewireView('my-orders', [
             'orders' => $orders
         ]);
     }

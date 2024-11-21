@@ -37,6 +37,6 @@ class CartIcon extends Component
 
     public function render()
     {
-        return view('livewire.cart-icon');
+        return __appLivewireView('cart-icon');
     }
 }

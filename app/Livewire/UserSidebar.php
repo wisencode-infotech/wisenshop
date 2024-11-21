@@ -11,7 +11,7 @@ class UserSidebar extends Component
     {
         $current_route = Request::route()->getName();
         
-        return view('livewire.user-sidebar', [
+        return __appLivewireView('user-sidebar', [
             'current_route' => $current_route,
         ]);
     }

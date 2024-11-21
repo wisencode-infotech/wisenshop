@@ -14,12 +14,12 @@ class Rating extends Component
 
     public function placeholder()
     {
-        return view('livewire.skeleton-detail-page-loader');
+        return __appLivewireView('skeleton-detail-page-loader');
     }
     
     public function render()
     {
-        return view('livewire.rating', [
+        return __appLivewireView('rating', [
             'product' => $this->product
         ]);
     }

@@ -82,6 +82,6 @@ class MyWishlist extends Component
 
     public function render()
     {
-        return view('livewire.my-wishlist');
+        return __appLivewireView('my-wishlist');
     }
 }

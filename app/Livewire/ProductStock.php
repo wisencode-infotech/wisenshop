@@ -55,6 +55,6 @@ class ProductStock extends Component
 
     public function render()
     {
-        return view('livewire.product-stock');
+        return __appLivewireView('product-stock');
     }
 }

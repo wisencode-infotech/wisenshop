@@ -35,6 +35,6 @@ class NotificationList extends Component
         ->orderBy('created_at', 'desc')
         ->paginate($this->perPage);
 
-        return view('livewire.notification-list', ['notifications' => $notifications]);
+        return __appLivewireView('notification-list', ['notifications' => $notifications]);
     }
 }

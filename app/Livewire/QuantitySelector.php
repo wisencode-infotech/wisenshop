@@ -92,6 +92,6 @@ class QuantitySelector extends Component
 
     public function render()
     {
-        return view('livewire.quantity-selector');
+        return __appLivewireView('quantity-selector');
     }
 }

@@ -27,7 +27,7 @@ class FullOrderDetails extends Component
 
     public function render()
     {
-        return view('livewire.full-order-details');
+        return __appLivewireView('full-order-details');
     }
 }
 

@@ -62,6 +62,6 @@ class ProductReviewModel extends Component
 
     public function render()
     {
-        return view('livewire.product-review-model');
+        return __appLivewireView('product-review-model');
     }
 }

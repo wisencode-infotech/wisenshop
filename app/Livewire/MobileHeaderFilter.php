@@ -40,6 +40,6 @@ class MobileHeaderFilter extends Component
 
     public function render()
     {
-        return view('livewire.mobile-header-filter');
+        return __appLivewireView('mobile-header-filter');
     }
 }

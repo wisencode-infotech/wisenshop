@@ -19,7 +19,7 @@ class PaymentErrorPage extends Component
 
     public function render()
     {
-        return view('livewire.payment-error-page', [
+        return __appLivewireView('payment-error-page', [
             'status' => $this->status,
             'orderId' => $this->orderId,
             'message' => $this->message,

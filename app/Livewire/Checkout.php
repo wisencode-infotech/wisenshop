@@ -196,7 +196,7 @@ class Checkout extends Component
 
     public function render()
     {
-        return view('livewire.checkout', [
+        return __appLivewireView('checkout', [
             'cart' => $this->cart_items
         ]);
     }

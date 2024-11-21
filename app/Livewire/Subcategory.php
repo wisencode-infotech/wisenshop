@@ -8,6 +8,6 @@ class Subcategory extends Component
 {
     public function render()
     {
-        return view('livewire.subcategory');
+        return __appLivewireView('subcategory');
     }
 }

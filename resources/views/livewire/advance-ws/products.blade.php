@@ -13,7 +13,7 @@
 
         <!-- Loading Skeleton -->
         <div wire:loading wire:target.except="loadMore" class="w-full"> 
-            @include('livewire.skeleton-loader', [
+            __appLivewireView('skeleton-loader', [
                 'skeletons' => range(1, 10) // Pass the skeleton count to the view
             ])
         </div>

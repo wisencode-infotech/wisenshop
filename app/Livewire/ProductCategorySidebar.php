@@ -54,7 +54,7 @@ class ProductCategorySidebar extends Component
     {
         $banner_settings = __homeSetting('banner_settings', true);
 
-        return view('livewire.product-category-sidebar', [
+        return __appLivewireView('product-category-sidebar', [
             'product_categories' => $this->product_categories,
             'selectedCategoryId' => $this->selectedCategoryId, 
             'subcategories' => $this->subcategories, // Pass filtered subcategories

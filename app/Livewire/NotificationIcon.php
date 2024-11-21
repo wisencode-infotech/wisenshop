@@ -49,7 +49,7 @@ class NotificationIcon extends Component
 
     public function render()
     {
-        return view('livewire.notification-icon', [
+        return __appLivewireView('notification-icon', [
             'notifications' => $this->notifications,
             'total_unread_notification' => $this->total_unread_notification,
             'context' => $this->context,

@@ -20,6 +20,6 @@ class ThankYouPage extends Component
 
     public function render()
     {
-        return view('livewire.thank-you-page');
+        return __appLivewireView('thank-you-page');
     }
 }

@@ -63,6 +63,6 @@ class GuestCheckout extends Component
 
     public function render()
     {
-        return view('livewire.guest-checkout');
+        return __appLivewireView('guest-checkout');
     }
 }

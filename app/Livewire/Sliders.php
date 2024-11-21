@@ -24,12 +24,12 @@ class Sliders extends Component
 
     public function placeholder()
     {
-        return view('livewire.slider-skeleton');
+        return __appLivewireView('slider-skeleton');
     }
 
     public function render()
     {  
-        return view('livewire.sliders', [
+        return __appLivewireView('sliders', [
             'banners' => $this->banners,
         ]);
     }

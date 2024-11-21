@@ -445,3 +445,11 @@ if (!function_exists('__appThemeHasPartials'))
         return View::exists('frontend/layouts/themes/' . __appActiveTheme() . '/partials/' . $position . '/' . $order . '-mix');
     }
 }
+
+if (!function_exists('__appLivewireView'))
+{
+    function __appLivewireView($view_name, $data = [])
+    {
+        return view('livewire.' . __appActiveTheme() . '.' . $view_name, $data);
+    }
+}

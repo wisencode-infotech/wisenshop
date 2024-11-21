@@ -26,7 +26,7 @@ class OrderProgress extends Component
 
     public function render()
     {
-        return view('livewire.order-progress');
+        return __appLivewireView('order-progress');
     }
 }
 

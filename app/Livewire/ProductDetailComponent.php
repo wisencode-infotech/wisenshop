@@ -14,12 +14,12 @@ class ProductDetailComponent extends Component
 
     public function placeholder()
     {
-        return view('livewire.skeleton-detail-page-loader');
+        return __appLivewireView('skeleton-detail-page-loader');
     }
     
     public function render()
     {
-        return view('livewire.product-detail-component', [
+        return __appLivewireView('product-detail-component', [
             'product' => $this->product
         ]);
     }

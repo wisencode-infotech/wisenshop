@@ -32,6 +32,6 @@ class MobileTopbarFilters extends Component
 
     public function render()
     {
-        return view('livewire.mobile-topbar-filters');
+        return __appLivewireView('mobile-topbar-filters');
     }
 }

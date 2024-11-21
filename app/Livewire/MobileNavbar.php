@@ -32,6 +32,6 @@ class MobileNavbar extends Component
 
     public function render()
     {
-        return view('livewire.mobile-navbar');
+        return __appLivewireView('mobile-navbar');
     }
 }

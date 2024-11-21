@@ -34,6 +34,6 @@ class PageDetail extends Component
 
     public function render()
     {
-        return view('livewire.page-detail', ['page_content' => $this->page_content]);
+        return __appLivewireView('page-detail', ['page_content' => $this->page_content]);
     }
 }

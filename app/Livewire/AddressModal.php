@@ -137,6 +137,6 @@ class AddressModal extends Component
 
     public function render()
     {
-        return view('livewire.address-modal');
+        return __appLivewireView('address-modal');
     }
 }

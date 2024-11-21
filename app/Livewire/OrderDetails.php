@@ -19,7 +19,7 @@ class OrderDetails extends Component
 
     public function render()
     {
-        return view('livewire.order-details');
+        return __appLivewireView('order-details');
     }
 }
 

@@ -66,7 +66,7 @@ class ProductPrice extends Component
 
     public function render()
     {
-        return view('livewire.product-price', [
+        return __appLivewireView('product-price', [
             'price' => $this->price
         ]);
     }

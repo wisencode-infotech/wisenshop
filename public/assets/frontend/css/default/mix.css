@@ -331,7 +331,7 @@ button.reset_filter_btn:hover {
 }
 
 #nprogress .bar {
-    background-color: var(--color-accent) !important;
+    background-color: rgba(var(--color-accent)) !important;
 }
 
 .no-product-found-box {

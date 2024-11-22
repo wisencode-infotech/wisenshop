@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
     <meta name="csrf-token" content="{{ csrf_token() }}">
-    <title>{{ __appActiveTheme() }} @yield('title', config('app.name'))</title>
+    <title>@yield('title', config('app.name'))</title>
 
     @include('partials.seo')
 
@@ -16,7 +16,7 @@
 
     {!! __includeThemePartialView('head', 'before-mix') !!}
 
-    <link rel="stylesheet" href="{{ mix('assets/frontend/css/' . __appActiveTheme() . '/mix.css') }}">
+    <link rel="stylesheet" href="{{ mix('assets/frontend/theme/mix.css') }}">
 
     {!! __includeThemePartialView('head', 'after-mix') !!}
 
@@ -37,7 +37,7 @@
 
     {!! __includeThemePartialView('after-body', 'before-mix') !!}
 
-    <script src="{{ mix('assets/frontend/js/' . __appActiveTheme() . '/mix.js') }}"></script>
+    <script src="{{ mix('assets/frontend/theme/mix.js') }}"></script>
 
     {!! __includeThemePartialView('after-body', 'after-mix') !!}
 

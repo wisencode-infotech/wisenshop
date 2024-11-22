@@ -1,13 +1,13 @@
-<div class="bg-white max-w-6xl mx-auto p-6 mt-5 rounded-lg">
+<div class="bg-white max-w-4xl mx-auto min-h-screen p-6 mt-5 rounded-lg">
     <!-- Back Button -->
     <div class="p-5">
         <div class="animate-pulse mb-4 w-12 h-6 bg-gray-200 rounded-full"></div>
     </div>
-    
+
     <div class="flex flex-col lg:flex-row space-y-8 lg:space-y-0 lg:space-x-8 p-5">
         <!-- Main Product Image Placeholder -->
         <div class="animate-pulse flex-shrink-0 mx-auto lg:mx-0">
-            <div class="h-96 sm:w-80 md:w-96 lg:w-96 xl:w-96 bg-gray-200 rounded-lg mb-6"></div>
+            <div class="h-96 sm:w-80 md:w-96 lg:w-96 bg-gray-200 rounded-lg mb-6"></div>
 
             <!-- Additional Images Placeholder -->
             <div class="flex space-x-4 mt-4 justify-center lg:justify-start">
@@ -18,46 +18,61 @@
         </div>
 
         <!-- Product Details Placeholder -->
-        <div class="flex-1">
+        <div class="flex-1 space-y-6">
             <!-- Title Placeholder -->
-            <div class="animate-pulse mb-2">
-                <div class="h-6 sm:h-8 bg-gray-200 rounded w-2/3 lg:w-3/4"></div>
-            </div>
-
-            <!-- Rating Placeholder -->
-            <div class="animate-pulse mb-4">
-                <div class="h-4 sm:h-6 bg-gray-200 rounded w-1/3 lg:w-1/4"></div>
-            </div>
-
-            <!-- Description Placeholder -->
-            <div class="animate-pulse mb-6">
-                <div class="h-4 sm:h-6 bg-gray-200 rounded w-full mb-3"></div>
-                <div class="h-4 sm:h-6 bg-gray-200 rounded w-5/6 mb-2"></div>
-                <div class="h-4 sm:h-6 bg-gray-200 rounded w-4/5 mb-2"></div>
-                <div class="h-4 sm:h-6 bg-gray-200 rounded w-3/4 mb-2"></div>
-                <div class="h-4 sm:h-6 bg-gray-200 rounded w-4/5"></div>
+            <div class="animate-pulse">
+                <div class="h-6 bg-gray-200 rounded w-2/3"></div>
+                <div class="h-4 bg-gray-200 rounded w-1/4 mt-2"></div>
             </div>
 
             <!-- Price Placeholder -->
-            <div class="animate-pulse mb-4">
-                <div class="h-6 sm:h-8 bg-gray-200 rounded w-1/3"></div>
-            </div>
-
-            <!-- Quantity Selector Placeholder -->
-            <div class="animate-pulse flex items-center mb-4">
-                <div class="w-8 sm:w-10 h-8 sm:h-10 bg-gray-200 rounded-full"></div>
-                <div class="w-16 sm:w-20 h-8 sm:h-10 bg-gray-200 rounded mx-2 sm:mx-4"></div>
-                <div class="w-8 sm:w-10 h-8 sm:h-10 bg-gray-200 rounded-full"></div>
-            </div>
-
-            <!-- Stock Info Placeholder -->
-            <div class="animate-pulse mb-6">
-                <div class="h-4 sm:h-6 bg-gray-200 rounded w-1/3 lg:w-1/4"></div>
-            </div>
-
-            <!-- Categories Placeholder -->
             <div class="animate-pulse">
-                <div class="h-4 sm:h-6 bg-gray-200 rounded w-1/2 lg:w-1/3"></div>
+                <div class="h-8 bg-gray-200 rounded w-1/4"></div>
+            </div>
+
+            <!-- Size Selector Placeholder -->
+            <div class="animate-pulse space-y-2">
+                <div class="h-4 bg-gray-200 rounded w-1/3"></div>
+                <div class="flex space-x-4">
+                    <div class="h-10 w-10 bg-gray-200 rounded-full"></div>
+                    <div class="h-10 w-10 bg-gray-200 rounded-full"></div>
+                    <div class="h-10 w-10 bg-gray-200 rounded-full"></div>
+                    <div class="h-10 w-10 bg-gray-200 rounded-full"></div>
+                </div>
+            </div>
+
+            <!-- Add to Basket Button Placeholder -->
+            <div class="animate-pulse flex space-x-4">
+                <div class="h-12 bg-gray-200 rounded-lg w-full"></div>
+                <div class="h-12 bg-gray-200 rounded-lg w-12"></div>
+            </div>
+        </div>
+    </div>
+
+    <!-- You May Also Like Section -->
+    <div class="mt-8">
+        <div class="h-6 bg-gray-200 rounded w-1/3 mb-6 animate-pulse"></div>
+        <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
+            <!-- Product Card Placeholder -->
+            <div class="animate-pulse bg-gray-100 p-4 rounded-lg">
+                <div class="h-40 bg-gray-200 rounded-lg mb-4"></div>
+                <div class="h-4 bg-gray-200 rounded w-2/3 mb-2"></div>
+                <div class="h-4 bg-gray-200 rounded w-1/3"></div>
+            </div>
+            <div class="animate-pulse bg-gray-100 p-4 rounded-lg">
+                <div class="h-40 bg-gray-200 rounded-lg mb-4"></div>
+                <div class="h-4 bg-gray-200 rounded w-2/3 mb-2"></div>
+                <div class="h-4 bg-gray-200 rounded w-1/3"></div>
+            </div>
+            <div class="animate-pulse bg-gray-100 p-4 rounded-lg">
+                <div class="h-40 bg-gray-200 rounded-lg mb-4"></div>
+                <div class="h-4 bg-gray-200 rounded w-2/3 mb-2"></div>
+                <div class="h-4 bg-gray-200 rounded w-1/3"></div>
+            </div>
+            <div class="animate-pulse bg-gray-100 p-4 rounded-lg">
+                <div class="h-40 bg-gray-200 rounded-lg mb-4"></div>
+                <div class="h-4 bg-gray-200 rounded w-2/3 mb-2"></div>
+                <div class="h-4 bg-gray-200 rounded w-1/3"></div>
             </div>
         </div>
     </div>

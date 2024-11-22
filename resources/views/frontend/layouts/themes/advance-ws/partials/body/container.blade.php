@@ -5,7 +5,7 @@
                 @include('frontend/layouts/partials/header')
                 
                 <!-- Page Content -->
-                <div class="min-h-screen">
+                <div class="min-h-screen pt-16">
                     {{ $slot }}
                 </div>
 

@@ -321,3 +321,33 @@ button.reset_filter_btn:hover {
 .app-logo-as-img {
     max-height: 40px !important;
 }
+
+.bg-cusgray {
+    --tw-bg-opacity: 1;
+    background-color: rgba(242,245,246,var(--tw-bg-opacity))
+}
+
+.bg-cusblack {
+    --tw-bg-opacity: 1;
+    background-color: rgba(56,56,56,var(--tw-bg-opacity))
+}
+
+.border-cusblack {
+    --tw-border-opacity: 1;
+    border-color: rgba(56,56,56,var(--tw-border-opacity))
+}
+
+.text-cusblack {
+    --tw-text-opacity: 1;
+    color: rgba(56,56,56,var(--tw-text-opacity));
+}
+
+.hover\:border-cusblack:hover {
+    --tw-border-opacity: 1;
+    border-color: rgba(56,56,56,var(--tw-border-opacity))
+}
+
+.hover\:bg-cusblack:hover {
+    --tw-bg-opacity: 1;
+    background-color: rgba(56,56,56,var(--tw-bg-opacity))
+}

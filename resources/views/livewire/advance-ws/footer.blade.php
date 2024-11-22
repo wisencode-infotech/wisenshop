@@ -9,7 +9,7 @@
             <div class="footer-top">
                <!-- site-brand -->
                <div class="site-brand">
-                  <a href="index-three.html">
+                  <a href="{{ route('frontend.home') }}">
                      <img alt="{{ config('app.title') }}" loading="eager" decoding="async" data-nimg="fill" class="img-thumbnail" sizes="(max-width: 768px) 100vw" srcset="{{  asset(__setting('footer_logo')) }}" src="{{  asset(__setting('footer_logo')) }}" style="max-height: 50px;">
                   </a>
                </div>

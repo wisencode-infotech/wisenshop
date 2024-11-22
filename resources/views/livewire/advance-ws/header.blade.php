@@ -10,7 +10,9 @@
             <div class="column top-left d-none d-md-block">
                <!-- header-message -->
                <div class="header-followers">
-                  <p><a href="#" class="me-2"><i class="fa-brands fa-instagram"></i> 399k Followers</a><a href="mailto:{{ __setting('email') }}" class="mail-link">{{ __setting('email') }}</a></p>
+                  <p>
+                     <a href="{{ route('frontend.contact-us') }}"><i class="fa fa-phone"></i> {{ __trans('Contact Us') }}</a>
+                  </p>
                </div>
             </div>
             <!--/ End Top Left -->
@@ -18,7 +20,7 @@
             <div class="column top-left d-none d-md-block">
                <!-- header-message -->
                <div class="header-message">
-                  <p>Free Express Shipping on orders $200! | <a href="shop.html">Click and Shop Now.</a></p>
+                  <p>Free Express Shipping on orders $200! | <a href="{{ route('frontend.home') }}">{{ __trans('Click and Shop Now.') }}</a></p>
                </div>
             </div>
             <!--/ End center Left -->
@@ -27,20 +29,35 @@
                <!-- site-nav -->
                <nav class="site-nav horizontal">
                   <ul class="menu-top-right">
-                     <li class="menu-item-has-children"><a href="#">English</a>
-                        <ul class="sub-menu">
-                           <li class="menu-item menu-item-type-custom menu-item-object-custom menu-item-2498"><a href="#">English</a></li>
-                           <li class="menu-item menu-item-type-custom menu-item-object-custom menu-item-2497"><a href="#">Spanish</a></li>
-                           <li class="menu-item menu-item-type-custom menu-item-object-custom menu-item-2499"><a href="#">German</a></li>
-                        </ul>
-                     </li>
-                     <li class="menu-item-has-children"><a href="#">USD</a>
-                        <ul class="sub-menu">
-                           <li class="menu-item menu-item-type-custom menu-item-object-custom menu-item-2498"><a href="#">USD</a></li>
-                           <li class="menu-item menu-item-type-custom menu-item-object-custom menu-item-2497"><a href="#">INR</a></li>
-                           <li class="menu-item menu-item-type-custom menu-item-object-custom menu-item-2499"><a href="#">GBP</a></li>
-                        </ul>
-                     </li>
+                     @if (__setting('activate_multilangual_module') == '1' && __languages()->count() > 1)
+                        <li class="menu-item-has-children">
+                           <a href="#">{{ strtoupper(app()->getLocale()) }}</a>
+                           <ul class="sub-menu">
+                              @foreach(__languages() as $language)
+                                    <li wire:key="language-{{ $language->id }}" class="menu-item menu-item-type-custom menu-item-object-custom menu-item-{{ $language->id }}">
+                                       <a href="{{ route('frontend.change.locale', $language->code) }}">
+                                          {{ ucfirst($language->name) }}
+                                       </a>
+                                 </li>
+                              @endforeach
+                           </ul>
+                        </li>
+                     @endif
+
+                     @if (__setting('activate_currencies_module') == '1' && __currencies()->count() > 1)
+                        <li class="menu-item-has-children"><a href="#">{{ __userCurrencyCode() }}</a>
+                           <ul class="sub-menu">
+                              @foreach(__currencies() as $currency)
+                                 <li wire:key="currency-{{ $currency->id }}" class="menu-item menu-item-type-custom menu-item-object-custom menu-item-{{ $currency->id }}">
+                                    <a class="flex items-center font-normal text-heading no-underline transition duration-200 hover:text-accent focus:text-accent" href="{{ route('frontend.change.currency', $currency->code) }}">
+                                        {{ ucfirst($currency->code) }} ({{ ucfirst($currency->symbol) }})
+                                    </a>
+                                </li>
+                              @endforeach
+                           </ul>
+                        </li>   
+                     @endif
+                     
                   </ul>
                </nav>
             </div>
@@ -71,7 +88,7 @@
             <div class="column left">
                <!-- site-brand -->
                <div class="site-brand">
-                  <a href="index-three.html">
+                  <a href="{{ route('frontend.home') }}">
                      <img alt="{{ config('app.title') }}" loading="eager" decoding="async" class="object-contain app-logo-as-img" src="{{ asset(__setting('header_logo')) }}">
                   </a>
                </div>
@@ -81,7 +98,7 @@
                <!-- site-nav -->
                <nav class="site-nav horizontal primary-nav">
                   <ul class="menu ">
-                     <li class="menu-item"><a href="shop.html">Shop</a></li>
+                     <li class="menu-item"><a href="{{ route('frontend.home') }}">Shop</a></li>
                   </ul>
                </nav>
             </div>
@@ -98,7 +115,7 @@
                      <a wire:navigate href="{{ route('frontend.login') }}" class="user-icon"><img src="https://demo.webbytemplate.com/html-templates/bootstrap/clare-e-commerce/html/assets/images/user-icon.svg" alt="user icon"></a>
                   </div>
                   <div class="header-button">
-                     <a href="wishlist.html" class="wishlist-icon"><img src="https://demo.webbytemplate.com/html-templates/bootstrap/clare-e-commerce/html/assets/images/wishlist-icon.svg" alt="wishlist icon"> <span class="count">4</span></a>
+                     <a wire:navigate href="{{ route('frontend.my-wishlist') }}" class="wishlist-icon"><img src="https://demo.webbytemplate.com/html-templates/bootstrap/clare-e-commerce/html/assets/images/wishlist-icon.svg" alt="wishlist icon"> <span class="count">4</span></a>
                   </div>
                   <div class="header-button">
                      @livewire('cart-icon')
@@ -116,7 +133,7 @@
    <div class="mini-cart-dropdown">
       <!-- mini cart close -->
       <div class="mini-cart-close">
-         <a href="javascript:;"><i class="fa-regular fa-xmark"></i></a>
+         <a href="javascript:;"><i class="fa fa-times"></i></a>
       </div>
 
       <div class="cart-dropdown-wrapper">
@@ -131,7 +148,7 @@
                   </div>
                   <div class="cart-product-title">
                      <div class="remove">
-                        <a href="javascript:;"><i class="fa-regular fa-xmark"></i></a>
+                        <a href="javascript:;"><i class="fa fa-times"></i></a>
                      </div>
                      <h6><a href="product-detail-1.html">Micro tote bag in Faux Fur & Leather</a> </h6>
                      <div class="product-qty variation-quantity">
@@ -150,7 +167,7 @@
                   </div>
                   <div class="cart-product-title">
                      <div class="remove">
-                        <a href="javascript:;"><i class="fa-regular fa-xmark"></i></a>
+                        <a href="javascript:;"><i class="fa fa-times"></i></a>
                      </div>
                      <h6><a href="product-detail-1.html">Micro tote bag in Faux Fur & Leather</a></h6>
                      <div class="product-qty variation-quantity">
@@ -167,8 +184,8 @@
 
             <!-- mini cart button-->
             <div class="mini-cart-buttons">
-               <a href="cart.html" class="btn btn-outline-dark">View Cart</a>
-               <a href="shop.html" class="btn btn-dark">Continue Shopping</a>
+               <a href="{{ route('frontend.cart') }}" class="btn btn-outline-dark">{{ __trans('View Cart') }}</a>
+               <a href="{{ route('frontend.home') }}" class="btn btn-dark">{{ __trans('Continue Shopping') }}</a>
             </div>
          </div>
       </div>
@@ -180,89 +197,25 @@
       <div class="d-flex align-items-center py-2 px-3">
          <!-- site-brand -->
          <div class="site-brand">
-            <a href="index.html"><img src="https://demo.webbytemplate.com/html-templates/bootstrap/clare-e-commerce/html/assets/images/logo-dark.svg" alt="logo"></a>
+            <a href="index.html"><img src="{{ __setting('header_logo') }}" alt="logo"></a>
          </div>
-         <div class="mobile-menu-close"><a href="javascript:;"><i class="fa-regular fa-xmark"></i></a></div>
+         <div class="mobile-menu-close"><a href="javascript:;"><i class="fa fa-times"></i></a></div>
       </div>
       <!-- site-nav -->
       <div class="mobile-menu-wrap">
          <nav class="site-nav horizontal primary-nav">
             <ul class="menu ">
-               <li class="menu-item menu-item-has-children active">
-                  <a href="index.html">Home</a>
-                  <ul class="sub-menu">
-                     <li><a href="index.html">Home V1</a></li>
-                     <li><a href="index-two.html">Home V2</a></li>
-                     <li class="active"><a href="index-three.html">Home V3</a></li>
-                  </ul>
-               </li>
-               <li class="menu-item"><a href="shop.html">Shop</a></li>
-               <li class="menu-item mega-menu menu-item-has-children">
-                  <a href="javascript:;">Pages</a>
-
-                  <!-- Sub mega menu -->
-                  <ul class="sub-mega-menu">
-                     <li>
-                        <ul class="sub-menu">
-                           <li>
-                              <ul class="sub-menu-wrap">
-                                 <li><a href="shop.html">Shop Pages</a>
-                                    <ul>
-                                       <li><a href="shop-list.html">Shop List</a></li>
-                                       <li><a href="shop-right-sidebar.html">Shop Right Sidebar</a></li>
-                                       <li><a href="category.html">Category</a></li>
-                                    </ul>
-                                 </li>
-                                 <li>
-                                    <a href="shop.html">Product Detail Pages</a>
-                                    <ul>
-                                       <li><a href="product-detail-1.html">Product Detail 1</a></li>
-                                       <li><a href="product-detail-2.html">Product Detail 2</a></li>
-                                       <li><a href="product-detail-3.html">Product Detail 3</a></li>
-                                    </ul>
-                                 </li>
-                              </ul>
-                           </li>
-                           <li>
-                              <a href="shop.html">Account Pages</a>
-                              <ul>
-                                 <li><a href="cart.html">Cart</a></li>
-                                 <li><a href="checkout.html">Checkout</a></li>
-                                 <li><a href="compare.html">Compare</a></li>
-                                 <li><a href="wishlist.html">Wishlist</a></li>
-                                 <li><a href="thank-you.html">Thank You</a></li>
-                                 <li><a href="shop-list.html">Shop List</a></li>
-                                 <li><a href="faq.html">Faq</a></li>
-                                 <li><a href="site-map.html">Site Map</a></li>
-                              </ul>
-                           </li>
-                           <li>
-                              <a href="blog-grid.html">Blog Pages</a>
-                              <ul>
-                                 <li><a href="blog-grid-2.html">Blog Grid 2</a></li>
-                                 <li><a href="blog-classic.html">Blog Classic</a></li>
-                                 <li><a href="blog-detail.html">Blog Detail</a></li>
-                                 <li><a href="blog-detail-full.html">Blog Detail Full</a></li>
-                                 <li><a href="blog-detail-left-sidebar.html">Blog Detail Left Sidebar</a></li>
-                              </ul>
-                           </li>
-                        </ul>
-                     </li>
-                  </ul>
-               </li>
-               <li class="menu-item"><a href="about-us.html">About</a></li>
-               <li class="menu-item"><a href="blog-grid.html">Blog</a></li>
-               <li class="menu-item"><a href="contact-us.html">Contact</a></li>
+               <li class="menu-item"><a href="{{ route('frontend.home') }}">{{ __trans('Shop') }}</a></li>
             </ul>
          </nav>
          <div class="menu-social">
-            <a href="sign-in.html" class="btn btn-primary">Login</a>
+            <a href="sign-in.html" class="btn btn-primary">{{ __trans('Login') }}</a>
 
-            <p>Connect with us:</p>
+            <p>{{ __trans('Connect with us:') }}</p>
             <ul class="social-icon">
-               <li><a href="https://www.facebook.com/" target="_blank"><i class="fa-brands fa-facebook"></i></a></li>
-               <li><a href="https://www.instagram.com/" target="_blank"><i class="fa-brands fa-instagram"></i></a></li>
-               <li><a href="https://www.youtube.com/" target="_blank"><i class="fa-brands fa-youtube"></i></a></li>
+               <li><a href="{{ __setting('facebook_link') }}" target="_blank"><i class="fa-brands fa-facebook"></i></a></li>
+               <li><a href="{{ __setting('instagram_link') }}" target="_blank"><i class="fa-brands fa-instagram"></i></a></li>
+               <li><a href="{{ __setting('twitter_link') }}" target="_blank"><i class="fa-brands fa-twitter"></i></a></li>
             </ul>
          </div>
       </div>

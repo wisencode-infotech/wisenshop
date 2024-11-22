@@ -23,11 +23,9 @@
     <!--/ End site-primary -->
 
     <div wire:ignore>
-        @if (!request()->routeIs('frontend.home'))
-            <!--/ Footer -->
-                @include('frontend/layouts/partials/footer')
-            <!--/ End Footer -->
-        @endif
+        <!--/ Footer -->
+            @include('frontend/layouts/partials/footer')
+        <!--/ End Footer -->
     </div>
 
 </div>

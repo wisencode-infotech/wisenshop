@@ -1,4 +1,12 @@
-<div class="w-full pt-4 pb-20 lg:py-6 px-4 xl:px-0">
+<div>
+    <div class="filter-shop-loop">
+        <div class="d-flex w-100 mb-3 mb-md-0 justify-content-between align-items-center">
+            <p class="shop-result-count">Showing 12 of 1222 results</p>
+            <a class="filter-mobile-btn text-dark fw-medium d-flex align-items-center d-md-none">
+                <span class="ti-filter me-1"></span> Filter
+            </a>
+        </div>                 
+    </div>
 
     @if(count($products) == 0)
 
@@ -19,75 +27,52 @@
                 ])
             !!}
         </div>
-        
-        <div wire:loading.remove wire:target.except="loadMore" class="grid grid-cols-[repeat(auto-fill,minmax(250px,1fr))] gap-3">
+
+        <div class="row">
             @foreach ($products as $product)
-                <article wire:key="product-{{ $product->id }}"
-                    class="product-card cart-type-helium h-full overflow-hidden rounded-lg bg-light transition-shadow duration-200 shadow-sm @if(isset($from_page) && $from_page == 'product_detail') {{ $from_page }} border border-200 @endif">
-                    <div class="cursor-pointer relative flex h-48 w-auto items-center justify-center sm:h-64">
-                        
-                        <span class="sr-only">{{ __trans('Product') }} {{ __trans('Image') }}</span>
+            <div class="col-12 col-sm-6 col-md-4 col-lg-3" wire:loading.remove wire:target.except="loadMore">
+                <div class="product product-style-3" style="border: 1px solid rgb(234, 234, 234);">
+                <div class="product-thumbnail" wire:key="product-{{ $product->id }}">
+                    <a href="product-detail-1.html" class="thumbnail">
+                        <img 
+                        alt="{{ $product->title }}" 
+                        loading="lazy" 
+                        decoding="async" 
+                        data-nimg="fill"
+                        wire:navigate href="{{ route('frontend.product-detail', ['product_slug' => $product->slug]) }}"
+                        src="{{ $product->display_image_url }}" >
+                    </a>
 
-                        <img alt="{{ $product->title }}" loading="lazy" decoding="async" data-nimg="fill"
-                            class="block object-contain product-image"
-                            style="position:absolute;height:100%;width:100%;left:0;top:0;right:0;bottom:0;color:transparent"
-                            wire:navigate href="{{ route('frontend.product-detail', ['product_slug' => $product->slug]) }}"
-                            sizes="(max-width: 768px) 100vw" src="{{ $product->display_image_url }}">
-
-                        <div class="absolute top-0 left-0 py-1 px-2">
-                            @livewire('wishlist-button', ['product_id' => $product->id, key($product->id)])
-                        </div>
-
+                    <div class="product-badges d-none">
+                        <span class="badge  onsale">-15%</span>
                     </div>
-                    <header class="relative p-3 md:p-5 md:py-6">
-                        <h3 role="button" wire:navigate href="{{ route('frontend.product-detail', ['product_slug' => $product->slug]) }}" class="font-semibold truncate text-heading">
-                            {{ $product->name }}
-                            @if ($product->variation_names->count() > 0)
-                                ({{ \Str::limit($product->variation_names->implode(', '), 30) }})
-                            @endif
-                        </h3>
 
-                        <span class="font-semibold text-muted text-sm truncate">{{ $product->category->name }}</span>
+                    <div class="product-hover-button">
+                        <a href="{{ route('frontend.product-detail', ['product_slug' => $product->slug]) }}" class="select-option-btn">More...</a>
+                    </div>
 
-                        <p class="text-xs text-muted pr-9 mt-2 custom-min-h-50">{{ \Str::limit($product->short_description, 70) }}</p>
-                        <div class="relative flex items-center justify-between mt-4 min-h-6 md:mt-4">
-
-                            <div class="flex overflow-hidden order-5 sm:order-4 w-9 sm:w-24 h-24 sm:h-10 bg-accent text-light rounded-full flex-col-reverse sm:flex-row absolute sm:relative bottom-0 sm:bottom-auto ltr:right-0 rtl:left-0 ltr:sm:right-auto ltr:sm:left-auto">
-                                
-                                <livewire:quantity-selector :product_id="$product->id" :key="'quantity-selector-' . $product->id" />
-
-                                @livewire('product-stock', ['product_id' => $product->id, 'layout' => 'product-list'], key('product-stock-' . $product->id), ['lazy' => true])
-                            </div>
-
-                            <div class="relative">
-                                <span class="text-sm font-semibold text-accent md:text-base">
-                                    @livewire('product-price', ['product_id' => $product->id], key('product-price-' . $product->id), ['lazy' => true])
-                                </span>
-                            </div>
-
-                            @if ($product->variations()->count() > 0)
-                                <div class="flex">
-                                    @livewire('product-variation', ['product_id' => $product->id, 'layout' => 'products-list'], key('product-variation-' . $product->id), ['lazy' => true])
-                                </div>
-                            @endif
-                        </div>
-
-                    </header>
-                </article>
+                    <div class="product-buttons-icon">
+                        <a href="#product-quick-popup" class="arrow-icon quick-view-link"><span class="ti-eye"></span></a>
+                        <a href="#" class="arrow-icon"><span class="ti-shopping-cart"></span></a>
+                        @livewire('wishlist-button', ['product_id' => $product->id, key($product->id)])
+                    </div>
+                </div>
+                </div>
+            </div>
             @endforeach
-        </div>
 
         @if ($products->hasMorePages())
-            <div class="flex justify-center mt-8 mb-4 sm:mb-6 lg:mb-2 lg:mt-12">
+            <div class="section-full-btn">
                 <!-- Default Button Text -->
                 <button wire:click="loadMore" wire:loading.attr="disabled"  data-variant="normal"
-                    class="px-5 py-3 bg-accent text-light rounded hover:bg-accent-hover transition">
+                    class="btn btn-dark btn-style-2">
                     <span wire:loading.remove wire:target="loadMore">{{ __trans('Load More') }}</span>
                     <span wire:loading wire:target="loadMore">{{ __trans('Loading...') }}</span>
                 </button>
             </div>
         @endif
 
+        </div>
         
     @endif
 </div>

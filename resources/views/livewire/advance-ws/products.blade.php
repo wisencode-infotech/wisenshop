@@ -1,7 +1,7 @@
 <div>
     <div class="filter-shop-loop">
         <div class="d-flex w-100 mb-3 mb-md-0 justify-content-between align-items-center">
-            <p class="shop-result-count">Showing 12 of 1222 results</p>
+            <p class="shop-result-count"></p>
             <a class="filter-mobile-btn text-dark fw-medium d-flex align-items-center d-md-none">
                 <span class="ti-filter me-1"></span> Filter
             </a>

@@ -31,6 +31,8 @@ class SettingController extends Controller
 
     public function update(Request $request)
     {
+        $site_theme_updated = ($request->has('settings') && __setting('site_theme') != $request->settings['site_theme']);
+        
         // Validate the request
         $request->validate([
             'settings.*' => 'required',
@@ -91,6 +93,23 @@ class SettingController extends Controller
 
         Cache::clear('site-customizer');
 
+        if ($site_theme_updated)
+            $this->updateMixManifest();
+
         return redirect()->route('backend.settings.index')->with('success', 'Settings updated successfully.');
+    }
+
+    protected function updateMixManifest()
+    {
+        $site_theme = __setting('site_theme');
+
+        $manifest_file_path = public_path('mix-manifest.json');
+
+        $updated_manifest_object = [
+            '/assets/frontend/theme/mix.js' => '/assets/frontend/js/' . $site_theme . '/mix.js',
+            '/assets/frontend/theme/mix.css' => '/assets/frontend/css/' . $site_theme . '/mix.css',
+        ];
+
+        file_put_contents($manifest_file_path, json_encode($updated_manifest_object, JSON_PRETTY_PRINT | JSON_UNESCAPED_SLASHES));
     }
 }

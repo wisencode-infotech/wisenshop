@@ -1,4 +1,5 @@
 const mix = require('laravel-mix');
+const fs = require('fs');
 
 // JavaScript Files
 mix.scripts([
@@ -15,3 +16,15 @@ mix.styles([
 
 // Versioning for cache-busting (optional)
 mix.version();
+
+// Rewrite public/mix-manifest.json based on theme
+mix.then(() => {
+    const manifest_file_path = 'public/mix-manifest.json';
+
+    const updated_manifest_object = {
+        '/assets/frontend/theme/mix.js': '/assets/frontend/js/advance-ws/mix.js',
+        '/assets/frontend/theme/mix.css': '/assets/frontend/css/advance-ws/mix.css'
+    };
+
+    fs.writeFileSync(manifest_file_path, JSON.stringify(updated_manifest_object, null, 2));
+});

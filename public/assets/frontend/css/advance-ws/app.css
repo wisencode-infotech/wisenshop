@@ -105,3 +105,8 @@
     color: #ffffff;
     font-size: 25px;
 }
+
+.btn-dark {
+    background-color: var(--color-primary-code);
+    border-color: var(--color-primary-code);
+}

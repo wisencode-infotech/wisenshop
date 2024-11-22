@@ -1,25 +1,33 @@
-<div id="__next">
-    <div dir="ltr">
-        <main class="{{ config('app.title') }}-version-latest">   
-            <div class="flex min-h-screen flex-col bg-gray-100 transition-colors duration-150">
-                @include('frontend/layouts/partials/header')
-                
-                <!-- Page Content -->
-                <div class="min-h-screen pt-16">
-                    {{ $slot }}
-                </div>
-
-                @include('frontend/layouts/partials/mobile-navbar')
-
-                <div wire:ignore>
-                    @if (!request()->routeIs('frontend.home'))
-                        @include('frontend/layouts/partials/footer')
-                    @endif
-                </div>
+<!-- wrapper -->
+<div class="wrapper">
+    <!-- Preloader -->
+    <div class="preloader d-none">
+        <div class="preloader-inner">
+            <img src="https://demo.webbytemplate.com/html-templates/bootstrap/clare-e-commerce/html/assets/images/loader-icon.svg" alt="loader icon">
+            <div class="preloader-icon">
+                <span></span>
+                <span></span>
             </div>
-        </main>
+        </div>
     </div>
-</div>
+    <!-- End Preloader -->
 
-@include('frontend/layouts/partials/mobile-header-filter')
-@include('frontend/layouts/partials/notification-toast')
+    <!-- Header -->
+    @include('frontend/layouts/partials/header')
+    <!--/ End Header -->
+
+    <!-- Site-primary -->
+    <main class="site-primary">
+        {{ $slot }}
+    </main>
+    <!--/ End site-primary -->
+
+    <div wire:ignore>
+        @if (!request()->routeIs('frontend.home'))
+            <!--/ Footer -->
+                @include('frontend/layouts/partials/footer')
+            <!--/ End Footer -->
+        @endif
+    </div>
+
+</div>

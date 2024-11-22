@@ -31,32 +31,45 @@
         <div class="row">
             @foreach ($products as $product)
             <div class="col-12 col-sm-6 col-md-4 col-lg-3" wire:loading.remove wire:target.except="loadMore">
-                <div class="product product-style-3" style="border: 1px solid rgb(234, 234, 234);">
-                <div class="product-thumbnail" wire:key="product-{{ $product->id }}">
-                    <a href="product-detail-1.html" class="thumbnail">
-                        <img 
-                        alt="{{ $product->title }}" 
-                        loading="lazy" 
-                        decoding="async" 
-                        data-nimg="fill"
-                        wire:navigate href="{{ route('frontend.product-detail', ['product_slug' => $product->slug]) }}"
-                        src="{{ $product->display_image_url }}" >
-                    </a>
+                <div class="product product-style-3">
+                    <div class="product-thumbnail" wire:key="product-{{ $product->id }}">
+                        <a href="product-detail-1.html" class="thumbnail">
+                            <img 
+                            alt="{{ $product->name }}" 
+                            loading="lazy" 
+                            decoding="async" 
+                            data-nimg="fill"
+                            wire:navigate href="{{ route('frontend.product-detail', ['product_slug' => $product->slug]) }}"
+                            src="{{ $product->display_image_url }}" >
+                        </a>
 
-                    <div class="product-badges d-none">
-                        <span class="badge  onsale">-15%</span>
-                    </div>
+                        <div class="product-badges d-none">
+                            <span class="badge  onsale">-15%</span>
+                        </div>
 
-                    <div class="product-hover-button">
-                        <a href="{{ route('frontend.product-detail', ['product_slug' => $product->slug]) }}" class="select-option-btn">More...</a>
-                    </div>
+                        <div class="product-hover-button">
+                            <a href="{{ route('frontend.product-detail', ['product_slug' => $product->slug]) }}" class="select-option-btn">More...</a>
+                        </div>
 
-                    <div class="product-buttons-icon">
-                        <a href="#product-quick-popup" class="arrow-icon quick-view-link"><span class="ti-eye"></span></a>
-                        <a href="#" class="arrow-icon"><span class="ti-shopping-cart"></span></a>
-                        @livewire('wishlist-button', ['product_id' => $product->id, key($product->id)])
+                        <div class="product-buttons-icon">
+                            <a href="#product-quick-popup" class="arrow-icon quick-view-link"><span class="ti-eye"></span></a>
+                            <a href="#" class="arrow-icon"><span class="ti-shopping-cart"></span></a>
+                            @livewire('wishlist-button', ['product_id' => $product->id, key($product->id)])
+                        </div>
                     </div>
-                </div>
+                    <div class="product-content">
+                        <!-- product tile -->
+                        <h3 class="product-title">
+                            <a href="{{ route('frontend.product-detail', ['product_slug' => $product->slug]) }}">{{ $product->name }}</a>
+                        </h3>
+                        <h6 class="text-muted mt-2">
+                            <a href="#">{{ $product->category->name }}</a>
+                        </h6>
+                        <!-- product price -->
+                        <span class="price">
+                            @livewire('product-price', ['product_id' => $product->id], key('product-price-' . $product->id), ['lazy' => true])
+                        </span>
+                    </div>
                 </div>
             </div>
             @endforeach

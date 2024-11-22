@@ -71,6 +71,27 @@ class QuantitySelector extends Component
         $this->skipRender();
     }
 
+    public function addToCartButtonProcess()
+    {
+        CartHelper::saveQuantity($this->product_id, $this->product_variation_id, $this->quantity);
+
+        if ($this->quantity == 1) {
+            $this->dispatch('itemAdded');
+            $this->dispatch('notify', 'success', __trans('Item added to the cart'));
+        }
+
+        $this->dispatch('quantityUpdated', ['product_id' => $this->product_id, 'product_variation_id' => $this->product_variation_id, 'quantity' => $this->quantity]);
+
+        $this->dispatch('shoppingCartUpdated');
+
+        $this->skipRender();
+    }
+
+    public function incrementInput()
+    {
+        $this->skipRender();
+    }
+
     public function decrement()
     {
         if ($this->quantity > 0 || true) {

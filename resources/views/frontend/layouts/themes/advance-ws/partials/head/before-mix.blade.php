@@ -15,3 +15,10 @@
 <link rel="stylesheet" href="https://demo.webbytemplate.com/html-templates/bootstrap/clare-e-commerce/html/assets/css/reset.css">
 <link rel="stylesheet" href="https://demo.webbytemplate.com/html-templates/bootstrap/clare-e-commerce/html/assets/css/style.css">
 <link rel="stylesheet" href="https://demo.webbytemplate.com/html-templates/bootstrap/clare-e-commerce/html/assets/css/responsive.css">
+
+<style type="text/css">
+    :root {
+        --color-primary: rgba(var(--color-accent));
+        --color-primary-code: rgba(var(--color-accent));
+    }
+</style>

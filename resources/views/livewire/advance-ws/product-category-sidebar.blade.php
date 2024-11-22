@@ -25,22 +25,22 @@
 
     <!-- Banner Section -->
     @if ($banner_settings && !empty($banner_settings['banner_image']))
-    <a href="{{ !empty($banner_settings['banner_url']) ? $banner_settings['banner_url'] : '#' }}">
-        <div class="max-w-4xl mx-auto mt-2 mb-1 p-0 bg-white rounded-lg shadow-lg border border-gray-200 home-sidebar-banner">
-            <div 
-                class="flex {{ empty($banner_settings['banner_description']) ? 'items-center' : 'items-start' }} 
-                            justify-between flex-col gap-4 md:flex-row">
-                <div 
-                    class="{{ empty($banner_settings['banner_description']) ? 'w-full' : 'w-auto' }} 
-                           bg-gray-100 rounded-lg shadow-md overflow-hidden" >
-                    <img 
-                        src="{{ Storage::url($banner_settings['banner_image']) }}" 
-                        class="w-full h-full object-cover" 
-                        alt="Banner Image" />
-
+    <a href="{{ !empty($banner_settings['banner_url']) ? $banner_settings['banner_url'] : '#' }}" class="text-decoration-none">
+        <div class="container mt-2 mb-1 p-0">
+            <div class="card border-0 shadow-sm home-sidebar-banner">
+                <div class="row g-0 align-items-center {{ empty($banner_settings['banner_description']) ? 'justify-content-center' : '' }}">
+                    <!-- Image Section -->
+                    <div class="{{ empty($banner_settings['banner_description']) ? 'col-md-12' : 'col-md-12' }}">
+                        <img 
+                            src="{{ Storage::url($banner_settings['banner_image']) }}" 
+                            class="img-fluid rounded-start" 
+                            alt="Banner Image">
+                    </div>
+    
+                    <!-- Description Section -->
                     @if (!empty($banner_settings['banner_description']))
-                        <div class="flex-1 md:ml-6 p-2">
-                            <p class="text-lg text-blue-700 text-center md:text-left text-sm">
+                        <div class="col-md-12 p-3">
+                            <p class="text-muted small text-center text-md-start">
                                 {!! nl2br($banner_settings['banner_description']) !!}
                             </p>
                         </div>

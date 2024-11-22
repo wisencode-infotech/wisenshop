@@ -1,6 +1,11 @@
 @section('title', 'Home')
 
 <div>
+    <div class="container">
+        <div class="row">
+            <livewire:sliders lazy />
+        </div>
+    </div>
     <section class="shop-page-grid-section style-3  section-two">
         <div class="container">
             <div class="row">

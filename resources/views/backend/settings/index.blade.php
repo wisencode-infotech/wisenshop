@@ -55,7 +55,7 @@
 
                                             <input type="color" name="settings[{{ $setting->key }}]"
                                                 class="form-control rgb-input @error('settings.' . $setting->key) is-invalid @enderror"
-                                                value="{{ __convertRgbToHex($setting->value) }}" required>
+                                                value="{{ $setting->value }}" required>
 
                                             <!-- Hidden input to store the RGB value -->
                                             <!-- <input type="hidden" id="{{ $setting->key }}_rgb" name="settings[{{ $setting->key }}_rgb]">     -->

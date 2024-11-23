@@ -74,7 +74,7 @@
                         <div class="price">
                             @livewire('product-price', ['product_id' => $product->id])
                         </div>
-                        <p class="people-viewing"><i class="fa-solid fa-eye"></i> {{ rand(1,99) }} people are viewing this right now
+                        <p class="people-viewing"><i class="fa-solid fa-info-circle"></i> {{ $product->short_description }}
                         </p>
 
                         @if ($product->variations()->count() > 0)

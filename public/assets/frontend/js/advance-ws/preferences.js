@@ -80,4 +80,25 @@ document.addEventListener('livewire:init', () => {
         }
     });
 
+    $(document).on('click', '.wc-tabs li, .tab-link-title', function(){
+        var tab_id = $(this).attr('data-tab');
+        $('.wc-tabs li, .tab-link-title').removeClass('active');
+        $('.tabs-entry-content').removeClass('active');
+        $(this).addClass('active');
+        $("#"+tab_id).addClass('active');
+      });
+  
+      Livewire.on('toggleMiniCart', () => {
+        $('.mini-cart-dropdown').toggleClass("open");
+        $('body').toggleClass("minicart-open");
+  
+        // Trigger Livewire re-render for MiniCartDropdown
+        Livewire.dispatch('refreshMiniCart');
+      });
+  
+      Livewire.on('miniCartClosed', () => {
+        $('.mini-cart-dropdown').toggleClass("open");
+        $('body').toggleClass("minicart-open");
+      });
+
  });

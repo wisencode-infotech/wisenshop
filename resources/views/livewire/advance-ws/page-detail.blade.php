@@ -1,15 +1,17 @@
 @section('title', $page_content->name)
 
-<div>
-    <div class="flex flex-col items-start w-full md:px-5 py-10 mx-auto max-w-1920  lg:bg-gray-100 xl:flex-row ">
-        <div class="w-full overflow-hidden lg:flex">
-            <div class="shadow rounded w-full shadow-none sm:shadow">
-                <div class="flex w-full flex-col">
-                    <div>
-                         {!! $page_content->content !!}
+<section class="bg-footer-page-section">
+    <div class="container pt-4 pb-4">
+        <div class="card">
+            <div class="card-body">
+                <div class="row mt-4">
+                    <div class="col-12">
+                        <div class="about-content-wrap">
+                            {!! $page_content->content !!}
+                       </div>
                     </div>
-               </div>
+                </div>
             </div>
         </div>
     </div>
-</div>
+</section>

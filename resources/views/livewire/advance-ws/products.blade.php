@@ -53,18 +53,12 @@
                             src="{{ $product->display_image_url }}" >
                         </a>
 
-                        <div class="product-badges d-none">
-                            <span class="badge  onsale">-15%</span>
+                        <div class="product-badges">
+                            @livewire('wishlist-button', ['product_id' => $product->id, key($product->id)])
                         </div>
 
                         <div class="product-hover-button">
                             <a href="{{ route('frontend.product-detail', ['product_slug' => $product->slug]) }}" class="select-option-btn">More...</a>
-                        </div>
-
-                        <div class="product-buttons-icon">
-                            <a href="#product-quick-popup" class="arrow-icon quick-view-link"><span class="ti-eye"></span></a>
-                            <a href="#" class="arrow-icon"><span class="ti-shopping-cart"></span></a>
-                            @livewire('wishlist-button', ['product_id' => $product->id, key($product->id)])
                         </div>
                     </div>
                     <div class="product-content">
@@ -88,7 +82,7 @@
             <div class="section-full-btn">
                 <!-- Default Button Text -->
                 <button wire:click="loadMore" wire:loading.attr="disabled"  data-variant="normal"
-                    class="btn btn-dark btn-style-2">
+                    class="btn btn-theme btn-style-2">
                     <span wire:loading.remove wire:target="loadMore">{{ __trans('Load More') }}</span>
                     <span wire:loading wire:target="loadMore">{{ __trans('Loading...') }}</span>
                 </button>

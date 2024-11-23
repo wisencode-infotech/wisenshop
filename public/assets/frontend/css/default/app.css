@@ -2,7 +2,7 @@
 .loader {
     border: 4px solid rgba(0, 0, 0, 0.1);
     border-radius: 50%;
-    border-top: 4px solid rgb(var(--color-accent));
+    border-top: 4px solid var(--color-accent);
     width: 48px; /* Increased size for visibility */
     height: 48px;
     animation: spin 1s linear infinite;
@@ -50,11 +50,11 @@
 }
 
 .product_category:hover {
-	border-color: rgba(var(--color-accent)) !important;
+	border-color: var(--color-accent) !important;
 }
 
 .product_category.active {
-	border-color: rgba(var(--color-accent)) !important;
+	border-color: var(--color-accent) !important;
 }
 
 button.reset_filter_btn {
@@ -85,7 +85,7 @@ button.reset_filter_btn:hover {
 .shipping_address_container.active {
     box-shadow: var(--tw-ring-offset-shadow, 0 0 #0000), var(--tw-ring-shadow, 0 0 #0000), var(--tw-shadow) !important;
     --tw-border-opacity: 1 !important;
-    border-color: rgba(var(--color-accent), var(--tw-border-opacity)) !important;
+    border-color: rgba(var(--color-accent-rgb), var(--tw-border-opacity)) !important;
     border-width: 1px !important;
     background-color: white;
 }
@@ -93,17 +93,17 @@ button.reset_filter_btn:hover {
 .payment_method_section.active {
      box-shadow: var(--tw-ring-offset-shadow, 0 0 #0000), var(--tw-ring-shadow, 0 0 #0000), var(--tw-shadow) !important;
     --tw-border-opacity: 1 !important;
-    border-color: rgba(var(--color-accent), var(--tw-border-opacity)) !important;
+    border-color: rgba(var(--color-accent-rgb), var(--tw-border-opacity)) !important;
     border-width: 1px !important;
     background-color: white;
 }
 
 .text-accent-contrast {
-    color: rgba(var(--color-accent-contrast));
+    color: var(--color-accent-contrast);
 }
 
 .border-active {
-    border-color: rgba(var(--color-accent));
+    border-color: var(--color-accent);
 }
 
 .product-list-out-of-stock-span {
@@ -310,7 +310,7 @@ button.reset_filter_btn:hover {
 }
 
 #nprogress .bar {
-    background-color: rgba(var(--color-accent)) !important;
+    background-color: var(--color-accent) !important;
 }
 
 .no-product-found-box {

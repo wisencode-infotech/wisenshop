@@ -60,8 +60,8 @@ class SettingController extends Controller
 
                 if (!in_array($key, ['header_logo', 'footer_logo', 'fav_logo', 'email_header_logo', 'activate_currencies_module', 'activate_multilangual_module'])) {
 
-                    if (str_starts_with($key, 'color-')) {
-                        $value = __convertHexToRgb($value);
+                    if (Str::startsWith($key, ['color-', 'text-'])) {
+                        // $value = __convertHexToRgb($value);
                     }
 
                     Setting::updateOrCreate(

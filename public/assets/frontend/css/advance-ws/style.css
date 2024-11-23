@@ -233,7 +233,7 @@
   font-size: 1.25rem;
   min-width: 2rem;
   height: 2.25rem;
-  color: currentColor;
+  color: var(--color-dark);
   text-decoration: none;
 }
 .header-button-right .header-button button:hover,

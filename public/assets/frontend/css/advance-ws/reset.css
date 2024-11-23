@@ -904,7 +904,7 @@ a:hover, a:active {
   width: 100%;
   left: 0;
   transition: all 0.3s ease;
-  background: var(--color-dark);
+  background: var(--color-accent);
   display: -webkit-inline-box;
   display: -ms-inline-flexbox;
   display: inline-flex;
@@ -929,18 +929,18 @@ a:hover, a:active {
   border: 0;
 }
 .product-hover-button a:hover{
-  background: var(--color-primary);
+  background: var(--color-accent-hover);
 }
 .product:hover .product-hover-button{
   bottom: 0;
 }
 .product-badges{
 	position: absolute;
-	top: 10px;
-	left: 10px;
+	top: 5px;
+	left: 5px;
 	z-index: 1;
-	background: var(--color-white);
-	padding: 3px 7px;
+	background: transparent;
+	padding: 0px 0px;
 	font-size: 9px;
 	font-weight: var(--semi-bold);
 	color: #8C4848;

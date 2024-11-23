@@ -1,6 +1,6 @@
 :root {
-    --color-primary: rgba(var(--color-accent));
-    --color-primary-code: rgba(var(--color-accent));
+    --color-primary: var(--color-accent);
+    --color-primary-code: var(--color-accent);
 }
 
 /*Toaster css*/
@@ -88,7 +88,7 @@
 }
 
 #nprogress .bar {
-    background-color: rgba(var(--color-accent)) !important;
+    background-color: var(--color-accent) !important;
 }
 
 .no-product-found-box {
@@ -126,4 +126,19 @@ ul.subcategory {
 
 ul.subcategory > li {
     list-style-type: circle;
+}
+
+.btn-transparent {
+    background-color: transparent !important;
+    border-color: transparent;
+}
+
+.btn-theme {
+    background-color: var(--color-accent) !important;
+    color: #ffffff !important;
+}
+
+.btn-theme:hover {
+    background-color: var(--color-accent-hover) !important;
+    color: #ffffff !important;
 }

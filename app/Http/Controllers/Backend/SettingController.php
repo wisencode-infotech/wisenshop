@@ -106,8 +106,8 @@ class SettingController extends Controller
         $manifest_file_path = public_path('mix-manifest.json');
 
         $updated_manifest_object = [
-            '/assets/frontend/theme/mix.js' => '/assets/frontend/js/' . $site_theme . '/mix.js',
-            '/assets/frontend/theme/mix.css' => '/assets/frontend/css/' . $site_theme . '/mix.css',
+            '/assets/frontend/theme/mix.js' => '/assets/frontend/js/' . $site_theme . '/mix.js?id=' . md5(uniqid()),
+            '/assets/frontend/theme/mix.css' => '/assets/frontend/css/' . $site_theme . '/mix.css' . md5(uniqid())
         ];
 
         file_put_contents($manifest_file_path, json_encode($updated_manifest_object, JSON_PRETTY_PRINT | JSON_UNESCAPED_SLASHES));

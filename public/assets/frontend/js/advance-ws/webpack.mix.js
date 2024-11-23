@@ -25,17 +25,22 @@ mix.styles([
        'public/assets/frontend/css/advance-ws/toastr.min.css'
    ], 'public/assets/frontend/css/advance-ws/mix.css'); // Save combined CSS here
 
-// Versioning for cache-busting (optional)
+// Enable Versioning for cache-busting
 mix.version();
 
-// Rewrite public/mix-manifest.json based on theme
+// Update manifest file to use versioned paths for custom theme structure
 mix.then(() => {
-    const manifest_file_path = 'public/mix-manifest.json';
+    const manifestFilePath = 'public/mix-manifest.json';
 
-    const updated_manifest_object = {
-        '/assets/frontend/theme/mix.js': '/assets/frontend/js/advance-ws/mix.js',
-        '/assets/frontend/theme/mix.css': '/assets/frontend/css/advance-ws/mix.css'
+    // Read the existing manifest
+    const manifest = JSON.parse(fs.readFileSync(manifestFilePath));
+
+    // Create new manifest with updated paths
+    const updatedManifest = {
+        '/assets/frontend/theme/mix.js': manifest['/assets/frontend/js/advance-ws/mix.js'],
+        '/assets/frontend/theme/mix.css': manifest['/assets/frontend/css/advance-ws/mix.css']
     };
 
-    fs.writeFileSync(manifest_file_path, JSON.stringify(updated_manifest_object, null, 2));
+    // Write the updated manifest
+    fs.writeFileSync(manifestFilePath, JSON.stringify(updatedManifest, null, 2));
 });

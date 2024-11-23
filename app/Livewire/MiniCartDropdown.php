@@ -13,6 +13,7 @@ class MiniCartDropdown extends Component
     public $open_drawer = 'close';
 
     protected $listeners = [
+        'quantityUpdated' => 'quantityUpdated',
         'refreshMiniCart' => 'openMiniCart',
         'remove-cart-product' => 'removeCartProduct'
     ];
@@ -48,6 +49,11 @@ class MiniCartDropdown extends Component
         $this->dispatch('itemRemoved');
 
         $this->dispatch('shoppingCartUpdated');
+    }
+
+    public function quantityUpdated()
+    {
+        $this->loadCartItems();
     }
 
     public function render()

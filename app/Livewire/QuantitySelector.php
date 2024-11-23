@@ -4,6 +4,7 @@ namespace App\Livewire;
 
 use App\Helpers\CartHelper;
 use App\Models\ProductVariation;
+use Illuminate\Support\Facades\Auth;
 use Livewire\Component;
 
 class QuantitySelector extends Component
@@ -85,7 +86,7 @@ class QuantitySelector extends Component
         $this->dispatch('shoppingCartUpdated');
 
         if ($action == 'buynow') {
-            if (auth()->check())
+            if (Auth::check())
                 return redirect()->route('frontend.checkout');
             else 
                 return redirect()->route('frontend.guest.checkout');

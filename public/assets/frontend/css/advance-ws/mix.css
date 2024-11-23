@@ -4270,6 +4270,11 @@ ul.subcategory > li {
     color: #ffffff !important;
 }
 
+.btn-outline-theme {
+    background: var(--color-accent);
+    border: 1px solid var(--color-accent);
+}
+
 .bg-footer-page-section {
     background: var(--color-extra03);
 }
@@ -7657,8 +7662,8 @@ blockquote img{
   cursor: pointer;
 }
 .quantity .quantity-button:hover{
-  background: var(--color-dark);
-  color: var(--color-white);
+  background: var(--color-accent);
+  color: var(--color-accent-contrast);
 }
 .quantity .input-text{
   height: 100%;

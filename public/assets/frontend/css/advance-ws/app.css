@@ -143,6 +143,11 @@ ul.subcategory > li {
     color: #ffffff !important;
 }
 
+.btn-outline-theme {
+    background: var(--color-accent);
+    border: 1px solid var(--color-accent);
+}
+
 .bg-footer-page-section {
     background: var(--color-extra03);
 }

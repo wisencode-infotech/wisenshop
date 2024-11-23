@@ -23,11 +23,11 @@
                         </div>
                         <div class="single-add-to-cart">
                             <button type="button"
-                                class="single_add_to_cart_button btn btn-dark btn-outline-dark" wire:click="addToCartButtonProcess">{{ __trans('Add to cart') }}</button>
+                                class="single_add_to_cart_button btn btn-theme btn-outline-theme" wire:click="addToCartButtonProcess">{{ __trans('Add to cart') }}</button>
                         </div>
                     </div>
                     <div class="buy-product-button">
-                        <a wire:click="addToCartButtonProcess('buynow')" class="buy-product-btn btn btn-dark">{{ __trans('Buy Now') }}</a>
+                        <a wire:click="addToCartButtonProcess('buynow')" class="buy-product-btn btn btn-theme">{{ __trans('Buy Now') }}</a>
                     </div>
                 </div>
             </template>

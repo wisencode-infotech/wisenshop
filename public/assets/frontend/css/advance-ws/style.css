@@ -3382,8 +3382,8 @@ blockquote img{
   cursor: pointer;
 }
 .quantity .quantity-button:hover{
-  background: var(--color-dark);
-  color: var(--color-white);
+  background: var(--color-accent);
+  color: var(--color-accent-contrast);
 }
 .quantity .input-text{
   height: 100%;

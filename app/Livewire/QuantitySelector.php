@@ -71,7 +71,7 @@ class QuantitySelector extends Component
         $this->skipRender();
     }
 
-    public function addToCartButtonProcess()
+    public function addToCartButtonProcess($action = 'Add to cart')
     {
         CartHelper::saveQuantity($this->product_id, $this->product_variation_id, $this->quantity);
 
@@ -83,6 +83,13 @@ class QuantitySelector extends Component
         $this->dispatch('quantityUpdated', ['product_id' => $this->product_id, 'product_variation_id' => $this->product_variation_id, 'quantity' => $this->quantity]);
 
         $this->dispatch('shoppingCartUpdated');
+
+        if ($action == 'buynow') {
+            if (auth()->check())
+                return redirect()->route('frontend.checkout');
+            else 
+                return redirect()->route('frontend.guest.checkout');
+        }
 
         $this->skipRender();
     }

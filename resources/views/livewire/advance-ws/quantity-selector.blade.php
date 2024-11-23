@@ -2,17 +2,33 @@
 
 <template x-if="stockAvailable">
         <div>
-            <template x-if="'{{ $layout }}' === 'small'">
-                <div class="quantity" x-data="{ quantity: @entangle('quantity'), debounceTimeout: null }" >
-                    <div class="quantity-button minus" @click.prevent="
-                    if (quantity > 0) {
-                        quantity--; 
-                    }
-                ">-</div>
-                    <span class="input-text input-qty text my-auto h-auto" x-text="quantity"></span>
-                    <div class="quantity-button plus" @click.prevent="
-                    quantity++; 
-                ">+</div>
+            <template x-if="'{{ $layout }}' === 'product-details'">
+                <div>
+                    <div class="variation-add-to-cart">
+                        <!-- Quantity -->
+                        <div class="variation-quantity">
+                            <label class="label-title">{{ __trans('Quantity') }}:</label>
+                            <!-- Quantity -->
+                            <div class="quantity" x-data="{ quantity: @entangle('quantity'), debounceTimeout: null }" >
+                                <div class="quantity-button minus" @click.prevent="
+                                if (quantity > 0) {
+                                    quantity--; 
+                                }
+                            ">-</div>
+                                <span class="input-text input-qty text my-auto h-auto" x-text="quantity"></span>
+                                <div class="quantity-button plus" @click.prevent="
+                                quantity++; 
+                            ">+</div>
+                            </div>
+                        </div>
+                        <div class="single-add-to-cart">
+                            <button type="button"
+                                class="single_add_to_cart_button btn btn-dark btn-outline-dark" wire:click="addToCartButtonProcess">{{ __trans('Add to cart') }}</button>
+                        </div>
+                    </div>
+                    <div class="buy-product-button">
+                        <a wire:click="addToCartButtonProcess('buynow')" class="buy-product-btn btn btn-dark">{{ __trans('Buy Now') }}</a>
+                    </div>
                 </div>
             </template>
 
@@ -95,7 +111,7 @@
                 </div>
             </template>
 
-            <template x-if="'{{ $layout }}' !== 'cart' && '{{ $layout }}' !== 'large' && '{{ $layout }}' !== 'small'">
+            <template x-if="'{{ $layout }}' !== 'cart' && '{{ $layout }}' !== 'large' && '{{ $layout }}' !== 'product-details'">
                 <div x-data="{ quantity: @entangle('quantity'), debounceTimeout: null }" 
                     class="flex overflow-hidden order-5 sm:order-4 w-9 sm:w-24 h-24 sm:h-10 bg-accent text-light rounded-full flex-col-reverse sm:flex-row absolute sm:relative bottom-0 sm:bottom-auto ltr:right-0 rtl:left-0 ltr:sm:right-auto ltr:sm:left-auto text-accent-contrast">
 

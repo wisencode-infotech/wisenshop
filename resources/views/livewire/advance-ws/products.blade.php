@@ -10,12 +10,22 @@
 
     @if(count($products) == 0)
 
-        <div class="flex flex-col items-center mx-auto bg-light p-4 no-product-found-box">
-            <div class="w-full h-full flex items-center justify-center">
-                <img alt="{{ __trans('Oops! No relevant product found') }}" loading="lazy" width="200" height="153" decoding="async" data-nimg="1" class="object-contain" src="{{ asset('assets/frontend/img/no-product-found.png') }}" style="color: transparent;">
-            </div>
-            <h3 class="w-full text-center text-sm font-semibold text-body mt-7 text-gray-500">{{ __trans('Oops! No relevant product found') }}</h3>
+    <div class="d-flex flex-column align-items-center mx-auto bg-light p-4 no-product-found-box">
+        <div class="w-100 h-100 d-flex align-items-center justify-content-center">
+          <img 
+            alt="{{ __trans('Oops! No relevant product found') }}" 
+            loading="lazy" 
+            width="200" 
+            height="153" 
+            decoding="async" 
+            class="img-fluid" 
+            src="{{ asset('assets/frontend/img/no-product-found.png') }}" 
+            style="color: transparent;">
         </div>
+        <h3 class="w-100 text-center mt-4 text-secondary">
+          {{ __trans('Oops! No relevant product found') }}
+        </h3>
+      </div>
 
     @else
 

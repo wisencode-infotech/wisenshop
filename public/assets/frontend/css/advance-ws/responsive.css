@@ -1,0 +1,2436 @@
+@media screen and (min-width: 48rem){
+  
+  .banner .banner-content {
+      position: absolute;
+      width: 100%;
+      height: 100%;
+      top: 0;
+      left: 0;
+      padding-left: 2.875rem;
+      padding-right: 2.875rem;
+       max-width: 60%;
+  }	
+  .banner .banner-image {
+    	position: relative;
+	}
+}
+
+/* 1440 Laptop Screen */
+@media only screen and (max-width: 1440px) {
+	/*01. Hero banner section CSS*/
+	.hero-banner-section .hero-banner-body{
+		max-width: 1160px;
+	}
+}
+/* 1199 Tablet Screen */
+@media only screen and (max-width: 1199px) {
+
+	/*01. Hero banner section CSS*/
+	.hero-banner-section .hero-banner-body{
+		padding-left: 295px;
+	}
+	.hero-banner-section .hero-banner-body{
+		max-width: 1020px;
+	}
+
+	/*02. banner adds section CSS*/
+	.banner.banner-small:first-child {
+	    margin-bottom: 26px;
+	}
+	.banner .banner-content{
+		max-width: 75%;
+	}
+
+	/*03. Newsletter section CSS*/
+	.newsletter-left-img,
+	.newsletter-right-img{
+		max-width: 40%;
+	    height: 100%;
+	    display: flex;
+	    align-items: flex-end;
+	}
+
+	/*===========================
+	Home Three style
+	=============================*/
+	/*01. Hero grid banner section style 3 CSS*/
+	.hero-grid-banner-section .hero-banner-content .entry-subtitle{
+		margin-bottom: 10px;
+	}
+	.hero-grid-banner-section .hero-banner-content h1{
+		font-size: var(--h2);
+		line-height: var(--h2-lineHeight);
+		margin-bottom: 20px;
+	}
+
+	/*02. Top collection section style 3 CSS*/
+	.top-collection-section .banner {
+	    height: calc(100% - 80px);
+	}
+	.top-collection-section .banner .banner-content {
+	    max-width: 80%;
+	}
+
+	/*03. offer banner section style 3 CSS*/
+	.offer-banner-section.style-3 .offer-banner-content{
+ 		padding: 50px;
+ 		left: 0;
+	}		
+
+/*===========================
+	Shop page style
+	=============================*/
+
+	/*03. Product Quick view Popup CSS*/
+	.product-quick-body .quick-view-content {
+    padding: 60px 25px;
+	}
+	.product-quick-body .product-info-style-2 .variation-quantity{
+		gap: 0px;
+	}
+	.product-quick-body .single-add-to-cart .btn{
+			padding: 15px 20px;
+	    font-size: var(--font-size-b2);
+	}
+	.product-quick-body .variation-add-to-cart{
+		flex-wrap: wrap;
+	}
+
+	/*===========================
+	Presantation page style
+	=============================*/
+	/*01. Presantation header CSS*/
+	.presantation-header .site-nav.primary-nav .menu>.menu-item {
+    margin-left: 1rem;
+	}
+
+	/*02. Presantation banner section CSS*/
+	.Presantation-banner-section .hero-banner-content h1 {
+    font-size: var(--h2);
+    line-height: var(--h2-lineHeight);
+	}
+	.Presantation-banner-section .hero-banner-img .icon{
+	    width: 80px;
+    	height: 80px;
+	}
+	.Presantation-banner-section .hero-banner-img .icon-html {
+    right: -15px;
+}
+
+	/*03. features service section CSS*/
+	.features-service-list ul li{
+		font-size: var(--font-size-b3);
+	}
+
+	/*04. Beautiful Pre-built Inner Pages section CSS*/
+	.inner-page-grid .stunning-features-box{
+		padding: 0 10px;
+    margin: 0 0px 25px;
+	}
+
+	/*05. Professional Footer style 4 CSS*/
+	.footer-style-4 .box-item.box-item-1 {
+    top: 55px;
+    left: 5vw;
+	}
+	.footer-style-4 .box-item.box-item-3 {
+    top: 75px;
+  }
+  .footer-style-4 .box-item.box-item-4 {
+    bottom: 30px;
+    left: -4vw;
+	}
+	.footer-style-4 .box-item.box-item-2 {
+    bottom: 70px;
+    right: 3vw;
+}
+.product-info-product-list .cart-product .cart-thumb{
+	margin-right: 0px;
+}
+.product-info-style-2 .variation-quantity{
+	gap: 5px;
+}
+.variation-quantity .quantity{
+	width: 130px;
+}
+
+	
+}
+
+/* Tablet Screen */
+@media only screen and (max-width: 1024px) {
+
+}
+@media only screen and (min-width: 768px) and (max-width: 991px) {
+
+}
+
+/* 992 min Tablet Screen */
+@media only screen and (min-width: 768px) {
+	.menu  .menu-item{
+		position: relative;
+	}
+	.menu-item > .sub-menu{
+		position: absolute;
+    min-width: 15rem;
+    top: 100%;
+    left: -1rem;
+    margin: 0;
+    padding: 1rem 2rem;
+    list-style: none;
+    background-color: #fff;
+    opacity: 0;
+    visibility: hidden;
+    pointer-events: none;
+    -webkit-transition: all 0.2s cubic-bezier(.28,.12,.22,1);
+    transition: all 0.2s cubic-bezier(.28,.12,.22,1);
+    border-radius: 0px 0px 4px 4px;
+	}
+	.menu-item:hover>.sub-menu{
+		opacity: 1;
+    visibility: visible;
+    pointer-events: auto;
+	}
+	.menu-item:hover>.sub-menu>li>a{
+		color: var(--color-body);
+    font-size: var(--font-size-b2);
+    line-height: 32px;
+    font-weight: var(--regular);
+	}
+	.menu-item:hover>.sub-menu>li>a:hover{
+		color: var(--color-primary);
+	}
+	.menu  .menu-item.mega-menu{
+		position: static;
+	}
+	
+	
+	.menu-item > .sub-menu.menu-megamenu{
+		width: 100%;
+		z-index: 9999;
+		padding: 0;
+		max-width: 100%;
+		left: 0;
+		background: transparent;
+	}
+	.menu-item > .sub-menu.menu-megamenu .sub-mega-menu{
+		padding: 25px 30px;
+		box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.12);
+    background: #fff;
+    border: 0;
+    border-radius: 0px 0px 4px 4px;
+	}
+	.menu-item > .sub-menu.menu-megamenu-large{
+		background: var(--color-white);
+		box-shadow: 0 10px 15px -3px rgba(0,0,0,.1),0 4px 6px -4px rgba(0,0,0,.1);
+	}
+	.menu-item > .menu-megamenu-large .sub-mega-menu{
+		padding: 25px 0px !important;
+		border-top: 1px solid #efefef !important;
+		box-shadow: none !important;
+		border-radius: 0 !important;
+	}
+	.sub-mega-menu{
+		width: 100%;
+		padding: 25px 0px;
+		display: -webkit-inline-box;
+	  display: -ms-inline-flexbox;
+	  display: inline-flex;
+	}
+	/*.menu li:hover .sub-mega-menu{
+		display: -webkit-inline-box;
+	  display: -ms-inline-flexbox;
+	  display: inline-flex;
+	}*/
+	.sub-mega-menu li{
+		list-style-type: none;
+	}
+	.sub-mega-menu li ul{
+		padding: 0;
+		margin: 0;
+	}
+	.sub-mega-menu>li{
+		width: 70%;
+	}
+	.sub-mega-menu>li:last-child{
+		width: 30%;
+	}
+	.sub-mega-menu li .sub-menu{
+		display: flex;
+	}
+	.sub-mega-menu li .sub-menu > li{
+		width: 33.33%;
+		padding: 0 10px;
+	}
+	.image-sub-menu > a,
+	.sub-mega-menu li .sub-menu li > a{
+		font-size: var(--font-size-b2);
+		font-weight: var(--semi-bold);
+		color: var(--color-dark);
+	}
+	.sub-mega-menu li .sub-menu > li ul{
+		margin: 13px 0;
+	}
+	.sub-mega-menu li .sub-menu > li ul li a{
+		color: var(--color-body);
+		font-size: var(--font-size-b2);
+		line-height: 32px;
+		font-weight: var(--regular);
+	}
+	.sub-mega-menu li .sub-menu > li ul li.active a,
+	.sub-mega-menu li .sub-menu > li ul li a:hover{
+		color: var(--color-primary);
+	}
+	.sub-mega-menu .image-sub-menu ul{
+		margin: 13px 0;
+		padding: 0;
+		display: -webkit-inline-box;
+	  display: -ms-inline-flexbox;
+	  display: inline-flex;
+	  flex-wrap: wrap;
+	  gap: 20px;
+	}
+	.sub-mega-menu .image-sub-menu ul li{
+		width: calc(50% - 20px);
+	}
+
+}
+
+/* 991 Tablet Screen */
+@media only screen and (max-width: 991px) {
+	/*01. Header style 1 CSS*/
+	.header-navbar .all-categories{
+		max-width: 70px;
+	}
+	.header-navbar .all-categories .dropdown-toggle .departments-text{
+		display: none;
+	}
+	.departments-menu.dropdown-menu{
+		width: 250px;
+		display: none;
+	}
+	.header-navbar .all-categories .dropdown-toggle{
+		padding: 17px 15px;
+	}
+	.site-header .site-nav.primary-nav .menu>.menu-item {
+    	margin-left: 1rem;
+	}
+	.site-header .site-nav.primary-nav .menu>.menu-item>a{
+		font-size: 14px;
+	}
+	.header-button-right .header-button {
+	    margin-left: 0rem;
+	    margin-right: 5px;
+	}
+
+	/*02. Hero banner section CSS*/
+	.hero-banner-section .hero-banner-body {
+	    padding-left: 0;
+	}
+	.hero-banner-section{
+		min-height: inherit;
+	}
+	h1 {
+	    font-size: var(--h2);
+	    line-height: var(--h2-lineHeight);
+	}
+
+	/*03. Icon box section CSS*/
+	.iconbox-icon{
+		flex: 0 0 40px;
+    	max-width: 40px;
+	}
+
+	/*04. banner adds section CSS*/
+	.banner .banner-content {
+	    max-width: 90%;
+	    padding: 20px 20px;
+	}
+	.banner .banner-content .entry-title{
+		font-size: var(--h3);
+		line-height: normal;
+	}
+
+	/*05. Popular Categories section CSS*/
+	.popular-categories-grid .popular-categories{
+	    padding: 20px;
+	}
+	.popular-categories-wrap .module-header {
+	    padding: 23px 20px;
+	    margin: 0;
+	}
+
+	/*06. offer banner section CSS*/
+	.offer-banner-content{
+		padding: 30px;
+		background-size: 46%;
+	}
+
+	/*Product style*/
+	.feature-products-grid{
+	  grid-template-columns: repeat(3, 1fr);
+	}
+
+	/*===========================
+	Home two style
+	=============================*/
+	/*01. Header style 2 CSS*/
+	.header-type2 .site-brand{
+	    margin-right: 20px;
+	    max-width: 110px;
+	}
+	/*02. Hero banner section style 2 CSS*/
+	.hero-slider-section .hero-banner-content h1 {
+	    font-size: 46px;
+	    line-height: 50px;
+	    margin-bottom: 15px;
+	    font-weight: var(--semi-bold);
+	}
+	.hero-slider-section .hero-banner-content .entry-subtitle{
+		margin-bottom: 15px;
+	}
+
+	/*03. image with text section CSS*/
+	.image-with-text-section .image-with-text-des{
+		padding: 30px 15px;
+		padding-left: 0;
+	}
+	.image-with-text-des p {
+	    font-size: var(--font-size-b2);
+	    margin-bottom: 20px;
+	}
+	.image-with-text-des .entry-title{
+		font-size: var(--h3);
+		margin-bottom: 15px;
+	}
+
+	/*04. Testimonial section CSS*/
+	.testimonial-slider .mySwiper2 {
+	    padding: 40px 0px 40px 0;
+	}
+	.testimonial-content {
+	    padding: 0px 0px 30px 0;
+	}
+	.testimonial-content p{
+		font-size: var(--font-size-b1);
+		line-height: 30px;
+		margin-bottom: 30px;
+	}
+
+	/*05. Icon box section style 2 CSS*/
+	.icon-box-section.style-2{
+		padding-bottom: 10px;
+	}
+	.icon-box-section.style-2 .icon-box{
+		margin-bottom: 20px;
+	}
+
+	/*06. footer style 2 CSS*/
+	.footer-style-2 .newsletter-form .btn{
+		width: 150px;
+		padding: 12px;
+		font-size: var(--font-size-b3);
+	}
+
+	/*===========================
+	Home Three style
+	=============================*/
+	/*01. Hero grid banner section style 3 CSS*/
+	.hero-grid-banner-section .hero-banner-content{
+		padding: 15px;
+	}
+	.hero-grid-banner-section .hero-banner-content h1{
+		margin-bottom: 10px;
+	}
+	.hero-grid-banner-section .btn-style-2{
+		padding: 15px 30px;
+		font-size: var(--font-size-b2);
+	}
+	.hero-grid-banner-section .hero-banner-content p{
+		margin-bottom: 15px;
+	}
+
+	/*02. Popular Categories section style 3 CSS*/
+	.popular-categories-section.style-3 .popular-categories-grid{
+    	grid-template-columns: repeat(4, 1fr);
+    	justify-content: center;
+	}
+
+	/*03. Top collection section style 3 CSS*/
+	.top-collection-section .banner {
+	    height:auto;
+	    margin-bottom: 30px;
+	}
+	.top-collection-section .banner .banner-content {
+	    max-width: 80%;
+	}
+
+	/*04. offer banner section style 3 CSS*/
+	.offer-banner-section.style-3 .offer-banner-img{
+		max-width: 75%;
+    	margin: 0 0 0 auto;
+	}
+	.offer-banner-section.style-3 .offer-banner-content{
+		max-width: 380px;
+		padding: 40px;
+	}
+
+	/*05. Latest bloog & news section style 3 CSS*/
+	.blog-grid-style-2 .blog-grid-image:before{
+		padding-top: 90%;
+	}
+
+	/*06. Shop Social section style 3 CSS*/
+	.shop-social-section .shop-social-left,
+	.get-the-latest-deals{
+		padding: 20px 0;
+	}
+	.shop-social-section .entry-title{
+		font-size: var(--h3);
+    	line-height: var(--h3-lineHeight);
+	}
+	.shop-social-icon ul{
+		margin: 0;
+		gap: 10px;
+	}
+	.shop-social-icon ul li a{
+		width: 40px;
+    	height: 40px;
+	}
+	.get-the-latest-deals .newsletter-form .btn{
+		width: 120px;
+	}
+	.get-the-latest-deals .newsletter-form .form-control{
+		padding: 13px 125px 13px 23px;
+	}
+
+	/*===========================
+	Shop list page style
+	=============================*/
+	/*01. product list style CSS*/
+	.product-list-grid .product-thumbnail{
+		margin-right: 1rem;
+	}
+
+	/*===========================
+		About us page style
+	=============================*/
+	/*01. About content section style CSS*/
+	.about-content{
+		margin-top: 0;
+	}
+	.about-service-list {
+	    padding-left: 0px;
+	}
+	.about-service-list ul li{
+		column-gap: 20px;
+		padding: 10px 0;
+	}
+	.about-service-list ul li .icon{
+	    width: 45px;
+	}
+
+	/*02. About video section style CSS*/
+	.full-video .video-play-icon{
+		max-width: 80px;
+	}
+
+	/*===========================
+		Blog page style
+	=============================*/
+	/*01. blog grid style 3*/
+	.blog-grid-style-3 .blog-grid-content h6{
+		font-size: var(--font-size-b4);
+	}
+	.blog-grid-style-3 .blog-grid-content .entry-title{
+		font-size: var(--h5);
+    line-height: var(--h5-lineHeight);
+	}
+
+	/*===========================
+		Contact page style
+	=============================*/
+	/*01. Contact form style CSS*/
+	.contact-form{
+		margin-top: 30px;
+		height: auto;
+	}
+
+	/*===========================
+		Blog single page style
+	=============================*/
+	.blog-single-page .blog-sidebar{
+		margin-top: 30px;
+	}
+	.blog-single-page .blog-sidebar .sidebar-inner{
+		max-width: 100%;
+	}
+
+	/*===========================
+		Cart page style
+	=============================*/
+	/*01. Cart sidebar style CSS*/
+	.cart-sidebar{
+		max-width: 100%;
+		margin: 15px 0 0;
+	}
+
+	/*===========================
+		Product detail style 1 page
+	=============================*/
+	/*01. Product gallery column style 1 CSS*/
+	.product-gallery-column{
+		margin-bottom: 30px;
+	}
+
+	/*===========================
+		Presantation page style
+	=============================*/
+	/*01. Presantation header CSS*/
+	.presantation-header .site-nav.primary-nav .menu>.menu-item>a{
+		font-size: var(--font-size-b3);
+    line-height: var(--line-height-b3);
+	}
+	.presantation-header .site-nav.primary-nav .menu>.menu-item {
+    margin-left: 0.8rem;
+	}
+	.presantation-header .header-button-right .btn{
+		padding: 10px 10px;
+    font-size: var(--font-size-b4);
+	}
+	.presantation-header .header-navbar {
+    display: block;
+    padding: 15px 0;
+	}
+
+	/*02. Presantation banner section CSS*/
+	.Presantation-banner-section .hero-banner-content h1 {
+    font-size: var(--h3);
+    line-height: var(--h3-lineHeight);
+    margin-bottom: 25px;
+	}
+	.Presantation-banner-section .hero-banner-img .icon-figma{
+		left: -20px;
+	}
+
+	/*03. features service section CSS*/
+	.features-service-list ul{
+		flex-wrap: wrap;
+		-webkit-box-pack: center;
+	  -ms-flex-pack: center;
+	  justify-content: center;
+	}
+
+	/*05. Stunning home pages section CSS*/
+	.Stunning-home-pages-section .stunning-features-box{
+		margin-bottom: 20px;
+	}
+
+	/*06. Beautiful Pre-built Inner Pages section CSS*/
+	.inner-page-grid .stunning-features-box{
+		max-width: 25%;
+	}
+
+	/*07. Professional store section CSS*/
+	.professional-store-section .professional-store-box {
+    padding: 20px 20px 20px 20px;
+	}
+	.professional-store-box .module-header h2 {
+    margin-bottom: 20px;
+    font-size: var(--h3);
+    line-height: var(--h3-lineHeight);
+	}
+	.stunning-features-box.small-features {
+    max-width: 180px;
+    margin: -120px -50px 0 auto;
+	}
+
+	/*08. Professional Footer style 4 CSS*/
+	.footer-style-4 .footer-content h2{
+		margin-bottom: 20px;
+    font-size: var(--h2);
+    line-height: var(--h2-lineHeight);
+	}
+	.footer-style-4 .box-item.box-item-4 {
+    bottom: 10px;
+    left: 1vw;
+    max-width: 250px;
+	}
+	.footer-style-4{
+		padding: 140px 0 170px;
+	}
+
+.header-search-form{
+	max-width: 440px;
+}
+.product-info-product-list .quantity .quantity-button{
+	height: auto;
+}
+
+}
+
+@media (min-width: 768px) and (max-width: 1024px) { 
+	/*12. Mobile menu style CSS*/
+	.sub-mega-menu{
+		padding: 25px 15px;
+	}
+.presantation-header .toggle-menu img{
+	width: 22px;
+}
+body.menu-open .presantation-header.site-header:before{
+	content: '';
+	position: fixed;
+	right: 0;
+	top: 0;
+	z-index: 3;
+	width: 100%;
+	height: 100%;
+	background: rgba(0,0,0,0.5);
+	transition: all 0.3s ease;
+}
+.presantation-header .mobile-menu{
+	position: fixed;
+	right: -150%;
+	top: 0;
+	max-width: 100%;
+	background: var(--color-white);
+	padding: 0px 0 0;
+	height: 100%;
+	width: 100%;
+	z-index: 9999;
+	transition: all 0.3s ease;
+	display: block;
+}
+.presantation-header .mobile-menu.open{
+	right: 0;
+}
+.presantation-header .mobile-menu-close{
+	margin: 0 -15px 0 auto;
+	background: var(--color-white);
+	width: 50px;
+	height: 40px;
+	
+}
+.presantation-header .mobile-menu-close a{
+	width: 100%;
+	height: 100%;
+	display: -webkit-inline-box;
+  display: -ms-inline-flexbox;
+  display: inline-flex;
+  -webkit-box-align: center;
+  -ms-flex-align: center;
+  align-items: center;
+  -webkit-box-pack: justify;
+  -ms-flex-pack: justify;
+  justify-content: center;
+  color: var(--color-dark);
+  font-size: var(--font-size-b1);
+}
+.presantation-header .mobile-menu .site-nav{
+	height: 100%;
+}
+.site-header.presantation-header .mobile-menu .menu {
+	height: 100%;
+	overflow-y: auto;
+	display: block;
+	border-top: 1px solid var(--color-extra04);
+}
+.site-header.presantation-header .mobile-menu .menu li{
+	display: block;
+	margin: 0 !important;
+	border-bottom: 1px solid var(--color-extra04);
+	position: relative;
+}
+.site-header.presantation-header .mobile-menu .menu li .caret-arrow{
+	position: absolute;
+	right: 0;
+	top: 0;
+	width: 50px;
+	height: 51px;
+	display: -webkit-inline-box;
+  display: -ms-inline-flexbox;
+  display: inline-flex;
+  -webkit-box-align: center;
+  -ms-flex-align: center;
+  align-items: center;
+  -webkit-box-pack: justify;
+  -ms-flex-pack: justify;
+  justify-content: center;
+  cursor: pointer;
+}
+.site-header.presantation-header .mobile-menu .menu li .caret-arrow:before{
+	content: "\e64b";
+	font-family: 'themify';
+	color: var(--color-dark);
+	font-size: var(--font-size-b2);
+}
+.site-header.presantation-header .mobile-menu .menu li .caret-arrow.active:before{
+	transform: rotate(182deg);
+}
+.site-header.presantation-header .site-nav.primary-nav .menu>.menu-item>a{
+	padding: 15px 25px;
+	display: block;
+	height: auto;
+}
+.site-header.presantation-header .site-nav.primary-nav .menu>.menu-item>a:hover,
+.site-header.presantation-header .site-nav.primary-nav .menu>.menu-item.active>a,
+.site-header.presantation-header .site-nav.primary-nav .menu .menu-item ul li.active > a {
+    color: var(--color-primary);
+}
+.presantation-header .site-nav.horizontal>.menu>.menu-item-has-children>a::after{
+	display: none;
+}
+.site-header.presantation-header .mobile-menu .menu li ul{
+	padding: 0 0 0 10px;
+	margin: 0;
+	border-top: 1px solid var(--color-extra04);
+}
+.site-header.presantation-header .mobile-menu .menu li ul li ul{
+	padding-left: 10px;
+}
+.site-header.presantation-header .mobile-menu .menu li ul li:last-child{
+	border-bottom: 0;
+}
+.site-header.presantation-header .mobile-menu .menu li ul li a{
+	padding: 10px 25px;
+	display: block;
+	height: auto;
+}
+.site-header.presantation-header .mobile-menu .menu li ul.sub-mega-menu>li>.sub-menu>li>a{
+	color: var(--color-dark);
+}
+.site-header.presantation-header .mobile-menu .menu li .sub-mega-menu .image-sub-menu ul{
+	margin: 13px 0;
+	padding: 0;
+	display: -webkit-inline-box;
+  display: -ms-inline-flexbox;
+  display: inline-flex;
+  flex-wrap: wrap;
+  gap: 10px;
+}
+
+}
+@media only screen and (min-width: 768px) {
+	.compare-product-list .table .hidden-td{
+	  display: none;
+	}
+	.mobile-menu{
+		display: none;
+	}
+	.site-header.header-type1{
+		transition: all 0.3s ease;
+	}
+	.site-header.header-type1.sticky{
+		top: -36px;
+	}
+}
+/* 767 Mobile Screen */
+@media only screen and (max-width: 767px) {
+	.site-header.header-type1{
+		transition: all 0.3s ease;
+	}
+	.site-header.header-type1.sticky{
+		top: -59px;
+		background: #fff;
+  -webkit-box-shadow: 0 0px 4px 0 rgba(0, 0, 0, 0.1);
+    box-shadow: 0 0px 4px 0 rgba(0, 0, 0, 0.1);
+	}
+
+	.site-header .site-nav.primary-nav .menu>.menu-item:hover>a, .site-header .site-nav.primary-nav .menu>.menu-item>a:hover{
+		color: var(--color-primary);
+	}
+	.section-all {
+	    padding: 15px 0;
+	    position: relative;
+	}
+	.module-header h2{
+		font-size: var(--h3);
+	}
+
+	.search-bar{
+		padding: 0px 50px 0 15px;
+	}
+	.search-bar .form-group input{
+		height: 40px;
+	}
+
+	/*01. Header style 1 CSS*/
+	.header-type1 .header-wrapper{
+		display: block !important;
+		text-align: center;
+		padding: 8px 0 0;
+	}
+	.topbar .site-nav .menu-top-right{
+		-webkit-box-pack: center;
+	  -ms-flex-pack: center;
+	  justify-content: center;
+	}
+
+	.header-navbar{
+		display: none;
+	}
+
+	/*02. Hero banner section CSS*/
+	.hero-banner-section{
+		overflow: hidden;
+	}
+	.hero-banner-content{
+		padding: 45px 0 0;
+	}
+	.hero-banner-content h1 {
+	    margin-bottom: 12px;
+	    font-size: 30px;
+	}
+	.hero-banner-content p{
+	    margin-bottom: 12px;
+	}
+	.hero-banner-img {
+	    text-align: right;
+	    max-width: 80%;
+	    margin: -30px -70px 0 auto;
+	}
+
+	/*03. Icon box section CSS*/
+	.icon-box-section{
+		padding-bottom: 10px;
+		margin-bottom: 20px;
+	}
+	.icon-box{
+		margin-bottom: 25px;
+	}
+	.iconbox-icon {
+	    flex: 0 0 70px;
+	    max-width: 70px;
+	}
+
+	/*04. banner adds section CSS*/
+	.banner-adds-section{
+		padding-bottom: 0;
+	}
+	.banner{
+		margin-bottom: 30px;
+	}
+	.banner .banner-content {
+	    max-width: 75%;
+	    padding: 30px 30px;
+	    min-height: 250px;
+	    display: grid;
+	    align-content: center;
+	}
+	.banner .banner-image{
+		overflow: hidden;
+	}
+	.banner .banner-image img{
+		width: 100%;
+		height: 100%;
+		object-fit: cover;
+	}
+	.banner .banner-content .entry-title {
+	    font-size: var(--h5);
+	}
+	.banner .btn.link{
+		-webkit-box-pack: start;
+	    -ms-flex-pack: start;
+	    justify-content: start;
+	}
+
+	/*05. Popular Categories section CSS*/
+	.popular-categories-grid .popular-categories{
+		-ms-flex: 0 0 50%;
+	    flex: 0 0 50%;
+	    max-width: 50%;
+	}
+	.popular-categories-grid .popular-categories:nth-of-type(6) {
+	    border-left: 1px solid var(--color-extra01);
+	}
+	.popular-categories-grid .popular-categories:nth-of-type(2n+1){
+		border-left: 0;
+	}
+
+	/*06. offer banner section CSS*/
+	.offer-banner-content {
+	    padding: 25px 15px 145px 15px;
+	    background-size: 100%;
+	}
+	.offer-banner-content h2{
+		font-size: var(--h4);
+	}
+
+	/*07. Newsletter section CSS*/
+	.newsletter-section{
+		padding: 70px 0 70px;
+	}
+	.newsletter-content h2{
+		font-size: var(--h4);
+		margin-bottom: 8px;
+	}
+	.newsletter-content p{
+		margin-bottom: 12px;
+	}
+	.newsletter-form .form-control{
+		padding: 14px 145px 14px 12px;
+	}
+	.newsletter-form .btn{
+		width: 140px;
+		padding: 10px;
+	}
+	.newsletter-left-img, .newsletter-right-img{
+		max-width: 100%;
+		display: none;
+	}
+
+	/*Product style*/
+	.feature-products-grid{
+	  grid-template-columns: repeat(2, 1fr);
+	}
+
+	/*08. footer style 1 CSS*/
+	.footer-style-1 .site-brand{
+		margin-bottom: 30px;
+		padding-bottom: 30px;
+	}
+	.footer-column {
+	    margin-bottom: 30px;
+	}
+	.site-copyright{
+		-webkit-box-pack: center;
+	  -ms-flex-pack: center;
+	  justify-content: center;
+	  width: 100%;
+	  margin-bottom: 10px;
+	}
+	.site-copyright p {
+	    font-size: var(--font-size-b2);
+	}
+	.payments-icon {
+	    text-align: center;
+	}
+
+	/*09. Newsletter popup CSS*/
+	.newsletter-popup-block{
+		height: auto;
+	}
+	.newsletter-body{
+		padding: 40px 20px;
+		background-image: none !important;
+	}
+	.newsletter-popup-content h6{
+		margin-bottom: 20px;
+	}
+	.newsletter-popup-content p{
+		margin-bottom: 20px;
+	}
+
+	/*10. Cookie popup CSS*/
+	.cookie-popup{
+		max-width: calc(100% - 40px);
+    right: 20px;
+    padding: 20px;
+	}
+	.cookie-popup .cookie-button{
+		gap: 10px;
+	}
+	.cookie-popup .cookie-button .btn{
+		font-size: var(--font-size-b3);
+    padding: 12px 20px;
+	}
+
+	/*11. Mini Cart Dropdown*/
+	.cart-dropdown-wrapper .summary-product-list .cart-product .cart-thumb{
+		width: 80px;
+    height: 80px;
+	}
+
+/*12. Mobile menu style CSS*/
+.toggle-menu img{
+	width: 22px;
+}
+body.menu-open .site-header:before{
+	content: '';
+	position: fixed;
+	right: 0;
+	top: 0;
+	z-index: 3;
+	width: 100%;
+	height: 100%;
+	background: rgba(0,0,0,0.5);
+	transition: all 0.3s ease;
+}
+.mobile-menu{
+	position: fixed;
+	right: -150%;
+	top: 0;
+	max-width: 100%;
+	background: var(--color-white);
+	padding: 0px 0 0;
+	height: 100%;
+	width: 100%;
+	z-index: 9999;
+	transition: all 0.3s ease;
+}
+.mobile-menu.open{
+	right: 0;
+}
+.mobile-menu-close{
+	margin: 0 -15px 0 auto;
+	background: var(--color-white);
+	width: 50px;
+	height: 40px;
+	
+}
+.mobile-menu-close a{
+	width: 100%;
+	height: 100%;
+	display: -webkit-inline-box;
+  display: -ms-inline-flexbox;
+  display: inline-flex;
+  -webkit-box-align: center;
+  -ms-flex-align: center;
+  align-items: center;
+  -webkit-box-pack: justify;
+  -ms-flex-pack: justify;
+  justify-content: center;
+  color: var(--color-dark);
+  font-size: var(--font-size-b1);
+}
+
+.site-header .mobile-menu .menu {
+	height: 100%;
+	overflow-y: auto;
+	display: block;
+	border-top: 1px solid var(--color-extra04);
+}
+.site-header .mobile-menu .menu li{
+	display: block;
+	margin: 0 !important;
+	border-bottom: 1px solid var(--color-extra04);
+	position: relative;
+}
+.site-header .mobile-menu .menu li .caret-arrow{
+	position: absolute;
+	right: 0;
+	top: 0;
+	width: 50px;
+	height: 51px;
+	display: -webkit-inline-box;
+  display: -ms-inline-flexbox;
+  display: inline-flex;
+  -webkit-box-align: center;
+  -ms-flex-align: center;
+  align-items: center;
+  -webkit-box-pack: justify;
+  -ms-flex-pack: justify;
+  justify-content: center;
+  cursor: pointer;
+}
+.site-header .mobile-menu .menu li .caret-arrow:before{
+	content: "\e64b";
+	font-family: 'themify';
+	color: var(--color-dark);
+	font-size: var(--font-size-b2);
+}
+.site-header .mobile-menu .menu li .caret-arrow.active:before{
+	transform: rotate(182deg);
+}
+.site-header .site-nav.primary-nav .menu>.menu-item>a{
+	padding: 15px 25px;
+	display: block;
+	height: auto;
+	font-size: 16px;
+}
+.site-header .site-nav.primary-nav .menu>.menu-item>a:hover,
+.site-header .site-nav.primary-nav .menu>.menu-item.active>a,
+.site-header .site-nav.primary-nav .menu .menu-item ul li.active > a {
+    color: var(--color-primary);
+}
+.site-nav.horizontal>.menu>.menu-item-has-children>a::after{
+	display: none;
+}
+.site-header .mobile-menu .menu li ul{
+	padding: 0 0 0 10px;
+	margin: 0;
+	border-top: 1px solid var(--color-extra04);
+	
+}
+.site-header .mobile-menu .menu li > .sub-menu{
+	display: none;
+}
+.site-header .mobile-menu .menu li .sub-mega-menu li .sub-menu{
+	display: block;
+}
+.site-header .mobile-menu .menu li .sub-mega-menu li .sub-menu li .sub-menu li{
+	padding-left: 0;
+}
+.site-header .mobile-menu .menu li .sub-mega-menu li .sub-menu li .sub-menu li a{
+	color: var(--color-dark);
+}
+.site-header .mobile-menu .menu li .sub-mega-menu li.image-sub-menu .caret-arrow{
+	display: none;
+}
+.site-header .mobile-menu .menu li .sub-mega-menu li .sub-menu li .sub-menu{
+	display: none;
+}
+.site-header .mobile-menu .menu li .sub-mega-menu li .sub-menu li .sub-menu.sub-menu-wrap{
+	display: block;
+	border-top: 0;
+}
+.site-header .mobile-menu .menu li .sub-mega-menu li .sub-menu li .sub-menu.sub-menu-wrap li a{
+	padding: 10px 15px;
+}
+.site-header .mobile-menu .menu li ul li ul{
+	padding-left: 10px;
+}
+.site-header .mobile-menu .menu li ul li:last-child{
+	border-bottom: 0;
+}
+.site-header .mobile-menu .menu li ul li a{
+	padding: 10px 25px;
+	display: block;
+	height: auto;
+}
+.site-header .mobile-menu .menu li ul.sub-mega-menu>li>.sub-menu>li>a{
+	color: var(--color-dark);
+}
+.site-header .mobile-menu .menu li .sub-mega-menu .image-sub-menu ul{
+	margin: 13px 0;
+	padding: 0;
+	display: -webkit-inline-box;
+  display: -ms-inline-flexbox;
+  display: inline-flex;
+  flex-wrap: wrap;
+  gap: 10px;
+}
+.sub-mega-menu .image-sub-menu ul li{
+	width: calc(50% - 10px);
+}
+.mobile-menu-wrap{
+	height: calc(100vh - 56px);
+	overflow-y: auto;
+}
+.menu-social{
+	padding: 20px 25px;
+}
+.menu-social .btn{
+	width: 100%;
+	display: block;
+	margin-bottom: 25px;
+}
+.menu-social p{
+	font-size: 16px;
+	margin-bottom: 10px;
+}
+.menu-social .social-icon{
+	display: flex;
+	align-items: center;
+	column-gap: 15px;
+}
+.menu-social .social-icon li a{
+	font-size: 18px;
+}
+
+	/*===========================
+	Home two style
+	=============================*/
+	.section-two {
+	    padding: 20px 0;
+	    position: relative;
+	}
+	.section-full-btn {
+	    margin-top: 10px;
+	}
+
+	/*01. Header style 2 CSS*/
+	.header-type2 .header-navbar {
+	    display: block;
+	}
+	.header-type2 .header-navbar .left .primary-nav{
+		display: none;
+	}
+	.header-type2 .site-brand{
+		margin: 10px 0;
+	}
+
+	/*02. Hero banner section style 2 CSS*/
+	.hero-slider-section .hero-banner-content {
+	    padding: 50px 0;
+	    text-align: center;
+	}
+	.hero-slider-section .hero-banner-content h1{
+		font-size: 35px;
+		line-height: 40px;
+	}
+	.btn-style-2 {
+	    padding: 15px 20px;
+	    font-size: var(--font-size-b2);
+	}
+	.hero-slider-section .hero-banner-img{
+		max-width: 100%;
+		margin: 0;
+	}
+
+	/*03. Best Sellers section CSS*/
+	.bestsellers-products-section .entry-header-right .menu li{
+		margin-left: 10px;
+	}
+	.bestsellers-products-section .entry-header-right .menu li:first-child{
+		margin-left: 0;
+	}
+	.bestsellers-products-section .entry-header-right .menu li a{
+		font-size: var(--font-size-b3);
+	}
+	.product-style-3 {
+	    margin-bottom: 20px;
+	}
+	.new-arrival-slider .product-style-3 {
+	    margin-bottom: 0px;
+	}
+
+	/*04. image with text section CSS*/
+	.image-with-text-section .image-with-text-des{
+		padding: 30px 15px;
+	}
+
+	/*05. Testimonial section CSS*/
+	.testimonial-content h2{
+		font-size: var(--h3);
+		margin-bottom: 15px;
+	}
+	.testimonial-content p {
+	    font-size: var(--font-size-b2);
+	    line-height: 28px;
+	    margin-bottom: 20px;
+	}
+	.testimonial-slider:after {
+	    content: '';
+	    background: var(--color-extra03);
+	    width: 500%;
+	    position: absolute;
+	    top: 0;
+	    right: 0;
+	    margin-right: -500%;
+	    height: 100%;
+	}
+	.testimonial-slider .mySwiper2 {
+	    padding: 30px 0px;
+	}
+
+	/*06. Icon box section style 2 CSS*/
+	.icon-box-section.style-2 .icon-box{
+		display: block;
+		text-align: center;
+	}
+	.icon-box-section.style-2 .icon-box .iconbox-icon{
+		margin: 0 auto 15px;
+		height: 60px;
+		display: -webkit-inline-box;
+		display: -ms-inline-flexbox;
+		display: inline-flex;
+		-webkit-box-align: center;
+		-ms-flex-align: center;
+		align-items: center;
+		-webkit-box-pack: center;
+		-ms-flex-pack: center;
+		justify-content: center;
+	}
+	.icon-box-section.style-2 .icon-box .iconbox-icon img{
+		max-height: 100%;
+	}
+	.icon-box-section.style-2 .icon-box .iconbox-detail h6{
+		font-size: var(--font-size-b2);
+	}
+
+	.blog-grid{
+		margin-bottom: 20px;
+		height: auto;
+	}
+
+	/*07. footer style 2 CSS*/
+	.footer-style-2{
+		padding: 40px 0 0;
+	}
+	.footer-style-2 .newsletter-form {
+	    margin-bottom: 30px;
+	}
+	.footer-style-2 .newsletter-form .form-control{
+		padding: 14px 12px;
+	}
+	.footer-style-2 .newsletter-form .btn{
+		position: static;
+		width: 170px;
+    	padding: 16px;
+    	margin-top: 20px;
+	}
+	.footer-style-2 .footer-bottom{
+		margin-top: 20px;
+		padding: 16px 0;
+	}
+	.footer-style-2 .social-icon{
+		-webkit-box-pack: center;
+		-ms-flex-pack: center;
+		justify-content: center;
+	}
+
+	/*===========================
+	Home Three style
+	=============================*/
+
+	.module-header.style-3{
+		margin-bottom: 30px;
+		padding-bottom: 30px;
+	}
+	.product-style-4 .product-thumbnail:before {
+	    padding-top: 100%;
+	}
+	.entry-header-right{
+		margin-top: 10px;
+	}
+
+	/*01. Header style 3 CSS*/
+	.header-type3 .header-navbar{
+		display: block;
+		padding: 15px 0;
+	}
+	.header-type3 .topbar .header-wrapper{
+		-webkit-box-pack: end !important;
+		-ms-flex-pack: end !important;
+		justify-content: end !important;
+	}
+	.header-type3 .header-navbar .site-nav{
+		display: none;
+	}
+
+	/*02. Hero grid banner section style 3 CSS */
+	.hero-grid-banner-section{
+		margin-bottom: 20px;
+	}
+	.hero-grid-banner-section .hero-banner-content{
+		padding: 60px 15px;
+	}
+	.hero-grid-banner-section .hero-banner-img{
+		margin:0 0 20px;
+		max-width: 100%;
+	}
+
+	/*03. Popular Categories section style 3 CSS*/
+	.popular-categories-section.style-3 .popular-categories-grid {
+	    grid-template-columns: repeat(2, 1fr);
+	    justify-content: center;
+	}
+	.popular-categories-title h6, .popular-categories-title h6 a{
+		font-size: var(--font-size-b3);
+	}
+
+	/*04. Top collection section style 3 CSS*/
+	.top-collection-section .banner .banner-image{
+		position: static;
+	}
+	.top-collection-section .banner .banner-content{
+		padding: 20px;
+	}
+	.top-collection-section .banner .banner-content .entry-title{
+		font-size: var(--h4);
+    	line-height: var(--h4-lineHeight);
+    	margin-bottom: 15px;
+	}
+
+	/*05. offer banner section style 3 CSS*/
+	.offer-banner-section.style-3 .offer-banner-img{
+		position: static;
+		max-width: 100%;
+	}
+	.offer-banner-section.style-3 .offer-banner-content{
+		padding: 30px;
+		text-align: center;
+		position: static;
+	}
+	.offer-banner-section.style-3 .offer-banner-content h2,
+	.offer-banner-section.style-3 .offer-banner-content .entry-subtitle{
+		margin-bottom: 10px;
+	}
+	.offer-banner-section.style-3 .offer-banner-content .btn{
+		margin: 0 auto;
+	}
+
+	/*06. New arrival section CSS style 3 CSS*/
+	.new-arrival-slider .swiper {
+		padding-bottom: 50px;
+	}
+	.new-arrival-slider .swiper-button-prev, .new-arrival-slider .swiper-button-next{
+		bottom: 10px;
+		top: auto;
+		margin-bottom: 0;
+	}
+	.new-arrival-slider .swiper-button-prev{
+		left: calc(50% - 45px);
+	}
+	.new-arrival-slider .swiper-button-next{
+		right: calc(50% - 45px);
+	}
+
+	.blog-grid-style-2 {
+	    margin-bottom: 20px;
+	}
+
+	/*07. Shop Social section style 3 CSS*/
+	.shop-social-section .shop-social-left, .get-the-latest-deals{
+		padding: 30px 0;
+	}
+	.shop-social-section .shop-social-left{
+		border-right: 0;
+		border-bottom: 1px solid var(--color-extra01);
+	}
+
+	/*08. Instagram section style 3 CSS*/
+	.instagram-section{
+		margin-top: 10px;
+	}
+
+	/*09. footer style 3 CSS*/
+	.footer-style-3 .footer-top {
+	    padding: 30px 0;
+	    text-align: center;
+	}
+	.footer-style-3 .footer-top .site-brand{
+	    max-width: 100px;
+    	margin: 0 auto 30px;
+	}
+	.footer-style-3 .footer-menu .menu li{
+		margin: 0 5px;
+	}
+	.footer-style-3 .footer-menu .menu li a{
+		font-size: var(--font-size-b2);
+		line-height: var(--line-height-b3);
+	}
+	.footer-style-3 .footer-cms-menu .menu li a{
+		font-size: var(--font-size-b3);
+		line-height: var(--line-height-b3);
+	}
+	.footer-style-3 .footer-cms-menu .menu li{
+		padding: 0 10px;
+	}
+
+	/*===========================
+	Shop page style
+	=============================*/
+	.shop-page-grid-section{
+		padding-bottom: 40px;
+	}
+
+	.heading-banner-wrap h1 {
+	    font-size: var(--h2);
+	}
+
+	/*01. filter shop loop style CSS*/
+	.filter-shop-loop{
+		flex-wrap: wrap;
+	}
+	.shop-result-count{
+		width: 100%;
+	}
+	.filter-shop-loop .sorting-products{
+		margin: 0;
+	}
+	.product-views-buttons{
+		margin-left: auto;
+	}
+
+	/*01. Shop sidebar style CSS*/
+	.sidebar-inner {
+	    max-width: 300px;
+	    background: #fff;
+	    padding: 20px;
+	    height: 100vh;
+	    overflow-y: auto;
+	    position: relative;
+	}
+	.sidebar{
+		position: fixed;
+    top: 0;
+    left: -100%;
+    background: #0000007a;
+    z-index: 999;
+    width: 100%;
+    transition: all 0.3s ease;
+	}
+	.sidebar.open{
+		left: 0;
+	}
+	.filter-close{
+		position: absolute;
+    top: 20px;
+    right: 20px;
+    padding: 5px;
+    font-size: 18px;
+    line-height: 0;
+	}
+
+	.product-style-3 .product-thumbnail:before{
+		padding-top: 100%;
+	}
+
+	/*02. Product Quick view Popup CSS*/
+	.product-quick-body{
+		display: block;
+	}
+	.product-quick-body .quick-view-left{
+		display: none;
+	}
+	.product-quick-body .quick-view-content {
+    padding: 60px 25px;
+    width: 100%;
+	}
+	.product-quick-body .product-info-style-2 .variation-quantity{
+		gap: 0px;
+	}
+	.product-quick-body .single-add-to-cart .btn{
+			padding: 15px 20px;
+	    font-size: var(--font-size-b2);
+	}
+	.product-quick-body .variation-add-to-cart{
+		flex-wrap: nowrap;
+	}
+
+	/*===========================
+	Wishlist page style
+	=============================*/
+
+	/*01. Wishlist grid style CSS*/
+	.wishlist-grid-section .product-list-grid .product-thumbnail {
+	    -ms-flex: 0 0 225px;
+	    flex: 0 0 225px;
+	    max-width: 225px;
+	}
+	.wishlist-grid-section .product-list-grid .product-thumbnail:before {
+	    padding-top: 100%;
+	}
+	.wishlist-bottom-btn{
+		padding: 20px 0;
+    	margin-top: 15px;
+	}
+
+	/*===========================
+		About us page style
+	=============================*/
+	/*01. About content section style CSS*/
+	.about-content{
+		margin-top: 0;
+		padding-top: 0;
+	}
+	.about-content-wrap h2 {
+	    font-size: var(--h3);
+	}
+	.about-service-list {
+	    padding: 0;
+	    margin: 30px 0;
+	}
+	.about-service-list .about-service-info h5{
+		font-size: var(--h6);
+	}
+
+	/*02. About video section style CSS*/
+	.about-video-section{
+		padding-top: 0;
+	}
+	.full-video{
+		height: 250px;
+	}
+	.full-video > img{
+		width: 100%;
+		height: 100%;
+		object-fit: cover;
+	}
+	.full-video .video-play-icon{
+		max-width: 80px;
+	}
+
+
+	/*===========================
+		Blog page style
+	=============================*/
+
+	/*01. Blog sidebar style CSS*/
+	.blog-sidebar{
+		display: block;
+		margin-top: 30px;
+	}
+	.blog-sidebar .sidebar-inner {
+	    max-width: 100%;
+	    margin: 0;
+	}
+	.blog-sidebar .widget {
+	    margin-bottom: 30px;
+	}
+	.pagination{
+		gap: 5px;
+	}
+
+	/*===========================
+		My Account pagee style
+	=============================*/
+
+	/*01. Account form style CSS*/
+	.my-account-page {
+	    padding: 30px 0 55px;
+	}
+	.account-form .module-header h1 {
+	    font-size: var(--h2);
+	    line-height: var(--h6-lineHeight);
+	}
+	.account-form .module-header {
+	    margin-bottom: 35px;
+	}
+	.account-form .module-header p {
+	    font-size: var(--font-size-b2);
+	}
+	.form-group-lable a,
+	.form-group label{
+		margin-bottom: 10px;
+	}
+	.form-control{
+		height: 50px !important;
+	}
+	.form-group {
+	    margin-bottom: 25px;
+	}
+
+
+	/*===========================
+		CMS page style
+	=============================*/
+
+	/*01. CMS content style CSS*/
+	.cms-heading .heading-banner-wrap h1 {
+	    font-size: 30px;
+	}
+
+	/*===========================
+		404 page style
+	=============================*/
+
+	/*01. Not found content style CSS*/
+	.not-found-content{
+		padding-bottom: 20px;
+	}
+	.not-found-content img {
+	    margin-bottom: 25px;
+	    max-width: 60px;
+	}
+	.not-found-content h2 {
+    font-size: var(--h3);
+	}
+	.not-found-content p {
+    margin-bottom: 25px;
+	}
+
+	/*===========================
+		Contact page style
+	=============================*/
+	/*01. Contact Information style CSS*/
+	.contact-information-box{
+		padding: 25px 20px;
+	}
+	.contact-information-box h4{
+		font-size: var(--h5);
+	}
+	.contact-information-box .icon {
+    width: 60px;
+    height: 60px;
+  }
+  .contact-information-box .icon img {
+  	max-width: 30px;
+  }
+  .contact-us-page-section .module-header h2 {
+    font-size: var(--h3);
+    line-height: var(--h3-lineHeight);
+  }
+
+	/*02. Contact form style CSS*/
+	.contact-form{
+		padding: 30px 20px;
+	}
+
+	/*===========================
+		Blog single page style
+	=============================*/
+	/*01. Blog posts style CSS*/
+	.blog-entry-wrapper .entry-meta{
+		font-size: var(--font-size-b4);
+	}
+	.blog-entry-wrapper .entry-meta .entry-date, .blog-entry-wrapper .entry-meta .entry-comments{
+		padding-left: 15px;
+    margin-left: 15px;
+	}
+	blockquote{
+		padding: 20px;
+		margin-top: 2rem;
+    margin-bottom: 2rem;
+	}
+	.post-article blockquote p{
+		font-size: var(--font-size-b2);
+	}
+	blockquote img{
+		margin-right: 20px;
+	}
+	.post-article .blog-gallery-img{
+		margin-bottom: 20px;
+		height: auto;
+	}
+	.post-footer-tag{
+		row-gap: 10px;
+	}
+	.post-article .entry-title{
+		font-size: var(--h3);
+	}
+
+	/*02. Blog posts comments style CSS*/
+	.comment-list li .comment-body{
+		display: block;
+	}
+	.comment-list .comment-user-info{
+		max-width: 100%;
+		margin: 0 0 15px;
+	}
+	.post-comments-form .entry-title,
+	.related-blogs .entry-title,
+	.post-comments .entry-title {
+    font-size: var(--title);
+	}
+
+	/*===========================
+		Cart page style
+	=============================*/
+	/*01. Cart product table style CSS*/
+	.cart-footer{
+		display: block;
+		border: 0;
+		padding-top: 0;
+	}
+	.coupon-code-form{
+		max-width: 100%;
+	}
+	.update-cart-btn{
+		text-align: right;
+		margin-top: 10px;
+		display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+  -ms-flex-align: center;
+  align-items: center;
+  -webkit-box-pack: justify;
+    -ms-flex-pack: justify;
+    justify-content: end;
+	}
+
+	/*02. Cart sidebar style CSS*/
+	.cart-sidebar{
+		max-width: 100%;
+		margin: 15px 0 0;
+	}
+
+	.cart-product-table tbody tr{
+		border: 1px solid #EFEEF3;
+		border-bottom: 15px solid #fff;
+		display: block;
+	}
+	.cart-product-table .cart-product .cart-thumb{
+		display: none;
+	}
+	.cart-product-table thead{
+		display: none;
+	}
+	.table tr td.product-name {
+	    padding-left: 10px;
+	    padding-right: 10px;
+	}
+	.cart-product-table tbody tr td{
+		display: -webkit-box;
+		display: -ms-flexbox;
+		display: flex;
+		-webkit-box-align: center;
+		-ms-flex-align: center;
+		align-items: center;
+		-webkit-box-pack: justify;
+		-ms-flex-pack: justify;
+		justify-content: space-between;
+		border-bottom: 1px solid #EFEEF3;
+		font-size: var(--font-size-b3);
+	}
+	.cart-product-table tbody tr:nth-child(even){
+		background: #FBFBFB;
+	}
+	.cart-product-table tbody tr td:before{
+		padding: 0;
+    font-size: var(--font-size-b3);
+    text-transform: uppercase;
+    font-weight: var(--semi-bold);
+    color: var(--color-dark);
+    margin-right: 15px;
+	}
+	.cart-product-table tbody tr td.product-name:before{
+		content: 'Product';
+	}
+	.cart-product-table tbody tr td.price:before{
+		content: 'Price';
+	}
+	.cart-product-table tbody tr td.quantity-td:before{
+		content: 'Quantity';
+	}
+	.cart-product-table tbody tr td.total-price:before{
+		content: 'TOTAL';
+	}
+	.cart-product-table tbody tr td.remove:before{
+		content: '';
+	}
+	.cart-product .cart-product-title{
+		font-size: var(--font-size-b2);
+		max-width: inherit;
+		text-align: right;
+	}
+	.cart-product-table .quantity{
+		margin: 0;
+	}
+
+	/*===========================
+		Empty page style
+	=============================*/
+	/*01. Empty Cart content style CSS*/
+	.empty-cart-content h3{
+		margin-bottom: 25px;
+		 font-size: var(--h4);
+	}
+	.empty-cart-content h3:after{
+		margin-top: 20px;
+	}
+	.empty-cart-content p{
+		margin: 0 auto 30px;
+    font-size: var(--font-size-b2);
+	}
+
+	/*===========================
+		My Account page
+	=============================*/
+	/*01. My Account admin style CSS*/
+	.account-admin .vcard {
+    width: 80px;
+    height: 80px;
+    margin-bottom: 15px;
+  }
+	.account-admin {
+	    margin-bottom: 35px;
+	}
+	.account-left-menu ul li a{
+		padding: 12px 15px;
+	}
+
+	/*02. My Account left menu style CSS*/
+	.account-left-menu{
+		max-width: 100%;
+		margin-bottom: 25px;
+	}
+
+	/*03. My Account Dashboard style CSS*/	
+
+	.account-right-wrap p{
+		font-size: var(--font-size-b2);
+	}
+
+	.account-address-form .account-title{
+		padding-bottom: 15px;
+    margin-bottom: 20px;
+	}
+
+	/*04. Account order detail style CSS*/
+	.order-detail-table tr th,
+	.order-detail-table tr td{
+		padding: 10px 15px;
+	}
+
+	/*===========================
+		Site map page
+	=============================*/
+	/*01. Site map list style CSS*/
+	.site-map-list {
+	    padding: 0 10px;
+	}
+	.site-map-list ul li {
+	    font-size: var(--font-size-b2);
+	}
+	/*===========================
+		FAQ page
+	=============================*/
+	/*01. accordion style CSS*/
+	.faq-list h3 {
+	    margin-bottom: 25px;
+	    font-size: var(--h5);
+	}
+	.accordion .accordion-list .accordion-title{
+		font-size: var(--font-size-b2);
+		padding: 15px 15px 15px 0;
+	}
+
+	/*===========================
+		Thank you
+	=============================*/
+	/*01. Thank you order style CSS*/
+	.thank-you-msg{
+		padding: 10px 15px;
+	}
+	.thank-you-msg p{
+		font-size: var(--font-size-b2);
+	}
+	.thank-you-order {
+    padding: 30px 0;
+	}
+	.order-payment-method{
+		margin-bottom: 20px;
+	}
+	.order-payment-method h6{
+		font-size: var(--font-size-b2);
+		margin-bottom: 10px;
+	}
+	.order-payment-method h5{
+		font-size: var(--font-size-b2);	
+	}
+	.payment-order-table .table tr td, .payment-order-table .table tr th {
+    padding: 10px 15px;
+	}
+	.payment-order-table .table .cart-product{
+		display: block;
+	}
+	.payment-order-table .table .cart-product .cart-thumb{
+		margin: 0 0 15px;
+	}
+	.payment-order-table .table tr td p, .payment-order-table .table tr td span, .payment-order-table .cart-product .cart-product-title p,
+	.payment-order-table .cart-product .cart-product-title h6{
+		font-size: var(--font-size-b2);	
+
+	}
+	.payment-order-table .table tfoot tr td {
+    font-size: var(--font-size-b2);
+    font-weight: var(--semi-bold);
+	}
+
+	/*===========================
+		Product detail style 1 page
+	=============================*/
+	/*01. Product gallery column style 1 CSS*/
+	.product-gallery-column{
+		margin-bottom: 30px;
+	}
+	.product-gallery-column{
+		padding: 0;
+	}
+	.product-gallery-vertical{
+		padding: 0;
+	}
+	.product-gallery-vertical .thumbs-gallery{
+		display: none;
+	}
+	.product-gallery-column .swiper-button-next, .product-gallery-column .swiper-button-prev {
+    display: flex;
+	}
+
+	/*02. Product tabs style 1 CSS*/
+	.wc-tabs-wrapper {
+	    padding: 40px 0 30px;
+	}
+	.wc-tabs-wrapper .wc-tabs{
+		gap: 15px;
+		overflow-x: auto;
+	}
+	.wc-tabs-wrapper .wc-tabs li{
+		font-size: var(--font-size-b2);
+		padding-bottom: 10px;
+		white-space: nowrap;
+	}
+	.wc-tabs-wrapper .tabs-entry-content{
+		padding-top: 20px;
+	}
+
+	/*===========================
+		Product detail style 2 page
+	=============================*/
+	/*01. Product info style 2 CSS*/
+	.product-info-style-2 .variation-quantity{
+		gap: 0;
+		padding: 0 5px 0 10px;
+	}
+	.product-info-style-2 .variation-add-to-cart{
+		gap: 10px;
+	}
+	.product-info-style-2 .variation-quantity .quantity{
+		width: 100px;
+	}
+	.product-info-style-2 .variation-quantity .quantity .quantity-button{
+		width: 30px;
+	}
+	.product-info-style-2 .single-add-to-cart .btn{
+		padding: 15px 20px;
+		font-size: var(--font-size-b3);
+	}
+
+	/*03. Product tabs style 2 CSS*/
+	.wc-tabs-vertical{
+		display: block;
+	}
+	.wc-tabs-vertical .wc-tabs{
+		overflow: inherit;
+		max-width: 100%;
+		margin-bottom: 20px;
+	}
+	.wc-tabs-vertical .wc-tabs li{
+		padding: 14px 14px;
+	}
+	.wc-tabs-vertical .vertical-tabs-content {
+	    padding-left: 0px;
+	}
+	.client-review .comment-item-wrap .comment-item .comment-author-wrap .comment-author-info .reply-btn{
+		top:0;
+	}
+
+	/*===========================
+		Product detail style 3 page
+	=============================*/
+	/*01. Product info style 3 CSS*/
+	.product-info-product-list{
+		overflow-x: auto;
+	}
+
+	/*===========================
+		Compare page style
+	=============================*/
+	/*01. Compare Product list CSS*/
+	.compare-product-list .table .mobile-inline{
+		display: block;
+		width: 100%;
+	}
+
+	/*===========================
+		Presantation page style
+	=============================*/
+	/*02. Presantation banner section CSS*/
+	.Presantation-banner-section {
+    padding: 20px 0 40px;
+	}
+	.Presantation-banner-section .hero-banner-content {
+    padding:0;
+    text-align: center;
+    margin-bottom: 30px;
+	}
+	.Presantation-banner-section .hero-banner-content h1 span{
+		margin: 0 auto;
+	}
+	.Presantation-banner-section .hero-banner-content p{
+	    margin-bottom: 20px;
+	}
+	.Presantation-banner-section .hero-banner-content h1 {
+    font-size: var(--h3);
+    line-height: var(--h3-lineHeight);
+    margin-bottom: 25px;
+	}
+	.Presantation-banner-section .hero-banner-img{
+		margin: 0 auto;
+		max-width: 90%;
+	}
+	.Presantation-banner-section .hero-banner-img .icon {
+    width: 50px;
+    height: 50px;
+	}
+	.Presantation-banner-section .hero-banner-img .icon img{
+		max-width: 60%;
+	}
+	.Presantation-banner-section .hero-banner-img .icon-html{
+		top: -25px;
+	}
+	.Presantation-banner-section .hero-banner-img .icon-figma{
+		left: -20px;
+	}
+
+	/*03. features service section CSS*/
+	.features-service-section {
+	    padding: 25px 0 10px;
+	}
+	.features-service-list ul{
+		flex-wrap: wrap;
+		-webkit-box-pack: flex-start;
+    -ms-flex-pack: flex-start;
+    justify-content: flex-start;
+    gap: 0;
+	}
+	.features-service-list ul li{
+		width: 50%;
+		margin-bottom: 10px;
+	}
+
+	/*05. Stunning home pages section CSS*/
+	.Stunning-home-pages-section .stunning-features-box{
+		margin-bottom: 20px;
+	}
+	.presantation-heading{
+		margin-bottom: 30px;
+	}
+	.beautiful-inner-pages-section,
+	.Stunning-home-pages-section,
+	.features-clare-section{
+		padding: 30px 0;
+	}
+
+	/*06. Beautiful Pre-built Inner Pages section CSS*/
+	.inner-page-grid .stunning-features-box{
+		max-width: 50%;
+	}
+
+	/*07. Professional store section CSS*/
+	.professional-store-section{
+		padding: 0;
+		background: #F3F7F8;
+	}
+	.professional-store-section .professional-store-box {
+    padding: 30px 10px;
+	}
+	.professional-store-box .module-header h2 {
+    margin-bottom: 20px;
+    font-size: var(--h3);
+    line-height: var(--h3-lineHeight);
+	}
+	.stunning-features-box.small-features {
+    max-width: 180px;
+    margin: -120px -50px 0 auto;
+	}
+
+	/*08. Professional Footer style 4 CSS*/
+	.footer-style-4 .box-item.box-item-1 {
+    top: 15px;
+    left: 3vw;
+	}
+	.footer-style-4 .footer-content h2{
+		margin-bottom: 20px;
+    font-size: var(--h3);
+    line-height: var(--h3-lineHeight);
+	}
+	.footer-style-4 .button-group{
+		gap: 15px;
+	}
+	.footer-style-4 .button-group .btn{
+		padding: 12px 10px;
+	}
+	.footer-style-4 .box-item{
+		font-size: var(--font-size-b3);
+	}
+	.footer-style-4 .box-item.box-item-4 {
+    max-width: 270px;
+    left: 5vw;
+	}
+	.footer-style-4 .box-item.box-item-2 {
+    bottom: auto;
+    right: 3vw;
+    top: 16px;
+	}
+	.footer-style-4{
+		padding: 140px 0 180px;
+	}
+
+
+
+}
+
+@media only screen and (max-width: 640px) {
+	.topbar .site-nav .menu-top-right .sub-menu{
+		right: 0;
+	}
+	/*Product style*/
+	.feature-products-grid{
+	  grid-template-columns: repeat(1, 1fr);
+	}
+
+	/*===========================
+	Shop page style
+	=============================*/
+
+	.heading-banner-img img{
+		margin-right: -60px;
+	}
+	.heading-banner-wrap{
+		overflow: hidden;
+	}
+
+	
+
+	/*===========================
+	Shop list page style
+	=============================*/
+	/*01. product list style CSS*/
+	.product-list-grid{
+		display: block;
+	}
+
+	.product-list-grid .product-thumbnail{
+		margin-right: 0;
+		-webkit-box-flex: 0;
+	    -ms-flex: 0 0 1;
+	    flex: 0 0 1;
+    	max-width: 100%;
+	}
+	.product-list-grid .product-thumbnail:before {
+	    padding-top: 65%;
+	}
+
+	/*===========================
+	Wishlist page style
+	=============================*/
+
+	/*01. Wishlist grid style CSS*/
+	.wishlist-grid-section .product-list-grid .product-thumbnail {
+	    -ms-flex: 0 0 1;
+	    flex: 0 0 1;
+	    max-width: 100%;
+	}
+	.wishlist-grid-section .product-list-grid .product-thumbnail:before {
+	    padding-top: 65%;
+	}
+	.wishlist-bottom-btn{
+		gap: 15px;
+	}
+	.remove-link{
+		font-size: var(--font-size-b3);
+	}
+	.remove-link span {
+	    font-size: var(--h5);
+	}
+	.product-list-grid .product-close-icon{
+		width: 22px;
+		height: 22px;
+		top: 5px;
+		right: 5px;
+		font-size: var(--font-size-b3);
+	}
+
+	/*===========================
+		Contact page style
+	=============================*/
+	/*01. Contact Information style CSS*/
+	.contact-information{
+		gap: 15px;
+	}
+	.contact-information-box{
+		padding: 20px 15px;
+	}
+	.contact-information-box h4{
+		font-size: var(--font-size-b3);
+		line-height: var(--line-height-b3);
+	}
+	.contact-information-box .icon {
+    width: 60px;
+    height: 60px;
+    margin-bottom: 10px;
+  }
+  .contact-information-box .icon img {
+  	max-width: 30px;
+  }
+  .contact-information-box p {
+	    font-size: var(--font-size-b3);
+	}
+	.information-full-box .contact-information-box{
+		gap: 10px;
+	}
+
+	/*02. Contact form style CSS*/
+	.contact-form{
+		padding: 30px 20px;
+	}
+
+	.contact-map iframe{
+		height: 250px;
+		display: block;
+	}
+
+	/*===========================
+		Product detail style 1 page
+	=============================*/
+
+	h2 {
+    font-size: var(--h3);
+    line-height: var(--h3-lineHeight);
+	}
+
+	/*01. Product info style 1 CSS*/
+	.product-info .product_title{
+		font-size: var(--h3);
+		line-height: var(--h3-lineHeight);
+	}
+	.single-add-to-cart .btn-outline-dark{
+		padding: 15px 20px;
+		font-size: var(--font-size-b2);
+	}
+	.product-info .people-viewing,
+	.product-info .price {
+	    margin-bottom: 15px;
+	}
+	.color-variations ul.checkbox-color-list li .checkcontainer {
+    width: 20px;
+    height: 20px;
+	}
+	.color-variations {
+	    margin-bottom: 25px;
+	}
+	.product-extra-buttons{
+		gap: 10px;
+		flex-wrap: wrap;
+	}
+
+	/*01. Product Quick view Popup CSS*/
+	.product-quick-body .quick-view-content{
+		padding: 60px 15px 20px;
+	}
+	.product-quick-popup .product-buttons-icon {
+    right: 10px;
+    top: 10px;
+	}
+	.product-quick-body .variation-add-to-cart{
+		flex-wrap: wrap;
+	}
+	.product-quick-body .product-extra-buttons{
+		flex-wrap: wrap;
+	}
+	.product-quick-body .product-info-style-2 .variation-quantity{
+		gap: 15px;
+	}
+	.product-quick-body .product-info-style-2 .variation-quantity .quantity {
+    width: 150px;
+	}
+
+
+}
+
+/* Mobile Screen */
+@media only screen and (max-width: 450px) {
+.topbar .site-nav .menu-top-right .sub-menu{
+	right: 0;
+}
+.product-countdown ul{
+	gap: 20px;
+}
+.product-countdown ul li:before{
+	left: -10px;
+}
+.product-info-style-2 .variations_form .label-title{
+	font-size: 14px;
+}
+.variation-add-to-cart,
+.product-info-style-2 .variation-add-to-cart{
+	flex-wrap: wrap;
+}
+}
+
+/* Mobile Screen */
+@media only screen and (max-width: 380px) {
+.site-header.header-type1.sticky{
+	top: -73px;
+}
+.site-copyright{
+	display: block;
+	text-align: center;
+}
+
+}

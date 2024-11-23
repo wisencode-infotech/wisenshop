@@ -464,3 +464,14 @@ if (!function_exists('__appLivewireViewInclude'))
         return __appLivewireView($view_name, $data)->render();
     }
 }
+
+if (!function_exists('__activeThemeStaticImgMediaAsset'))
+{
+    function __activeThemeStaticImgMediaAsset($media_name = '')
+    {
+        if (!empty($media_name))
+            return asset('assets/frontend/img/static/media/themes/' . __appActiveTheme() . '/' . $media_name);
+
+        return '';
+    }
+}

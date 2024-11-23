@@ -16,8 +16,10 @@ mix.scripts([
 
 // CSS Files
 mix.styles([
+       'public/assets/frontend/css/advance-ws/bootstrap.min.css',
+       'public/assets/frontend/css/advance-ws/reset.css',
+       'public/assets/frontend/css/advance-ws/responsive.css',
        'public/assets/frontend/css/advance-ws/app.css',
-       'public/assets/frontend/css/advance-ws/rc-style.css',
        'public/assets/frontend/css/advance-ws/style.css',
        'public/assets/frontend/css/advance-ws/swiper.min.css',
        'public/assets/frontend/css/advance-ws/toastr.min.css'

@@ -74,7 +74,9 @@
          <form action="#">
             <div class="form-group">
                <input type="search" name="search-field" placeholder="Search Here..." required="">
-               <button type="submit"><img src="https://demo.webbytemplate.com/html-templates/bootstrap/clare-e-commerce/html/assets/images/search-icon.svg" alt="search icon"></button>
+               <button type="submit">
+                  <img src="{{ __activeThemeStaticImgMediaAsset('search-icon.svg') }}" alt="search icon">
+               </button>
             </div>
          </form>
          <button class="close-search"><span class="ti-close"></span></button>
@@ -109,19 +111,26 @@
                   <!-- header-button -->
                   
                   <div class="header-button">
-                     <a href="javascript:;" class="search-icon"><img src="https://demo.webbytemplate.com/html-templates/bootstrap/clare-e-commerce/html/assets/images/search-icon.svg" alt="search icon"></a>
+                     <a href="javascript:;" class="search-icon">
+                        <img src="{{ __activeThemeStaticImgMediaAsset('search-icon.svg') }}" alt="search icon"></a>
                   </div>
                   <div class="header-button">
-                     <a wire:navigate href="{{ route('frontend.login') }}" class="user-icon"><img src="https://demo.webbytemplate.com/html-templates/bootstrap/clare-e-commerce/html/assets/images/user-icon.svg" alt="user icon"></a>
+                     <a wire:navigate href="{{ route('frontend.login') }}" class="user-icon">
+                        <img src="{{ __activeThemeStaticImgMediaAsset('user-icon.svg') }}" alt="user icon">
+                     </a>
                   </div>
                   <div class="header-button">
-                     <a wire:navigate href="{{ route('frontend.my-wishlist') }}" class="wishlist-icon"><img src="https://demo.webbytemplate.com/html-templates/bootstrap/clare-e-commerce/html/assets/images/wishlist-icon.svg" alt="wishlist icon"> <span class="count">4</span></a>
+                     <a wire:navigate href="{{ route('frontend.my-wishlist') }}" class="wishlist-icon">
+                        <img src="{{ __activeThemeStaticImgMediaAsset('wishlist-icon.svg') }}" alt="wishlist icon"> 
+                     </a>
                   </div>
                   <div class="header-button">
                      @livewire('cart-icon')
                   </div>
                   <div class="header-button d-block d-md-none">
-                     <a href="javascript:;" class="toggle-menu"><img src="https://demo.webbytemplate.com/html-templates/bootstrap/clare-e-commerce/html/assets/images/toggle-menu-icon.svg" alt="toggle menu icon"></a>
+                     <a href="javascript:;" class="toggle-menu">
+                        <img src="{{ __activeThemeStaticImgMediaAsset('toggle-menu-icon.svg') }}" alt="toggle menu icon">
+                     </a>
                   </div>
                </div>
             </div>
@@ -144,7 +153,9 @@
             <div class="summary-product-list">
                <div class="cart-product cart-summary-product">
                   <div class="cart-thumb">
-                     <a href="product-detail-1.html"><img src="https://demo.webbytemplate.com/html-templates/bootstrap/clare-e-commerce/html/assets/images/blog-img6.jpg" alt="blog img 1"></a>
+                     <a href="product-detail-1.html">
+                        <img src="https://demo.webbytemplate.com/html-templates/bootstrap/clare-e-commerce/html/assets/images/blog-img6.jpg" alt="blog img 1">
+                     </a>
                   </div>
                   <div class="cart-product-title">
                      <div class="remove">

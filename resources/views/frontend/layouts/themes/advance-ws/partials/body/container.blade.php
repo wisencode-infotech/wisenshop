@@ -1,7 +1,7 @@
 <!-- wrapper -->
 <div class="wrapper">
     <!-- Preloader -->
-    <div class="preloader">
+    <div class="preloader d-none">
         <div class="preloader-inner">
             <div class="preloader-icon">
                 <span></span>

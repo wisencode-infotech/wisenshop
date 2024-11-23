@@ -2,49 +2,49 @@
     @if ($reviews->count())
         <div class="reviews-list">
             @foreach ($reviews as $review)
-                <div class="review-item flex items-start space-x-4 mb-4 mt-4">
-                    @if (!$review->user)
-                        @php continue; @endphp
-                    @endif
-                    <div class="review-user-image">
-                        <!-- Display user profile image (fallback to default image if not available) -->
-                        <img src="{{ $review->user->profile_image_url }}" alt="{{ $review->user->name }}" title="{{ $review->user->name }}" class="w-12 h-12 rounded-full object-cover">
+                @if (!$review->user)
+                    @php continue; @endphp
+                @endif
+                <div class="comment-item d-flex flex-wrap">
+                    <div class="comment-author-img">
+                        <img src="{{ $review->user->profile_image_url }}" alt="{{ $review->user->name }}">
                     </div>
-                    <div class="review-content flex-1">
-                        <div class="review-header">
-                            <!-- User name displayed first -->
-                            <strong>{{ $review->user->name }}</strong>
-                        </div>
-                        <div class="review-body mt-1">
-
-                            <!-- Star rating and date now displayed under the review text -->
-                            <div class="flex items-center space-x-4 mt-2">
-                                <!-- Display star rating -->
-                                <div class="rating text-sm text-gray-500 flex items-center">
-                                    @for ($i = 1; $i <= 5; $i++)
-                                        @if ($i <= $review->rating)
-                                            <i class="fas fa-star text-yellow-500"></i> <!-- Filled star for rated ones -->
-                                        @else
-                                            <i class="far fa-star text-gray-400"></i> <!-- Empty star for the rest -->
-                                        @endif
-                                    @endfor
+                    <div class="comment-author-wrap">
+                        <div class="comment-author-info">
+                            <div class="row align-items-start">
+                                <div
+                                    class="col-md-7 col-sm-12 col-12 order-md-1 order-sm-1 order-1">
+                                    <div class="comment-author-name">
+                                        <h5>{{ $review->user->name }}</h5>
+                                        <span class="comment-date">{{ $review->created_at->format('F j, Y') }}</span>
+                                    </div>
                                 </div>
-                                <!-- Review date -->
-                                <span class="date text-sm text-gray-400">{{ $review->created_at->format('F j, Y') }}</span>
+                                <div
+                                    class="col-md-5 col-sm-12 col-12 text-md-end order-md-2 order-sm-3 order-3">
+                                    <!-- Display star rating -->
+                                    <div class="rating text-sm text-gray-500 flex items-center">
+                                        @for ($i = 1; $i <= 5; $i++)
+                                            @if ($i <= $review->rating)
+                                                <i class="fas fa-star text-yellow-500" style="color: #ffb629"></i> <!-- Filled star for rated ones -->
+                                            @else
+                                                <i class="far fa-star text-gray-400" style="color: #ffb629"></i> <!-- Empty star for the rest -->
+                                            @endif
+                                        @endfor
+                                    </div>
+                                </div>
                             </div>
-
-                            <!-- Display review text -->
-                            <p class="mt-2">
-                                @if (!emptY($review->review))
-                                    “{!! nl2br($review->review) !!}”
-                                @else
-                                    <span class="text-gray-400">{{ __trans('Review not added') }}</span>
-                                @endif
-                            </p>
                         </div>
+                    </div>
+                    <div class="comment-text">
+                        <p>
+                            @if (!emptY($review->review))
+                                “{!! nl2br($review->review) !!}”
+                            @else
+                                <span class="text-gray-400">{{ __trans('Review not added') }}</span>
+                            @endif
+                        </p>
                     </div>
                 </div>
-                <hr>
             @endforeach
         </div>
 

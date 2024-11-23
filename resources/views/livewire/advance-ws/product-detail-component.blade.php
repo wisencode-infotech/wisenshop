@@ -83,29 +83,15 @@
                             </div>
                         @endif
 
-                        <!-- variation add to cart -->
-                        <div class="variation-add-to-cart">
-                            <!-- Quantity -->
-                            <div class="variation-quantity">
-                                <label class="label-title">{{ __trans('Quantity') }}:</label>
-                                <!-- Quantity -->
-                                @livewire('quantity-selector', ['product_id' => $product->id, 'layout' => 'small'])
-                            </div>
-                            <div class="single-add-to-cart">
-                                <button type="button"
-                                    class="single_add_to_cart_button btn btn-dark btn-outline-dark" wire:click="addToCartButtonProcess">{{ __trans('Add to cart') }}</button>
-                            </div>
-                        </div>
-                        <div class="buy-product-button">
-                            <a href="cart.html" class="buy-product-btn btn btn-dark">Buy Now</a>
-                        </div>
+                        
+                        @livewire('quantity-selector', ['product_id' => $product->id, 'layout' => 'product-details'])
 
                         <!-- product extra buttons-->
                         <div class="product-extra-buttons">
                         </div>
 
                         <!-- product meta -->
-                        <div class="product-meta">
+                        {{-- <div class="product-meta">
                             <div class="product-meta-list">
                                 <span>Estimated Delivery: </span>
                                 <span class="meta">Jan 31 - 07 Feb, 2023</span>
@@ -114,7 +100,7 @@
                                 <span>Free Shipping & Returns:</span>
                                 <span class="meta">On all orders over $200.00</span>
                             </div>
-                        </div>
+                        </div> --}}
 
                     </div>
                 </div>
@@ -128,9 +114,7 @@
                         <!-- Product tabs -->
                         <ul class="tabs wc-tabs">
                             <li class="active" data-tab="tab-description">Description</li>
-                            <li data-tab="tab-information">Additional Information</li>
-                            <li data-tab="tab-reviews">Reviews (0)</li>
-                            <li data-tab="tab-questions">Questions</li>
+                            <li data-tab="tab-reviews">Reviews ({{ $product->total_reviews }})</li>
                         </ul>
 
                         <!-- tabs entry content -->
@@ -138,107 +122,32 @@
                             <p>
                                 {!! $product->description !!}
                             </p>
-                            <ul>
-                                <li>Imperdiet dui accumsan</li>
-                                <li>Sit amet est placerat in egestas. </li>
-                                <li>Enim diam vulputate ut </li>
-                                <li>pharetra sit amet aliquam id diam</li>
-                                <li>Sit amet nisl purus in </li>
-                                <li>mollis nunc sed</li>
-                            </ul>
-                        </div>
-                        <!-- tabs entry content -->
-                        <div id="tab-information" class="tabs-entry-content">
-                            <ul class="product_features">
-                                <li><b>Size Available:</b> M, L, Xl, XXL</li>
-                                <li><b>Color:</b> Blue</li>
-                                <li><b>Brand:</b> Gucci</li>
-                                <li><b>Quality:</b> 100% Cotton</li>
-                            </ul>
                         </div>
                         <!-- tabs entry content -->
                         <div id="tab-reviews" class="tabs-entry-content">
                             <div class="row client-review-header align-items-center gx-0">
                                 <div class="col-md-8">
-                                    <h2>Customer Reviews</h2>
+                                    <h2>{{ __trans('Customer Reviews') }}</h2>
                                     <ul class="ratings list-style">
-                                        <li><i class="fa-solid fa-star"></i></li>
-                                        <li><i class="fa-solid fa-star"></i></li>
-                                        <li><i class="fa-solid fa-star"></i></li>
-                                        <li><i class="fa-solid fa-star"></i></li>
-                                        <li><i class="fa-solid fa-star"></i></li>
+                                        @for ($i = 1; $i <= 5; $i++)
+                                            @if($i <= $product->average_rating)
+                                            <li><i class="fas fa-star"></i></li>
+                                            @else
+                                            <li><i class="far fa-star"></i></li>
+                                            @endif
+                                        @endfor
                                     </ul>
-                                    <p>Based on 2 Reviews</p>
+                                    <p>{{ __trans('Based on') }} {{ $product->total_reviews }} {{ __trans('Reviews') }}</p>
                                 </div>
-                                <div class="col-md-4 text-md-end">
+                                {{-- <div class="col-md-4 text-md-end">
                                     <a href="#cmt-form" class="btn btn-primary">Write A Review</a>
-                                </div>
+                                </div> --}}
                             </div>
                             <div class="client-review">
                                 <div class="comment-item-wrap">
-                                    <div class="comment-item d-flex flex-wrap">
-                                        <div class="comment-author-img">
-                                            <img src="assets/images/best-sellers-img7.jpg" alt="Image">
-                                        </div>
-                                        <div class="comment-author-wrap">
-                                            <div class="comment-author-info">
-                                                <div class="row align-items-start">
-                                                    <div
-                                                        class="col-md-7 col-sm-12 col-12 order-md-1 order-sm-1 order-1">
-                                                        <div class="comment-author-name">
-                                                            <h5>Olivic Dsuza</h5>
-                                                            <span class="comment-date">Jun 22, 2022 | 7:10 PM</span>
-                                                        </div>
-                                                    </div>
-                                                    <div
-                                                        class="col-md-5 col-sm-12 col-12 text-md-end order-md-2 order-sm-3 order-3">
-                                                        <a href="#cmt-form" class="reply-btn">Report As
-                                                            Inappropriate</a>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <div class="comment-text">
-                                            <p>Voluptatem accusantium doloremque laudantium, totam rem aperiam, eaque
-                                                ipsa quae ab illo inventore veritatis et quasi architecto beatae vitae
-                                                dicta sunt explicabo. Nemo enim ipsam tatem quia voluptas sit aspernatur
-                                                aut odit aut dolore magna aliqua ipsum insididunt labore magna white.
-                                            </p>
-                                        </div>
-                                    </div>
-                                    <div class="comment-item d-flex flex-wrap">
-                                        <div class="comment-author-img">
-                                            <img src="assets/images/best-sellers-img4.jpg" alt="Image">
-                                        </div>
-                                        <div class="comment-author-wrap">
-                                            <div class="comment-author-info">
-                                                <div class="row align-items-start">
-                                                    <div
-                                                        class="col-md-7 col-sm-12 col-12 order-md-1 order-sm-1 order-1">
-                                                        <div class="comment-author-name">
-                                                            <h5>Michel Jackson</h5>
-                                                            <span class="comment-date">Jun 22, 2022 | 7:10 PM</span>
-                                                        </div>
-                                                    </div>
-                                                    <div
-                                                        class="col-md-5 col-sm-12 col-12 text-md-end order-md-2 order-sm-3 order-3">
-                                                        <a href="#cmt-form" class="reply-btn">Report As
-                                                            Inappropriate</a>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                            <div class="comment-text">
-                                                <p>Voluptatem accusantium doloremque laudantium, totam rem aperiam,
-                                                    eaque ipsa quae ab illo inventore veritatis et quasi architecto
-                                                    beatae vitae dicta sunt explicabo. Nemo enim ipsam tatem quia
-                                                    voluptas sit aspernatur aut odit aut dolore magna aliqua ipsum
-                                                    insididunt labore magna white.
-                                                </p>
-                                            </div>
-                                        </div>
-                                    </div>
+                                    <livewire:product-reviews lazy :product_id="$product->id" />
                                 </div>
-                                <div id="cmt-form" class="client-form">
+                                {{-- <div id="cmt-form" class="client-form">
                                     <div class="comment-box-title mb-25">
                                         <h4>Write Your Review</h4>
                                     </div>
@@ -275,51 +184,7 @@
                                             </div>
                                         </div>
                                     </form>
-                                </div>
-                            </div>
-                        </div>
-                        <!-- tabs entry content -->
-                        <div id="tab-questions" class="tabs-entry-content">
-                            <div class="accordion">
-                                <!-- accordion list -->
-                                <div class="accordion-list">
-                                    <!-- accordion title -->
-                                    <h4 class="accordion-title active">Shipping destinations</h4>
-                                    <!-- accordion content -->
-                                    <div class="accordion-content actives">
-                                        <p>For now we ship to the following countries: Austria, Belgium, Czech Republic,
-                                            Lithuania, Luxembourg, Latvia, Slovakia, Hungary, Bulgaria, Romania,
-                                            Slovenia, Finland, Denmark, Estonia, Netherlands, Germany, France, Great
-                                            Britain, Croatia, Ireland, Sweden, Italy, Greece, Spain, Portugal and
-                                            Poland.</p>
-                                    </div>
-                                </div>
-                                <!-- accordion list -->
-                                <div class="accordion-list">
-                                    <!-- accordion title -->
-                                    <h4 class="accordion-title">Shipping times</h4>
-                                    <!-- accordion content -->
-                                    <div class="accordion-content">
-                                        <p>For now we ship to the following countries: Austria, Belgium, Czech Republic,
-                                            Lithuania, Luxembourg, Latvia, Slovakia, Hungary, Bulgaria, Romania,
-                                            Slovenia, Finland, Denmark, Estonia, Netherlands, Germany, France, Great
-                                            Britain, Croatia, Ireland, Sweden, Italy, Greece, Spain, Portugal and
-                                            Poland.</p>
-                                    </div>
-                                </div>
-                                <!-- accordion list -->
-                                <div class="accordion-list">
-                                    <!-- accordion title -->
-                                    <h4 class="accordion-title">Tracking your parcel</h4>
-                                    <!-- accordion content -->
-                                    <div class="accordion-content">
-                                        <p>For now we ship to the following countries: Austria, Belgium, Czech Republic,
-                                            Lithuania, Luxembourg, Latvia, Slovakia, Hungary, Bulgaria, Romania,
-                                            Slovenia, Finland, Denmark, Estonia, Netherlands, Germany, France, Great
-                                            Britain, Croatia, Ireland, Sweden, Italy, Greece, Spain, Portugal and
-                                            Poland.</p>
-                                    </div>
-                                </div>
+                                </div> --}}
                             </div>
                         </div>
 
@@ -338,7 +203,7 @@
             <div class="row">
                 <!-- column -->
                 <div class="col-12">
-                    <h2 class="entry-title">Related products</h2>
+                    <h2 class="entry-title">{{ __trans('Related products') }}</h2>
                 </div>
                 <livewire:products lazy :category_id="$product->category_id" :exclude_product_ids="[$product->id]" :from_page="'product_detail'" />
             </div>

@@ -142,3 +142,7 @@ ul.subcategory > li {
     background-color: var(--color-accent-hover) !important;
     color: #ffffff !important;
 }
+
+.bg-footer-page-section {
+    background: var(--color-extra03);
+}

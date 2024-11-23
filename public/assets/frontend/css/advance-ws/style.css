@@ -69,7 +69,7 @@
   color: var(--color-black);
 }
 .horizontal>.menu-top-right>.menu-item-has-children>a::after {
-  font-family: themify;
+  font-family: themify-icons;
   font-size: 70%;
   content: "\e64b";
   margin-left: 0.625rem;
@@ -391,7 +391,7 @@
   color: var(--color-white);
 }
 .site-nav.horizontal>.menu>.menu-item-has-children>a::after {
-  font-family: themify;
+  font-family: themify-icons;
   font-size: 70%;
   content: "\e64b";
   margin-left: 0.625rem;

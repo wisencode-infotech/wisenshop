@@ -94,7 +94,8 @@ class CartHelper
                     'product_variation_name' => $product_variation->name ?? '',
                     'product_price' => $price,
                     'product_picture' => $product->display_image_url,
-                    'quantity' => $db_cart_item->quantity
+                    'quantity' => $db_cart_item->quantity,
+                    'product_slug' => $product->slug
                 ];
             }
 

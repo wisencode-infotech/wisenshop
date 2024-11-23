@@ -139,68 +139,7 @@
    </div>
    <!--/ End Header-navbar -->
    <!-- mini cart dropdown -->
-   <div class="mini-cart-dropdown">
-      <!-- mini cart close -->
-      <div class="mini-cart-close">
-         <a href="javascript:;"><i class="fa fa-times"></i></a>
-      </div>
-
-      <div class="cart-dropdown-wrapper">
-         <!-- Order summary -->
-         <div class="order-summary">
-            <h3 class="account-title">Cart</h3>
-            <!-- summary product list-->
-            <div class="summary-product-list">
-               <div class="cart-product cart-summary-product">
-                  <div class="cart-thumb">
-                     <a href="product-detail-1.html">
-                        <img src="https://demo.webbytemplate.com/html-templates/bootstrap/clare-e-commerce/html/assets/images/blog-img6.jpg" alt="blog img 1">
-                     </a>
-                  </div>
-                  <div class="cart-product-title">
-                     <div class="remove">
-                        <a href="javascript:;"><i class="fa fa-times"></i></a>
-                     </div>
-                     <h6><a href="product-detail-1.html">Micro tote bag in Faux Fur & Leather</a> </h6>
-                     <div class="product-qty variation-quantity">
-                        <div class="quantity">
-                           <div class="quantity-button minus">-</div>
-                           <input type="text" class="input-text input-qty text" name="cart[d395771085aab05244a4fb8fd91bf4ee][qty]" value="1" title="Qty" size="4" placeholder="" autocomplete="off">
-                           <div class="quantity-button plus">+</div>
-                        </div>
-                        <div class="price">$22.22</div>
-                     </div>
-                  </div>
-               </div>
-               <div class="cart-product cart-summary-product">
-                  <div class="cart-thumb">
-                     <a href="product-detail-1.html"><img src="https://demo.webbytemplate.com/html-templates/bootstrap/clare-e-commerce/html/assets/images/blog-img6.jpg" alt="blog img 1"></a>
-                  </div>
-                  <div class="cart-product-title">
-                     <div class="remove">
-                        <a href="javascript:;"><i class="fa fa-times"></i></a>
-                     </div>
-                     <h6><a href="product-detail-1.html">Micro tote bag in Faux Fur & Leather</a></h6>
-                     <div class="product-qty variation-quantity">
-                        <div class="quantity">
-                           <div class="quantity-button minus">-</div>
-                           <input type="text" class="input-text input-qty text" name="cart[d395771085aab05244a4fb8fd91bf4ee][qty]" value="1" title="Qty" size="4" placeholder="" autocomplete="off">
-                           <div class="quantity-button plus">+</div>
-                        </div>
-                        <div class="price">$22.22</div>
-                     </div>
-                  </div>
-               </div>
-            </div>
-
-            <!-- mini cart button-->
-            <div class="mini-cart-buttons">
-               <a href="{{ route('frontend.cart') }}" class="btn btn-outline-dark">{{ __trans('View Cart') }}</a>
-               <a href="{{ route('frontend.home') }}" class="btn btn-dark">{{ __trans('Continue Shopping') }}</a>
-            </div>
-         </div>
-      </div>
-   </div>
+   <livewire:mini-cart-dropdown />
    <!-- end mini cart dropdown -->
 
    <!-- mobile menu -->

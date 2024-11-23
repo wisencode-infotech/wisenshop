@@ -32,6 +32,30 @@
                 </div>
             </template>
 
+            <template x-if="'{{ $layout }}' === 'mini-cart-drawer'">
+                <div>
+                    <div class="quantity" x-data="{ quantity: @entangle('quantity'), debounceTimeout: null }" >
+                        <div class="quantity-button minus" @click.prevent="
+                        if (quantity > 0) {
+                            quantity--; 
+                            clearTimeout(debounceTimeout); // Clear previous timeout
+                            debounceTimeout = setTimeout(() => {
+                                $wire.decrement();
+                            }, 300); // Adjust debounce time as needed
+                        }
+                    " >-</div>
+                        <span class="input-text input-qty text my-auto h-auto" x-text="quantity"></span>
+                        <div class="quantity-button plus" @click.prevent="
+                        quantity++; 
+                        clearTimeout(debounceTimeout); // Clear previous timeout
+                        debounceTimeout = setTimeout(() => {
+                            $wire.increment();
+                        }, 300); // Adjust debounce time as needed
+                    ">+</div>
+                    </div>
+                </div>
+            </template>
+
             <template x-if="'{{ $layout }}' === 'cart'">
                 <div x-data="{ quantity: @entangle('quantity'), debounceTimeout: null }" 
                     class="flex overflow-hidden flex-col-reverse items-center w-8 h-24 bg-accent text-heading rounded-full text-accent-contrast">
@@ -111,7 +135,7 @@
                 </div>
             </template>
 
-            <template x-if="'{{ $layout }}' !== 'cart' && '{{ $layout }}' !== 'large' && '{{ $layout }}' !== 'product-details'">
+            <template x-if="'{{ $layout }}' !== 'cart' && '{{ $layout }}' !== 'large' && '{{ $layout }}' !== 'product-details' && '{{ $layout }}' !== 'mini-cart-drawer'">
                 <div x-data="{ quantity: @entangle('quantity'), debounceTimeout: null }" 
                     class="flex overflow-hidden order-5 sm:order-4 w-9 sm:w-24 h-24 sm:h-10 bg-accent text-light rounded-full flex-col-reverse sm:flex-row absolute sm:relative bottom-0 sm:bottom-auto ltr:right-0 rtl:left-0 ltr:sm:right-auto ltr:sm:left-auto text-accent-contrast">
 

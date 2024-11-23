@@ -110,3 +110,15 @@
     background-color: var(--color-primary-code);
     border-color: var(--color-primary-code);
 }
+
+.product .product-thumbnail {
+    border: 1px solid #ececec;
+}
+
+ul.subcategory {
+    margin-left: 10px;
+}
+
+ul.subcategory > li {
+    list-style-type: circle;
+}

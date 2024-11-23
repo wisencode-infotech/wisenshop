@@ -10,13 +10,36 @@
             <div class="sidebar-widget-body">
                 <ul class="checkbox-categories-list">
                     @foreach ($product_categories as $category)
-                        <li>
+                        <li wire:key="category-{{ $category->id }}"
+                            x-on:click="
+                                selectedCategoryId = {{ $category->id }};
+                                $wire.set('selectedCategoryId', selectedCategoryId); // Use Livewire's set method
+                                $dispatch('category-selected', { category_id: selectedCategoryId })
+                            ">
                             <label class="checkcontainer">
-                                <input type="checkbox">
+                                <input type="checkbox" :checked="{ 'checked': selectedCategoryId === {{ $category->id }} }">
                                 <span class="checkmark">{{ $category->name }}</span>
                             </label>
                             <span class="count">({{ $category->products()->count() }})</span>
                         </li>
+                        @if ($category->subcategories()->count() > 0)
+                            <ul class="subcategory">
+                                @foreach ($category->subcategories as $sub_category)
+                                    <li wire:key="category-{{ $sub_category->id }}"
+                                        x-on:click="
+                                            selectedCategoryId = {{ $sub_category->id }};
+                                            $wire.set('selectedCategoryId', selectedCategoryId); // Use Livewire's set method
+                                            $dispatch('category-selected', { category_id: selectedCategoryId })
+                                        ">
+                                        <label class="checkcontainer">
+                                            <input type="checkbox" :checked="{ 'checked': selectedCategoryId === {{ $sub_category->id }} }">
+                                            <span class="checkmark">{{ $sub_category->name }}</span>
+                                        </label>
+                                        <span class="count">({{ $sub_category->products()->count() }})</span>
+                                    </li>
+                                @endforeach
+                            </ul>
+                        @endif
                     @endforeach
                 </ul>
             </div>

@@ -1,9 +1,8 @@
 <!-- wrapper -->
 <div class="wrapper">
     <!-- Preloader -->
-    <div class="preloader d-none">
+    <div class="preloader">
         <div class="preloader-inner">
-            <img src="https://demo.webbytemplate.com/html-templates/bootstrap/clare-e-commerce/html/assets/images/loader-icon.svg" alt="loader icon">
             <div class="preloader-icon">
                 <span></span>
                 <span></span>

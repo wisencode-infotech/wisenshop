@@ -33,7 +33,7 @@
             <div class="col-12 col-sm-6 col-md-4 col-lg-3" wire:loading.remove wire:target.except="loadMore">
                 <div class="product product-style-3">
                     <div class="product-thumbnail" wire:key="product-{{ $product->id }}">
-                        <a href="product-detail-1.html" class="thumbnail">
+                        <a href="{{ route('frontend.product-detail', ['product_slug' => $product->slug]) }}" class="thumbnail">
                             <img 
                             alt="{{ $product->name }}" 
                             loading="lazy" 

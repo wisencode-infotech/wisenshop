@@ -1,3 +1,8 @@
+:root {
+    --color-primary: rgba(var(--color-accent));
+    --color-primary-code: rgba(var(--color-accent));
+}
+
 /*Toaster css*/
 #toast-container > .toast {
     font-family: 'Poppins', sans-serif;

@@ -40,7 +40,7 @@
               <!-- mini cart button-->
               <div class="mini-cart-buttons">
                  <a href="{{ route('frontend.cart') }}" class="btn btn-outline-dark">{{ __trans('View Cart') }}</a>
-                 <a href="{{ route('frontend.home') }}" class="btn btn-dark">{{ __trans('Continue Shopping') }}</a>
+                 <a href="{{ route('frontend.checkout') }}" class="btn btn-dark">{{ __trans('Checkout') }}</a>
               </div>
            </div>
         </div>

@@ -44,11 +44,11 @@ x-init="initializeMainSwiper()">
             </div>
         </div>
         <!-- Navigation buttons -->
-        <button class="next swiper-slider-btn position-absolute top-50 end-0 translate-middle-y shadow z-40" aria-label="Next">
+        <button class="next swiper-slider-btn position-absolute top-50 end-0 translate-middle-y shadow z-5" aria-label="Next">
             <span class="visually-hidden">Next</span>
             <i class="fa fa-chevron-right"></i>
         </button>
-        <button class="prev swiper-slider-btn position-absolute top-50 start-0 translate-middle-y shadow z-40" aria-label="Previous">
+        <button class="prev swiper-slider-btn position-absolute top-50 start-0 translate-middle-y shadow z-5" aria-label="Previous">
             <span class="visually-hidden">Previous</span>
             <i class="fa fa-chevron-left"></i>
         </button>

@@ -98,6 +98,27 @@ document.addEventListener('livewire:init', () => {
         }
     });
 
+    $(document).on('click', '.wc-tabs li, .tab-link-title', function(){
+        var tab_id = $(this).attr('data-tab');
+        $('.wc-tabs li, .tab-link-title').removeClass('active');
+        $('.tabs-entry-content').removeClass('active');
+        $(this).addClass('active');
+        $("#"+tab_id).addClass('active');
+    });
+
+    Livewire.on('toggleMiniCart', () => {
+        $('.mini-cart-dropdown').toggleClass("open");
+        $('body').toggleClass("minicart-open");
+
+        // Trigger Livewire re-render for MiniCartDropdown
+        Livewire.dispatch('refreshMiniCart');
+    });
+
+    Livewire.on('miniCartClosed', () => {
+        $('.mini-cart-dropdown').toggleClass("open");
+        $('body').toggleClass("minicart-open");
+    });
+
  });
 /*
  * Note that this is toastr v2.1.3, the "latest" version in url has no more maintenance,
@@ -226,10 +247,10 @@ function(t,e){"object"==typeof module&&module.exports?module.exports=e(t,require
   
   
             /* mini cart popup js */
-            // $(document).on("click", ".header-button .cart-icon, .mini-cart-close a, .overflow", function(){
-            //   $('.mini-cart-dropdown').toggleClass("open");
-            //   $('body').toggleClass("minicart-open");
-            // });
+            $(document).on("click", ".header-button .cart-icon, .mini-cart-close a, .overflow", function(){
+              $('.mini-cart-dropdown').toggleClass("open");
+              $('body').toggleClass("minicart-open");
+            });
   
             /* Filter sidebar popup js */
             $(document).on("click", ".filter-shop-loop .filter-mobile-btn, .sidebar-inner .filter-close", function(){

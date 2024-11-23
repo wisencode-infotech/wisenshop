@@ -100,6 +100,10 @@
     max-height: 40px !important;
 }
 
+.z-5 {
+    z-index: 5 !important;
+}
+
 .z-40 {
     z-index: 40 !important;
 }

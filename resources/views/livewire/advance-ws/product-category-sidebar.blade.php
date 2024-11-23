@@ -8,7 +8,7 @@
         <div class="sidebar-widget">
             <h4 class="widget-title">Categories</h4>
             <div class="sidebar-widget-body">
-                <ul class="checkbox-categories-list">
+                <ul class="checkbox-categories-list"  x-data="{ selectedCategoryId: @entangle('selectedCategoryId') }">
                     @foreach ($product_categories as $category)
                         <li wire:key="category-{{ $category->id }}"
                             x-on:click="
@@ -17,7 +17,8 @@
                                 $dispatch('category-selected', { category_id: selectedCategoryId })
                             ">
                             <label class="checkcontainer">
-                                <input type="checkbox" :checked="{ 'checked': selectedCategoryId === {{ $category->id }} }">
+                                <input type="checkbox" 
+                                    :checked="{ 'checked': selectedCategoryId === {{ $category->id }} }">
                                 <span class="checkmark">{{ $category->name }}</span>
                             </label>
                             <span class="count">({{ $category->products()->count() }})</span>
@@ -32,7 +33,8 @@
                                             $dispatch('category-selected', { category_id: selectedCategoryId })
                                         ">
                                         <label class="checkcontainer">
-                                            <input type="checkbox" :checked="{ 'checked': selectedCategoryId === {{ $sub_category->id }} }">
+                                            <input type="checkbox" 
+                                                :checked="{ 'checked': selectedCategoryId === {{ $sub_category->id }} }">
                                             <span class="checkmark">{{ $sub_category->name }}</span>
                                         </label>
                                         <span class="count">({{ $sub_category->products()->count() }})</span>

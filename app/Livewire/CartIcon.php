@@ -10,11 +10,14 @@ class CartIcon extends Component
 {
     public $itemCount = 0;
 
+    public $current_page = '';
+
     protected $listeners = ['itemAdded', 'itemRemoved', 'quantityUpdated' => 'updateCartQuantity'];
 
     public function mount()
     {
         $this->updateCartQuantity();
+        $this->current_page = \Request::route()->getName();
     }
 
     public function itemAdded()

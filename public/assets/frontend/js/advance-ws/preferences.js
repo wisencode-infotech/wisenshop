@@ -86,19 +86,19 @@ document.addEventListener('livewire:init', () => {
         $('.tabs-entry-content').removeClass('active');
         $(this).addClass('active');
         $("#"+tab_id).addClass('active');
-      });
-  
-      Livewire.on('toggleMiniCart', () => {
+    });
+
+    Livewire.on('toggleMiniCart', () => {
         $('.mini-cart-dropdown').toggleClass("open");
         $('body').toggleClass("minicart-open");
-  
+
         // Trigger Livewire re-render for MiniCartDropdown
         Livewire.dispatch('refreshMiniCart');
-      });
-  
-      Livewire.on('miniCartClosed', () => {
+    });
+
+    Livewire.on('miniCartClosed', () => {
         $('.mini-cart-dropdown').toggleClass("open");
         $('body').toggleClass("minicart-open");
-      });
+    });
 
  });

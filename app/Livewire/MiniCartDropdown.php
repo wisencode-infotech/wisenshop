@@ -13,7 +13,7 @@ class MiniCartDropdown extends Component
     public $open_drawer = 'close';
 
     protected $listeners = [
-        'quantityUpdated' => 'quantityUpdated',
+        'quantityUpdated' => 'updateCartQuantity',
         'refreshMiniCart' => 'openMiniCart',
         'remove-cart-product' => 'removeCartProduct'
     ];
@@ -29,14 +29,15 @@ class MiniCartDropdown extends Component
         $this->total_price = CartHelper::total();
     }
 
-    public function openMiniCart() {
+    public function openMiniCart() 
+    {
         $this->loadCartItems();
         $this->open_drawer = 'open';
     }
 
     public function closeDrawer()
     {
-        $this->open_drawer = 'close'; // Close the drawer
+        $this->open_drawer = 'close';
         $this->dispatch('miniCartClosed');
     }
 
@@ -51,7 +52,7 @@ class MiniCartDropdown extends Component
         $this->dispatch('shoppingCartUpdated');
     }
 
-    public function quantityUpdated()
+    public function updateCartQuantity($data = [])
     {
         $this->loadCartItems();
     }

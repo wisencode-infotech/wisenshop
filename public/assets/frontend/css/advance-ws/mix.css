@@ -4275,8 +4275,15 @@ ul.subcategory > li {
 }
 
 .btn-outline-theme {
-    background: var(--color-accent);
+    background: transparent;
     border: 1px solid var(--color-accent);
+    color: var(--color-accent);
+}
+
+.btn-outline-theme:hover {
+    color: var(--color-accent-contrast);
+    background-color: var(--color-accent);
+    border: 1px solid var(--color-accent-hover);
 }
 
 .bg-footer-page-section {

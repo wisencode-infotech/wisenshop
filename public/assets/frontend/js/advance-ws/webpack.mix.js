@@ -32,15 +32,19 @@ mix.version();
 mix.then(() => {
     const manifestFilePath = 'public/mix-manifest.json';
 
-    // Read the existing manifest
-    const manifest = JSON.parse(fs.readFileSync(manifestFilePath));
+    try {
+        // Read the existing manifest
+        const manifest = JSON.parse(fs.readFileSync(manifestFilePath));
 
-    // Create new manifest with updated paths
-    const updatedManifest = {
-        '/assets/frontend/theme/mix.js': manifest['/assets/frontend/js/advance-ws/mix.js'],
-        '/assets/frontend/theme/mix.css': manifest['/assets/frontend/css/advance-ws/mix.css']
-    };
+        // Create new manifest with updated paths
+        const updatedManifest = {
+            '/assets/frontend/theme/mix.js': manifest['/assets/frontend/js/advance-ws/mix.js'],
+            '/assets/frontend/theme/mix.css': manifest['/assets/frontend/css/advance-ws/mix.css']
+        };
 
-    // Write the updated manifest
-    fs.writeFileSync(manifestFilePath, JSON.stringify(updatedManifest, null, 2));
+        // Write the updated manifest
+        fs.writeFileSync(manifestFilePath, JSON.stringify(updatedManifest, null, 2));
+    } catch (error) {
+        console.error('Error updating mix-manifest.json:', error);
+    }
 });

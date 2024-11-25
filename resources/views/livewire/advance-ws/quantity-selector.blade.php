@@ -13,21 +13,25 @@
                                 <div class="quantity-button minus" @click.prevent="
                                 if (quantity > 0) {
                                     quantity--; 
+                                    clearTimeout(debounceTimeout); // Clear previous timeout
+                                    debounceTimeout = setTimeout(() => {
+                                        $wire.decrement();
+                                    }, 300); // Adjust debounce time as needed
                                 }
                             ">-</div>
                                 <span class="input-text input-qty text my-auto h-auto" x-text="quantity"></span>
                                 <div class="quantity-button plus" @click.prevent="
                                 quantity++; 
+                                clearTimeout(debounceTimeout); // Clear previous timeout
+                                debounceTimeout = setTimeout(() => {
+                                    $wire.increment();
+                                }, 300); // Adjust debounce time as needed
                             ">+</div>
                             </div>
                         </div>
                         <div class="single-add-to-cart">
-                            <button type="button"
-                                class="single_add_to_cart_button btn btn-theme btn-outline-theme" wire:click="addToCartButtonProcess">{{ __trans('Add to cart') }}</button>
+                            <a wire:navigate href="{{ route('frontend.checkout') }}" class="btn btn-theme">{{ __trans('Buy Now') }}</a>
                         </div>
-                    </div>
-                    <div class="buy-product-button">
-                        <a wire:click="addToCartButtonProcess('buynow')" class="buy-product-btn btn btn-theme">{{ __trans('Buy Now') }}</a>
                     </div>
                 </div>
             </template>
@@ -43,7 +47,7 @@
                                 $wire.decrement();
                             }, 300); // Adjust debounce time as needed
                         }
-                    " >-</div>
+                    ">-</div>
                         <span class="input-text input-qty text my-auto h-auto" x-text="quantity"></span>
                         <div class="quantity-button plus" @click.prevent="
                         quantity++; 

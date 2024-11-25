@@ -58,7 +58,7 @@
                         </div>
 
                         <div class="product-hover-button">
-                            <a href="{{ route('frontend.product-detail', ['product_slug' => $product->slug]) }}" class="select-option-btn">More...</a>
+                            <a href="{{ route('frontend.product-detail', ['product_slug' => $product->slug]) }}" class="select-option-btn"><i class="fa fa-shopping-cart cart me-2"></i> {{ __trans('Add to cart') }}</a>
                         </div>
                     </div>
                     <div class="product-content">

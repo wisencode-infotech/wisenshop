@@ -9,6 +9,7 @@
            <!-- Order summary -->
            <div class="order-summary">
               <h3 class="account-title">{{ __trans('cart') }}</h3>
+              @if (count($cart_items) > 0)
               <!-- summary product list-->
               <div class="summary-product-list">
                  @foreach($cart_items as $cart_item)
@@ -29,18 +30,25 @@
                           @endif
                        </h6>
                        <div class="product-qty variation-quantity">
-                          @livewire('quantity-selector', ['product_id' => $cart_item['product_id'], 'layout' => 'mini-cart-drawer'], key('quantity-selector-' . $cart_item['product_id'].'-variation-'.$cart_item['product_variation_id']))
+                          @livewire('quantity-selector', ['product_id' => $cart_item['product_id'], 'product_variation_id' => $cart_item['product_variation_id'], 'layout' => 'mini-cart-drawer', key('quantity-selector-' . $cart_item['product_id'].'-variation-'.$cart_item['product_variation_id'])])
                           <div class="price">{{ __userCurrencySymbol() }} {{ $cart_item['product_price'] *  $cart_item['quantity']}}</div>
                        </div>
                     </div>
                  </div>
                  @endforeach
               </div>
+              @else
+              <p>
+                  {{ __trans('Your cart is empty.') }}
+              </p>
+              @endif
   
               <!-- mini cart button-->
               <div class="mini-cart-buttons">
-                 <a href="{{ route('frontend.cart') }}" class="btn btn-outline-dark">{{ __trans('View Cart') }}</a>
+                 <a href="{{ route('frontend.home') }}" class="btn btn-outline-theme">{{ __trans('Continue shopping') }}</a>
+                 @if (count($cart_items) > 0)
                  <a href="{{ route('frontend.checkout') }}" class="btn btn-dark">{{ __trans('Checkout') }}</a>
+                 @endif
               </div>
            </div>
         </div>

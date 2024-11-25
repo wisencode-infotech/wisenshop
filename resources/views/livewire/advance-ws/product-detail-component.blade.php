@@ -91,16 +91,11 @@
                         </div>
 
                         <!-- product meta -->
-                        {{-- <div class="product-meta">
+                        <div class="product-meta">
                             <div class="product-meta-list">
-                                <span>Estimated Delivery: </span>
-                                <span class="meta">Jan 31 - 07 Feb, 2023</span>
+                                @livewire('product-stock', ['product_id' => $product->id, 'layout' => 'product-detail'])
                             </div>
-                            <div class="product-meta-list">
-                                <span>Free Shipping & Returns:</span>
-                                <span class="meta">On all orders over $200.00</span>
-                            </div>
-                        </div> --}}
+                        </div>
 
                     </div>
                 </div>

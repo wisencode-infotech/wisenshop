@@ -52,7 +52,7 @@
             <div class="flex justify-center mt-8 mb-4 sm:mb-6 lg:mb-2 lg:mt-12">
                 <!-- Default Button Text -->
                 <button wire:click="loadMore" wire:loading.attr="disabled"  data-variant="normal"
-                    class="px-5 py-3 bg-accent text-light rounded hover:bg-accent-hover transition">
+                    class="mt-4 btn btn-theme transition">
                     <span wire:loading.remove wire:target="loadMore">{{ __trans('Load More') }}</span>
                     <span wire:loading wire:target="loadMore">{{ __trans('Loading...') }}</span>
                 </button>

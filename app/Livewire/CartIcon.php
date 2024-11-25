@@ -3,6 +3,7 @@
 namespace App\Livewire;
 
 use App\Helpers\CartHelper;
+use Illuminate\Support\Facades\Request;
 use Illuminate\Support\Facades\Session;
 use Livewire\Component;
 
@@ -10,14 +11,11 @@ class CartIcon extends Component
 {
     public $itemCount = 0;
 
-    public $current_page = '';
-
     protected $listeners = ['itemAdded', 'itemRemoved', 'quantityUpdated' => 'updateCartQuantity'];
 
     public function mount()
     {
         $this->updateCartQuantity();
-        $this->current_page = \Request::route()->getName();
     }
 
     public function itemAdded()
@@ -34,8 +32,7 @@ class CartIcon extends Component
 
     public function updateCartQuantity()
     {   
-        $this->itemCount = CartHelper::itemCount();
-        
+        $this->itemCount = CartHelper::itemCount();   
     }
 
     public function render()

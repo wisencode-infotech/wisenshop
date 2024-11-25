@@ -13,6 +13,7 @@ class ProductCategorySidebar extends Component
     public $subcategories = [];
     public $filter = ''; // For filtering subcategories
     public $showSubcategories = false; // Track whether to show subcategories
+    public $selectedCategories = [];
 
     public function mount($default_categories = null)
     {
@@ -24,6 +25,7 @@ class ProductCategorySidebar extends Component
             $this->selectedCategoryId = (int) request()->get('catid');
         } elseif (!empty($default_categories)) {
             $this->selectedCategoryId = $default_categories;
+            $this->selectedCategories = [$default_categories];
         }
     }
 

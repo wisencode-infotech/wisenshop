@@ -76,10 +76,10 @@
                                                               <div class="mb-4">
                                                                   <label class="block text-sm font-medium text-gray-700">{{ __trans('Price Range') }}</label>
                                                                   <div class="flex space-x-2">
-                                                                      <input type="number" placeholder="Min Price"
+                                                                      <input type="number" placeholder="{{ __trans('Min Price') }}"
                                                                              class="flex-1 block w-full border-gray-300 rounded-md shadow-sm focus:border-indigo-500 focus:ring focus:ring-indigo-200 focus:ring-opacity-50"
                                                                              wire:model="minPrice" />
-                                                                      <input type="number" placeholder="Max Price"
+                                                                      <input type="number" placeholder="{{ __trans('Max Price') }}"
                                                                              class="flex-1 block w-full border-gray-300 rounded-md shadow-sm focus:border-indigo-500 focus:ring focus:ring-indigo-200 focus:ring-opacity-50"
                                                                              wire:model="maxPrice" />
                                                                   </div>

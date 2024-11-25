@@ -33,7 +33,7 @@
                 </div>
                 {{-- <div class="form-group form-check">
                     <input type="checkbox" class="form-check-input" id="exampleCheck1">
-                    <label class="form-check-label" for="exampleCheck1">Check me out</label>
+                    <label class="form-check-label" for="exampleCheck1">{{ __trans('Check me out') }}</label>
                 </div> --}}
 
                 <button type="submit" wire:loading.attr="disabled" wire:target="authenticate" class="btn btn-dark btn-style-2">

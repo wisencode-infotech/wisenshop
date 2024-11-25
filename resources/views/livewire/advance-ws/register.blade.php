@@ -13,7 +13,7 @@
 
             <form wire:submit.prevent="submit">
                 <div class="form-group">
-                    <label for="Fullname">Full name*</label>
+                    <label for="Fullname">{{ __trans('Full name') }}*</label>
                     <input id="name" type="text" wire:model="name"
                             class="form-control"
                             autocomplete="off" placeholder="{{ __trans('Your Name') }}">
@@ -22,7 +22,7 @@
                         @enderror
                 </div>
                 <div class="form-group">
-                    <label for="Email">Email*</label>
+                    <label for="Email">{{ __trans('Email') }}*</label>
                     <input id="email" type="text" wire:model="email"
                             class="form-control"
                             autocomplete="off" placeholder="{{ __trans('Your Email') }}">
@@ -31,7 +31,7 @@
                         @enderror
                 </div>
                 <div class="form-group">
-                    <label for="Email">Email*</label>
+                    <label for="Email">{{ __trans('Email') }}*</label>
                     <input id="email" type="text" wire:model="email"
                             class="form-control"
                             autocomplete="off" placeholder="{{ __trans('Your Email') }}">

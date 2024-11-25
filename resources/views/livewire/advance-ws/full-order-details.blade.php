@@ -1,14 +1,14 @@
 <div class="flex w-full flex-col border border-border-200 bg-white">
     @if($order_data)
     <div class="flex flex-col items-center p-5 md:flex-row md:justify-between">
-        <h2 class="mb-2 flex text-sm font-semibold text-heading md:text-lg">Order Details <span class="px-2">-</span> {{ $order_data->order_number ?? $order_data->id }}</h2>
+        <h2 class="mb-2 flex text-sm font-semibold text-heading md:text-lg">{{ __trans('Order Details') }}<span class="px-2">-</span> {{ $order_data->order_number ?? $order_data->id }}</h2>
         <div class="flex items-center">
             @if (Route::currentRouteName() !== 'frontend.orders.details')
             <a class="flex items-center text-sm font-semibold text-accent no-underline transition duration-200 hover:text-accent-hover focus:text-accent-hover" wire:navigate href="{{ route('frontend.orders.details', $order_data->id) }}">
             <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" width="20" class="ltr:mr-2 rtl:ml-2">
                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"></path>
                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M2.458 12C3.732 7.943 7.523 5 12 5c4.478 0 8.268 2.943 9.542 7-1.274 4.057-5.064 7-9.542 7-4.477 0-8.268-2.943-9.542-7z"></path>
-                </svg>Details
+                </svg>{{ __trans('Details') }}
             </a>
             @endif
         </div>
@@ -17,7 +17,7 @@
         <div class="bg-[#F7F8FA] px-7 py-4">
             <div class="flex flex-col flex-wrap items-center justify-between mb-0 text-base font-bold gap-x-8 text-heading sm:flex-row lg:flex-nowrap">
                 <div class="order-2 grid w-full grid-cols-1 gap-6 xs:flex-nowrap sm:order-1 max-w-full basis-full justify-between md:grid-cols-2">
-                    <div class="flex items-center gap-3"><span class="block text-xs shrink-0 grow-0 basis-auto xs:text-base lg:inline-block">Order Status :</span>
+                    <div class="flex items-center gap-3"><span class="block text-xs shrink-0 grow-0 basis-auto xs:text-base lg:inline-block">{{ __trans('Order Status') }} :</span>
                         <div class="w-full lg:w-auto"><span class="px-3 py-1 rounded-full bg-status-processing bg-opacity-[.15] text-status-processing min-h-[2rem] items-center justify-center text-[9px] !leading-none xs:text-sm inline-flex">{{ config('general.order_statuses.' . $order_data->status) }}</span></div>
                     </div>
                     <div class="flex items-center gap-3 md:ml-auto"><span class="block text-xs shrink-0 grow-0 basis-auto xs:text-base lg:inline-block">{{ __trans('Payment Method') }} :</span>
@@ -45,7 +45,7 @@
 
         @if(!empty($order_data->address->shipping_address_id))    
         <div class="mb-4">
-            <span class="mb-2 block text-sm font-bold text-heading">Shipping Address</span>
+            <span class="mb-2 block text-sm font-bold text-heading">{{ __trans('Shipping Address') }}</span>
             <span class="text-sm text-body">
                 
                 {{ $order_data->address->shippingAddress->address }}<br>
@@ -59,7 +59,7 @@
 
         @if(!empty($order_data->address->billing_address_id))
         <div>
-            <span class="mb-2 block text-sm font-bold text-heading">Billing Address</span>
+            <span class="mb-2 block text-sm font-bold text-heading">{{ __trans('Billing Address') }}</span>
             <span class="text-sm text-body">
                 {{ $order_data->address->billingAddress->address }}<br>
                 {{ $order_data->address->billingAddress->city }}<br>
@@ -70,11 +70,11 @@
         @endif
         </div>
         <div class="flex w-full flex-col px-5 py-4 md:w-2/5">
-            <div class="mb-3 flex justify-between"><span class="text-sm text-body">Sub Total</span><span class="text-sm text-heading">{{ $order_data->currency->symbol . ' ' . number_format($order_data->total_price, 2) }}</span></div>
-            <div class="mb-3 flex justify-between"><span class="text-sm text-body">Discount</span><span class="text-sm text-heading">{{ $order_data->currency->symbol }}0.00</span></div>
-            <div class="mb-3 flex justify-between"><span class="text-sm text-body">Delivery Fee</span><span class="text-sm text-heading">{{ $order_data->currency->symbol }}0.00</span></div>
-            <div class="mb-3 flex justify-between"><span class="text-sm text-body">Tax</span><span class="text-sm text-heading">{{ $order_data->currency->symbol }}0.00</span></div>
-            <div class="flex justify-between"><span class="text-sm font-bold text-heading">Total</span><span class="text-sm font-bold text-heading">{{ $order_data->currency->symbol . ' ' . number_format($order_data->total_price, 2) }}</span></div>
+            <div class="mb-3 flex justify-between"><span class="text-sm text-body">{{ __trans('Sub Total') }}</span><span class="text-sm text-heading">{{ $order_data->currency->symbol . ' ' . number_format($order_data->total_price, 2) }}</span></div>
+            <div class="mb-3 flex justify-between"><span class="text-sm text-body">{{ __trans('Discount') }}</span><span class="text-sm text-heading">{{ $order_data->currency->symbol }}0.00</span></div>
+            <div class="mb-3 flex justify-between"><span class="text-sm text-body">{{ __trans('Delivery Fee') }}</span><span class="text-sm text-heading">{{ $order_data->currency->symbol }}0.00</span></div>
+            <div class="mb-3 flex justify-between"><span class="text-sm text-body">{{ __trans('Tax') }}</span><span class="text-sm text-heading">{{ $order_data->currency->symbol }}0.00</span></div>
+            <div class="flex justify-between"><span class="text-sm font-bold text-heading">{{ __trans('Total') }}</span><span class="text-sm font-bold text-heading">{{ $order_data->currency->symbol . ' ' . number_format($order_data->total_price, 2) }}</span></div>
         </div>
     </div>
     <div>
@@ -93,8 +93,8 @@
                         <thead class="rc-table-thead">
                             <tr>
                                 <th title="Item" class="rc-table-cell rc-table-cell-ellipsis" style="text-align: left;"><span class="ltr:pl-20 rtl:pr-20">Item</span></th>
-                                <th class="rc-table-cell" style="text-align: center;">Quantity</th>
-                                <th class="rc-table-cell" style="text-align: right;">Price</th>
+                                <th class="rc-table-cell" style="text-align: center;">{{ __trans('Quantity') }}</th>
+                                <th class="rc-table-cell" style="text-align: right;">{{ __trans('Price') }}</th>
                                 <th class="rc-table-cell" style="text-align: right;"></th>
                                 <th class="rc-table-cell rc-table-cell-scrollbar"></th>
                             </tr>
@@ -151,7 +151,7 @@
                                 
                                 <td class="rc-table-cell" style="text-align: right;">
                                     @if($can_write_review)
-                                    <button wire:click="$dispatch('openReviewModal', { product_id: {{ $product->id }} })" class="cursor-pointer text-sm font-semibold text-body transition-colors hover:text-accent">Write a review</button>
+                                    <button wire:click="$dispatch('openReviewModal', { product_id: {{ $product->id }} })" class="cursor-pointer text-sm font-semibold text-body transition-colors hover:text-accent">{{ __trans('Write a review') }}</button>
                                     @endif
                                 </td>
                             </tr>

@@ -57,7 +57,7 @@
                            <div class="flex items-center space-x-6 rtl:space-x-reverse sm:justify-end">
                               
                               <div>
-                                 <button wire:click="addToCart({{ $product->product_id }},{{ $product->product_variation_id ?? null }})" class="whitespace-nowrap text-sm font-semibold text-accent hover:text-accent-hover hover:underline"><span>Add to Cart</span></button>
+                                 <button wire:click="addToCart({{ $product->product_id }},{{ $product->product_variation_id ?? null }})" class="whitespace-nowrap text-sm font-semibold text-accent hover:text-accent-hover hover:underline"><span>{{ __trans('Add to Cart') }}</span></button>
                               </div>
 
                               <span class="flex h-7 w-px border-r border-dashed border-gray-300"></span>

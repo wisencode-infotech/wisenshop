@@ -7,19 +7,19 @@
             <div class="mb-8 flex w-full items-center justify-center overflow-hidden"><img alt="Contact" loading="lazy"
                     width="299" height="232" decoding="async" data-nimg="1" class="h-auto w-full"
                     src="{{ asset('assets/frontend/img/static/media/contact-illustration.2f6adc05.svg') }}" style="color: transparent;"></div>
-            <div class="mb-8 flex flex-col"><span class="mb-3 font-semibold text-heading">Address</span><span
+            <div class="mb-8 flex flex-col"><span class="mb-3 font-semibold text-heading">{{ __trans('Address') }}</span><span
                     class="text-sm text-body"><a class="" target="_blank" title="{{ __setting('address') }}"
                         href="">{{ __setting('address') }}</a></span></div>
-            <div class="mb-8 flex flex-col"><span class="mb-3 font-semibold text-heading">Phone</span><span
+            <div class="mb-8 flex flex-col"><span class="mb-3 font-semibold text-heading">{{ __trans('Phone') }}</span><span
                     class="text-sm text-body">{{ __setting('phone_number') }}</span></div>
-            <div class="mb-8 flex flex-col"><span class="mb-3 font-semibold text-heading">Email Address</span><span
+            <div class="mb-8 flex flex-col"><span class="mb-3 font-semibold text-heading">{{ __trans('Email Address') }}</span><span
                     class="text-sm text-body">{{ __setting('email') }}</span></div>
-            <div class="mb-8 flex flex-col"><span class="mb-3 font-semibold text-heading">Website</span>
+            <div class="mb-8 flex flex-col"><span class="mb-3 font-semibold text-heading">{{ __trans('Website') }}</span>
                 <div class="flex items-center justify-between"><span class="text-sm text-body">{{ __setting('website') }}</span><a
                         class="text-sm font-semibold text-accent hover:text-accent-hover focus:text-blue-500 focus:outline-none"
-                        target="_blank" href="{{ __setting('website') }}">Visit This Site</a></div>
+                        target="_blank" href="{{ __setting('website') }}">{{ __trans('Visit This Site') }}</a></div>
             </div>
-            <div class="mb-8 flex flex-col"><span class="mb-4 font-semibold text-heading">Follow Us</span>
+            <div class="mb-8 flex flex-col"><span class="mb-4 font-semibold text-heading">{{ __trans('Follow Us') }}</span>
                 <div class="flex items-center justify-start">
                     <a
                         class="text-muted transition-colors duration-300 focus:outline-none ltr:mr-8 ltr:last:mr-0 rtl:ml-8 rtl:last:ml-0 hover:undefined"
@@ -48,14 +48,14 @@
             <form wire:submit.prevent="submitForm">
                 <div class="grid grid-cols-1 gap-5 sm:grid-cols-2">
                     <div>
-                        <label for="name" class="mb-3 block text-sm font-semibold text-body-dark">Name</label>
+                        <label for="name" class="mb-3 block text-sm font-semibold text-body-dark">{{ __trans('Name') }}</label>
                         <input wire:model="name" id="name" name="name" type="text"
                             class="w-full border rounded h-12" placeholder="Your name...">
                         @error('name') <span class="text-red-500">{{ $message }}</span> @enderror
                     </div>
 
                     <div>
-                        <label for="email" class="mb-3 block text-sm font-semibold text-body-dark">Email</label>
+                        <label for="email" class="mb-3 block text-sm font-semibold text-body-dark">{{ __trans('Email') }}</label>
                         <input wire:model="email" id="email" name="email" type="email"
                             class="w-full border rounded h-12" placeholder="Your email...">
                         @error('email') <span class="text-red-500">{{ $message }}</span> @enderror
@@ -63,14 +63,14 @@
                 </div>
 
                 <div class="my-5">
-                    <label for="subject" class="mb-3 block text-sm font-semibold text-body-dark">Subject</label>
+                    <label for="subject" class="mb-3 block text-sm font-semibold text-body-dark">{{ __trans('Subject') }}</label>
                     <input wire:model="subject" id="subject" name="subject" type="text"
                         class="w-full border rounded h-12" placeholder="Your subject...">
                     @error('subject') <span class="text-red-500">{{ $message }}</span> @enderror
                 </div>
 
                 <div class="my-5">
-                    <label for="description" class="mb-3 block text-sm font-semibold text-body-dark">Description</label>
+                    <label for="description" class="mb-3 block text-sm font-semibold text-body-dark">{{ __trans('Description') }}</label>
                     <textarea wire:model="description" id="description" name="description"
                         class="w-full border rounded h-12" rows="4" placeholder="Your message..." maxlength="150"></textarea>
                     @error('description') <span class="text-red-500">{{ $message }}</span> @enderror

@@ -40,7 +40,7 @@
 
         <div class="row">
             @foreach ($products as $product)
-            <div class="col-12 col-sm-6 col-md-4 col-lg-3" wire:loading.remove wire:target.except="loadMore">
+            <div wire:key="product-{{ $product->id }}" class="col-12 col-sm-6 col-md-4 col-lg-3" wire:loading.remove wire:target.except="loadMore">
                 <div class="product product-style-3">
                     <div class="product-thumbnail" wire:key="product-{{ $product->id }}">
                         <a href="{{ route('frontend.product-detail', ['product_slug' => $product->slug]) }}" class="thumbnail">

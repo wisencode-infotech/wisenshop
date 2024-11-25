@@ -6,6 +6,7 @@ use Livewire\Component;
 use App\Models\Product;
 use Illuminate\Support\Facades\Session;
 use Livewire\WithPagination;
+use Illuminate\Support\Arr;
 
 class Products extends Component
 {
@@ -101,10 +102,16 @@ class Products extends Component
         // Start building the query for products
         $query = Product::with(['category', 'variations'])
             ->where('public_visibility', 1);
+        // dd($this->category_id);
+
+        $categoryIds = is_array($this->category_id) ? Arr::flatten($this->category_id) : [$this->category_id];
 
         // Filter by category if a category_id is set
-        $query->when($this->category_id, function ($q) {
-            $q->whereIn('category_id', [$this->category_id]);
+        // $query->when($this->category_id, function ($q) {
+        //     $q->whereIn('category_id', [$this->category_id]);
+        // });
+        $query->when(!empty($categoryIds), function ($q) use ($categoryIds) {
+            $q->whereIn('category_id', $categoryIds);
         });
 
         // Search filter

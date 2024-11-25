@@ -1,5 +1,5 @@
-<div class="sticky h-full bg-gray-100 lg:w-[380px] xl:block top-32 xl:top-24 2xl:top-22">
-    <div class="sidebar-inner">
+<div class="sticky hidden h-full bg-gray-100 lg:w-[380px] xl:block top-32 xl:top-24 2xl:top-22">
+    <div class="sidebar-inner hidden xl:block">
         <div class="filter-close d-md-none">
             <span class="ti-close"></span>
         </div>
@@ -8,17 +8,21 @@
         <div class="sidebar-widget">
             <h4 class="widget-title">{{ __trans('Categories') }}</h4>
             <div class="sidebar-widget-body">
-                <ul class="checkbox-categories-list"  x-data="{ selectedCategoryId: @entangle('selectedCategoryId') }">
+                <ul class="checkbox-categories-list"  x-data="{ selectedCategories: @entangle('selectedCategories') }">
                     @foreach ($product_categories as $category)
-                        <li wire:key="category-{{ $category->id }}"
-                            x-on:click="
-                                selectedCategoryId = {{ $category->id }};
-                                $wire.set('selectedCategoryId', selectedCategoryId); // Use Livewire's set method
-                                $dispatch('category-selected', { category_id: selectedCategoryId })
-                            ">
+                        <li wire:key="advance-ws-category-{{ $category->id }}">
                             <label class="checkcontainer">
                                 <input type="checkbox" 
-                                    :checked="{ 'checked': selectedCategoryId === {{ $category->id }} }">
+                                :checked="selectedCategories.includes({{ $category->id }})"
+                                @change="
+                                    if ($event.target.checked) {
+                                        selectedCategories.push({{ $category->id }});
+                                    } else {
+                                        selectedCategories = selectedCategories.filter(id => id !== {{ $category->id }});
+                                    }
+                                    $wire.set('selectedCategories', selectedCategories);
+                                    $dispatch('category-selected', { category_id: selectedCategories })
+                                ">
                                 <span class="checkmark">{{ $category->name }}</span>
                             </label>
                             <span class="count">({{ $category->products()->count() }})</span>
@@ -26,15 +30,19 @@
                         @if ($category->subcategories()->count() > 0)
                             <ul class="subcategory">
                                 @foreach ($category->subcategories as $sub_category)
-                                    <li wire:key="category-{{ $sub_category->id }}"
-                                        x-on:click="
-                                            selectedCategoryId = {{ $sub_category->id }};
-                                            $wire.set('selectedCategoryId', selectedCategoryId); // Use Livewire's set method
-                                            $dispatch('category-selected', { category_id: selectedCategoryId })
+                                    <li wire:key="advance-ws-subcategory-{{ $sub_category->id }}"
+                                        :checked="selectedCategories.includes({{ $sub_category->id }})"
+                                        @change="
+                                            if ($event.target.checked) {
+                                                selectedCategories.push({{ $sub_category->id }});
+                                            } else {
+                                                selectedCategories = selectedCategories.filter(id => id !== {{ $sub_category->id }});
+                                            }
+                                            $wire.set('selectedCategories', selectedCategories);
+                                            $dispatch('category-selected', { category_id: selectedCategories })
                                         ">
                                         <label class="checkcontainer">
-                                            <input type="checkbox" 
-                                                :checked="{ 'checked': selectedCategoryId === {{ $sub_category->id }} }">
+                                            <input type="checkbox" >
                                             <span class="checkmark">{{ $sub_category->name }}</span>
                                         </label>
                                         <span class="count">({{ $sub_category->products()->count() }})</span>

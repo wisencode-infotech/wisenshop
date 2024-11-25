@@ -108,8 +108,8 @@
                     <div class="wc-tabs-wrapper">
                         <!-- Product tabs -->
                         <ul class="tabs wc-tabs">
-                            <li class="active" data-tab="tab-description">Description</li>
-                            <li data-tab="tab-reviews">Reviews ({{ $product->total_reviews }})</li>
+                            <li class="active" data-tab="tab-description">{{ __trans('Description') }}</li>
+                            <li data-tab="tab-reviews">{{ __trans('Reviews') }} ({{ $product->total_reviews }})</li>
                         </ul>
 
                         <!-- tabs entry content -->
@@ -135,7 +135,7 @@
                                     <p>{{ __trans('Based on') }} {{ $product->total_reviews }} {{ __trans('Reviews') }}</p>
                                 </div>
                                 {{-- <div class="col-md-4 text-md-end">
-                                    <a href="#cmt-form" class="btn btn-primary">Write A Review</a>
+                                    <a href="#cmt-form" class="btn btn-primary">{{ __trans('Write A Review') }}</a>
                                 </div> --}}
                             </div>
                             <div class="client-review">
@@ -144,38 +144,38 @@
                                 </div>
                                 {{-- <div id="cmt-form" class="client-form">
                                     <div class="comment-box-title mb-25">
-                                        <h4>Write Your Review</h4>
+                                        <h4>{{ __trans('Write Your Review') }}</h4>
                                     </div>
                                     <form action="#" class="comment-form">
                                         <div class="row">
                                             <div class="col-md-6">
                                                 <div class="form-group">
                                                     <input type="text" name="name" id="name"
-                                                        required="" placeholder="Your Name*">
+                                                        required="" placeholder="{{ __trans('Your Name') }}*">
                                                 </div>
                                             </div>
                                             <div class="col-md-6">
                                                 <div class="form-group">
                                                     <input type="email" name="email" id="email"
-                                                        required="" placeholder="Email Address*">
+                                                        required="" placeholder="{{ __trans('Email Address') }}*">
                                                 </div>
                                             </div>
                                             <div class="col-lg-12">
                                                 <div class="form-group">
                                                     <input type="url" name="website" id="website"
-                                                        placeholder="Website">
+                                                        placeholder="{{ __trans('Website') }}">
                                                 </div>
                                             </div>
                                             <div class="col-lg-12">
                                                 <div class="form-group">
                                                     <textarea name="messages" id="messages" cols="30" rows="10"
-                                                        placeholder="Please Enter Your Comment Here"></textarea>
+                                                        placeholder="{{ __trans('Please Enter Your Comment Here') }}"></textarea>
                                                 </div>
                                             </div>
                                         </div>
                                         <div class="row align-items-center">
                                             <div class="col-md-12">
-                                                <button class="btn btn-dark btn-style-2">Post A Review</button>
+                                                <button class="btn btn-dark btn-style-2">{{ __trans('Post A Review') }}</button>
                                             </div>
                                         </div>
                                     </form>

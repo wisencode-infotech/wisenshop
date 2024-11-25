@@ -20,7 +20,7 @@
             <div class="column top-left d-none d-md-block">
                <!-- header-message -->
                <div class="header-message">
-                  <p>Free Express Shipping on orders $200! | <a href="{{ route('frontend.home') }}">{{ __trans('Click and Shop Now.') }}</a></p>
+                  <p>{{ __trans('Free Express Shipping on orders $200!')}} | <a href="{{ route('frontend.home') }}">{{ __trans('Click and Shop Now.') }}</a></p>
                </div>
             </div>
             <!--/ End center Left -->
@@ -100,7 +100,7 @@
                <!-- site-nav -->
                <nav class="site-nav horizontal primary-nav">
                   <ul class="menu ">
-                     <li class="menu-item"><a href="{{ route('frontend.home') }}">Shop</a></li>
+                     <li class="menu-item"><a href="{{ route('frontend.home') }}">{{ __trans('Shop') }}</a></li>
                   </ul>
                </nav>
             </div>

@@ -20,7 +20,7 @@
                     </div>
                     <div class="p-7">
                           <div class="mb-5">
-                            <label class="block text-sm font-semibold mb-2">Ratings</label>
+                            <label class="block text-sm font-semibold mb-2">{{ __trans('Ratings') }}</label>
                             <div class="w-auto">
                                 <ul class="rc-rate flex space-x-2 text-3xl" role="radiogroup">
                                     @for ($i = 1; $i <= 5; $i++)
@@ -34,14 +34,14 @@
                                 @enderror
                             </div>
                             </div>
-                          <div class="mb-5"><label for="comment" class="mb-3 block text-sm font-semibold leading-none text-body-dark">Description</label>
+                          <div class="mb-5"><label for="comment" class="mb-3 block text-sm font-semibold leading-none text-body-dark">{{ __trans('Description') }}</label>
                             <textarea id="comment" wire:model="comment" class="flex w-full appearance-none items-center rounded px-4 py-3 text-sm text-heading transition duration-300 ease-in-out focus:outline-0 focus:ring-0 border border-border-base focus:border-accent" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false" rows="4"></textarea>
                             @error('comment')
                                 <div class="text-red-500 text-sm mt-1">{{ $message }}</div>
                             @enderror
                         </div>
 
-                        <div class="mt-8"><button wire:click="submit" data-variant="normal" class="inline-flex items-center justify-center shrink-0 font-semibold leading-none rounded outline-none transition duration-300 ease-in-out focus:outline-0 focus:shadow focus:ring-1 focus:ring-accent-700 bg-accent text-light border border-transparent hover:bg-accent-hover px-5 py-0 h-12 h-11 w-full sm:h-12">Submit</button></div>
+                        <div class="mt-8"><button wire:click="submit" data-variant="normal" class="inline-flex items-center justify-center shrink-0 font-semibold leading-none rounded outline-none transition duration-300 ease-in-out focus:outline-0 focus:shadow focus:ring-1 focus:ring-accent-700 bg-accent text-light border border-transparent hover:bg-accent-hover px-5 py-0 h-12 h-11 w-full sm:h-12">{{ __trans('Submit') }}</button></div>
                        
                     </div>
                  </div>

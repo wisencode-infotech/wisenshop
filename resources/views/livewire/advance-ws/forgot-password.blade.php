@@ -13,7 +13,7 @@
 
             <form wire:submit.prevent="submit">
                 <div class="form-group">
-                    <label for="Email">Enter your username or email</label>
+                    <label for="Email">{{ __trans('Enter your username or email') }}</label>
                     <input id="email" type="text" wire:model="email"
                             class="form-control"
                             autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false"

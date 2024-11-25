@@ -3,10 +3,10 @@
         <div class="filter-close d-md-none">
             <span class="ti-close"></span>
         </div>
-        <h3 class="sidebar-title">Filter</h3>
+        <h3 class="sidebar-title">{{ __trans('Filter') }}</h3>
 
         <div class="sidebar-widget">
-            <h4 class="widget-title">Categories</h4>
+            <h4 class="widget-title">{{ __trans('Categories') }}</h4>
             <div class="sidebar-widget-body">
                 <ul class="checkbox-categories-list"  x-data="{ selectedCategoryId: @entangle('selectedCategoryId') }">
                     @foreach ($product_categories as $category)

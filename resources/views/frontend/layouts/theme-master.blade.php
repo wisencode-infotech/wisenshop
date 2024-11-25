@@ -16,7 +16,7 @@
 
     {!! __includeThemePartialView('head', 'before-mix') !!}
 
-    <link rel="stylesheet" href="{{ mix('assets/frontend/theme/mix.css') }}">
+    <link rel="stylesheet" href="{{ mix('assets/frontend/css/' . __appActiveTheme() . '/mix.css') }}">
 
     {!! __includeThemePartialView('head', 'after-mix') !!}
 
@@ -37,7 +37,7 @@
 
     {!! __includeThemePartialView('after-body', 'before-mix') !!}
 
-    <script src="{{ mix('assets/frontend/theme/mix.js') }}"></script>
+    <script src="{{ mix('assets/frontend/js/' . __appActiveTheme() . '/mix.js') }}"></script>
 
     {!! __includeThemePartialView('after-body', 'after-mix') !!}
 

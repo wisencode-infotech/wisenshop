@@ -4289,6 +4289,8 @@ ul.subcategory > li {
 .bg-footer-page-section {
     background: var(--color-extra03);
 }
+
+.hidden{display:none}
 @charset "utf-8";
 
 /**************************************

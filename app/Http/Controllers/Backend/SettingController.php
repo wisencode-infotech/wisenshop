@@ -93,8 +93,8 @@ class SettingController extends Controller
 
         Cache::clear('site-customizer');
 
-        if ($site_theme_updated)
-            $this->updateMixManifest();
+        // if ($site_theme_updated)
+        //     $this->updateMixManifest();
 
         return redirect()->route('backend.settings.index')->with('success', 'Settings updated successfully.');
     }

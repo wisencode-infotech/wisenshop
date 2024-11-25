@@ -164,3 +164,14 @@ ul.subcategory > li {
 }
 
 .hidden{display:none}
+.block{display:block}.inline-block{display:inline-block}
+
+/* .sidebar-inner {
+    display: none;
+}
+
+@media (min-width: 1280px) {
+    .sidebar-inner {
+        display: block;
+    }
+} */

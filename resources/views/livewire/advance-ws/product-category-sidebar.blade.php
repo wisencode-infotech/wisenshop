@@ -1,12 +1,13 @@
-<div class="sticky hidden h-full bg-gray-100 lg:w-[380px] xl:block top-32 xl:top-24 2xl:top-22">
-    <div class="sidebar-inner hidden xl:block">
+<div class="sticky h-full bg-gray-100 lg:w-[380px] xl:block top-32 xl:top-24 2xl:top-22">
+    <div class="sidebar">
+    <div class="sidebar-inner">
         <div class="filter-close d-md-none">
-            <span class="ti-close"></span>
+            <span class="fa fa-close"></span>
         </div>
-        <h3 class="sidebar-title">{{ __trans('Filter') }}</h3>
+        <h3 class="sidebar-title">Filter</h3>
 
         <div class="sidebar-widget">
-            <h4 class="widget-title">{{ __trans('Categories') }}</h4>
+            <h4 class="widget-title">Categories</h4>
             <div class="sidebar-widget-body">
                 <ul class="checkbox-categories-list"  x-data="{ selectedCategories: @entangle('selectedCategories') }">
                     @foreach ($product_categories as $category)
@@ -56,6 +57,7 @@
         </div>
     </div>
 
+    </div>
     <!-- Banner Section -->
     @if ($banner_settings && !empty($banner_settings['banner_image']))
     <a href="{{ !empty($banner_settings['banner_url']) ? $banner_settings['banner_url'] : '#' }}" class="text-decoration-none">

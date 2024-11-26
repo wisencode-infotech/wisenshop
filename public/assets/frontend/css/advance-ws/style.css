@@ -160,7 +160,7 @@
   -webkit-appearance: none;
   -moz-appearance: none;
   appearance: none;
-  background: url(../images/select-arrow.svg) no-repeat center right 10px;
+  background: url(../../img/static/media/themes/advance-ws/select-arrow.svg) no-repeat center right 10px;
 }
 .search-categories{
   width: 200px;
@@ -559,6 +559,9 @@
   display: block;
 }
 
+.default-cart-dropdown .quantity .quantity-button{
+  height: auto;
+}
 
 /*=====================================
     End Header style 1 CSS
@@ -2191,7 +2194,7 @@ ul.checkbox-sizes-list li .checkcontainer .checkmark:hover{
   color: var(--color-dark);
 }
 .sorting-products .drop-down .selected{
-  background: url(../images/select-arrow.svg) no-repeat center right 10px;
+  background: url(../../img/static/media/themes/advance-ws/select-arrow.svg) no-repeat center right 10px;
   padding-right: 1.875rem;
   background-size: 12px;
   color: var(--color-dark);

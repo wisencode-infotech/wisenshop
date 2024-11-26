@@ -31,7 +31,7 @@
                   <ul class="menu-top-right">
                      @if (__setting('activate_multilangual_module') == '1' && __languages()->count() > 1)
                         <li class="menu-item-has-children">
-                           <a href="#">{{ strtoupper(app()->getLocale()) }}</a>
+                           <a href="javascript:void(0)">{{ strtoupper(app()->getLocale()) }}</a>
                            <ul class="sub-menu">
                               @foreach(__languages() as $language)
                                     <li wire:key="language-{{ $language->id }}" class="menu-item menu-item-type-custom menu-item-object-custom menu-item-{{ $language->id }}">
@@ -45,7 +45,7 @@
                      @endif
 
                      @if (__setting('activate_currencies_module') == '1' && __currencies()->count() > 1)
-                        <li class="menu-item-has-children"><a href="#">{{ __userCurrencyCode() }}</a>
+                        <li class="menu-item-has-children"><a href="javascript:void(0)">{{ __userCurrencyCode() }}</a>
                            <ul class="sub-menu">
                               @foreach(__currencies() as $currency)
                                  <li wire:key="currency-{{ $currency->id }}" class="menu-item menu-item-type-custom menu-item-object-custom menu-item-{{ $currency->id }}">
@@ -71,15 +71,7 @@
    <div class="header-row header-navbar">
       <!-- Search bar -->
       <div class="search-bar">
-         <form action="#">
-            <div class="form-group">
-               <input type="search" name="search-field" placeholder="Search Here..." required="">
-               <button type="submit">
-                  <img src="{{ __activeThemeStaticImgMediaAsset('search-icon.svg') }}" alt="search icon">
-               </button>
-            </div>
-         </form>
-         <button class="close-search"><span class="ti-close"></span></button>
+        <livewire:product-search-bar />
       </div>
       <!-- End Search bar -->
       <!-- container -->
@@ -147,7 +139,7 @@
       <div class="d-flex align-items-center py-2 px-3">
          <!-- site-brand -->
          <div class="site-brand">
-            <a href="index.html"><img src="{{ asset(__setting('header_logo')) }}" alt="logo"></a>
+            <a href="index.html"><img src="{{ asset(__setting('header_logo')) }}" alt="logo" style="width: 150px;"></a>
          </div>
          <div class="mobile-menu-close"><a href="javascript:;"><i class="fa fa-times"></i></a></div>
       </div>
@@ -159,7 +151,7 @@
             </ul>
          </nav>
          <div class="menu-social">
-            <a href="sign-in.html" class="btn btn-primary">{{ __trans('Login') }}</a>
+            <a href="sign-in.html" class="btn btn-dark btn-style-2">{{ __trans('Login') }}</a>
 
             <p>{{ __trans('Connect with us:') }}</p>
             <ul class="social-icon">

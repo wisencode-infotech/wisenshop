@@ -1,11 +1,34 @@
 <div>
     <div class="filter-shop-loop">
         <div class="d-flex w-100 mb-3 mb-md-0 justify-content-between align-items-center">
+            <!-- For get orderby from loop -->
+            <div class="sorting-products">
+                <form class="shop-ordering" method="get">
+                    <div class="drop-down" data-aos="fade-up" data-aos-duration="1100">
+                        <div class="selected">
+                            <span>{{ $sort == 'asc' ? __trans('Product Name: A-Z') : __trans('Product Name: Z-A') }}</span>
+                        </div>
+                        <!-- filters Tabs navs -->
+                        <ul class="search-categories dropdown-menu" id="filters">
+                            <li class="nav-item dropdown-item" wire:click="applySorting('asc')">
+                                {{ __trans('Product Name: A-Z') }}
+                            </li>
+                            <li class="nav-item dropdown-item" wire:click="applySorting('desc')">
+                                {{ __trans('Product Name: Z-A') }}
+                            </li>
+                        </ul>
+                    </div>
+                </form>
+            </div>
+
             <p class="shop-result-count"></p>
             <a class="filter-mobile-btn text-dark fw-medium d-flex align-items-center d-md-none">
                 <span class="fa-solid fa-filter me-1"></span> {{ __trans('Filter') }}
             </a>
-        </div>                 
+        </div>     
+        
+        
+
     </div>
 
     @if(count($products) == 0)
@@ -57,8 +80,9 @@
                             @livewire('wishlist-button', ['product_id' => $product->id, key($product->id)])
                         </div>
 
-                        <div class="product-hover-button">
-                            <a href="{{ route('frontend.product-detail', ['product_slug' => $product->slug]) }}" class="select-option-btn"><i class="fa fa-shopping-cart cart me-2"></i> {{ __trans('Add to cart') }}</a>
+                        <div class="product-hover-button" style="justify-content: center;">
+                            <livewire:quantity-selector :product_id="$product->id" :key="'quantity-selector-' . $product->id" />
+                            <!-- <a href="{{ route('frontend.product-detail', ['product_slug' => $product->slug]) }}" class="select-option-btn"><i class="fa fa-shopping-cart cart me-2"></i> {{ __trans('Add to cart') }}</a> -->
                         </div>
                     </div>
                     <div class="product-content">

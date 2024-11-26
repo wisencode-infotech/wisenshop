@@ -45,6 +45,12 @@ class Products extends Component
         $this->from_page = $from_page; 
     }
 
+    public function applySorting($sort)
+    {
+        $this->sort = $sort;
+        $this->resetPage();
+    }
+
     public function applyFilters($filters)
     {
         // Update the component's properties with the filters

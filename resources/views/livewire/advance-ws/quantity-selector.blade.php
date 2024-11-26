@@ -140,38 +140,26 @@
             </template>
 
             <template x-if="'{{ $layout }}' !== 'cart' && '{{ $layout }}' !== 'large' && '{{ $layout }}' !== 'product-details' && '{{ $layout }}' !== 'mini-cart-drawer'">
-                <div 
-                    class="flex overflow-hidden order-5 sm:order-4 w-9 sm:w-24 h-24 sm:h-10 bg-accent text-light rounded-full flex-col-reverse sm:flex-row absolute sm:relative bottom-0 sm:bottom-auto ltr:right-0 rtl:left-0 ltr:sm:right-auto ltr:sm:left-auto text-accent-contrast">
-
-                    <!-- Decrement button -->
-                    <button @click.prevent="
-                                if (quantity > 0) {
-                                    quantity--; 
-                                    clearTimeout(debounceTimeout); // Clear previous timeout
-                                    debounceTimeout = setTimeout(() => {
-                                        $wire.decrement();
-                                    }, 300); // Adjust debounce time as needed
-                                }
-                            " 
-                            class="cursor-pointer p-2 transition-colors duration-200 hover:bg-accent-hover focus:outline-0 text-sm">
-                        <i class="fa fa-minus"></i>
-                    </button>
-
-                    <div class="flex flex-1 items-center justify-center px-3 text-sm font-semibold">
-                        <span x-text="quantity"></span>
+            <div class="default-cart-dropdown">
+                    <div class="quantity" >
+                        <div class="quantity-button minus" @click.prevent="
+                        if (quantity > 0) {
+                            quantity--; 
+                            clearTimeout(debounceTimeout); // Clear previous timeout
+                            debounceTimeout = setTimeout(() => {
+                                $wire.decrement();
+                            }, 300); // Adjust debounce time as needed
+                        }
+                    ">-</div>
+                        <span class="input-text input-qty text my-auto h-auto" x-text="quantity"></span>
+                        <div class="quantity-button plus" @click.prevent="
+                        quantity++; 
+                        clearTimeout(debounceTimeout); // Clear previous timeout
+                        debounceTimeout = setTimeout(() => {
+                            $wire.call('increment', quantity);
+                        }, 300); // Adjust debounce time as needed
+                    ">+</div>
                     </div>
-
-                    <!-- Increment button -->
-                    <button @click.prevent="
-                                quantity++; 
-                                clearTimeout(debounceTimeout); // Clear previous timeout
-                                debounceTimeout = setTimeout(() => {
-                                    $wire.call('increment', quantity);
-                                }, 300); // Adjust debounce time as needed
-                            " 
-                            class="cursor-pointer p-2 transition-colors duration-200 hover:bg-accent-hover focus:outline-0 text-sm">
-                        <i class="fa fa-plus"></i>
-                    </button>
                 </div>
             </template>
         </div>

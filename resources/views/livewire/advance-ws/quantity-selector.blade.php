@@ -4,10 +4,9 @@
         <div>
             <template x-if="'{{ $layout }}' === 'product-details'">
                 <div>
-                    <div class="variation-add-to-cart">
+                    <div class="variation-add-to-cart justify-content-center">
                         <!-- Quantity -->
                         <div class="variation-quantity">
-                            <label class="label-title">{{ __trans('Quantity') }}:</label>
                             <!-- Quantity -->
                             <div class="quantity" >
                                 <div class="quantity-button minus" @click.prevent="

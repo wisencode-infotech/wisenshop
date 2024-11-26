@@ -175,3 +175,9 @@ ul.subcategory > li {
         display: block;
     }
 } */
+
+@media only screen and (max-width: 600px) {
+    .filter-shop-loop {
+        margin-bottom: 0px !important;
+    }
+}

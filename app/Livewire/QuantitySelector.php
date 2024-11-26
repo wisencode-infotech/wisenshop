@@ -56,7 +56,7 @@ class QuantitySelector extends Component
         $this->stock_available = $stock > 0;
     }
 
-    public function increment()
+    public function increment($newQuantity)
     {
         CartHelper::saveQuantity($this->product_id, $this->product_variation_id, $this->quantity);
 
@@ -64,9 +64,9 @@ class QuantitySelector extends Component
             $this->dispatch('itemAdded');
             $this->dispatch('notify', 'success', __trans('Item added to the cart'));
         }
-
+        
         $this->dispatch('quantityUpdated', ['product_id' => $this->product_id, 'product_variation_id' => $this->product_variation_id, 'quantity' => $this->quantity]);
-
+        
         $this->dispatch('shoppingCartUpdated');
 
         $this->skipRender();

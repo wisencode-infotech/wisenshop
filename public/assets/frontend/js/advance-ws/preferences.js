@@ -94,6 +94,7 @@ document.addEventListener('livewire:init', () => {
 
         // Trigger Livewire re-render for MiniCartDropdown
         Livewire.dispatch('refreshMiniCart');
+        
     });
 
     Livewire.on('miniCartClosed', () => {

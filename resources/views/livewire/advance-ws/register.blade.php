@@ -30,15 +30,7 @@
                             <span class="text-danger text-xs mt-1">{{ $message }}</span>
                         @enderror
                 </div>
-                <div class="form-group">
-                    <label for="Email">{{ __trans('Email') }}*</label>
-                    <input id="email" type="text" wire:model="email"
-                            class="form-control"
-                            autocomplete="off" placeholder="{{ __trans('Your Email') }}">
-                        @error('email')
-                            <span class="text-danger text-xs mt-1">{{ $message }}</span>
-                        @enderror
-                </div>
+                
                 <div class="form-group">
                     <label for="phone_number">{{ __trans('Phone Number') }}*</label>
                     <input id="phone_number" type="text" wire:model="phone_number"

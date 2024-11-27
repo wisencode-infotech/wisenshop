@@ -166,15 +166,17 @@ ul.subcategory > li {
 .hidden{display:none}
 .block{display:block}.inline-block{display:inline-block}
 
-/* .sidebar-inner {
-    display: none;
+.user_menu ul {
+    padding-left: 1rem;
 }
 
-@media (min-width: 1280px) {
-    .sidebar-inner {
-        display: block;
-    }
-} */
+.user_menu li {
+    list-style: none; /* Removes the marker */
+}
+
+.user_menu li::marker{
+    display: none;
+}
 
 @media only screen and (max-width: 600px) {
     .filter-shop-loop {

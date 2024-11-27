@@ -106,11 +106,7 @@
                      <a href="javascript:;" class="search-icon">
                         <img src="{{ __activeThemeStaticImgMediaAsset('search-icon.svg') }}" alt="search icon"></a>
                   </div>
-                  <div class="header-button">
-                     <a wire:navigate href="{{ route('frontend.login') }}" class="user-icon">
-                        <img src="{{ __activeThemeStaticImgMediaAsset('user-icon.svg') }}" alt="user icon">
-                     </a>
-                  </div>
+                  
                   <div class="header-button">
                      <a wire:navigate href="{{ route('frontend.my-wishlist') }}" class="wishlist-icon">
                         <img src="{{ __activeThemeStaticImgMediaAsset('wishlist-icon.svg') }}" alt="wishlist icon"> 
@@ -119,6 +115,31 @@
                   <div class="header-button">
                      @livewire('cart-icon')
                   </div>
+
+               @if (auth()->check())
+               <div x-data="{ open: false }" class="user_menu">
+                     <a @click="open = !open" class="p-2">
+                        <img alt="user" fetchpriority="high" srcset="{{ auth()->user()->profile_image_url }}" src="{{ auth()->user()->profile_image_url }}" style="height: 30px;">
+                     </a>
+                     <div x-show="open" class="mt-2 bg-white border rounded shadow-lg" style="position: absolute;text-decoration:none">
+                        <ul>
+                           <li><a wire:navigate href="{{ route('frontend.profile') }}" class="block px-4 py-2">{{ __trans('Profile') }}</a></li>
+                           <li><a wire:navigate href="{{ route('frontend.my-orders') }}" class="block px-4 py-2">{{ __trans('My Orders') }}</a></li>
+                           <li><a wire:navigate href="{{ route('frontend.my-wishlist') }}" class="block px-4 py-2">{{ __trans('My Wishlist') }}</a></li>
+                           <li><a wire:navigate href="{{ route('frontend.logout') }}" class="block px-4 py-2">{{ __trans('Logout') }}</a></li>  
+                        </ul>
+                     </div>
+               </div>
+               @endif
+
+                @if (!auth()->check())
+                  <div class="header-button">
+                     <a wire:navigate href="{{ route('frontend.login') }}" class="user-icon">
+                        <img src="{{ __activeThemeStaticImgMediaAsset('user-icon.svg') }}" alt="user icon">
+                     </a>
+                  </div>
+                @endif
+
                   <div class="header-button d-block d-md-none">
                      <a href="javascript:;" class="toggle-menu">
                         <img src="{{ __activeThemeStaticImgMediaAsset('toggle-menu-icon.svg') }}" alt="toggle menu icon">

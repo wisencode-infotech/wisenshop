@@ -42,7 +42,7 @@
                         @error('email') <span class="text-danger text-xs mt-1">{{ $message }}</span> @enderror
                 </div>
                 <div class="form-group">
-                    <label for="Email">{{ __trans('Email') }}*</label>
+                    <label for="Email">{{ __trans('Phone Number') }}*</label>
                     <input 
                             id="phone_number" 
                             type="text" 

@@ -69,62 +69,114 @@
                               <div class="loader"></div>
                         </div>
 
-                        <h6>{{ __trans('Shipping Address') }}</h6>
+                        <div class="row">
+                           <div class="col-md-6">
+                              <h6>{{ __trans('Shipping Address') }}</h6>
+                           </div>
+                           <div class="col-md-6">
+                              <button wire:click="$dispatch('open-modal', { type: 'shipping' })" class="btn" style="float: right;">
+                                 <i class="fa fa-plus"></i>{{ __trans('Add') }}
+                              </button>
+                           </div>
+                        </div>
 
-                        <div class="bg-light p-5 shadow-700 md:p-8">
-                              <div class="mb-5 flex items-center justify-between md:mb-8">
-                                 <div class="flex items-center space-x-3 rtl:space-x-reverse md:space-x-4">
-                                    <span class="flex h-8 w-8 items-center justify-center rounded-full bg-accent text-base text-accent-contrast lg:text-xl">2</span>
-                                    <p class="text-lg capitalize text-heading lg:text-xl">{{ __trans('Shipping Address') }}</p>
-                                 </div>
-                                 <button wire:click="$dispatch('open-modal', { type: 'shipping' })" class="flex items-center text-sm font-semibold text-accent transition-colors duration-200 hover:text-accent-hover focus:text-accent-hover focus:outline-0">
-                                    <svg fill="none" viewBox="0 0 24 24" stroke="currentColor" class="h-4 w-4 stroke-2 ltr:mr-0.5 rtl:ml-0.5">
-                                       <path stroke-linecap="round" stroke-linejoin="round" d="M12 6v6m0 0v6m0-6h6m-6 0H6"></path>
-                                    </svg>
-                                    {{ __trans('Add') }}
-                                 </button>
-                              </div>
-                              <div id="headlessui-radiogroup-:rc:" role="radiogroup" aria-labelledby="headlessui-label-:rd:">
-                                 <label class="sr-only" id="headlessui-label-:rd:" role="none">{{ __trans('Shipping Address') }}</label>
-                                 <div class="grid grid-cols-1 gap-4 sm:grid-cols-2 md:grid-cols-3" role="none">
-
+                        <div class="bg-light p-5 shadow-md">
+                           <div role="radiogroup" aria-labelledby="shipping-address-label">
+                              <label class="sr-only" id="shipping-address-label">{{ __trans('Shipping Address') }}</label>
+                              <div class="row g-3">
                                  @if(count($shipping_addresses) != 0)
-                                    @foreach($shipping_addresses as $shipping_address) 
-                                       <div id="headlessui-radiogroup-option-:re:" role="radio" aria-checked="false" tabindex="0" data-headlessui-state="">
-                                          <div wire:click="selectShippingAddress({{ $shipping_address->id }})" class="group relative cursor-pointer rounded border p-4 hover:border-accent border-transparent bg-gray-100 shipping_address_container {{ $selected_shipping_address_id === $shipping_address->id ? 'active' : '' }}">
-                                             
-                                             <p class="mb-3 text-sm font-semibold capitalize text-heading">{{ __trans('Shipping') }}</p>
-                                             <p class="text-sm text-sub-heading">{{ $shipping_address->address }}, {{ $shipping_address->city }}, {{ $shipping_address->state }} {{ $shipping_address->postal_code }}, {{ $shipping_address->country }}</p>
-                                             <div class="absolute top-4 flex space-x-2 opacity-0 group-hover:opacity-100 ltr:right-4 rtl:left-4 rtl:space-x-reverse">
-                                                <button wire:click="$dispatch('editShippingAddress', { address_id: {{ $shipping_address->id }} })" class="flex h-5 w-5 items-center justify-center rounded-full bg-accent text-light">
-                                                   <span class="sr-only">{{ __trans('Edit') }}</span>
-                                                   <svg class="h-3 w-3" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor">
-                                                      <path d="M13.586 3.586a2 2 0 112.828 2.828l-.793.793-2.828-2.828.793-.793zM11.379 5.793L3 14.172V17h2.828l8.38-8.379-2.83-2.828z"></path>
-                                                   </svg>
-                                                </button>
-                                                <button wire:click="$dispatch('deleteShippingAddress', { address_id: {{ $shipping_address->id }} })" class="flex h-5 w-5 items-center justify-center rounded-full bg-red-600 text-light">
-                                                   <span class="sr-only">{{ __trans('Delete') }}</span>
-                                                   <svg class="h-3 w-3" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor">
-                                                      <path fill-rule="evenodd" d="M4.293 4.293a1 1 0 011.414 0L10 8.586l4.293-4.293a1 1 0 111.414 1.414L11.414 10l4.293 4.293a1 1 0 01-1.414 1.414L10 11.414l-4.293 4.293a1 1 0 01-1.414-1.414L8.586 10 4.293 5.707a1 1 0 010-1.414z" clip-rule="evenodd"></path>
-                                                   </svg>
-                                                </button>
+                                    @foreach($shipping_addresses as $shipping_address)
+                                       <div class="col-sm-6 col-md-4">
+                                          <div wire:click="selectShippingAddress({{ $shipping_address->id }})" class="card border {{ $selected_shipping_address_id === $shipping_address->id ? 'border-success' : 'border-secondary' }} shipping_address_container" style="cursor: pointer;">
+                                             <div class="card-body">
+                                                <h6 class="card-title">{{ __trans('Shipping') }}</h6>
+                                                <p class="card-text text-muted">
+                                                   {{ $shipping_address->address }}, {{ $shipping_address->city }}, {{ $shipping_address->state }} {{ $shipping_address->postal_code }}, {{ $shipping_address->country }}
+                                                </p>
+                                                <div class="btn-group" role="group">
+                                                   <a class="p-1" wire:click="$dispatch('editShippingAddress', { address_id: {{ $shipping_address->id }} })">
+                                                      <i class="fa fa-pencil"></i>
+                                                   </a>
+                                                   <a class="p-1 text-red-500" wire:click="$dispatch('deleteShippingAddress', { address_id: {{ $shipping_address->id }} })">
+                                                      <i class="fa fa-trash"></i>
+                                                   </a>
+                                                </div>
                                              </div>
                                           </div>
                                        </div>
                                     @endforeach
                                  @else
-
                                     <div class="text-muted">
                                        {{ __trans('No address available.') }}
                                     </div>
-
-                                 @endif  
-                                 </div>
-
-                                 @error('selected_shipping_address_id') <span class="text-red-500">{{ $message }}</span> @enderror
-
+                                 @endif
                               </div>
+                              @error('selected_shipping_address_id') 
+                                 <span class="text-danger">{{ $message }}</span> 
+                              @enderror
                            </div>
+                        </div>
+
+                        <div class="row mt-4">
+                           <div class="col-md-6">
+                              <h6>{{ __trans('Billing Address') }}</h6>
+                           </div>
+                           <div class="col-md-6">
+                              @if(!$copy_to_billing)
+                              <button wire:click="$dispatch('open-modal', { type: 'billing' })" class="btn" style="float: right;">
+                                 <i class="fa fa-plus"></i>{{ __trans('Add') }}
+                              </button>
+                              @endif
+                           </div>
+                        </div>
+
+                        <div class="bg-light p-5 shadow-md">
+                           <div class="d-flex align-items-center justify-content-between mb-4">
+
+                              <!-- Same as Shipping Checkbox -->
+                              @if(count($shipping_addresses) != 0)
+                              <div class="form-check form-check-inline">
+                                 <input class="form-check-input" type="checkbox" id="copy_to_billing" wire:model="copy_to_billing" wire:click="copyShippingAddress">
+                                 <label class="form-check-label" for="copy_to_billing">Same as Shipping Address</label>
+                              </div>
+                              @endif
+                           </div>
+
+                           <!-- Addresses Grid -->
+                           <div class="row g-3">
+                              @if(!$copy_to_billing)
+                                 @if(count($billing_addresses) != 0)
+                                 @foreach($billing_addresses as $billing_address)
+                                 <div class="col-sm-6 col-md-4">
+                                    <div wire:click="selectBillingAddress({{ $billing_address->id }})" class="card border-{{ $selected_billing_address_id === $billing_address->id ? 'success' : 'secondary' }} shipping_address_container" style="cursor: pointer;">
+                                       <div class="card-body">
+                                          <h6 class="card-title">Billing</h6>
+                                          <p class="card-text">
+                                             {{ $billing_address->address }}, {{ $billing_address->city }}, {{ $billing_address->state }} 
+                                             {{ $billing_address->postal_code }}, {{ $billing_address->country }}
+                                          </p>
+                                          <div class="btn-group" role="group">
+                                             <a wire:click="$dispatch('editBillingAddress', { address_id: {{ $billing_address->id }} })" class="p-1">
+                                                <i class="fa fa-pencil"></i>
+                                             </a>
+                                             <a wire:click="$dispatch('deleteBillingAddress', { address_id: {{ $billing_address->id }} })" class="p-1 text-red-500">
+                                                <i class="fa fa-trash"></i>
+                                             </a>
+                                          </div>
+                                       </div>
+                                    </div>
+                                 </div>
+                                 @endforeach
+                                 @else
+                                 <!-- No Address Message -->
+                                 <div class="col-12 text-muted text-center">
+                                 No address available.
+                                 </div>
+                                 @endif
+                              @endif
+                           </div>
+                           </div>
+
 
                         
                         <div class="form-group">

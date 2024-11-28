@@ -13,7 +13,7 @@
                   <!-- breadcrumb -->
                   <nav aria-label="breadcrumb">
                      <ol class="breadcrumb">
-                        <li class="breadcrumb-item"><a href="{{ route('frontend.home') }}">{{ __trans('Home') }}</a></li>
+                        <li class="breadcrumb-item"><a wire:navigate href="{{ route('frontend.home') }}">{{ __trans('Home') }}</a></li>
                         <li class="breadcrumb-item active" aria-current="page">{{ __trans('Wishlist') }}</li>
                      </ol>
                   </nav>

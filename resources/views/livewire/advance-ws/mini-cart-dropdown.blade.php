@@ -53,4 +53,5 @@
            </div>
         </div>
      </div>
+     @livewire('address-modal')
 </div>

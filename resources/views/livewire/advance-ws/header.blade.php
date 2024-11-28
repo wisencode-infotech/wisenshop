@@ -11,7 +11,7 @@
                <!-- header-message -->
                <div class="header-followers">
                   <p>
-                     <a href="{{ route('frontend.contact-us') }}"><i class="fa fa-phone"></i> {{ __trans('Contact Us') }}</a>
+                     <a wire:navigate href="{{ route('frontend.contact-us') }}"><i class="fa fa-phone"></i> {{ __trans('Contact Us') }}</a>
                   </p>
                </div>
             </div>
@@ -20,7 +20,7 @@
             <div class="column top-left d-none d-md-block">
                <!-- header-message -->
                <div class="header-message">
-                  <p>{{ __trans('Free Express Shipping on orders $200!')}} | <a href="{{ route('frontend.home') }}">{{ __trans('Click and Shop Now.') }}</a></p>
+                  <p>{{ __trans('Free Express Shipping on orders $200!')}} | <a wire:navigate href="{{ route('frontend.home') }}">{{ __trans('Click and Shop Now.') }}</a></p>
                </div>
             </div>
             <!--/ End center Left -->
@@ -82,7 +82,7 @@
             <div class="column left">
                <!-- site-brand -->
                <div class="site-brand">
-                  <a href="{{ route('frontend.home') }}">
+                  <a wire:navigate href="{{ route('frontend.home') }}">
                      <img alt="{{ config('app.title') }}" loading="eager" decoding="async" class="object-contain app-logo-as-img" src="{{ asset(__setting('header_logo')) }}">
                   </a>
                </div>
@@ -92,7 +92,7 @@
                <!-- site-nav -->
                <nav class="site-nav horizontal primary-nav">
                   <ul class="menu ">
-                     <li class="menu-item"><a href="{{ route('frontend.home') }}">{{ __trans('Shop') }}</a></li>
+                     <li class="menu-item"><a wire:navigate href="{{ route('frontend.home') }}">{{ __trans('Shop') }}</a></li>
                   </ul>
                </nav>
             </div>
@@ -168,7 +168,7 @@
       <div class="mobile-menu-wrap">
          <nav class="site-nav horizontal primary-nav">
             <ul class="menu ">
-               <li class="menu-item"><a href="{{ route('frontend.home') }}">{{ __trans('Shop') }}</a></li>
+               <li class="menu-item"><a wire:navigate href="{{ route('frontend.home') }}">{{ __trans('Shop') }}</a></li>
             </ul>
          </nav>
          <div class="menu-social">

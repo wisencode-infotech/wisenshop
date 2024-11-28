@@ -178,6 +178,11 @@ ul.subcategory > li {
     display: none;
 }
 
+.text-red-500{
+    --tw-text-opacity: 1;
+    color: rgb(239 68 68 / var(--tw-text-opacity));
+}
+
 @media only screen and (max-width: 600px) {
     .filter-shop-loop {
         margin-bottom: 0px !important;

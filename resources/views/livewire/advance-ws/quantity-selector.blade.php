@@ -29,7 +29,7 @@
                             </div>
                         </div>
                         <div class="single-add-to-cart">
-                            <a wire:navigate href="{{ route('frontend.checkout') }}" class="btn btn-theme">{{ __trans('Buy Now') }}</a>
+                            <a wire:navigate href="{{ route('frontend.guest.checkout') }}" class="btn btn-theme">{{ __trans('Buy Now') }}</a>
                         </div>
                     </div>
                 </div>

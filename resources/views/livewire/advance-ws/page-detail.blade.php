@@ -1,17 +1,19 @@
 @section('title', $page_content->name)
 
-<section class="bg-footer-page-section">
-    <div class="container pt-4 pb-4">
-        <div class="card">
-            <div class="card-body">
-                <div class="row mt-4">
-                    <div class="col-12">
-                        <div class="about-content-wrap">
-                            {!! $page_content->content !!}
-                       </div>
+<div>
+    <section class="cms-page-section section-two">
+        <!-- container -->
+        <div class="container">
+            <!-- row -->
+            <div class="row">
+                <!-- column -->
+                <div class="col-12">
+                    <!-- cms content -->
+                    <div class="cms-content">
+                        {!! $page_content->content !!}
                     </div>
                 </div>
             </div>
         </div>
-    </div>
-</section>
+    </section>
+</div>

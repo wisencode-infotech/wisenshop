@@ -84,7 +84,7 @@
                   <div class="product-content">
                      <!-- product tile -->
                      <h3 class="product-title">
-                        <a href="{{ route('frontend.product-detail', ['product_slug' => $product->slug]) }}">{{ $product->name }}</a>
+                        <a wire:navigate href="{{ route('frontend.product-detail', ['product_slug' => $product->slug]) }}">{{ $product->name }}</a>
                      </h3>
                      <!-- product price -->
                      <span class="price"><ins>{{ __userCurrencySymbol().''.$product->price }}</ins></span>
@@ -99,7 +99,7 @@
                         </div>
                         <!-- product buttons icon-->
                         <div class="product-buttons-icon">
-                           <a href="{{ route('frontend.product-detail', ['product_slug' => $product->slug]) }}" class="arrow-icon"><span class="fa fa-eye"></span></a>
+                           <a wire:navigate href="{{ route('frontend.product-detail', ['product_slug' => $product->slug]) }}" class="arrow-icon"><span class="fa fa-eye"></span></a>
                         </div>
                      </div>
                   </div>

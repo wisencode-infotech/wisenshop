@@ -3705,7 +3705,10 @@ blockquote img{
 }
 .account-left-menu ul li a:hover,
 .account-left-menu ul li.active a{
-  background: var(--color-dark);
+  /* background: var(--color-dark);
+  color: var(--color-white); */
+
+  background: var(--color-accent);
   color: var(--color-white);
 }
 .account-left-menu ul li a .menu-icon{

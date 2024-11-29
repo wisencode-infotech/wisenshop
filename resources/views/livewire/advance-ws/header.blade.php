@@ -116,7 +116,13 @@
                      @livewire('cart-icon')
                   </div>
 
+                  
+
                @if (auth()->check())
+               <div class="header-button">
+                  @livewire('notification-icon')
+               </div>
+
                <div x-data="{ open: false }" class="user_menu">
                      <a @click="open = !open" class="p-2">
                         <img alt="user" fetchpriority="high" srcset="{{ auth()->user()->profile_image_url }}" src="{{ auth()->user()->profile_image_url }}" style="height: 30px;">

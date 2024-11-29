@@ -1,130 +1,131 @@
 @section('title', __trans('Profile'))
 
 <div>
-    <div class="flex flex-col items-start w-full px-5 py-10 mx-auto max-w-1920 bg-light lg:bg-gray-100 xl:flex-row xl:py-14 xl:px-8 2xl:px-14">
-        @livewire('user-sidebar')
-        <div class="w-full overflow-hidden lg:flex">
-            <div class="p-5 md:p-8 bg-light shadow rounded w-full shadow-none sm:shadow">
-                <div class="order-1 mb-6 w-full rounded-lg bg-light p-4 md:order-2 md:mb-0 md:p-6 ltr:md:ml-6 rtl:md:mr-6 ltr:lg:ml-8 rtl:lg:mr-8">
+    <!-- heading banner section -->
+    <section class="heading-banner-section">
+        <!-- container -->
+        <div class="container">
+            <!-- row -->
+            <div class="row">
+                <!-- column -->
+                <div class="col-12">
+                    <!-- heading banner wrap-->
+                    <div class="heading-banner-wrap">
+                        <!-- breadcrumb -->
+                        <nav aria-label="breadcrumb">
+                            <ol class="breadcrumb">
+                                <li class="breadcrumb-item"><a wire:navigate href="{{ route('frontend.home') }}">{{ __trans('Home') }}</a></li>
+                                <li class="breadcrumb-item active" aria-current="page">{{ __trans('My Account') }}</li>
+                            </ol>
+                        </nav>
+                        <!-- page title -->
+                        <h1>{{ __trans('My Account') }}</h1>
 
-            <div class="mb-8">
-                <div class="flex justify-center">
-                    <a class="inline-flex" wire:navigate href="{{ route('frontend.home') }}">
-                    <h1 class="text-center text-lg font-semibold text-heading sm:text-xl">{{ __trans('Profile') }}</h1>
-                    </a>
+                        <!-- heading banner img -->
+                        <div class="heading-banner-img">
+                            <!-- <img src="assets/images/heading-banner-img.png" alt="heading banner img"> -->
+                        </div>
+                    </div>
                 </div>
             </div>
-
-           
-            <form wire:submit.prevent="submit">
-
-                <div class="mb-6">
-                    <label for="profile_image" class="mb-2 block text-sm font-semibold leading-none text-body-dark">{{ __trans('Profile Image') }}</label>
-                    <div class="flex items-center">
-                        <!-- Profile Image Preview -->
-                        <div class="w-24 h-24 overflow-hidden mr-4">
-
-                            @if (!empty($profile_image))
-                                <img src="{{ $profile_image->temporaryUrl() }}" alt="Profile Image" class="object-cover">
-                            @else 
-                                <img src="{{ $profile_main_image }}" alt="Profile Image" class="object-cover">    
-                            @endif
-                            
-                        </div><br>
-
-                        <!-- File Input -->
-                        <input 
-                            id="profile_image" 
-                            type="file" 
-                            wire:model="profile_image"
-                            class="flex w-full appearance-none items-center text-sm text-heading transition duration-300 ease-in-out focus:outline-0 focus:ring-0 border border-border-base rounded h-10" style="margin-left:10px;" 
-                            accept="image/*">
-                    </div>
-                    @error('profile_image') <span class="text-red-500 text-xs mt-1">{{ $message }}</span> @enderror
-                </div>
-
-                <!-- Name Field -->
-                <div class="grid grid-cols-1 gap-4">
-                    <div>
-                        <label for="name" class="mb-2 block text-sm font-semibold leading-none text-body-dark">{{ __trans('Name') }}</label>
-                        <input 
-                            id="name" 
-                            type="text" 
-                            wire:model="name"
-                            class="flex w-full appearance-none items-center px-3 text-sm text-heading transition duration-300 ease-in-out focus:outline-0 focus:ring-0 border border-border-base rounded focus:border-accent h-10" 
-                            autocomplete="off" 
-                            placeholder="{{ __trans('Your Name') }}">
-                        @error('name') <span class="text-red-500 text-xs mt-1">{{ $message }}</span> @enderror
-                    </div>
-                </div>
-
-                <!-- Email Field -->
-                <div class="mt-4 grid grid-cols-1 gap-4">
-                    <div>
-                        <label for="email" class="mb-2 block text-sm font-semibold leading-none text-body-dark">{{ __trans('Email') }}</label>
-                        <input 
-                            id="email" 
-                            type="text" 
-                            wire:model="email"
-                            class="flex w-full appearance-none items-center px-3 text-sm text-heading transition duration-300 ease-in-out focus:outline-0 focus:ring-0 border border-border-base rounded focus:border-accent h-10" 
-                            autocomplete="off" 
-                            placeholder="{{ __trans('Your Email') }}">
-                        @error('email') <span class="text-red-500 text-xs mt-1">{{ $message }}</span> @enderror
-                    </div>
-                </div>
-
-                <!-- Phone Number Field -->
-                <div class="mt-4 grid grid-cols-1 gap-4">
-                    <div>
-                        <label for="phone_number" class="mb-2 block text-sm font-semibold leading-none text-body-dark">{{ __trans('Phone Number') }}</label>
-                        <input 
-                            id="phone_number" 
-                            type="text" 
-                            wire:model="phone_number"
-                            class="flex w-full appearance-none items-center px-3 text-sm text-heading transition duration-300 ease-in-out focus:outline-0 focus:ring-0 border border-border-base rounded focus:border-accent h-10" 
-                            autocomplete="off" 
-                            placeholder="{{ __trans('Your Phone Number') }}">
-                        @error('phone_number') <span class="text-red-500 text-xs mt-1">{{ $message }}</span> @enderror
-                    </div>
-                </div>
-
-                <!-- Password Field -->
-                <div class="mt-4 grid grid-cols-1 gap-4">
-                    <div>
-                        <label for="password" class="mb-2 block text-sm font-semibold leading-none text-body-dark">{{ __trans('Password (Optional)') }}</label>
-                        <input 
-                            id="password" 
-                            type="password" 
-                            wire:model="password"
-                            class="flex w-full appearance-none items-center px-3 text-sm text-heading transition duration-300 ease-in-out focus:outline-0 focus:ring-0 border border-border-base rounded focus:border-accent h-10" 
-                            placeholder="{{ __trans('Leave blank to keep current password') }}">
-                        @error('password') <span class="text-red-500 text-xs mt-1">{{ $message }}</span> @enderror
-                    </div>
-                </div>
-
-                <!-- Confirm Password Field -->
-                <div class="mt-4 grid grid-cols-1 gap-4">
-                    <div>
-                        <label for="password_confirmation" class="mb-2 block text-sm font-semibold leading-none text-body-dark">{{ __trans('Confirm Password') }}</label>
-                        <input 
-                            id="password_confirmation" 
-                            type="password" 
-                            wire:model="password_confirmation"
-                            class="flex w-full appearance-none items-center px-3 text-sm text-heading transition duration-300 ease-in-out focus:outline-0 focus:ring-0 border border-border-base rounded focus:border-accent h-10" 
-                            placeholder="{{ __trans('Confirm Your New Password') }}">
-                        @error('password_confirmation') <span class="text-red-500 text-xs mt-1">{{ $message }}</span> @enderror
-                    </div>
-                </div>
-
-                <!-- Submit Button -->
-                <div class="text-center mt-6">
-                    <button type="submit" wire:loading.attr="disabled" wire:target="submit" class="inline-flex items-center justify-center flex-shrink-0 font-semibold leading-none rounded outline-none transition duration-300 ease-in-out focus:outline-none focus:shadow focus:ring-1 focus:ring-accent-700 bg-accent text-light border border-transparent hover:bg-accent-hover px-5 py-0 h-12 w-full uppercase">
-                        <span>{{ __trans('Update Profile') }}</span>
-                    </button>
-                </div>
-            </form>
         </div>
+        
+    </section>
+    <!--/ End Hero slider section -->
+
+    <!-- Account dashboard page section -->
+    <section class="account-dashboard-page section-two">
+        <!-- container -->
+        <div class="container">
+            <!-- row -->
+            <div class="row">
+                <!-- column -->
+                <div class="col-12 col-md-4 col-lg-3">
+                    <!-- My Account left menu -->
+                    @livewire('user-sidebar')
+                </div>
+                <!-- column -->
+                <div class="col-12 col-md-8 col-lg-9">
+                    <!-- My Account right wrap -->
+                    <div class="account-right-wrap">
+                        <!-- Account details form-->
+                        <div class="account-details-form">
+                            <form wire:submit.prevent="submit">
+
+                            <div class="mb-4">
+                                <label for="profile_image">
+                                    {{ __trans('Profile Image') }}
+                                </label>
+                                <div class="d-flex align-items-center">
+                                    <!-- Profile Image Preview -->
+                                    <div class="me-3" style="width: 96px; height: 96px; overflow: hidden;">
+                                        @if (!empty($profile_image))
+                                            <img src="{{ $profile_image->temporaryUrl() }}" alt="Profile Image" class="img-fluid rounded">
+                                        @else
+                                            <img src="{{ $profile_main_image }}" alt="Profile Image" class="img-fluid rounded">
+                                        @endif
+                                    </div>
+
+                                    <!-- File Input -->
+                                    <input 
+                                        id="profile_image" 
+                                        type="file" 
+                                        wire:model="profile_image"
+                                        class="form-control" 
+                                        accept="image/*" 
+                                        style="max-width: 300px;">
+                                </div>
+                                @error('profile_image') 
+                                    <div class="text-danger small mt-1">
+                                        {{ $message }}
+                                    </div>
+                                @enderror
+                            </div>
+                               
+                                <div class="form-group">
+                                    <label for="name">{{ __trans('Name') }}*</label>
+                                    <input id="name" type="text" class="form-control" placeholder="{{ __trans('Your Name') }}" wire:model="name">
+                                    @error('name')<span class="text-red-500 text-xs mt-1">{{ $message }}</span>@enderror
+                                    
+                                </div>
+
+                                <div class="form-group">
+                                    <label for="email">{{ __trans('Your Email') }}*</label>
+                                    <input id="email" type="email" class="form-control" placeholder="{{ __trans('Your Email') }}*" wire:model="email">
+                                    @error('email')<span class="text-red-500 text-xs mt-1">{{ $message }}</span>@enderror
+                                </div>
+
+                                <div class="form-group">
+                                    <label for="phone_number">{{ __trans('Your Phone Number') }}*</label>
+                                    <input id="phone_number" type="text" class="form-control" placeholder="{{ __trans('Your Phone Number') }}*" wire:model="phone_number">
+                                    @error('phone_number')<span class="text-red-500 text-xs mt-1">{{ $message }}</span>@enderror
+                                </div>
+
+                                <fieldset>
+                                    <legend>{{ __trans('Change Password') }}</legend>
+                                    <div class="form-group">
+                                        <label for="password">{{ __trans('Password (Optional)') }}</label>
+                                        <input id="password" 
+                                            type="password" 
+                                            wire:model="password"
+                                            type="text" class="form-control eye-icon">
+                                        @error('password') <span class="text-red-500 text-xs mt-1">{{ $message }}</span> @enderror    
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="password_confirmation">{{ __trans('Confirm Password') }}</label>
+                                        <input id="password_confirmation" 
+                                            type="password" 
+                                            wire:model="password_confirmation"
+                                            class="form-control eye-icon">
+                                        @error('password_confirmation') <span class="text-red-500 text-xs mt-1">{{ $message }}</span> @enderror
+                                    </div>
+                                </fieldset>
+                                <button type="submit" wire:loading.attr="disabled" wire:target="submit" class="btn btn-dark btn-style-2">{{ __trans('Update Profile') }}</button>
+                            </form>
+                        </div>
+                    </div>
+                </div>
             </div>
         </div>
-    </div>
+    </section>
 </div>

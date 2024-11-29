@@ -170,7 +170,7 @@
                                  @else
                                  <!-- No Address Message -->
                                  <div class="col-12 text-muted text-center">
-                                 No address available.
+                                    {{ __trans('No address available') }}
                                  </div>
                                  @endif
                               @endif
@@ -191,7 +191,7 @@
                <div class="col-12 col-md-5 col-lg-4">
                   <!-- Order summary -->
                   <div class="order-summary">
-                     <h3 class="account-title">Order summary</h3>
+                     <h3 class="account-title">{{ __trans('Order summary') }}</h3>
                      <!-- summary product list-->
                      <div class="summary-product-list">
                         @foreach($cart as $cart_key => $item)

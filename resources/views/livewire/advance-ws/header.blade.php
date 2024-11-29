@@ -178,7 +178,7 @@
             </ul>
          </nav>
          <div class="menu-social">
-            <a href="sign-in.html" class="btn btn-dark btn-style-2">{{ __trans('Login') }}</a>
+            <a href="{{ route('frontend.login') }}" class="btn btn-dark btn-style-2">{{ __trans('Login') }}</a>
 
             <p>{{ __trans('Connect with us:') }}</p>
             <ul class="social-icon">

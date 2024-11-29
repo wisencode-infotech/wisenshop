@@ -3,3 +3,7 @@
 .app-logo-as-img {
     max-height: 40px !important;
 }
+
+.auth-full-bg {
+    background-color: #fff2dc;
+}

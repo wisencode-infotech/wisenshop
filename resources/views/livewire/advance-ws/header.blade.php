@@ -166,7 +166,7 @@
       <div class="d-flex align-items-center py-2 px-3">
          <!-- site-brand -->
          <div class="site-brand">
-            <a href="index.html"><img src="{{ asset(__setting('header_logo')) }}" alt="logo" style="width: 150px;"></a>
+            <a href="{{ route('frontend.home') }}"><img src="{{ asset(__setting('header_logo')) }}" alt="logo" style="width: 150px;"></a>
          </div>
          <div class="mobile-menu-close"><a href="javascript:;"><i class="fa fa-times"></i></a></div>
       </div>

@@ -28,7 +28,7 @@
                 <div class="col-12 col-lg-6">
                     <!-- product gallery column -->
                     <div class="product-gallery-column">
-                        <div class="product-gallery-vertical">
+                        <div class="product-gallery-vertical @if($product->images->count()) padding-left-135px @endif">
                             <div class="swiper mySwiper2 big-gallery" id="productGallery">
                                 <div class="swiper-wrapper">
                                     @if($product->images->isEmpty())
@@ -54,6 +54,7 @@
                                 <div class="swiper-button-prev"><span class="ti-arrow-left"></span></div>
                             </div>
 
+                            @if($product->images->count())
                             <div class="swiper mySwiper thumbs-gallery" id="productGalleryThumbs">
                                 <div class="swiper-wrapper">
                                     @foreach($product->images as $image)
@@ -63,6 +64,7 @@
                                     @endforeach
                                 </div>
                             </div>
+                            @endif
                         </div>
                     </div>
                 </div>

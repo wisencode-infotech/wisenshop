@@ -187,6 +187,10 @@ ul.subcategory > li {
     float: right;
 }
 
+.hover-text-color-accent-contrast:hover, .hover-text-color-accent-contrast:hover span {
+    color: var(--color-accent-contrast) !important;
+}
+
 @media only screen and (max-width: 600px) {
     .filter-shop-loop {
         margin-bottom: 0px !important;

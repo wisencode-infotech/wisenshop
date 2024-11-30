@@ -106,7 +106,7 @@
                         </div>
                         <!-- product buttons icon-->
                         <div class="product-buttons-icon">
-                           <a wire:navigate href="{{ route('frontend.product-detail', ['product_slug' => $product->slug]) }}" class="arrow-icon"><span class="fa fa-eye"></span></a>
+                           <a wire:navigate href="{{ route('frontend.product-detail', ['product_slug' => $product->slug]) }}" class="btn btn btn-outline-theme"><span class="fa fa-eye"></span> {{ __trans('View Product') }}</a>
                         </div>
                      </div>
                   </div>

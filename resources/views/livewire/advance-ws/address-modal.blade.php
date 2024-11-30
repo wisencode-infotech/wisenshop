@@ -1,4 +1,4 @@
-<div x-data="{ isModalOpen: @entangle('is_modal_open') }" x-init="
+<div class="address-modal" x-data="{ isModalOpen: @entangle('is_modal_open') }" x-init="
       Livewire.on('openModal', () => isModalOpen = true);
       Livewire.on('closeModal', () => isModalOpen = false);
     ">

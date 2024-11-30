@@ -28,11 +28,13 @@ class AddressModal extends Component
         $this->resetFields(); // Reset form fields
         $this->is_modal_open = true;
         $this->address_type = $type ?? 'billing';
+        $this->dispatch('modalOpened');
     }
 
     public function closeModal()
     {
         $this->is_modal_open = false;
+        $this->dispatch('modalClosed');
     }
 
     public function resetFields()
@@ -99,6 +101,7 @@ class AddressModal extends Component
         $this->city = $billing_address->city;
         $this->postal_code = $billing_address->postal_code;
         $this->id = $address_id;
+        $this->dispatch('modalOpened');
     }
 
     public function deleteBillingAddress($address_id){
@@ -122,6 +125,7 @@ class AddressModal extends Component
         $this->city = $billing_address->city;
         $this->postal_code = $billing_address->postal_code;
         $this->id = $address_id;
+        $this->dispatch('modalOpened');
     }
 
     public function deleteShippingAddress($address_id){

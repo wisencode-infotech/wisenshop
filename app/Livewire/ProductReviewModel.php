@@ -32,6 +32,7 @@ class ProductReviewModel extends Component
     {
         $this->is_open = false;
         $this->reset(['rating', 'comment', 'product']); // Reset data on close
+        $this->dispatch('modalClosed');
     }
 
     public function submit()

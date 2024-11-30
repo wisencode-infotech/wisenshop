@@ -101,5 +101,18 @@ document.addEventListener('livewire:init', () => {
         $('.mini-cart-dropdown').toggleClass("open");
         $('body').toggleClass("minicart-open");
     });
+    
+    Livewire.on('modalOpened', () => {
+        $('body').toggleClass("modal-open");
+    });
+    
+    Livewire.on('modalClosed', () => {
+        $('body').toggleClass("modal-open");
+    });
+
+    Livewire.on('openReviewModal', () => {
+        $('body').toggleClass("modal-open");
+    });
+    
 
  });

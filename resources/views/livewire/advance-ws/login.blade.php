@@ -36,7 +36,7 @@
                     <label class="form-check-label" for="exampleCheck1">{{ __trans('Check me out') }}</label>
                 </div> --}}
 
-                <button type="submit" wire:loading.attr="disabled" wire:target="authenticate" class="btn btn-dark btn-style-2">
+                <button type="submit" wire:loading.attr="disabled" wire:target="authenticate" class="btn btn-theme btn-style-2">
                     <span wire:loading.remove>{{ __trans('Submit') }}</span>
                     <span wire:loading wire:target="authenticate">{{ __trans('Loading...') }}</span>
                 </button>

@@ -14,7 +14,7 @@
          </a>
       </div>
 
-      <div class="position-relative d-flex align-items-center justify-content-center overflow-hidden rounded border shadow-sm">
+      <div class="position-relative d-flex align-items-center justify-content-center overflow-hidden rounded">
          <livewire:full-order-details :order_data="$order_data" />
       </div>
    </div>

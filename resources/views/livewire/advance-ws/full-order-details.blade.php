@@ -18,7 +18,31 @@
                             @endif
 
                             <h5 class="account-title">{{ __trans('Order Details') }}<span class="px-2">-</span> #{{ $order_data->order_number ?? $order_data->id }}</h5>
-                            <div class="order-detail-table">
+
+                            <div>
+                                <div class="bg-light px-4 py-3">
+                                    <div class="row">
+                                        <!-- Order Status -->
+                                        <div class="col-6">
+                                            <span class="d-inline-block text-xs text-dark me-2">{{ __trans('Order Status') }}:</span>
+                                            <div class="w-100 w-auto">
+                                                <span class="badge bg-{{ config('general.order_statuses_color.' . $order_data->status) }} text-uppercase py-1 px-2">{{ config('general.order_statuses.' . $order_data->status) }}</span>
+                                            </div>
+                                        </div>
+                                        <!-- Payment Method -->
+                                        <div class="col-6">
+                                            <div style="float: right;">
+                                                <span class="d-inline-block text-xs text-dark me-2">{{ __trans('Payment Method') }}:</span>
+                                                <div class="w-100 w-auto">
+                                                    <span class="badge bg-success text-light text-uppercase py-1 px-2">{{ $order_data->payment->details->name }}</span>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="order-detail-table mt-2">
                                 <table class="table">
                                     <thead>
                                         <tr>
@@ -36,8 +60,13 @@
                                         <tr>
                                             <td>
                                                 {{ $product->name }} x {{ $quantity }}<br>
+                                                @if($can_write_review)
+                                                    <button wire:click="$dispatch('openReviewModal', { product_id: {{ $product->id }} })" class="cursor-pointer btn btn-outline-theme" style="font-size:12px;padding:3px;">Write a review</button>
+                                                @endif
                                             </td>
-                                            <td><strong>{{ $order_data->currency->symbol }}{{ $price * $quantity }}:</strong></td>
+                                            <td>
+                                                <strong>{{ $order_data->currency->symbol }}{{ $price * $quantity }}:</strong>
+                                            </td>
                                         </tr>
                                     @endforeach    
                                         <tr>
@@ -45,8 +74,16 @@
                                             <td><strong>{{ $order_data->currency->symbol . ' ' . number_format($order_data->total_price, 2) }}</strong></td>
                                         </tr>
                                         <tr>
+                                            <td><strong>{{ __trans('Discount') }}:</strong></td>
+                                            <td>{{ $order_data->currency->symbol }}0.00</td>
+                                        </tr>
+                                        <tr>
                                             <td><strong>{{ __trans('Delivery Fee') }}:</strong></td>
                                             <td>{{ __trans('Free')  }}</td>
+                                        </tr>
+                                        <tr>
+                                            <td><strong>{{ __trans('Tax') }}:</strong></td>
+                                            <td>{{ $order_data->currency->symbol }}0.00</td>
                                         </tr>
                                         <tr>
                                             <td><strong>{{ __trans('Total') }}:</strong></td>
@@ -61,8 +98,12 @@
                                 $extra_information = json_decode($order_data->extra_information, true);
                             @endphp
 
+                            <div class="order_process_section">
+                                <livewire:order-progress :currentStatus="$order_data->status" />
+                            </div>
+
                             <!-- row -->
-                            <div class="row">
+                            <div class="row mt-4">
                                 <!-- column -->
                                 <div class="col-12 col-md-6 pe-md-5 pt-2">
                                     <h5 class="account-title">
@@ -93,15 +134,16 @@
                                 </div>
                                 <!-- column -->
                                 <div class="col-12 col-md-6 pe-md-5 pt-2">
-                                    <h5 class="account-title">
-                                    {{ __trans('Shipping Address') }}
-                                    </h5>
-                                    <div class="address-column">
-
-                                    <p>{{ $order_data->address->shippingAddress->address }}<br>
-                                        {{ $order_data->address->shippingAddress->city }}<br>
-                                        {{ $order_data->address->shippingAddress->state }},  {{ $order_data->address->shippingAddress->postal_code }}<br>
-                                        {{ $order_data->address->shippingAddress->country }}</p>
+                                    <div class="order_shipping_address">
+                                        <h5 class="account-title">
+                                        {{ __trans('Shipping Address') }}
+                                        </h5>
+                                        <div class="address-column">
+                                            <p>{{ $order_data->address->shippingAddress->address }}<br>
+                                                {{ $order_data->address->shippingAddress->city }}<br>
+                                                {{ $order_data->address->shippingAddress->state }},  {{ $order_data->address->shippingAddress->postal_code }}<br>
+                                                {{ $order_data->address->shippingAddress->country }}</p>
+                                        </div>
                                     </div>
                                 </div>
                             </div>

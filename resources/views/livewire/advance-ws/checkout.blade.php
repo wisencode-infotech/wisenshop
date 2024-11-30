@@ -197,18 +197,22 @@
                         @foreach($cart as $cart_key => $item)
                         <div class="cart-product cart-summary-product">
                            <div class="cart-thumb">
-                              <a href="account-order.html"><img src="{{ $item['product_picture'] }}" alt="blog img 1"></a>
+                              <a href="javascript:void(0)"><img src="{{ $item['product_picture'] }}" alt="blog img 1"></a>
                            </div>
+
                            <div class="cart-product-title">
-                              <h6><span class="text-sm text-body"><span class="text-sm font-bold text-heading">{{ $item['quantity'] }}</span><span class="mx-2">x</span>{{ $item['product_name'] }}
-                              @if (!empty($item['product_variation_name']))
-                                    | <span>{{ $item['product_variation_name'] }}</span>
-                              @endif
-                              </h6>
-                              <div class="product-qty">
-                                 <div class="price">{{ __userCurrencySymbol() }} {{ $item['product_price'] * $item['quantity'] }}</div>
-                              </div>
-                           </div>
+											<h6>
+                                    {{ $item['product_name'] }}
+                                    @if (!empty($item['product_variation_name']))
+                                          | <span>{{ $item['product_variation_name'] }}</span>
+                                    @endif 
+                                 </h6>
+											<div class="product-qty" style="min-width: 220px;">
+												<p>{{ $item['quantity'] }} X {{ __userCurrencySymbol() }} {{ $item['product_price'] }} </p>
+												<div class="price">{{ __userCurrencySymbol() }} {{ $item['product_price'] * $item['quantity'] }}</div>
+											</div>
+										</div>
+
                         </div>
                         @endforeach
                      </div>
@@ -256,7 +260,7 @@
 
                   @if(count($cart) != 0)
                   <div class="cart-checkout-button">
-                  <button wire:click="placeOrder"  wire:loading.attr="disabled" data-variant="normal" class="btn btn-dark">
+                  <button wire:click="placeOrder"  wire:loading.attr="disabled" data-variant="normal" class="btn btn-theme">
                      <span wire:loading.remove wire:target="placeOrder">
                         {{ __trans('Place Order') }}
                      </span>

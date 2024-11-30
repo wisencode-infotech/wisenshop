@@ -55,7 +55,7 @@
                             placeholder="{{ __trans('Your Phone Number') }}">
                         @error('phone_number') <span class="text-danger text-xs mt-1">{{ $message }}</span> @enderror
                 </div>
-                <button type="submit" wire:loading.attr="disabled" wire:target="submit" class="btn btn-dark btn-style-2">
+                <button type="submit" wire:loading.attr="disabled" wire:target="submit" class="btn btn-theme btn-style-2">
                     <span wire:loading.remove>{{ __trans('Submit') }}</span>
                     <span wire:loading wire:target="submit">{{ __trans('Loading...') }}</span>
                 </button>

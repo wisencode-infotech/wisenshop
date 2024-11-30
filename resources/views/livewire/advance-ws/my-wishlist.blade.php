@@ -38,16 +38,23 @@
          <div class="row">
 
          @if (count($wishlist_products) == 0)
-            <div class="d-flex flex-column align-items-center mx-auto bg-light p-4 no-product-found-box">
-               
-               <i class="fa fa-heart text-muted text-xl"></i>
-               <h3 class="text-center mt-4 text-secondary">{{ __trans('Your wishlist is empty') }}</h3>
-               <p class="mt-1">{{ __trans('Browse our products and add them to your wishlist') }}</p>
-
-               <a wire:navigate href="{{ route('frontend.home') }}" class="mt-4 btn btn-theme">
-                  {{ __trans('Shop Now') }}
-               </a>
-            </div> 
+         <div class="container">
+            <!-- row -->
+            <div class="row">
+               <!-- column -->
+               <div class="col-12">
+                  <!-- Empty Cart content -->
+                  <div class="empty-cart-content">
+                     <i class="fa fa-heart text-muted text-xl"></i>
+                     <h3 class="mt-4">{{ __trans('Your wishlist is empty') }}</h3>
+                     <p>{{ __trans('Browse our products and add them to your wishlist') }}</p>
+                     <a wire:navigate href="{{ route('frontend.home') }}" class="btn btn-theme">
+                        {{ __trans('Shop Now') }}
+                     </a>
+                  </div>
+               </div>
+            </div>
+         </div>
          @endif
 
          @foreach($wishlist_products as $product)
@@ -95,7 +102,7 @@
                      <!-- Product list button -->
                      <div class="product-list-buttons">
                         <div class="add_to_cart_button">
-                           <button wire:click="addToCart({{ $product->product_id }},{{ $product->product_variation_id ?? null }})" class="btn btn-dark">{{ __trans('Add to Cart') }}</button>
+                           <button wire:click="addToCart({{ $product->product_id }},{{ $product->product_variation_id ?? null }})" class="btn btn-theme">{{ __trans('Add to Cart') }}</button>
                         </div>
                         <!-- product buttons icon-->
                         <div class="product-buttons-icon">

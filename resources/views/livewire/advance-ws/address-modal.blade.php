@@ -67,7 +67,7 @@
             </div>
 
             <!-- Save Button -->
-            <button type="submit" class="btn btn-primary w-100">
+            <button type="submit" class="btn btn-theme w-100">
               <span wire:loading.remove>{{ __trans('Save') }}</span>
               <span wire:loading>{{ __trans('Loading...') }}</span>
             </button>

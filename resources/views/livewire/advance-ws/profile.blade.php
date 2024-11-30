@@ -120,7 +120,7 @@
                                         @error('password_confirmation') <span class="text-red-500 text-xs mt-1">{{ $message }}</span> @enderror
                                     </div>
                                 </fieldset>
-                                <button type="submit" wire:loading.attr="disabled" wire:target="submit" class="btn btn-dark btn-style-2">{{ __trans('Update Profile') }}</button>
+                                <button type="submit" wire:loading.attr="disabled" wire:target="submit" class="btn btn-theme btn-style-2">{{ __trans('Update Profile') }}</button>
                             </form>
                         </div>
                     </div>

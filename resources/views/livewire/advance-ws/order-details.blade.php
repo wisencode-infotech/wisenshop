@@ -8,7 +8,7 @@
             {{ __trans('Back to Home') }}
          </a>
       </div>
-      <div class="position-relative d-flex align-items-center justify-content-center rounded border shadow-sm overflow-hidden">
+      <div class="position-relative d-flex align-items-center justify-content-center rounded overflow-hidden">
          <livewire:full-order-details :order_data="$order_data" />
       </div>
    </div>

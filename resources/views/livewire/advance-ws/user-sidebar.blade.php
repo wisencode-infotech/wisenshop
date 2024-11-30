@@ -18,6 +18,13 @@
                 {{ __trans('Contact Us') }}
             </a>
         </li>
+        <li class="{{ $current_route == 'frontend.cart' ? 'active' : '' }}">
+            <a wire:navigate href="{{ route('frontend.cart') }}">
+                <i class="fa fa-shopping-cart"></i>
+                {{ __trans('Cart') }}
+            </a>
+        </li>
+
         @if (auth()->check())
 
         <li class="{{ $current_route == 'frontend.notifications.index' ? 'active' : '' }}">

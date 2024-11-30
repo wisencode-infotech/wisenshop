@@ -2909,7 +2909,7 @@ ul.checkbox-sizes-list li .checkcontainer .checkmark:hover{
   width: 97px;
   height: 97px;
   border-radius: 100%;
-  background: var(--color-dark);
+  background: var(--color-accent);
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;

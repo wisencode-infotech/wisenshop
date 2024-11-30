@@ -183,8 +183,16 @@ ul.subcategory > li {
     color: rgb(239 68 68 / var(--tw-text-opacity));
 }
 
+.order_shipping_address{
+    float: right;
+}
+
 @media only screen and (max-width: 600px) {
     .filter-shop-loop {
         margin-bottom: 0px !important;
+    }
+
+    .order_shipping_address{
+        float: left;
     }
 }

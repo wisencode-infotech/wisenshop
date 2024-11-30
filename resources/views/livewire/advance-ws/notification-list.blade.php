@@ -48,6 +48,26 @@
                 <div class="col-12 col-md-8 col-lg-9">
                     <!-- My Account right wrap -->
                     <div class="account-right-wrap">
+
+                    @if (count($notifications) == 0)
+                    <div class="container">
+                        <!-- row -->
+                        <div class="row">
+                           <!-- column -->
+                           <div class="col-12">
+                              <!-- Empty Cart content -->
+                              <div class="empty-cart-content">
+                                 <h3>{{ __trans('No notifications found.') }}</h3>
+                                 <a wire:navigate href="{{ route('frontend.home') }}" class="btn btn-theme">
+                                    {{ __trans('Shop Now') }}
+                                 </a>
+                              </div>
+                           </div>
+                        </div>
+                     </div>
+                     @endif
+
+                     @if (count($notifications) > 0)
                         <!-- Account order -->
                         <div class="account-order">
                             <div class="order-table table-responsive">
@@ -80,7 +100,7 @@
 
                                 @if($notifications->hasMorePages())
                                 <div class="mt-8 text-center">
-                                    <button wire:click="loadMore" data-variant="normal" class="btn btn-dark">
+                                    <button wire:click="loadMore" data-variant="normal" class="btn btn-theme">
                                         <!-- Show "Load More" when not loading -->
                                         <span wire:loading.remove>{{ __trans('Load More') }}</span>
                                         <!-- Show "Load More..." while loading -->
@@ -91,6 +111,7 @@
 
                             </div>
                         </div>
+                        @endif
                     </div>
                 </div>
             </div>

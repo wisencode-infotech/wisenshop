@@ -113,7 +113,7 @@
                                         <textarea class="form-control" wire:model="description" id="description" name="description"></textarea>
                                         @error('description') <span class="text-red-500">{{ $message }}</span> @enderror
                                     </div>
-                                    <button type="submit" class="btn btn-dark btn-style-2">
+                                    <button type="submit" class="btn btn-theme btn-style-2">
                                         <span wire:loading.remove >
                                             {{ __trans('Send Message') }}
                                         </span>

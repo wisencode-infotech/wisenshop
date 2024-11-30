@@ -47,11 +47,12 @@
               <div class="mini-cart-buttons">
                  <a href="{{ route('frontend.home') }}" class="btn btn-outline-theme">{{ __trans('Continue shopping') }}</a>
                  @if (count($cart_items) > 0)
-                 <a wire:navigate href="{{ route('frontend.guest.checkout') }}" class="btn btn-dark">{{ __trans('Checkout') }}</a>
+                 <a wire:navigate href="{{ route('frontend.guest.checkout') }}" class="btn btn-theme">{{ __trans('Checkout') }}</a>
                  @endif
               </div>
            </div>
         </div>
      </div>
      @livewire('address-modal')
+     @livewire('product-review-model')
 </div>

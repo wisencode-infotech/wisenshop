@@ -1,23 +1,33 @@
-<div x-data="{ initializeProductImageSlider() { 
-    var productGalleryThumbs = new Swiper('#productGalleryThumbs', {
-        spaceBetween: 5,
-        slidesPerView: 4,
-        freeMode: true,
-        watchSlidesProgress: true,
-        direction: 'vertical',
-     });
-
-     var productGallery = new Swiper('#productGallery', {
-        spaceBetween: 0,
-        navigation: {
-          nextEl: '.product-gallery-vertical .swiper-button-next',
-          prevEl: '.product-gallery-vertical .swiper-button-prev',
-        },
-        thumbs: {
-          swiper: productGalleryThumbs,
-        },
-     });
-} }" x-init="initializeProductImageSlider()">
+<div x-data="{ 
+    initializeProductImageSlider() { 
+      // Check if the productGalleryThumbs container exists
+      if (document.querySelector('#productGalleryThumbs')) {
+        var productGalleryThumbs = new Swiper('#productGalleryThumbs', {
+          spaceBetween: 5,
+          slidesPerView: 4,
+          freeMode: true,
+          watchSlidesProgress: true,
+          direction: 'vertical',
+        });
+  
+        // Check if the productGallery container exists
+        if (document.querySelector('#productGallery')) {
+          var productGallery = new Swiper('#productGallery', {
+            spaceBetween: 0,
+            navigation: {
+              nextEl: '.product-gallery-vertical .swiper-button-next',
+              prevEl: '.product-gallery-vertical .swiper-button-prev',
+            },
+            thumbs: {
+              swiper: productGalleryThumbs,
+            },
+          });
+        }
+      } else {
+        {{-- console.log('No productGalleryThumbs container found. Swiper not initialized.'); --}}
+      }
+    } 
+  }" x-init="initializeProductImageSlider()">
     <!-- Product detail page section -->
     <section class="product-detail-page section-two">
         <!-- container -->

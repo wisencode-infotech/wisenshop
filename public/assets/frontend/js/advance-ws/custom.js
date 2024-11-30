@@ -64,7 +64,7 @@
   
             //TOGGLING NESTED ul
             $(document).on("click", ".drop-down .selected", function(){
-              $(".drop-down .search-categories").toggle();
+              $(".drop-down .search-categories").show();
             });
 
             // $(".drop-down .selected").click(function() {
@@ -110,8 +110,12 @@
             });
   
             /* Filter sidebar popup js */
-            $(document).on("click", ".filter-shop-loop .filter-mobile-btn, .sidebar-inner .filter-close", function(){
-              $('.sidebar').toggleClass("open");
+            $(document).on("click", ".sidebar-inner .filter-close", function(){
+              $('.sidebar').removeClass("open");
+            });
+
+            $(document).on("click", ".filter-shop-loop .filter-mobile-btn", function(){
+              $('.sidebar').addClass("open");
             });
   
             

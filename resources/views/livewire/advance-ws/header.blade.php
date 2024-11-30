@@ -178,7 +178,10 @@
             </ul>
          </nav>
          <div class="menu-social">
+
+            @if (!auth()->check())
             <a href="{{ route('frontend.login') }}" class="btn btn-dark btn-style-2">{{ __trans('Login') }}</a>
+            @endif
 
             <p>{{ __trans('Connect with us:') }}</p>
             <ul class="social-icon">

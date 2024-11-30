@@ -28,3 +28,5 @@
     </div>
 
 </div>
+
+@include('frontend/layouts/partials/notification-toast')

@@ -3798,7 +3798,7 @@ fieldset legend{
   max-width: fit-content;
 }
 .form-control.eye-icon{
-  background-image: url('../images/eye-icon.svg');
+  background-image: url('../../img/static/media/themes/advance-ws/eye-icon.svg');
   background-size: 22px;
   background-repeat: no-repeat;
   background-position: right 12px center;

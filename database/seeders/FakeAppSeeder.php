@@ -12,6 +12,7 @@ use App\Models\SiteBanner;
 use App\Models\User;
 use App\Models\ProductUnit;
 use App\Models\Currency;
+use App\Models\HomePageSetting;
 use App\Models\ProductReview;
 use App\Models\Notification;
 use App\Models\UserRole;
@@ -92,6 +93,11 @@ class FakeAppSeeder extends Seeder
                 'unit_id' => $product_unit_ids[array_rand($product_unit_ids)]
             ]);
         }
+
+        HomePageSetting::updateOrCreate(
+            ['meta_key' => 'display_specific_categories_on_page_load'],
+            ['meta_value' => Category::select('id')->first()->id ?? 1]
+        );
 
         // Order seeder
 

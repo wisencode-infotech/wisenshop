@@ -191,6 +191,10 @@ ul.subcategory > li {
     color: var(--color-accent-contrast) !important;
 }
 
+.sidebar-widget-body ul li .checkmark:hover, .checkcontainer input:checked ~ .checkmark {
+    font-weight: 600;
+}
+
 @media only screen and (max-width: 600px) {
     .filter-shop-loop {
         margin-bottom: 0px !important;

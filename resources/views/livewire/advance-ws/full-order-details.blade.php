@@ -102,51 +102,59 @@
                                 <livewire:order-progress :currentStatus="$order_data->status" />
                             </div>
 
+                            @if (!empty($order_billing_address = $order_data->address->billingAddress) || !empty($order_shipping_address = $order_data->address->shippingAddress))
                             <!-- row -->
                             <div class="row mt-4">
-                                <!-- column -->
-                                <div class="col-12 col-md-6 pe-md-5 pt-2">
-                                    <h5 class="account-title">
-                                    {{ __trans('Billing Address') }}
-                                    </h5>
-                                    <div class="address-column">
-
-                                        <p>
-                                            {{ $order_data->address->billingAddress->address }},<br>
-                                            {{ $order_data->address->billingAddress->city }}<br>
-                                            {{ $order_data->address->billingAddress->state }},  {{ $order_data->address->billingAddress->postal_code }}<br>
-                                            {{ $order_data->address->billingAddress->country }}</p>
-
-
-                                            @if(!empty($extra_information['customer_contact_phone']))
-                                            <p><i class="fa-solid fa-phone"></i>{{ $extra_information['customer_contact_phone'] ?? 'N/A' }}</p>
-                                            @endif
-
-                                            @if(!empty($extra_information['customer_contact_email']))
-                                            <p>{{ $extra_information['customer_contact_email'] ?? 'N/A' }}</p>
-                                            @endif
-
-                                            @if(!empty($extra_information['customer_additional_notes']))
-                                            <p>Notes: {{ $extra_information['customer_additional_notes'] ?? 'N/A' }}</p>
-                                            @endif
-                                            
-                                    </div>
-                                </div>
-                                <!-- column -->
-                                <div class="col-12 col-md-6 pe-md-5 pt-2">
-                                    <div class="order_shipping_address">
+                                @if (!empty($order_billing_address))
+                                    <!-- column -->
+                                    <div class="col-12 col-md-6 pe-md-5 pt-2">
                                         <h5 class="account-title">
-                                        {{ __trans('Shipping Address') }}
+                                        {{ __trans('Billing Address') }}
                                         </h5>
                                         <div class="address-column">
-                                            <p>{{ $order_data->address->shippingAddress->address }}<br>
-                                                {{ $order_data->address->shippingAddress->city }}<br>
-                                                {{ $order_data->address->shippingAddress->state }},  {{ $order_data->address->shippingAddress->postal_code }}<br>
-                                                {{ $order_data->address->shippingAddress->country }}</p>
+
+                                            <p>
+                                                {{ $order_billing_address->address }},<br>
+                                                {{ $order_billing_address->city }}<br>
+                                                {{ $order_billing_address->state }},  {{ $order_billing_address->postal_code }}<br>
+                                                {{ $order_billing_address->country }}</p>
+
+
+                                                @if(!empty($extra_information['customer_contact_phone']))
+                                                <p><i class="fa-solid fa-phone"></i>{{ $extra_information['customer_contact_phone'] ?? 'N/A' }}</p>
+                                                @endif
+
+                                                @if(!empty($extra_information['customer_contact_email']))
+                                                <p>{{ $extra_information['customer_contact_email'] ?? 'N/A' }}</p>
+                                                @endif
+
+                                                @if(!empty($extra_information['customer_additional_notes']))
+                                                <p>Notes: {{ $extra_information['customer_additional_notes'] ?? 'N/A' }}</p>
+                                                @endif
+                                                
                                         </div>
                                     </div>
-                                </div>
+                                @endif
+
+                                @if (!empty($order_shipping_address))
+                                    <!-- column -->
+                                    <div class="col-12 col-md-6 pe-md-5 pt-2">
+                                        <div class="order_shipping_address">
+                                            <h5 class="account-title">
+                                            {{ __trans('Shipping Address') }}
+                                            </h5>
+                                            <div class="address-column">
+                                                <p>{{ $order_shipping_address->address }}<br>
+                                                    {{ $order_shipping_address->city }}<br>
+                                                    {{ $order_shipping_address->state }},  {{ $order_shipping_address->postal_code }}<br>
+                                                    {{ $order_shipping_address->country }}</p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <!-- column -->
+                                @endif
                             </div>
+                            @endif
                         </div>
                     </div>
                 </div>

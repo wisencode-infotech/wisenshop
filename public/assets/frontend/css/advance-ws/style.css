@@ -2366,13 +2366,13 @@ ul.checkbox-sizes-list li .checkcontainer .checkmark:hover{
   -webkit-box-pack: justify;
   -ms-flex-pack: justify;
   justify-content: center;
-  background: #EFEEF3;
+  background: #f7f6f6;
   font-size: var(--h5);
-  color: var(--color-dark);
+  color: var(--color-primary);
   z-index: 1;
 }
 .product-list-grid .product-close-icon:hover{
-  background: var(--color-dark);
+  background: var(--color-primary);
   color: var(--color-white);
 }
 

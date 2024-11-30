@@ -43,28 +43,28 @@
 
 
 
-        @if(!empty($order_data->address->shipping_address_id))    
+        @if(!empty($order_data->address->shipping_address_id) && !empty($order_shipping_address = $order_data->address->shippingAddress))    
         <div class="mb-4">
-            <span class="mb-2 block text-sm font-bold text-heading">Shipping Address</span>
+            <span class="mb-2 block text-sm font-bold text-heading">{{ __trans('Shipping Address') }}</span>
             <span class="text-sm text-body">
                 
-                {{ $order_data->address->shippingAddress->address }}<br>
-                {{ $order_data->address->shippingAddress->city }}<br>
-                {{ $order_data->address->shippingAddress->state }},  {{ $order_data->address->shippingAddress->postal_code }}<br>
-                {{ $order_data->address->shippingAddress->country }}
+                {{ $order_shipping_address->address }}<br>
+                {{ $order_shipping_address->city }}<br>
+                {{ $order_shipping_address->state }},  {{ $order_shipping_address->postal_code }}<br>
+                {{ $order_shipping_address->country }}
 
             </span>
         </div>
         @endif
 
-        @if(!empty($order_data->address->billing_address_id))
+        @if (!empty($order_data->address->billing_address_id) && !empty($order_billing_address = $order_data->address->billingAddress))
         <div>
-            <span class="mb-2 block text-sm font-bold text-heading">Billing Address</span>
+            <span class="mb-2 block text-sm font-bold text-heading">{{ __trans('Billing Address') }}</span>
             <span class="text-sm text-body">
-                {{ $order_data->address->billingAddress->address }}<br>
-                {{ $order_data->address->billingAddress->city }}<br>
-                {{ $order_data->address->billingAddress->state }},  {{ $order_data->address->billingAddress->postal_code }}<br>
-                {{ $order_data->address->billingAddress->country }}
+                {{ $order_billing_address->address }}<br>
+                {{ $order_billing_address->city }}<br>
+                {{ $order_billing_address->state }},  {{ $order_billing_address->postal_code }}<br>
+                {{ $order_billing_address->country }}
             </span>
         </div>
         @endif

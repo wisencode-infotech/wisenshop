@@ -4291,10 +4291,15 @@ fieldset legend{
 .product-gallery-column{
   padding-right: 15px;
 }
+
 .product-gallery-vertical{
-  padding-left: 135px;
   position: relative;
 }
+
+.padding-left-135px {
+  padding-left: 135px;
+}
+
 .product-gallery-vertical .thumbs-gallery{
   width: 115px;
   position: absolute;

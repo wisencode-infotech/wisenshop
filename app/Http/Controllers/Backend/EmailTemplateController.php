@@ -26,9 +26,9 @@ class EmailTemplateController extends Controller
                 ->addColumn('subject', function($row) {
                     return $row->subject;
                 })
-                ->addColumn('body_html', function($row) {
-                    return $row->body_html;
-                })
+                // ->addColumn('body_html', function($row) {
+                //     return $row->body_html;
+                // })
                 ->addColumn('body_text', function($row) {
                     return $row->body_text;
                 })
@@ -49,7 +49,7 @@ class EmailTemplateController extends Controller
                     $btn .= ' <button class="btn btn-danger btn-sm delete" data-id="'.$row->id.'">Delete</button>';
                     return $btn;
                 })
-                ->rawColumns(['name', 'action', 'subject', 'body_html', 'body_text', 'locale', 'is_active'])
+                ->rawColumns(['name', 'action', 'subject', 'body_text', 'locale', 'is_active'])
                 ->make(true);
         }
 

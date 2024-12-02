@@ -8,7 +8,7 @@ $(document).ready(function () {
             { data: 'name', name: 'name' },
             { data: 'email_template_category', name: 'email_template_category' },
             { data: 'subject', name: 'subject' },
-            { data: 'body_html', name: 'body_html' },
+            // { data: 'body_html', name: 'body_html' },
             { data: 'body_text', name: 'body_text' },
             { data: 'locale', name: 'locale' },
             { data: 'is_active', name: 'is_active' },

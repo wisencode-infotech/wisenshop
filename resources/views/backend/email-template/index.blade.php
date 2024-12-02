@@ -40,7 +40,6 @@
                                     <th scope="col">Name</th>
                                     <th scope="col">Category</th>
                                     <th scope="col">Subject</th>
-                                    <th scope="col">Body Html</th>
                                     <th scope="col">Body Text</th>
                                     <th scope="col">Locale</th>
                                     <th scope="col">Status</th>

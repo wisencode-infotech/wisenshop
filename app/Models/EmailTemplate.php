@@ -23,6 +23,6 @@ class EmailTemplate extends Model
     // Relationships
     public function category(): BelongsTo
     {
-        return $this->belongsTo(EmailTemplateCategory::class);
+        return $this->belongsTo(EmailTemplateCategory::class, 'email_template_category_id', 'id');
     }
 }

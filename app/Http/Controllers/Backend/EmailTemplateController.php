@@ -78,7 +78,7 @@ class EmailTemplateController extends Controller
             'email_template_category_id' => 'required',
             'subject' => 'required',
             'body_html' => 'required',
-            'body_text' => 'required',
+            // 'body_text' => 'required',
             'locale' => 'required'
         ]);
 
@@ -125,7 +125,7 @@ class EmailTemplateController extends Controller
             'email_template_category_id' => 'required',
             'subject' => 'required',
             'body_html' => 'required',
-            'body_text' => 'required',
+            // 'body_text' => 'required',
             'locale' => 'required'
         ]);
 

@@ -275,46 +275,8 @@
                         <td class="pc-w620-padding-40-24-40-24" align="center" valign="bottom" style="padding: 44px 44px 44px 44px; background-color: #ecf1fb; border-radius: 10px 10px 10px 10px;">
                          <table align="center" width="100%" border="0" cellpadding="0" cellspacing="0" role="presentation" style="width: 100%;">
                           
-                          <tr>
-                           <td align="center" valign="top">
-                            <table align="center" border="0" cellpadding="0" cellspacing="0" role="presentation">
-                             <tr>
-                              <td valign="top" style="padding: 0px 0px 20px 0px;">
-                               <table border="0" cellpadding="0" cellspacing="0" role="presentation" width="100%" style="border-collapse: separate; border-spacing: 0;">
-                                <tr>
-                                 <td valign="top" align="center">
-                                  <div class="pc-font-alt pc-w620-fontSize-32px pc-w620-lineHeight-32" style="line-height: 100%; letter-spacing: -0.03em; font-family: 'Poppins', Arial, Helvetica, sans-serif; font-size: 40px; font-weight: 600; font-variant-ligatures: normal; color: #001942; text-align: center; text-align-last: center;">
-                                   <div><span>Thanks for the Order</span>
-                                   </div>
-                                  </div>
-                                 </td>
-                                </tr>
-                               </table>
-                              </td>
-                             </tr>
-                            </table>
-                           </td>
-                          </tr>
-                          <tr>
-                           <td align="center" valign="top">
-                            <table align="center" border="0" cellpadding="0" cellspacing="0" role="presentation">
-                             <tr>
-                              <td valign="top" style="padding: 0px 0px 20px 0px;">
-                               <table border="0" cellpadding="0" cellspacing="0" role="presentation" width="100%" style="border-collapse: separate; border-spacing: 0;">
-                                <tr>
-                                 <td valign="top" align="center">
-                                  <div class="pc-font-alt pc-w620-fontSize-14px pc-w620-lineHeight-140pc" style="line-height: 140%; letter-spacing: 0px; font-family: 'Poppins', Arial, Helvetica, sans-serif; font-size: 14px; font-weight: normal; font-variant-ligatures: normal; color: #001942; text-align: center; text-align-last: center;">
-                                   <div><span style="letter-spacing: 0px;">Great news! Your order <b>#{{ $order->order_number }}</b> is all set to hit the road. We&#39;re packing it up with care and it&#39;ll be on its way to you in no time.</span>
-                                   </div>
-                                  </div>
-                                 </td>
-                                </tr>
-                               </table>
-                              </td>
-                             </tr>
-                            </table>
-                           </td>
-                          </tr>
+                          {!! $body_html !!}
+
                           <tr>
                            <td align="center" valign="top">
                             <table width="100%" border="0" cellpadding="0" cellspacing="0" role="presentation">

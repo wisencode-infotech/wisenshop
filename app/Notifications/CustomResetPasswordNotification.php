@@ -2,6 +2,7 @@
 
 namespace App\Notifications;
 
+use App\Models\EmailTemplate;
 use Illuminate\Auth\Notifications\ResetPassword as ResetPasswordNotification;
 use Illuminate\Bus\Queueable;
 use Illuminate\Contracts\Queue\ShouldQueue;
@@ -33,11 +34,34 @@ class CustomResetPasswordNotification extends ResetPasswordNotification
      */
     public function toMail($notifiable)
     {
-        // dd($this->resetUrl($notifiable));
-        return (new MailMessage)
-            ->subject('Reset Password Notification')
-            ->line('You are receiving this email because we received a password reset request for your account.')
-            ->action('Reset Password', $this->resetUrl($notifiable))
-            ->line('If you did not request a password reset, no further action is required.');
+        // Fetch the email template from the database
+        $template = EmailTemplate::where('locale', app()->getLocale())->where('name', 'password_reset')->first();
+
+        if(empty($template)){
+            $template = EmailTemplate::where('locale', 'en')->where('name', 'password_reset')->first();
+        }
+
+        // Default values if template is not found
+        $subject = $template->subject ?? 'Reset Password Notification';
+        $body_text = $template->body_text ?? null;
+        $body_html = $template->body_html ?? null;
+
+        $placeholders = [
+            '{{ reset_url }}' => $this->resetUrl($notifiable),
+            '{{ user_email }}' => $notifiable->getEmailForPasswordReset(),
+            '{{ app_name }}' => config('app.name'),
+        ];
+
+        $body_text = $body_text ? strtr($body_text, $placeholders) : null;
+        $body_html = $body_html ? strtr($body_html, $placeholders) : null;
+
+        $mailMessage = (new MailMessage)->subject($subject);
+
+        if ($body_html) {
+            $mailMessage->view('emails.password_reset_html', ['body_html' => $body_html, 'body_text' => $body_text]);
+        }
+
+        return $mailMessage;
+
     }
 }

@@ -20,7 +20,7 @@ class EmailTemplateCategorySeeder extends Seeder
                 'is_active' => true
             ],
             [
-                'name' => 'registration',
+                'name' => 'auth',
                 'description' => 'Templates for user registration and account setup.',
                 'is_active' => true
             ],

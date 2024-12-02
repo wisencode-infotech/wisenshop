@@ -20,6 +20,18 @@
 
                 <li>
                     <a href="javascript: void(0);" class="has-arrow waves-effect">
+                        <i class="fas fa-shipping-fast"></i>
+                        <span key="t-ecommerce">Orders</span>
+                    </a>
+
+                    <ul class="sub-menu" aria-expanded="false">
+                        <li><a href="{{ route('backend.order.index') }}" key="t-translation-detail">All</a></li>
+                    </ul>
+
+                </li>
+
+                <li>
+                    <a href="javascript: void(0);" class="has-arrow waves-effect">
                         <i class="bx bx-user"></i>
                         <span key="t-ecommerce">Users</span>
                     </a>
@@ -90,12 +102,24 @@
 
                 <li>
                     <a href="javascript: void(0);" class="has-arrow waves-effect">
-                        <i class="fas fa-shipping-fast"></i>
-                        <span key="t-ecommerce">Orders</span>
+                        <i class="fas fa-folder"></i>
+                        <span key="t-ecommerce">Templates</span>
                     </a>
 
                     <ul class="sub-menu" aria-expanded="false">
-                        <li><a href="{{ route('backend.order.index') }}" key="t-translation-detail">All</a></li>
+                        <li><a href="{{ route('backend.email-templates.index') }}" key="t-translation-detail">Email Templates</a></li>
+                    </ul>
+
+                </li>
+                
+                <li>
+                    <a href="javascript: void(0);" class="has-arrow waves-effect">
+                        <i class="fas fa-list"></i>
+                        <span key="t-ecommerce">Template Categories</span>
+                    </a>
+
+                    <ul class="sub-menu" aria-expanded="false">
+                        <li><a href="{{ route('backend.email-template-categories.index') }}" key="t-translation-detail">Email Template Categories</a></li>
                     </ul>
 
                 </li>

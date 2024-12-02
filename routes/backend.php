@@ -8,6 +8,8 @@ use App\Http\Controllers\Backend\TranslationController;
 use App\Http\Controllers\Backend\OrderController;
 use App\Http\Controllers\Backend\HomeController;
 use App\Http\Controllers\Backend\CurrencyController;
+use App\Http\Controllers\Backend\EmailTemplateCategoryController;
+use App\Http\Controllers\Backend\EmailTemplateController;
 use App\Http\Controllers\Backend\HomePageSettingsController;
 use App\Http\Controllers\Backend\LanguageController;
 use App\Http\Controllers\Backend\PaymentMethodController;
@@ -80,4 +82,8 @@ Route::middleware(['auth', 'check.role:admin'])->group(function () {
         Route::post('banner-store', [HomePageSettingsController::class, 'bannerStore'])->name('banner-store');
         Route::post('sorting-store', [HomePageSettingsController::class, 'sortingStore'])->name('sorting-store');
     });
+
+    Route::resource('email-templates', EmailTemplateController::class);
+
+    Route::resource('email-template-categories', EmailTemplateCategoryController::class);
 });

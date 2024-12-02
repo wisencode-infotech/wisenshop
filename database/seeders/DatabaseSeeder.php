@@ -22,6 +22,12 @@ class DatabaseSeeder extends Seeder
         // Set site default settings
         (new DefaultSettingSeeder())->run();
 
+        // Email template category seeder
+        (new EmailTemplateCategorySeeder())->run();
+
+        // Email templates seeder
+        (new EmailTemplateSeeder())->run();
+
         // Update currency exchange rates based on site base currency
         Artisan::call('wisenshop:update-currency-exchange-rates');
 

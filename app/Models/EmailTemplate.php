@@ -16,7 +16,6 @@ class EmailTemplate extends Model
         'subject',
         'body_html',
         'body_text',
-        'placeholders',
         'locale',
         'is_active'
     ];

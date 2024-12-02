@@ -18,7 +18,6 @@ return new class extends Migration
             $table->string('subject');
             $table->text('body_html');
             $table->text('body_text')->nullable();
-            $table->json('placeholders')->nullable();
             $table->string('locale', 4)->default('en')->nullable();
             $table->boolean('is_active')->default(true);
             $table->timestamps();

@@ -87,6 +87,46 @@ class EmailTemplateSeeder extends Seeder
                 'locale' => 'en',
                 'is_active' => true,
             ],
+            [
+                'email_template_category_id' => 1,
+                'name' => 'order_updated',
+                'subject' => 'Order Status Updated',
+                'body_html' => '<h1><span style="font-size: 18pt;">Order Status Update - Order #{{ order_number }}</span></h1>
+                            <p>Hello {{ customer_name }},</p>
+                            <p style="text-align: left;">
+                                We wanted to let you know that the status of your order (Order number: {{ order_number }}) has been updated.
+                                <br /><br />
+                                {{ customer_and_order_info }}
+                            </p>
+                            <p style="text-align: center;">
+                                <br />
+                                {{ view_order_button }}
+                            </p>
+                            <p>If you have any questions or need further assistance regarding your order, please don\'t hesitate to contact us.</p>
+                            <p>&nbsp;</p>
+                            <p>Thanks</p>
+                        ',
+                'body_text' => '',
+                'locale' => 'en',
+                'is_active' => true,
+            ],
+            [
+                'email_template_category_id' => 3,
+                'name' => 'stock_reminder',
+                'subject' => 'Product Back in Stock',
+                'body_html' => '<h1><span style="font-size: 18pt;">{{ product_name }} is Back in Stock {{ product_variation }}!!</span></h1>
+                    <p>Good news! The product you\'re interested in is now available.</p>
+                    <p style="text-align: center;">
+                        {{ product_image }}
+                    </p>
+                    <p style="text-align: center;">
+                        {{ view_product_button }}
+                    </p>
+                    <p><br />Thanks</p>',
+                'body_text' => '',
+                'locale' => 'en',
+                'is_active' => true,
+            ],
         ];
 
         // $categories = EmailTemplateCategory::select('id')->pluck('id')->all();

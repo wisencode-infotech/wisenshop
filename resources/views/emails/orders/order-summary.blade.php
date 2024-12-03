@@ -74,6 +74,6 @@
 <table width="100%" cellpadding="10" cellspacing="0">
     <tr>
         <td width="70%" align="right"><strong>Order Total:</strong></td>
-        <td width="30%" align="right"><strong>${{ number_format($order->total_price, 2) }}</strong></td>
+        <td width="30%" align="right"><strong>${{ number_format($order->total_price ?? 0, 2) }}</strong></td>
     </tr>
 </table>

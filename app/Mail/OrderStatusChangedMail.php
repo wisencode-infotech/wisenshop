@@ -2,6 +2,7 @@
 
 namespace App\Mail;
 
+use App\Models\EmailTemplate;
 use Illuminate\Bus\Queueable;
 use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Mail\Mailable;
@@ -14,6 +15,7 @@ class OrderStatusChangedMail extends Mailable
     use Queueable, SerializesModels;
 
     public $order;
+    public $viewOrderUrl;
 
     /**
      * Create a new message instance.
@@ -21,6 +23,8 @@ class OrderStatusChangedMail extends Mailable
     public function __construct($order)
     {
         $this->order = $order;
+
+        $this->viewOrderUrl = route('frontend.orders.details', $order->id);
     }
 
     /**
@@ -28,8 +32,16 @@ class OrderStatusChangedMail extends Mailable
      */
     public function envelope(): Envelope
     {
+        $template = EmailTemplate::where('locale', app()->getLocale())->where('name', 'order_updated')->first();
+
+        if(empty($template)){
+            $template = EmailTemplate::where('locale', 'en')->where('name', 'order_updated')->first();
+        }
+
+        $subject = $template ? $template->subject : 'Order Status Updated';
+
         return new Envelope(
-            subject: 'Order Status Updated',
+            subject: $subject,
         );
     }
 
@@ -38,13 +50,45 @@ class OrderStatusChangedMail extends Mailable
      */
     public function content(): Content
     {
-        return new Content(
-            markdown: 'emails.orders.status_changed',
-            with: [
-                'order' => $this->order,
-                'customer' => $this->order->customer ?? ''
-            ]
+        $template = EmailTemplate::where('locale', app()->getLocale())->where('name', 'order_updated')->first();
+
+        if(empty($template)){
+            $template = EmailTemplate::where('locale', 'en')->where('name', 'order_updated')->first();
+        }
+        
+        $body = $template->body_html;
+
+        $dynamicContent = str_replace(
+            ['{{ order_number }}', '{{ customer_name }}', '{{ customer_and_order_info }}', '{{ view_order_button }}'],
+            [
+                $this->order->id,
+                $this->order->customer->name ?? 'Customer',
+                $this->getCustomerAndOrderInfo(),
+                $this->generateViewButton()
+            ],
+            $body
         );
+
+        return new Content(
+            view: 'emails.orders.status_changed',
+            with: ['content' => $dynamicContent]
+        );
+    }
+
+    private function getCustomerAndOrderInfo()
+    {
+        return view('emails.orders.order-summary', [
+            'order' => $this->order,
+            'customer' => $this->order->customer ?? '',
+        ])->render();
+    }
+
+    // Function to generate dynamic button
+    private function generateViewButton()
+    {
+        $url = $this->viewOrderUrl;
+
+        return '<a href="' . $url . '" style="display: inline-block; padding: 10px 20px; background-color: #4CAF50; color: white; text-decoration: none; border-radius: 5px;">View Order Details</a>';
     }
 
     /**

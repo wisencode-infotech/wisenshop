@@ -272,6 +272,8 @@ class ProductController extends Controller
 
         if( !empty($changes) && array_filter($changes) ) {
             if (isset($changes['stock']) && $changes['stock'] > 0 && $old_stock == 0) {
+
+                
                 // Fetch all emails for users who have reminders for this product
                 $reminders = StockReminder::where('product_id', $product->id)->get();
 

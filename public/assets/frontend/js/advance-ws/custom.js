@@ -200,8 +200,16 @@
             });
   
             /* Search Popup */
-            $(document).on("click", ".search-icon, .close-search", function(){
-              $('.search-bar').toggleClass("open");
+            // $(document).on("click", ".search-icon, .close-search", function(){
+            //   $('.search-bar').toggleClass("open");
+            // });
+
+            $(document).on("click", ".search-icon", function(){
+              $('.search-bar').addClass("open");
+            });
+
+            $(document).on("click", ".close-search", function(){
+              $('.search-bar').removeClass("open");
             });
             
           },

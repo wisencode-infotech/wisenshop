@@ -102,10 +102,12 @@
                <div class="header-button-right">
                   <!-- header-button -->
                   
+                  @if (request()->routeIs('frontend.home'))
                   <div class="header-button">
                      <a href="javascript:;" class="search-icon">
                         <img src="{{ __activeThemeStaticImgMediaAsset('search-icon.svg') }}" alt="search icon"></a>
                   </div>
+                  @endif
                   
                   <div class="header-button">
                      <a wire:navigate href="{{ route('frontend.my-wishlist') }}" class="wishlist-icon">

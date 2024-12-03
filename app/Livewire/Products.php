@@ -110,13 +110,19 @@ class Products extends Component
             ->where('public_visibility', 1);
         // dd($this->category_id);
 
-        $categoryIds = is_array($this->category_id) ? Arr::flatten($this->category_id) : [$this->category_id];
+        //$categoryIds = is_array($this->category_id) ? Arr::flatten($this->category_id) : [$this->category_id];
 
+        $categoryIds = is_array($this->category_id) 
+            ? Arr::flatten($this->category_id) 
+            : (is_null($this->category_id) ? [] : [$this->category_id]);
+       
         // Filter by category if a category_id is set
         // $query->when($this->category_id, function ($q) {
         //     $q->whereIn('category_id', [$this->category_id]);
         // });
+        // dd($categoryIds);
         $query->when(!empty($categoryIds), function ($q) use ($categoryIds) {
+            
             $q->whereIn('category_id', $categoryIds);
         });
 

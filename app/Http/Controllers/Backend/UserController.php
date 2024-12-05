@@ -8,6 +8,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Storage;
 use Yajra\DataTables\DataTables;
+use App\Events\UserCreated;
 
 class UserController extends Controller
 {
@@ -76,7 +77,7 @@ class UserController extends Controller
         }
 
         // Create the user
-        User::create([
+        $user = User::create([
             'name' => $request->name,
             'email' => $request->email,
             'password' => Hash::make($request->password),
@@ -87,6 +88,8 @@ class UserController extends Controller
             'referral_code' => $request->referral_code,
             'status' => 1, // Default to active
         ]);
+
+        UserCreated::dispatch($user);
 
         return redirect()->route('backend.users.index')->with('success', 'User created successfully.');
     }

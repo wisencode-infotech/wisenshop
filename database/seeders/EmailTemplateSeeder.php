@@ -26,6 +26,17 @@ class EmailTemplateSeeder extends Seeder
             ],
             [
                 'email_template_category_id' => 2,
+                'name' => 'user_created',
+                'subject' => 'Welcome to {{ app_name }}',
+                'body_html' => '<p>Hi <strong>{{ user_name }}</strong>,</p>
+                    <p>Welcome to <strong>{{ app_name }}</strong>! We’re thrilled to have you on board. 🎉</p>
+                    <p>If you have any questions or need assistance, feel free to reach out to us at <strong>{{ support_email }}</strong>. We’re here to help!</p>
+                    <p>Let’s make great things happen together.</p>
+                    <p>Thanks,<br /><strong>{{ app_name }}</strong></p>',
+                'is_active' => true,
+            ],
+            [
+                'email_template_category_id' => 2,
                 'name' => 'password_reset',
                 'subject' => 'Reset Your Password',
                 'body_html' => '<p>Hello,</p><p>You can reset your password using the link below:</p><p style="text-align: center;"><span style="text-decoration: underline;"><strong><a href="{{ reset_url }}">Reset Password</a></strong></span></p><p>If you did not request this, please ignore this email.</p><p>Thanks</p>',

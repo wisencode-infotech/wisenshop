@@ -9,6 +9,7 @@ use Livewire\Component;
 use App\Helpers\CartHelper;
 use App\Helpers\WishlistHelper;
 use Illuminate\Support\Facades\Auth;
+use App\Events\UserCreated;
 
 class Register extends Component
 {
@@ -45,6 +46,8 @@ class Register extends Component
             'referral_code' => $this->referral_code,
             'currency_id' => __userCurrency()->id
         ]);
+
+        UserCreated::dispatch($user);
 
         if (!empty($this->referral_code)) {
 

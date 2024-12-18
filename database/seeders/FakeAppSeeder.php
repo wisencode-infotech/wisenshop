@@ -277,16 +277,52 @@ class FakeAppSeeder extends Seeder
             $notification_counter++;
         }
 
+       // Site banner seeder
+        $site_banners = [
+            [
+                'title' => 'Electronic',
+                'image_path' => 'electronic.jpg', 
+                'description' => fake()->paragraph(),
+            ],
+            [
+                'title' => 'Spices',
+                'image_path' => 'spices.jpg',
+                'description' => fake()->paragraph(),
+            ],
+            [
+                'title' => 'Baby Products',
+                'image_path' => 'baby_care.webp', 
+                'description' => fake()->paragraph(),
+            ],
+            [
+                'title' => 'Beverages',
+                'image_path' => 'beverages.jpg',
+                'description' => fake()->paragraph(),
+            ],
+            [
+                'title' => 'Health',
+                'image_path' => 'health.jpg',
+                'description' => fake()->paragraph(),
+            ],
+        ];
 
-        // Site banner seeder
+        foreach ($site_banners as $banner) {
+            $source_path = public_path("assets/defaults/images/site-banners/" . basename($banner['image_path']));
+            $destination_path = "site-banners/" . basename($banner['image_path']);
+        
+            $image_path = null;
 
-        $site_banners = ['Cash on Delivery', 'Gift Voucher', 'Free Delivery', 'Coupon Saving'];
+            if (file_exists($source_path)) {
+                Storage::disk('public')->put($destination_path, file_get_contents($source_path));
+                $image_path = $destination_path;
+            }
 
-        foreach ($site_banners as $site_banner) {
             SiteBanner::create([
-                'title' => $site_banner,
-                'description' => fake()->paragraph()
+                'title' => '',
+                'description' => '',
+                'image_path' => $image_path,
             ]);
         }
+
     }
 }

@@ -286,7 +286,7 @@ class FakeAppSeeder extends Seeder
         $site_banners = [
             [
                 'title' => 'Electronic',
-                'image_path' => 'electronic.png', 
+                'image_path' => 'electronic.jpg', 
                 'description' => fake()->paragraph(),
             ],
             [

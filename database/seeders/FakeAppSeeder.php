@@ -296,7 +296,7 @@ class FakeAppSeeder extends Seeder
             ],
             [
                 'title' => 'Baby Products',
-                'image_path' => 'baby-care-product.jpg', 
+                'image_path' => 'baby_care.webp', 
                 'description' => fake()->paragraph(),
             ],
             [

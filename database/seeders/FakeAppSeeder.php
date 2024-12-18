@@ -305,13 +305,7 @@ class FakeAppSeeder extends Seeder
         foreach ($site_banners as $banner) {
             $source_path = public_path("assets/defaults/images/site-banners/" . basename($banner['image_path']));
             $destination_path = "site-banners/" . basename($banner['image_path']);
-        
-            $image_path = null;
-
-            if (file_exists($source_path)) {
-                Storage::disk('public')->put($destination_path, file_get_contents($source_path));
-                $image_path = $destination_path;
-            }
+            $image_path = $this->imageUploadToSystem($source_path, $destination_path);
 
             SiteBanner::create([
                 'title' => '',

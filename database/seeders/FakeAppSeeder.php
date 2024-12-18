@@ -281,12 +281,12 @@ class FakeAppSeeder extends Seeder
         $site_banners = [
             [
                 'title' => 'Electronic',
-                'image_path' => 'electronic.jpg', 
+                'image_path' => 'banner1.jpg', 
                 'description' => fake()->paragraph(),
             ],
             [
                 'title' => 'Spices',
-                'image_path' => 'spices.jpg',
+                'image_path' => 'banner3.jpg',
                 'description' => fake()->paragraph(),
             ],
             [
@@ -301,7 +301,7 @@ class FakeAppSeeder extends Seeder
             ],
             [
                 'title' => 'Health',
-                'image_path' => 'health.jpg',
+                'image_path' => 'banner4.jpg',
                 'description' => fake()->paragraph(),
             ],
         ];

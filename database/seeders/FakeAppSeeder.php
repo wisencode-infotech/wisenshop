@@ -60,7 +60,19 @@ class FakeAppSeeder extends Seeder
             [
                 'name' => 'Electronics',
                 'image_path' => 'electronics.jpg',
-                'description' => 'High-quality and branded electronics.'
+                'description' => 'High-quality and branded electronics.',
+                'subcategories' => [
+                    [
+                        'name' => 'Mobile',
+                        'image_path' => 'electronics.jpg',
+                        'description' => 'Mobile.'
+                    ],
+                    [
+                        'name' => 'Laptop',
+                        'image_path' => 'electronics.jpg',
+                        'description' => 'Laptop.'
+                    ]
+                ]
             ],
             [
                 'name' => 'Men\'s Fashion',
@@ -130,28 +142,12 @@ class FakeAppSeeder extends Seeder
         ];
 
         foreach ($categories as $category) {
-            // Define source and destination paths
+
             $source_path = public_path("assets/defaults/images/categories/" . basename($category['image_path']));
             $destination_path = "categories/" . basename($category['image_path']);
-        
-            $image_path = null; // Default to null
-        
-            // Check if the source image exists in the public folder
-            if (file_exists($source_path)) {
-                // Copy the file to the destination using Storage
-                Storage::disk('public')->put($destination_path, file_get_contents($source_path));
-        
-                // Set the image path for storage
-                $image_path = $destination_path;
-            }
-        
-            // Save the record in the database, with null for image if not found
-            Category::create([
-                'name' => $category['name'],
-                'slug' => Str::slug($category['name']),
-                'description' => $category['description'],
-                'image_path' => $image_path, // Null if image not found
-            ]);
+            $image_path = $this->imageUploadToSystem($source_path, $destination_path);
+            $this->createCategory($category, $image_path);
+
         }
 
         // Products seeder
@@ -325,4 +321,50 @@ class FakeAppSeeder extends Seeder
         }
 
     }
+
+    protected function imageUploadToSystem($source_path, $destination_path)
+    {
+        $image_path = null;
+        
+        if (file_exists($source_path)) {
+            Storage::disk('public')->put($destination_path, file_get_contents($source_path));
+    
+            $image_path = $destination_path;
+        }
+
+        return $image_path;
+    }
+
+    protected function createCategory($category, $image_path)
+    {
+        
+        $created_category = Category::create([
+            'name' => $category['name'],
+            'slug' => Str::slug($category['name']),
+            'description' => $category['description'],
+            'image_path' => $image_path,
+        ]);
+
+        if(!empty($category['subcategories']))
+        {
+            foreach ($category['subcategories'] as $key => $subcategory) {
+
+                $source_path = public_path("assets/defaults/images/categories/" . basename($subcategory['image_path']));
+                $destination_path = "categories/" . basename($subcategory['image_path']);
+                $image_path = $this->imageUploadToSystem($source_path, $destination_path);
+
+                Category::create([
+                    'name' => $subcategory['name'],
+                    'slug' => Str::slug($subcategory['name']),
+                    'description' => $subcategory['description'],
+                    'image_path' => $image_path,
+                    'parent_id' => $created_category->id
+                ]);
+            }
+        }
+
+        return true;
+    }
+
+    
 }

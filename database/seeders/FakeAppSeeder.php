@@ -18,6 +18,7 @@ use App\Models\Notification;
 use App\Models\UserRole;
 use Illuminate\Database\Seeder;
 use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Str;
 
 class FakeAppSeeder extends Seeder
@@ -56,29 +57,105 @@ class FakeAppSeeder extends Seeder
         // Categories seeder
 
         $categories = [
-            'Fruits & Vegetables',
-            'Dairy & Eggs',
-            'Meat & Poultry',
-            'Seafood',
-            'Bakery & Bread',
-            'Cereal & Breakfast Foods',
-            'Snacks & Sweets',
-            'Frozen Foods',
-            'Beverages',
-            'Pantry Staples (Rice, Pasta, Flour, etc.)',
-            'Spices & Seasonings',
-            'Canned & Packaged Goods',
-            'Personal Care & Hygiene',
-            'Cleaning Supplies',
-            'Baby Products',
-            'Health & Wellness',
+            [
+                'name' => 'Electronics',
+                'image_path' => 'electronics.jpg',
+                'description' => 'High-quality and branded electronics.'
+            ],
+            [
+                'name' => 'Men\'s Fashion',
+                'image_path' => 'men-fashion.jpg',
+                'description' => 'Branded and latest men\'s fashion clothes.'
+            ],
+            [
+                'name' => 'Women\'s Fashion',
+                'image_path' => 'women-fashion.jpg',
+                'description' => 'Branded and latest women\'s fashion clothes.'
+            ],
+            [
+                'name' => 'Home Decor Accessories',
+                'image_path' => 'home_decor.jpg',
+                'description' => 'Home accessories like furniure and decor accessories.'
+            ],
+            [
+                'name' => 'Health',
+                'image_path' => 'health.jpg',
+                'description' => 'Cereals and breakfast essentials for a healthy start.'
+            ],
+            [
+                'name' => 'Snacks & Sweets',
+                'image_path' => 'snacks_sweets.jpg',
+                'description' => 'Tasty snacks and sweet treats.'
+            ],
+            [
+                'name' => 'Frozen Foods',
+                'image_path' => 'frozen_foods.jpg',
+                'description' => 'Convenient and ready-to-cook frozen foods.'
+            ],
+            [
+                'name' => 'Beverages',
+                'image_path' => 'beverages.jpg',
+                'description' => 'Refreshing drinks and beverages.'
+            ],
+            [
+                'name' => 'Pantry Staples',
+                'image_path' => 'pantry_staples.jpg',
+                'description' => 'Essential pantry items and groceries.'
+            ],
+            [
+                'name' => 'Spices & Seasonings',
+                'image_path' => 'spices_seasonings.jpg',
+                'description' => 'Flavorful spices and seasonings.'
+            ],
+            [
+                'name' => 'Canned & Packaged Goods',
+                'image_path' => 'canned_goods.jpg',
+                'description' => 'Convenient canned and packaged products.'
+            ],
+            [
+                'name' => 'Personal Care & Hygiene',
+                'image_path' => 'personal_care.jpg',
+                'description' => 'Personal care and hygiene essentials.'
+            ],
+            [
+                'name' => 'Cleaning Supplies',
+                'image_path' => 'cleaning_supplies.jpg',
+                'description' => 'Cleaning supplies for your home.'
+            ],
+            [
+                'name' => 'Baby Products',
+                'image_path' => 'baby_products.jpg',
+                'description' => 'Products and essentials for babies.'
+            ],
+            [
+                'name' => 'Health & Wellness',
+                'image_path' => 'health_wellness.jpg',
+                'description' => 'Health and wellness products.'
+            ],
         ];
 
         foreach ($categories as $category) {
+            // Define source and destination paths
+            $source_path = public_path("assets/defaults/images/categories/" . basename($category['image_path']));
+            $destination_path = "categories/" . basename($category['image_path']);
+        
+            $image_path = null; // Default to null
+        
+            // Check if the source image exists in the public folder
+            if (file_exists($source_path)) {
+                // Copy the file to the destination using Storage
+                Storage::disk('public')->put($destination_path, file_get_contents($source_path));
+        
+                // Set the image path for storage
+                $image_path = $destination_path;
+            }
+        
+            // Save the record in the database, with null for image if not found
             Category::create([
-                'name' => $category,
-                'slug' => Str::slug($category),
-                'description' => $category . ' description',
+                'name' => $category['name'],
+                'slug' => Str::slug($category['name']),
+                'description' => $category['description'],
+                'image_path' => $image_path, // Null if image not found
             ]);
         }
 

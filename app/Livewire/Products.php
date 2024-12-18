@@ -2,6 +2,7 @@
 
 namespace App\Livewire;
 
+use App\Models\Category;
 use Livewire\Component;
 use App\Models\Product;
 use Illuminate\Support\Facades\Session;
@@ -112,6 +113,13 @@ class Products extends Component
         $categoryIds = is_array($this->category_id) 
             ? Arr::flatten($this->category_id) 
             : (is_null($this->category_id) ? [1] : [$this->category_id]);
+
+        if (!empty($categoryIds)) {
+            $categoryIds = Category::whereIn('id', $categoryIds)
+                ->orWhereIn('parent_id', $categoryIds)
+                ->pluck('id')
+                ->toArray();
+        }    
 
         $query->when(!empty($categoryIds), function ($q) use ($categoryIds) {
             

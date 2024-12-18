@@ -73,64 +73,59 @@ class FakeAppSeeder extends Seeder
                 'description' => 'Branded and latest women\'s fashion clothes.'
             ],
             [
+                'name' => 'Kids & Baby Products',
+                'image_path' => 'kids-baby.jpg',
+                'description' => 'Toys, baby clothes, learning kits, and parenting essentials.'
+            ],
+            [
                 'name' => 'Home Decor Accessories',
                 'image_path' => 'home_decor.jpg',
                 'description' => 'Home accessories like furniure and decor accessories.'
             ],
             [
-                'name' => 'Health',
-                'image_path' => 'health.jpg',
-                'description' => 'Cereals and breakfast essentials for a healthy start.'
+                'name' => 'Health & Wellness',
+                'image_path' => 'health-wellness.jpg',
+                'description' => 'Organic supplements, skincare, essential oils, and wellness devices.'
+            ],
+            [
+                'name' => 'Fitness & Outdoor Gear',
+                'image_path' => 'fitness-outdoor-gear.jpg',
+                'description' => 'Includes workout equipment, yoga mats, sports gear, and camping essentials.'
+            ],
+            [
+                'name' => 'Books & Stationery',
+                'image_path' => 'books-stationary.jpg',
+                'description' => 'Books, journals, planners, art supplies, and office essentials.'
+            ],
+            [
+                'name' => 'Beauty & Personal Care',
+                'image_path' => 'beauty-care.jpg',
+                'description' => 'Makeup, skincare, hair care, grooming tools, and fragrances.'
+            ],
+            [
+                'name' => 'Footwear',
+                'image_path' => 'footwear.jpg',
+                'description' => 'Shoes, sandals, sneakers, boots, and specialty footwear.'
+            ],
+            [
+                'name' => 'Pet Supplies',
+                'image_path' => 'pet-supplies.jpg',
+                'description' => 'Pet food, grooming products, toys, and accessories for pets.'
+            ],
+            [
+                'name' => 'Travel & Luggage',
+                'image_path' => 'travel-luggage.jpg',
+                'description' => 'Travel bags, suitcases, organizers, travel accessories like neck pillows, and adapters.'
+            ],
+            [
+                'name' => 'Hobbies & Crafts',
+                'image_path' => 'hobbies-craft.jpg',
+                'description' => 'Art supplies, DIY kits, musical instruments, and collectibles.'
             ],
             [
                 'name' => 'Snacks & Sweets',
-                'image_path' => 'snacks_sweets.jpg',
-                'description' => 'Tasty snacks and sweet treats.'
-            ],
-            [
-                'name' => 'Frozen Foods',
-                'image_path' => 'frozen_foods.jpg',
-                'description' => 'Convenient and ready-to-cook frozen foods.'
-            ],
-            [
-                'name' => 'Beverages',
-                'image_path' => 'beverages.jpg',
-                'description' => 'Refreshing drinks and beverages.'
-            ],
-            [
-                'name' => 'Pantry Staples',
-                'image_path' => 'pantry_staples.jpg',
-                'description' => 'Essential pantry items and groceries.'
-            ],
-            [
-                'name' => 'Spices & Seasonings',
-                'image_path' => 'spices_seasonings.jpg',
-                'description' => 'Flavorful spices and seasonings.'
-            ],
-            [
-                'name' => 'Canned & Packaged Goods',
-                'image_path' => 'canned_goods.jpg',
-                'description' => 'Convenient canned and packaged products.'
-            ],
-            [
-                'name' => 'Personal Care & Hygiene',
-                'image_path' => 'personal_care.jpg',
-                'description' => 'Personal care and hygiene essentials.'
-            ],
-            [
-                'name' => 'Cleaning Supplies',
-                'image_path' => 'cleaning_supplies.jpg',
-                'description' => 'Cleaning supplies for your home.'
-            ],
-            [
-                'name' => 'Baby Products',
-                'image_path' => 'baby_products.jpg',
-                'description' => 'Products and essentials for babies.'
-            ],
-            [
-                'name' => 'Health & Wellness',
-                'image_path' => 'health_wellness.jpg',
-                'description' => 'Health and wellness products.'
+                'image_path' => 'snacks-sweets.jpg',
+                'description' => 'Deliciously curated treats ranging from savory snacks to indulgent sweets, perfect for every craving and occasion.'
             ],
         ];
 

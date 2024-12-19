@@ -1,4 +1,4 @@
-<div class="top-searchbar-section bg-white top-0 z-50 w-full">
+<div class="top-searchbar-section bg-white top-0 z-50 w-full border-t">
     <div>
         <div class="flex w-full items-center justify-between bg-light lg:h-22 lg:px-6">
             <div class="lg:absolute flex w-full items-center justify-center space-x-4 bg-light px-5 py-1.5">

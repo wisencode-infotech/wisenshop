@@ -12,9 +12,7 @@
                 @include('frontend/layouts/partials/mobile-navbar')
 
                 <div wire:ignore>
-                    @if (!request()->routeIs('frontend.home'))
-                        @include('frontend/layouts/partials/footer')
-                    @endif
+                    @include('frontend/layouts/partials/footer')
                 </div>
             </div>
         </main>

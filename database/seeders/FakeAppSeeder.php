@@ -55,103 +55,9 @@ class FakeAppSeeder extends Seeder
         User::factory(10)->create();
 
         // Categories seeder
-
-        $categories = [
-            [
-                'name' => 'Electronics',
-                'image_path' => 'electronics.jpg',
-                'description' => 'High-quality and branded electronics.',
-                'subcategories' => [
-                    [
-                        'name' => 'Mobile',
-                        'image_path' => 'electronics.jpg',
-                        'description' => 'Mobile.'
-                    ],
-                    [
-                        'name' => 'Laptop',
-                        'image_path' => 'electronics.jpg',
-                        'description' => 'Laptop.'
-                    ]
-                ]
-            ],
-            [
-                'name' => 'Men\'s Fashion',
-                'image_path' => 'men-fashion.jpg',
-                'description' => 'Branded and latest men\'s fashion clothes.'
-            ],
-            [
-                'name' => 'Women\'s Fashion',
-                'image_path' => 'women-fashion.jpg',
-                'description' => 'Branded and latest women\'s fashion clothes.'
-            ],
-            [
-                'name' => 'Kids & Baby Products',
-                'image_path' => 'kids-baby.jpg',
-                'description' => 'Toys, baby clothes, learning kits, and parenting essentials.'
-            ],
-            [
-                'name' => 'Home Decor Accessories',
-                'image_path' => 'home_decor.jpg',
-                'description' => 'Home accessories like furniure and decor accessories.'
-            ],
-            [
-                'name' => 'Health & Wellness',
-                'image_path' => 'health-wellness.jpg',
-                'description' => 'Organic supplements, skincare, essential oils, and wellness devices.'
-            ],
-            [
-                'name' => 'Fitness & Outdoor Gear',
-                'image_path' => 'fitness-outdoor-gear.jpg',
-                'description' => 'Includes workout equipment, yoga mats, sports gear, and camping essentials.'
-            ],
-            [
-                'name' => 'Books & Stationery',
-                'image_path' => 'books-stationary.jpg',
-                'description' => 'Books, journals, planners, art supplies, and office essentials.'
-            ],
-            [
-                'name' => 'Beauty & Personal Care',
-                'image_path' => 'beauty-care.jpg',
-                'description' => 'Makeup, skincare, hair care, grooming tools, and fragrances.'
-            ],
-            [
-                'name' => 'Footwear',
-                'image_path' => 'footwear.jpg',
-                'description' => 'Shoes, sandals, sneakers, boots, and specialty footwear.'
-            ],
-            [
-                'name' => 'Pet Supplies',
-                'image_path' => 'pet-supplies.jpg',
-                'description' => 'Pet food, grooming products, toys, and accessories for pets.'
-            ],
-            [
-                'name' => 'Travel & Luggage',
-                'image_path' => 'travel-luggage.jpg',
-                'description' => 'Travel bags, suitcases, organizers, travel accessories like neck pillows, and adapters.'
-            ],
-            [
-                'name' => 'Hobbies & Crafts',
-                'image_path' => 'hobbies-craft.jpg',
-                'description' => 'Art supplies, DIY kits, musical instruments, and collectibles.'
-            ],
-            [
-                'name' => 'Snacks & Sweets',
-                'image_path' => 'snacks-sweets.jpg',
-                'description' => 'Deliciously curated treats ranging from savory snacks to indulgent sweets, perfect for every craving and occasion.'
-            ],
-        ];
-
-        foreach ($categories as $category) {
-
-            $source_path = public_path("assets/defaults/images/categories/" . basename($category['image_path']));
-            $destination_path = "categories/" . basename($category['image_path']);
-            $image_path = $this->imageUploadToSystem($source_path, $destination_path);
-            $this->createCategory($category, $image_path);
-
-        }
+        (new FakeCategorySeeder())->run();
 
         // Products seeder
-
         $categories = Category::all();
         $product_unit_ids = ProductUnit::pluck('id')->toArray();
 
@@ -316,7 +222,7 @@ class FakeAppSeeder extends Seeder
 
     }
 
-    protected function imageUploadToSystem($source_path, $destination_path)
+    public function imageUploadToSystem($source_path, $destination_path)
     {
         $image_path = null;
         
@@ -328,37 +234,5 @@ class FakeAppSeeder extends Seeder
 
         return $image_path;
     }
-
-    protected function createCategory($category, $image_path)
-    {
-        
-        $created_category = Category::create([
-            'name' => $category['name'],
-            'slug' => Str::slug($category['name']),
-            'description' => $category['description'],
-            'image_path' => $image_path,
-        ]);
-
-        if(!empty($category['subcategories']))
-        {
-            foreach ($category['subcategories'] as $key => $subcategory) {
-
-                $source_path = public_path("assets/defaults/images/categories/" . basename($subcategory['image_path']));
-                $destination_path = "categories/" . basename($subcategory['image_path']);
-                $image_path = $this->imageUploadToSystem($source_path, $destination_path);
-
-                Category::create([
-                    'name' => $subcategory['name'],
-                    'slug' => Str::slug($subcategory['name']),
-                    'description' => $subcategory['description'],
-                    'image_path' => $image_path,
-                    'parent_id' => $created_category->id
-                ]);
-            }
-        }
-
-        return true;
-    }
-
     
 }

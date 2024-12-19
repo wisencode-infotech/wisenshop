@@ -90,12 +90,14 @@ $('#grocery-search-header').on('focus', function() {
     scrollValue = 220;
   }
 
-  console.log(window.innerWidth);
+  // console.log(window.innerWidth);
   $('html, body').animate({ scrollTop: scrollValue }, 500);
 });
 
 $(document).on('click', '.clear-search', function () {
+  $('.filter-suggestion-box').hide();
   $('#grocery-search-header').val('');
+  $(this).hide();
 });
 
 $(document).on('click', '.wishlist-button', function (e) {

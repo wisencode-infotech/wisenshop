@@ -17,7 +17,7 @@ class ProductSearchBar extends Component
     {
         $this->suggestions = [];
 
-        if (strlen($this->search) > 2) {
+        if (strlen($this->search) > 1) {
 
             $categories = Category::where('name', 'like', '%' . $this->search . '%')
             ->with(['subcategories' => function ($query) {

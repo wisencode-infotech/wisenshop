@@ -5,7 +5,7 @@
             <div class="lg:absolute top-0 z-20 flex h-full w-full items-center justify-center space-x-4 border-b-accent-300 bg-light px-5 py-1.5 ltr:left-0 rtl:right-0 rtl:space-x-reverse lg:border lg:bg-opacity-30">
                 <form wire:submit.prevent="applyFilters" class="w-full lg:max-w-3xl relative">
                     <div class="relative flex rounded-md h-12">
-                    <label for="grocery-search-header" class="sr-only">{{ __trans('Search your products from here') }}</label>
+                    <label for="grocery-search-hseader" class="sr-only">{{ __trans('Search your products from here') }}</label>
                         <input 
                             id="grocery-search-header"
                             type="text" 
@@ -36,7 +36,7 @@
                         <div class="absolute z-10 bg-white border border-gray-300 w-full mt-2 rounded-lg shadow-lg" style="overflow: auto;max-height: 350px;">
                             <ul>
                                 @foreach($suggestions as $item)
-                                <li class="group flex items-center justify-between p-2 hover:bg-gray-100 cursor-pointer transition duration-200">
+                                <li class="group flex items-center justify-between p-2 hover:bg-gray-100 cursor-pointer transition duration-200" style="padding-top: 4px;padding-bottom: 4px;">
                                     <a wire:navigate 
                                     href="{{ $item['type'] === 'category' 
                                                 ? route('frontend.home', ['catid' => $item['id']]) 
@@ -48,11 +48,13 @@
                                                 <span class="text-gray-500 text-sm">({{ $item['count'] }} items)</span>
                                             </div>
                                         @else
-                                            <div>
-                                                <span class="font-medium">{{ $item['name'] }}</span>
-                                                <span class="text-gray-500 text-sm">({{ __userCurrencySymbol() }}{{ $item['price'] }})</span>
+                                            <div style="line-height:1px;">
+                                                <div>
+                                                    <span class="font-medium">{{ $item['name'] }}</span>
+                                                    <span class="text-gray-500 text-sm">({{ __userCurrencySymbol() }}{{ $item['price'] }})</span>
+                                                </div>
+                                                <span class="text-gray-400 text-xs">{{ $item['category'] }}</span>
                                             </div>
-                                            <span class="text-gray-400 text-xs">{{ $item['category'] }}</span>
                                         @endif
                                     </a>
                                 </li>

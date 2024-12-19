@@ -32,27 +32,51 @@
 
                     @if(!empty($suggestions))
                         <div class="filter-suggestion-box absolute z-10 bg-white border border-gray-300 w-full mt-2 rounded-lg shadow-lg" style="overflow: auto;max-height: 350px;">
-                            <ul>
-                                @foreach($suggestions as $item)
-                                <li class="group flex items-center justify-between p-2 hover:bg-gray-100 cursor-pointer transition duration-200" style="padding-top: 4px;padding-bottom: 4px;">
+                        <div wire:loading class="p-4 flex justify-center items-center">
+                            <svg class="animate-spin h-5 w-5 text-gray-500 mr-2" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
+                                <circle class="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" stroke-width="4"></circle>
+                                <path class="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8v8H4z"></path>
+                            </svg>
+                            <!-- <span class="text-gray-500">{{ __trans('Loading...') }}</span> -->
+                        </div>
+                            <ul wire:loading.remove>
+                            @foreach($suggestions as $item)
+                                <li class="group flex flex-col p-2 hover:bg-gray-50 cursor-pointer transition duration-200" 
+                                    style="padding-top: 2px; padding-bottom: 2px;">
                                     <a wire:navigate 
                                     href="{{ $item['type'] === 'category' 
-                                                ? route('frontend.home', ['catid' => $item['id']]) 
-                                                : route('frontend.product-detail', ['product_slug' => $item['slug']]) }}" 
-                                    class="flex-1 text-gray-800">
+                                                    ? route('frontend.home', ['catid' => $item['id']]) 
+                                                    : route('frontend.product-detail', ['product_slug' => $item['slug']]) }}" 
+                                    class="block text-gray-800">
                                         @if($item['type'] === 'category')
-                                            <div>
-                                                <span class="font-semibold text-black">{{ $item['name'] }}</span>
-                                                <span class="text-gray-500 text-sm">({{ $item['count'] }} items)</span>
-                                            </div>
+                                        <div class="flex items-center justify-between">
+                                            <span class="font-semibold text-black">{{ $item['name'] }}</span>
+                                            @if(empty($item['subcategories']))
+                                            <span class="text-gray-500 text-sm">({{ $item['count'] }} items)</span>
+                                            @endif
+                                        </div>
+
+                                        @if(!empty($item['subcategories']))
+                                        <ul class="pl-4">
+                                            @foreach($item['subcategories'] as $subcategory)
+                                            <li>
+                                                <a href="{{ route('frontend.home', ['catid' => $subcategory['id']]) }}" 
+                                                class="flex justify-between items-center text-sm text-gray-600 hover:text-black transition">
+                                                    <span class="text-md">{{ $subcategory['name'] }}</span>
+                                                    <span class="text-gray-400 text-xs">({{ $subcategory['count'] }})</span>
+                                                </a>
+                                            </li>
+                                            @endforeach
+                                        </ul>
+                                        @endif
                                         @else
-                                            <div style="line-height:1px;">
-                                                <div>
-                                                    <span class="font-medium">{{ $item['name'] }}</span>
-                                                    <span class="text-gray-500 text-sm">({{ __userCurrencySymbol() }} {{ $item['price'] }})</span>
-                                                </div>
-                                                <span class="text-gray-400 text-xs">{{ $item['category'] }}</span>
+                                        <div class="flex flex-col">
+                                            <div class="flex justify-between">
+                                                <span class="font-medium">{{ $item['name'] }}</span>
+                                                <span class="text-gray-500 text-sm">{{ __userCurrencySymbol() }} {{ $item['price'] }}</span>
                                             </div>
+                                            <span class="text-gray-400 text-xs">{{ $item['category'] }}</span>
+                                        </div>
                                         @endif
                                     </a>
                                 </li>

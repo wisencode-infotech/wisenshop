@@ -5,6 +5,7 @@ namespace Database\Seeders;
 use App\Models\Setting;
 use App\Models\SettingGroup;
 use Illuminate\Database\Seeder;
+use Illuminate\Support\Facades\File;
 
 class DefaultSettingSeeder extends Seeder
 {
@@ -66,14 +67,28 @@ class DefaultSettingSeeder extends Seeder
         // Logos settings
         $logos_settings = [
             'header_logo' => 'assets/frontend/img/header_logo.png',
-            'footer_logo' => 'assets/frontend/img/header_logo.png',
-            'fav_logo' => 'assets/frontend/img/header_logo.png',
-            'email_header_logo' => 'assets/frontend/img/header_logo.png',
+            'footer_logo' => 'assets/frontend/img/footer_logo.png',
+            'fav_logo' => 'assets/frontend/img/fav_logo.png',
+            'email_header_logo' => 'assets/frontend/img/email_header_logo.png',
         ];
 
         $setting_sort_number = 1;
 
         foreach ($logos_settings as $key => $value) {
+
+            $source_path = ($key === 'fav_logo')
+            ? public_path("assets/defaults/favicons/" . basename($value))
+            : public_path("assets/defaults/logo/" . basename($value));
+    
+            $destination_path = public_path("assets/frontend/img/" . basename($value));
+        
+            if (File::exists($source_path)) {
+                File::copy($source_path, $destination_path);
+            } else {
+                continue;
+            }
+            
+            
             Setting::updateOrCreate([
                 'key' => $key,
             ], [

@@ -19,7 +19,9 @@ class HomePageSettingsController extends Controller
 
         $default_home_sorting_method = __homeSetting('default_home_sorting_method');
 
-        return view('backend.home-settings.index', compact('categories', 'display_specific_categories_on_page_load', 'banner_settings', 'default_home_sorting_method'));
+        $number_of_products_per_page = __homeSetting('number_of_products_per_page');
+
+        return view('backend.home-settings.index', compact('categories', 'display_specific_categories_on_page_load', 'banner_settings', 'default_home_sorting_method', 'number_of_products_per_page'));
     }
 
     public function store(Request $request)
@@ -78,10 +80,13 @@ class HomePageSettingsController extends Controller
 
         $request->validate([
             'default_home_sorting_method' => 'required',
+            'number_of_products_per_page' => 'required',
         ]);
 
+        $this->saveSettings('number_of_products_per_page', $request->number_of_products_per_page);
         $this->saveSettings('default_home_sorting_method', $request->default_home_sorting_method);
 
+        __updateHomeSetting('number_of_products_per_page', $request->number_of_products_per_page);
         __updateHomeSetting('default_home_sorting_method', $request->default_home_sorting_method);
 
         return redirect()->back()->with('success', 'Sorting settings saved successfully');

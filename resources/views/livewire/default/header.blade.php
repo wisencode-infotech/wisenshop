@@ -22,7 +22,7 @@
                 <ul class="shrink-0 items-center space-x-7 rtl:space-x-reverse xl:flex 2xl:space-x-10">
 
                     @if (__setting('activate_currencies_module') == '1' && __currencies()->count() > 1)
-                        <li class="menuItem group relative mx-3 cursor-pointer">
+                        <li class="menuItem group relative mx-3 cursor-pointer float-right">
                             <div class="flex items-center gap-2 group-hover:text-accent">
                                 <span class="text-brand-dark group-hover:text-brand relative inline-flex items-center py-2 font-normal rtl:left-0"> {{ __userCurrencyCode() }}</span>
                                 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 12 7.2" width="12" height="7.2" class="mt-1">
@@ -42,7 +42,7 @@
                     @endif
 
                     @if (__setting('activate_multilangual_module') == '1' && __languages()->count() > 1)
-                        <li class="menuItem group relative mx-3 cursor-pointer">
+                        <li class="menuItem group relative mx-3 cursor-pointer float-right">
                             <div class="flex items-center gap-2 group-hover:text-accent">
                                 <span class="text-brand-dark group-hover:text-brand relative inline-flex items-center py-2 font-normal rtl:left-0"> {{ strtoupper(app()->getLocale()) }}</span>
                                 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 12 7.2" width="12" height="7.2" class="mt-1">

@@ -188,7 +188,15 @@ button.reset_filter_btn:hover {
     padding: 1.2rem;
 }
 
+.custom-profile-btn{
+    margin-left: 10px;
+}
+
 @media (max-width: 768px) {
+    .custom-profile-btn{
+        margin-left: 2px;
+    }
+
     .header-section{
         padding: 0.8rem;
     }

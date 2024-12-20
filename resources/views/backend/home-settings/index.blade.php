@@ -88,12 +88,19 @@
 
     <div class="col-lg-4">
         <div class="card">
-            <h3 class="card-header bg-white">{{ __('Default home sorting method') }}</h3>
+            <h3 class="card-header bg-white">{{ __('Products Listing') }}</h3>
 
             <div class="card-body">
 
                 <form method="POST" action="{{ route('backend.home-settings.sorting-store') }}" enctype="multipart/form-data"> 
                     @csrf
+                    <div class="row">
+                        <div class="col-md-12 mb-3 mt-3">
+                            <label for="number_of_products_per_page">{{ __('Number of products per page') }}</label>
+                            <input type="number" name="number_of_products_per_page" class="form-control" value="{{ $number_of_products_per_page ?? 15 }}" required>
+                        </div>
+                    </div>
+
                     <div class="row">
                         <div class="col-md-12 mb-3 mt-3">
                             <label for="banner_description">{{ __('Default home sorting method') }}</label>

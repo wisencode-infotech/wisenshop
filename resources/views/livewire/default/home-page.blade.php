@@ -10,7 +10,7 @@
 
     <div class="flex border-t border-solid border-border-200 border-opacity-70">
         <livewire:product-category-sidebar :default_categories="$default_categories" />
-        <livewire:products lazy :category_id="$default_categories" />
+        <livewire:products lazy :category_id="$default_categories" :per_page="__homeSetting('number_of_products_per_page')" />
     </div>
     <livewire:product-cart-button />
 </div>

@@ -73,9 +73,9 @@
                                         <div class="flex flex-col">
                                             <div class="flex justify-between">
                                                 <span class="font-medium">{{ $item['name'] }}</span>
-                                                <span class="text-gray-500 text-sm">{{ __userCurrencySymbol() }} {{ $item['price'] }}</span>
+                                                <span class="text-gray-500 text-xs">{{ $item['category'] }}</span>
                                             </div>
-                                            <span class="text-gray-400 text-xs">{{ $item['category'] }}</span>
+                                            <span class="text-gray-400 text-xs">{{ __userCurrencySymbol() }} {{ $item['price'] }} | {{ \Str::limit($item['description'], 50) }}</span>
                                         </div>
                                         @endif
                                     </a>

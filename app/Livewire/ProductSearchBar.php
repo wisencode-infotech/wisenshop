@@ -66,6 +66,7 @@ class ProductSearchBar extends Component
                         'type' => 'product',
                         'id' => $product->id,
                         'name' => $product->name,
+                        'description' => $product->description,
                         'slug' => $product->slug,
                         'price' => $product->priceWithCurrency(),
                         'category' => $product->category->name,

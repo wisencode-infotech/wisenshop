@@ -39,8 +39,8 @@ class Products extends Component
     public function mount($category_id = null, $per_page = 15, $exclude_product_ids = [], $from_page = null)
     {
         $this->category_id = $category_id ?? null;
-        $this->per_page = $per_page;
-        $this->paginate_count = $per_page;
+        $this->per_page = intval($per_page);
+        // $this->paginate_count = $per_page;
         $this->exclude_product_ids = $exclude_product_ids;
         $this->default_home_sorting_method = (!empty(__homeSetting('default_home_sorting_method'))) ? __homeSetting('default_home_sorting_method') : 'default';
         $this->from_page = $from_page; 

@@ -80,7 +80,7 @@
                                         </ul>
                                         @endif
                                         @else
-                                        <div class="flex flex-col hover:bg-gray-50">
+                                        <div class="flex flex-col hover:bg-gray-50 p-1">
                                             <div class="flex justify-between">
                                                 <span class="font-medium">{{ $item['name'] }}</span>
                                                 <span class="text-gray-500 text-xs">{{ $item['category'] }}</span>

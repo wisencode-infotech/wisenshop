@@ -187,12 +187,12 @@ class FakeAppSeeder extends Seeder
                 'description' => fake()->paragraph(),
             ],
             [
-                'title' => 'Big Sale',
+                'title' => 'GearUp For Winter Fun',
                 'image_path' => 'banner-2.png',
                 'description' => fake()->paragraph(),
             ],
             [
-                'title' => 'Speacial Offer',
+                'title' => 'Big Sale',
                 'image_path' => 'banner-3.png', 
                 'description' => fake()->paragraph(),
             ],
@@ -207,7 +207,7 @@ class FakeAppSeeder extends Seeder
                 'description' => fake()->paragraph(),
             ],
             [
-                'title' => 'GearUp For Winter Fun',
+                'title' => 'Speacial Offer',
                 'image_path' => 'banner-6.png',
                 'description' => fake()->paragraph(),
             ],

@@ -47,7 +47,12 @@ class HomeController extends Controller
 
         $total_referral_users = 0;
 
-        return view('backend.index', compact('total_pending_orders','total_accepted_orders','total_shipped_orders','total_finalized_orders','total_cancelled_orders','total_return_orders', 'total_completed_orders_amount', 'total_referral_users'));
+        $orders = Order::selectRaw('MONTHNAME(created_at) as month, MONTH(created_at) as month_number, COUNT(*) as total')->groupBy('month', 'month_number')->orderBy('month_number')->pluck('total', 'month');
+
+        $months = ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December'];
+        $ordersData = array_map(fn($month) => $orders[$month] ?? 0, $months);
+        
+        return view('backend.index', compact('total_pending_orders','total_accepted_orders','total_shipped_orders','total_finalized_orders','total_cancelled_orders','total_return_orders', 'total_completed_orders_amount', 'total_referral_users','months','ordersData'));
     }
 
     /*Language Translation*/

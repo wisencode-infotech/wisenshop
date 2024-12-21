@@ -58,6 +58,8 @@ Route::middleware(['auth', 'check.role:admin'])->group(function () {
 
     Route::get('settings', [SettingController::class, 'index'])->name('settings.index');
     Route::post('update-settings', [SettingController::class, 'update'])->name('settings.update');
+    Route::get('change-password', [UserController::class, 'changePasswordAdmin'])->name('changepassword');
+    Route::post('update-password', [UserController::class, 'updatePasswordAdmin'])->name('updatepassword');
 
     Route::group(['prefix' => 'product', 'as' => 'product.'], function () {
         Route::delete('image/{image}/remove', [ProductController::class, 'destroyImage'])->name('image.remove');

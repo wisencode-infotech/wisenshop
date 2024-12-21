@@ -26,14 +26,20 @@ class OrderController extends Controller
     {
         if ($request->ajax()) {
             $status_filter = $request->input('status_filter');
+            $latest_records = $request->input('latest_records');
 
             $query = Order::query();
+
+            if ($latest_records) {
+                $query->latest()->limit(5);
+            }
+
             if ($status_filter) {
                 $query->where('status', $status_filter);
             }
 
             $data = $query->latest()->get();
-
+            
             return Datatables::of($data)
                 ->addIndexColumn() // Adds the row index
                 ->addColumn('checkbox', function ($row) {

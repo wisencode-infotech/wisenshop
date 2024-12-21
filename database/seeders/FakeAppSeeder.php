@@ -57,16 +57,8 @@ class FakeAppSeeder extends Seeder
         // Categories seeder
         (new FakeCategorySeeder())->run();
 
-        // Products seeder
-        $categories = Category::all();
-        $product_unit_ids = ProductUnit::pluck('id')->toArray();
-
-        foreach ($categories as $category) {
-            Product::factory(10)->create([
-                'category_id' => $category->id,
-                'unit_id' => $product_unit_ids[array_rand($product_unit_ids)]
-            ]);
-        }
+        // Categories seeder
+        (new FakeProductSeeder())->run();
 
         HomePageSetting::updateOrCreate(
             ['meta_key' => 'display_specific_categories_on_page_load'],

@@ -40,7 +40,7 @@ class Products extends Component
     {
         $this->category_id = $category_id ?? null;
         $this->per_page = intval($per_page);
-        // $this->paginate_count = $per_page;
+        $this->paginate_count = $per_page;
         $this->exclude_product_ids = $exclude_product_ids;
         $this->default_home_sorting_method = (!empty(__homeSetting('default_home_sorting_method'))) ? __homeSetting('default_home_sorting_method') : 'default';
         $this->from_page = $from_page; 

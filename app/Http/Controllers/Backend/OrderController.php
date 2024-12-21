@@ -31,7 +31,7 @@ class OrderController extends Controller
             $query = Order::query();
 
             if ($latest_records) {
-                $query->latest()->limit(5);
+                $query->latest()->limit(10);
             }
 
             if ($status_filter) {
@@ -39,7 +39,7 @@ class OrderController extends Controller
             }
 
             $data = $query->latest()->get();
-            
+
             return Datatables::of($data)
                 ->addIndexColumn() // Adds the row index
                 ->addColumn('checkbox', function ($row) {

@@ -1,7 +1,7 @@
 <div>
-    <form wire:submit.prevent="applyFilters" class="position-relative">
+    <form onsubmit="return false;" class="position-relative">
         <div class="form-group mt-2">
-            <input id="grocery-search-header" type="search" name="search" 
+            <input id="grocery-search-header" type="search" autocomplete="off" 
                 placeholder="{{ __trans('Search your products from here') }}" 
                 wire:model.live.debounce.250ms="search">
 

@@ -3,7 +3,7 @@
         <div class="flex w-full items-center justify-between bg-light transition-transform duration-300 lg:h-22 lg:px-6 2xl:px-8 lg:absolute lg:border-0 lg:bg-transparent lg:shadow-none">
             
             <div class="lg:absolute top-0 z-20 flex h-full w-full items-center justify-center space-x-4 border-b-accent-300 bg-light px-5 py-1.5 ltr:left-0 rtl:right-0 rtl:space-x-reverse lg:border lg:bg-opacity-30">
-                <form wire:submit.prevent="applyFilters" class="w-full lg:max-w-3xl relative">
+                <form onsubmit="return false;" class="w-full lg:max-w-3xl relative">
                     <div class="relative flex rounded-md h-12">
                     <label for="grocery-search-hseader" class="sr-only">{{ __trans('Search your products from here') }}</label>
                         <input 

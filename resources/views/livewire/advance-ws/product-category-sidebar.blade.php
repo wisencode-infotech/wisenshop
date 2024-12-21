@@ -7,7 +7,7 @@
         <h3 class="sidebar-title">Filter</h3>
 
         <div class="sidebar-widget">
-            <h4 class="widget-title">Categories</h4>
+            <h6 class="widget-title">Categories</h6>
             <div class="sidebar-widget-body">
                 <ul class="checkbox-categories-list"  x-data="{ selectedCategories: @entangle('selectedCategories') }">
                     @foreach ($product_categories as $category)
@@ -24,14 +24,18 @@
                                     $wire.set('selectedCategories', selectedCategories);
                                     $dispatch('category-selected', { category_id: selectedCategories })
                                 ">
-                                <span class="checkmark">{{ $category->name }}</span>
+                                <span class="checkmark category-checkmark">
+                                    <div class="circle-wrapper medium">
+                                        <img src="{{ $category->image_url }}" class="img-fluid rounded" width="30" />
+                                    </div>
+                                    {{ $category->name }} ({{ $category->products()->count() }})
+                                </span>
                             </label>
-                            <span class="count">({{ $category->products()->count() }})</span>
                         </li>
                         @if ($category->subcategories()->count() > 0)
                             <ul class="subcategory">
                                 @foreach ($category->subcategories as $sub_category)
-                                    <li wire:key="advance-ws-subcategory-{{ $sub_category->id }}"
+                                    <li class="ms-4" wire:key="advance-ws-subcategory-{{ $sub_category->id }}"
                                         :checked="selectedCategories.includes({{ $sub_category->id }})"
                                         @change="
                                             if ($event.target.checked) {
@@ -44,7 +48,12 @@
                                         ">
                                         <label class="checkcontainer">
                                             <input type="checkbox" >
-                                            <span class="checkmark">{{ $sub_category->name }}</span>
+                                            <span class="checkmark category-checkmark">
+                                                <div class="circle-wrapper medium">
+                                                    <img src="{{ $sub_category->image_url }}" class="img-fluid rounded" width="20" />
+                                                </div>
+                                                {{ $sub_category->name }}
+                                            </span>
                                         </label>
                                         <span class="count">({{ $sub_category->products()->count() }})</span>
                                     </li>

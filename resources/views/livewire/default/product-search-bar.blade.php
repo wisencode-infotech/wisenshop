@@ -53,12 +53,11 @@
                                         class="block text-gray-800">
                                             <div class="flex items-center justify-between">
                                             
-                                            <div class="flex items-center">
-                                                <img src="{{ $item['image_url'] }}" class="h-5 w-5 mr-2" alt="Image" />
+                                            <div class="flex items-center p-1 mb-0">
                                                 <span class="font-semibold text-black">{{ $item['name'] }}</span>
                                             </div>
                                                 @if(empty($item['subcategories']))
-                                                <span class="text-gray-500 text-sm">({{ $item['count'] }} items)</span>
+                                                    <span class="text-gray-500 text-sm">({{ $item['count'] }} items)</span>
                                                 @endif
                                             </div>
                                         </a>   
@@ -70,8 +69,7 @@
                                                 <a href="{{ route('frontend.home', ['catid' => $subcategory['id']]) }}" 
                                                 class="flex justify-between items-center text-sm text-gray-600 hover:text-black transition">
                                                     
-                                                <div class="flex items-center">
-                                                    <img src="{{ $subcategory['image_url'] }}" class="h-3 w-3 mr-2" alt="Image" />
+                                                <div class="flex items-center p-1">
                                                     <span class="text-md">{{ $subcategory['name'] }}</span>
                                                 </div>
                                                 

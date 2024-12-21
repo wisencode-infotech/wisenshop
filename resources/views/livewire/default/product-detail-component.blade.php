@@ -136,16 +136,23 @@
 
                         </div>
                         </div>
-                        <div class="mt-4 flex w-full flex-row items-start border-t border-border-200 border-opacity-60 pt-4 md:mt-6 md:pt-6">
-                        <span class="py-1 text-sm font-semibold capitalize text-heading ltr:mr-6 rtl:ml-6">{{ __trans('Categories') }}</span>
-                        <div class="flex flex-row flex-wrap">
-                            <button class="mb-2 whitespace-nowrap rounded border border-border-200 bg-transparent py-1 px-2.5 text-sm lowercase tracking-wider text-heading transition-colors hover:border-accent hover:text-accent focus:bg-opacity-100 focus:outline-0 ltr:mr-2 rtl:ml-2" 
-                            x-navigate href="{{ route('frontend.home', ['catid' => $product->category_id]) }}">
-                                {{ $product->category->name }}
-                            </button>
-                            
+                        @if (!empty($product_category = $product->category))
+                            <div class="mt-4 flex w-full flex-row items-start border-t border-border-200 border-opacity-60 pt-4 md:mt-6 md:pt-6">
+                                <span class="py-1 text-sm font-semibold capitalize text-heading ltr:mr-6 rtl:ml-6">{{ __trans('Categories') }}</span>
+                                <div class="flex flex-row flex-wrap">
+                                    <button class="mb-2 whitespace-nowrap rounded border border-border-200 bg-transparent py-1 px-2.5 text-sm lowercase tracking-wider text-heading transition-colors hover:border-accent hover:text-accent focus:bg-opacity-100 focus:outline-0 ltr:mr-2 rtl:ml-2" 
+                                    x-navigate href="{{ route('frontend.home', ['catid' => $product_category->id]) }}">
+                                        {{ $product_category->name }}
+                                    </button>
+                                    @if (!empty($product_category_parent = $product_category->parent))
+                                        <button class="mb-2 whitespace-nowrap rounded border border-border-200 bg-transparent py-1 px-2.5 text-sm lowercase tracking-wider text-heading transition-colors hover:border-accent hover:text-accent focus:bg-opacity-100 focus:outline-0 ltr:mr-2 rtl:ml-2" 
+                                        x-navigate href="{{ route('frontend.home', ['catid' => $product_category_parent->id]) }}">
+                                            {{ $product_category_parent->name }}
+                                        </button>
+                                    @endif
+                                </div>
                             </div>
-                        </div>
+                        @endif
                     </div>
                 </div>
                 <div class="border-b border-border-200 border-opacity-70 px-5 py-4 lg:px-16 lg:py-14">

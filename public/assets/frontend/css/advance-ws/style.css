@@ -2047,14 +2047,14 @@
   margin-bottom: 35px;
 }
 .sidebar-widget .widget-title{
-  font-size: var(--font-size-b1);
+  font-size: var(--font-size-b3);
   font-weight: var(--medium);
-  color: var(--color-dark);
+  color: var(--color-gray-600);
   margin-bottom: 13px;
   position: relative;
 }
 .sidebar-widget .widget-title:after{
-  content: "-";
+  content: "";
   position: absolute;
   top: 50%;
   right: 0;
@@ -5429,3 +5429,53 @@ fieldset legend{
 /*=====================================
     End Presantation page style
 =======================================*/
+
+.circle-wrapper {
+  position: relative;
+  display: inline-block;
+  border: 1px solid #e9ecef;
+  border-radius: 50%;
+  overflow: hidden;
+}
+
+.circle-wrapper.big {
+  width: 45px;
+  height: 45px;
+  padding: 7px;
+}
+
+.circle-wrapper.medium {
+  width: 35px;
+  height: 35px;
+  padding: 5px;
+}
+
+.circle-wrapper img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.category-checkmark {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.sidebar-widget-body ul li {
+  margin: 2px 0 !important;
+}
+
+.sidebar-widget-body ul {
+  border-bottom: 1px solid red;
+}
+
+.sidebar-widget-body ul.subcategory li {
+  margin-left: 20px !important;
+}
+
+.sidebar-widget-body ul.subcategory {
+  border-bottom: 1px solid #fafafa;
+  padding-bottom: 8px;
+  margin-bottom: 8px;
+}

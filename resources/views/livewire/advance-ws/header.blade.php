@@ -20,7 +20,7 @@
             <div class="column top-left d-none d-md-block">
                <!-- header-message -->
                <div class="header-message">
-                  <p>{{ __trans('Free Express Shipping on orders $200!')}} | <a wire:navigate href="{{ route('frontend.home') }}">{{ __trans('Click and Shop Now.') }}</a></p>
+                  <p>{{ __trans('Exclusive Sell for the festive season')}}. <a wire:navigate href="{{ route('frontend.home') }}">{{ __trans('Click and Shop Now.') }}</a></p>
                </div>
             </div>
             <!--/ End center Left -->

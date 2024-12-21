@@ -215,7 +215,24 @@ class FakeProductSeeder extends FakeAppSeeder
                         'is_primary' => '1'
                     ],
                 ]
-            ]
+            ],
+            [
+                'name' => 'Dell 23.8" OptiPlex 7410 All-in-One Desktop Computer (Silver)',
+                'slug' => 'dell-23-8-optiplex-7410-all-in-one-desktop-computer-silver',
+                'short_description' => 'Streamline your productivity and workspace layout with the conveniently designed silver Dell 23.8" OptiPlex 7410 All-in-One Desktop Computer.',
+                'description' => 'At the center of the OptiPlex is a 13th Gen Intel Core i5-13500 14-Core processor which boosts performance across a multitude of Performance and Efficiency cores to enhance your workflow. Experience enhanced multitasking with 8GB of DDR5 RAM and keep all of your most essential files saved with the 256GB M.2 PCIe 3.0 x4 NVMe SSD. The 23.8" Full HD 1920 x 1080 IPS display gives you clear and smooth visuals backed by integrated Intel UHD Graphics 770 engine.',
+                'price' => 999.99,
+                'stock' => 120,
+                'status' => 1,
+                'category' => $laptop_computer_category,
+                'unit_id' => 5,
+                'images' => [
+                    [
+                        'path' => 'electronics-laptop-computer/dell-23-8-optiplex-7410-all-in-one-desktop-computer-silver.png',
+                        'is_primary' => '1'
+                    ],
+                ]
+            ],
         ];
 
         $products = array_merge($products, $laptop_computer_products);

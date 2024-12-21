@@ -98,6 +98,9 @@
                     <i class="mdi mdi-chevron-down d-none d-xl-inline-block"></i>
                 </button>
                 <div class="dropdown-menu dropdown-menu-end">
+                    <a class="dropdown-item" href="{{ route('backend.changepassword') }}"><i
+                            class="bx bx-lock font-size-16 align-middle me-1"></i><span
+                            key="t-changepassword">Change Password</span></a>
                     <a class="dropdown-item text-danger" href="javascript:void();"
                         onclick="event.preventDefault(); document.getElementById('logout-form').submit();"><i
                             class="bx bx-power-off font-size-16 align-middle me-1 text-danger"></i> <span

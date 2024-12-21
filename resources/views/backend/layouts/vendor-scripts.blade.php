@@ -7,6 +7,7 @@
 <script src="{{ URL::asset('assets/backend/libs/datatables/datatables.min.js')}}"></script>
 <script src="{{ URL::asset('assets/backend/js/pages/toastr.min.js')}}"></script>
 <script src="{{ URL::asset('assets/backend/js/pages/toastr.init.js')}}"></script>
+<script src="{{ URL::asset('assets/backend/js/pages/chart.js')}}"></script>
 <script>
     $('#change-password').on('submit',function(event){
         event.preventDefault();

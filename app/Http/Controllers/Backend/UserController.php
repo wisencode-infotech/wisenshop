@@ -9,6 +9,7 @@ use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Storage;
 use Yajra\DataTables\DataTables;
 use App\Events\UserCreated;
+use Illuminate\Support\Facades\Auth;
 
 class UserController extends Controller
 {
@@ -163,5 +164,30 @@ class UserController extends Controller
         $user->delete();
 
         return response()->json(['success' => 'User deleted successfully.']);
+    }
+
+    public function changePasswordAdmin()
+    {
+        return view('backend.users.changepassword');
+    }
+
+    public function updatePasswordAdmin(Request $request)
+    {
+        $request->validate([
+            'current_password' => 'required',
+            'password' => 'required|min:8|confirmed',
+        ]);
+
+        $user = Auth::user();
+
+        if (!Hash::check($request->current_password, $user->password)) {
+            return response()->json(['status' => 201, 'message' => 'Current password is incorrect.']);
+        }
+
+        $user->password = Hash::make($request->password);
+        $user->save();
+
+        return response()->json(['status' => 200, 'message' => 'Password updated successfully.']);
+
     }
 }

@@ -26,8 +26,14 @@ class OrderController extends Controller
     {
         if ($request->ajax()) {
             $status_filter = $request->input('status_filter');
+            $latest_records = $request->input('latest_records');
 
             $query = Order::query();
+
+            if ($latest_records) {
+                $query->latest()->limit(10);
+            }
+
             if ($status_filter) {
                 $query->where('status', $status_filter);
             }

@@ -95,7 +95,7 @@
                 <form method="POST" action="{{ route('backend.home-settings.sorting-store') }}" enctype="multipart/form-data"> 
                     @csrf
                     <div class="row">
-                        <div class="col-md-12 mb-3 mt-3">
+                        <div class="col-md-12 mb-3">
                             <label for="number_of_products_per_page">{{ __('Number of products per page') }}</label>
                             <input type="number" name="number_of_products_per_page" class="form-control" value="{{ $number_of_products_per_page ?? 15 }}" required>
                         </div>

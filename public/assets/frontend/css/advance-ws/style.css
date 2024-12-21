@@ -5459,19 +5459,11 @@ fieldset legend{
 .category-checkmark {
   display: flex;
   align-items: center;
-  gap: 10px;
+  gap: 6px;
 }
 
 .sidebar-widget-body ul li {
-  margin: 2px 0 !important;
-}
-
-.sidebar-widget-body ul {
-  border-bottom: 1px solid red;
-}
-
-.sidebar-widget-body ul.subcategory li {
-  margin-left: 20px !important;
+  /* margin: 2px 0 !important; */
 }
 
 .sidebar-widget-body ul.subcategory {

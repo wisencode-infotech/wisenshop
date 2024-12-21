@@ -23,15 +23,17 @@ class ProductCategorySidebar extends Component
         
         if (request()->get('catid')) {
             $this->selectedCategoryId = (int) request()->get('catid');
+
+            $parent_id = Category::find(request()->get('catid'))->parent_id;
+
+            if(!empty($parent_id)){
+                $this->updatedSelectedCategoryId($parent_id);
+            }
+
         } elseif (!empty($default_categories)) {
             $this->selectedCategoryId = $default_categories;
             $this->selectedCategories = [$default_categories];
         }
-
-        if (request()->get('main_catid')) {
-            $this->updatedSelectedCategoryId(request()->get('main_catid'));
-        }
-        
     }
 
     public function updatedSelectedCategoryId($categoryId)

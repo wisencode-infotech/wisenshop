@@ -67,7 +67,7 @@
                                         <ul class="pl-4 space-y-2 mt-2">
                                             @foreach($item['subcategories'] as $subcategory)
                                             <li class="hover:bg-gray-50">
-                                                <a href="{{ route('frontend.home', ['catid' => $subcategory['id'], 'main_catid' => $item['id']]) }}" 
+                                                <a href="{{ route('frontend.home', ['catid' => $subcategory['id']]) }}" 
                                                 class="flex justify-between items-center text-sm text-gray-600 hover:text-black transition">
                                                     
                                                 <div class="flex items-center">

@@ -39,7 +39,7 @@
                             </svg>
                             <!-- <span class="text-gray-500">{{ __trans('Loading...') }}</span> -->
                         </div>
-                            <ul wire:loading.remove class="mb-4">
+                            <ul wire:loading.remove class="mt-2 mb-2">
                             @foreach($suggestions as $item)
                                 <li class="group flex flex-col p-2  cursor-pointer transition duration-200" 
                                     style="padding-top: 2px; padding-bottom: 2px;">
@@ -64,14 +64,14 @@
                                         </a>   
 
                                         @if(!empty($item['subcategories']))
-                                        <ul class="pl-4 space-y-2 mt-2">
+                                        <ul class="pl-4 mt-1">
                                             @foreach($item['subcategories'] as $subcategory)
                                             <li class="hover:bg-gray-50">
                                                 <a href="{{ route('frontend.home', ['catid' => $subcategory['id']]) }}" 
                                                 class="flex justify-between items-center text-sm text-gray-600 hover:text-black transition">
                                                     
                                                 <div class="flex items-center">
-                                                    <img src="{{ $subcategory['image_url'] }}" class="h-4 w-4 mr-2" alt="Image" />
+                                                    <img src="{{ $subcategory['image_url'] }}" class="h-3 w-3 mr-2" alt="Image" />
                                                     <span class="text-md">{{ $subcategory['name'] }}</span>
                                                 </div>
                                                 

@@ -204,3 +204,66 @@ ul.subcategory > li {
         float: left;
     }
 }
+
+/* suggestionbox css */
+.filter-suggestion-box {
+    width: 100%;
+    max-width: 700px;
+    margin-left: auto;
+    margin-right: auto;
+    border: 1px solid #e5e7eb;
+    border-radius: 6px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    background-color: #ffffff;
+    padding: 0;
+    max-height: 350px;
+    overflow-y: auto;
+}
+
+.filter-suggestion-box ul {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+}
+
+.filter-suggestion-box ul li {
+    padding: 3px 12px;
+    cursor: pointer;
+} 
+
+.filter-suggestion-box  .category {
+    font-weight: 600;
+    color: #333;
+} 
+
+.filter-suggestion-box  .subcategory {
+    padding-left: 16px;
+    color: #666;
+    font-size: 14px;
+}
+
+.filter-suggestion-box .subcategory:hover {
+    background-color: #f1f5f9;
+}
+
+.filter-suggestion-box .product-item:hover {
+    background-color: #f1f5f9;
+}
+
+.filter-suggestion-box .category_link:hover {
+    background-color: #f1f5f9 !important;
+}
+
+.filter-suggestion-box  .product-item {
+    border-top: 1px solid #f1f5f9;
+}
+
+.filter-suggestion-box  .product-item span {
+    font-size: 14px;
+    color: #555;
+}
+.filter-suggestion-box  .product-item .description {
+    font-size: 11px;
+    color: grey;
+}
+/* End suggesionbox css */

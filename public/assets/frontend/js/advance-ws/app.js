@@ -95,7 +95,9 @@ $('#grocery-search-header').on('focus', function() {
 });
 
 $(document).on('click', '.clear-search', function () {
+  $('.filter-suggestion-box').hide();
   $('#grocery-search-header').val('');
+  $(this).hide();
 });
 
 $(document).on('click', '.wishlist-button', function (e) {

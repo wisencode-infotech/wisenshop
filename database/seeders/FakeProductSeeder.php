@@ -17,9 +17,11 @@ class FakeProductSeeder extends FakeAppSeeder
     {
         // Products seeder
 
-        $mobile_category = Category::where('name', 'Mobile')->select('id', 'slug')->first();
+        $mobile_category = Category::where('slug', 'electronics-mobile')->select('id', 'slug')->first();
 
-        $products = [
+        $products = [];
+
+        $mobile_products = [
             [
                 'name' => 'iPhone 15',
                 'slug' => 'iphone-15',
@@ -191,6 +193,32 @@ class FakeProductSeeder extends FakeAppSeeder
                 ]
             ]
         ];
+
+        $products = array_merge($products, $mobile_products);
+
+        $laptop_computer_category = Category::where('slug', 'electronics-laptop-computer')->select('id', 'slug')->first();
+
+        $laptop_computer_products = [
+            [
+                'name' => 'MacBook Pro 2019 Touch Bar A2141 (Intel Core i9 16 Inch)- Refurbished',
+                'slug' => 'macbook-pro-2019-touch-bar-a2141-intel-core-i9-16-inch-refurbished',
+                'short_description' => 'MacBook Pro 2019 Touch Bar A2141 (Intel Core i9 16 Inch)- Refurbished.',
+                'description' => 'MacBook Pro 2019 Touch Bar A2141 (Intel Core i9 16 Inch)- Refurbished.',
+                'price' => 999.99,
+                'stock' => 120,
+                'status' => 1,
+                'category' => $laptop_computer_category,
+                'unit_id' => 5,
+                'images' => [
+                    [
+                        'path' => 'electronics-laptop-computer/macbook-pro-2019-touch-bar-a2141-intel-core-i9-16-inch-refurbished.png',
+                        'is_primary' => '1'
+                    ],
+                ]
+            ]
+        ];
+
+        $products = array_merge($products, $laptop_computer_products);
 
         foreach ($products as $product) {
 

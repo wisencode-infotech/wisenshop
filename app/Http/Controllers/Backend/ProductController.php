@@ -191,11 +191,13 @@ class ProductController extends Controller
         $product->slug = $request->slug;
         $product->save();
 
+        $product_category = Category::select('id', 'slug')->where('id', $request->category_id)->first();
+
         // Check if images were uploaded
         if ($request->hasFile('images')) {
             foreach ($request->file('images') as $image) {
                 // Store image in products/{product_id}/
-                $path = $image->store('products/' . $product->id, 'public');
+                $path = $image->store('products/' . $product_category->slug . '/' . $product->id, 'public');
                 
                 // Save image path to product_images table
                 ProductImage::create([

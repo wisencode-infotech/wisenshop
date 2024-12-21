@@ -57,16 +57,8 @@ class FakeAppSeeder extends Seeder
         // Categories seeder
         (new FakeCategorySeeder())->run();
 
-        // Products seeder
-        $categories = Category::all();
-        $product_unit_ids = ProductUnit::pluck('id')->toArray();
-
-        foreach ($categories as $category) {
-            Product::factory(10)->create([
-                'category_id' => $category->id,
-                'unit_id' => $product_unit_ids[array_rand($product_unit_ids)]
-            ]);
-        }
+        // Categories seeder
+        (new FakeProductSeeder())->run();
 
         HomePageSetting::updateOrCreate(
             ['meta_key' => 'display_specific_categories_on_page_load'],
@@ -187,12 +179,12 @@ class FakeAppSeeder extends Seeder
                 'description' => fake()->paragraph(),
             ],
             [
-                'title' => 'Big Sale',
+                'title' => 'GearUp For Winter Fun',
                 'image_path' => 'banner-2.png',
                 'description' => fake()->paragraph(),
             ],
             [
-                'title' => 'Speacial Offer',
+                'title' => 'Big Sale',
                 'image_path' => 'banner-3.png', 
                 'description' => fake()->paragraph(),
             ],
@@ -207,7 +199,7 @@ class FakeAppSeeder extends Seeder
                 'description' => fake()->paragraph(),
             ],
             [
-                'title' => 'GearUp For Winter Fun',
+                'title' => 'Speacial Offer',
                 'image_path' => 'banner-6.png',
                 'description' => fake()->paragraph(),
             ],

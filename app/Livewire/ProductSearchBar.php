@@ -23,7 +23,7 @@ class ProductSearchBar extends Component
 
             $categories = Category::where('name', 'like', '%' . $this->search . '%')
             ->with(['subcategories' => function ($query) {
-                $query->select('id', 'parent_id', 'name');
+                $query->select('id', 'parent_id', 'name', 'image_path');
             }])
             ->get();
 
@@ -36,6 +36,7 @@ class ProductSearchBar extends Component
                 $categoryData = [
                     'type' => 'category',
                     'id' => $category->id,
+                    'image_url' => $category->image_url,
                     'name' => $category->name,
                     'count' => $productCount,
                     'subcategories' => [],
@@ -49,6 +50,7 @@ class ProductSearchBar extends Component
                         return [
                             'id' => $subcategory->id,
                             'name' => $subcategory->name,
+                            'image_url' => $subcategory->image_url,
                             'count' => $subcategoryProductCount,
                         ];
                     })->toArray();
@@ -56,6 +58,8 @@ class ProductSearchBar extends Component
 
                 return $categoryData;
             });
+
+            
 
             // Fetch products matching the search
             $products = Product::where('name', 'like', '%' . $this->search . '%')

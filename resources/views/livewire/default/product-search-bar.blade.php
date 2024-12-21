@@ -39,30 +39,42 @@
                             </svg>
                             <!-- <span class="text-gray-500">{{ __trans('Loading...') }}</span> -->
                         </div>
-                            <ul wire:loading.remove>
+                            <ul wire:loading.remove class="mb-4">
                             @foreach($suggestions as $item)
-                                <li class="group flex flex-col p-2 hover:bg-gray-50 cursor-pointer transition duration-200" 
+                                <li class="group flex flex-col p-2  cursor-pointer transition duration-200" 
                                     style="padding-top: 2px; padding-bottom: 2px;">
-                                    <a wire:navigate 
-                                    href="{{ $item['type'] === 'category' 
-                                                    ? route('frontend.home', ['catid' => $item['id']]) 
-                                                    : route('frontend.product-detail', ['product_slug' => $item['slug']]) }}" 
-                                    class="block text-gray-800">
+                                    
                                         @if($item['type'] === 'category')
-                                        <div class="flex items-center justify-between">
-                                            <span class="font-semibold text-black">{{ $item['name'] }}</span>
-                                            @if(empty($item['subcategories']))
-                                            <span class="text-gray-500 text-sm">({{ $item['count'] }} items)</span>
-                                            @endif
-                                        </div>
+                                        
+                                        <a class="hover:bg-gray-50" wire:navigate 
+                                        href="{{ $item['type'] === 'category' 
+                                                        ? route('frontend.home', ['catid' => $item['id']]) 
+                                                        : route('frontend.product-detail', ['product_slug' => $item['slug']]) }}" 
+                                        class="block text-gray-800">
+                                            <div class="flex items-center justify-between">
+                                            
+                                            <div class="flex items-center">
+                                                <img src="{{ $item['image_url'] }}" class="h-5 w-5 mr-2" alt="Image" />
+                                                <span class="font-semibold text-black">{{ $item['name'] }}</span>
+                                            </div>
+                                                @if(empty($item['subcategories']))
+                                                <span class="text-gray-500 text-sm">({{ $item['count'] }} items)</span>
+                                                @endif
+                                            </div>
+                                        </a>   
 
                                         @if(!empty($item['subcategories']))
-                                        <ul class="pl-4">
+                                        <ul class="pl-4 space-y-2 mt-2">
                                             @foreach($item['subcategories'] as $subcategory)
-                                            <li>
-                                                <a href="{{ route('frontend.home', ['catid' => $subcategory['id']]) }}" 
+                                            <li class="hover:bg-gray-50">
+                                                <a href="{{ route('frontend.home', ['catid' => $subcategory['id'], 'main_catid' => $item['id']]) }}" 
                                                 class="flex justify-between items-center text-sm text-gray-600 hover:text-black transition">
+                                                    
+                                                <div class="flex items-center">
+                                                    <img src="{{ $subcategory['image_url'] }}" class="h-4 w-4 mr-2" alt="Image" />
                                                     <span class="text-md">{{ $subcategory['name'] }}</span>
+                                                </div>
+                                                
                                                     <span class="text-gray-400 text-xs">({{ $subcategory['count'] }})</span>
                                                 </a>
                                             </li>
@@ -70,7 +82,7 @@
                                         </ul>
                                         @endif
                                         @else
-                                        <div class="flex flex-col">
+                                        <div class="flex flex-col hover:bg-gray-50">
                                             <div class="flex justify-between">
                                                 <span class="font-medium">{{ $item['name'] }}</span>
                                                 <span class="text-gray-500 text-xs">{{ $item['category'] }}</span>
@@ -78,7 +90,7 @@
                                             <span class="text-gray-400 text-xs">{{ __userCurrencySymbol() }} {{ $item['price'] }} | {{ \Str::limit($item['description'], 50) }}</span>
                                         </div>
                                         @endif
-                                    </a>
+                                   
                                 </li>
                                 @endforeach
                             </ul>

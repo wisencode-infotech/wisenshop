@@ -27,6 +27,11 @@ class ProductCategorySidebar extends Component
             $this->selectedCategoryId = $default_categories;
             $this->selectedCategories = [$default_categories];
         }
+
+        if (request()->get('main_catid')) {
+            $this->updatedSelectedCategoryId(request()->get('main_catid'));
+        }
+        
     }
 
     public function updatedSelectedCategoryId($categoryId)

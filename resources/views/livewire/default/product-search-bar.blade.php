@@ -47,9 +47,7 @@
                                         @if($item['type'] === 'category')
                                         
                                         <a class="hover:bg-gray-50" wire:navigate 
-                                        href="{{ $item['type'] === 'category' 
-                                                        ? route('frontend.home', ['catid' => $item['id']]) 
-                                                        : route('frontend.product-detail', ['product_slug' => $item['slug']]) }}" 
+                                        href="{{ route('frontend.home', ['catid' => $item['id']]) }}" 
                                         class="block text-gray-800">
                                             <div class="flex items-center justify-between">
                                             
@@ -80,6 +78,9 @@
                                         </ul>
                                         @endif
                                         @else
+                                        <a class="hover:bg-gray-50" wire:navigate 
+                                        href="{{ route('frontend.product-detail', ['product_slug' => $item['slug']])  }}" 
+                                        class="block text-gray-800">
                                         <div class="flex flex-col hover:bg-gray-50 p-1">
                                             <div class="flex justify-between">
                                                 <span class="font-medium">{{ $item['name'] }}</span>
@@ -87,6 +88,7 @@
                                             </div>
                                             <span class="text-gray-400 text-xs">{{ __userCurrencySymbol() }} {{ $item['price'] }} | {{ \Str::limit($item['description'], 50) }}</span>
                                         </div>
+                                        </a>
                                         @endif
                                    
                                 </li>

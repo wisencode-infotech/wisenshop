@@ -86,7 +86,7 @@ class FakeCategorySeeder extends FakeAppSeeder
                     ],
                     [
                         'name' => 'Watches',
-                        'image_path' => 'wpmen-watches.jpg',
+                        'image_path' => 'women-watches.jpg',
                         'description' => 'Classic and modern watches to complement your style.'
                     ],
                     [

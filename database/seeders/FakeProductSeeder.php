@@ -1469,9 +1469,1251 @@ class FakeProductSeeder extends FakeAppSeeder
                 ],
             ];
 
-            
         $products = array_merge($products, $men_perfume_products);    
 
+        $women_dress_category = Category::where('slug', 'womens-fashion-dress')->select('id', 'slug')->first();
+
+        $women_dress_products = [
+                [
+                    'name' => 'Zara Floral Maxi Dress',
+                    'slug' => 'zara-floral-maxi-dress',
+                    'short_description' => 'Zara floral maxi dress with a flowy and elegant design.',
+                    'description' => 'This Zara floral maxi dress features a lightweight fabric, perfect for casual outings or summer events. It offers a relaxed fit with vibrant floral prints.',
+                    'price' => 89.99,
+                    'stock' => 150,
+                    'status' => 1,
+                    'category' => $women_dress_category,
+                    'unit_id' => 5,
+                    'images' => [
+                        [
+                            'path' => 'women-dresses/zara-floral-maxi-dress.png',
+                            'is_primary' => '1'
+                        ],
+                    ]
+                ],
+                [
+                    'name' => 'H&M Sleeveless Bodycon Dress',
+                    'slug' => 'hm-sleeveless-bodycon-dress',
+                    'short_description' => 'H&M sleeveless bodycon dress for a chic and modern look.',
+                    'description' => 'The H&M bodycon dress features a sleek and stretchable fabric, enhancing the silhouette. Ideal for parties and formal gatherings.',
+                    'price' => 59.99,
+                    'stock' => 200,
+                    'status' => 1,
+                    'category' => $women_dress_category,
+                    'unit_id' => 5,
+                    'images' => [
+                        [
+                            'path' => 'women-dresses/hm-sleeveless-bodycon-dress.png',
+                            'is_primary' => '1'
+                        ],
+                    ]
+                ],
+                [
+                    'name' => 'Forever 21 Off-Shoulder Mini Dress',
+                    'slug' => 'forever-21-off-shoulder-mini-dress',
+                    'short_description' => 'Forever 21 off-shoulder mini dress with a trendy design.',
+                    'description' => 'This mini dress by Forever 21 features an off-shoulder design with ruffle details, perfect for casual or semi-formal outings.',
+                    'price' => 49.99,
+                    'stock' => 180,
+                    'status' => 1,
+                    'category' => $women_dress_category,
+                    'unit_id' => 5,
+                    'images' => [
+                        [
+                            'path' => 'women-dresses/forever-21-off-shoulder-mini-dress.png',
+                            'is_primary' => '1'
+                        ],
+                    ]
+                ],
+                [
+                    'name' => 'Mango Wrap Midi Dress',
+                    'slug' => 'mango-wrap-midi-dress',
+                    'short_description' => 'Mango wrap midi dress with a flattering fit.',
+                    'description' => 'The Mango wrap midi dress features a v-neckline, adjustable waist tie, and a soft fabric, making it versatile for day or evening wear.',
+                    'price' => 69.99,
+                    'stock' => 140,
+                    'status' => 1,
+                    'category' => $women_dress_category,
+                    'unit_id' => 5,
+                    'images' => [
+                        [
+                            'path' => 'women-dresses/mango-wrap-midi-dress.png',
+                            'is_primary' => '1'
+                        ],
+                    ]
+                ],
+                [
+                    'name' => 'Sabyasachi Silk Saree',
+                    'slug' => 'sabyasachi-silk-saree',
+                    'short_description' => 'Sabyasachi pure silk saree with intricate embroidery.',
+                    'description' => 'This luxurious silk saree by Sabyasachi features handwoven patterns, intricate zari work, and a vibrant pallu, perfect for weddings or special occasions.',
+                    'price' => 1499.99,
+                    'stock' => 30,
+                    'status' => 1,
+                    'category' => $women_dress_category,
+                    'unit_id' => 5,
+                    'images' => [
+                        [
+                            'path' => 'women-dresses/sabyasachi-silk-saree.png',
+                            'is_primary' => '1'
+                        ],
+                    ]
+                ],
+                [
+                    'name' => 'Anarkali Floor-Length Gown',
+                    'slug' => 'anarkali-floor-length-gown',
+                    'short_description' => 'Elegant Anarkali gown with a flowy silhouette.',
+                    'description' => 'This Anarkali gown features a floor-length design with rich embroidery and mirror work, making it perfect for festive and formal occasions.',
+                    'price' => 249.99,
+                    'stock' => 80,
+                    'status' => 1,
+                    'category' => $women_dress_category,
+                    'unit_id' => 5,
+                    'images' => [
+                        [
+                            'path' => 'women-dresses/anarkali-floor-length-gown.png',
+                            'is_primary' => '1'
+                        ],
+                    ]
+                ],
+                [
+                    'name' => 'Lehenga Choli with Dupatta',
+                    'slug' => 'lehenga-choli-with-dupatta',
+                    'short_description' => 'Designer lehenga choli with detailed embellishments.',
+                    'description' => 'This stunning lehenga choli set features heavy embroidery, a matching dupatta, and a flattering fit, perfect for weddings or grand celebrations.',
+                    'price' => 399.99,
+                    'stock' => 50,
+                    'status' => 1,
+                    'category' => $women_dress_category,
+                    'unit_id' => 5,
+                    'images' => [
+                        [
+                            'path' => 'women-dresses/lehenga-choli-with-dupatta.png',
+                            'is_primary' => '1'
+                        ],
+                    ]
+                ],
+                [
+                    'name' => 'Banarasi Silk Saree',
+                    'slug' => 'banarasi-silk-saree',
+                    'short_description' => 'Traditional Banarasi silk saree with golden zari work.',
+                    'description' => 'The Banarasi silk saree showcases timeless craftsmanship with intricate motifs and a luxurious texture, ideal for weddings and cultural events.',
+                    'price' => 999.99,
+                    'stock' => 40,
+                    'status' => 1,
+                    'category' => $women_dress_category,
+                    'unit_id' => 5,
+                    'images' => [
+                        [
+                            'path' => 'women-dresses/banarasi-silk-saree.png',
+                            'is_primary' => '1'
+                        ],
+                    ]
+                ],
+                [
+                    'name' => 'Punjabi Patiala Suit',
+                    'slug' => 'punjabi-patiala-suit',
+                    'short_description' => 'Comfortable and stylish Punjabi Patiala suit.',
+                    'description' => 'This Patiala suit set includes a printed kameez, matching Patiala salwar, and a light dupatta, perfect for casual and festive wear.',
+                    'price' => 79.99,
+                    'stock' => 100,
+                    'status' => 1,
+                    'category' => $women_dress_category,
+                    'unit_id' => 5,
+                    'images' => [
+                        [
+                            'path' => 'women-dresses/punjabi-patiala-suit.png',
+                            'is_primary' => '1'
+                        ],
+                    ]
+                ],
+                [
+                    'name' => 'Gucci Silk Evening Gown',
+                    'slug' => 'gucci-silk-evening-gown',
+                    'short_description' => 'Gucci silk evening gown with a luxurious feel.',
+                    'description' => 'This Gucci evening gown is crafted with premium silk, featuring a flowing design and intricate detailing for high-end occasions.',
+                    'price' => 899.99,
+                    'stock' => 50,
+                    'status' => 1,
+                    'category' => $women_dress_category,
+                    'unit_id' => 5,
+                    'images' => [
+                        [
+                            'path' => 'women-dresses/gucci-silk-evening-gown.png',
+                            'is_primary' => '1'
+                        ],
+                    ]
+                ],
+            ];
+
+
+        $products = array_merge($products, $women_dress_products); 
+
+        $women_handbag_category = Category::where('slug', 'womens-fashion-handbags')->select('id', 'slug')->first();
+
+        $women_handbag_products = [
+                    [
+                        'name' => 'Louis Vuitton Neverfull MM',
+                        'slug' => 'louis-vuitton-neverfull-mm',
+                        'short_description' => 'Iconic Louis Vuitton Neverfull MM tote with monogram canvas.',
+                        'description' => 'This luxury tote bag from Louis Vuitton features a spacious interior, durable monogram canvas, and adjustable side laces for added elegance and functionality.',
+                        'price' => 1999.99,
+                        'stock' => 20,
+                        'status' => 1,
+                        'category' => $women_handbag_category,
+                        'unit_id' => 5,
+                        'images' => [
+                            [
+                                'path' => 'women-handbags/louis-vuitton-neverfull-mm.png',
+                                'is_primary' => '1'
+                            ],
+                        ]
+                    ],
+                    [
+                        'name' => 'Coach Tabby Shoulder Bag',
+                        'slug' => 'coach-tabby-shoulder-bag',
+                        'short_description' => 'Coach Tabby shoulder bag in polished pebble leather.',
+                        'description' => 'The Coach Tabby bag offers a contemporary design with a structured silhouette, magnetic snap closure, and detachable straps for versatile styling.',
+                        'price' => 349.99,
+                        'stock' => 50,
+                        'status' => 1,
+                        'category' => $women_handbag_category,
+                        'unit_id' => 5,
+                        'images' => [
+                            [
+                                'path' => 'women-handbags/coach-tabby-shoulder-bag.png',
+                                'is_primary' => '1'
+                            ],
+                        ]
+                    ],
+                    [
+                        'name' => 'Hidesign Cerys Shoulder Bag',
+                        'slug' => 'hidesign-cerys-shoulder-bag',
+                        'short_description' => 'Hidesign leather shoulder bag with handcrafted detailing.',
+                        'description' => 'This Hidesign Cerys bag is made from premium vegetable-tanned leather, featuring a sophisticated design, spacious compartments, and a chic look.',
+                        'price' => 199.99,
+                        'stock' => 60,
+                        'status' => 1,
+                        'category' => $women_handbag_category,
+                        'unit_id' => 5,
+                        'images' => [
+                            [
+                                'path' => 'women-handbags/hidesign-cerys-shoulder-bag.png',
+                                'is_primary' => '1'
+                            ],
+                        ]
+                    ],
+                    [
+                        'name' => 'Da Milano Tote Bag',
+                        'slug' => 'da-milano-tote-bag',
+                        'short_description' => 'Elegant Da Milano tote bag with textured leather.',
+                        'description' => 'The Da Milano tote bag features high-quality textured leather, polished hardware, and ample storage, making it a perfect companion for everyday use.',
+                        'price' => 249.99,
+                        'stock' => 40,
+                        'status' => 1,
+                        'category' => $women_handbag_category,
+                        'unit_id' => 5,
+                        'images' => [
+                            [
+                                'path' => 'women-handbags/da-milano-tote-bag.png',
+                                'is_primary' => '1'
+                            ],
+                        ]
+                    ],
+                    [
+                        'name' => 'Michael Kors Jet Set Crossbody',
+                        'slug' => 'michael-kors-jet-set-crossbody',
+                        'short_description' => 'Michael Kors Jet Set crossbody bag in saffiano leather.',
+                        'description' => 'This crossbody bag by Michael Kors features saffiano leather construction, adjustable straps, and a compact design for effortless style on the go.',
+                        'price' => 199.99,
+                        'stock' => 80,
+                        'status' => 1,
+                        'category' => $women_handbag_category,
+                        'unit_id' => 5,
+                        'images' => [
+                            [
+                                'path' => 'women-handbags/michael-kors-jet-set-crossbody.png',
+                                'is_primary' => '1'
+                            ],
+                        ]
+                    ],
+                    [
+                        'name' => 'Lavie Delsey Satchel',
+                        'slug' => 'lavie-delsey-satchel',
+                        'short_description' => 'Lavie Delsey satchel with modern and versatile design.',
+                        'description' => 'The Lavie Delsey satchel bag features a spacious interior, double handles, and a detachable sling strap, perfect for work and casual outings.',
+                        'price' => 59.99,
+                        'stock' => 120,
+                        'status' => 1,
+                        'category' => $women_handbag_category,
+                        'unit_id' => 5,
+                        'images' => [
+                            [
+                                'path' => 'women-handbags/lavie-delsey-satchel.png',
+                                'is_primary' => '1'
+                            ],
+                        ]
+                    ],
+                    [
+                        'name' => 'Fossil Ryder Leather Tote',
+                        'slug' => 'fossil-ryder-leather-tote',
+                        'short_description' => 'Fossil Ryder tote bag with a vintage-inspired design.',
+                        'description' => 'The Fossil Ryder tote bag offers a timeless look with genuine leather, multiple compartments, and a comfortable carrying experience.',
+                        'price' => 179.99,
+                        'stock' => 70,
+                        'status' => 1,
+                        'category' => $women_handbag_category,
+                        'unit_id' => 5,
+                        'images' => [
+                            [
+                                'path' => 'women-handbags/fossil-ryder-leather-tote.png',
+                                'is_primary' => '1'
+                            ],
+                        ]
+                    ],
+                    [
+                        'name' => 'Zouk Vegan Handbag',
+                        'slug' => 'zouk-vegan-handbag',
+                        'short_description' => 'Zouk handcrafted vegan handbag with Indian prints.',
+                        'description' => 'This Zouk handbag features vibrant Indian-inspired prints, eco-friendly materials, and a functional design, blending tradition and modernity.',
+                        'price' => 49.99,
+                        'stock' => 150,
+                        'status' => 1,
+                        'category' => $women_handbag_category,
+                        'unit_id' => 5,
+                        'images' => [
+                            [
+                                'path' => 'women-handbags/zouk-vegan-handbag.png',
+                                'is_primary' => '1'
+                            ],
+                        ]
+                    ],
+                    [
+                        'name' => 'Caprese Adele Handbag',
+                        'slug' => 'caprese-adele-handbag',
+                        'short_description' => 'Caprese Adele handbag with sleek and modern style.',
+                        'description' => 'The Caprese Adele handbag offers a lightweight design with multiple pockets and durable material, perfect for everyday essentials.',
+                        'price' => 79.99,
+                        'stock' => 100,
+                        'status' => 1,
+                        'category' => $women_handbag_category,
+                        'unit_id' => 5,
+                        'images' => [
+                            [
+                                'path' => 'women-handbags/caprese-adele-handbag.png',
+                                'is_primary' => '1'
+                            ],
+                        ]
+                    ],
+                    [
+                        'name' => 'Baggit Tote Bag',
+                        'slug' => 'baggit-tote-bag',
+                        'short_description' => 'Baggit tote bag with a minimalist and eco-friendly design.',
+                        'description' => 'This Baggit tote bag is crafted with vegan leather, offering a spacious compartment, sturdy handles, and a casual yet stylish look.',
+                        'price' => 39.99,
+                        'stock' => 140,
+                        'status' => 1,
+                        'category' => $women_handbag_category,
+                        'unit_id' => 5,
+                        'images' => [
+                            [
+                                'path' => 'women-handbags/baggit-tote-bag.png',
+                                'is_primary' => '1'
+                            ],
+                        ]
+                    ],
+                ];
+
+        $products = array_merge($products, $women_handbag_products);
+
+        $women_watch_category = Category::where('slug', 'womens-fashion-watches')->select('id', 'slug')->first();
+
+        $women_watches_products =[
+                    [
+                        'name' => 'Michael Kors Parker Chronograph Watch',
+                        'slug' => 'michael-kors-parker-watch',
+                        'short_description' => 'Michael Kors Parker chronograph watch with a crystal-embellished bezel.',
+                        'description' => 'The Michael Kors Parker watch features a stainless-steel case, a stunning crystal bezel, and multifunction sub-dials for an elegant and functional timepiece.',
+                        'price' => 299.99,
+                        'stock' => 30,
+                        'status' => 1,
+                        'category' => $women_watch_category,
+                        'unit_id' => 5,
+                        'images' => [
+                            [
+                                'path' => 'women-watches/michael-kors-parker-watch.png',
+                                'is_primary' => '1'
+                            ],
+                        ]
+                    ],
+                    [
+                        'name' => 'Fossil Virginia Quartz Watch',
+                        'slug' => 'fossil-virginia-quartz-watch',
+                        'short_description' => 'Fossil Virginia quartz watch with a delicate design.',
+                        'description' => 'This Fossil Virginia watch offers a sleek, feminine design with stainless steel construction, Roman numeral markers, and crystal accents for added sparkle.',
+                        'price' => 159.99,
+                        'stock' => 50,
+                        'status' => 1,
+                        'category' => $women_watch_category,
+                        'unit_id' => 5,
+                        'images' => [
+                            [
+                                'path' => 'women-watches/fossil-virginia-quartz-watch.png',
+                                'is_primary' => '1'
+                            ],
+                        ]
+                    ],
+                    [
+                        'name' => 'Titan Raga Viva Analog Watch',
+                        'slug' => 'titan-raga-viva-analog-watch',
+                        'short_description' => 'Titan Raga Viva watch with a floral-inspired dial.',
+                        'description' => 'The Titan Raga Viva analog watch features a gold-tone case, intricate floral patterns on the dial, and a premium leather strap for a sophisticated touch.',
+                        'price' => 119.99,
+                        'stock' => 40,
+                        'status' => 1,
+                        'category' => $women_watch_category,
+                        'unit_id' => 5,
+                        'images' => [
+                            [
+                                'path' => 'women-watches/titan-raga-viva-analog-watch.png',
+                                'is_primary' => '1'
+                            ],
+                        ]
+                    ],
+                    [
+                        'name' => 'Daniel Wellington Petite Melrose Watch',
+                        'slug' => 'daniel-wellington-petite-melrose-watch',
+                        'short_description' => 'Daniel Wellington Petite Melrose watch with rose gold mesh strap.',
+                        'description' => 'The Daniel Wellington Petite Melrose watch offers a minimalist design with a white dial, slim hands, and a sleek rose gold mesh strap for a modern look.',
+                        'price' => 199.99,
+                        'stock' => 60,
+                        'status' => 1,
+                        'category' => $women_watch_category,
+                        'unit_id' => 5,
+                        'images' => [
+                            [
+                                'path' => 'women-watches/daniel-wellington-petite-melrose-watch.png',
+                                'is_primary' => '1'
+                            ],
+                        ]
+                    ],
+                    [
+                        'name' => 'Guess Nova Diamond Dial Watch',
+                        'slug' => 'guess-nova-diamond-dial-watch',
+                        'short_description' => 'Guess Nova watch with diamond accents on the dial.',
+                        'description' => 'The Guess Nova watch features a polished stainless steel case, diamond-accented dial, and an elegant bracelet strap for a glamorous look.',
+                        'price' => 249.99,
+                        'stock' => 25,
+                        'status' => 1,
+                        'category' => $women_watch_category,
+                        'unit_id' => 5,
+                        'images' => [
+                            [
+                                'path' => 'women-watches/guess-nova-diamond-dial-watch.png',
+                                'is_primary' => '1'
+                            ],
+                        ]
+                    ],
+                    [
+                        'name' => 'Anne Klein Bracelet Watch',
+                        'slug' => 'anne-klein-bracelet-watch',
+                        'short_description' => 'Anne Klein bracelet watch with a mother-of-pearl dial.',
+                        'description' => 'This Anne Klein watch combines classic style with a sleek bracelet design, featuring a mother-of-pearl dial and a gold-tone finish.',
+                        'price' => 99.99,
+                        'stock' => 80,
+                        'status' => 1,
+                        'category' => $women_watch_category,
+                        'unit_id' => 5,
+                        'images' => [
+                            [
+                                'path' => 'women-watches/anne-klein-bracelet-watch.png',
+                                'is_primary' => '1'
+                            ],
+                        ]
+                    ],
+                    [
+                        'name' => 'Rado Florence Automatic Watch',
+                        'slug' => 'rado-florence-automatic-watch',
+                        'short_description' => 'Rado Florence automatic watch with sapphire crystal.',
+                        'description' => 'The Rado Florence watch features a sleek stainless steel bracelet, automatic movement, and a scratch-resistant sapphire crystal, offering elegance and durability.',
+                        'price' => 999.99,
+                        'stock' => 10,
+                        'status' => 1,
+                        'category' => $women_watch_category,
+                        'unit_id' => 5,
+                        'images' => [
+                            [
+                                'path' => 'women-watches/rado-florence-automatic-watch.png',
+                                'is_primary' => '1'
+                            ],
+                        ]
+                    ],
+                    [
+                        'name' => 'Casio Sheen Swarovski Crystal Watch',
+                        'slug' => 'casio-sheen-swarovski-crystal-watch',
+                        'short_description' => 'Casio Sheen watch with Swarovski crystal embellishments.',
+                        'description' => 'The Casio Sheen watch combines fashion and functionality with Swarovski crystals, a chronograph dial, and a durable stainless steel band.',
+                        'price' => 179.99,
+                        'stock' => 70,
+                        'status' => 1,
+                        'category' => $women_watch_category,
+                        'unit_id' => 5,
+                        'images' => [
+                            [
+                                'path' => 'women-watches/casio-sheen-swarovski-crystal-watch.png',
+                                'is_primary' => '1'
+                            ],
+                        ]
+                    ],
+                    [
+                        'name' => 'Tissot Flamingo Ladies Watch',
+                        'slug' => 'tissot-flamingo-ladies-watch',
+                        'short_description' => 'Tissot Flamingo ladies watch with a sleek and timeless design.',
+                        'description' => 'The Tissot Flamingo watch features a stainless steel case, quartz movement, and a minimalist aesthetic, perfect for both casual and formal occasions.',
+                        'price' => 299.99,
+                        'stock' => 20,
+                        'status' => 1,
+                        'category' => $women_watch_category,
+                        'unit_id' => 5,
+                        'images' => [
+                            [
+                                'path' => 'women-watches/tissot-flamingo-ladies-watch.png',
+                                'is_primary' => '1'
+                            ],
+                        ]
+                    ],
+                    [
+                        'name' => 'Sonata Ocean Series Watch',
+                        'slug' => 'sonata-ocean-series-watch',
+                        'short_description' => 'Sonata Ocean Series women’s watch with water resistance.',
+                        'description' => 'This Sonata Ocean Series watch is designed for active women, offering water resistance, a durable case, and a sporty design for everyday wear.',
+                        'price' => 49.99,
+                        'stock' => 100,
+                        'status' => 1,
+                        'category' => $women_watch_category,
+                        'unit_id' => 5,
+                        'images' => [
+                            [
+                                'path' => 'women-watches/sonata-ocean-series-watch.png',
+                                'is_primary' => '1'
+                            ],
+                        ]
+                    ],
+                ];
+
+        $products = array_merge($products, $women_watches_products);    
+
+        $women_perfume_category = Category::where('slug', 'womens-fashion-women-perfumes')->select('id', 'slug')->first();
+
+        $women_perfumes_products = [
+                [
+                    'name' => 'Chanel No. 5 Eau de Parfum',
+                    'slug' => 'chanel-no-5-eau-de-parfum',
+                    'short_description' => 'The iconic Chanel No. 5 Eau de Parfum with timeless floral notes.',
+                    'description' => 'Chanel No. 5 is a legendary perfume with an elegant blend of floral aldehydes, jasmine, and rose, creating a timeless and sophisticated fragrance.',
+                    'price' => 149.99,
+                    'stock' => 50,
+                    'status' => 1,
+                    'category' => $women_perfume_category,
+                    'unit_id' => 5,
+                    'images' => [
+                        [
+                            'path' => 'women-perfumes/chanel-no-5-eau-de-parfum.png',
+                            'is_primary' => '1'
+                        ],
+                    ]
+                ],
+                [
+                    'name' => 'Dior J’adore Eau de Parfum',
+                    'slug' => 'dior-j-adore-eau-de-parfum',
+                    'short_description' => 'Dior J’adore with a luxurious floral bouquet.',
+                    'description' => 'Dior J’adore is a radiant and sophisticated fragrance featuring a blend of ylang-ylang, Damascus rose, and jasmine sambac for a floral delight.',
+                    'price' => 139.99,
+                    'stock' => 40,
+                    'status' => 1,
+                    'category' => $women_perfume_category,
+                    'unit_id' => 5,
+                    'images' => [
+                        [
+                            'path' => 'women-perfumes/dior-j-adore-eau-de-parfum.png',
+                            'is_primary' => '1'
+                        ],
+                    ]
+                ],
+                [
+                    'name' => 'Gucci Bloom Eau de Parfum',
+                    'slug' => 'gucci-bloom-eau-de-parfum',
+                    'short_description' => 'Gucci Bloom with a blend of tuberose and jasmine.',
+                    'description' => 'Gucci Bloom captures the essence of a thriving garden with notes of tuberose, jasmine, and Rangoon creeper, offering a fresh and vibrant fragrance.',
+                    'price' => 119.99,
+                    'stock' => 60,
+                    'status' => 1,
+                    'category' => $women_perfume_category,
+                    'unit_id' => 5,
+                    'images' => [
+                        [
+                            'path' => 'women-perfumes/gucci-bloom-eau-de-parfum.png',
+                            'is_primary' => '1'
+                        ],
+                    ]
+                ],
+                [
+                    'name' => 'Yves Saint Laurent Black Opium',
+                    'slug' => 'yves-saint-laurent-black-opium',
+                    'short_description' => 'YSL Black Opium with bold and addictive notes.',
+                    'description' => 'YSL Black Opium is a seductive fragrance with a mix of coffee, vanilla, and orange blossom, offering a bold and glamorous scent.',
+                    'price' => 129.99,
+                    'stock' => 35,
+                    'status' => 1,
+                    'category' => $women_perfume_category,
+                    'unit_id' => 5,
+                    'images' => [
+                        [
+                            'path' => 'women-perfumes/yves-saint-laurent-black-opium.png',
+                            'is_primary' => '1'
+                        ],
+                    ]
+                ],
+                [
+                    'name' => 'Lancome La Vie Est Belle',
+                    'slug' => 'lancome-la-vie-est-belle',
+                    'short_description' => 'Lancome La Vie Est Belle with sweet and floral tones.',
+                    'description' => 'Lancome La Vie Est Belle features notes of iris, praline, and patchouli, creating a warm, sweet, and luxurious fragrance.',
+                    'price' => 124.99,
+                    'stock' => 45,
+                    'status' => 1,
+                    'category' => $women_perfume_category,
+                    'unit_id' => 5,
+                    'images' => [
+                        [
+                            'path' => 'women-perfumes/lancome-la-vie-est-belle.png',
+                            'is_primary' => '1'
+                        ],
+                    ]
+                ],
+                [
+                    'name' => 'Calvin Klein Euphoria',
+                    'slug' => 'calvin-klein-euphoria',
+                    'short_description' => 'Calvin Klein Euphoria with exotic fruit and floral notes.',
+                    'description' => 'Calvin Klein Euphoria is an enchanting fragrance with notes of pomegranate, orchid, and mahogany, creating a mysterious and seductive scent.',
+                    'price' => 89.99,
+                    'stock' => 70,
+                    'status' => 1,
+                    'category' => $women_perfume_category,
+                    'unit_id' => 5,
+                    'images' => [
+                        [
+                            'path' => 'women-perfumes/calvin-klein-euphoria.png',
+                            'is_primary' => '1'
+                        ],
+                    ]
+                ],
+                [
+                    'name' => 'Versace Bright Crystal',
+                    'slug' => 'versace-bright-crystal',
+                    'short_description' => 'Versace Bright Crystal with fresh and vibrant notes.',
+                    'description' => 'Versace Bright Crystal is a delightful fragrance with a blend of pomegranate, peony, and lotus flower, offering a fresh and feminine scent.',
+                    'price' => 99.99,
+                    'stock' => 50,
+                    'status' => 1,
+                    'category' => $women_perfume_category,
+                    'unit_id' => 5,
+                    'images' => [
+                        [
+                            'path' => 'women-perfumes/versace-bright-crystal.png',
+                            'is_primary' => '1'
+                        ],
+                    ]
+                ],
+                [
+                    'name' => 'Burberry Her Eau de Parfum',
+                    'slug' => 'burberry-her-eau-de-parfum',
+                    'short_description' => 'Burberry Her with a fruity and floral composition.',
+                    'description' => 'Burberry Her is a vibrant fragrance with notes of dark berries, jasmine, and musk, creating a youthful and energetic scent.',
+                    'price' => 109.99,
+                    'stock' => 55,
+                    'status' => 1,
+                    'category' => $women_perfume_category,
+                    'unit_id' => 5,
+                    'images' => [
+                        [
+                            'path' => 'women-perfumes/burberry-her-eau-de-parfum.png',
+                            'is_primary' => '1'
+                        ],
+                    ]
+                ],
+                [
+                    'name' => 'Narciso Rodriguez For Her',
+                    'slug' => 'narciso-rodriguez-for-her',
+                    'short_description' => 'Narciso Rodriguez For Her with sensual musk notes.',
+                    'description' => 'Narciso Rodriguez For Her is a sophisticated fragrance with a blend of musk, amber, and floral notes, offering a soft and alluring scent.',
+                    'price' => 129.99,
+                    'stock' => 30,
+                    'status' => 1,
+                    'category' => $women_perfume_category,
+                    'unit_id' => 5,
+                    'images' => [
+                        [
+                            'path' => 'women-perfumes/narciso-rodriguez-for-her.png',
+                            'is_primary' => '1'
+                        ],
+                    ]
+                ],
+                [
+                    'name' => 'Fogg I Am Queen Perfume',
+                    'slug' => 'fogg-i-am-queen-perfume',
+                    'short_description' => 'Fogg I Am Queen with an exotic and long-lasting scent.',
+                    'description' => 'Fogg I Am Queen is an Indian fragrance featuring a unique blend of floral, fruity, and woody notes, perfect for everyday wear.',
+                    'price' => 29.99,
+                    'stock' => 100,
+                    'status' => 1,
+                    'category' => $women_perfume_category,
+                    'unit_id' => 5,
+                    'images' => [
+                        [
+                            'path' => 'women-perfumes/fogg-i-am-queen-perfume.png',
+                            'is_primary' => '1'
+                        ],
+                    ]
+                ],
+            ];
+
+
+        $products = array_merge($products, $women_perfumes_products);
+
+         $kids_toy_category = Category::where('slug', 'kids-baby-products-toys')->select('id', 'slug')->first();
+
+        $kids_toy_products = [
+                [
+                    'name' => 'LEGO Classic Creative Bricks',
+                    'slug' => 'lego-classic-creative-bricks',
+                    'short_description' => 'A LEGO set with colorful bricks to inspire creativity.',
+                    'description' => 'The LEGO Classic Creative Bricks set includes a variety of colorful bricks, wheels, and eyes to encourage imaginative play and creativity.',
+                    'price' => 29.99,
+                    'stock' => 100,
+                    'status' => 1,
+                    'category' => $kids_toy_category,
+                    'unit_id' => 5,
+                    'images' => [
+                        [
+                            'path' => 'kids-toys/lego-classic-creative-bricks.png',
+                            'is_primary' => '1'
+                        ],
+                    ]
+                ],
+                [
+                    'name' => 'Barbie Dreamhouse Playset',
+                    'slug' => 'barbie-dreamhouse-playset',
+                    'short_description' => 'A deluxe Barbie Dreamhouse with lights and sound effects.',
+                    'description' => 'The Barbie Dreamhouse Playset includes multiple rooms, an elevator, and over 70 accessories for hours of creative role-play fun.',
+                    'price' => 199.99,
+                    'stock' => 30,
+                    'status' => 1,
+                    'category' => $kids_toy_category,
+                    'unit_id' => 5,
+                    'images' => [
+                        [
+                            'path' => 'kids-toys/barbie-dreamhouse-playset.png',
+                            'is_primary' => '1'
+                        ],
+                    ]
+                ],
+                [
+                    'name' => 'Hot Wheels Ultimate Garage',
+                    'slug' => 'hot-wheels-ultimate-garage',
+                    'short_description' => 'Hot Wheels garage with multiple parking levels and a shark attack feature.',
+                    'description' => 'The Hot Wheels Ultimate Garage includes parking for over 90 cars, a loop track, and an exciting shark attack challenge for endless racing adventures.',
+                    'price' => 119.99,
+                    'stock' => 40,
+                    'status' => 1,
+                    'category' => $kids_toy_category,
+                    'unit_id' => 5,
+                    'images' => [
+                        [
+                            'path' => 'kids-toys/hot-wheels-ultimate-garage.png',
+                            'is_primary' => '1'
+                        ],
+                    ]
+                ],
+                [
+                    'name' => 'Play-Doh Modeling Compound 10-Pack',
+                    'slug' => 'play-doh-modeling-compound-10-pack',
+                    'short_description' => 'A 10-pack of Play-Doh modeling compound in vibrant colors.',
+                    'description' => 'This Play-Doh pack includes 10 cans of colorful modeling compound for creative sculpting and imaginative play.',
+                    'price' => 14.99,
+                    'stock' => 120,
+                    'status' => 1,
+                    'category' => $kids_toy_category,
+                    'unit_id' => 5,
+                    'images' => [
+                        [
+                            'path' => 'kids-toys/play-doh-modeling-compound-10-pack.png',
+                            'is_primary' => '1'
+                        ],
+                    ]
+                ],
+                [
+                    'name' => 'Nerf Elite 2.0 Commander Blaster',
+                    'slug' => 'nerf-elite-2-commander-blaster',
+                    'short_description' => 'A Nerf blaster with a rotating barrel and 12-dart capacity.',
+                    'description' => 'The Nerf Elite 2.0 Commander Blaster features a 6-dart rotating barrel, tactical rails, and comes with 12 Nerf Elite darts for action-packed fun.',
+                    'price' => 24.99,
+                    'stock' => 80,
+                    'status' => 1,
+                    'category' => $kids_toy_category,
+                    'unit_id' => 5,
+                    'images' => [
+                        [
+                            'path' => 'kids-toys/nerf-elite-2-commander-blaster.png',
+                            'is_primary' => '1'
+                        ],
+                    ]
+                ],
+                [
+                    'name' => 'Fisher-Price Laugh & Learn Smart Stages Chair',
+                    'slug' => 'fisher-price-laugh-and-learn-smart-stages-chair',
+                    'short_description' => 'Interactive chair with songs and learning activities for toddlers.',
+                    'description' => 'The Fisher-Price Laugh & Learn Smart Stages Chair features songs, phrases, and interactive activities to help toddlers learn and play.',
+                    'price' => 49.99,
+                    'stock' => 50,
+                    'status' => 1,
+                    'category' => $kids_toy_category,
+                    'unit_id' => 5,
+                    'images' => [
+                        [
+                            'path' => 'kids-toys/fisher-price-laugh-and-learn-smart-stages-chair.png',
+                            'is_primary' => '1'
+                        ],
+                    ]
+                ],
+                [
+                    'name' => 'Melissa & Doug Wooden Building Blocks',
+                    'slug' => 'melissa-and-doug-wooden-building-blocks',
+                    'short_description' => 'A set of 100 wooden blocks in various shapes and colors.',
+                    'description' => 'This Melissa & Doug wooden block set includes 100 durable wooden blocks in bright colors and classic shapes for creative building.',
+                    'price' => 19.99,
+                    'stock' => 90,
+                    'status' => 1,
+                    'category' => $kids_toy_category,
+                    'unit_id' => 5,
+                    'images' => [
+                        [
+                            'path' => 'kids-toys/melissa-and-doug-wooden-building-blocks.png',
+                            'is_primary' => '1'
+                        ],
+                    ]
+                ],
+                [
+                    'name' => 'VTech KidiZoom Smartwatch DX2',
+                    'slug' => 'vtech-kidizoom-smartwatch-dx2',
+                    'short_description' => 'A kid-friendly smartwatch with games, a camera, and learning activities.',
+                    'description' => 'The VTech KidiZoom Smartwatch DX2 features a built-in camera, interactive games, and a durable design perfect for young kids.',
+                    'price' => 64.99,
+                    'stock' => 35,
+                    'status' => 1,
+                    'category' => $kids_toy_category,
+                    'unit_id' => 5,
+                    'images' => [
+                        [
+                            'path' => 'kids-toys/vtech-kidizoom-smartwatch-dx2.png',
+                            'is_primary' => '1'
+                        ],
+                    ]
+                ],
+                [
+                    'name' => 'Little Tikes Cozy Coupe',
+                    'slug' => 'little-tikes-cozy-coupe',
+                    'short_description' => 'A classic ride-on toy car for kids.',
+                    'description' => 'The Little Tikes Cozy Coupe is a durable ride-on car with a working horn, removable floorboard, and fun graphics for endless play.',
+                    'price' => 59.99,
+                    'stock' => 20,
+                    'status' => 1,
+                    'category' => $kids_toy_category,
+                    'unit_id' => 5,
+                    'images' => [
+                        [
+                            'path' => 'kids-toys/little-tikes-cozy-coupe.png',
+                            'is_primary' => '1'
+                        ],
+                    ]
+                ],
+                [
+                    'name' => 'Crayola Inspiration Art Case',
+                    'slug' => 'crayola-inspiration-art-case',
+                    'short_description' => 'A 140-piece Crayola art set with crayons, markers, and more.',
+                    'description' => 'The Crayola Inspiration Art Case includes 140 art supplies, including crayons, markers, and colored pencils, all organized in a portable case.',
+                    'price' => 29.99,
+                    'stock' => 70,
+                    'status' => 1,
+                    'category' => $kids_toy_category,
+                    'unit_id' => 5,
+                    'images' => [
+                        [
+                            'path' => 'kids-toys/crayola-inspiration-art-case.png',
+                            'is_primary' => '1'
+                        ],
+                    ]
+                ],
+            ];
+
+
+        $products = array_merge($products, $kids_toy_products);
+
+        $kids_diapers_category = Category::where('slug', 'kids-baby-products-diapers')->select('id', 'slug')->first();
+
+        $kids_diaper_products = [
+                [
+                    'name' => 'Pampers Premium Care Diapers',
+                    'slug' => 'pampers-premium-care-diapers',
+                    'short_description' => 'Pampers Premium Care Diapers with ultra-soft material and superior leakage protection.',
+                    'description' => 'Pampers Premium Care Diapers offer 5-star skin protection with breathable material, wetness indicator, and extra dryness for ultimate comfort.',
+                    'price' => 29.99,
+                    'stock' => 150,
+                    'status' => 1,
+                    'category' => $kids_diapers_category,
+                    'unit_id' => 5,
+                    'images' => [
+                        [
+                            'path' => 'kids-diapers/pampers-premium-care-diapers.png',
+                            'is_primary' => '1'
+                        ],
+                    ]
+                ],
+                [
+                    'name' => 'Huggies Little Snugglers',
+                    'slug' => 'huggies-little-snugglers',
+                    'short_description' => 'Huggies Little Snugglers with a pocketed waistband for newborns.',
+                    'description' => 'Huggies Little Snugglers are designed with a gentle absorb liner, leak lock system, and umbilical cord cut-out for newborns.',
+                    'price' => 24.99,
+                    'stock' => 200,
+                    'status' => 1,
+                    'category' => $kids_diapers_category,
+                    'unit_id' => 5,
+                    'images' => [
+                        [
+                            'path' => 'kids-diapers/huggies-little-snugglers.png',
+                            'is_primary' => '1'
+                        ],
+                    ]
+                ],
+                [
+                    'name' => 'Mamypoko Pants Extra Absorb',
+                    'slug' => 'mamypoko-pants-extra-absorb',
+                    'short_description' => 'Mamypoko Pants with extra absorbency for all-night protection.',
+                    'description' => 'Mamypoko Pants Extra Absorb diapers feature an easy-to-wear pant style with up to 12 hours of protection and a soft, comfortable fit.',
+                    'price' => 19.99,
+                    'stock' => 250,
+                    'status' => 1,
+                    'category' => $kids_diapers_category,
+                    'unit_id' => 5,
+                    'images' => [
+                        [
+                            'path' => 'kids-diapers/mamypoko-pants-extra-absorb.png',
+                            'is_primary' => '1'
+                        ],
+                    ]
+                ],
+                [
+                    'name' => 'Luvs Ultra Leakguards Diapers',
+                    'slug' => 'luvs-ultra-leakguards-diapers',
+                    'short_description' => 'Luvs diapers with night lock technology for leakage protection.',
+                    'description' => 'Luvs Ultra Leakguards feature triple leakguards, soft material, and an absorbent core for day and night protection.',
+                    'price' => 21.99,
+                    'stock' => 180,
+                    'status' => 1,
+                    'category' => $kids_diapers_category,
+                    'unit_id' => 5,
+                    'images' => [
+                        [
+                            'path' => 'kids-diapers/luvs-ultra-leakguards-diapers.png',
+                            'is_primary' => '1'
+                        ],
+                    ]
+                ],
+                [
+                    'name' => 'The Honest Company Baby Diapers',
+                    'slug' => 'honest-company-baby-diapers',
+                    'short_description' => 'Plant-based baby diapers with cute designs and excellent absorbency.',
+                    'description' => 'Honest Company diapers are hypoallergenic, eco-friendly, and feature adorable designs with enhanced leak protection and softness.',
+                    'price' => 27.99,
+                    'stock' => 130,
+                    'status' => 1,
+                    'category' => $kids_diapers_category,
+                    'unit_id' => 5,
+                    'images' => [
+                        [
+                            'path' => 'kids-diapers/honest-company-baby-diapers.png',
+                            'is_primary' => '1'
+                        ],
+                    ]
+                ],
+                [
+                    'name' => 'Huggies Little Movers',
+                    'slug' => 'huggies-little-movers',
+                    'short_description' => 'Huggies diapers with double grip strips for active babies.',
+                    'description' => 'Huggies Little Movers provide a snug fit with leak lock protection, ideal for babies on the go, ensuring comfort and dryness.',
+                    'price' => 25.99,
+                    'stock' => 170,
+                    'status' => 1,
+                    'category' => $kids_diapers_category,
+                    'unit_id' => 5,
+                    'images' => [
+                        [
+                            'path' => 'kids-diapers/huggies-little-movers.png',
+                            'is_primary' => '1'
+                        ],
+                    ]
+                ],
+                [
+                    'name' => 'Pampers Cruisers 360° Fit',
+                    'slug' => 'pampers-cruisers-360-fit',
+                    'short_description' => 'Pampers Cruisers diapers with a 360° stretchy waistband.',
+                    'description' => 'Pampers Cruisers 360° Fit diapers are designed with stretchy waistbands, air-dry channels, and superior absorbency for a comfortable fit.',
+                    'price' => 26.99,
+                    'stock' => 140,
+                    'status' => 1,
+                    'category' => $kids_diapers_category,
+                    'unit_id' => 5,
+                    'images' => [
+                        [
+                            'path' => 'kids-diapers/pampers-cruisers-360-fit.png',
+                            'is_primary' => '1'
+                        ],
+                    ]
+                ],
+                [
+                    'name' => 'Seventh Generation Free & Clear Diapers',
+                    'slug' => 'seventh-generation-free-and-clear-diapers',
+                    'short_description' => 'Eco-friendly diapers made with sustainably sourced materials.',
+                    'description' => 'Seventh Generation Free & Clear diapers are hypoallergenic, made without harmful chemicals, and feature excellent leak protection for sensitive skin.',
+                    'price' => 29.99,
+                    'stock' => 100,
+                    'status' => 1,
+                    'category' => $kids_diapers_category,
+                    'unit_id' => 5,
+                    'images' => [
+                        [
+                            'path' => 'kids-diapers/seventh-generation-free-and-clear-diapers.png',
+                            'is_primary' => '1'
+                        ],
+                    ]
+                ],
+                [
+                    'name' => 'Himalaya Total Care Baby Pants',
+                    'slug' => 'himalaya-total-care-baby-pants',
+                    'short_description' => 'Himalaya baby diapers with an anti-rash shield.',
+                    'description' => 'Himalaya Total Care Baby Pants are enriched with aloe vera and yashad bhasma to prevent rashes and provide gentle care for baby skin.',
+                    'price' => 17.99,
+                    'stock' => 220,
+                    'status' => 1,
+                    'category' => $kids_diapers_category,
+                    'unit_id' => 5,
+                    'images' => [
+                        [
+                            'path' => 'kids-diapers/himalaya-total-care-baby-pants.png',
+                            'is_primary' => '1'
+                        ],
+                    ]
+                ],
+                [
+                    'name' => 'Bambo Nature Eco-Friendly Diapers',
+                    'slug' => 'bambo-nature-eco-friendly-diapers',
+                    'short_description' => 'Bambo Nature eco-friendly diapers with a soft and breathable design.',
+                    'description' => 'Bambo Nature diapers are environmentally friendly and dermatologically tested, offering excellent absorbency and comfort for babies.',
+                    'price' => 31.99,
+                    'stock' => 90,
+                    'status' => 1,
+                    'category' => $kids_diapers_category,
+                    'unit_id' => 5,
+                    'images' => [
+                        [
+                            'path' => 'kids-diapers/bambo-nature-eco-friendly-diapers.png',
+                            'is_primary' => '1'
+                        ],
+                    ]
+                ],
+            ];
+
+
+        $products = array_merge($products, $kids_diaper_products); 
+
+        $kids_clothes_category = Category::where('slug', 'kids-baby-products-clothes')->select('id', 'slug')->first();
+
+        $kids_clothes_products = [
+                [
+                    'name' => 'Carter’s Baby Boys’ 3-Piece Set',
+                    'slug' => 'carters-baby-boys-3-piece-set',
+                    'short_description' => 'A cozy 3-piece outfit with a bodysuit, pants, and hoodie.',
+                    'description' => 'This Carter’s Baby Boys’ 3-piece set includes a soft cotton bodysuit, stretchy pants, and a hoodie with cute animal prints, perfect for everyday wear.',
+                    'price' => 29.99,
+                    'stock' => 100,
+                    'status' => 1,
+                    'category' => $kids_clothes_category,
+                    'unit_id' => 5,
+                    'images' => [
+                        [
+                            'path' => 'kids-clothes/carters-baby-boys-3-piece-set.png',
+                            'is_primary' => '1'
+                        ],
+                    ]
+                ],
+                [
+                    'name' => 'Gini & Jony Cotton T-Shirt',
+                    'slug' => 'gini-and-jony-cotton-t-shirt',
+                    'short_description' => 'A soft cotton t-shirt for boys with playful prints.',
+                    'description' => 'The Gini & Jony Cotton T-Shirt is made from breathable fabric, offering a relaxed fit with vibrant designs for kids’ comfort and style.',
+                    'price' => 12.99,
+                    'stock' => 200,
+                    'status' => 1,
+                    'category' => $kids_clothes_category,
+                    'unit_id' => 5,
+                    'images' => [
+                        [
+                            'path' => 'kids-clothes/gini-and-jony-cotton-t-shirt.png',
+                            'is_primary' => '1'
+                        ],
+                    ]
+                ],
+                [
+                    'name' => 'Babyhug Full Sleeve Party Dress',
+                    'slug' => 'babyhug-full-sleeve-party-dress',
+                    'short_description' => 'Elegant party dress for girls with floral patterns.',
+                    'description' => 'The Babyhug Full Sleeve Party Dress features delicate floral embroidery, a satin bow, and a comfortable fit, perfect for special occasions.',
+                    'price' => 34.99,
+                    'stock' => 50,
+                    'status' => 1,
+                    'category' => $kids_clothes_category,
+                    'unit_id' => 5,
+                    'images' => [
+                        [
+                            'path' => 'kids-clothes/babyhug-full-sleeve-party-dress.png',
+                            'is_primary' => '1'
+                        ],
+                    ]
+                ],
+                [
+                    'name' => 'Adidas Kids Tracksuit',
+                    'slug' => 'adidas-kids-tracksuit',
+                    'short_description' => 'A comfortable tracksuit for active kids.',
+                    'description' => 'This Adidas Kids Tracksuit includes a full-zip jacket and matching pants, made with soft fabric for sporty style and all-day comfort.',
+                    'price' => 49.99,
+                    'stock' => 80,
+                    'status' => 1,
+                    'category' => $kids_clothes_category,
+                    'unit_id' => 5,
+                    'images' => [
+                        [
+                            'path' => 'kids-clothes/adidas-kids-tracksuit.png',
+                            'is_primary' => '1'
+                        ],
+                    ]
+                ],
+                [
+                    'name' => 'H&M Kids Denim Jacket',
+                    'slug' => 'hm-kids-denim-jacket',
+                    'short_description' => 'A stylish denim jacket for boys and girls.',
+                    'description' => 'The H&M Kids Denim Jacket features a button-down design with a classic fit, perfect for layering over casual outfits.',
+                    'price' => 39.99,
+                    'stock' => 60,
+                    'status' => 1,
+                    'category' => $kids_clothes_category,
+                    'unit_id' => 5,
+                    'images' => [
+                        [
+                            'path' => 'kids-clothes/hm-kids-denim-jacket.png',
+                            'is_primary' => '1'
+                        ],
+                    ]
+                ],
+                [
+                    'name' => 'Mothercare Baby Sleepsuit',
+                    'slug' => 'mothercare-baby-sleepsuit',
+                    'short_description' => 'A soft sleepsuit for babies with snap buttons.',
+                    'description' => 'The Mothercare Baby Sleepsuit is made from 100% cotton, featuring adorable prints and easy snap buttons for quick diaper changes.',
+                    'price' => 18.99,
+                    'stock' => 120,
+                    'status' => 1,
+                    'category' => $kids_clothes_category,
+                    'unit_id' => 5,
+                    'images' => [
+                        [
+                            'path' => 'kids-clothes/mothercare-baby-sleepsuit.png',
+                            'is_primary' => '1'
+                        ],
+                    ]
+                ],
+                [
+                    'name' => 'US Polo Assn. Kids Polo Shirt',
+                    'slug' => 'us-polo-assn-kids-polo-shirt',
+                    'short_description' => 'A classic polo shirt for boys with a logo design.',
+                    'description' => 'The US Polo Assn. Kids Polo Shirt is crafted from breathable cotton fabric, perfect for casual wear with its stylish logo and tailored fit.',
+                    'price' => 24.99,
+                    'stock' => 70,
+                    'status' => 1,
+                    'category' => $kids_clothes_category,
+                    'unit_id' => 5,
+                    'images' => [
+                        [
+                            'path' => 'kids-clothes/us-polo-assn-kids-polo-shirt.png',
+                            'is_primary' => '1'
+                        ],
+                    ]
+                ],
+                [
+                    'name' => 'Pepe Jeans Kids Slim Fit Jeans',
+                    'slug' => 'pepe-jeans-kids-slim-fit-jeans',
+                    'short_description' => 'Stylish slim-fit jeans for kids with stretch fabric.',
+                    'description' => 'The Pepe Jeans Kids Slim Fit Jeans are designed with a trendy look, featuring durable stretch fabric and a comfortable waistband for everyday wear.',
+                    'price' => 29.99,
+                    'stock' => 90,
+                    'status' => 1,
+                    'category' => $kids_clothes_category,
+                    'unit_id' => 5,
+                    'images' => [
+                        [
+                            'path' => 'kids-clothes/pepe-jeans-kids-slim-fit-jeans.png',
+                            'is_primary' => '1'
+                        ],
+                    ]
+                ],
+                [
+                    'name' => 'Zara Kids Printed Sweatshirt',
+                    'slug' => 'zara-kids-printed-sweatshirt',
+                    'short_description' => 'A trendy printed sweatshirt for kids.',
+                    'description' => 'The Zara Kids Printed Sweatshirt features a cozy fabric and eye-catching designs, ideal for casual outings during cooler days.',
+                    'price' => 27.99,
+                    'stock' => 110,
+                    'status' => 1,
+                    'category' => $kids_clothes_category,
+                    'unit_id' => 5,
+                    'images' => [
+                        [
+                            'path' => 'kids-clothes/zara-kids-printed-sweatshirt.png',
+                            'is_primary' => '1'
+                        ],
+                    ]
+                ],
+                [
+                    'name' => 'Gap Kids Striped Dress',
+                    'slug' => 'gap-kids-striped-dress',
+                    'short_description' => 'A striped dress for girls with a flared skirt.',
+                    'description' => 'The Gap Kids Striped Dress is made from soft cotton fabric with a playful striped pattern, featuring a comfortable fit and flared skirt for all-day wear.',
+                    'price' => 32.99,
+                    'stock' => 50,
+                    'status' => 1,
+                    'category' => $kids_clothes_category,
+                    'unit_id' => 5,
+                    'images' => [
+                        [
+                            'path' => 'kids-clothes/gap-kids-striped-dress.png',
+                            'is_primary' => '1'
+                        ],
+                    ]
+                ],
+            ];
+
+        $products = array_merge($products, $kids_clothes_products);    
+            
         foreach ($products as $product) {
 
             $product_category = $product['category'];

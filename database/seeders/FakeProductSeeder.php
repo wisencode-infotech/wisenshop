@@ -760,6 +760,8 @@ class FakeProductSeeder extends FakeAppSeeder
             ],
         ];
 
+        $products = array_merge($products, $tshirt_products);
+
         $mens_watches_category = Category::where('slug', 'mens-fashion-watches')->select('id', 'slug')->first();
 
         $men_watch_products = [
@@ -936,6 +938,539 @@ class FakeProductSeeder extends FakeAppSeeder
         ];
 
         $products = array_merge($products, $men_watch_products);
+
+        $mens_jackets_category = Category::where('slug', 'mens-fashion-jackets')->select('id', 'slug')->first();
+
+        $men_jacket_products = [
+            [
+                'name' => 'Levi’s Denim Trucker Jacket',
+                'slug' => 'levis-denim-trucker-jacket',
+                'short_description' => 'Levi’s classic denim trucker jacket with a timeless design.',
+                'description' => 'This Levi’s Denim Trucker Jacket features a durable denim fabric, a button-front closure, and multiple pockets. Perfect for casual wear with a rugged, iconic style.',
+                'price' => 89.99,
+                'stock' => 120,
+                'status' => 1,
+                'category' => $mens_jackets_category,
+                'unit_id' => 5,
+                'images' => [
+                    [
+                        'path' => 'men-jackets/levis-denim-trucker-jacket.png',
+                        'is_primary' => '1'
+                    ],
+                ]
+            ],
+            [
+                'name' => 'The North Face Resolve 2 Jacket',
+                'slug' => 'north-face-resolve-2-jacket',
+                'short_description' => 'The North Face waterproof jacket designed for outdoor adventures.',
+                'description' => 'The Resolve 2 Jacket by The North Face is made with waterproof and breathable fabric, featuring a hood and adjustable cuffs for extra protection during hikes or rainy weather.',
+                'price' => 119.99,
+                'stock' => 120,
+                'status' => 1,
+                'category' => $mens_jackets_category,
+                'unit_id' => 5,
+                'images' => [
+                    [
+                        'path' => 'men-jackets/north-face-resolve-2-jacket.png',
+                        'is_primary' => '1'
+                    ],
+                ]
+            ],
+            [
+                'name' => 'Columbia Whirlibird Interchange Jacket',
+                'slug' => 'columbia-whirlibird-jacket',
+                'short_description' => 'Columbia 3-in-1 jacket with weatherproof versatility.',
+                'description' => 'The Columbia Whirlibird Interchange Jacket features a waterproof shell and a removable insulated liner. Ideal for skiing, snowboarding, or any winter activity.',
+                'price' => 199.99,
+                'stock' => 120,
+                'status' => 1,
+                'category' => $mens_jackets_category,
+                'unit_id' => 5,
+                'images' => [
+                    [
+                        'path' => 'men-jackets/columbia-whirlibird-jacket.png',
+                        'is_primary' => '1'
+                    ],
+                ]
+            ],
+            [
+                'name' => 'Adidas Essentials 3-Stripes Track Jacket',
+                'slug' => 'adidas-essentials-track-jacket',
+                'short_description' => 'Adidas lightweight track jacket with iconic 3-stripes design.',
+                'description' => 'This Adidas track jacket offers a slim fit with soft, lightweight fabric and a zip closure. Perfect for workouts, sports, or casual wear.',
+                'price' => 59.99,
+                'stock' => 120,
+                'status' => 1,
+                'category' => $mens_jackets_category,
+                'unit_id' => 5,
+                'images' => [
+                    [
+                        'path' => 'men-jackets/adidas-essentials-track-jacket.png',
+                        'is_primary' => '1'
+                    ],
+                ]
+            ],
+            [
+                'name' => 'Patagonia Nano Puff Jacket',
+                'slug' => 'patagonia-nano-puff-jacket',
+                'short_description' => 'Patagonia lightweight insulated jacket made with recycled materials.',
+                'description' => 'The Patagonia Nano Puff Jacket is filled with PrimaLoft insulation for warmth and compressibility. It’s windproof, water-resistant, and eco-friendly.',
+                'price' => 229.99,
+                'stock' => 120,
+                'status' => 1,
+                'category' => $mens_jackets_category,
+                'unit_id' => 5,
+                'images' => [
+                    [
+                        'path' => 'men-jackets/patagonia-nano-puff-jacket.png',
+                        'is_primary' => '1'
+                    ],
+                ]
+            ],
+            [
+                'name' => 'Superdry Everest Parka Jacket',
+                'slug' => 'superdry-everest-parka-jacket',
+                'short_description' => 'Superdry heavy-duty parka jacket with a faux fur-lined hood.',
+                'description' => 'The Superdry Everest Parka features a quilted lining, multiple pockets, and a warm hood with faux fur trim. Built for extreme cold with stylish urban appeal.',
+                'price' => 149.99,
+                'stock' => 120,
+                'status' => 1,
+                'category' => $mens_jackets_category,
+                'unit_id' => 5,
+                'images' => [
+                    [
+                        'path' => 'men-jackets/superdry-everest-parka-jacket.png',
+                        'is_primary' => '1'
+                    ],
+                ]
+            ],
+            [
+                'name' => 'Tommy Hilfiger Hooded Puffer Jacket',
+                'slug' => 'tommy-hilfiger-puffer-jacket',
+                'short_description' => 'Tommy Hilfiger insulated puffer jacket with signature branding.',
+                'description' => 'This hooded puffer jacket by Tommy Hilfiger offers lightweight insulation, a water-resistant finish, and the brand’s iconic logo on the chest.',
+                'price' => 129.99,
+                'stock' => 120,
+                'status' => 1,
+                'category' => $mens_jackets_category,
+                'unit_id' => 5,
+                'images' => [
+                    [
+                        'path' => 'men-jackets/tommy-hilfiger-puffer-jacket.png',
+                        'is_primary' => '1'
+                    ],
+                ]
+            ],
+            [
+                'name' => 'Calvin Klein Wool Blend Overcoat',
+                'slug' => 'calvin-klein-wool-overcoat',
+                'short_description' => 'Calvin Klein tailored wool overcoat for a sophisticated look.',
+                'description' => 'This Calvin Klein overcoat is made from a soft wool blend and features a single-breasted design, slim fit, and notch lapel. Perfect for formal and semi-formal occasions.',
+                'price' => 249.99,
+                'stock' => 120,
+                'status' => 1,
+                'category' => $mens_jackets_category,
+                'unit_id' => 5,
+                'images' => [
+                    [
+                        'path' => 'men-jackets/calvin-klein-wool-overcoat.png',
+                        'is_primary' => '1'
+                    ],
+                ]
+            ],
+            [
+                'name' => 'H&M Faux Leather Biker Jacket',
+                'slug' => 'hm-faux-leather-biker-jacket',
+                'short_description' => 'H&M edgy faux leather biker jacket with zipper details.',
+                'description' => 'This biker jacket from H&M is made from high-quality faux leather with quilted details and an asymmetrical zip closure. Perfect for a bold, modern look.',
+                'price' => 79.99,
+                'stock' => 120,
+                'status' => 1,
+                'category' => $mens_jackets_category,
+                'unit_id' => 5,
+                'images' => [
+                    [
+                        'path' => 'men-jackets/hm-faux-leather-biker-jacket.png',
+                        'is_primary' => '1'
+                    ],
+                ]
+            ],
+            [
+                'name' => 'Barbour Beacon Sports Jacket',
+                'slug' => 'barbour-beacon-sports-jacket',
+                'short_description' => 'Barbour waxed sports jacket with heritage-inspired design.',
+                'description' => 'The Barbour Beacon Sports Jacket features a waxed cotton outer shell, tailored fit, and tartan lining. A versatile and durable choice for outdoor or casual use.',
+                'price' => 299.99,
+                'stock' => 120,
+                'status' => 1,
+                'category' => $mens_jackets_category,
+                'unit_id' => 5,
+                'images' => [
+                    [
+                        'path' => 'men-jackets/barbour-beacon-sports-jacket.png',
+                        'is_primary' => '1'
+                    ],
+                ]
+            ],
+        ];
+
+
+        $products = array_merge($products, $men_jacket_products);
+
+        $mens_glasses_category = Category::where('slug', 'mens-fashion-glasses')->select('id', 'slug')->first();
+
+        $men_glasses_products = [
+                [
+                    'name' => 'Ray-Ban Wayfarer Sunglasses',
+                    'slug' => 'ray-ban-wayfarer-sunglasses',
+                    'short_description' => 'Ray-Ban classic Wayfarer sunglasses with iconic style.',
+                    'description' => 'These Ray-Ban Wayfarer sunglasses feature a durable acetate frame, UV protection, and a timeless design that suits all face shapes. Perfect for casual and formal outings.',
+                    'price' => 159.99,
+                    'stock' => 120,
+                    'status' => 1,
+                    'category' => $mens_glasses_category,
+                    'unit_id' => 5,
+                    'images' => [
+                        [
+                            'path' => 'men-glasses/ray-ban-wayfarer-sunglasses.png',
+                            'is_primary' => '1'
+                        ],
+                    ]
+                ],
+                [
+                    'name' => 'Oakley Holbrook Polarized Sunglasses',
+                    'slug' => 'oakley-holbrook-polarized-sunglasses',
+                    'short_description' => 'Oakley Holbrook sunglasses with polarized lenses for clarity.',
+                    'description' => 'The Oakley Holbrook sunglasses offer a lightweight frame, polarized lenses for glare reduction, and a sporty yet stylish design. Ideal for outdoor activities.',
+                    'price' => 199.99,
+                    'stock' => 100,
+                    'status' => 1,
+                    'category' => $mens_glasses_category,
+                    'unit_id' => 5,
+                    'images' => [
+                        [
+                            'path' => 'men-glasses/oakley-holbrook-sunglasses.png',
+                            'is_primary' => '1'
+                        ],
+                    ]
+                ],
+                [
+                    'name' => 'Persol Rectangular Eyeglasses',
+                    'slug' => 'persol-rectangular-eyeglasses',
+                    'short_description' => 'Persol eyeglasses with a sleek rectangular frame and premium quality.',
+                    'description' => 'These Persol eyeglasses feature hand-crafted acetate frames, anti-reflective lenses, and a lightweight design for all-day comfort. Perfect for a professional look.',
+                    'price' => 249.99,
+                    'stock' => 80,
+                    'status' => 1,
+                    'category' => $mens_glasses_category,
+                    'unit_id' => 5,
+                    'images' => [
+                        [
+                            'path' => 'men-glasses/persol-rectangular-eyeglasses.png',
+                            'is_primary' => '1'
+                        ],
+                    ]
+                ],
+                [
+                    'name' => 'Gucci Round Metal Glasses',
+                    'slug' => 'gucci-round-metal-glasses',
+                    'short_description' => 'Gucci metal glasses with a trendy round design and gold accents.',
+                    'description' => 'The Gucci Round Metal Glasses offer a stylish and luxurious look with slim temples, adjustable nose pads, and high-quality lenses. Great for making a fashion statement.',
+                    'price' => 349.99,
+                    'stock' => 60,
+                    'status' => 1,
+                    'category' => $mens_glasses_category,
+                    'unit_id' => 5,
+                    'images' => [
+                        [
+                            'path' => 'men-glasses/gucci-round-metal-glasses.png',
+                            'is_primary' => '1'
+                        ],
+                    ]
+                ],
+                [
+                    'name' => 'Warby Parker Winston Eyeglasses',
+                    'slug' => 'warby-parker-winston-eyeglasses',
+                    'short_description' => 'Warby Parker eyeglasses with a bold square frame for a modern look.',
+                    'description' => 'These Warby Parker Winston eyeglasses feature a thick acetate frame, scratch-resistant lenses, and an ultra-lightweight design. A stylish choice for everyday wear.',
+                    'price' => 99.99,
+                    'stock' => 150,
+                    'status' => 1,
+                    'category' => $mens_glasses_category,
+                    'unit_id' => 5,
+                    'images' => [
+                        [
+                            'path' => 'men-glasses/warby-parker-winston-eyeglasses.png',
+                            'is_primary' => '1'
+                        ],
+                    ]
+                ],
+                [
+                    'name' => 'Tom Ford FT5536 Eyeglasses',
+                    'slug' => 'tom-ford-ft5536-eyeglasses',
+                    'short_description' => 'Tom Ford eyeglasses with a sophisticated rectangular frame.',
+                    'description' => 'The Tom Ford FT5536 eyeglasses feature a sleek metal and acetate combination, offering a luxurious look and high-quality lenses with anti-glare coating.',
+                    'price' => 299.99,
+                    'stock' => 90,
+                    'status' => 1,
+                    'category' => $mens_glasses_category,
+                    'unit_id' => 5,
+                    'images' => [
+                        [
+                            'path' => 'men-glasses/tom-ford-ft5536-eyeglasses.png',
+                            'is_primary' => '1'
+                        ],
+                    ]
+                ],
+                [
+                    'name' => 'Maui Jim Maverick Sunglasses',
+                    'slug' => 'maui-jim-maverick-sunglasses',
+                    'short_description' => 'Maui Jim aviator sunglasses with polarized lenses for UV protection.',
+                    'description' => 'These Maui Jim Maverick sunglasses feature a lightweight titanium frame, polarized lenses for enhanced color and clarity, and an aviator design. Perfect for beach or travel.',
+                    'price' => 279.99,
+                    'stock' => 70,
+                    'status' => 1,
+                    'category' => $mens_glasses_category,
+                    'unit_id' => 5,
+                    'images' => [
+                        [
+                            'path' => 'men-glasses/maui-jim-maverick-sunglasses.png',
+                            'is_primary' => '1'
+                        ],
+                    ]
+                ],
+                [
+                    'name' => 'Carrera 1001/S Aviator Sunglasses',
+                    'slug' => 'carrera-1001s-aviator-sunglasses',
+                    'short_description' => 'Carrera stylish aviator sunglasses with a bold double-bridge design.',
+                    'description' => 'The Carrera 1001/S sunglasses offer a contemporary twist on the classic aviator style. They feature durable polycarbonate lenses and lightweight metal frames.',
+                    'price' => 149.99,
+                    'stock' => 110,
+                    'status' => 1,
+                    'category' => $mens_glasses_category,
+                    'unit_id' => 5,
+                    'images' => [
+                        [
+                            'path' => 'men-glasses/carrera-1001s-sunglasses.png',
+                            'is_primary' => '1'
+                        ],
+                    ]
+                ],
+                [
+                    'name' => 'Police SPL872 Sunglasses',
+                    'slug' => 'police-spl872-sunglasses',
+                    'short_description' => 'Police sleek sunglasses with modern square frames.',
+                    'description' => 'The Police SPL872 sunglasses combine urban style with premium craftsmanship. They offer lightweight frames, UV-protective lenses, and a bold design.',
+                    'price' => 189.99,
+                    'stock' => 95,
+                    'status' => 1,
+                    'category' => $mens_glasses_category,
+                    'unit_id' => 5,
+                    'images' => [
+                        [
+                            'path' => 'men-glasses/police-spl872-sunglasses.png',
+                            'is_primary' => '1'
+                        ],
+                    ]
+                ],
+                [
+                    'name' => 'Prada Linea Rossa Sport Glasses',
+                    'slug' => 'prada-linea-rossa-sport-glasses',
+                    'short_description' => 'Prada sporty glasses with a streamlined design and luxury finish.',
+                    'description' => 'These Prada Linea Rossa glasses feature a lightweight frame, rubberized temples for comfort, and stylish detailing for a sporty yet sophisticated look.',
+                    'price' => 399.99,
+                    'stock' => 50,
+                    'status' => 1,
+                    'category' => $mens_glasses_category,
+                    'unit_id' => 5,
+                    'images' => [
+                        [
+                            'path' => 'men-glasses/prada-linea-rossa-glasses.png',
+                            'is_primary' => '1'
+                        ],
+                    ]
+                ],
+            ];
+
+            $products = array_merge($products, $men_glasses_products);
+
+            $mens_perfumes_category = Category::where('slug', 'mens-fashion-perfumes')->select('id', 'slug')->first();
+
+            $men_perfume_products = [
+                [
+                    'name' => 'Dior Sauvage Eau de Parfum',
+                    'slug' => 'dior-sauvage-eau-de-parfum',
+                    'short_description' => 'Dior Sauvage with bold, fresh, and woody notes.',
+                    'description' => 'Dior Sauvage Eau de Parfum is a captivating blend of bergamot, amberwood, and a hint of vanilla, perfect for an elegant and masculine scent.',
+                    'price' => 149.99,
+                    'stock' => 120,
+                    'status' => 1,
+                    'category' => $mens_perfumes_category,
+                    'unit_id' => 5,
+                    'images' => [
+                        [
+                            'path' => 'men-perfumes/dior-sauvage.png',
+                            'is_primary' => '1'
+                        ],
+                    ]
+                ],
+                [
+                    'name' => 'Creed Aventus',
+                    'slug' => 'creed-aventus',
+                    'short_description' => 'Creed Aventus with a fruity and musky fragrance.',
+                    'description' => 'Creed Aventus combines notes of pineapple, blackcurrant, and oakmoss to create a luxurious and powerful scent for men.',
+                    'price' => 325.99,
+                    'stock' => 80,
+                    'status' => 1,
+                    'category' => $mens_perfumes_category,
+                    'unit_id' => 5,
+                    'images' => [
+                        [
+                            'path' => 'men-perfumes/creed-aventus.png',
+                            'is_primary' => '1'
+                        ],
+                    ]
+                ],
+                [
+                    'name' => 'Bleu de Chanel Eau de Parfum',
+                    'slug' => 'bleu-de-chanel-eau-de-parfum',
+                    'short_description' => 'Bleu de Chanel with an aromatic woody fragrance.',
+                    'description' => 'Bleu de Chanel Eau de Parfum features fresh citrus and sandalwood, ideal for a timeless and refined scent.',
+                    'price' => 135.99,
+                    'stock' => 100,
+                    'status' => 1,
+                    'category' => $mens_perfumes_category,
+                    'unit_id' => 5,
+                    'images' => [
+                        [
+                            'path' => 'men-perfumes/bleu-de-chanel.png',
+                            'is_primary' => '1'
+                        ],
+                    ]
+                ],
+                [
+                    'name' => 'Versace Eros',
+                    'slug' => 'versace-eros',
+                    'short_description' => 'Versace Eros with a bold and sensual fragrance.',
+                    'description' => 'Versace Eros offers a fresh blend of mint, green apple, and tonka bean, inspired by Greek mythology for a confident appeal.',
+                    'price' => 99.99,
+                    'stock' => 140,
+                    'status' => 1,
+                    'category' => $mens_perfumes_category,
+                    'unit_id' => 5,
+                    'images' => [
+                        [
+                            'path' => 'men-perfumes/versace-eros.png',
+                            'is_primary' => '1'
+                        ],
+                    ]
+                ],
+                [
+                    'name' => 'Tom Ford Noir Extreme',
+                    'slug' => 'tom-ford-noir-extreme',
+                    'short_description' => 'Tom Ford Noir Extreme with an oriental woody scent.',
+                    'description' => 'Tom Ford Noir Extreme is a bold blend of cardamom, orange blossom, and sandalwood for an intriguing and sophisticated aroma.',
+                    'price' => 165.99,
+                    'stock' => 75,
+                    'status' => 1,
+                    'category' => $mens_perfumes_category,
+                    'unit_id' => 5,
+                    'images' => [
+                        [
+                            'path' => 'men-perfumes/tom-ford-noir-extreme.png',
+                            'is_primary' => '1'
+                        ],
+                    ]
+                ],
+                [
+                    'name' => 'Hugo Boss Bottled Night',
+                    'slug' => 'hugo-boss-bottled-night',
+                    'short_description' => 'Hugo Boss Bottled Night with a deep, woody fragrance.',
+                    'description' => 'Hugo Boss Bottled Night features notes of birch leaves, cardamom, and louro amarelo wood for a striking and masculine scent.',
+                    'price' => 89.99,
+                    'stock' => 150,
+                    'status' => 1,
+                    'category' => $mens_perfumes_category,
+                    'unit_id' => 5,
+                    'images' => [
+                        [
+                            'path' => 'men-perfumes/hugo-boss-bottled-night.png',
+                            'is_primary' => '1'
+                        ],
+                    ]
+                ],
+                [
+                    'name' => 'Giorgio Armani Acqua di Gio',
+                    'slug' => 'giorgio-armani-acqua-di-gio',
+                    'short_description' => 'Giorgio Armani Acqua di Gio with a fresh aquatic scent.',
+                    'description' => 'Acqua di Gio blends sea notes, lime, and jasmine to evoke a sense of freshness and tranquility, perfect for everyday use.',
+                    'price' => 125.99,
+                    'stock' => 130,
+                    'status' => 1,
+                    'category' => $mens_perfumes_category,
+                    'unit_id' => 5,
+                    'images' => [
+                        [
+                            'path' => 'men-perfumes/acqua-di-gio.png',
+                            'is_primary' => '1'
+                        ],
+                    ]
+                ],
+                [
+                    'name' => 'Paco Rabanne 1 Million',
+                    'slug' => 'paco-rabanne-1-million',
+                    'short_description' => 'Paco Rabanne 1 Million with a spicy leather fragrance.',
+                    'description' => '1 Million features notes of cinnamon, leather, and amber for a bold and charismatic scent.',
+                    'price' => 99.99,
+                    'stock' => 90,
+                    'status' => 1,
+                    'category' => $mens_perfumes_category,
+                    'unit_id' => 5,
+                    'images' => [
+                        [
+                            'path' => 'men-perfumes/paco-rabanne-1-million.png',
+                            'is_primary' => '1'
+                        ],
+                    ]
+                ],
+                [
+                    'name' => 'Yves Saint Laurent La Nuit de L’Homme',
+                    'slug' => 'ysl-la-nuit-de-lhomme',
+                    'short_description' => 'YSL La Nuit de L’Homme with an alluring spicy scent.',
+                    'description' => 'La Nuit de L’Homme combines cardamom, cedarwood, and coumarin for a seductive and elegant fragrance.',
+                    'price' => 129.99,
+                    'stock' => 70,
+                    'status' => 1,
+                    'category' => $mens_perfumes_category,
+                    'unit_id' => 5,
+                    'images' => [
+                        [
+                            'path' => 'men-perfumes/ysl-la-nuit-de-lhomme.png',
+                            'is_primary' => '1'
+                        ],
+                    ]
+                ],
+                [
+                    'name' => 'Burberry London for Men',
+                    'slug' => 'burberry-london-for-men',
+                    'short_description' => 'Burberry London with a warm, spicy fragrance.',
+                    'description' => 'Burberry London blends lavender, bergamot, and tobacco leaf for a refined and classic scent, suitable for evening wear.',
+                    'price' => 89.99,
+                    'stock' => 100,
+                    'status' => 1,
+                    'category' => $mens_perfumes_category,
+                    'unit_id' => 5,
+                    'images' => [
+                        [
+                            'path' => 'men-perfumes/burberry-london.png',
+                            'is_primary' => '1'
+                        ],
+                    ]
+                ],
+            ];
+
+            
+        $products = array_merge($products, $men_perfume_products);    
 
         foreach ($products as $product) {
 

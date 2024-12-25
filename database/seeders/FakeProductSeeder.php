@@ -2712,7 +2712,1961 @@ class FakeProductSeeder extends FakeAppSeeder
                 ],
             ];
 
-        $products = array_merge($products, $kids_clothes_products);    
+        $products = array_merge($products, $kids_clothes_products);
+
+        $home_decore_category = Category::where('slug', 'home-decor-accessories-furniture')->select('id', 'slug')->first();
+
+        $home_decore_furniture_products = [
+                [
+                    'name' => 'Ikea Kallax Shelf Unit',
+                    'slug' => 'ikea-kallax-shelf-unit',
+                    'short_description' => 'A versatile shelf unit for stylish storage solutions.',
+                    'description' => 'The Ikea Kallax Shelf Unit offers a modern design with multiple compartments, perfect for books, decorative items, or storage baskets. Durable and easy to assemble.',
+                    'price' => 89.99,
+                    'stock' => 75,
+                    'status' => 1,
+                    'category' => $home_decore_category,
+                    'unit_id' => 5,
+                    'images' => [
+                        [
+                            'path' => 'home-decor-furniture/ikea-kallax-shelf-unit.png',
+                            'is_primary' => '1'
+                        ],
+                    ]
+                ],
+                [
+                    'name' => 'Urban Ladder Vesta Sofa Set',
+                    'slug' => 'urban-ladder-vesta-sofa-set',
+                    'short_description' => 'A comfortable 3-seater sofa with modern aesthetics.',
+                    'description' => 'The Urban Ladder Vesta Sofa Set combines plush cushions with a sleek wooden frame. Perfect for living rooms, offering style and comfort.',
+                    'price' => 399.99,
+                    'stock' => 30,
+                    'status' => 1,
+                    'category' => $home_decore_category,
+                    'unit_id' => 5,
+                    'images' => [
+                        [
+                            'path' => 'home-decor-furniture/urban-ladder-vesta-sofa-set.png',
+                            'is_primary' => '1'
+                        ],
+                    ]
+                ],
+                [
+                    'name' => 'Ashley North Shore Dining Table',
+                    'slug' => 'ashley-north-shore-dining-table',
+                    'short_description' => 'An elegant dining table with a rich wood finish.',
+                    'description' => 'The Ashley North Shore Dining Table features a classic design with intricate detailing, crafted from high-quality wood for durability and sophistication.',
+                    'price' => 599.99,
+                    'stock' => 20,
+                    'status' => 1,
+                    'category' => $home_decore_category,
+                    'unit_id' => 5,
+                    'images' => [
+                        [
+                            'path' => 'home-decor-furniture/ashley-north-shore-dining-table.png',
+                            'is_primary' => '1'
+                        ],
+                    ]
+                ],
+                [
+                    'name' => 'West Elm Mid-Century Nightstand',
+                    'slug' => 'west-elm-mid-century-nightstand',
+                    'short_description' => 'A stylish nightstand with clean lines and ample storage.',
+                    'description' => 'The West Elm Mid-Century Nightstand combines retro charm with functionality. Features a drawer and an open shelf for storage.',
+                    'price' => 199.99,
+                    'stock' => 40,
+                    'status' => 1,
+                    'category' => $home_decore_category,
+                    'unit_id' => 5,
+                    'images' => [
+                        [
+                            'path' => 'home-decor-furniture/west-elm-mid-century-nightstand.png',
+                            'is_primary' => '1'
+                        ],
+                    ]
+                ],
+                [
+                    'name' => 'Pepperfry Alexis TV Unit',
+                    'slug' => 'pepperfry-alexis-tv-unit',
+                    'short_description' => 'A modern TV unit with storage compartments.',
+                    'description' => 'The Pepperfry Alexis TV Unit features a sleek design with multiple shelves for media devices and decorative items, perfect for contemporary homes.',
+                    'price' => 149.99,
+                    'stock' => 50,
+                    'status' => 1,
+                    'category' => $home_decore_category,
+                    'unit_id' => 5,
+                    'images' => [
+                        [
+                            'path' => 'home-decor-furniture/pepperfry-alexis-tv-unit.png',
+                            'is_primary' => '1'
+                        ],
+                    ]
+                ],
+                [
+                    'name' => 'Wayfair Aisha Coffee Table',
+                    'slug' => 'wayfair-aisha-coffee-table',
+                    'short_description' => 'A chic coffee table with a tempered glass top.',
+                    'description' => 'The Wayfair Aisha Coffee Table features a durable glass surface and a sleek metal frame, adding elegance to your living room décor.',
+                    'price' => 129.99,
+                    'stock' => 60,
+                    'status' => 1,
+                    'category' => $home_decore_category,
+                    'unit_id' => 5,
+                    'images' => [
+                        [
+                            'path' => 'home-decor-furniture/wayfair-aisha-coffee-table.png',
+                            'is_primary' => '1'
+                        ],
+                    ]
+                ],
+                [
+                    'name' => 'Godrej Interio Slimline Wardrobe',
+                    'slug' => 'godrej-interio-slimline-wardrobe',
+                    'short_description' => 'A sturdy and spacious wardrobe with a sleek design.',
+                    'description' => 'The Godrej Interio Slimline Wardrobe offers ample storage with shelves and a hanging rod, crafted with durable materials and a modern finish.',
+                    'price' => 349.99,
+                    'stock' => 25,
+                    'status' => 1,
+                    'category' => $home_decore_category,
+                    'unit_id' => 5,
+                    'images' => [
+                        [
+                            'path' => 'home-decor-furniture/godrej-interio-slimline-wardrobe.png',
+                            'is_primary' => '1'
+                        ],
+                    ]
+                ],
+                [
+                    'name' => 'CB2 Peekaboo Acrylic Console Table',
+                    'slug' => 'cb2-peekaboo-acrylic-console-table',
+                    'short_description' => 'A minimalist console table with a transparent design.',
+                    'description' => 'The CB2 Peekaboo Acrylic Console Table adds a modern touch to any room. Crafted from durable acrylic, it blends seamlessly into various interiors.',
+                    'price' => 299.99,
+                    'stock' => 35,
+                    'status' => 1,
+                    'category' => $home_decore_category,
+                    'unit_id' => 5,
+                    'images' => [
+                        [
+                            'path' => 'home-decor-furniture/cb2-peekaboo-acrylic-console-table.png',
+                            'is_primary' => '1'
+                        ],
+                    ]
+                ],
+                [
+                    'name' => 'Pottery Barn Cushioned Armchair',
+                    'slug' => 'pottery-barn-cushioned-armchair',
+                    'short_description' => 'A cozy armchair with plush cushions for relaxation.',
+                    'description' => 'The Pottery Barn Cushioned Armchair is designed for comfort and style, featuring soft upholstery and sturdy wooden legs.',
+                    'price' => 259.99,
+                    'stock' => 45,
+                    'status' => 1,
+                    'category' => $home_decore_category,
+                    'unit_id' => 5,
+                    'images' => [
+                        [
+                            'path' => 'home-decor-furniture/pottery-barn-cushioned-armchair.png',
+                            'is_primary' => '1'
+                        ],
+                    ]
+                ],
+                [
+                    'name' => 'Nilkamal Plastic Chair Set',
+                    'slug' => 'nilkamal-plastic-chair-set',
+                    'short_description' => 'A set of durable and lightweight plastic chairs.',
+                    'description' => 'The Nilkamal Plastic Chair Set is perfect for indoor and outdoor use, featuring an ergonomic design and sturdy construction for long-lasting use.',
+                    'price' => 79.99,
+                    'stock' => 100,
+                    'status' => 1,
+                    'category' => $home_decore_category,
+                    'unit_id' => 5,
+                    'images' => [
+                        [
+                            'path' => 'home-decor-furniture/nilkamal-plastic-chair-set.png',
+                            'is_primary' => '1'
+                        ],
+                    ]
+                ],
+            ];
+
+        $products = array_merge($products, $home_decore_furniture_products); 
+
+        $home_decore_curtains_category = Category::where('slug', 'home-decor-accessories-curtains')->select('id', 'slug')->first();
+
+        $home_decore_curtains_products = [
+                [
+                    'name' => 'Ikea LENDA Curtains',
+                    'slug' => 'ikea-lenda-curtains',
+                    'short_description' => 'Elegant cotton curtains with tiebacks.',
+                    'description' => 'The Ikea LENDA Curtains are made of 100% cotton, offering a soft texture and semi-sheer light filtration. Includes tiebacks for a stylish look.',
+                    'price' => 29.99,
+                    'stock' => 80,
+                    'status' => 1,
+                    'category' => $home_decore_curtains_category,
+                    'unit_id' => 5,
+                    'images' => [
+                        [
+                            'path' => 'home-decor-curtains/ikea-lenda-curtains.png',
+                            'is_primary' => '1'
+                        ],
+                    ]
+                ],
+                [
+                    'name' => 'Amazon Basics Blackout Curtains',
+                    'slug' => 'amazon-basics-blackout-curtains',
+                    'short_description' => 'Energy-efficient blackout curtains for bedrooms.',
+                    'description' => 'These Amazon Basics Blackout Curtains block out sunlight, reduce noise, and help save energy. Perfect for bedrooms and living spaces.',
+                    'price' => 34.99,
+                    'stock' => 150,
+                    'status' => 1,
+                    'category' => $home_decore_curtains_category,
+                    'unit_id' => 5,
+                    'images' => [
+                        [
+                            'path' => 'home-decor-curtains/amazon-basics-blackout-curtains.png',
+                            'is_primary' => '1'
+                        ],
+                    ]
+                ],
+                [
+                    'name' => 'Urban Ladder Sheer Curtains',
+                    'slug' => 'urban-ladder-sheer-curtains',
+                    'short_description' => 'Sheer curtains for a soft and airy look.',
+                    'description' => 'The Urban Ladder Sheer Curtains offer a delicate and lightweight design, allowing natural light to filter through while maintaining privacy.',
+                    'price' => 24.99,
+                    'stock' => 70,
+                    'status' => 1,
+                    'category' => $home_decore_curtains_category,
+                    'unit_id' => 5,
+                    'images' => [
+                        [
+                            'path' => 'home-decor-curtains/urban-ladder-sheer-curtains.png',
+                            'is_primary' => '1'
+                        ],
+                    ]
+                ],
+                [
+                    'name' => 'Home Centre Jacquard Curtains',
+                    'slug' => 'home-centre-jacquard-curtains',
+                    'short_description' => 'Premium jacquard curtains for a luxurious touch.',
+                    'description' => 'These Home Centre Jacquard Curtains feature intricate patterns and a rich texture, ideal for adding sophistication to your living room or bedroom.',
+                    'price' => 39.99,
+                    'stock' => 60,
+                    'status' => 1,
+                    'category' => $home_decore_curtains_category,
+                    'unit_id' => 5,
+                    'images' => [
+                        [
+                            'path' => 'home-decor-curtains/home-centre-jacquard-curtains.png',
+                            'is_primary' => '1'
+                        ],
+                    ]
+                ],
+                [
+                    'name' => 'Wayfair Grommet Top Curtains',
+                    'slug' => 'wayfair-grommet-top-curtains',
+                    'short_description' => 'Stylish grommet top curtains for easy hanging.',
+                    'description' => 'The Wayfair Grommet Top Curtains are easy to hang and remove, featuring a durable fabric that complements both modern and traditional interiors.',
+                    'price' => 29.99,
+                    'stock' => 90,
+                    'status' => 1,
+                    'category' => $home_decore_curtains_category,
+                    'unit_id' => 5,
+                    'images' => [
+                        [
+                            'path' => 'home-decor-curtains/wayfair-grommet-top-curtains.png',
+                            'is_primary' => '1'
+                        ],
+                    ]
+                ],
+                [
+                    'name' => 'Pepperfry Cotton Printed Curtains',
+                    'slug' => 'pepperfry-cotton-printed-curtains',
+                    'short_description' => 'Vibrant cotton curtains with eye-catching prints.',
+                    'description' => 'These Pepperfry Cotton Printed Curtains add a pop of color and personality to any room, crafted from soft and breathable fabric.',
+                    'price' => 27.99,
+                    'stock' => 50,
+                    'status' => 1,
+                    'category' => $home_decore_curtains_category,
+                    'unit_id' => 5,
+                    'images' => [
+                        [
+                            'path' => 'home-decor-curtains/pepperfry-cotton-printed-curtains.png',
+                            'is_primary' => '1'
+                        ],
+                    ]
+                ],
+                [
+                    'name' => 'Pottery Barn Velvet Curtains',
+                    'slug' => 'pottery-barn-velvet-curtains',
+                    'short_description' => 'Luxurious velvet curtains for an elegant look.',
+                    'description' => 'The Pottery Barn Velvet Curtains are crafted from plush velvet fabric, providing a rich texture and enhancing the ambiance of any room.',
+                    'price' => 59.99,
+                    'stock' => 40,
+                    'status' => 1,
+                    'category' => $home_decore_curtains_category,
+                    'unit_id' => 5,
+                    'images' => [
+                        [
+                            'path' => 'home-decor-curtains/pottery-barn-velvet-curtains.png',
+                            'is_primary' => '1'
+                        ],
+                    ]
+                ],
+                [
+                    'name' => 'H&M Patterned Curtains',
+                    'slug' => 'hm-patterned-curtains',
+                    'short_description' => 'Cotton curtains with stylish patterns.',
+                    'description' => 'These H&M Patterned Curtains are made from 100% cotton, featuring chic patterns that bring a modern and artistic vibe to your home.',
+                    'price' => 25.99,
+                    'stock' => 100,
+                    'status' => 1,
+                    'category' => $home_decore_curtains_category,
+                    'unit_id' => 5,
+                    'images' => [
+                        [
+                            'path' => 'home-decor-curtains/hm-patterned-curtains.png',
+                            'is_primary' => '1'
+                        ],
+                    ]
+                ],
+                [
+                    'name' => 'Macy’s Thermal Insulated Curtains',
+                    'slug' => 'macys-thermal-insulated-curtains',
+                    'short_description' => 'Energy-saving thermal insulated curtains.',
+                    'description' => 'Macy’s Thermal Insulated Curtains provide excellent light blocking and temperature control, helping reduce energy costs while enhancing privacy.',
+                    'price' => 49.99,
+                    'stock' => 55,
+                    'status' => 1,
+                    'category' => $home_decore_curtains_category,
+                    'unit_id' => 5,
+                    'images' => [
+                        [
+                            'path' => 'home-decor-curtains/macys-thermal-insulated-curtains.png',
+                            'is_primary' => '1'
+                        ],
+                    ]
+                ],
+                [
+                    'name' => 'FabIndia Handwoven Curtains',
+                    'slug' => 'fabindia-handwoven-curtains',
+                    'short_description' => 'Traditional handwoven curtains with earthy tones.',
+                    'description' => 'The FabIndia Handwoven Curtains feature a blend of traditional craftsmanship and modern design, made from high-quality natural fibers.',
+                    'price' => 44.99,
+                    'stock' => 45,
+                    'status' => 1,
+                    'category' => $home_decore_curtains_category,
+                    'unit_id' => 5,
+                    'images' => [
+                        [
+                            'path' => 'home-decor-curtains/fabindia-handwoven-curtains.png',
+                            'is_primary' => '1'
+                        ],
+                    ]
+                ],
+            ];
+
+        $products = array_merge($products, $home_decore_curtains_products);
+
+        $health_wellness_suppliment_category = Category::where('slug', 'health-wellness-supplements')->select('id', 'slug')->first();
+
+        $health_wellness_suppliments_products = [
+                [
+                    'name' => 'Optimum Nutrition Whey Protein',
+                    'slug' => 'optimum-nutrition-whey-protein',
+                    'short_description' => 'High-quality whey protein for muscle building and recovery.',
+                    'description' => 'Optimum Nutrition Whey Protein provides 24g of premium protein per serving, with essential amino acids for muscle growth and recovery. Ideal for post-workout use.',
+                    'price' => 59.99,
+                    'stock' => 100,
+                    'status' => 1,
+                    'category' => $health_wellness_suppliment_category,
+                    'unit_id' => 2,
+                    'images' => [
+                        [
+                            'path' => 'health-supplements/optimum-nutrition-whey-protein.png',
+                            'is_primary' => '1'
+                        ],
+                    ]
+                ],
+                [
+                    'name' => 'Garden of Life Multivitamin for Women',
+                    'slug' => 'garden-of-life-multivitamin-for-women',
+                    'short_description' => 'Organic multivitamin designed for women’s health.',
+                    'description' => 'This Garden of Life Multivitamin is packed with essential vitamins, probiotics, and antioxidants to support energy, immunity, and skin health.',
+                    'price' => 39.99,
+                    'stock' => 80,
+                    'status' => 1,
+                    'category' => $health_wellness_suppliment_category,
+                    'unit_id' => 5,
+                    'images' => [
+                        [
+                            'path' => 'health-supplements/garden-of-life-multivitamin-for-women.png',
+                            'is_primary' => '1'
+                        ],
+                    ]
+                ],
+                [
+                    'name' => 'Nordic Naturals Omega-3 Fish Oil',
+                    'slug' => 'nordic-naturals-omega-3-fish-oil',
+                    'short_description' => 'High-potency omega-3 fish oil for heart and brain health.',
+                    'description' => 'Nordic Naturals Omega-3 Fish Oil provides 1280mg of omega-3s per serving, supporting cardiovascular, brain, and joint health.',
+                    'price' => 29.99,
+                    'stock' => 120,
+                    'status' => 1,
+                    'category' => $health_wellness_suppliment_category,
+                    'unit_id' => 5,
+                    'images' => [
+                        [
+                            'path' => 'health-supplements/nordic-naturals-omega-3-fish-oil.png',
+                            'is_primary' => '1'
+                        ],
+                    ]
+                ],
+                [
+                    'name' => 'MuscleBlaze Creatine Monohydrate',
+                    'slug' => 'muscleblaze-creatine-monohydrate',
+                    'short_description' => '100% pure creatine monohydrate for strength and endurance.',
+                    'description' => 'MuscleBlaze Creatine Monohydrate improves strength, boosts performance, and enhances muscle recovery. Ideal for athletes and gym enthusiasts.',
+                    'price' => 19.99,
+                    'stock' => 150,
+                    'status' => 1,
+                    'category' => $health_wellness_suppliment_category,
+                    'unit_id' => 2,
+                    'images' => [
+                        [
+                            'path' => 'health-supplements/muscleblaze-creatine-monohydrate.png',
+                            'is_primary' => '1'
+                        ],
+                    ]
+                ],
+                [
+                    'name' => 'Nature’s Bounty Vitamin C Gummies',
+                    'slug' => 'natures-bounty-vitamin-c-gummies',
+                    'short_description' => 'Delicious vitamin C gummies to boost immunity.',
+                    'description' => 'Nature’s Bounty Vitamin C Gummies provide 250mg of vitamin C per serving to support immune health. Great-tasting and easy to consume.',
+                    'price' => 14.99,
+                    'stock' => 200,
+                    'status' => 1,
+                    'category' => $health_wellness_suppliment_category,
+                    'unit_id' => 5,
+                    'images' => [
+                        [
+                            'path' => 'health-supplements/natures-bounty-vitamin-c-gummies.png',
+                            'is_primary' => '1'
+                        ],
+                    ]
+                ],
+                [
+                    'name' => 'ON ZMA Sleep Support',
+                    'slug' => 'on-zma-sleep-support',
+                    'short_description' => 'Zinc and magnesium formula for better sleep and recovery.',
+                    'description' => 'ON ZMA Sleep Support promotes restful sleep and enhances muscle recovery with its unique blend of zinc, magnesium, and vitamin B6.',
+                    'price' => 24.99,
+                    'stock' => 90,
+                    'status' => 1,
+                    'category' => $health_wellness_suppliment_category,
+                    'unit_id' => 5,
+                    'images' => [
+                        [
+                            'path' => 'health-supplements/on-zma-sleep-support.png',
+                            'is_primary' => '1'
+                        ],
+                    ]
+                ],
+                [
+                    'name' => 'Himalaya Ashwagandha Capsules',
+                    'slug' => 'himalaya-ashwagandha-capsules',
+                    'short_description' => 'Natural stress relief and energy booster.',
+                    'description' => 'Himalaya Ashwagandha Capsules support stress management, improve energy levels, and enhance overall vitality. Made with pure herbal extracts.',
+                    'price' => 11.99,
+                    'stock' => 300,
+                    'status' => 1,
+                    'category' => $health_wellness_suppliment_category,
+                    'unit_id' => 5,
+                    'images' => [
+                        [
+                            'path' => 'health-supplements/himalaya-ashwagandha-capsules.png',
+                            'is_primary' => '1'
+                        ],
+                    ]
+                ],
+                [
+                    'name' => 'NOW Foods Probiotic-10',
+                    'slug' => 'now-foods-probiotic-10',
+                    'short_description' => 'Advanced probiotic formula for digestive health.',
+                    'description' => 'NOW Foods Probiotic-10 contains 10 probiotic strains and 25 billion CFU per serving, supporting gut health and boosting immunity.',
+                    'price' => 32.99,
+                    'stock' => 70,
+                    'status' => 1,
+                    'category' => $health_wellness_suppliment_category,
+                    'unit_id' => 5,
+                    'images' => [
+                        [
+                            'path' => 'health-supplements/now-foods-probiotic-10.png',
+                            'is_primary' => '1'
+                        ],
+                    ]
+                ],
+                [
+                    'name' => 'GNC Mega Men Multivitamin',
+                    'slug' => 'gnc-mega-men-multivitamin',
+                    'short_description' => 'Comprehensive multivitamin for men’s health.',
+                    'description' => 'GNC Mega Men Multivitamin offers essential nutrients, antioxidants, and amino acids to support energy, muscle health, and immunity.',
+                    'price' => 39.99,
+                    'stock' => 95,
+                    'status' => 1,
+                    'category' => $health_wellness_suppliment_category,
+                    'unit_id' => 5,
+                    'images' => [
+                        [
+                            'path' => 'health-supplements/gnc-mega-men-multivitamin.png',
+                            'is_primary' => '1'
+                        ],
+                    ]
+                ],
+                [
+                    'name' => 'Doctor’s Best Collagen Peptides',
+                    'slug' => 'doctors-best-collagen-peptides',
+                    'short_description' => 'Hydrolyzed collagen for healthy skin, hair, and joints.',
+                    'description' => 'Doctor’s Best Collagen Peptides support skin elasticity, strong nails, and joint health. Easy to mix in water or smoothies.',
+                    'price' => 27.99,
+                    'stock' => 85,
+                    'status' => 1,
+                    'category' => $health_wellness_suppliment_category,
+                    'unit_id' => 5,
+                    'images' => [
+                        [
+                            'path' => 'health-supplements/doctors-best-collagen-peptides.png',
+                            'is_primary' => '1'
+                        ],
+                    ]
+                ],
+            ];
+
+
+        $products = array_merge($products, $health_wellness_suppliments_products);
+
+        $health_wellness_ayurvedic_tablet_category = Category::where('slug', 'health-wellness-ayurvedic-tablets')->select('id', 'slug')->first();
+
+        $health_wellness_ayurvedic_tablets_products = [
+                [
+                    'name' => 'Himalaya Liv.52 Tablets',
+                    'slug' => 'himalaya-liv52-tablets',
+                    'short_description' => 'Ayurvedic liver health supplement.',
+                    'description' => 'Himalaya Liv.52 Tablets support liver function, detoxification, and healthy metabolism. Made with natural ingredients like caper bush and chicory.',
+                    'price' => 6.99,
+                    'stock' => 200,
+                    'status' => 1,
+                    'category' => $health_wellness_ayurvedic_tablet_category,
+                    'unit_id' => 5,
+                    'images' => [
+                        [
+                            'path' => 'health-ayurvedic-tablets/himalaya-liv52-tablets.png',
+                            'is_primary' => '1'
+                        ],
+                    ]
+                ],
+                [
+                    'name' => 'Patanjali Divya Mukta Vati',
+                    'slug' => 'patanjali-divya-mukta-vati',
+                    'short_description' => 'Natural support for blood pressure management.',
+                    'description' => 'Patanjali Divya Mukta Vati is formulated to maintain healthy blood pressure levels. It contains herbs like arjuna, brahmi, and shankhpushpi.',
+                    'price' => 9.99,
+                    'stock' => 150,
+                    'status' => 1,
+                    'category' => $health_wellness_ayurvedic_tablet_category,
+                    'unit_id' => 5,
+                    'images' => [
+                        [
+                            'path' => 'health-ayurvedic-tablets/patanjali-divya-mukta-vati.png',
+                            'is_primary' => '1'
+                        ],
+                    ]
+                ],
+                [
+                    'name' => 'Baidhyanath Chyawanprash Tablets',
+                    'slug' => 'baidhyanath-chyawanprash-tablets',
+                    'short_description' => 'Ayurvedic immunity-boosting tablets.',
+                    'description' => 'Baidhyanath Chyawanprash Tablets provide the benefits of traditional chyawanprash in a convenient tablet form, boosting immunity and overall wellness.',
+                    'price' => 5.99,
+                    'stock' => 300,
+                    'status' => 1,
+                    'category' => $health_wellness_ayurvedic_tablet_category,
+                    'unit_id' => 5,
+                    'images' => [
+                        [
+                            'path' => 'health-ayurvedic-tablets/baidhyanath-chyawanprash-tablets.png',
+                            'is_primary' => '1'
+                        ],
+                    ]
+                ],
+                [
+                    'name' => 'Dabur Ashwagandha Tablets',
+                    'slug' => 'dabur-ashwagandha-tablets',
+                    'short_description' => 'Herbal tablets for stress and energy support.',
+                    'description' => 'Dabur Ashwagandha Tablets help reduce stress, enhance energy levels, and improve overall vitality. Contains pure ashwagandha root extract.',
+                    'price' => 7.49,
+                    'stock' => 250,
+                    'status' => 1,
+                    'category' => $health_wellness_ayurvedic_tablet_category,
+                    'unit_id' => 5,
+                    'images' => [
+                        [
+                            'path' => 'health-ayurvedic-tablets/dabur-ashwagandha-tablets.png',
+                            'is_primary' => '1'
+                        ],
+                    ]
+                ],
+                [
+                    'name' => 'Kerala Ayurveda Manjishtadi Tablets',
+                    'slug' => 'kerala-ayurveda-manjishtadi-tablets',
+                    'short_description' => 'Detoxification and skin health tablets.',
+                    'description' => 'Kerala Ayurveda Manjishtadi Tablets promote blood purification and healthy skin. Made with herbs like manjistha and neem.',
+                    'price' => 8.99,
+                    'stock' => 120,
+                    'status' => 1,
+                    'category' => $health_wellness_ayurvedic_tablet_category,
+                    'unit_id' => 5,
+                    'images' => [
+                        [
+                            'path' => 'health-ayurvedic-tablets/kerala-ayurveda-manjishtadi-tablets.png',
+                            'is_primary' => '1'
+                        ],
+                    ]
+                ],
+                [
+                    'name' => 'Zandu Guduchi Tablets',
+                    'slug' => 'zandu-guduchi-tablets',
+                    'short_description' => 'Natural immunity booster tablets.',
+                    'description' => 'Zandu Guduchi Tablets contain guduchi (giloy), a powerful adaptogen that enhances immunity, supports digestion, and combats fatigue.',
+                    'price' => 6.49,
+                    'stock' => 180,
+                    'status' => 1,
+                    'category' => $health_wellness_ayurvedic_tablet_category,
+                    'unit_id' => 5,
+                    'images' => [
+                        [
+                            'path' => 'health-ayurvedic-tablets/zandu-guduchi-tablets.png',
+                            'is_primary' => '1'
+                        ],
+                    ]
+                ],
+                [
+                    'name' => 'Charak Livomyn Tablets',
+                    'slug' => 'charak-livomyn-tablets',
+                    'short_description' => 'Liver support and detoxification tablets.',
+                    'description' => 'Charak Livomyn Tablets support liver health by promoting detoxification and protection against liver damage. Enriched with herbal ingredients.',
+                    'price' => 10.99,
+                    'stock' => 140,
+                    'status' => 1,
+                    'category' => $health_wellness_ayurvedic_tablet_category,
+                    'unit_id' => 5,
+                    'images' => [
+                        [
+                            'path' => 'health-ayurvedic-tablets/charak-livomyn-tablets.png',
+                            'is_primary' => '1'
+                        ],
+                    ]
+                ],
+                [
+                    'name' => 'Sri Sri Tattva Shatavari Tablets',
+                    'slug' => 'sri-sri-tattva-shatavari-tablets',
+                    'short_description' => 'Tablets for women’s health and hormonal balance.',
+                    'description' => 'Sri Sri Tattva Shatavari Tablets support hormonal balance, enhance lactation, and promote overall women’s health. Made with pure shatavari root.',
+                    'price' => 9.49,
+                    'stock' => 130,
+                    'status' => 1,
+                    'category' => $health_wellness_ayurvedic_tablet_category,
+                    'unit_id' => 5,
+                    'images' => [
+                        [
+                            'path' => 'health-ayurvedic-tablets/sri-sri-tattva-shatavari-tablets.png',
+                            'is_primary' => '1'
+                        ],
+                    ]
+                ],
+                [
+                    'name' => 'Ayush Kwath Tablets',
+                    'slug' => 'ayush-kwath-tablets',
+                    'short_description' => 'Ayurvedic immunity-boosting tablets.',
+                    'description' => 'Ayush Kwath Tablets combine tulsi, dalchini, sunthi, and krishna marich to boost immunity and combat seasonal illnesses.',
+                    'price' => 4.99,
+                    'stock' => 500,
+                    'status' => 1,
+                    'category' => $health_wellness_ayurvedic_tablet_category,
+                    'unit_id' => 5,
+                    'images' => [
+                        [
+                            'path' => 'health-ayurvedic-tablets/ayush-kwath-tablets.png',
+                            'is_primary' => '1'
+                        ],
+                    ]
+                ],
+                [
+                    'name' => 'Herbal Hills Triphala Tablets',
+                    'slug' => 'herbal-hills-triphala-tablets',
+                    'short_description' => 'Digestive health and detoxification tablets.',
+                    'description' => 'Herbal Hills Triphala Tablets are made with a blend of amla, haritaki, and bibhitaki to support digestion, detoxification, and regular bowel movements.',
+                    'price' => 7.99,
+                    'stock' => 210,
+                    'status' => 1,
+                    'category' => $health_wellness_ayurvedic_tablet_category,
+                    'unit_id' => 5,
+                    'images' => [
+                        [
+                            'path' => 'health-ayurvedic-tablets/herbal-hills-triphala-tablets.png',
+                            'is_primary' => '1'
+                        ],
+                    ]
+                ],
+            ];
+
+
+        $products = array_merge($products, $health_wellness_ayurvedic_tablets_products); 
+
+        $fitness_outdoor_treadmill_category = Category::where('slug', 'fitness-outdoor-gear-treadmill')->select('id', 'slug')->first();
+
+        $fitness_outdoor_treadmill_products = [
+                [
+                    'name' => 'NordicTrack Commercial 1750 Treadmill',
+                    'slug' => 'nordictrack-commercial-1750-treadmill',
+                    'short_description' => 'High-performance treadmill with iFit compatibility.',
+                    'description' => 'The NordicTrack Commercial 1750 features a powerful motor, incline and decline settings, and a 14-inch HD touchscreen for immersive workouts. Perfect for home fitness.',
+                    'price' => 1999.99,
+                    'stock' => 50,
+                    'status' => 1,
+                    'category' => $fitness_outdoor_treadmill_category,
+                    'unit_id' => 5,
+                    'images' => [
+                        [
+                            'path' => 'fitness-outdoor-treadmill/nordictrack-commercial-1750.png',
+                            'is_primary' => '1'
+                        ],
+                    ]
+                ],
+                [
+                    'name' => 'Sole F85 Folding Treadmill',
+                    'slug' => 'sole-f85-folding-treadmill',
+                    'short_description' => 'Sturdy and foldable treadmill for home use.',
+                    'description' => 'Sole F85 Folding Treadmill offers a spacious running deck, powerful motor, and advanced cushioning for joint protection. Ideal for intense cardio sessions.',
+                    'price' => 1799.99,
+                    'stock' => 40,
+                    'status' => 1,
+                    'category' => $fitness_outdoor_treadmill_category,
+                    'unit_id' => 5,
+                    'images' => [
+                        [
+                            'path' => 'fitness-outdoor-treadmill/sole-f85-folding-treadmill.png',
+                            'is_primary' => '1'
+                        ],
+                    ]
+                ],
+                [
+                    'name' => 'Horizon Fitness T101 Treadmill',
+                    'slug' => 'horizon-fitness-t101-treadmill',
+                    'short_description' => 'Compact treadmill with Bluetooth connectivity.',
+                    'description' => 'Horizon Fitness T101 Treadmill is perfect for beginners, offering Bluetooth audio, incline settings, and an easy-fold design for convenience.',
+                    'price' => 699.99,
+                    'stock' => 100,
+                    'status' => 1,
+                    'category' => $fitness_outdoor_treadmill_category,
+                    'unit_id' => 5,
+                    'images' => [
+                        [
+                            'path' => 'fitness-outdoor-treadmill/horizon-fitness-t101.png',
+                            'is_primary' => '1'
+                        ],
+                    ]
+                ],
+                [
+                    'name' => 'ProForm Pro 9000 Treadmill',
+                    'slug' => 'proform-pro-9000-treadmill',
+                    'short_description' => 'Premium treadmill with interactive training.',
+                    'description' => 'ProForm Pro 9000 Treadmill features a 22-inch HD touchscreen, incline/decline settings, and ProShox cushioning for a comfortable workout experience.',
+                    'price' => 2499.99,
+                    'stock' => 30,
+                    'status' => 1,
+                    'category' => $fitness_outdoor_treadmill_category,
+                    'unit_id' => 5,
+                    'images' => [
+                        [
+                            'path' => 'fitness-outdoor-treadmill/proform-pro-9000.png',
+                            'is_primary' => '1'
+                        ],
+                    ]
+                ],
+                [
+                    'name' => 'LifeSpan TR1200i Folding Treadmill',
+                    'slug' => 'lifespan-tr1200i-folding-treadmill',
+                    'short_description' => 'Durable and compact folding treadmill.',
+                    'description' => 'The LifeSpan TR1200i Treadmill is designed for home fitness with a robust motor, shock-absorbing deck, and easy-to-fold design for storage.',
+                    'price' => 999.99,
+                    'stock' => 60,
+                    'status' => 1,
+                    'category' => $fitness_outdoor_treadmill_category,
+                    'unit_id' => 5,
+                    'images' => [
+                        [
+                            'path' => 'fitness-outdoor-treadmill/lifespan-tr1200i.png',
+                            'is_primary' => '1'
+                        ],
+                    ]
+                ],
+                [
+                    'name' => 'Peloton Tread',
+                    'slug' => 'peloton-tread',
+                    'short_description' => 'Interactive treadmill with live and on-demand classes.',
+                    'description' => 'The Peloton Tread offers a sleek design, a 24-inch HD touchscreen, and access to live and on-demand fitness classes for an engaging workout experience.',
+                    'price' => 3495.99,
+                    'stock' => 20,
+                    'status' => 1,
+                    'category' => $fitness_outdoor_treadmill_category,
+                    'unit_id' => 5,
+                    'images' => [
+                        [
+                            'path' => 'fitness-outdoor-treadmill/peloton-tread.png',
+                            'is_primary' => '1'
+                        ],
+                    ]
+                ],
+                [
+                    'name' => 'Bowflex Treadmill 22',
+                    'slug' => 'bowflex-treadmill-22',
+                    'short_description' => 'Smart treadmill with JRNY app integration.',
+                    'description' => 'Bowflex Treadmill 22 comes with a 22-inch touchscreen, adjustable incline, and immersive JRNY app integration for personalized workouts.',
+                    'price' => 2699.99,
+                    'stock' => 35,
+                    'status' => 1,
+                    'category' => $fitness_outdoor_treadmill_category,
+                    'unit_id' => 5,
+                    'images' => [
+                        [
+                            'path' => 'fitness-outdoor-treadmill/bowflex-treadmill-22.png',
+                            'is_primary' => '1'
+                        ],
+                    ]
+                ],
+                [
+                    'name' => 'Sunny Health & Fitness SF-T4400 Treadmill',
+                    'slug' => 'sunny-health-fitness-sf-t4400-treadmill',
+                    'short_description' => 'Budget-friendly treadmill for light workouts.',
+                    'description' => 'The Sunny Health & Fitness SF-T4400 Treadmill offers a compact design, LCD monitor, and manual incline settings for beginners and casual fitness enthusiasts.',
+                    'price' => 399.99,
+                    'stock' => 120,
+                    'status' => 1,
+                    'category' => $fitness_outdoor_treadmill_category,
+                    'unit_id' => 5,
+                    'images' => [
+                        [
+                            'path' => 'fitness-outdoor-treadmill/sunny-sf-t4400.png',
+                            'is_primary' => '1'
+                        ],
+                    ]
+                ],
+                [
+                    'name' => 'Xterra Fitness TR150 Folding Treadmill',
+                    'slug' => 'xterra-fitness-tr150-folding-treadmill',
+                    'short_description' => 'Compact folding treadmill with adjustable speeds.',
+                    'description' => 'Xterra Fitness TR150 is a lightweight treadmill with 12 preset programs, 3 incline levels, and a foldable design for easy storage.',
+                    'price' => 499.99,
+                    'stock' => 90,
+                    'status' => 1,
+                    'category' => $fitness_outdoor_treadmill_category,
+                    'unit_id' => 5,
+                    'images' => [
+                        [
+                            'path' => 'fitness-outdoor-treadmill/xterra-tr150.png',
+                            'is_primary' => '1'
+                        ],
+                    ]
+                ],
+                [
+                    'name' => 'Schwinn 810 Treadmill',
+                    'slug' => 'schwinn-810-treadmill',
+                    'short_description' => 'Feature-packed treadmill with Bluetooth connectivity.',
+                    'description' => 'Schwinn 810 Treadmill offers Bluetooth, a cushioned running deck, and built-in fitness programs for an efficient and comfortable workout.',
+                    'price' => 799.99,
+                    'stock' => 80,
+                    'status' => 1,
+                    'category' => $fitness_outdoor_treadmill_category,
+                    'unit_id' => 5,
+                    'images' => [
+                        [
+                            'path' => 'fitness-outdoor-treadmill/schwinn-810.png',
+                            'is_primary' => '1'
+                        ],
+                    ]
+                ],
+            ];
+
+        $products = array_merge($products, $fitness_outdoor_treadmill_products);   
+
+        $fitness_outdoor_massager_category = Category::where('slug', 'fitness-outdoor-gear-massager')->select('id', 'slug')->first();
+
+        $fitness_outdoor_massager_products = [
+                [
+                    'name' => 'Theragun Pro Percussion Massager',
+                    'slug' => 'theragun-pro-percussion-massager',
+                    'short_description' => 'Professional-grade deep tissue percussion massager.',
+                    'description' => 'The Theragun Pro is a high-performance percussion massager with customizable speeds, ergonomic design, and interchangeable heads for targeted muscle relief.',
+                    'price' => 599.99,
+                    'stock' => 30,
+                    'status' => 1,
+                    'category' => $fitness_outdoor_massager_category,
+                    'unit_id' => 5,
+                    'images' => [
+                        [
+                            'path' => 'fitness-outdoor-massager/theragun-pro-massager.png',
+                            'is_primary' => '1'
+                        ],
+                    ]
+                ],
+                [
+                    'name' => 'Hyperice Hypervolt 2 Pro',
+                    'slug' => 'hyperice-hypervolt-2-pro',
+                    'short_description' => 'Quiet and powerful percussion massager.',
+                    'description' => 'Hyperice Hypervolt 2 Pro offers a quiet operation, five intensity levels, and interchangeable attachments for effective muscle recovery and pain relief.',
+                    'price' => 399.99,
+                    'stock' => 50,
+                    'status' => 1,
+                    'category' => $fitness_outdoor_massager_category,
+                    'unit_id' => 5,
+                    'images' => [
+                        [
+                            'path' => 'fitness-outdoor-massager/hypervolt-2-pro-massager.png',
+                            'is_primary' => '1'
+                        ],
+                    ]
+                ],
+                [
+                    'name' => 'RENPHO Deep Tissue Massage Gun',
+                    'slug' => 'renpho-deep-tissue-massage-gun',
+                    'short_description' => 'Affordable and lightweight massage gun.',
+                    'description' => 'The RENPHO Massage Gun is portable, lightweight, and comes with multiple speed settings and attachments for a relaxing and rejuvenating experience.',
+                    'price' => 129.99,
+                    'stock' => 100,
+                    'status' => 1,
+                    'category' => $fitness_outdoor_massager_category,
+                    'unit_id' => 5,
+                    'images' => [
+                        [
+                            'path' => 'fitness-outdoor-massager/renpho-massage-gun.png',
+                            'is_primary' => '1'
+                        ],
+                    ]
+                ],
+                [
+                    'name' => 'Ekrin Athletics B37 Massage Gun',
+                    'slug' => 'ekrin-athletics-b37-massage-gun',
+                    'short_description' => 'Ergonomic and long-lasting massage gun.',
+                    'description' => 'The Ekrin Athletics B37 Massage Gun is designed for endurance, offering long battery life, quiet operation, and multiple attachments for muscle recovery.',
+                    'price' => 229.99,
+                    'stock' => 40,
+                    'status' => 1,
+                    'category' => $fitness_outdoor_massager_category,
+                    'unit_id' => 5,
+                    'images' => [
+                        [
+                            'path' => 'fitness-outdoor-massager/ekrin-b37-massage-gun.png',
+                            'is_primary' => '1'
+                        ],
+                    ]
+                ],
+                [
+                    'name' => 'Bob and Brad C2 Massage Gun',
+                    'slug' => 'bob-and-brad-c2-massage-gun',
+                    'short_description' => 'Compact and powerful percussion massager.',
+                    'description' => 'Bob and Brad C2 Massage Gun is lightweight, portable, and features adjustable speeds for targeted muscle therapy and relaxation.',
+                    'price' => 89.99,
+                    'stock' => 120,
+                    'status' => 1,
+                    'category' => $fitness_outdoor_massager_category,
+                    'unit_id' => 5,
+                    'images' => [
+                        [
+                            'path' => 'fitness-outdoor-massager/bob-and-brad-c2-massager.png',
+                            'is_primary' => '1'
+                        ],
+                    ]
+                ],
+                [
+                    'name' => 'LifePro Sonic Handheld Percussion Massager',
+                    'slug' => 'lifepro-sonic-handheld-percussion-massager',
+                    'short_description' => 'Affordable handheld massager for full-body relief.',
+                    'description' => 'LifePro Sonic Percussion Massager features customizable speeds, multiple attachments, and a durable design for effective pain relief and relaxation.',
+                    'price' => 99.99,
+                    'stock' => 80,
+                    'status' => 1,
+                    'category' => $fitness_outdoor_massager_category,
+                    'unit_id' => 5,
+                    'images' => [
+                        [
+                            'path' => 'fitness-outdoor-massager/lifepro-sonic-massager.png',
+                            'is_primary' => '1'
+                        ],
+                    ]
+                ],
+                [
+                    'name' => 'Achedaway Pro Massage Gun',
+                    'slug' => 'achedaway-pro-massage-gun',
+                    'short_description' => 'Premium deep tissue massager.',
+                    'description' => 'The Achedaway Pro Massage Gun offers adjustable speed settings, quiet operation, and durable construction for professional-grade muscle relief.',
+                    'price' => 349.99,
+                    'stock' => 25,
+                    'status' => 1,
+                    'category' => $fitness_outdoor_massager_category,
+                    'unit_id' => 5,
+                    'images' => [
+                        [
+                            'path' => 'fitness-outdoor-massager/achedaway-pro-massager.png',
+                            'is_primary' => '1'
+                        ],
+                    ]
+                ],
+                [
+                    'name' => 'TimTam Power Massager Pro',
+                    'slug' => 'timtam-power-massager-pro',
+                    'short_description' => 'High-intensity massager for deep tissue relief.',
+                    'description' => 'TimTam Power Massager Pro is designed for athletes, offering a heated tip, powerful motor, and ergonomic grip for advanced muscle recovery.',
+                    'price' => 499.99,
+                    'stock' => 20,
+                    'status' => 1,
+                    'category' => $fitness_outdoor_massager_category,
+                    'unit_id' => 5,
+                    'images' => [
+                        [
+                            'path' => 'fitness-outdoor-massager/timtam-power-massager-pro.png',
+                            'is_primary' => '1'
+                        ],
+                    ]
+                ],
+                [
+                    'name' => 'Opove Apex Massage Gun',
+                    'slug' => 'opove-apex-massage-gun',
+                    'short_description' => 'Durable and portable massage gun.',
+                    'description' => 'The Opove Apex Massage Gun is lightweight and portable, featuring multiple speed settings and interchangeable heads for effective muscle relaxation.',
+                    'price' => 179.99,
+                    'stock' => 70,
+                    'status' => 1,
+                    'category' => $fitness_outdoor_massager_category,
+                    'unit_id' => 5,
+                    'images' => [
+                        [
+                            'path' => 'fitness-outdoor-massager/opove-apex-massager.png',
+                            'is_primary' => '1'
+                        ],
+                    ]
+                ],
+                [
+                    'name' => 'Addsfit Mini Massage Gun',
+                    'slug' => 'addsfit-mini-massage-gun',
+                    'short_description' => 'Compact and travel-friendly massager.',
+                    'description' => 'Addsfit Mini Massage Gun is small yet powerful, ideal for travel. Features adjustable intensity levels and multiple attachments for on-the-go recovery.',
+                    'price' => 119.99,
+                    'stock' => 150,
+                    'status' => 1,
+                    'category' => $fitness_outdoor_massager_category,
+                    'unit_id' => 5,
+                    'images' => [
+                        [
+                            'path' => 'fitness-outdoor-massager/addsfit-mini-massager.png',
+                            'is_primary' => '1'
+                        ],
+                    ]
+                ],
+            ];
+
+
+        $products = array_merge($products, $fitness_outdoor_massager_products); 
+
+         $book_stationery_religious_category = Category::where('slug', 'books-stationery-religious')->select('id', 'slug')->first();
+
+        $book_stationery_religious_products = [
+                [
+                    'name' => 'Bhagavad Gita - Pocket Edition',
+                    'slug' => 'bhagavad-gita-pocket-edition',
+                    'short_description' => 'Compact edition of the Bhagavad Gita with Sanskrit verses and translations.',
+                    'description' => 'This pocket-sized edition of the Bhagavad Gita includes original Sanskrit verses, their English translations, and commentary. Ideal for spiritual seekers and travelers.',
+                    'price' => 9.99,
+                    'stock' => 100,
+                    'status' => 1,
+                    'category' => $book_stationery_religious_category,
+                    'unit_id' => 5,
+                    'images' => [
+                        [
+                            'path' => 'book-stationery-religious/bhagavad-gita-pocket-edition.png',
+                            'is_primary' => '1'
+                        ],
+                    ]
+                ],
+                [
+                    'name' => 'Holy Bible - King James Version',
+                    'slug' => 'holy-bible-kjv',
+                    'short_description' => 'Classic King James Version of the Holy Bible.',
+                    'description' => 'The Holy Bible in the King James Version (KJV) offers a timeless translation of the scriptures. Perfect for daily study and devotional use.',
+                    'price' => 14.99,
+                    'stock' => 80,
+                    'status' => 1,
+                    'category' => $book_stationery_religious_category,
+                    'unit_id' => 5,
+                    'images' => [
+                        [
+                            'path' => 'book-stationery-religious/holy-bible-kjv.png',
+                            'is_primary' => '1'
+                        ],
+                    ]
+                ],
+                [
+                    'name' => 'Quran with English Translation',
+                    'slug' => 'quran-with-english-translation',
+                    'short_description' => 'Complete Quran with Arabic text and English translation.',
+                    'description' => 'This Quran includes Arabic text alongside an English translation for a better understanding of Islamic teachings. A great addition for spiritual learning.',
+                    'price' => 19.99,
+                    'stock' => 70,
+                    'status' => 1,
+                    'category' => $book_stationery_religious_category,
+                    'unit_id' => 5,
+                    'images' => [
+                        [
+                            'path' => 'book-stationery-religious/quran-english-translation.png',
+                            'is_primary' => '1'
+                        ],
+                    ]
+                ],
+                [
+                    'name' => 'Hanuman Chalisa - Illustrated Edition',
+                    'slug' => 'hanuman-chalisa-illustrated',
+                    'short_description' => 'Beautifully illustrated Hanuman Chalisa with meaning.',
+                    'description' => 'This edition of Hanuman Chalisa features Sanskrit verses, their English meanings, and vibrant illustrations. Perfect for devotional reading.',
+                    'price' => 7.99,
+                    'stock' => 150,
+                    'status' => 1,
+                    'category' => $book_stationery_religious_category,
+                    'unit_id' => 5,
+                    'images' => [
+                        [
+                            'path' => 'book-stationery-religious/hanuman-chalisa-illustrated.png',
+                            'is_primary' => '1'
+                        ],
+                    ]
+                ],
+                [
+                    'name' => 'Sri Guru Granth Sahib - Pocket Edition',
+                    'slug' => 'guru-granth-sahib-pocket-edition',
+                    'short_description' => 'Compact version of Sri Guru Granth Sahib with translations.',
+                    'description' => 'This pocket edition of Sri Guru Granth Sahib provides original verses and their translations. A must-have for followers of Sikhism.',
+                    'price' => 24.99,
+                    'stock' => 40,
+                    'status' => 1,
+                    'category' => $book_stationery_religious_category,
+                    'unit_id' => 5,
+                    'images' => [
+                        [
+                            'path' => 'book-stationery-religious/guru-granth-sahib-pocket.png',
+                            'is_primary' => '1'
+                        ],
+                    ]
+                ],
+                [
+                    'name' => 'Daily Prayer Journal',
+                    'slug' => 'daily-prayer-journal',
+                    'short_description' => 'A guided journal for daily prayers and reflections.',
+                    'description' => 'The Daily Prayer Journal includes prompts for prayers, gratitude, and reflections. Ideal for enhancing your spiritual practice.',
+                    'price' => 12.99,
+                    'stock' => 90,
+                    'status' => 1,
+                    'category' => $book_stationery_religious_category,
+                    'unit_id' => 5,
+                    'images' => [
+                        [
+                            'path' => 'book-stationery-religious/daily-prayer-journal.png',
+                            'is_primary' => '1'
+                        ],
+                    ]
+                ],
+                [
+                    'name' => 'Buddhist Sutras - English Edition',
+                    'slug' => 'buddhist-sutras-english-edition',
+                    'short_description' => 'A collection of important Buddhist Sutras with English translations.',
+                    'description' => 'This book includes selected Buddhist Sutras with English translations and commentaries. Perfect for meditation and understanding Buddhist teachings.',
+                    'price' => 16.99,
+                    'stock' => 50,
+                    'status' => 1,
+                    'category' => $book_stationery_religious_category,
+                    'unit_id' => 5,
+                    'images' => [
+                        [
+                            'path' => 'book-stationery-religious/buddhist-sutras.png',
+                            'is_primary' => '1'
+                        ],
+                    ]
+                ],
+                [
+                    'name' => 'Ramayana - Illustrated Edition',
+                    'slug' => 'ramayana-illustrated-edition',
+                    'short_description' => 'Illustrated version of the Ramayana epic.',
+                    'description' => 'This edition of the Ramayana includes stunning illustrations and simplified text for readers of all ages. A must-have for anyone interested in Indian mythology.',
+                    'price' => 29.99,
+                    'stock' => 30,
+                    'status' => 1,
+                    'category' => $book_stationery_religious_category,
+                    'unit_id' => 5,
+                    'images' => [
+                        [
+                            'path' => 'book-stationery-religious/ramayana-illustrated.png',
+                            'is_primary' => '1'
+                        ],
+                    ]
+                ],
+                [
+                    'name' => 'Torah with English Translation',
+                    'slug' => 'torah-english-translation',
+                    'short_description' => 'The Torah with Hebrew text and English translation.',
+                    'description' => 'This Torah edition provides the original Hebrew text alongside an English translation, ideal for spiritual learning and practice.',
+                    'price' => 22.99,
+                    'stock' => 60,
+                    'status' => 1,
+                    'category' => $book_stationery_religious_category,
+                    'unit_id' => 5,
+                    'images' => [
+                        [
+                            'path' => 'book-stationery-religious/torah-english-translation.png',
+                            'is_primary' => '1'
+                        ],
+                    ]
+                ],
+                [
+                    'name' => 'Zen Calligraphy Set',
+                    'slug' => 'zen-calligraphy-set',
+                    'short_description' => 'A complete calligraphy set for Zen-inspired writing.',
+                    'description' => 'This Zen Calligraphy Set includes brushes, ink, and a guidebook for creating beautiful spiritual calligraphy. Perfect for mindfulness and relaxation.',
+                    'price' => 34.99,
+                    'stock' => 45,
+                    'status' => 1,
+                    'category' => $book_stationery_religious_category,
+                    'unit_id' => 5,
+                    'images' => [
+                        [
+                            'path' => 'book-stationery-religious/zen-calligraphy-set.png',
+                            'is_primary' => '1'
+                        ],
+                    ]
+                ],
+            ];
+
+
+        $products = array_merge($products, $book_stationery_religious_products); 
+
+        $book_stationery_history_category = Category::where('slug', 'books-stationery-history')->select('id', 'slug')->first();
+
+        $book_stationery_history_products = [
+                [
+                    'name' => 'Sapiens: A Brief History of Humankind',
+                    'slug' => 'sapiens-brief-history-humankind',
+                    'short_description' => 'A groundbreaking history of the human species by Yuval Noah Harari.',
+                    'description' => 'Sapiens explores the history of humankind, covering the cognitive revolution, agricultural developments, and the unification of humanity through fascinating storytelling and insights.',
+                    'price' => 24.99,
+                    'stock' => 100,
+                    'status' => 1,
+                    'category' => $book_stationery_history_category,
+                    'unit_id' => 5,
+                    'images' => [
+                        [
+                            'path' => 'book-stationery-history/sapiens-history.png',
+                            'is_primary' => '1'
+                        ],
+                    ]
+                ],
+                [
+                    'name' => 'The Silk Roads: A New History of the World',
+                    'slug' => 'the-silk-roads-history',
+                    'short_description' => 'A panoramic history of the Silk Roads by Peter Frankopan.',
+                    'description' => 'The Silk Roads provides a fresh perspective on world history, exploring the influence of trade routes on culture, economics, and politics over centuries.',
+                    'price' => 19.99,
+                    'stock' => 80,
+                    'status' => 1,
+                    'category' => $book_stationery_history_category,
+                    'unit_id' => 5,
+                    'images' => [
+                        [
+                            'path' => 'book-stationery-history/the-silk-roads.png',
+                            'is_primary' => '1'
+                        ],
+                    ]
+                ],
+                [
+                    'name' => 'A People’s History of the United States',
+                    'slug' => 'peoples-history-united-states',
+                    'short_description' => 'Howard Zinn’s groundbreaking history of the U.S. from the perspective of marginalized groups.',
+                    'description' => 'A People’s History of the United States retells American history from the viewpoints of workers, women, African Americans, Native Americans, and more.',
+                    'price' => 18.99,
+                    'stock' => 90,
+                    'status' => 1,
+                    'category' => $book_stationery_history_category,
+                    'unit_id' => 5,
+                    'images' => [
+                        [
+                            'path' => 'book-stationery-history/peoples-history-us.png',
+                            'is_primary' => '1'
+                        ],
+                    ]
+                ],
+                [
+                    'name' => 'The History of Ancient Egypt',
+                    'slug' => 'history-ancient-egypt',
+                    'short_description' => 'An in-depth exploration of the ancient Egyptian civilization.',
+                    'description' => 'This book takes readers through the fascinating history of ancient Egypt, covering its pharaohs, pyramids, and cultural achievements.',
+                    'price' => 22.99,
+                    'stock' => 60,
+                    'status' => 1,
+                    'category' => $book_stationery_history_category,
+                    'unit_id' => 5,
+                    'images' => [
+                        [
+                            'path' => 'book-stationery-history/history-ancient-egypt.png',
+                            'is_primary' => '1'
+                        ],
+                    ]
+                ],
+                [
+                    'name' => 'Guns, Germs, and Steel',
+                    'slug' => 'guns-germs-steel',
+                    'short_description' => 'Jared Diamond’s Pulitzer Prize-winning exploration of human societies.',
+                    'description' => 'This book examines the impact of geography, agriculture, and technology on the development of civilizations throughout history.',
+                    'price' => 20.99,
+                    'stock' => 50,
+                    'status' => 1,
+                    'category' => $book_stationery_history_category,
+                    'unit_id' => 5,
+                    'images' => [
+                        [
+                            'path' => 'book-stationery-history/guns-germs-steel.png',
+                            'is_primary' => '1'
+                        ],
+                    ]
+                ],
+                [
+                    'name' => 'The History of the Peloponnesian War',
+                    'slug' => 'history-peloponnesian-war',
+                    'short_description' => 'Thucydides’ classic account of the Peloponnesian War.',
+                    'description' => 'This historical masterpiece provides a detailed account of the conflict between Athens and Sparta, offering insights into ancient warfare and politics.',
+                    'price' => 14.99,
+                    'stock' => 70,
+                    'status' => 1,
+                    'category' => $book_stationery_history_category,
+                    'unit_id' => 5,
+                    'images' => [
+                        [
+                            'path' => 'book-stationery-history/peloponnesian-war.png',
+                            'is_primary' => '1'
+                        ],
+                    ]
+                ],
+                [
+                    'name' => 'India: A History',
+                    'slug' => 'india-a-history',
+                    'short_description' => 'John Keay’s comprehensive history of the Indian subcontinent.',
+                    'description' => 'This book covers the rich and diverse history of India, from its ancient beginnings to modern times, blending scholarship with vivid storytelling.',
+                    'price' => 21.99,
+                    'stock' => 40,
+                    'status' => 1,
+                    'category' => $book_stationery_history_category,
+                    'unit_id' => 5,
+                    'images' => [
+                        [
+                            'path' => 'book-stationery-history/india-history.png',
+                            'is_primary' => '1'
+                        ],
+                    ]
+                ],
+                [
+                    'name' => 'A Short History of Nearly Everything',
+                    'slug' => 'short-history-nearly-everything',
+                    'short_description' => 'Bill Bryson’s engaging account of science and history.',
+                    'description' => 'This book explores the history of the universe, Earth, and life in an accessible and entertaining way, making complex topics easy to understand.',
+                    'price' => 17.99,
+                    'stock' => 120,
+                    'status' => 1,
+                    'category' => $book_stationery_history_category,
+                    'unit_id' => 5,
+                    'images' => [
+                        [
+                            'path' => 'book-stationery-history/short-history-everything.png',
+                            'is_primary' => '1'
+                        ],
+                    ]
+                ],
+                [
+                    'name' => 'The Rise and Fall of the Third Reich',
+                    'slug' => 'rise-fall-third-reich',
+                    'short_description' => 'William L. Shirer’s definitive history of Nazi Germany.',
+                    'description' => 'This comprehensive history details the rise of Adolf Hitler, the Nazi party, and their devastating impact during World War II.',
+                    'price' => 25.99,
+                    'stock' => 30,
+                    'status' => 1,
+                    'category' => $book_stationery_history_category,
+                    'unit_id' => 5,
+                    'images' => [
+                        [
+                            'path' => 'book-stationery-history/rise-fall-third-reich.png',
+                            'is_primary' => '1'
+                        ],
+                    ]
+                ],
+                [
+                    'name' => 'Historical Atlas of the World',
+                    'slug' => 'historical-atlas-world',
+                    'short_description' => 'An illustrated history of the world through maps.',
+                    'description' => 'This atlas provides a visual representation of historical events, civilizations, and developments with detailed maps and explanations.',
+                    'price' => 29.99,
+                    'stock' => 50,
+                    'status' => 1,
+                    'category' => $book_stationery_history_category,
+                    'unit_id' => 5,
+                    'images' => [
+                        [
+                            'path' => 'book-stationery-history/historical-atlas-world.png',
+                            'is_primary' => '1'
+                        ],
+                    ]
+                ],
+            ];
+
+
+        $products = array_merge($products, $book_stationery_history_products); 
+
+        $book_stationery_sport_category = Category::where('slug', 'books-stationery-sports')->select('id', 'slug')->first();
+
+        $book_stationery_sport_products = [
+                [
+                    'name' => 'The Mamba Mentality: How I Play',
+                    'slug' => 'mamba-mentality-how-i-play',
+                    'short_description' => 'Kobe Bryant’s insights on basketball and life.',
+                    'description' => 'In this book, basketball legend Kobe Bryant details his mindset, preparation, and strategies, providing valuable lessons for athletes and fans alike.',
+                    'price' => 29.99,
+                    'stock' => 80,
+                    'status' => 1,
+                    'category' => $book_stationery_sport_category,
+                    'unit_id' => 5,
+                    'images' => [
+                        [
+                            'path' => 'book-stationery-sports/mamba-mentality.png',
+                            'is_primary' => '1'
+                        ],
+                    ]
+                ],
+                [
+                    'name' => 'Soccer IQ: Things That Smart Players Do',
+                    'slug' => 'soccer-iq-smart-players',
+                    'short_description' => 'A guide to improving soccer skills and strategy.',
+                    'description' => 'Soccer IQ offers practical tips for players to enhance their game sense, decision-making, and performance on the field.',
+                    'price' => 17.99,
+                    'stock' => 120,
+                    'status' => 1,
+                    'category' => $book_stationery_sport_category,
+                    'unit_id' => 5,
+                    'images' => [
+                        [
+                            'path' => 'book-stationery-sports/soccer-iq.png',
+                            'is_primary' => '1'
+                        ],
+                    ]
+                ],
+                [
+                    'name' => 'Cricket: The Game of Life',
+                    'slug' => 'cricket-game-of-life',
+                    'short_description' => 'A fascinating exploration of cricket by Scyld Berry.',
+                    'description' => 'This book delves into the cultural and historical impact of cricket, sharing inspiring stories from the game.',
+                    'price' => 21.99,
+                    'stock' => 90,
+                    'status' => 1,
+                    'category' => $book_stationery_sport_category,
+                    'unit_id' => 5,
+                    'images' => [
+                        [
+                            'path' => 'book-stationery-sports/cricket-game-life.png',
+                            'is_primary' => '1'
+                        ],
+                    ]
+                ],
+                [
+                    'name' => 'Open: An Autobiography',
+                    'slug' => 'open-autobiography',
+                    'short_description' => 'Andre Agassi’s candid and inspiring autobiography.',
+                    'description' => 'In this powerful autobiography, tennis legend Andre Agassi shares his struggles, victories, and lessons from his career and personal life.',
+                    'price' => 19.99,
+                    'stock' => 60,
+                    'status' => 1,
+                    'category' => $book_stationery_sport_category,
+                    'unit_id' => 5,
+                    'images' => [
+                        [
+                            'path' => 'book-stationery-sports/open-autobiography.png',
+                            'is_primary' => '1'
+                        ],
+                    ]
+                ],
+                [
+                    'name' => 'The Champion’s Mind',
+                    'slug' => 'champions-mind',
+                    'short_description' => 'A guide to mental fitness for athletes by Jim Afremow.',
+                    'description' => 'The Champion’s Mind offers tools and strategies for athletes to build mental resilience, confidence, and focus for peak performance.',
+                    'price' => 15.99,
+                    'stock' => 100,
+                    'status' => 1,
+                    'category' => $book_stationery_sport_category,
+                    'unit_id' => 5,
+                    'images' => [
+                        [
+                            'path' => 'book-stationery-sports/champions-mind.png',
+                            'is_primary' => '1'
+                        ],
+                    ]
+                ],
+                [
+                    'name' => 'Basketball: A Love Story',
+                    'slug' => 'basketball-love-story',
+                    'short_description' => 'A comprehensive history of basketball.',
+                    'description' => 'This book celebrates basketball through captivating stories, interviews, and insights from players, coaches, and fans.',
+                    'price' => 26.99,
+                    'stock' => 50,
+                    'status' => 1,
+                    'category' => $book_stationery_sport_category,
+                    'unit_id' => 5,
+                    'images' => [
+                        [
+                            'path' => 'book-stationery-sports/basketball-love-story.png',
+                            'is_primary' => '1'
+                        ],
+                    ]
+                ],
+                [
+                    'name' => 'The Art of Running',
+                    'slug' => 'art-of-running',
+                    'short_description' => 'A guide to mastering running techniques.',
+                    'description' => 'The Art of Running combines science and art to help runners improve their technique, endurance, and overall performance.',
+                    'price' => 14.99,
+                    'stock' => 110,
+                    'status' => 1,
+                    'category' => $book_stationery_sport_category,
+                    'unit_id' => 5,
+                    'images' => [
+                        [
+                            'path' => 'book-stationery-sports/art-of-running.png',
+                            'is_primary' => '1'
+                        ],
+                    ]
+                ],
+                [
+                    'name' => 'The Boys in the Boat',
+                    'slug' => 'boys-in-the-boat',
+                    'short_description' => 'The story of the American rowing team at the 1936 Olympics.',
+                    'description' => 'This book chronicles the inspiring journey of the U.S. rowing team that triumphed at the Berlin Olympics against all odds.',
+                    'price' => 18.99,
+                    'stock' => 70,
+                    'status' => 1,
+                    'category' => $book_stationery_sport_category,
+                    'unit_id' => 5,
+                    'images' => [
+                        [
+                            'path' => 'book-stationery-sports/boys-in-the-boat.png',
+                            'is_primary' => '1'
+                        ],
+                    ]
+                ],
+                [
+                    'name' => 'Playing It My Way',
+                    'slug' => 'playing-it-my-way',
+                    'short_description' => 'Sachin Tendulkar’s autobiography.',
+                    'description' => 'Playing It My Way provides a glimpse into the life and career of Sachin Tendulkar, one of the greatest cricketers in history.',
+                    'price' => 22.99,
+                    'stock' => 40,
+                    'status' => 1,
+                    'category' => $book_stationery_sport_category,
+                    'unit_id' => 5,
+                    'images' => [
+                        [
+                            'path' => 'book-stationery-sports/playing-it-my-way.png',
+                            'is_primary' => '1'
+                        ],
+                    ]
+                ],
+                [
+                    'name' => 'Sports Writing Journal',
+                    'slug' => 'sports-writing-journal',
+                    'short_description' => 'A premium journal for sports enthusiasts.',
+                    'description' => 'This journal is perfect for recording training goals, strategies, and achievements. A great tool for athletes and coaches.',
+                    'price' => 9.99,
+                    'stock' => 140,
+                    'status' => 1,
+                    'category' => $book_stationery_sport_category,
+                    'unit_id' => 5,
+                    'images' => [
+                        [
+                            'path' => 'book-stationery-sports/sports-writing-journal.png',
+                            'is_primary' => '1'
+                        ],
+                    ]
+                ],
+            ];
+
+        $products = array_merge($products, $book_stationery_sport_products);   
+
+        $beauty_facewash_category = Category::where('slug', 'beauty-personal-care-facewash')->select('id', 'slug')->first();
+
+        $beauty_facewash_products = [
+                [
+                    'name' => 'Neutrogena Oil-Free Acne Wash',
+                    'slug' => 'neutrogena-oil-free-acne-wash',
+                    'short_description' => 'Oil-free facewash for acne-prone skin with salicylic acid.',
+                    'description' => 'Neutrogena Oil-Free Acne Wash deeply cleanses and treats acne with salicylic acid, leaving your skin clear and refreshed.',
+                    'price' => 12.99,
+                    'stock' => 100,
+                    'status' => 1,
+                    'category' => $beauty_facewash_category,
+                    'unit_id' => 5,
+                    'images' => [
+                        [
+                            'path' => 'beauty-facewash/neutrogena-oil-free-acne-wash.png',
+                            'is_primary' => '1'
+                        ],
+                    ]
+                ],
+                [
+                    'name' => 'Cetaphil Gentle Skin Cleanser',
+                    'slug' => 'cetaphil-gentle-skin-cleanser',
+                    'short_description' => 'Gentle facewash for sensitive and dry skin.',
+                    'description' => 'Cetaphil Gentle Skin Cleanser soothes and hydrates while gently removing dirt, oil, and impurities from sensitive skin.',
+                    'price' => 10.99,
+                    'stock' => 120,
+                    'status' => 1,
+                    'category' => $beauty_facewash_category,
+                    'unit_id' => 5,
+                    'images' => [
+                        [
+                            'path' => 'beauty-facewash/cetaphil-gentle-skin-cleanser.png',
+                            'is_primary' => '1'
+                        ],
+                    ]
+                ],
+                [
+                    'name' => 'Himalaya Purifying Neem Face Wash',
+                    'slug' => 'himalaya-purifying-neem-facewash',
+                    'short_description' => 'Neem-based herbal facewash for clear skin.',
+                    'description' => 'Himalaya Neem Face Wash contains natural neem extracts to prevent acne and pimples, leaving your skin fresh and clear.',
+                    'price' => 6.99,
+                    'stock' => 150,
+                    'status' => 1,
+                    'category' => $beauty_facewash_category,
+                    'unit_id' => 5,
+                    'images' => [
+                        [
+                            'path' => 'beauty-facewash/himalaya-purifying-neem-facewash.png',
+                            'is_primary' => '1'
+                        ],
+                    ]
+                ],
+                [
+                    'name' => 'Mamaearth Ubtan Face Wash',
+                    'slug' => 'mamaearth-ubtan-face-wash',
+                    'short_description' => 'Turmeric-based facewash for glowing skin.',
+                    'description' => 'Mamaearth Ubtan Face Wash with turmeric and saffron gently exfoliates and brightens your skin for a natural glow.',
+                    'price' => 7.99,
+                    'stock' => 90,
+                    'status' => 1,
+                    'category' => $beauty_facewash_category,
+                    'unit_id' => 5,
+                    'images' => [
+                        [
+                            'path' => 'beauty-facewash/mamaearth-ubtan-face-wash.png',
+                            'is_primary' => '1'
+                        ],
+                    ]
+                ],
+                [
+                    'name' => 'Clean & Clear Morning Energy Face Wash',
+                    'slug' => 'clean-clear-morning-energy-face-wash',
+                    'short_description' => 'Refreshing facewash for an energizing start to the day.',
+                    'description' => 'Clean & Clear Morning Energy Face Wash revitalizes your skin with natural fruit extracts and leaves it oil-free and fresh.',
+                    'price' => 5.99,
+                    'stock' => 80,
+                    'status' => 1,
+                    'category' => $beauty_facewash_category,
+                    'unit_id' => 5,
+                    'images' => [
+                        [
+                            'path' => 'beauty-facewash/clean-clear-morning-energy-face-wash.png',
+                            'is_primary' => '1'
+                        ],
+                    ]
+                ],
+                [
+                    'name' => 'WOW Skin Science Apple Cider Vinegar Face Wash',
+                    'slug' => 'wow-apple-cider-vinegar-face-wash',
+                    'short_description' => 'Facewash with apple cider vinegar for oily and acne-prone skin.',
+                    'description' => 'WOW Apple Cider Vinegar Face Wash balances oil production, clears acne, and rejuvenates your skin naturally.',
+                    'price' => 11.99,
+                    'stock' => 100,
+                    'status' => 1,
+                    'category' => $beauty_facewash_category,
+                    'unit_id' => 5,
+                    'images' => [
+                        [
+                            'path' => 'beauty-facewash/wow-apple-cider-vinegar-face-wash.png',
+                            'is_primary' => '1'
+                        ],
+                    ]
+                ],
+                [
+                    'name' => 'Pond’s Pure White Activated Charcoal Face Wash',
+                    'slug' => 'ponds-pure-white-charcoal-face-wash',
+                    'short_description' => 'Charcoal facewash for deep cleansing.',
+                    'description' => 'Pond’s Pure White Face Wash removes dirt, impurities, and pollution with activated charcoal for visibly clear skin.',
+                    'price' => 4.99,
+                    'stock' => 130,
+                    'status' => 1,
+                    'category' => $beauty_facewash_category,
+                    'unit_id' => 5,
+                    'images' => [
+                        [
+                            'path' => 'beauty-facewash/ponds-pure-white-charcoal-face-wash.png',
+                            'is_primary' => '1'
+                        ],
+                    ]
+                ],
+                [
+                    'name' => 'Biotique Bio Honey Gel Face Wash',
+                    'slug' => 'biotique-bio-honey-gel-face-wash',
+                    'short_description' => 'Ayurvedic facewash for all skin types.',
+                    'description' => 'Biotique Bio Honey Gel Face Wash contains honey and herbal extracts for gentle cleansing and nourishing your skin naturally.',
+                    'price' => 8.99,
+                    'stock' => 140,
+                    'status' => 1,
+                    'category' => $beauty_facewash_category,
+                    'unit_id' => 5,
+                    'images' => [
+                        [
+                            'path' => 'beauty-facewash/biotique-bio-honey-gel-face-wash.png',
+                            'is_primary' => '1'
+                        ],
+                    ]
+                ],
+                [
+                    'name' => 'Garnier Men Oil Clear Face Wash',
+                    'slug' => 'garnier-men-oil-clear-face-wash',
+                    'short_description' => 'Oil control facewash for men.',
+                    'description' => 'Garnier Men Oil Clear Face Wash removes excess oil, dirt, and pollution for an instantly fresh and matte finish.',
+                    'price' => 6.49,
+                    'stock' => 150,
+                    'status' => 1,
+                    'category' => $beauty_facewash_category,
+                    'unit_id' => 5,
+                    'images' => [
+                        [
+                            'path' => 'beauty-facewash/garnier-men-oil-clear-face-wash.png',
+                            'is_primary' => '1'
+                        ],
+                    ]
+                ],
+                [
+                    'name' => 'Plum Green Tea Pore Cleansing Face Wash',
+                    'slug' => 'plum-green-tea-face-wash',
+                    'short_description' => 'Facewash with green tea for oily and acne-prone skin.',
+                    'description' => 'Plum Green Tea Face Wash cleanses pores and controls excess oil, leaving your skin refreshed and blemish-free.',
+                    'price' => 9.99,
+                    'stock' => 95,
+                    'status' => 1,
+                    'category' => $beauty_facewash_category,
+                    'unit_id' => 5,
+                    'images' => [
+                        [
+                            'path' => 'beauty-facewash/plum-green-tea-face-wash.png',
+                            'is_primary' => '1'
+                        ],
+                    ]
+                ],
+            ];
+
+
+        $products = array_merge($products, $beauty_facewash_products);   
+
+        $beauty_soap_category = Category::where('slug', 'beauty-personal-care-soap')->select('id', 'slug')->first();
+
+        $beauty_soap_products = [
+                [
+                    'name' => 'Dove Beauty Bar',
+                    'slug' => 'dove-beauty-bar',
+                    'short_description' => 'Moisturizing beauty bar for soft, smooth skin.',
+                    'description' => 'Dove Beauty Bar cleanses and nourishes the skin with its ¼ moisturizing cream, leaving it soft, smooth, and radiant.',
+                    'price' => 3.99,
+                    'stock' => 150,
+                    'status' => 1,
+                    'category' => $beauty_soap_category,
+                    'unit_id' => 5,
+                    'images' => [
+                        [
+                            'path' => 'beauty-soap/dove-beauty-bar.png',
+                            'is_primary' => '1'
+                        ],
+                    ]
+                ],
+                [
+                    'name' => 'Lux Velvet Touch Soap',
+                    'slug' => 'lux-velvet-touch-soap',
+                    'short_description' => 'Lux soap with a silky, smooth fragrance.',
+                    'description' => 'Lux Velvet Touch Soap is infused with the fragrance of white roses and offers a smooth, silky touch to the skin with every wash.',
+                    'price' => 2.49,
+                    'stock' => 130,
+                    'status' => 1,
+                    'category' => $beauty_soap_category,
+                    'unit_id' => 5,
+                    'images' => [
+                        [
+                            'path' => 'beauty-soap/lux-velvet-touch-soap.png',
+                            'is_primary' => '1'
+                        ],
+                    ]
+                ],
+                [
+                    'name' => 'Liril Lemon Soap',
+                    'slug' => 'liril-lemon-soap',
+                    'short_description' => 'Refreshing lemon-scented soap.',
+                    'description' => 'Liril Lemon Soap gives a refreshing citrus experience, energizing the skin and keeping it fresh throughout the day.',
+                    'price' => 1.99,
+                    'stock' => 180,
+                    'status' => 1,
+                    'category' => $beauty_soap_category,
+                    'unit_id' => 5,
+                    'images' => [
+                        [
+                            'path' => 'beauty-soap/liril-lemon-soap.png',
+                            'is_primary' => '1'
+                        ],
+                    ]
+                ],
+                [
+                    'name' => 'Nivea Creme Soft Soap',
+                    'slug' => 'nivea-creme-soft-soap',
+                    'short_description' => 'Gentle soap with a soft cream formula.',
+                    'description' => 'Nivea Creme Soft Soap gently cleanses the skin while nourishing it with its soft cream formula for smooth, moisturized skin.',
+                    'price' => 4.49,
+                    'stock' => 100,
+                    'status' => 1,
+                    'category' => $beauty_soap_category,
+                    'unit_id' => 5,
+                    'images' => [
+                        [
+                            'path' => 'beauty-soap/nivea-creme-soft-soap.png',
+                            'is_primary' => '1'
+                        ],
+                    ]
+                ],
+                [
+                    'name' => 'Pears Transparent Soap',
+                    'slug' => 'pears-transparent-soap',
+                    'short_description' => 'Gentle soap for clear skin.',
+                    'description' => 'Pears Transparent Soap cleanses and moisturizes, giving you soft and clear skin with its gentle, natural formula.',
+                    'price' => 2.99,
+                    'stock' => 150,
+                    'status' => 1,
+                    'category' => $beauty_soap_category,
+                    'unit_id' => 5,
+                    'images' => [
+                        [
+                            'path' => 'beauty-soap/pears-transparent-soap.png',
+                            'is_primary' => '1'
+                        ],
+                    ]
+                ],
+                [
+                    'name' => 'Cinthol Intense Soap',
+                    'slug' => 'cinthol-intense-soap',
+                    'short_description' => 'Long-lasting freshness with intense fragrance.',
+                    'description' => 'Cinthol Intense Soap delivers an energizing fragrance with its special formula that ensures long-lasting freshness throughout the day.',
+                    'price' => 1.89,
+                    'stock' => 120,
+                    'status' => 1,
+                    'category' => $beauty_soap_category,
+                    'unit_id' => 5,
+                    'images' => [
+                        [
+                            'path' => 'beauty-soap/cinthol-intense-soap.png',
+                            'is_primary' => '1'
+                        ],
+                    ]
+                ],
+                [
+                    'name' => 'Mysore Sandal Soap',
+                    'slug' => 'mysore-sandal-soap',
+                    'short_description' => 'Traditional sandalwood soap.',
+                    'description' => 'Mysore Sandal Soap is known for its refreshing fragrance of pure sandalwood, leaving the skin soft and fragrant all day long.',
+                    'price' => 5.99,
+                    'stock' => 110,
+                    'status' => 1,
+                    'category' => $beauty_soap_category,
+                    'unit_id' => 5,
+                    'images' => [
+                        [
+                            'path' => 'beauty-soap/mysore-sandal-soap.png',
+                            'is_primary' => '1'
+                        ],
+                    ]
+                ],
+                [
+                    'name' => 'Pond’s White Beauty Soap',
+                    'slug' => 'ponds-white-beauty-soap',
+                    'short_description' => 'Brightening soap for radiant skin.',
+                    'description' => 'Pond’s White Beauty Soap is formulated to lighten and brighten the skin, revealing a glowing and radiant complexion.',
+                    'price' => 3.49,
+                    'stock' => 140,
+                    'status' => 1,
+                    'category' => $beauty_soap_category,
+                    'unit_id' => 5,
+                    'images' => [
+                        [
+                            'path' => 'beauty-soap/ponds-white-beauty-soap.png',
+                            'is_primary' => '1'
+                        ],
+                    ]
+                ],
+                [
+                    'name' => 'Shahnaz Husain Shafair Skin Whitening Soap',
+                    'slug' => 'shahnaz-husain-shafair-whitening-soap',
+                    'short_description' => 'Skin whitening soap with herbal ingredients.',
+                    'description' => 'Shahnaz Husain Shafair Soap helps in lightening and brightening the skin with its unique blend of herbal ingredients.',
+                    'price' => 8.99,
+                    'stock' => 80,
+                    'status' => 1,
+                    'category' => $beauty_soap_category,
+                    'unit_id' => 5,
+                    'images' => [
+                        [
+                            'path' => 'beauty-soap/shahnaz-husain-shafair-soap.png',
+                            'is_primary' => '1'
+                        ],
+                    ]
+                ],
+                [
+                    'name' => 'Herbal Essences Refreshing Citrus Soap',
+                    'slug' => 'herbal-essences-refreshing-citrus-soap',
+                    'short_description' => 'Citrus-scented soap for a refreshing shower.',
+                    'description' => 'Herbal Essences Refreshing Citrus Soap invigorates your senses with its zesty citrus fragrance while cleansing and nourishing your skin.',
+                    'price' => 4.49,
+                    'stock' => 130,
+                    'status' => 1,
+                    'category' => $beauty_soap_category,
+                    'unit_id' => 5,
+                    'images' => [
+                        [
+                            'path' => 'beauty-soap/herbal-essences-refreshing-citrus-soap.png',
+                            'is_primary' => '1'
+                        ],
+                    ]
+                ],
+            ];
+
+        $products = array_merge($products, $beauty_soap_products);   
+
             
         foreach ($products as $product) {
 

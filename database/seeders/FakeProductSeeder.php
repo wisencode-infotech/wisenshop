@@ -4667,6 +4667,896 @@ class FakeProductSeeder extends FakeAppSeeder
 
         $products = array_merge($products, $beauty_soap_products);   
 
+        $footware_sport_category = Category::where('slug', 'footwear-sport')->select('id', 'slug')->first();
+
+        $footware_sport_products = [
+                [
+                    'name' => 'Nike Air Zoom Pegasus 39',
+                    'slug' => 'nike-air-zoom-pegasus-39',
+                    'short_description' => 'Lightweight running shoes for enhanced speed and comfort.',
+                    'description' => 'Nike Air Zoom Pegasus 39 features a breathable upper, responsive cushioning, and durable rubber outsole, perfect for long-distance runs.',
+                    'price' => 129.99,
+                    'stock' => 100,
+                    'status' => 1,
+                    'category' => $footware_sport_category,
+                    'unit_id' => 5,
+                    'images' => [
+                        [
+                            'path' => 'sports-footwear/nike-air-zoom-pegasus-39.png',
+                            'is_primary' => '1'
+                        ],
+                    ]
+                ],
+                [
+                    'name' => 'Adidas Ultraboost 22',
+                    'slug' => 'adidas-ultraboost-22',
+                    'short_description' => 'High-performance running shoes with superior cushioning.',
+                    'description' => 'Adidas Ultraboost 22 provides unmatched energy return with Boost midsole technology and a supportive fit for maximum comfort.',
+                    'price' => 179.99,
+                    'stock' => 80,
+                    'status' => 1,
+                    'category' => $footware_sport_category,
+                    'unit_id' => 5,
+                    'images' => [
+                        [
+                            'path' => 'sports-footwear/adidas-ultraboost-22.png',
+                            'is_primary' => '1'
+                        ],
+                    ]
+                ],
+                [
+                    'name' => 'Puma Velocity Nitro',
+                    'slug' => 'puma-velocity-nitro',
+                    'short_description' => 'Comfortable running shoes with nitrogen-infused foam.',
+                    'description' => 'Puma Velocity Nitro offers lightweight responsiveness and excellent grip for runners seeking a smooth ride.',
+                    'price' => 119.99,
+                    'stock' => 90,
+                    'status' => 1,
+                    'category' => $footware_sport_category,
+                    'unit_id' => 5,
+                    'images' => [
+                        [
+                            'path' => 'sports-footwear/puma-velocity-nitro.png',
+                            'is_primary' => '1'
+                        ],
+                    ]
+                ],
+                [
+                    'name' => 'ASICS Gel-Kayano 29',
+                    'slug' => 'asics-gel-kayano-29',
+                    'short_description' => 'Stability-focused running shoes with advanced cushioning.',
+                    'description' => 'ASICS Gel-Kayano 29 combines FlyteFoam technology and GEL cushioning for maximum support and comfort.',
+                    'price' => 159.99,
+                    'stock' => 70,
+                    'status' => 1,
+                    'category' => $footware_sport_category,
+                    'unit_id' => 5,
+                    'images' => [
+                        [
+                            'path' => 'sports-footwear/asics-gel-kayano-29.png',
+                            'is_primary' => '1'
+                        ],
+                    ]
+                ],
+                [
+                    'name' => 'Reebok Nano X2',
+                    'slug' => 'reebok-nano-x2',
+                    'short_description' => 'Cross-training shoes with a durable design.',
+                    'description' => 'Reebok Nano X2 is built for multi-directional movement, featuring Flexweave technology and responsive cushioning.',
+                    'price' => 139.99,
+                    'stock' => 120,
+                    'status' => 1,
+                    'category' => $footware_sport_category,
+                    'unit_id' => 5,
+                    'images' => [
+                        [
+                            'path' => 'sports-footwear/reebok-nano-x2.png',
+                            'is_primary' => '1'
+                        ],
+                    ]
+                ],
+                [
+                    'name' => 'Under Armour HOVR Sonic 5',
+                    'slug' => 'under-armour-hovr-sonic-5',
+                    'short_description' => 'Smart running shoes with HOVR cushioning technology.',
+                    'description' => 'Under Armour HOVR Sonic 5 offers connected fitness features, responsive cushioning, and a breathable upper for superior performance.',
+                    'price' => 139.99,
+                    'stock' => 100,
+                    'status' => 1,
+                    'category' => $footware_sport_category,
+                    'unit_id' => 5,
+                    'images' => [
+                        [
+                            'path' => 'sports-footwear/under-armour-hovr-sonic-5.png',
+                            'is_primary' => '1'
+                        ],
+                    ]
+                ],
+                [
+                    'name' => 'New Balance Fresh Foam 1080v12',
+                    'slug' => 'new-balance-fresh-foam-1080v12',
+                    'short_description' => 'Cushioned running shoes for ultimate comfort.',
+                    'description' => 'New Balance Fresh Foam 1080v12 delivers plush cushioning and a smooth transition for runners of all levels.',
+                    'price' => 149.99,
+                    'stock' => 60,
+                    'status' => 1,
+                    'category' => $footware_sport_category,
+                    'unit_id' => 5,
+                    'images' => [
+                        [
+                            'path' => 'sports-footwear/new-balance-fresh-foam-1080v12.png',
+                            'is_primary' => '1'
+                        ],
+                    ]
+                ],
+                [
+                    'name' => 'Salomon Speedcross 5',
+                    'slug' => 'salomon-speedcross-5',
+                    'short_description' => 'Trail running shoes with excellent grip.',
+                    'description' => 'Salomon Speedcross 5 provides superior traction and stability for rugged terrains, making it perfect for trail running enthusiasts.',
+                    'price' => 129.99,
+                    'stock' => 90,
+                    'status' => 1,
+                    'category' => $footware_sport_category,
+                    'unit_id' => 5,
+                    'images' => [
+                        [
+                            'path' => 'sports-footwear/salomon-speedcross-5.png',
+                            'is_primary' => '1'
+                        ],
+                    ]
+                ],
+                [
+                    'name' => 'Skechers Go Run Razor Excess 2',
+                    'slug' => 'skechers-go-run-razor-excess-2',
+                    'short_description' => 'Performance running shoes with Hyper Burst cushioning.',
+                    'description' => 'Skechers Go Run Razor Excess 2 offers responsive cushioning and a lightweight design for a faster, smoother run.',
+                    'price' => 124.99,
+                    'stock' => 85,
+                    'status' => 1,
+                    'category' => $footware_sport_category,
+                    'unit_id' => 5,
+                    'images' => [
+                        [
+                            'path' => 'sports-footwear/skechers-go-run-razor-excess-2.png',
+                            'is_primary' => '1'
+                        ],
+                    ]
+                ],
+                [
+                    'name' => 'Brooks Ghost 15',
+                    'slug' => 'brooks-ghost-15',
+                    'short_description' => 'Neutral running shoes with soft cushioning.',
+                    'description' => 'Brooks Ghost 15 features DNA LOFT cushioning for a smooth ride and a secure fit for everyday running.',
+                    'price' => 139.99,
+                    'stock' => 75,
+                    'status' => 1,
+                    'category' => $footware_sport_category,
+                    'unit_id' => 5,
+                    'images' => [
+                        [
+                            'path' => 'sports-footwear/brooks-ghost-15.png',
+                            'is_primary' => '1'
+                        ],
+                    ]
+                ],
+            ];
+
+
+        $products = array_merge($products, $footware_sport_products); 
+
+        $footware_casual_category = Category::where('slug', 'footwear-casual')->select('id', 'slug')->first();
+
+        $footware_casual_products = [
+                [
+                    'name' => 'Nike Court Vision Low Sneakers',
+                    'slug' => 'nike-court-vision-low-sneakers',
+                    'short_description' => 'Stylish low-top sneakers for everyday wear.',
+                    'description' => 'Nike Court Vision Low Sneakers combine retro basketball style with modern comfort, perfect for casual outings.',
+                    'price' => 74.99,
+                    'stock' => 120,
+                    'status' => 1,
+                    'category' => $footware_casual_category,
+                    'unit_id' => 5,
+                    'images' => [
+                        [
+                            'path' => 'casual-footwear/nike-court-vision-low-sneakers.png',
+                            'is_primary' => '1'
+                        ],
+                    ]
+                ],
+                [
+                    'name' => 'Adidas Advantage Shoes',
+                    'slug' => 'adidas-advantage-shoes',
+                    'short_description' => 'Classic sneakers with a sleek design.',
+                    'description' => 'Adidas Advantage Shoes offer clean lines, a leather upper, and cloudfoam cushioning for all-day comfort.',
+                    'price' => 65.99,
+                    'stock' => 100,
+                    'status' => 1,
+                    'category' => $footware_casual_category,
+                    'unit_id' => 5,
+                    'images' => [
+                        [
+                            'path' => 'casual-footwear/adidas-advantage-shoes.png',
+                            'is_primary' => '1'
+                        ],
+                    ]
+                ],
+                [
+                    'name' => 'Puma Smash V2 Sneakers',
+                    'slug' => 'puma-smash-v2-sneakers',
+                    'short_description' => 'Comfortable sneakers with a timeless design.',
+                    'description' => 'Puma Smash V2 Sneakers feature a suede upper, cushioned sole, and rubber outsole for durability and everyday style.',
+                    'price' => 59.99,
+                    'stock' => 110,
+                    'status' => 1,
+                    'category' => $footware_casual_category,
+                    'unit_id' => 5,
+                    'images' => [
+                        [
+                            'path' => 'casual-footwear/puma-smash-v2-sneakers.png',
+                            'is_primary' => '1'
+                        ],
+                    ]
+                ],
+                [
+                    'name' => 'Converse Chuck Taylor All Star',
+                    'slug' => 'converse-chuck-taylor-all-star',
+                    'short_description' => 'Iconic high-top sneakers for casual wear.',
+                    'description' => 'Converse Chuck Taylor All Star shoes bring classic style with a canvas upper and vulcanized rubber sole for ultimate versatility.',
+                    'price' => 60.00,
+                    'stock' => 150,
+                    'status' => 1,
+                    'category' => $footware_casual_category,
+                    'unit_id' => 5,
+                    'images' => [
+                        [
+                            'path' => 'casual-footwear/converse-chuck-taylor-all-star.png',
+                            'is_primary' => '1'
+                        ],
+                    ]
+                ],
+                [
+                    'name' => 'Skechers Go Walk Arch Fit',
+                    'slug' => 'skechers-go-walk-arch-fit',
+                    'short_description' => 'Lightweight slip-on shoes with arch support.',
+                    'description' => 'Skechers Go Walk Arch Fit shoes provide excellent arch support and lightweight cushioning for unmatched comfort.',
+                    'price' => 85.99,
+                    'stock' => 90,
+                    'status' => 1,
+                    'category' => $footware_casual_category,
+                    'unit_id' => 5,
+                    'images' => [
+                        [
+                            'path' => 'casual-footwear/skechers-go-walk-arch-fit.png',
+                            'is_primary' => '1'
+                        ],
+                    ]
+                ],
+                [
+                    'name' => 'Vans Old Skool Sneakers',
+                    'slug' => 'vans-old-skool-sneakers',
+                    'short_description' => 'Classic skate shoes with timeless appeal.',
+                    'description' => 'Vans Old Skool Sneakers feature a durable canvas and suede upper, padded collar, and waffle outsole for style and performance.',
+                    'price' => 69.99,
+                    'stock' => 130,
+                    'status' => 1,
+                    'category' => $footware_casual_category,
+                    'unit_id' => 5,
+                    'images' => [
+                        [
+                            'path' => 'casual-footwear/vans-old-skool-sneakers.png',
+                            'is_primary' => '1'
+                        ],
+                    ]
+                ],
+                [
+                    'name' => 'Red Tape Casual Loafers',
+                    'slug' => 'red-tape-casual-loafers',
+                    'short_description' => 'Stylish loafers with a comfortable fit.',
+                    'description' => 'Red Tape Casual Loafers combine premium leather construction with a slip-on design for versatile everyday wear.',
+                    'price' => 49.99,
+                    'stock' => 100,
+                    'status' => 1,
+                    'category' => $footware_casual_category,
+                    'unit_id' => 5,
+                    'images' => [
+                        [
+                            'path' => 'casual-footwear/red-tape-casual-loafers.png',
+                            'is_primary' => '1'
+                        ],
+                    ]
+                ],
+                [
+                    'name' => 'Clarks Tilden Walk Shoes',
+                    'slug' => 'clarks-tilden-walk-shoes',
+                    'short_description' => 'Elegant formal-casual leather shoes.',
+                    'description' => 'Clarks Tilden Walk Shoes are crafted from premium leather, featuring an OrthoLite footbed for maximum comfort during casual outings.',
+                    'price' => 89.99,
+                    'stock' => 75,
+                    'status' => 1,
+                    'category' => $footware_casual_category,
+                    'unit_id' => 5,
+                    'images' => [
+                        [
+                            'path' => 'casual-footwear/clarks-tilden-walk-shoes.png',
+                            'is_primary' => '1'
+                        ],
+                    ]
+                ],
+                [
+                    'name' => 'Woodland Leather Sandals',
+                    'slug' => 'woodland-leather-sandals',
+                    'short_description' => 'Durable leather sandals for a rugged look.',
+                    'description' => 'Woodland Leather Sandals feature sturdy construction with adjustable straps, making them perfect for casual outdoor adventures.',
+                    'price' => 54.99,
+                    'stock' => 90,
+                    'status' => 1,
+                    'category' => $footware_casual_category,
+                    'unit_id' => 5,
+                    'images' => [
+                        [
+                            'path' => 'casual-footwear/woodland-leather-sandals.png',
+                            'is_primary' => '1'
+                        ],
+                    ]
+                ],
+                [
+                    'name' => 'Bata Slip-On Shoes',
+                    'slug' => 'bata-slip-on-shoes',
+                    'short_description' => 'Comfortable slip-on shoes for daily use.',
+                    'description' => 'Bata Slip-On Shoes are designed with a lightweight sole and cushioned footbed, offering unbeatable ease and style.',
+                    'price' => 44.99,
+                    'stock' => 110,
+                    'status' => 1,
+                    'category' => $footware_casual_category,
+                    'unit_id' => 5,
+                    'images' => [
+                        [
+                            'path' => 'casual-footwear/bata-slip-on-shoes.png',
+                            'is_primary' => '1'
+                        ],
+                    ]
+                ],
+            ];
+
+
+        $products = array_merge($products, $footware_casual_products); 
+
+        $footware_partywear_category = Category::where('slug', 'footwear-partywear')->select('id', 'slug')->first();
+
+        $footware_partywear_products = [
+                [
+                    'name' => 'Steve Madden Daisie Pumps',
+                    'slug' => 'steve-madden-daisie-pumps',
+                    'short_description' => 'Elegant high-heel pumps for party occasions.',
+                    'description' => 'Steve Madden Daisie Pumps feature a sleek design with a pointed toe and stiletto heel, making them perfect for glamorous events.',
+                    'price' => 99.99,
+                    'stock' => 80,
+                    'status' => 1,
+                    'category' => $footware_partywear_category,
+                    'unit_id' => 5,
+                    'images' => [
+                        [
+                            'path' => 'partywear-footwear/steve-madden-daisie-pumps.png',
+                            'is_primary' => '1'
+                        ],
+                    ]
+                ],
+                [
+                    'name' => 'Jimmy Choo Romy Glitter Pumps',
+                    'slug' => 'jimmy-choo-romy-glitter-pumps',
+                    'short_description' => 'Sparkling glitter pumps for special events.',
+                    'description' => 'Jimmy Choo Romy Glitter Pumps add a touch of sparkle with their glittered finish, elegant pointed toe, and a comfortable stiletto heel.',
+                    'price' => 499.99,
+                    'stock' => 50,
+                    'status' => 1,
+                    'category' => $footware_partywear_category,
+                    'unit_id' => 5,
+                    'images' => [
+                        [
+                            'path' => 'partywear-footwear/jimmy-choo-romy-glitter-pumps.png',
+                            'is_primary' => '1'
+                        ],
+                    ]
+                ],
+                [
+                    'name' => 'Aldo Galelith Sandals',
+                    'slug' => 'aldo-galelith-sandals',
+                    'short_description' => 'Chic heeled sandals with a metallic finish.',
+                    'description' => 'Aldo Galelith Sandals are designed with a strappy metallic upper, cushioned footbed, and block heel for a modern partywear look.',
+                    'price' => 89.99,
+                    'stock' => 100,
+                    'status' => 1,
+                    'category' => $footware_partywear_category,
+                    'unit_id' => 5,
+                    'images' => [
+                        [
+                            'path' => 'partywear-footwear/aldo-galelith-sandals.png',
+                            'is_primary' => '1'
+                        ],
+                    ]
+                ],
+                [
+                    'name' => 'Zara Embellished Stilettos',
+                    'slug' => 'zara-embellished-stilettos',
+                    'short_description' => 'Glamorous stilettos with rhinestone detailing.',
+                    'description' => 'Zara Embellished Stilettos feature a satin finish, rhinestone embellishments, and a sleek silhouette perfect for formal occasions.',
+                    'price' => 79.99,
+                    'stock' => 90,
+                    'status' => 1,
+                    'category' => $footware_partywear_category,
+                    'unit_id' => 5,
+                    'images' => [
+                        [
+                            'path' => 'partywear-footwear/zara-embellished-stilettos.png',
+                            'is_primary' => '1'
+                        ],
+                    ]
+                ],
+                [
+                    'name' => 'Gucci Marmont Platform Sandals',
+                    'slug' => 'gucci-marmont-platform-sandals',
+                    'short_description' => 'Luxurious platform sandals for high-fashion parties.',
+                    'description' => 'Gucci Marmont Platform Sandals feature the iconic GG motif, leather straps, and a comfortable block heel for standout style.',
+                    'price' => 799.99,
+                    'stock' => 40,
+                    'status' => 1,
+                    'category' => $footware_partywear_category,
+                    'unit_id' => 5,
+                    'images' => [
+                        [
+                            'path' => 'partywear-footwear/gucci-marmont-platform-sandals.png',
+                            'is_primary' => '1'
+                        ],
+                    ]
+                ],
+                [
+                    'name' => 'Michael Kors Glitter Platform Heels',
+                    'slug' => 'michael-kors-glitter-platform-heels',
+                    'short_description' => 'Dazzling platform heels with a glitter finish.',
+                    'description' => 'Michael Kors Glitter Platform Heels are crafted with a glamorous glitter upper, ankle strap, and a chunky heel for added comfort and height.',
+                    'price' => 149.99,
+                    'stock' => 70,
+                    'status' => 1,
+                    'category' => $footware_partywear_category,
+                    'unit_id' => 5,
+                    'images' => [
+                        [
+                            'path' => 'partywear-footwear/michael-kors-glitter-platform-heels.png',
+                            'is_primary' => '1'
+                        ],
+                    ]
+                ],
+                [
+                    'name' => 'Clarks Deva Mae Sandals',
+                    'slug' => 'clarks-deva-mae-sandals',
+                    'short_description' => 'Sophisticated block heel sandals for parties.',
+                    'description' => 'Clarks Deva Mae Sandals combine style and comfort with their suede upper, block heel, and cushioned footbed for all-night wear.',
+                    'price' => 99.99,
+                    'stock' => 110,
+                    'status' => 1,
+                    'category' => $footware_partywear_category,
+                    'unit_id' => 5,
+                    'images' => [
+                        [
+                            'path' => 'partywear-footwear/clarks-deva-mae-sandals.png',
+                            'is_primary' => '1'
+                        ],
+                    ]
+                ],
+                [
+                    'name' => 'Bata Gold Heeled Sandals',
+                    'slug' => 'bata-gold-heeled-sandals',
+                    'short_description' => 'Affordable gold-toned party sandals.',
+                    'description' => 'Bata Gold Heeled Sandals feature a metallic gold upper, a sturdy block heel, and a comfortable footbed for festive occasions.',
+                    'price' => 39.99,
+                    'stock' => 120,
+                    'status' => 1,
+                    'category' => $footware_partywear_category,
+                    'unit_id' => 5,
+                    'images' => [
+                        [
+                            'path' => 'partywear-footwear/bata-gold-heeled-sandals.png',
+                            'is_primary' => '1'
+                        ],
+                    ]
+                ],
+                [
+                    'name' => 'Red Tape Party Loafers',
+                    'slug' => 'red-tape-party-loafers',
+                    'short_description' => 'Chic loafers with a glossy finish.',
+                    'description' => 'Red Tape Party Loafers are crafted with premium patent leather, a slip-on design, and a cushioned sole for a sharp yet comfortable look.',
+                    'price' => 49.99,
+                    'stock' => 95,
+                    'status' => 1,
+                    'category' => $footware_partywear_category,
+                    'unit_id' => 5,
+                    'images' => [
+                        [
+                            'path' => 'partywear-footwear/red-tape-party-loafers.png',
+                            'is_primary' => '1'
+                        ],
+                    ]
+                ],
+                [
+                    'name' => 'H&M Sequin Strap Heels',
+                    'slug' => 'hm-sequin-strap-heels',
+                    'short_description' => 'Party-ready heels with sequin details.',
+                    'description' => 'H&M Sequin Strap Heels feature glittering sequin straps, a slim stiletto heel, and a cushioned sole for a striking party look.',
+                    'price' => 59.99,
+                    'stock' => 100,
+                    'status' => 1,
+                    'category' => $footware_partywear_category,
+                    'unit_id' => 5,
+                    'images' => [
+                        [
+                            'path' => 'partywear-footwear/hm-sequin-strap-heels.png',
+                            'is_primary' => '1'
+                        ],
+                    ]
+                ],
+            ];
+
+
+        $products = array_merge($products, $footware_partywear_products);   
+
+         $travel_duffel_bag_category = Category::where('slug', 'travel-luggage-duffel-bag')->select('id', 'slug')->first();
+
+        $travel_duffel_bag_products = [
+                [
+                    'name' => 'Nike Brasilia Duffel Bag',
+                    'slug' => 'nike-brasilia-duffel-bag',
+                    'short_description' => 'Durable and spacious duffel bag for gym and travel.',
+                    'description' => 'Nike Brasilia Duffel Bag features a water-resistant bottom, multiple compartments, and an adjustable strap for versatile use.',
+                    'price' => 45.99,
+                    'stock' => 100,
+                    'status' => 1,
+                    'category' => $travel_duffel_bag_category,
+                    'unit_id' => 5,
+                    'images' => [
+                        [
+                            'path' => 'duffel-bags/nike-brasilia-duffel-bag.png',
+                            'is_primary' => '1'
+                        ],
+                    ]
+                ],
+                [
+                    'name' => 'Adidas Defender III Duffel Bag',
+                    'slug' => 'adidas-defender-iii-duffel-bag',
+                    'short_description' => 'Stylish and lightweight duffel bag.',
+                    'description' => 'Adidas Defender III Duffel Bag comes with reinforced panels, a large main compartment, and padded straps for comfort.',
+                    'price' => 39.99,
+                    'stock' => 120,
+                    'status' => 1,
+                    'category' => $travel_duffel_bag_category,
+                    'unit_id' => 5,
+                    'images' => [
+                        [
+                            'path' => 'duffel-bags/adidas-defender-iii-duffel-bag.png',
+                            'is_primary' => '1'
+                        ],
+                    ]
+                ],
+                [
+                    'name' => 'Under Armour Undeniable Duffel 4.0',
+                    'slug' => 'under-armour-undeniable-duffel-4-0',
+                    'short_description' => 'Water-resistant duffel bag for all conditions.',
+                    'description' => 'Under Armour Undeniable Duffel 4.0 is designed with UA Storm technology, abrasion-resistant bottom, and multiple pockets.',
+                    'price' => 55.00,
+                    'stock' => 90,
+                    'status' => 1,
+                    'category' => $travel_duffel_bag_category,
+                    'unit_id' => 5,
+                    'images' => [
+                        [
+                            'path' => 'duffel-bags/under-armour-undeniable-duffel-4-0.png',
+                            'is_primary' => '1'
+                        ],
+                    ]
+                ],
+                [
+                    'name' => 'Samsonite Andante 2 Wheeled Duffel Bag',
+                    'slug' => 'samsonite-andante-2-wheeled-duffel-bag',
+                    'short_description' => 'Spacious duffel bag with wheels for easy transport.',
+                    'description' => 'Samsonite Andante 2 Duffel Bag features inline wheels, multiple compartments, and durable construction for travel.',
+                    'price' => 99.99,
+                    'stock' => 60,
+                    'status' => 1,
+                    'category' => $travel_duffel_bag_category,
+                    'unit_id' => 5,
+                    'images' => [
+                        [
+                            'path' => 'duffel-bags/samsonite-andante-2-wheeled-duffel-bag.png',
+                            'is_primary' => '1'
+                        ],
+                    ]
+                ],
+                [
+                    'name' => 'Herschel Supply Co. Novel Duffel Bag',
+                    'slug' => 'herschel-supply-co-novel-duffel-bag',
+                    'short_description' => 'Stylish duffel bag with a dedicated shoe compartment.',
+                    'description' => 'Herschel Novel Duffel Bag features a signature striped liner, waterproof zipper, and separate shoe storage for convenience.',
+                    'price' => 89.99,
+                    'stock' => 80,
+                    'status' => 1,
+                    'category' => $travel_duffel_bag_category,
+                    'unit_id' => 5,
+                    'images' => [
+                        [
+                            'path' => 'duffel-bags/herschel-supply-co-novel-duffel-bag.png',
+                            'is_primary' => '1'
+                        ],
+                    ]
+                ],
+                [
+                    'name' => 'Patagonia Black Hole Duffel Bag',
+                    'slug' => 'patagonia-black-hole-duffel-bag',
+                    'short_description' => 'Highly durable and weather-resistant duffel bag.',
+                    'description' => 'Patagonia Black Hole Duffel Bag offers ample storage, water-resistant material, and reinforced handles for rugged use.',
+                    'price' => 129.00,
+                    'stock' => 50,
+                    'status' => 1,
+                    'category' => $travel_duffel_bag_category,
+                    'unit_id' => 5,
+                    'images' => [
+                        [
+                            'path' => 'duffel-bags/patagonia-black-hole-duffel-bag.png',
+                            'is_primary' => '1'
+                        ],
+                    ]
+                ],
+                [
+                    'name' => 'Wildcraft Hypadura Duffel Bag',
+                    'slug' => 'wildcraft-hypadura-duffel-bag',
+                    'short_description' => 'Heavy-duty duffel bag for outdoor adventures.',
+                    'description' => 'Wildcraft Hypadura Duffel Bag is designed with durable material, multiple compartments, and padded straps for convenience.',
+                    'price' => 64.99,
+                    'stock' => 75,
+                    'status' => 1,
+                    'category' => $travel_duffel_bag_category,
+                    'unit_id' => 5,
+                    'images' => [
+                        [
+                            'path' => 'duffel-bags/wildcraft-hypadura-duffel-bag.png',
+                            'is_primary' => '1'
+                        ],
+                    ]
+                ],
+                [
+                    'name' => 'American Tourister Road Quest Duffel',
+                    'slug' => 'american-tourister-road-quest-duffel',
+                    'short_description' => 'Compact duffel bag for short trips.',
+                    'description' => 'American Tourister Road Quest Duffel features a sleek design, lightweight build, and spacious compartments for travel.',
+                    'price' => 49.99,
+                    'stock' => 110,
+                    'status' => 1,
+                    'category' => $travel_duffel_bag_category,
+                    'unit_id' => 5,
+                    'images' => [
+                        [
+                            'path' => 'duffel-bags/american-tourister-road-quest-duffel.png',
+                            'is_primary' => '1'
+                        ],
+                    ]
+                ],
+                [
+                    'name' => 'Tumi Alpha 3 Duffel Bag',
+                    'slug' => 'tumi-alpha-3-duffel-bag',
+                    'short_description' => 'Premium duffel bag for business and travel.',
+                    'description' => 'Tumi Alpha 3 Duffel Bag offers exceptional quality, multiple compartments, and leather trim for a luxurious look.',
+                    'price' => 395.00,
+                    'stock' => 30,
+                    'status' => 1,
+                    'category' => $travel_duffel_bag_category,
+                    'unit_id' => 5,
+                    'images' => [
+                        [
+                            'path' => 'duffel-bags/tumi-alpha-3-duffel-bag.png',
+                            'is_primary' => '1'
+                        ],
+                    ]
+                ],
+                [
+                    'name' => 'Puma Challenger Duffel Bag',
+                    'slug' => 'puma-challenger-duffel-bag',
+                    'short_description' => 'Lightweight and practical duffel bag.',
+                    'description' => 'Puma Challenger Duffel Bag features a spacious interior, adjustable straps, and durable construction for gym or travel.',
+                    'price' => 34.99,
+                    'stock' => 150,
+                    'status' => 1,
+                    'category' => $travel_duffel_bag_category,
+                    'unit_id' => 5,
+                    'images' => [
+                        [
+                            'path' => 'duffel-bags/puma-challenger-duffel-bag.png',
+                            'is_primary' => '1'
+                        ],
+                    ]
+                ],
+            ];
+
+
+        $products = array_merge($products, $travel_duffel_bag_products); 
+
+         $travel_luggage_bag_category = Category::where('slug', 'travel-luggage-luggage-bag')->select('id', 'slug')->first();
+
+        $travel_luggage_bag_products = [
+                [
+                    'name' => 'Samsonite Winfield 3 Hardside Luggage',
+                    'slug' => 'samsonite-winfield-3-hardside-luggage',
+                    'short_description' => 'Durable and lightweight hardside luggage for travel.',
+                    'description' => 'Samsonite Winfield 3 Hardside Luggage features a sleek design, spinner wheels, and a TSA-approved lock for secure travel.',
+                    'price' => 189.99,
+                    'stock' => 100,
+                    'status' => 1,
+                    'category' => $travel_luggage_bag_category,
+                    'unit_id' => 5,
+                    'images' => [
+                        [
+                            'path' => 'luggage-bags/samsonite-winfield-3-hardside-luggage.png',
+                            'is_primary' => '1'
+                        ],
+                    ]
+                ],
+                [
+                    'name' => 'American Tourister Stratum XLT',
+                    'slug' => 'american-tourister-stratum-xlt',
+                    'short_description' => 'Stylish and durable luggage for all trips.',
+                    'description' => 'American Tourister Stratum XLT luggage comes with scratch-resistant texture, spinner wheels, and a comfortable grip handle.',
+                    'price' => 119.99,
+                    'stock' => 90,
+                    'status' => 1,
+                    'category' => $travel_luggage_bag_category,
+                    'unit_id' => 5,
+                    'images' => [
+                        [
+                            'path' => 'luggage-bags/american-tourister-stratum-xlt.png',
+                            'is_primary' => '1'
+                        ],
+                    ]
+                ],
+                [
+                    'name' => 'Delsey Paris Helium Aero Luggage',
+                    'slug' => 'delsey-paris-helium-aero-luggage',
+                    'short_description' => 'Premium luggage with an expandable design.',
+                    'description' => 'Delsey Paris Helium Aero Luggage features a polycarbonate shell, double spinner wheels, and a TSA lock for security.',
+                    'price' => 159.99,
+                    'stock' => 80,
+                    'status' => 1,
+                    'category' => $travel_luggage_bag_category,
+                    'unit_id' => 5,
+                    'images' => [
+                        [
+                            'path' => 'luggage-bags/delsey-paris-helium-aero-luggage.png',
+                            'is_primary' => '1'
+                        ],
+                    ]
+                ],
+                [
+                    'name' => 'Travelpro Maxlite 5 Softside Luggage',
+                    'slug' => 'travelpro-maxlite-5-softside-luggage',
+                    'short_description' => 'Lightweight and durable softside luggage.',
+                    'description' => 'Travelpro Maxlite 5 Softside Luggage offers multiple compartments, expandable design, and spinner wheels for smooth travel.',
+                    'price' => 139.99,
+                    'stock' => 70,
+                    'status' => 1,
+                    'category' => $travel_luggage_bag_category,
+                    'unit_id' => 5,
+                    'images' => [
+                        [
+                            'path' => 'luggage-bags/travelpro-maxlite-5-softside-luggage.png',
+                            'is_primary' => '1'
+                        ],
+                    ]
+                ],
+                [
+                    'name' => 'Briggs & Riley Baseline Luggage',
+                    'slug' => 'briggs-and-riley-baseline-luggage',
+                    'short_description' => 'Luxury luggage with lifetime warranty.',
+                    'description' => 'Briggs & Riley Baseline Luggage features an expandable design, durable fabric, and smooth spinner wheels for effortless travel.',
+                    'price' => 479.00,
+                    'stock' => 50,
+                    'status' => 1,
+                    'category' => $travel_luggage_bag_category,
+                    'unit_id' => 5,
+                    'images' => [
+                        [
+                            'path' => 'luggage-bags/briggs-and-riley-baseline-luggage.png',
+                            'is_primary' => '1'
+                        ],
+                    ]
+                ],
+                [
+                    'name' => 'VIP Check-in Luggage Bag',
+                    'slug' => 'vip-check-in-luggage-bag',
+                    'short_description' => 'Affordable and stylish luggage for frequent travelers.',
+                    'description' => 'VIP Check-in Luggage Bag is lightweight, durable, and features smooth wheels and a retractable handle for convenience.',
+                    'price' => 89.99,
+                    'stock' => 110,
+                    'status' => 1,
+                    'category' => $travel_luggage_bag_category,
+                    'unit_id' => 5,
+                    'images' => [
+                        [
+                            'path' => 'luggage-bags/vip-check-in-luggage-bag.png',
+                            'is_primary' => '1'
+                        ],
+                    ]
+                ],
+                [
+                    'name' => 'Skybags Polycarbonate Luggage',
+                    'slug' => 'skybags-polycarbonate-luggage',
+                    'short_description' => 'Stylish and sturdy luggage for every journey.',
+                    'description' => 'Skybags Polycarbonate Luggage is equipped with spinner wheels, a TSA lock, and a scratch-resistant shell for protection.',
+                    'price' => 109.99,
+                    'stock' => 75,
+                    'status' => 1,
+                    'category' => $travel_luggage_bag_category,
+                    'unit_id' => 5,
+                    'images' => [
+                        [
+                            'path' => 'luggage-bags/skybags-polycarbonate-luggage.png',
+                            'is_primary' => '1'
+                        ],
+                    ]
+                ],
+                [
+                    'name' => 'Aristocrat Wave Plus Luggage',
+                    'slug' => 'aristocrat-wave-plus-luggage',
+                    'short_description' => 'Compact and lightweight luggage for short trips.',
+                    'description' => 'Aristocrat Wave Plus Luggage features a tough exterior, multi-directional wheels, and spacious compartments for easy packing.',
+                    'price' => 74.99,
+                    'stock' => 95,
+                    'status' => 1,
+                    'category' => $travel_luggage_bag_category,
+                    'unit_id' => 5,
+                    'images' => [
+                        [
+                            'path' => 'luggage-bags/aristocrat-wave-plus-luggage.png',
+                            'is_primary' => '1'
+                        ],
+                    ]
+                ],
+                [
+                    'name' => 'Tumi V4 Expandable Luggage',
+                    'slug' => 'tumi-v4-expandable-luggage',
+                    'short_description' => 'Luxury expandable luggage for business travelers.',
+                    'description' => 'Tumi V4 Expandable Luggage offers superior quality, smooth wheels, and a premium design for frequent travelers.',
+                    'price' => 495.00,
+                    'stock' => 40,
+                    'status' => 1,
+                    'category' => $travel_luggage_bag_category,
+                    'unit_id' => 5,
+                    'images' => [
+                        [
+                            'path' => 'luggage-bags/tumi-v4-expandable-luggage.png',
+                            'is_primary' => '1'
+                        ],
+                    ]
+                ],
+                [
+                    'name' => 'Wildcraft Hypadura Luggage Bag',
+                    'slug' => 'wildcraft-hypadura-luggage-bag',
+                    'short_description' => 'Rugged and durable luggage for outdoor travel.',
+                    'description' => 'Wildcraft Hypadura Luggage Bag is crafted with tough material, multiple compartments, and smooth wheels for adventurous travelers.',
+                    'price' => 129.99,
+                    'stock' => 60,
+                    'status' => 1,
+                    'category' => $travel_luggage_bag_category,
+                    'unit_id' => 5,
+                    'images' => [
+                        [
+                            'path' => 'luggage-bags/wildcraft-hypadura-luggage-bag.png',
+                            'is_primary' => '1'
+                        ],
+                    ]
+                ],
+            ];
+
+
+        $products = array_merge($products, $travel_luggage_bag_products);   
+
             
         foreach ($products as $product) {
 

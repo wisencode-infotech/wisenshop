@@ -24,10 +24,10 @@
                                     $dispatch('category-selected', { category_id: selectedCategoryId });
                                 ">
                                 
-                            <!-- Sub categories Count badge -->
-                            @if (($category_sub_categories_count = $category->subcategories()->select('id')->count()) > 0)
+                            <!-- category products count badge -->
+                            @if (($category_products_count = $category->total_products) > 0)
                                 <div class="absolute top-2 right-2 bg-green-light text-accent text-xs font-bold px-2 py-1 rounded-full">
-                                    {{ $category_sub_categories_count }}
+                                    {{ $category_products_count }}
                                 </div>
                             @endif
                         
@@ -69,6 +69,14 @@
                                         selectedCategoryId = {{ $subcategory->id }};
                                         $dispatch('category-selected', { category_id: selectedCategoryId })
                                     ">
+
+                                    <!-- subcategory products count badge -->
+                                    @if (($subcategory_products_count = $subcategory->products()->count()) > 0)
+                                        <div class="absolute top-2 right-2 bg-green-light text-accent text-xs font-bold px-2 py-1 rounded-full">
+                                            {{ $subcategory_products_count }}
+                                        </div>
+                                    @endif
+
                                     <div class="w-full h-20 flex items-center justify-center">
                                         <img src="{{ $subcategory->image_url }}" class="h-20" />
                                     </div>

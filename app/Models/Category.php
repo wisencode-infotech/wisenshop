@@ -42,6 +42,20 @@ class Category extends Model
         return self::$placeholder_url; // Ensure to use self:: for static property access
     }
 
+    public function getTotalProductsAttribute()
+    {
+        if ($this->parent_id > 0)
+            return $this->products()->count();
+    
+        $total_items = 0;
+        
+        foreach ($this->subcategories as $sub_category) {
+            $total_items += $sub_category->products()->count();
+        }
+
+        return $total_items;
+    }
+
     // scope
     protected static function booted()
     {

@@ -14,18 +14,30 @@
                     <!-- Parent Categories -->
                     <div x-show="!showSubcategories" class="grid grid-cols-2 gap-4">
                         @foreach ($product_categories as $category)
-                            <div  wire:key="category-{{ $category->id }}" class="text-center rounded-lg bg-light py-4 flex flex-col items-center justify-start relative overflow-hidden cursor-pointer product_category shadow-sm" role="button"
+                            <div wire:key="category-{{ $category->id }}" 
+                                class="text-center rounded-lg bg-light py-4 flex flex-col items-center justify-start relative overflow-hidden cursor-pointer product_category shadow-sm" 
+                                role="button"
                                 :class="{ 'active': selectedCategoryId === {{ $category->id }} }"
                                 x-on:click="
                                     selectedCategoryId = {{ $category->id }};
                                     $wire.set('selectedCategoryId', selectedCategoryId); // Use Livewire's set method
-                                    $dispatch('category-selected', { category_id: selectedCategoryId })
+                                    $dispatch('category-selected', { category_id: selectedCategoryId });
                                 ">
-                                <div class="w-full h-20 flex items-center justify-center">
-                                    <img src="{{ $category->image_url }}" alt="{{ $category->name }}" class="h-20" />
+                                
+                            <!-- Sub categories Count badge -->
+                            @if (($category_sub_categories_count = $category->subcategories()->select('id')->count()) > 0)
+                                <div class="absolute top-2 right-2 bg-green-light text-accent text-xs font-bold px-2 py-1 rounded-full">
+                                    {{ $category_sub_categories_count }}
                                 </div>
-                                <span class="text-sm font-semibold text-heading text-center pt-4 px-2.5 block">{{ \Str::limit($category->name, 18) }}</span>
+                            @endif
+                        
+                            <div class="w-full h-20 flex items-center justify-center">
+                                <img src="{{ $category->image_url }}" alt="{{ $category->name }}" class="h-20" />
                             </div>
+                            <span class="text-sm font-semibold text-heading text-center pt-4 px-2.5 block">
+                                {{ \Str::limit($category->name, 18) }}
+                            </span>
+                        </div>
                         @endforeach
                     </div>
 

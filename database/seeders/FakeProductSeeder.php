@@ -299,6 +299,10 @@ class FakeProductSeeder extends FakeAppSeeder
                         'path' => 'electronics-laptop-computer/apple-mac-mini-m2.jpg',
                         'is_primary' => '1'
                     ],
+                    [
+                        'path' => 'electronics-laptop-computer/apple-mac-mini-m2-202410.png',
+                        'is_primary' => '0'
+                    ]
                 ]
             ],
             [

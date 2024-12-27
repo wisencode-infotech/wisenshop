@@ -5574,7 +5574,160 @@ class FakeProductSeeder extends FakeAppSeeder
                         'is_primary' => '1'
                     ],
                 ]
-            ]
+            ],
+            [
+                'name' => 'Whiskas Dry Cat Food',
+                'slug' => 'whiskas-dry-cat-food',
+                'short_description' => 'Tasty and nutritious dry food for cats.',
+                'description' => 'Whiskas Dry Cat Food is packed with protein, vitamins, and omega 3 and 6 fatty acids for your cat’s health and coat.',
+                'price' => 19.99,
+                'stock' => 150,
+                'status' => 1,
+                'category' => Category::where('slug', 'pet-supplies')->select('id', 'slug')->first(),
+                'unit_id' => 5,
+                'images' => [
+                    [
+                        'path' => 'pet-supplies/whiskas-dry-cat-food.png',
+                        'is_primary' => '1'
+                    ],
+                ]
+            ],
+            [
+                'name' => 'KONG Classic Dog Toy',
+                'slug' => 'kong-classic-dog-toy',
+                'short_description' => 'Durable chew toy for dogs.',
+                'description' => 'The KONG Classic Dog Toy is perfect for keeping dogs entertained and helps with chewing behavior and mental stimulation.',
+                'price' => 12.99,
+                'stock' => 200,
+                'status' => 1,
+                'category' => Category::where('slug', 'pet-supplies')->select('id', 'slug')->first(),
+                'unit_id' => 5,
+                'images' => [
+                    [
+                        'path' => 'pet-supplies/kong-classic-dog-toy.png',
+                        'is_primary' => '1'
+                    ],
+                ]
+            ],
+            [
+                'name' => 'TetraMin Tropical Fish Food',
+                'slug' => 'tetramin-tropical-fish-food',
+                'short_description' => 'Nutritious flakes for tropical fish.',
+                'description' => 'TetraMin Tropical Fish Food is a complete diet formulated to support immune health and vibrant colors in tropical fish.',
+                'price' => 8.99,
+                'stock' => 180,
+                'status' => 1,
+                'category' => Category::where('slug', 'pet-supplies')->select('id', 'slug')->first(),
+                'unit_id' => 5,
+                'images' => [
+                    [
+                        'path' => 'pet-supplies/tetramin-tropical-fish-food.png',
+                        'is_primary' => '1'
+                    ],
+                ]
+            ],
+            [
+                'name' => 'Aspen Pet Traditional Kennel',
+                'slug' => 'aspen-pet-traditional-kennel',
+                'short_description' => 'Safe and comfortable travel kennel for pets.',
+                'description' => 'The Aspen Pet Traditional Kennel is made with durable plastic and ventilation on all sides to ensure your pet’s safety.',
+                'price' => 69.99,
+                'stock' => 50,
+                'status' => 1,
+                'category' => Category::where('slug', 'pet-supplies')->select('id', 'slug')->first(),
+                'unit_id' => 5,
+                'images' => [
+                    [
+                        'path' => 'pet-supplies/aspen-pet-traditional-kennel.png',
+                        'is_primary' => '1'
+                    ],
+                ]
+            ],
+            [
+                'name' => 'Arm & Hammer Clump & Seal Cat Litter',
+                'slug' => 'arm-and-hammer-clump-and-seal-cat-litter',
+                'short_description' => 'Odor-controlling cat litter for freshness.',
+                'description' => 'Arm & Hammer Clump & Seal Cat Litter eliminates odors and provides a dust-free, clumpable formula for easy cleanup.',
+                'price' => 15.99,
+                'stock' => 90,
+                'status' => 1,
+                'category' => Category::where('slug', 'pet-supplies')->select('id', 'slug')->first(),
+                'unit_id' => 5,
+                'images' => [
+                    [
+                        'path' => 'pet-supplies/arm-and-hammer-clump-and-seal-cat-litter.png',
+                        'is_primary' => '1'
+                    ],
+                ]
+            ],
+            [
+                'name' => 'PetSafe Drinkwell Pet Fountain',
+                'slug' => 'petsafe-drinkwell-pet-fountain',
+                'short_description' => 'Automatic water fountain for pets.',
+                'description' => 'The PetSafe Drinkwell Pet Fountain provides fresh, filtered water for pets and encourages hydration.',
+                'price' => 44.99,
+                'stock' => 70,
+                'status' => 1,
+                'category' => Category::where('slug', 'pet-supplies')->select('id', 'slug')->first(),
+                'unit_id' => 5,
+                'images' => [
+                    [
+                        'path' => 'pet-supplies/petsafe-drinkwell-pet-fountain.png',
+                        'is_primary' => '1'
+                    ],
+                ]
+            ],
+            [
+                'name' => 'Purina Pro Plan Puppy Food',
+                'slug' => 'purina-pro-plan-puppy-food',
+                'short_description' => 'High-protein food for growing puppies.',
+                'description' => 'Purina Pro Plan Puppy Food is enriched with DHA for brain and vision development and calcium for strong bones.',
+                'price' => 26.99,
+                'stock' => 140,
+                'status' => 1,
+                'category' => Category::where('slug', 'pet-supplies')->select('id', 'slug')->first(),
+                'unit_id' => 5,
+                'images' => [
+                    [
+                        'path' => 'pet-supplies/purina-pro-plan-puppy-food.png',
+                        'is_primary' => '1'
+                    ],
+                ]
+            ],
+            [
+                'name' => 'PetFusion Ultimate Dog Bed',
+                'slug' => 'petfusion-ultimate-dog-bed',
+                'short_description' => 'Orthopedic memory foam bed for dogs.',
+                'description' => 'PetFusion Ultimate Dog Bed offers comfort and support for senior dogs and features a water-resistant cover.',
+                'price' => 94.99,
+                'stock' => 60,
+                'status' => 1,
+                'category' => Category::where('slug', 'pet-supplies')->select('id', 'slug')->first(),
+                'unit_id' => 5,
+                'images' => [
+                    [
+                        'path' => 'pet-supplies/petfusion-ultimate-dog-bed.png',
+                        'is_primary' => '1'
+                    ],
+                ]
+            ],
+            [
+                'name' => 'Kaytee Clean & Cozy Small Pet Bedding',
+                'slug' => 'kaytee-clean-and-cozy-small-pet-bedding',
+                'short_description' => 'Soft and absorbent bedding for small pets.',
+                'description' => 'Kaytee Clean & Cozy Small Pet Bedding expands up to three times its size and is dust-free for a clean environment.',
+                'price' => 10.99,
+                'stock' => 100,
+                'status' => 1,
+                'category' => Category::where('slug', 'pet-supplies')->select('id', 'slug')->first(),
+                'unit_id' => 5,
+                'images' => [
+                    [
+                        'path' => 'pet-supplies/kaytee-clean-and-cozy-small-pet-bedding.png',
+                        'is_primary' => '1'
+                    ],
+                ]
+            ],
         ];
 
         $products = array_merge($products, $pet_supply_products);
@@ -5596,7 +5749,160 @@ class FakeProductSeeder extends FakeAppSeeder
                         'is_primary' => '1'
                     ],
                 ]
-            ]
+            ],
+            [
+                'name' => 'Acrylic Paint Set',
+                'slug' => 'acrylic-paint-set',
+                'short_description' => 'Vibrant acrylic paint set for art and crafts.',
+                'description' => 'This acrylic paint set includes 24 colors, perfect for beginners and professionals. Non-toxic and ideal for canvas, wood, or fabric painting.',
+                'price' => 19.99,
+                'stock' => 100,
+                'status' => 1,
+                'category' => Category::where('slug', 'hobbies-crafts')->select('id', 'slug')->first(),
+                'unit_id' => 5,
+                'images' => [
+                    [
+                        'path' => 'hobbies-crafts/acrylic-paint-set.png',
+                        'is_primary' => '1'
+                    ],
+                ]
+            ],
+            [
+                'name' => 'Knitting Starter Kit',
+                'slug' => 'knitting-starter-kit',
+                'short_description' => 'Complete knitting kit for beginners.',
+                'description' => 'The knitting starter kit includes yarn, needles, and instruction guides. Perfect for crafting scarves, hats, and other projects.',
+                'price' => 29.99,
+                'stock' => 80,
+                'status' => 1,
+                'category' => Category::where('slug', 'hobbies-crafts')->select('id', 'slug')->first(),
+                'unit_id' => 5,
+                'images' => [
+                    [
+                        'path' => 'hobbies-crafts/knitting-starter-kit.png',
+                        'is_primary' => '1'
+                    ],
+                ]
+            ],
+            [
+                'name' => 'DIY Jewelry Making Kit',
+                'slug' => 'diy-jewelry-making-kit',
+                'short_description' => 'Jewelry making kit for hobbyists.',
+                'description' => 'This DIY jewelry making kit includes beads, strings, and tools to create bracelets, necklaces, and earrings. Great for crafters of all ages.',
+                'price' => 24.99,
+                'stock' => 90,
+                'status' => 1,
+                'category' => Category::where('slug', 'hobbies-crafts')->select('id', 'slug')->first(),
+                'unit_id' => 5,
+                'images' => [
+                    [
+                        'path' => 'hobbies-crafts/diy-jewelry-making-kit.png',
+                        'is_primary' => '1'
+                    ],
+                ]
+            ],
+            [
+                'name' => 'Embroidery Hoop Set',
+                'slug' => 'embroidery-hoop-set',
+                'short_description' => 'Complete set of embroidery hoops for stitching.',
+                'description' => 'The embroidery hoop set includes multiple sizes and stitching threads. Perfect for cross-stitch, quilting, and needlecraft.',
+                'price' => 14.99,
+                'stock' => 120,
+                'status' => 1,
+                'category' => Category::where('slug', 'hobbies-crafts')->select('id', 'slug')->first(),
+                'unit_id' => 5,
+                'images' => [
+                    [
+                        'path' => 'hobbies-crafts/embroidery-hoop-set.png',
+                        'is_primary' => '1'
+                    ],
+                ]
+            ],
+            [
+                'name' => 'Scrapbooking Starter Pack',
+                'slug' => 'scrapbooking-starter-pack',
+                'short_description' => 'Scrapbooking essentials for beginners.',
+                'description' => 'This scrapbooking pack includes decorative papers, stickers, and cutting tools. Ideal for preserving memories creatively.',
+                'price' => 22.99,
+                'stock' => 70,
+                'status' => 1,
+                'category' => Category::where('slug', 'hobbies-crafts')->select('id', 'slug')->first(),
+                'unit_id' => 5,
+                'images' => [
+                    [
+                        'path' => 'hobbies-crafts/scrapbooking-starter-pack.png',
+                        'is_primary' => '1'
+                    ],
+                ]
+            ],
+            [
+                'name' => 'Calligraphy Pen Set',
+                'slug' => 'calligraphy-pen-set',
+                'short_description' => 'Elegant calligraphy set for handwriting art.',
+                'description' => 'The calligraphy pen set includes multiple nibs, ink bottles, and guides to master the art of beautiful writing.',
+                'price' => 18.99,
+                'stock' => 150,
+                'status' => 1,
+                'category' => Category::where('slug', 'hobbies-crafts')->select('id', 'slug')->first(),
+                'unit_id' => 5,
+                'images' => [
+                    [
+                        'path' => 'hobbies-crafts/calligraphy-pen-set.png',
+                        'is_primary' => '1'
+                    ],
+                ]
+            ],
+            [
+                'name' => 'Origami Paper Pack',
+                'slug' => 'origami-paper-pack',
+                'short_description' => 'Colorful origami paper for creative folding.',
+                'description' => 'This origami paper pack contains 200 sheets in various colors. Ideal for crafting paper animals, flowers, and decorations.',
+                'price' => 9.99,
+                'stock' => 200,
+                'status' => 1,
+                'category' => Category::where('slug', 'hobbies-crafts')->select('id', 'slug')->first(),
+                'unit_id' => 5,
+                'images' => [
+                    [
+                        'path' => 'hobbies-crafts/origami-paper-pack.png',
+                        'is_primary' => '1'
+                    ],
+                ]
+            ],
+            [
+                'name' => 'DIY Candle Making Kit',
+                'slug' => 'diy-candle-making-kit',
+                'short_description' => 'Complete kit for making scented candles.',
+                'description' => 'This candle-making kit includes wax, molds, fragrances, and wicks. Perfect for creating custom candles at home.',
+                'price' => 34.99,
+                'stock' => 60,
+                'status' => 1,
+                'category' => Category::where('slug', 'hobbies-crafts')->select('id', 'slug')->first(),
+                'unit_id' => 5,
+                'images' => [
+                    [
+                        'path' => 'hobbies-crafts/diy-candle-making-kit.png',
+                        'is_primary' => '1'
+                    ],
+                ]
+            ],
+            [
+                'name' => 'Wood Burning Kit',
+                'slug' => 'wood-burning-kit',
+                'short_description' => 'Pyrography tools for woodcraft enthusiasts.',
+                'description' => 'The wood-burning kit includes a pen, interchangeable tips, and a guide for creating designs on wood, leather, and more.',
+                'price' => 39.99,
+                'stock' => 50,
+                'status' => 1,
+                'category' => Category::where('slug', 'hobbies-crafts')->select('id', 'slug')->first(),
+                'unit_id' => 5,
+                'images' => [
+                    [
+                        'path' => 'hobbies-crafts/wood-burning-kit.png',
+                        'is_primary' => '1'
+                    ],
+                ]
+            ],
         ];
 
         $products = array_merge($products, $hobbies_crafts_products);
@@ -5618,7 +5924,160 @@ class FakeProductSeeder extends FakeAppSeeder
                         'is_primary' => '1'
                     ],
                 ]
-            ]
+            ],
+            [
+                'name' => 'Lay’s Classic Potato Chips',
+                'slug' => 'lays-classic-potato-chips',
+                'short_description' => 'Crispy and salty potato chips for a quick snack.',
+                'description' => 'Lay’s Classic Potato Chips are made from fresh potatoes and seasoned lightly for a perfect crunch. A great companion for parties and movie nights.',
+                'price' => 2.99,
+                'stock' => 200,
+                'status' => 1,
+                'category' => Category::where('slug', 'snacks-sweets')->select('id', 'slug')->first(),
+                'unit_id' => 5,
+                'images' => [
+                    [
+                        'path' => 'snacks-sweets/lays-classic-potato-chips.png',
+                        'is_primary' => '1'
+                    ],
+                ]
+            ],
+            [
+                'name' => 'Hershey’s Milk Chocolate Bar',
+                'slug' => 'hersheys-milk-chocolate-bar',
+                'short_description' => 'Creamy milk chocolate bar for a delightful treat.',
+                'description' => 'Hershey’s Milk Chocolate Bar offers smooth and rich chocolate flavor, perfect for indulging your sweet cravings.',
+                'price' => 1.99,
+                'stock' => 250,
+                'status' => 1,
+                'category' => Category::where('slug', 'snacks-sweets')->select('id', 'slug')->first(),
+                'unit_id' => 5,
+                'images' => [
+                    [
+                        'path' => 'snacks-sweets/hersheys-milk-chocolate-bar.png',
+                        'is_primary' => '1'
+                    ],
+                ]
+            ],
+            [
+                'name' => 'KitKat Chocolate Wafer Bar',
+                'slug' => 'kitkat-chocolate-wafer-bar',
+                'short_description' => 'Crispy wafer covered in milk chocolate.',
+                'description' => 'KitKat Chocolate Wafer Bar is a perfect blend of crispy wafers and creamy milk chocolate. Great for a quick snack or sharing.',
+                'price' => 1.49,
+                'stock' => 300,
+                'status' => 1,
+                'category' => Category::where('slug', 'snacks-sweets')->select('id', 'slug')->first(),
+                'unit_id' => 5,
+                'images' => [
+                    [
+                        'path' => 'snacks-sweets/kitkat-chocolate-wafer-bar.png',
+                        'is_primary' => '1'
+                    ],
+                ]
+            ],
+            [
+                'name' => 'Oreo Chocolate Sandwich Cookies',
+                'slug' => 'oreo-chocolate-sandwich-cookies',
+                'short_description' => 'Classic chocolate cookies with a creamy filling.',
+                'description' => 'Oreo Chocolate Sandwich Cookies are perfect for dunking in milk or enjoying as a sweet snack. A timeless favorite for all ages.',
+                'price' => 3.49,
+                'stock' => 180,
+                'status' => 1,
+                'category' => Category::where('slug', 'snacks-sweets')->select('id', 'slug')->first(),
+                'unit_id' => 5,
+                'images' => [
+                    [
+                        'path' => 'snacks-sweets/oreo-chocolate-sandwich-cookies.png',
+                        'is_primary' => '1'
+                    ],
+                ]
+            ],
+            [
+                'name' => 'Ferrero Rocher Chocolate Box',
+                'slug' => 'ferrero-rocher-chocolate-box',
+                'short_description' => 'Luxurious hazelnut chocolates.',
+                'description' => 'Ferrero Rocher Chocolate Box contains premium chocolates with a hazelnut center, wafer shell, and rich chocolate coating.',
+                'price' => 12.99,
+                'stock' => 90,
+                'status' => 1,
+                'category' => Category::where('slug', 'snacks-sweets')->select('id', 'slug')->first(),
+                'unit_id' => 5,
+                'images' => [
+                    [
+                        'path' => 'snacks-sweets/ferrero-rocher-chocolate-box.png',
+                        'is_primary' => '1'
+                    ],
+                ]
+            ],
+            [
+                'name' => 'Pringles Original Potato Chips',
+                'slug' => 'pringles-original-potato-chips',
+                'short_description' => 'Stackable potato chips with a savory flavor.',
+                'description' => 'Pringles Original Potato Chips offer a classic salty flavor with a unique stackable design. Perfect for snacking anytime.',
+                'price' => 3.99,
+                'stock' => 170,
+                'status' => 1,
+                'category' => Category::where('slug', 'snacks-sweets')->select('id', 'slug')->first(),
+                'unit_id' => 5,
+                'images' => [
+                    [
+                        'path' => 'snacks-sweets/pringles-original-potato-chips.png',
+                        'is_primary' => '1'
+                    ],
+                ]
+            ],
+            [
+                'name' => 'Cadbury Dairy Milk Silk',
+                'slug' => 'cadbury-dairy-milk-silk',
+                'short_description' => 'Rich and creamy milk chocolate.',
+                'description' => 'Cadbury Dairy Milk Silk offers a smooth and creamy texture, making it a perfect treat for chocolate lovers.',
+                'price' => 4.49,
+                'stock' => 130,
+                'status' => 1,
+                'category' => Category::where('slug', 'snacks-sweets')->select('id', 'slug')->first(),
+                'unit_id' => 5,
+                'images' => [
+                    [
+                        'path' => 'snacks-sweets/cadbury-dairy-milk-silk.png',
+                        'is_primary' => '1'
+                    ],
+                ]
+            ],
+            [
+                'name' => 'Haribo Goldbears Gummy Candy',
+                'slug' => 'haribo-goldbears-gummy-candy',
+                'short_description' => 'Soft and chewy gummy bears in assorted flavors.',
+                'description' => 'Haribo Goldbears are iconic gummy candies with a variety of fruity flavors. Great for snacking or sharing.',
+                'price' => 2.49,
+                'stock' => 220,
+                'status' => 1,
+                'category' => Category::where('slug', 'snacks-sweets')->select('id', 'slug')->first(),
+                'unit_id' => 5,
+                'images' => [
+                    [
+                        'path' => 'snacks-sweets/haribo-goldbears-gummy-candy.png',
+                        'is_primary' => '1'
+                    ],
+                ]
+            ],
+            [
+                'name' => 'Twinkies Snack Cakes',
+                'slug' => 'twinkies-snack-cakes',
+                'short_description' => 'Classic golden sponge cakes with creamy filling.',
+                'description' => 'Twinkies are soft sponge cakes filled with sweet cream. A nostalgic treat perfect for snacking or dessert.',
+                'price' => 2.99,
+                'stock' => 160,
+                'status' => 1,
+                'category' => Category::where('slug', 'snacks-sweets')->select('id', 'slug')->first(),
+                'unit_id' => 5,
+                'images' => [
+                    [
+                        'path' => 'snacks-sweets/twinkies-snack-cakes.png',
+                        'is_primary' => '1'
+                    ],
+                ]
+            ],
         ];
 
         $products = array_merge($products, $hobbies_crafts_products);

@@ -5674,6 +5674,7 @@ class FakeProductSeeder extends FakeAppSeeder
             $mens_watches_category->id,
             $mens_jackets_category->id,
             $mens_glasses_category->id,
+            $mens_perfumes_category->id,
             $women_dress_category->id,
             $women_handbag_category->id,
             $women_watch_category->id,

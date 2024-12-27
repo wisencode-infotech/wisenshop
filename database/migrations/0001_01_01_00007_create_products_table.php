@@ -27,6 +27,19 @@ return new class extends Migration
             $table->datetime('discount_start_date')->nullable();
             $table->datetime('discount_end_date')->nullable();
 
+            // SEO fields
+            $table->string('seo_title')->nullable();
+            $table->text('seo_description')->nullable();
+            $table->string('seo_keywords')->nullable();
+
+            // Open Graph (OG) fields for social media
+            $table->string('og_title')->nullable();
+            $table->text('og_description')->nullable();
+            $table->string('og_image')->nullable(); // URL to the image used for social media preview
+
+            // Optional: Add a canonical URL field (useful to prevent duplicate content issues)
+            $table->string('canonical_url')->nullable();
+
             $table->char('public_visibility', 2)->default('1');
             $table->char('is_home', 2)->default('1');
             $table->timestamps();

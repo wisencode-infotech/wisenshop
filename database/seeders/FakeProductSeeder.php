@@ -2181,7 +2181,7 @@ class FakeProductSeeder extends FakeAppSeeder
 
         $products = array_merge($products, $women_perfumes_products);
 
-         $kids_toy_category = Category::where('slug', 'kids-baby-products-toys')->select('id', 'slug')->first();
+        $kids_toy_category = Category::where('slug', 'kids-baby-products-toys')->select('id', 'slug')->first();
 
         $kids_toy_products = [
                 [
@@ -3779,7 +3779,7 @@ class FakeProductSeeder extends FakeAppSeeder
 
         $products = array_merge($products, $fitness_outdoor_massager_products); 
 
-         $book_stationery_religious_category = Category::where('slug', 'books-stationery-religious')->select('id', 'slug')->first();
+        $book_stationery_religious_category = Category::where('slug', 'books-stationery-religious')->select('id', 'slug')->first();
 
         $book_stationery_religious_products = [
                 [
@@ -5201,7 +5201,7 @@ class FakeProductSeeder extends FakeAppSeeder
 
         $products = array_merge($products, $footware_partywear_products);   
 
-         $travel_duffel_bag_category = Category::where('slug', 'travel-luggage-duffel-bag')->select('id', 'slug')->first();
+        $travel_duffel_bag_category = Category::where('slug', 'travel-luggage-duffel-bag')->select('id', 'slug')->first();
 
         $travel_duffel_bag_products = [
                 [
@@ -5379,7 +5379,7 @@ class FakeProductSeeder extends FakeAppSeeder
 
         $products = array_merge($products, $travel_duffel_bag_products); 
 
-         $travel_luggage_bag_category = Category::where('slug', 'travel-luggage-luggage-bag')->select('id', 'slug')->first();
+        $travel_luggage_bag_category = Category::where('slug', 'travel-luggage-luggage-bag')->select('id', 'slug')->first();
 
         $travel_luggage_bag_products = [
                 [
@@ -5594,7 +5594,44 @@ class FakeProductSeeder extends FakeAppSeeder
             }
         }
 
-        $categories = Category::whereNotIn('id', [ $mobile_category->id ])->get();
+        $parent_category_ids = Category::select('id')->where(function($query) {
+            $query->whereNull('parent_id')->orWhere('parent_id', 0);
+        })->pluck('id')->toArray();
+
+        $category_ids_to_exclude = array_merge($parent_category_ids, [ 
+            $mobile_category->id,
+            $laptop_computer_category->id,
+            $electronics_leds_category->id,
+            $t_shirt_category->id,
+            $mens_watches_category->id,
+            $mens_jackets_category->id,
+            $mens_glasses_category->id,
+            $women_dress_category->id,
+            $women_handbag_category->id,
+            $women_watch_category->id,
+            $women_perfume_category->id,
+            $kids_toy_category->id,
+            $kids_diapers_category->id,
+            $kids_clothes_category->id,
+            $home_decore_category->id,
+            $home_decore_curtains_category->id,
+            $health_wellness_suppliment_category->id,
+            $health_wellness_ayurvedic_tablet_category->id,
+            $fitness_outdoor_treadmill_category->id,
+            $fitness_outdoor_massager_category->id,
+            $book_stationery_religious_category->id,
+            $book_stationery_history_category->id,
+            $book_stationery_sport_category->id,
+            $beauty_facewash_category->id,
+            $beauty_soap_category->id,
+            $footware_sport_category->id,
+            $footware_casual_category->id,
+            $footware_partywear_category->id,
+            $travel_duffel_bag_category->id,
+            $travel_luggage_bag_category->id
+        ]);
+
+        $categories = Category::whereNotIn('id', $category_ids_to_exclude)->get();
         $product_unit_ids = ProductUnit::pluck('id')->toArray();
 
         foreach ($categories as $category) {

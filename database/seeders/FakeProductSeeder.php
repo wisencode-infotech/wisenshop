@@ -5556,7 +5556,72 @@ class FakeProductSeeder extends FakeAppSeeder
 
 
         $products = array_merge($products, $travel_luggage_bag_products);   
+        
+        $pet_supply_products = [
+            [
+                'name' => 'Pedigree Puppy Dry Dog Food',
+                'slug' => 'pedigree-puppy-dry-dog-food',
+                'short_description' => 'Pedigree Puppy Dry Dog Food, Chicken & Milk, 3 kg, Contains 37 Essential Nutrients, 100% Complete & Balanced Food for Puppies.',
+                'description' => 'Give your puppy the best start in life with Pedigree Puppy Dry Dog Food. Specially crafted for the unique needs of puppies, this premium formula is designed to support healthy growth, robust immunity, and strong bones for your furry companion.',
+                'price' => 697,
+                'stock' => 50,
+                'status' => 1,
+                'category' => Category::where('slug', 'pet-supplies')->select('id', 'slug')->first(),
+                'unit_id' => 5,
+                'images' => [
+                    [
+                        'path' => 'pet-supplies/pedigree-puppy-dry-dog-food.png',
+                        'is_primary' => '1'
+                    ],
+                ]
+            ]
+        ];
 
+        $products = array_merge($products, $pet_supply_products);
+
+        $hobbies_crafts_products = [
+            [
+                'name' => 'Craft waft clouded hobbies',
+                'slug' => 'craft-waft-clouded-hobbies',
+                'short_description' => 'CRAFT WAFT CLOUDED HOBBIES 1 INCH Single Color Satin Ribbons 20 MTRS 2 ROLL 10 MTRS Each (Basil Green Blood Red)',
+                'description' => 'The perfect solution for coordinating any project. With a wide variety of colors and design options, RIBBONS are the perfect way to add a touch of personality to any project. Whether you\'re looking to add some glamour to your photos or just need a little extra support, RIBBONS are the perfect solution. Made from high-quality materials, RIBBONS are durable and easy to use.',
+                'price' => 697,
+                'stock' => 50,
+                'status' => 1,
+                'category' => Category::where('slug', 'hobbies-crafts')->select('id', 'slug')->first(),
+                'unit_id' => 5,
+                'images' => [
+                    [
+                        'path' => 'hobbies-crafts/craft-waft-clouded-hobbies.png',
+                        'is_primary' => '1'
+                    ],
+                ]
+            ]
+        ];
+
+        $products = array_merge($products, $hobbies_crafts_products);
+
+        $hobbies_crafts_products = [
+            [
+                'name' => 'Amul Chocomini Chocolate, 250 g',
+                'slug' => 'amul-chocomini-chocolate-250g',
+                'short_description' => 'Allergen Information: Almonds; Item Form: Toffee; Form Factor: Palm-Held;',
+                'description' => 'Indulge in the irresistible delight of Amul Chocomini Chocolate. This 250 g pack is a perfect blend of rich, creamy milk chocolate crafted to satisfy your sweet cravings. Made with the finest ingredients, each mini chocolate offers a velvety texture and a burst of flavor that melts in your mouth. Ideal for sharing with loved ones, gifting on special occasions, or enjoying as a treat, Amul Chocomini combines taste with quality. Its convenient size makes it perfect for snacking anytime. Experience the joy of premium chocolate with Amul – trusted for generations for its excellence in taste and purity.',
+                'price' => 697,
+                'stock' => 50,
+                'status' => 1,
+                'category' => Category::where('slug', 'snacks-sweets')->select('id', 'slug')->first(),
+                'unit_id' => 5,
+                'images' => [
+                    [
+                        'path' => 'snacks-sweets/amul-chocomini-chocolate-250g.png',
+                        'is_primary' => '1'
+                    ],
+                ]
+            ]
+        ];
+
+        $products = array_merge($products, $hobbies_crafts_products);
             
         foreach ($products as $product) {
 

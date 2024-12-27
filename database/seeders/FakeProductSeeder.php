@@ -5594,9 +5594,17 @@ class FakeProductSeeder extends FakeAppSeeder
             }
         }
 
-        $parent_category_ids = Category::select('id')->where(function($query) {
-            $query->whereNull('parent_id')->orWhere('parent_id', 0);
-        })->pluck('id')->toArray();
+        $parent_category_ids = Category::select('id')
+            ->where(function($query) {
+                $query->whereNull('parent_id')->orWhere('parent_id', 0);
+            })
+            ->whereNotIn('slug', [
+                'pet-supplies',
+                'hobbies-crafts',
+                'snacks-sweets'
+            ])
+            ->pluck('id')
+            ->toArray();
 
         $category_ids_to_exclude = array_merge($parent_category_ids, [ 
             $mobile_category->id,

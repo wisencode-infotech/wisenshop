@@ -33,13 +33,33 @@ class Category extends Model
     // Accessors
     public function getImageUrlAttribute()
     {
-        // Check if image_path is set and the file exists
-        if ($this->image_path && Storage::disk('public')->exists($this->image_path)) {
-            return Storage::disk('public')->url($this->image_path); // Return the URL of the stored image
-        }
+        return cache()->rememberForever("category_{$this->id}_image_url", function () {
+            if ($this->image_path && Storage::disk('public')->exists($this->image_path)) {
+                return Storage::disk('public')->url($this->image_path);
+            }
 
-        // If image_path is not set or file does not exist, return the placeholder URL
-        return self::$placeholder_url; // Ensure to use self:: for static property access
+            return self::$placeholder_url;
+        });
+    }
+
+    public function getHasChildrenAttribute()
+    {
+        return cache()->rememberForever("category_{$this->id}_has_children", function () {
+            return $this->subcategories()->exists();
+        });
+    }
+
+    public function getTotalProductsAttribute()
+    {
+        return cache()->rememberForever("category_{$this->id}_total_products", function () {
+            if (!$this->has_children) {
+                return $this->products()->count();
+            }
+
+            return $this->subcategories->sum(function ($subcategory) {
+                return $subcategory->products()->count();
+            });
+        });
     }
 
     // scope

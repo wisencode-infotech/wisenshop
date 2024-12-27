@@ -94,6 +94,9 @@ class CategoryController extends Controller
 
         __clearCache('all-categories');
         __clearCache('main-categories');
+        __clearCache('category_' . $category->id . '_has_children');
+        __clearCache('category_' . $category->id . '_total_products');
+        __clearCache('category_' . $category->id . '_image_url');
 
         return redirect()->route('backend.category.index')
                          ->with('success', 'Category created successfully.');

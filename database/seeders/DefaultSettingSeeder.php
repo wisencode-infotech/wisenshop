@@ -122,9 +122,9 @@ class DefaultSettingSeeder extends Seeder
 
         // Social media settings
         $social_media_settings = [
-            'twitter_link' => 'https://twitter.com/example',
-            'facebook_link' => 'https://facebook.com/example',
-            'instagram_link' => 'https://instagram.com/example',
+            'twitter_link' => 'https://twitter.com/WisenCode',
+            'facebook_link' => 'https://www.facebook.com/WisenCode',
+            'linkedin_link' => 'https://www.linkedin.com/in/WisenCode',
             'copyright_link' => 'Copyright © Wisenshop. All rights reserved worldwide.',
         ];
 

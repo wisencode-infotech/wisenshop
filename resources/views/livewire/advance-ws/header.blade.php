@@ -188,7 +188,7 @@
             <p>{{ __trans('Connect with us:') }}</p>
             <ul class="social-icon">
                <li><a href="{{ __setting('facebook_link') }}" target="_blank"><i class="fa-brands fa-facebook"></i></a></li>
-               <li><a href="{{ __setting('instagram_link') }}" target="_blank"><i class="fa-brands fa-instagram"></i></a></li>
+               <li><a href="{{ __setting('linkedin_link') }}" target="_blank"><i class="fa-brands fa-linkedin"></i></a></li>
                <li><a href="{{ __setting('twitter_link') }}" target="_blank"><i class="fa-brands fa-twitter"></i></a></li>
             </ul>
          </div>

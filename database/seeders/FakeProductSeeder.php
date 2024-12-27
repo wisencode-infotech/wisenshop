@@ -6122,14 +6122,14 @@ class FakeProductSeeder extends FakeAppSeeder
             }
         }
 
-        $parent_category_ids = Category::select('id')
+        $category_ids_to_exclude = Category::select('id')
             ->where(function($query) {
                 $query->whereNull('parent_id')->orWhere('parent_id', 0);
             })
             ->pluck('id')
             ->toArray();
 
-        $category_ids_to_exclude = array_merge($parent_category_ids, [ 
+        $category_ids_to_exclude = array_merge($category_ids_to_exclude, [ 
             $mobile_category->id,
             $laptop_computer_category->id,
             $electronics_leds_category->id,

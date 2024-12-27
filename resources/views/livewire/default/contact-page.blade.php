@@ -34,9 +34,9 @@
                     </a>
                     <a
                         class="text-muted transition-colors duration-300 focus:outline-none ltr:mr-8 ltr:last:mr-0 rtl:ml-8 rtl:last:ml-0 hover:undefined"
-                        target="_blank" title="{{ __setting('instagram_link') }}"
-                        href="{{ __setting('instagram_link') }}">
-                        <i class="fa fa-instagram"> </i>
+                        target="_blank" title="{{ __setting('linkedin_link') }}"
+                        href="{{ __setting('linkedin_link') }}">
+                        <i class="fa fa-linkedin"> </i>
                     </a>
                 </div>
             </div>

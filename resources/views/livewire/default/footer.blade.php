@@ -11,8 +11,8 @@
                <a class="text-accent hover:text-accent-hover" target="_blank" href="{{ __setting('twitter_link') }}">
                   <i class="fa fa-twitter"></i>
                </a>
-               <a class="text-accent hover:text-accent-hover" target="_blank" href="{{ __setting('instagram_link') }}">
-                  <i class="fa fa-instagram"></i>
+               <a class="text-accent hover:text-accent-hover" target="_blank" href="{{ __setting('linkedin_link') }}">
+                  <i class="fa fa-linkedin"></i>
                </a>
             </div>
          </div>

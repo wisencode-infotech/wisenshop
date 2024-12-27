@@ -101,11 +101,11 @@ class DefaultSettingSeeder extends Seeder
         // Contact and correspondence settings
         $contact_and_correspondence_settings = [
             'email_footer_content' => '© 2024 '.config('app.name').'. All rights reserved.',
-            'phone_number' => '9696669999',
-            'email' => 'example@domain.com',
-            'address' => '123 Example Street, Sample City, ST 12345',
-            'website' => 'https://www.example.com',
-            'receiver_emails' => 'receiverA@user.com, receiverB@user.com',
+            'phone_number' => '+91 8238136154',
+            'email' => 'wisencode.info@gmail.com',
+            'address' => 'H-26, KB Logistic, Gadh Road, Chadoatar, Palanpur-385001',
+            'website' => 'https://wisencode.com',
+            'receiver_emails' => 'wisencode.info@gmail.com, manknojiya121@gmail.com',
         ];
 
         $setting_sort_number = 1;

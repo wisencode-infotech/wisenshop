@@ -288,6 +288,8 @@ class ProductController extends Controller
             }
         }
 
+        __clearCache('product-' . $product->slug . '-detail');
+
         return redirect()->route('backend.product.edit', $product)->with('success', 'Product updated successfully.');
     }
 

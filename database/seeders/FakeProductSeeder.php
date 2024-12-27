@@ -262,7 +262,7 @@ class FakeProductSeeder extends FakeAppSeeder
                 'unit_id' => 5,
                 'images' => [
                     [
-                        'path' => 'electronics-laptop-computer/hp-envy-desktop-te01-4000.jpg',
+                        'path' => 'electronics-laptop-computer/hp-envy-desktop-te01-4000.png',
                         'is_primary' => '1'
                     ],
                 ]

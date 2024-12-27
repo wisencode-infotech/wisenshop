@@ -5663,11 +5663,6 @@ class FakeProductSeeder extends FakeAppSeeder
             ->where(function($query) {
                 $query->whereNull('parent_id')->orWhere('parent_id', 0);
             })
-            ->whereNotIn('slug', [
-                'pet-supplies',
-                'hobbies-crafts',
-                'snacks-sweets'
-            ])
             ->pluck('id')
             ->toArray();
 

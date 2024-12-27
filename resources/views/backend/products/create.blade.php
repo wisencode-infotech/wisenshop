@@ -148,7 +148,7 @@
 
                             <div class="mb-3">
                                 <label for="seo_description" class="form-label">Product SEO Description</label>
-                                <textarea name="seo_description" class="form-control @error('seo_description') is-invalid @enderror" id="seo_description" rows="4">{{ old('seo_description') }}</textarea>
+                                <textarea name="seo_description" class="form-control @error('seo_description') is-invalid @enderror" id="seo_description" rows="3">{{ old('seo_description') }}</textarea>
                                 @error('seo_description')
                                 <span class="invalid-feedback">{{ $message }}</span>
                                 @enderror

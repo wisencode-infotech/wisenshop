@@ -216,7 +216,7 @@
 
                             <div class="mb-3">
                                 <label for="og_description" class="form-label">Product OG Description</label>
-                                <textarea name="og_description" class="form-control @error('og_description') is-invalid @enderror" id="og_description" rows="4">{{ old('og_description', $product->og_description) }}</textarea>
+                                <textarea name="og_description" class="form-control @error('og_description') is-invalid @enderror" id="og_description" rows="3">{{ old('og_description', $product->og_description) }}</textarea>
                                 @error('og_description')
                                 <span class="invalid-feedback">{{ $message }}</span>
                                 @enderror

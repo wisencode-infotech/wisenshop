@@ -175,32 +175,32 @@ class FakeAppSeeder extends Seeder
         $site_banners = [
             [
                 'title' => 'Balck Friday Speacial',
-                'image_path' => 'banner-1.png', 
+                'image_path' => 'banner-one.png', 
                 'description' => fake()->paragraph(),
             ],
             [
                 'title' => 'GearUp For Winter Fun',
-                'image_path' => 'banner-2.png',
+                'image_path' => 'banner-two.png',
                 'description' => fake()->paragraph(),
             ],
             [
                 'title' => 'Big Sale',
-                'image_path' => 'banner-3.png', 
+                'image_path' => 'banner-three.png', 
                 'description' => fake()->paragraph(),
             ],
             [
                 'title' => 'Balck Friday Speacial',
-                'image_path' => 'banner-4.png',
+                'image_path' => 'banner-four.png',
                 'description' => fake()->paragraph(),
             ],
             [
                 'title' => 'Exclusive Discount',
-                'image_path' => 'banner-5.png',
+                'image_path' => 'banner-five.png',
                 'description' => fake()->paragraph(),
             ],
             [
                 'title' => 'Speacial Offer',
-                'image_path' => 'banner-6.png',
+                'image_path' => 'banner-six.png',
                 'description' => fake()->paragraph(),
             ],
         ];

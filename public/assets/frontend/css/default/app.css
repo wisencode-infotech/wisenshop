@@ -192,12 +192,6 @@ button.reset_filter_btn:hover {
     margin-left: 10px;
 }
 
-/* .custom-checkbox{
-    margin-right: 5px;
-    border-radius: 2px;
-    cursor: pointer;
-} */
-
 @media (max-width: 768px) {
     .custom-profile-btn{
         margin-left: 2px;

@@ -1,4 +1,4 @@
-<div class="w-full pt-4 pb-20 lg:py-6 px-4 xl:px-0">
+<div class="w-full pt-4 pb-20 lg:py-6 px-1 xl:px-0">
 
     @if(count($products) == 0)
 
@@ -49,7 +49,7 @@
 
                         <span class="font-semibold text-muted text-sm truncate">{{ $product->category->name }}</span>
 
-                        <p class="text-xs text-muted pr-9 mt-2 custom-min-h-50">{{ \Str::limit($product->short_description, 70) }}</p>
+                        <p wire:navigate href="{{ route('frontend.product-detail', ['product_slug' => $product->slug]) }}" class="text-xs text-muted pr-9 mt-2 custom-min-h-50">{{ \Str::limit($product->short_description, 70) }}</p>
                         <div class="relative flex items-center justify-between mt-4 min-h-6 md:mt-4">
 
                             <div class="flex overflow-hidden order-5 sm:order-4 w-9 sm:w-24 h-24 sm:h-10 bg-accent text-light rounded-full flex-col-reverse sm:flex-row absolute sm:relative bottom-0 sm:bottom-auto ltr:right-0 rtl:left-0 ltr:sm:right-auto ltr:sm:left-auto">

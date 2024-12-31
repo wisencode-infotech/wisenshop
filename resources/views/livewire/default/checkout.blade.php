@@ -101,7 +101,7 @@
                @if(count($shipping_addresses) != 0)
                <div>
                   <div class="flex items-center">
-                     <input id="copy_to_billing" type="checkbox" class="checkbox" wire:model="copy_to_billing" wire:click="copyShippingAddress">
+                     <input id="copy_to_billing" type="checkbox" class="custom-checkbox" wire:model="copy_to_billing" wire:click="copyShippingAddress">
                      <label for="copy_to_billing" class="text-body text-sm primary">{{ __trans('Same as Shipping Address') }}</label>
                   </div>
                </div>

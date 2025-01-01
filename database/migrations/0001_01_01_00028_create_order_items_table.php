@@ -17,7 +17,7 @@ return new class extends Migration
             $table->foreignId('product_id')->constrained('products')->onDelete('cascade');
             $table->foreignId('product_variation_id')->nullable()->constrained('product_variations')->onDelete('cascade');
             $table->integer('quantity');
-            $table->decimal('price', 8, 2);
+            $table->decimal('price', 15, 2);
             $table->timestamps();
             $table->softDeletes();
         });

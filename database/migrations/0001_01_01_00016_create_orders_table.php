@@ -17,7 +17,7 @@ return new class extends Migration
             $table->foreignId('user_id')->constrained('users')->onDelete('cascade');
             $table->foreignId('currency_id')->constrained('currencies')->onDelete('cascade');
             $table->string('status');
-            $table->decimal('total_price', 10, 2);
+            $table->decimal('total_price', 15, 2);
             $table->json('extra_information')->nullable();
             $table->timestamps();
             $table->softDeletes();

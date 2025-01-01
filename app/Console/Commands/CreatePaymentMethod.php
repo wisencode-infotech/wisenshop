@@ -30,7 +30,7 @@ class CreatePaymentMethod extends WisenShopCommand
         $name = $this->option('name');
 
         if (!$name) {
-            $this->showConsoleHeadingError('The --name option is required > while creating payment method');
+            $this->showConsoleHeadingError('The --name option is required while creating a payment method');
             return 1;
         }
 

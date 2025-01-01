@@ -17,13 +17,13 @@ return new class extends Migration
             $table->string('slug')->unique();
             $table->string('short_description')->nullable();
             $table->text('description')->nullable();
-            $table->decimal('price', 8, 2);
+            $table->decimal('price', 15, 2);
             $table->integer('stock')->nullable();
             $table->boolean('status')->default(1);
             $table->foreignId('category_id')->constrained('categories')->onDelete('cascade');
             $table->foreignId('unit_id')->nullable()->constrained('product_units')->onDelete('cascade');
             $table->enum('discount_type', ['percentage', 'amount'])->nullable();
-            $table->decimal('discount_value', 8, 2)->nullable();
+            $table->decimal('discount_value', 15, 2)->nullable();
             $table->datetime('discount_start_date')->nullable();
             $table->datetime('discount_end_date')->nullable();
 

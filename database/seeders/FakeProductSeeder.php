@@ -68,7 +68,7 @@ class FakeProductSeeder extends FakeAppSeeder
                 'unit_id' => 5,
                 'images' => [
                     [
-                        'path' => 'mobile/google-pixel-8.png',
+                        'path' => 'mobile/google-pixel-8-new.png',
                         'is_primary' => '1'
                     ],
                 ]
@@ -317,7 +317,7 @@ class FakeProductSeeder extends FakeAppSeeder
                 'unit_id' => 5,
                 'images' => [
                     [
-                        'path' => 'electronics-laptop-computer/hp-all-in-one-24-cr0025m.jpg',
+                        'path' => 'electronics-laptop-computer/hp-all-in-one-24-cr0025m-new.jpg',
                         'is_primary' => '1'
                     ],
                 ]
@@ -1465,7 +1465,7 @@ class FakeProductSeeder extends FakeAppSeeder
                     'unit_id' => 5,
                     'images' => [
                         [
-                            'path' => 'men-perfumes/burberry-london.png',
+                            'path' => 'men-perfumes/burberry-london-new.png',
                             'is_primary' => '1'
                         ],
                     ]
@@ -3933,7 +3933,7 @@ class FakeProductSeeder extends FakeAppSeeder
                     'unit_id' => 5,
                     'images' => [
                         [
-                            'path' => 'book-stationery-religious/torah-english-translation.png',
+                            'path' => 'book-stationery-religious/torah-english-translation-new.png',
                             'is_primary' => '1'
                         ],
                     ]
@@ -4398,7 +4398,7 @@ class FakeProductSeeder extends FakeAppSeeder
                     'unit_id' => 5,
                     'images' => [
                         [
-                            'path' => 'beauty-facewash/clean-clear-morning-energy-face-wash.png',
+                            'path' => 'beauty-facewash/clean-clear-morning-energy-face-wash-new.png',
                             'is_primary' => '1'
                         ],
                     ]
@@ -4415,7 +4415,7 @@ class FakeProductSeeder extends FakeAppSeeder
                     'unit_id' => 5,
                     'images' => [
                         [
-                            'path' => 'beauty-facewash/wow-apple-cider-vinegar-face-wash.png',
+                            'path' => 'beauty-facewash/wow-apple-cider-vinegar-face-wash-new.png',
                             'is_primary' => '1'
                         ],
                     ]
@@ -4576,7 +4576,7 @@ class FakeProductSeeder extends FakeAppSeeder
                     'unit_id' => 5,
                     'images' => [
                         [
-                            'path' => 'beauty-soap/pears-transparent-soap.png',
+                            'path' => 'beauty-soap/pears-transparent-soap-new.png',
                             'is_primary' => '1'
                         ],
                     ]
@@ -5075,7 +5075,7 @@ class FakeProductSeeder extends FakeAppSeeder
                     'unit_id' => 5,
                     'images' => [
                         [
-                            'path' => 'partywear-footwear/aldo-galelith-sandals.png',
+                            'path' => 'partywear-footwear/aldo-galelith-sandals-new.png',
                             'is_primary' => '1'
                         ],
                     ]
@@ -5338,7 +5338,7 @@ class FakeProductSeeder extends FakeAppSeeder
                     'unit_id' => 5,
                     'images' => [
                         [
-                            'path' => 'duffel-bags/american-tourister-road-quest-duffel.png',
+                            'path' => 'duffel-bags/american-tourister-road-quest-duffel-new.png',
                             'is_primary' => '1'
                         ],
                     ]
@@ -5355,7 +5355,7 @@ class FakeProductSeeder extends FakeAppSeeder
                     'unit_id' => 5,
                     'images' => [
                         [
-                            'path' => 'duffel-bags/tumi-alpha-3-duffel-bag.png',
+                            'path' => 'duffel-bags/tumi-alpha-3-duffel-bag-new.png',
                             'is_primary' => '1'
                         ],
                     ]

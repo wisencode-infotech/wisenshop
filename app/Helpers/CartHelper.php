@@ -59,8 +59,6 @@ class CartHelper
 
             Session::put('cart', $cart);
         }
-
-        Cache::forget(Auth::check() ? 'cart_total_' . Auth::id() : 'cart_total_guest_' . session()->getId());
     }
 
     public static function items()
@@ -146,24 +144,10 @@ class CartHelper
 
     public static function total()
     {
-        if (self::disk() === 'database') {
-
-            $cache_key = Auth::check() ? 'cart_total_' . Auth::id() : 'cart_total_guest_' . session()->getId();
-
-            return cache()->rememberForever($cache_key, function() {
-                $cart_items = self::items();
-                return array_reduce($cart_items, function($total, $item) {
-                    return $total + (($item['quantity'] ?? 0) * ($item['product_price'] ?? 0));
-                }, 0);
-            });
-
-        }else{
-
-            $cart_items = self::items();
-            return array_reduce($cart_items, function($total, $item) {
-                return $total + (($item['quantity'] ?? 0) * ($item['product_price'] ?? 0));
-            }, 0);
-        }
+        $cart_items = self::items();
+        return array_reduce($cart_items, function($total, $item) {
+            return $total + (($item['quantity'] ?? 0) * ($item['product_price'] ?? 0));
+        }, 0);
     }
 
     public static function syncToDatabse($user_id = null)
@@ -171,8 +155,6 @@ class CartHelper
         $user_id =  (!empty($user_id)) ? $user_id : Auth::user()->id;
 
         $cart_items = Session::get('cart', []);
-
-        // dd($cart_items);
 
         foreach ($cart_items as $cart_key => $value) {
 
@@ -237,8 +219,6 @@ class CartHelper
 
         // Remove cart items for the user from the database
         Cart::where('user_id', $user_id)->delete();
-
-        Cache::forget('cart_total_' . $user_id);
     }
 
     public static function createOrder($data = [])

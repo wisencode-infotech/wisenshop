@@ -31,6 +31,10 @@ class SettingController extends Controller
 
     public function update(Request $request)
     {
+        if (env('IS_DEMO', false)) {
+            return redirect()->route('backend.settings.index')->with('error', 'This is a demo version, settings cannot be updated.');;
+        }
+
         $site_theme_updated = ($request->has('settings') && __setting('site_theme') != $request->settings['site_theme']);
         
         // Validate the request

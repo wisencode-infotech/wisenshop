@@ -173,6 +173,10 @@ class UserController extends Controller
 
     public function updatePasswordAdmin(Request $request)
     {
+        if (env('IS_DEMO', false)) {
+            return response()->json(['status' => 201, 'message' => 'This is a demo version, settings cannot be updated.']);
+        }
+
         $request->validate([
             'current_password' => 'required',
             'password' => 'required|min:8|confirmed',

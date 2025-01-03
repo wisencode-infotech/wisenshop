@@ -1,4 +1,4 @@
-APP_NAME="WisenShop"
+APP_NAME="WisenShop Documentation - Multipurpose eCommerce script"
 APP_ENV=local
 APP_KEY=base64:a4ovxw6dTWsANjosU9DypxQX+o4EoTquhaNX4nOirxk=
 APP_DEBUG=true
